@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record id="stock_transfer_group_cancel" model="res.groups">
+            <field name="name">Group For Cancel</field>
+        </record>
+        <record id="stock_transfer_group_return" model="res.groups">
+            <field name="name">Group For Cancel Return</field>
+        </record>
+        <record id="user_wants_receive" model="res.groups">
+            <field name="name">User Wants Receive</field>
+        </record>
+    </data>
+</odoo>
+

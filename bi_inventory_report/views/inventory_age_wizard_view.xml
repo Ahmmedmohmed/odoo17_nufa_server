@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    	<record id="view_invetory_age_excel" model="ir.ui.view">
+                <field name="name">view.invetory.report.excel</field>
+                <field name="model">inventory.age.report.excel</field>
+                <field name="arch" type="xml">
+                    <form string="Genrated xls File">
+                        <group>
+                            <field name="file_name" invisible="1"/>
+                            <field name="excel_file" readonly="1" filename="file_name"/>
+                        </group>
+                         <footer>
+                            <button string="Cancel" class="oe_link" special="cancel" />
+                        </footer>
+                    </form>
+                </field>
+         </record>
+
+        <record id="view_inventory_age" model="ir.ui.view">
+            <field name="name">inventory.age.wizard.view</field>
+            <field name="model">inventory.age.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Inventory Age Report">
+		                <group>
+                            <group col="2">
+		                        <field name="generate_type" widget="radio"/>
+                                <field name="warehouse_ids" invisible = "generate_type == 'location'" required="generate_type == 'warehouse'" widget="many2many_tags" />
+                                <field name="location_ids" invisible = "generate_type == 'warehouse'" required="generate_type == 'location'" widget="many2many_tags"/>
+		                        <field name="include_all_product"/>
+                            </group>
+                                <field name="product_ids" invisible = "include_all_product" 
+                                />
+		                </group>
+                    <footer>
+                        <button string="Download Excel Report" name="print_exl_report" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+               </form>
+            </field>           
+        </record>
+        
+        <record id="action_inventory_age" model="ir.actions.act_window">
+            <field name="name">Inventory Age</field>
+            <field name="res_model">inventory.age.wizard</field>
+            
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        
+        <menuitem
+            id="menu_inventory_age"
+            name="Inventory Age"
+            parent="stock.menu_warehouse_report"
+            action="action_inventory_age"
+            sequence="1"
+           />
+     
+    </data>
+</odoo>

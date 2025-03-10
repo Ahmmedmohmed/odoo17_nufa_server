@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+bi_hr_attendance_report.access_employee_attendence_report_wizard,access_employee_attendence_report_wizard,bi_hr_attendance_report.model_employee_attendence_report_wizard,base.group_user,1,1,1,1
+bi_hr_attendance_report.access_custom_excel_class,access_custom_excel_class,bi_hr_attendance_report.model_custom_excel_class,base.group_user,1,1,1,1

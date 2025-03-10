@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    	<template id="assets_backend_legacy_lazy_inherit" name="bi_inventory_valuation_reports js backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/bi_inventory_valuation_reports/static/src/js/select_all_records.js"/>
+            </xpath>
+        </template>
+    </data>
+</odoo>

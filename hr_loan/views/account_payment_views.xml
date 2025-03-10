@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_account_payment_hr_loan_form" model="ir.ui.view">
+            <field name="name">view.account.payment.hr.loan.form</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='payment_type']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='partner_type']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="is_loan" invisible="1"/>
+                </xpath>
+
+                <!--                <xpath expr="//field[@name='destination_account_id']" position="attributes">-->
+                <!--                    <attribute name="readonly">1</attribute>-->
+                <!--                </xpath>-->
+
+                <xpath expr="//field[@name='currency_id']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_account_disbursement_payments" model="ir.actions.act_window">
+            <field name="name">Loan Disbursement</field>
+            <field name="res_model">account.payment</field>
+            <field name="view_mode">tree,kanban,form,graph</field>
+        </record>
+
+        <record id="action_account_disbursement_payments_tree" model="ir.actions.act_window.view">
+            <field eval="0" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="account.view_account_supplier_payment_tree"/>
+            <field name="act_window_id" ref="hr_loan.action_account_disbursement_payments"/>
+        </record>
+        <record id="action_account_disbursement_payments_kanban" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="account.view_account_payment_kanban"/>
+            <field name="act_window_id" ref="hr_loan.action_account_disbursement_payments"/>
+        </record>
+        <record id="action_account_disbursement_payments_form" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="hr_loan.view_account_payment_hr_loan_form"/>
+            <field name="act_window_id" ref="hr_loan.action_account_disbursement_payments"/>
+        </record>
+        <record id="action_account_disbursement_payments_graph" model="ir.actions.act_window.view">
+            <field eval="3" name="sequence"/>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="account.view_account_payment_graph"/>
+            <field name="act_window_id" ref="hr_loan.action_account_disbursement_payments"/>
+        </record>
+        <!-- Inherit Form View to Modify it -->
+        <record id="res_config_settings_view_custom" model="ir.ui.view">
+            <field name="name">res.config.settings.view.custom</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//block[@id='pay_invoice_online_setting_container']//setting[@id='qr_code_invoices']"
+                       position="after">
+                    <setting id="qr_code_invoices" string="Loan Account" company_dependent="1">
+                        <field name="loan_account" class="oe_inline"/>
+                    </setting>
+                </xpath>
+
+            </field>
+        </record>
+        <!-- Inherit Form View to Modify it -->
+        <record id="res_company_custom" model="ir.ui.view">
+            <field name="name">res.company.custom</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='currency_id']" position="after">
+                    <field name="loan_account" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,362 @@
+<odoo>
+    <!--Installment Line-->
+    <record id="view_hr_loan_installment_line_form" model="ir.ui.view">
+        <field name="name">view.hr.loan.installment.line.form</field>
+        <field name="model">hr.loan.installment.line</field>
+        <field name="arch" type="xml">
+            <form string="HR Loan Installment Lines">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="date"/>
+                            <field name="amount"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="remaining_amount"/>
+                            <field name="paid_amount"/>
+                            <field name="is_paid"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--Loans -->
+    <record id="view_hr_loan_filter" model="ir.ui.view">
+        <field name="name">view.hr.loan.filter</field>
+        <field name="model">hr.loan</field>
+        <field name="arch" type="xml">
+            <search string="HR Loans">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <field name="manager_id"/>
+                <field name="user_id" />
+                <field name="start_date"/>
+                <field name="number_installments"/>
+                <field name="description"/>
+
+                <filter string="Date" name="date" date="date"/>
+                <filter string="Start Date" name="start_date" date="start_date"/>
+
+                <group expand="0" string="Group By">
+                    <filter string="Employee" name="employee_id" domain="[]" context="{'group_by':'employee_id'}"/>
+                    <filter string="Department" name="department_id" domain="[]"
+                            context="{'group_by':'department_id'}"/>
+                    <filter string="Manager" name="manager_id" domain="[]" context="{'group_by':'manager_id'}"/>
+                    <filter string="Job" name="job_id" domain="[]" context="{'group_by':'job_id'}"/>
+                    <filter string="Assigned To" name="group_by_user_id" domain="[]" context="{'group_by': 'user_id'}"/>
+                    <separator/>
+                    <filter name="group_by_start_date" string="Start Date" domain="[]"
+                            context="{'group_by':'start_date'}"/>
+                    <filter string="Date" name="group_by_date" domain="[]" context="{'group_by': 'date'}"/>
+                    <separator/>
+                    <filter string="Type" name="group_by_type" domain="[]" context="{'group_by': 'type'}"/>
+                    <filter name="group_by_state" string="Status" domain="[]" context="{'group_by':'state'}"/>
+                    <filter name="group_by_done_state" string="Done Status" domain="[]"
+                            context="{'group_by':'done_state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_hr_loan_tree" model="ir.ui.view">
+        <field name="name">view.hr.loan.tree</field>
+        <field name="model">hr.loan</field>
+        <field name="arch" type="xml">
+            <tree string="HR Loans">
+                <field name="name"/>
+                <field name="date" optional="show"/>
+                <field name="employee_id" optional="show"/>
+                <field name="department_id" optional="hide"/>
+                <field name="manager_id" optional="hide"/>
+                <field name="job_id" optional="hide"/>
+                <field name="start_date" optional="show"/>
+                <field name="type" optional="hide"/>
+                <field name="user_id" optional="show"/>
+                <field name="amount" sum="Total Amount"/>
+                <field name="total_paid" sum="Total Paid" optional="show"/>
+                <field name="total_remaining" sum="Total Remaining" optional="show"/>
+                <field name="state" optional="show"/>
+                <field name="done_state" decoration-success="done_state == 'approve'"
+                       decoration-info="done_state == 'reject'" widget="badge" optional="show"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="is_paid" invisible="1"/>
+                <field name="complete_disbursement" invisible="1"/>
+
+                <button name="action_payment" type="object" icon="fa-money"
+                        invisible="done_state != 'approve' or is_paid or complete_disbursement"
+                        groups="hr_loan.group_hr_loan_user"/>
+                <button name="action_disbursement" type="object" icon="fa-money"
+                        invisible="done_state != 'approve' or complete_disbursement"
+                        groups="hr_loan.group_hr_loan_user"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hr_loan_form" model="ir.ui.view">
+        <field name="name">view.hr.loan.form</field>
+        <field name="model">hr.loan</field>
+        <field name="arch" type="xml">
+            <form string="HR Loans">
+                <header>
+                    <field name="complete_disbursement" invisible="1"/>
+                    <button name="action_validate" type="object" invisible="state != 'draft'" string="Validate" class="btn-primary"
+                            groups="hr_loan.group_hr_loan_user"/>
+                    <button name="action_confirm" type="object" invisible="state != 'validate'" string="Confirm" class="btn-primary"
+                            groups="hr_loan.group_hr_loan_user"/>
+                    <button name="action_compute_installments" type="object" invisible="type == 'advance' or state != 'in_progress'"
+                            string="Compute Installments" class="btn-primary" groups="hr_loan.group_hr_loan_user"/>
+                    <button name="action_approve" type="object" string="Approve"
+                            invisible="state != 'in_progress'" groups="hr_loan.group_hr_loan_user"/>
+                    <button name="%(hr_loan.action_reject_hr_loan_wizard)d" type="action" string="Reject"
+                            invisible="state != 'in_progress'" groups="hr_loan.group_hr_loan_user"/>
+                    <button name="%(hr_loan.action_cancel_hr_loan_wizard)d" type="action" string="Cancel"
+                            invisible="state not in ['draft','validate','in_progress']" groups="hr_loan.group_hr_loan_user"/>
+                    <button name="action_payment" type="object" string="Payment" class="btn-primary"
+                            invisible="done_state != 'approve' or is_paid or complete_disbursement == False"
+                            groups="hr_loan.group_hr_loan_user"/>
+                    <button name="action_disbursement" type="object" string="Disbursement" class="btn-primary"
+                            invisible="done_state != 'approve' or complete_disbursement"
+                            groups="hr_loan.group_hr_loan_user"/>
+
+                    <button name="action_send_email" type="object" string="Send Email" class="btn-primary"/>
+                    <button name="%(sms.sms_composer_action_form)d" type="action" string="Send SMS"
+                            class="btn-primary"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,validate,in_progress,done,cancel"/>
+                </header>
+                <sheet>
+                    <field name="done_state" invisible="1"/>
+                    <field name="type" invisible="1"/>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object" name="action_get_disbursement_payments"
+                                icon="fa-pencil-square-o" invisible="done_state != 'approve'">
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="total_disbursement"/>
+                                </span>
+                                <span class="o_stat_text">Disbursement</span>
+                            </div>
+                        </button>
+
+                        <button class="oe_stat_button" type="object" name="action_get_payslips"
+                                icon="fa-money" invisible="payslips_count == 0">
+                            <field string="Payslips" name="payslips_count" widget="statinfo"/>
+                        </button>
+                        <button class="oe_stat_button" type="object" name="action_get_payments"
+                                icon="fa-money" invisible="payments_count == 0">
+                            <field string="Payments" name="payments_count" widget="statinfo"/>
+                        </button>
+                    </div>
+
+                    <widget name="web_ribbon" title="Draft" bg_color="bg-danger"
+                            invisible="id == False or state != 'draft'"/>
+
+                    <widget name="web_ribbon" title="Cancelled" bg_color="bg-secondary"
+                            invisible="state != 'cancel'"/>
+
+                    <widget name="web_ribbon" title="Approved" bg_color="bg-info"
+                            invisible="done_state != 'approve'"/>
+                    <widget name="web_ribbon" title="Rejected" bg_color="bg-secondary"
+                            invisible="done_state != 'reject'"/>
+
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="employee_id" options="{'no_open':True,'no_create':True}" readonly="state != 'draft'"/>
+                            <field name="balance"/>
+                            <field name="department_id" options="{'no_open':True,'no_create':True}"/>
+                            <field name="manager_id" options="{'no_open':True,'no_create':True}"/>
+                            <field name="job_id" options="{'no_open':True,'no_create':True}"/>
+
+                            <label for="amount"/>
+                            <div name="amount_div" class="o_row">
+                                <field name="amount" readonly="state != 'draft'"/>
+                                <field name="currency_id" options="{'no_create': True, 'no_open': True}"
+                                       groups="base.group_multi_currency"
+                                       readonly="state != 'draft'"/>
+                            </div>
+                            <field name="company_id" groups="base.group_multi_company"
+                                   options="{'no_create': True, 'no_open': True}"
+                                   readonly="state != 'draft'"/>
+                        </group>
+                        <group>
+                            <field name="date" readonly="state != 'draft'"/>
+                            <field name="start_date" readonly="state != 'draft'"/>
+                            <field name="user_id" readonly="1"/>
+                            <field name="number_installments" invisible="type == 'advance'"/>
+                            <field name="installment_type" invisible="type == 'advance'"/>
+
+                            <separator string="Totals"/>
+                            <field name="total_remaining"/>
+                            <field name="total_paid"/>
+                            <field name="is_paid"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="description" readonly="state != 'draft'"/>
+                        <field name="reject_reason" invisible="done_state != 'reject'"/>
+                        <field name="cancel_reason" invisible="done_state != 'cancel'"/>
+                    </group>
+
+                    <notebook invisible="type == 'advance' or line_ids == []">
+                        <page string="Installments">
+                            <field name="line_ids">
+                                <tree string="Installments" editable="bottom" create="0" delete="0">
+                                    <field name="date" />
+                                    <field name="amount" readonly="parent.state != 'in_progress'"/>
+                                           sum="Total Amount"/>
+                                    <field name="remaining_amount" optional="hide" sum="Total Remaining"/>
+                                    <field name="paid_amount" optional="hide" sum="Total Paid"/>
+                                    <field name="is_paid" optional="hide"/>
+                                    <field name="currency_id" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+
+    <record id="view_hr_loan_graph" model="ir.ui.view">
+        <field name="name">view.hr.loan.graph</field>
+        <field name="model">hr.loan</field>
+        <field name="arch" type="xml">
+            <graph string="HR Loans">
+                <field name="amount" type="measure"/>
+                <field name="employee_id" type="row"/>
+                <field name="state" type="col"/>
+                <field name="done_state" type="col"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_hr_loan_pivot" model="ir.ui.view">
+        <field name="name">view.hr.loan.pivot</field>
+        <field name="model">hr.loan</field>
+        <field name="arch" type="xml">
+            <pivot string="HR Loans">
+                <field name="employee_id" type="row"/>
+                <field name="state" type="col"/>
+                <field name="done_state" type="col"/>
+                <field name="amount" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_hr_loan_activity" model="ir.ui.view">
+        <field name="name">view.hr.loan.activity</field>
+        <field name="model">hr.loan</field>
+        <field name="arch" type="xml">
+            <activity string="HR Loans">
+                <field name="employee_id"/>
+                <templates>
+                    <div t-name="activity-box">
+                        <img t-att-src="activity_image('hr.employee', 'image_128', record.employee_id.raw_value)"
+                             t-att-title="record.employee_id.value" t-att-alt="record.employee_id.value"/>
+                        <div>
+                            <field name="name" display="full"/>
+                            <field name="amount" muted="1" display="full"/>
+                        </div>
+                    </div>
+                </templates>
+            </activity>
+        </field>
+    </record>
+
+    <record id="action_hr_loans" model="ir.actions.act_window">
+        <field name="name">Loans</field>
+        <field name="res_model">hr.loan</field>
+        <field name="view_mode">tree,form,pivot,graph,activity</field>
+        <field name="context">{"default_type": "loan"}</field>
+        <field name="domain">[("type","=","loan")]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add a new Loan
+            </p>
+        </field>
+    </record>
+    <record id="action_hr_loans_to_disbursement" model="ir.actions.act_window">
+        <field name="name">To Disbursement</field>
+        <field name="res_model">hr.loan</field>
+        <field name="view_mode">tree,form,pivot,graph,activity</field>
+        <field name="context">{"default_type": "loan"}</field>
+        <field name="domain">[("type","=","loan"),('done_state','=','approve'),("complete_disbursement","=",False)]
+        </field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add a new Loan
+            </p>
+        </field>
+    </record>
+    <record id="action_hr_loans_to_paid" model="ir.actions.act_window">
+        <field name="name">To Paid</field>
+        <field name="res_model">hr.loan</field>
+        <field name="view_mode">tree,form,pivot,graph,activity</field>
+        <field name="context">{"default_type": "loan"}</field>
+        <field name="domain">
+            [("type","=","loan"),('done_state','=','approve'),("complete_disbursement","=",True),("is_paid","=",False)]
+        </field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add a new Loan
+            </p>
+        </field>
+    </record>
+    <record id="action_hr_loan_advances" model="ir.actions.act_window">
+        <field name="name">Advances</field>
+        <field name="res_model">hr.loan</field>
+        <field name="view_mode">tree,form,pivot,graph,activity</field>
+        <field name="context">{"default_type": "advance"}</field>
+        <field name="domain">[("type","=","advance")]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add a new Advance
+            </p>
+        </field>
+    </record>
+    <record id="action_hr_loan_advances_to_disbursement" model="ir.actions.act_window">
+        <field name="name">To Disbursement</field>
+        <field name="res_model">hr.loan</field>
+        <field name="view_mode">tree,form,pivot,graph,activity</field>
+        <field name="context">{"default_type": "advance"}</field>
+        <field name="domain">[("type","=","advance"),('done_state','=','approve'),("complete_disbursement","=",False)]
+        </field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add a new Advance
+            </p>
+        </field>
+    </record>
+    <record id="action_hr_loan_advances_to_paid" model="ir.actions.act_window">
+        <field name="name">To Paid</field>
+        <field name="res_model">hr.loan</field>
+        <field name="view_mode">tree,form,pivot,graph,activity</field>
+        <field name="context">{"default_type": "advance"}</field>
+        <field name="domain">
+            [("type","=","advance"),('done_state','=','approve'),("complete_disbursement","=",True),("is_paid","=",False)]
+        </field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add a new Advance
+            </p>
+        </field>
+    </record>
+</odoo>

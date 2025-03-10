@@ -1,0 +1,6 @@
+<odoo>
+
+    <!-- Operations -->
+    <menuitem id="menu_employees_operations" name="Operations" parent="hr.menu_hr_root" sequence="5"/>
+    <menuitem id="menu_account_operations" name="Operations" sequence="10" parent="account_accountant.menu_accounting" groups="account.group_account_user"/>
+</odoo>

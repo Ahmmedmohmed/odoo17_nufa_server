@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    	<record id="view_cover_report_excel" model="ir.ui.view">
+                <field name="name">view.cover.report.excel</field>
+                <field name="model">cover.report.excel</field>
+                <field name="arch" type="xml">
+                    <form string="Genrated xls File">
+                        <group>
+                            <field name="file_name" invisible="1"/>
+                            <field name="excel_file" readonly="1" filename="file_name"/>
+                        </group>
+                         <footer>
+                            <button string="Cancel" class="oe_link" special="cancel" />
+                        </footer>
+                    </form>
+                </field>
+         </record>
+     
+        <record id="view_inventory_cover_report_wizard" model="ir.ui.view">
+            <field name="name">inventory.cover.report.wizard.view</field>
+            <field name="model">inventory.coverage.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Inventory Coverage Report">
+		                <group>
+                            <group>
+		                        <field name="analysis_days"/>
+		                        <field name="report_date"/>
+				                <field name="product_type" widget="radio" />
+                            </group>
+
+                            <group>
+                                <field name="warehouse" widget="many2many_tags"/>
+                            </group>
+                            <field name="product_ids"/>
+		                </group>
+                    <footer>
+                        <button string="Download Excel Report" name="print_exl_report" type="object" class="oe_highlight"/>
+                        <button string="Download PDF Report" name="get_report" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+               </form>
+            </field>
+        </record>
+        
+        <record id="action_view_inventory_cover_wizard" model="ir.actions.act_window">
+            <field name="name">Inventory Coverage</field>
+            <field name="res_model">inventory.coverage.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        
+        <menuitem
+            id="menu_inventory_cover"
+            name="Inventory Coverage"
+            parent="stock.menu_warehouse_report"
+            action="action_view_inventory_cover_wizard"
+            sequence="1"
+           />
+
+        <record id="view_inventory_product_recommendation_wizard" model="ir.ui.view">
+            <field name="name">inventory.product.recommendation.wizard.view</field>
+            <field name="model">product.recommendation</field>
+            <field name="arch" type="xml">
+                <form string="Get Product Recommendation">
+		                <group>
+                            <group>
+		                        <field name="analysis_days"/>
+		                        <field name="partners"/>
+		                        <field name="past_sale_date"/>
+                            </group>
+                            <group>
+                                <field name="warehouse" widget="many2many_tags" required="1"/>
+                            </group>
+                            <field name="product_ids"/>
+		                </group>
+                    <footer>
+                        <button string="Download Excel Report" name="print_exl_report" type="object" class="oe_highlight"/>
+                        <button string="Retrieve Product" name="open_table" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+               </form>
+            </field>
+        </record>
+        
+        <record id="action_view_product_recommendation" model="ir.actions.act_window">
+            <field name="name">Product Recommendation</field>
+            <field name="res_model">product.recommendation</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        
+        <menuitem
+            id="menu_product_recommendation"
+            name="Product Recommendation"
+            parent="stock.menu_warehouse_report"
+            action="action_view_product_recommendation"
+            sequence="2"
+           />
+           
+    </data>
+</odoo>

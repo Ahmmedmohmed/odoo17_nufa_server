@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    <record id="view_stock_config_inherit_bi" model="ir.ui.view">
+        <field name="name">view.stock.config.inherit.bi</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="stock.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='production_lot_info']" position="after">
+				<h2 id="caverage_info">Inventory Coverage Report</h2>
+                    <div class="row mt16 o_settings_container">
+                       <div class="col-xs-12 col-md-6 o_setting_box">
+		                    <div class="o_setting_left_pane">
+		                        <field name="forcast_sales"/>
+		                    </div>
+		                    <div class="o_setting_right_pane">
+		                        <label for="forcast_sales"/>
+		                        <div class="text-muted">
+		                            If True Use Forcast Sales Otherwise Past Sales
+		                        </div>
+		                    </div>
+		                </div>
+		                <div class="col-xs-12 col-md-6 o_setting_box">
+		                    <div class="o_setting_right_pane">
+		                        <label for="day_forcast"/>
+		                        <div class="text-muted">
+		                            Backup Stock Days
+		                        </div>
+		                    </div>
+                            <div class="o_setting_right_pane">
+		                        <field name="day_forcast"/>
+		                    </div>
+		                </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box" invisible= "forcast_sales">
+		                    <div class="o_setting_right_pane">
+		                        <label for="past_sale"/>
+		                        <div class="text-muted">
+		                            Number of Past Sales
+		                        </div>
+		                    </div>
+                            <div class="o_setting_right_pane">
+		                        <field name="past_sale"/>
+		                    </div>
+		                </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box" invisible="forcast_sales">
+		                    <div class="o_setting_left_pane">
+		                        <field name="forcast_warehouse"/>
+		                    </div>
+		                    <div class="o_setting_right_pane">
+		                        <label for="forcast_warehouse"/>
+		                        <div class="text-muted">
+		                            Use Warehouse from Product When Auto Create Forcast Sale
+		                        </div>
+		                    </div>
+		                </div>
+                   </div>
+			</xpath>
+            
+        </field>
+    </record>
+
+    </data>
+</odoo>

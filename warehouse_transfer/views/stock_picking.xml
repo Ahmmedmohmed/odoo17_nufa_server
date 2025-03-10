@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_stock_picking_tree_warehouse_transfer" model="ir.ui.view">
+        <field name="name">view.stock.picking.tree.warehouse.transfer</field>
+        <field name="model">stock.picking</field>
+        <field name="arch" type="xml">
+            <tree create="0" delete="0">
+                <field name="name"/>
+                <field name="location_id"/>
+                <field name="location_dest_id"/>
+                <field name="scheduled_date"/>
+                <field name="origin"/>
+                <field name="backorder_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="action_stock_picking_warehouse_transfer" model="ir.actions.act_window">
+        <field name="name">Inter-Company Transfers</field>
+        <field name="res_model">stock.picking</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_stock_picking_tree_warehouse_transfer"/>
+        <field name="domain">[('warehouse_transfer', '=', True)]</field>
+    </record>
+
+
+    <menuitem id="menu_intercompany_transfers" name="Inter-Company Transfers" action="action_stock_picking_warehouse_transfer" parent="menu_warehouse_transfer_root" sequence="2"/>
+</odoo>

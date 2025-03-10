@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="report_one_set">
+		<t t-call="web.html_container">
+			<t t-call="web.external_layout">
+				<t t-foreach="emp_name" t-as="t">
+					<div class="page">
+						<div class="oe_structure">
+							<h1 align="center">Attendance Report</h1>
+						</div>
+						<table class="table table-sm table-striped mt-4">
+							<tr>
+								<td>
+									<strong>From</strong>
+								</td>
+								<td>
+									<t t-if="form_data.get('starting_date')">
+										<t t-esc="form_data['starting_date']"/>
+									</t>
+								</td>
+								<td>
+									<strong>To</strong>
+								</td>
+								<td>
+									<t t-if="form_data.get('ending_date')">
+										<t t-esc="form_data['ending_date']"/>
+									</t>
+								</td>
+							</tr>
+						</table>
+						<br/>
+							<table class="table table-bordered mt32">
+								<thead>
+									<tr>
+										<th name="th_employee_name_id" class="text-left">
+											<span>Employee Name</span>
+										</th>
+										<th name="th_manager_name_id" class="text-left">
+											<span>Manager Name</span>
+										</th>
+										<th name="th_department_id" class="text-left">
+											<span>Department</span>
+										</th>  
+										<tr>
+											<td>
+												<t t-if="t['emp_name']">
+													<t t-esc="t['emp_name']"/>
+												</t>
+											</td>
+											<td>
+												<t t-if="t['manager']">
+													<t t-esc="t['manager']"/>
+												</t>
+											</td>
+											<td>
+												<t t-if="t['department']">
+													<t t-esc="t['department']"/>
+												</t>
+											</td>
+											<table class="table table-bordered mt32">
+												<thead>
+													<tr>
+														<th name="th_manager_name_id" class="text-left">
+															<span>Check in</span>
+														</th>
+														<th name="th_employee_name_id" class="text-left">
+															<span>Check out</span>
+														</th>
+														<th name="th_department_id" class="text-left">
+						                                <span>Working Hours</span>
+						                            	</th>  
+													</tr>
+													<t t-foreach="t['vals']" t-as="line">
+														<tr>
+															<td>
+																<span t-esc="line['check_in']"/>
+															</td>
+															<td>
+																<span t-esc="line['check_out']"/>
+															</td>
+															<td>
+																<span t-esc="line['work_h']"/>
+															</td>
+														</tr>
+													</t>
+												</thead>
+											</table>
+										</tr>
+									</tr>
+								</thead>
+							</table>
+							<div style="page-break-after: always;">
+								<br/>
+	                    	</div>
+					</div>
+				</t>
+			</t>
+		</t>
+	</template>
+</odoo>

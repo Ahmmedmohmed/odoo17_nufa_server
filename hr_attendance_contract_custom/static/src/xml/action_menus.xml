@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-inherit="web.ActionMenus" t-inherit-mode="extension">
+        <xpath expr="//i[@t-if='item.icon']" position="after">
+            <i t-if="item.description == ' Calculate'" class="fa fa-solid fa-calculator"/>
+        </xpath>
+    </t>
+
+</templates>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_report_attendence_report_wizard" model="ir.actions.report">
+            <field name="name">Employee Report</field>
+            <field name="model">employee.attendence.report.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">bi_hr_attendance_report.report_one_set</field>
+            <field name="report_file">bi_hr_attendance_report.report_one_set</field>
+            <field name="binding_model_id" ref="model_employee_attendence_report_wizard"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

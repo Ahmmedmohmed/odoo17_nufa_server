@@ -1,0 +1,43 @@
+<odoo>
+    <!-- Employees Loans -->
+    <menuitem id="menu_hr_loan_main" name="Loans" parent="hr_employees_operations_menu.menu_employees_operations"
+              sequence="1" groups="hr.group_hr_user,hr_loan.group_hr_loan_user"/>
+    <menuitem id="menu_hr_loans" name="Loans" parent="hr_loan.menu_hr_loan_main" action="action_hr_loans" sequence="1"/>
+    <menuitem id="menu_hr_loans_to_disbursement" name="To Disbursement" parent="hr_loan.menu_hr_loan_main"
+              action="action_hr_loans_to_disbursement" sequence="2"/>
+    <menuitem id="menu_hr_loans_to_paid" name="To Paid" parent="hr_loan.menu_hr_loan_main"
+              action="action_hr_loans_to_paid" sequence="3"/>
+
+    <!-- Employees Advances -->
+    <menuitem id="menu_hr_Advance_main" name="Advances" parent="hr_employees_operations_menu.menu_employees_operations"
+              sequence="2" groups="hr.group_hr_user,hr_loan.group_hr_loan_user"/>
+    <menuitem id="menu_hr_loan_advances" name="Advances" parent="hr_loan.menu_hr_Advance_main"
+              action="action_hr_loan_advances" sequence="1"/>
+    <menuitem id="menu_hr_loan_advances_to_disbursement" name="To Disbursement" parent="hr_loan.menu_hr_Advance_main"
+              action="action_hr_loan_advances_to_disbursement" sequence="2"/>
+    <menuitem id="menu_hr_loan_advances_to_paid" name="To Paid" parent="hr_loan.menu_hr_Advance_main"
+              action="action_hr_loan_advances_to_paid" sequence="3"/>
+
+    <!-- Payslip Loans -->
+    <menuitem id="menu_payslip_hr_loan_main" name="Loans" parent="hr_payslip_operations_menu.menu_payslip_operations"
+              sequence="30" groups="hr.group_hr_user,hr_loan.group_hr_loan_user"/>
+    <menuitem id="menu_payslip_hr_loans" name="Loans" parent="hr_loan.menu_payslip_hr_loan_main"
+              action="action_hr_loans" sequence="1"/>
+    <menuitem id="menu_payslip_hr_loans_to_disbursement" name="To Disbursement"
+              parent="hr_loan.menu_payslip_hr_loan_main" action="action_hr_loans_to_disbursement" sequence="2"/>
+    <menuitem id="menu_hr_payslip_loans_to_paid" name="To Paid" parent="hr_loan.menu_payslip_hr_loan_main"
+              action="action_hr_loans_to_paid" sequence="3"/>
+
+    <!-- Payslip Advances -->
+    <menuitem id="menu_payslip_hr_Advance_main" name="Advances"
+              parent="hr_payslip_operations_menu.menu_payslip_operations"
+              sequence="40" groups="hr.group_hr_user,hr_loan.group_hr_loan_user"/>
+    <menuitem id="menu_payslip_hr_loan_advances" name="Advances" parent="hr_loan.menu_payslip_hr_Advance_main"
+              action="action_hr_loan_advances" sequence="1"/>
+    <menuitem id="menu_payslip_hr_loan_advances_to_disbursement" name="To Disbursement"
+              parent="hr_loan.menu_payslip_hr_Advance_main" action="action_hr_loan_advances_to_disbursement"
+              sequence="2"/>
+    <menuitem id="menu_payslip_hr_loan_advances_to_paid" name="To Paid" parent="hr_loan.menu_payslip_hr_Advance_main"
+              action="action_hr_loan_advances_to_paid" sequence="3"/>
+
+</odoo>

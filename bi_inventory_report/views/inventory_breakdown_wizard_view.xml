@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="res_company_form_extend_form" model="ir.ui.view">
+            <field name="name">res.company.lines.form.extend.form</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/notebook/page" position="after">
+                    <page string="Breakdown Configuration">
+                        <field name="breakdown_days_ids" />
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="invetory_breakdown_excel_view" model="ir.ui.view">
+                <field name="name">view.invetory.breakdown.excel</field>
+                <field name="model">inventory.break.down.excel</field>
+                <field name="arch" type="xml">
+                    <form string="Genrated xls File">
+                        <group>
+                            <field name="file_name" invisible="1"/>
+                            <field name="excel_file" readonly="1" filename="file_name"/>
+                        </group>
+                         <footer>
+                            <button string="Cancel" class="oe_link" special="cancel" />
+                        </footer>
+                    </form>
+                </field>
+         </record>
+
+        <record id="breakdown_days_view" model="ir.ui.view">
+            <field name="name">inventory.break.down.wizard.view</field>
+            <field name="model">breakdown.days</field>
+            <field name="arch" type="xml">
+                <form string="Breakdown Days">
+                        <group>
+                            <group>
+                                <field name="day_start"/>
+                                <field name="day_end"/>
+                                <field name="company_id"/>
+                            </group>
+                        </group>
+                    <footer>
+                        <button string="Download Report" name="print_exl_report" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="breakdown_days_tree" model="ir.ui.view">
+            <field name="name">breakdown.days.tree</field>
+            <field name="model">breakdown.days</field>
+            <field name="arch" type="xml">
+                <tree string="Breakdown Days">
+                    <field name="day_start"/>
+                    <field name="day_end"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="breakdown_days_action" model="ir.actions.act_window">
+            <field name="name">Inventory Breakdown Period</field>
+            <field name="res_model">breakdown.days</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <record id="inventory_breakdown_view" model="ir.ui.view">
+            <field name="name">inventory.break.down.wizard.view</field>
+            <field name="model">inventory.breakdown</field>
+            <field name="arch" type="xml">
+                <form string="Inventory Breakdown">
+                        <group>
+                            <group>
+                                <field name="generate_type" widget="radio"/>
+                                <field name="warehouse_ids" widget="many2many_tags" invisible = "generate_type == 'location'" required="generate_type == 'warehouse'"/>
+                                <field name="location_ids" widget="many2many_tags" invisible = "generate_type == 'warehouse'" required="generate_type == 'location'"/>
+                            </group>
+                        </group>
+                            <field name="breakdown_days_ids" width="100%">
+                                <tree editable="bottom">
+                                    <field name="day_start" required="1" width="100%"/>
+                                    <field name="day_end" required="1" width="100%"/>
+                                </tree>
+                            </field>                        
+                    <footer>
+                        <button string="Download Excel Report" name="print_exl_report" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+               </form>
+            </field>
+        </record>
+        
+        <record id="inventory_breakdown_action" model="ir.actions.act_window">
+            <field name="name">Inventory Breakdown</field>
+            <field name="res_model">inventory.breakdown</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+            id="menu_inventory_break_down"
+            name="Inventory Breakdown"
+            parent="stock.menu_warehouse_report"
+            action="inventory_breakdown_action"
+            sequence="2"
+           />
+
+    </data>
+</odoo>

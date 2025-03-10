@@ -1,0 +1,38 @@
+<odoo>
+    <data>
+        <template id="report_petipe_document_custom_template"
+                  inherit_id="stock.report_delivery_document">
+
+            <xpath expr="//table[@name='stock_move_line_table']" position="after">
+                <br/>
+                <br/>
+                <br/>
+                <table  style="width:100%; border: none; border-collapse: collapse; margin: 0; padding: 0;">
+                    <tr dir="rtl">
+                        <td dir="rtl" style="width: 40%; padding: 8px; border: none;">
+                            <strong>امضاء المسلم:</strong>
+                            <t t-esc="o.signature_delivered"/>
+                        </td>
+                        <td style="width: 20%; border: none;"></td>
+                        <td dir="rtl" style="width: 40%; padding: 8px; border: none;">
+                            <strong>امضاء المستلم:</strong>
+                            <t t-esc="o.signature_received"/>
+                        </td>
+                    </tr>
+                    <tr dir="rtl">
+                        <td dir="rtl" style="width: 40%; padding: 8px; border: none;">
+                            <strong>رقم تلفون المسلم:</strong>
+                            <t t-esc="o.delivered_phone"/>
+                        </td>
+                        <td style="width: 20%; border: none;"></td>
+                        <td dir="rtl" style="width: 40%; padding: 8px; border: none;">
+                            <strong>رقم تلفون المستلم:</strong>
+                            <t t-esc="o.received_phone"/>
+                        </td>
+                    </tr>
+                </table>
+
+            </xpath>
+        </template>
+    </data>
+</odoo>

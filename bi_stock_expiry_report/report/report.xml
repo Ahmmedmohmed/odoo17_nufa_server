@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+
+        <record id="report_expiry_print" model="ir.actions.report">
+            <field name="name">Stock Expiry Report</field>
+            <field name="model">stock.expiry.report.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">bi_stock_expiry_report.report_expiry_pdf</field>
+            <field name="report_file">bi_stock_expiry_report.report_expiry_pdf</field>
+        </record>
+
+
+        <record id="report_expiry_print_all" model="ir.actions.report">
+            <field name="name">Stock Expiry Report</field>
+            <field name="model">stock.expiry.report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">bi_stock_expiry_report.report_expiry_pdf_all</field>
+            <field name="report_file">bi_stock_expiry_report.report_expiry_pdf_all</field>
+        </record>
+
+        
+        <record id="report_expiry_print_location" model="ir.actions.report">
+            <field name="name">Stock Expiry Report</field>
+            <field name="model">stock.expiry.report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">bi_stock_expiry_report.report_expiry_pdf_location</field>
+            <field name="report_file">bi_stock_expiry_report.report_expiry_pdf_location</field>
+        </record>
+
+
+        <record id="report_expiry_print_warehouse" model="ir.actions.report">
+            <field name="name">Stock Expiry Report</field>
+            <field name="model">stock.expiry.report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">bi_stock_expiry_report.report_expiry_pdf_warehouse</field>
+            <field name="report_file">bi_stock_expiry_report.report_expiry_pdf_warehouse</field>
+        </record>
+
+    </data>
+</odoo>

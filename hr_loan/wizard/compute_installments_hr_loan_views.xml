@@ -1,0 +1,38 @@
+<odoo>
+    <data>
+        <record id="view_compute_installments_hr_loan_form" model="ir.ui.view">
+            <field name="name">view.compute.installments.hr.loan.form</field>
+            <field name="model">compute.installments.hr.loan</field>
+            <field name="arch" type="xml">
+                <form string="Cancel Or Reject HR Loan">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="number_installments"/>
+                            </group>
+                            <group>
+                                <field name="installment_type"/>
+                            </group>
+                        </group>
+
+                    </sheet>
+                    <footer>
+                        <button name="action_compute_installments" string="Compute Installments" type="object"
+                                class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_compute_installments_hr_loan_wizard" model="ir.actions.act_window">
+            <field name="name">Compute Installments</field>
+            <field name="res_model">compute.installments.hr.loan</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="hr_loan.view_compute_installments_hr_loan_form"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>
+

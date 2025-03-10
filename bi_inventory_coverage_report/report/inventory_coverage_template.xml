@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="report.paperformat" id="paperformat_inventory_coverage_report">
+        <field name="name">paperformat.inventory.coverage.report</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_width">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">30</field>
+        <field name="margin_right">5</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">20</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="inventory_report" model="ir.actions.report">
+            <field name="name">Inventory Coverage Report</field>
+            <field name="model">inventory.coverage.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">bi_inventory_coverage_report.template_report</field>
+            <field name="report_file">bi_inventory_coverage_report.template_report</field>
+            <field name="binding_model_id" ref="model_inventory_coverage_wizard"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="bi_inventory_coverage_report.paperformat_inventory_coverage_report"/>
+    </record>
+
+    <template id="template_report">
+    
+    	<t t-call="web.html_container">
+			<div class="page">
+			<br/><br/><br/><br/>
+        <div class="header" style="border-bottom: 2px solid black">
+            <h4 class="text-center">Inventory Coverage Report</h4>
+            <h5 class="text-center">
+                <strong>Days</strong>:
+                <t t-esc="analysis_days"/>
+                <strong>From Date</strong>:
+                <t t-esc="from_date"/>
+                <strong>To</strong>:
+                <t t-esc="report_date"/>
+            </h5>
+        </div>
+        <div class="article">
+            <table class="table table-condensed table-bordered" style="width: 100%">
+                <thead>
+                    <th class="text-center" style="width: 11%">Product</th>
+                    <th class="text-center" style="width: 11%">From</th>
+                    <th class="text-center" style="width: 11%">To</th>
+                    <th class="text-center" style="width: 11%">Opening Stock</th>
+                    <th class="text-center" style="width: 11%">Sales Count</th>
+                    <th class="text-center" style="width: 11%">Purchase Count</th>
+                    <th class="text-center" style="width: 11%">Forcasted Sale</th>
+                    <th class="text-center" style="width: 11%">Closing Stock</th>
+                </thead>
+                <tbody>
+                     <t t-foreach="docs" t-as="doc">  
+                         <tr>
+                            <td>
+                                <span t-esc="doc['product']"/>
+                            </td>
+                            <td>
+                                <span t-esc="doc['from_date']"/>
+                            </td>
+                            <td>
+                                <span t-esc="doc['end_date']"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-esc="doc['opening_stock']"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-esc="doc['sale']"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-esc="doc['purchase']"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-esc="doc['forecasted_sale']"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-esc="doc['closing_stock']"/>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+        </div>
+        <div class="footer">
+            <div class="row text-center" style="border-top: 1px solid black;">
+                <div class="col-xs-3 col-xs-offset-9 text-right">
+                    <ul class="list-inline" style="margin-top:10px;">
+                        <li>Page:</li>
+                        <li>
+                            <span class="page"/>
+                        </li>
+                        <li>/</li>
+                        <li>
+                            <span class="topage"/>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+        </t>
+    </template>
+</odoo>

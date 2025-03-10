@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <t t-name="aaaaaa" t-inherit="account_accountant.BankRecRecordNotebookManualOperations">
+        <xpath expr="//div[@name='suggestion']" position="before">
+            <!-- <div name="analytic_tags">
+                        
+                    </div> -->
+        </xpath>
+      
+    </t>
+
+   

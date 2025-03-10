@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_loan_user,hr.loan.user,model_hr_loan,hr_loan.group_hr_loan_user,1,1,1,1
+access_hr_loan_installment_line_user,hr.loan.installment.line.user,model_hr_loan_installment_line,hr_loan.group_hr_loan_user,1,1,1,1
+access_account_payment_loan_installment_line_user,account.payment.loan.installment.line.user,model_account_payment_loan_installment_line,hr_loan.group_hr_loan_user,1,1,1,1
+
+access_hr_loan_hr_user,hr.loan.hr.user,model_hr_loan,hr.group_hr_user,1,1,1,1
+access_hr_loan_installment_line_hr_user,hr.loan.installment.line.hr.user,model_hr_loan_installment_line,hr.group_hr_user,1,1,1,1
+
+access_confirm_hr_loan_group_user,confirm.hr.loan.group.user,model_confirm_hr_loan,base.group_user,1,1,1,1
+access_compute_installments_hr_loan_group_user,compute.installments.hr.loan.group.user,model_compute_installments_hr_loan,base.group_user,1,1,1,1
+access_cancel_reject_hr_loan_group_user,cancel.reject.hr.loan.group.user,model_cancel_reject_hr_loan,base.group_user,1,1,1,1
+access_hr_loan_installment_payment_wizard_group_user,hr.loan.installment.payment.wizard.group.user,model_hr_loan_installment_payment_wizard,base.group_user,1,1,1,1
+access_hr_loan_installment_payment_line_wizard_group_user,hr.loan.installment.payment.line.wizard.group.user,model_hr_loan_installment_payment_line_wizard,base.group_user,1,1,1,1

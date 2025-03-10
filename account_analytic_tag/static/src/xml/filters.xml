@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+<t t-inherit="account_reports.AccountReportFilters" t-inherit-mode="extension" owl="1">
+    <!-- <t t-name="account_analytic_tag.AccountAnalyticTagFilters" t-inherit="account_reports.AccountReportFilters"> -->
+        <!-- <xpath expr="//div[@name='tax_ids']" position="after"> -->
+    <xpath expr="." position="inside">
+   
+        <t t-if="hasAnalyticTagFilter">
+            <div id="filter_analytic_tag">
+             <!-- class="filter_analytic_tag"> -->
+                <t t-call="account_analytic_tag.AccountReportFilterAnalyticTag"/>
+            </div>
+        </t>
+
+          
+   </xpath>
+    </t>
+
+
+        <t t-name="account_analytic_tag.AccountReportFilterAnalyticTag">
+   
+        <Dropdown togglerClass="'btn btn-secondary'">
+            <t t-set-slot="toggler">
+                <i class="fa fa-folder-open me-1"/>Analytic Tag Filter
+            </t>
+
+            <div class="dropdown-item">
+                <label>Tags</label>
+                <MultiRecordSelector t-props="getMultiRecordSelectorProps('account.analytic.tag', 'analytic_accounts_tag')"/>
+            </div>
+        </Dropdown>
+    </t>
+</templates>

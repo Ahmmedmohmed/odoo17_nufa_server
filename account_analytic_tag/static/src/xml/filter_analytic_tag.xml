@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="account_analytic_tag.AccountAnalyticTagFilters">
+        <Dropdown togglerClass="'btn btn-secondary'">
+            <t t-set-slot="toggler">
+                <i class="fa fa-folder-open me-1"/>Analytic Tag
+            </t>
+
+            <div class="dropdown-item">
+                <label>Analytic Tag</label>
+                <MultiRecordSelector t-props="getMultiRecordSelectorProps('account.analytic.tag', 'analytic_tag_filter')"/>
+            </div>
+
+            <!-- <div class="dropdown-item">
+                <label>Plans</label>
+                <MultiRecordSelector t-props="getMultiRecordSelectorProps('account.analytic.plan', 'analytic_plans_groupby')"/>
+            </div> -->
+        </Dropdown>
+    </t>
+</templates>

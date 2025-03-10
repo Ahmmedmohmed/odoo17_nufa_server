@@ -1,0 +1,38 @@
+<odoo>
+    <data noupdate="1">
+
+        <record id="hr_loan_advanced_other_input" model="hr.payslip.input.type">
+            <field name="name">Advanced</field>
+            <field name="code">ADVANCED</field>
+        </record>
+        <record id="hr_loan_other_input" model="hr.payslip.input.type">
+            <field name="name">Loan</field>
+            <field name="code">LOAN</field>
+        </record>
+
+         <record id="hr_rule_loan_employee" model="hr.salary.rule">
+            <field name="name">Loan</field>
+            <field name="struct_id" ref="hr_structure_advanced.general_employee_structure"/>
+            <field name="sequence" eval="102"/>
+            <field name="code">LOAN</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = 'LOAN' in inputs</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs['LOAN'].amount</field>
+        </record>
+
+
+        <record id="hr_rule_advance_employee" model="hr.salary.rule">
+            <field name="name">Advance</field>
+            <field name="struct_id" ref="hr_structure_advanced.general_employee_structure"/>
+            <field name="sequence" eval="121"/>
+            <field name="code">ADVANCED</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = 'ADVANCED' in inputs</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs['ADVANCED'].amount</field>
+        </record>
+    </data>
+</odoo>

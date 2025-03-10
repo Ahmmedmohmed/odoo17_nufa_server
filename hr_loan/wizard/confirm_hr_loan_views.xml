@@ -1,0 +1,42 @@
+<odoo>
+    <data>
+        <record id="view_confirm_hr_loan_form" model="ir.ui.view">
+            <field name="name">view.confirm.hr.loan.form</field>
+            <field name="model">confirm.hr.loan</field>
+            <field name="arch" type="xml">
+                <form string="Cancel Or Reject HR Loan">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="amount"/>
+                            </group>
+                            <group>
+                                <field name="start_date"/>
+                            </group>
+                            <group string="Summary">
+                                <field name="credit_limit"/>
+                                <field name="amount_total"/>
+                                <field name="remaining_amount"/>
+                                <field name="paid_amount"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="action_confirm" string="Confirm" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_confirm_hr_loan_wizard" model="ir.actions.act_window">
+            <field name="name">Confirm</field>
+            <field name="res_model">confirm.hr.loan</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="hr_loan.view_confirm_hr_loan_form"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>
+

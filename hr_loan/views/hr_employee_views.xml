@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_employee_hr_loan_form" model="ir.ui.view">
+            <field name="name">view.employee.hr.loan.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='identification_group']" position="after">
+                    <group string="Loans" name="loans_group">
+                        <field name="credit_limit_loan"/>
+                        <field name="total_loans"/>
+                        <field name="remaining_loans"/>
+                        <field name="paid_loans"/>
+                    </group>
+                    <group string="Advances" name="advances_group">
+                        <field name="credit_limit_advance"/>
+                        <field name="total_advances"/>
+                        <field name="remaining_advances"/>
+                        <field name="paid_advances"/>
+                    </group>
+                </xpath>
+                 <xpath expr="//group[@name='managers']" position="inside">
+                    <field name="loan_and_advance_user" widget="many2one_avatar_user"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

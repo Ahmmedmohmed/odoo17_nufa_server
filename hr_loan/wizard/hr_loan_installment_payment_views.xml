@@ -1,0 +1,50 @@
+<odoo>
+    <record id="view_hr_loan_installment_payment_wizard_form" model="ir.ui.view">
+        <field name="name">view.hr.loan.installment.payment.wizard.form</field>
+        <field name="model">hr.loan.installment.payment.wizard</field>
+        <field name="arch" type="xml">
+            <form string="HR Loan Installment Payment Wizard">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="journal_id" options="{'no_open': True, 'no_create': True}"/>
+
+                        </group>
+                        <group>
+                            <field name="amount"/>
+                            <field name="date"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Installments">
+                            <field name="line_ids">
+                                <tree string="Lines" editable="bottom" create="0" delete="0">
+                                    <field name="loan_installment_line_id" force_save="1"
+                                           options="{'no_open': True, 'no_create': True}"/>
+                                    <field name="remaining_amount" force_save="1"/>
+                                    <field name="amount" sum="Total Amount"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+
+                <footer>
+                    <button name="action_payment" string="Payment" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hr_loan_installment_payment_wizard" model="ir.actions.act_window">
+        <field name="name">Payment</field>
+        <field name="res_model">hr.loan.installment.payment.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="hr_loan.view_hr_loan_installment_payment_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>
+

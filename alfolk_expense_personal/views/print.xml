@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="paperformat_medication" model="report.paperformat">
+            <field name="name">paperformat_expense</field>
+            <field name="default" eval="False"/>
+            <field name="format">custom</field>
+            <field name="page_width">215</field>
+            <field name="page_height">280</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">10</field>
+            <field name="margin_bottom">15</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">1</field>
+        </record>
+        <template id="alfolk_expense_personal_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div class="oe_structure"/>
+                            <h3 t-if="o.payment_type == 'expense_money'" class="text-center">
+                                صرف نقدية
+                            </h3>
+                            <h3 t-if="o.payment_type == 'receive_money'" class="text-center">
+                                استلام نقدية
+                            </h3>
+                            <h3 t-if="o.payment_type == 'transfer_money'" class="text-center">
+                                تحويل نقدية
+                            </h3>
+                            <br/>
+                            <t>
+                                <t/>
+                                <div class="page">
+                                    <table style="width:100%;border: 1px bold;">
+                                        <thead>
+                                            <tr style="border: 1px solid black;font-size: 20px">
+                                                <tr>
+                                                    <th class="text-center" width='200px'
+                                                        style="border: 1px solid black;font-size: 12.5px">
+                                                        الخزينة
+                                                    </th>
+                                                    <td class="text-left"
+                                                        style="border: 1px solid black;">
+                                                        <span t-field="o.treasury.name"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="text-center" width='200px'
+                                                        style="border: 1px solid black;font-size: 12.5px">
+                                                        رقم الايصال
+                                                    </th>
+                                                    <td class="text-left"
+                                                        style="border: 1px solid black;">
+                                                        <span t-field="o.code"/>
+
+                                                    </td>
+                                                </tr> <tr>
+                                                    <th class="text-center" width='200px'
+                                                        style="border: 1px solid black;font-size: 12.5px">
+                                                        المبلغ
+                                                    </th>
+                                                    <td class="text-left"
+                                                        style="border: 1px solid black;">
+                                                        <span t-field="o.amount"/>
+
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="text-center" width='200px'
+                                                        style="border: 1px solid black;font-size: 12.5px">
+                                                        التاريخ
+                                                    </th>
+                                                    <td class="text-left"
+                                                        style="border: 1px solid black;">
+                                                        <span t-field="o.date"/>
+
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="text-center" width='200px'
+                                                        style="border: 1px solid black;font-size: 12.5px">
+                                                        العملة
+                                                    </th>
+                                                    <td class="text-left"
+                                                        style="border: 1px solid black;">
+                                                        <span t-field="o.currency_id"/>
+
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="text-center" width='200px'
+                                                        style="border: 1px solid black;font-size: 12.5px">
+                                                        الموظف
+                                                    </th>
+                                                    <td class="text-left"
+                                                        style="border: 1px solid black;">
+                                                        <span t-field="o.employee.name"/>
+
+                                                    </td>
+                                                </tr>
+                                               <tr>
+                                                    <th class="text-center" width='200px'
+                                                        style="border: 1px solid black;font-size: 12.5px">
+                                                        الحساب
+                                                    </th>
+                                                    <td class="text-left"
+                                                        style="border: 1px solid black;">
+                                                        <span t-field="o.account_id.name"/>
+
+                                                    </td>
+                                                </tr>
+                                               <tr>
+                                                    <th class="text-center" width='200px'
+                                                        style="border: 1px solid black;font-size: 12.5px">
+                                                        العميل
+                                                    </th>
+                                                    <td class="text-left"
+                                                        style="border: 1px solid black;">
+                                                        <span t-field="o.customer.name"/>
+
+                                                    </td>
+                                                </tr>
+                                               <tr t-if="o.payment_type == 'transfer_money'">
+                                                    <th class="text-center" width='200px'
+                                                        style="border: 1px solid black;font-size: 12.5px">
+                                                        من حساب
+                                                    </th>
+                                                    <td class="text-left"
+                                                        style="border: 1px solid black;">
+                                                        <span t-field="o.account_to.name"/>
+
+                                                    </td>
+                                                </tr><tr t-if="o.payment_type == 'transfer_money'">
+                                                    <th class="text-center" width='200px'
+                                                        style="border: 1px solid black;font-size: 12.5px">
+                                                        الي حساب
+                                                    </th>
+                                                    <td class="text-left"
+                                                        style="border: 1px solid black;">
+                                                        <span t-field="o.account_from.name"/>
+
+                                                    </td>
+                                                </tr>
+                                               <tr>
+                                                    <th class="text-center" width='200px'
+                                                        style="border: 1px solid black;font-size: 12.5px">
+                                                        الملاحظات
+                                                    </th>
+                                                    <td class="text-left"
+                                                        style="border: 1px solid black;">
+                                                        <span t-field="o.note"/>
+
+                                                    </td>
+                                                </tr>
+
+                                            </tr>
+                                        </thead>
+
+                                    </table>
+
+                                </div>
+                            </t>
+                        </div>
+
+                    </t>
+                </t>
+            </t>
+        </template>
+        <report
+                id="paperformat_expense_id"
+                model="alfolk.expense.personal"
+                report_type="qweb-pdf"
+                string="print"
+                name="alfolk_expense_personal.alfolk_expense_personal_report"
+                file="alfolk_expense_personal.alfolk_expense_personal_report"
+        />
+
+    </data>
+</odoo>
+
+
+

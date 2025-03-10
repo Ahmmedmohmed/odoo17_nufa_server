@@ -1,0 +1,191 @@
+<odoo>
+    <data>
+        <!-- tree -->
+        <record model="ir.ui.view" id="alfolk_expense_personal_list">
+            <field name="name">alfolk_expense_personal list</field>
+            <field name="model">alfolk.expense.personal</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="code"/>
+                    <field name="treasury"/>
+                    <field name="date"/>
+                    <field name="amount"/>
+                    <field name="customer"/>
+                    <field name="payment_type"/>
+                    <field name="note"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <!-- form -->
+        <record id="alfolk_expense_personal_form" model="ir.ui.view">
+            <field name="name">alfolk.expense.personal.form</field>
+            <field name="model">alfolk.expense.personal</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,confirm,cancel"
+                               statusbar_colors='{"draft":"blue"}'/>
+                        <button name="confirm"
+                                string="Confirm"
+                                type="object"
+                                class="oe_highlight"
+                                  invisible="state != 'draft'"
+                        />
+                        <button name="draft"
+                                string="Reset to Draft"
+                                type="object"
+                                class="oe_highlight"
+                               invisible="state != 'draft'"
+                        />
+                        <button name="cancel"
+                                string="Cancel"
+                                type="object"
+                              invisible="state != 'draft'"
+                        />
+
+
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" name="button_journal_entries"
+                                    string="Journal Entries" type="object"
+                                    icon="fa-bars">
+                            </button>
+                            <button name="action_open_manual_reconciliation_widget" type="object"
+                                    string="Payment Matching" class="oe_stat_button" icon="fa-dollar"
+                            />
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name" readonly="0"/>
+                                <field name="code" readonly="1"/>
+                                <field name="payment_type" widget="radio"
+                                       readonly="state in ('confirm','cancel')"/>
+                                <field name="date" readonly="state in ('confirm','cancel')"/>
+                                <field name="amount" readonly="state in ('confirm','cancel')"/>
+                                <field name="currency_id" readonly="state in ('confirm','cancel')"/>
+                                <field name="treasury"
+                                      readonly="state in ('confirm','cancel')"
+                                       required="payment_type != 'transfer_money'"
+                                />
+                                <field name="analytic_account_id"
+                                      readonly="state in ('confirm','cancel')"
+                                />
+<!--                                <field name="analytic_tag_ids"-->
+<!--                                      readonly="state in ('confirm','cancel')"/>g-->
+                                <field name="account_from"
+                                       required="payment_type in ('transfer_money')" invisible="payment_type != 'transfer_money'"
+                                />
+                                <field name="account_to"
+                                       required="payment_type in ('transfer_money')" invisible="payment_type != 'transfer_money'"
+                                    />
+                                <field name="employee"
+                                      readonly="state in ('confirm','cancel')"/>
+                                <field name="account_id"
+                                      readonly="state in ('confirm','cancel')"
+                                       invisible="payment_type not in ('expense_money','receive_money')"
+                                />
+                                <field name="customer"
+                                      readonly="state in ('confirm','cancel')"
+                                />
+                                <field name="description"
+                                      readonly="state in ('confirm','cancel')"
+                                       invisible="payment_type != 'expense_money'"
+                                />
+                                <field name="note"  readonly="state in ('confirm','cancel')"/>
+                                <field name="company_id" invisible="1"/>
+                                <field name="move_id" invisible="1"/>
+                                <field name="company_currency_id" invisible="1"/>
+                            </group>
+                            <group>
+
+
+                            </group>
+                        </group>
+
+
+                    </sheet>
+                    <div class="o_attachment_preview"/>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- actions opening views on models -->
+        <record id="alfolk_expense_personal_search_view" model="ir.ui.view">
+            <field name="name">alfolk.expense.personal.search</field>
+            <field name="model">alfolk.expense.personal</field>
+            <field name="arch" type="xml">
+                <search string="Treasury">
+                    <field name="customer" string="Partner" filter_domain="['|',
+                    ('customer.name', '=', self),
+                    ('customer.code', '=', self)]"/>
+
+
+                    <separator/>
+                    <group expand="1" string="Group By">
+                        <filter string="Partner" name="customer" context="{'group_by':'customer'}"/>
+
+
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="alfolk_expense_personal_action_window">
+            <field name="name">Personal Expense</field>
+            <field name="res_model">alfolk.expense.personal</field>
+            <field name="view_mode">tree,form,search,pivot,kanban</field>
+        </record>
+
+
+        <!-- Top menu item -->
+
+        <menuitem name="Personal Expense"
+                  web_icon="alfolk_expense_personal,static/description/expense.png"
+                  id="alfolk_expense_personal_menu_root"
+                  action="alfolk_expense_personal_action_window"/>
+
+        <!-- menu categories -->
+
+        <menuitem name="Report"
+                  id="alfolk_expense_personal_menu_report"
+                  parent="alfolk_expense_personal_menu_root"/>
+
+        <record id="seq_code" model="ir.sequence">
+            <field name="name">Reference</field>
+            <field name="code">code.expense</field>
+            <field name="padding">5</field>
+            <field name="prefix">EX</field>
+        </record>
+<!--        <record id="account_move_line_form_inherit" model="ir.ui.view">-->
+<!--            <field name="name">account.move.line.form.inherit</field>-->
+<!--            <field name="model">account.move.line</field>-->
+<!--            <field name="inherit_id" ref="account.view_move_line_tree_grouped"/>-->
+<!--            <field name="arch" type="xml">-->
+
+<!--                <xpath expr="//field[@name='name']" position="after">-->
+<!--                    <field name="personal_expense_name" string="التســـلسل"/>-->
+<!--                </xpath>-->
+
+<!--            </field>-->
+<!--        </record>-->
+        <!-- Inherit Form View to Modify it -->
+        <record id="account_move_form_inherit" model="ir.ui.view">
+            <field name="name">account.move.form.inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='line_ids']//field[@name='name']" position="after">
+                    <field name="personal_expense_name" />
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

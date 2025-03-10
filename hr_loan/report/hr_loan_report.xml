@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="report_hrloan">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-set="lang" t-value="o.user_id.lang or o.company_id.partner_id.lang"/>
+            <t t-call="web.external_layout">
+                <div class="page" t-attf-style="#{'direction:rtl' if 'ar' in lang else ''}">
+                    <div>
+                        <span style="font-weight: bold;font-size: 30px;text-align:center;" t-esc="docs.name"/> <br/><br/><br/><br/><br/>
+                    </div>
+
+                    <div class="row mt32 mb32">
+                    <div class="col-6">
+                            <p>
+                                <t t-if="docs.employee_id">
+                                    <strong>Employee : </strong>
+                                    <span t-esc="docs.employee_id.name"/>
+                                    <br/><br/>
+                                </t>
+                                <t t-if="docs.amount">
+                                    <strong>Amount : </strong>
+                                    <span t-esc="docs.amount"/>
+                                    <br/><br/>
+                                </t>
+                                <t t-if="docs.date">
+                                    <strong>Date : </strong>
+                                    <span t-esc="docs.date"/>
+                                    <br/><br/>
+                                </t>
+                                <t t-if="docs.start_date"><strong>Start Date : </strong> <span t-esc="docs.start_date"/></t>
+                                <br/><br/>
+
+                            </p>
+                        </div>
+
+                    <div class="col-6">
+                            <p>
+                                <t t-if="docs.number_installments">
+                                    <strong>Number Installment : </strong>
+                                    <span t-esc="docs.number_installments"/>
+                                    <br/><br/>
+                                </t>
+                                <t t-if="docs.installment_type">
+                                    <strong>Installment Type : </strong>
+                                    <span t-esc="docs.installment_type"/>
+                                    <br/><br/>
+                                </t>
+                                <t t-if="docs.total_remaining">
+                                    <strong>Total Remaining : </strong>
+                                    <span t-esc="docs.total_remaining"/>
+                                    <br/><br/>
+                                </t>
+                                <t t-if="docs.total_paid">
+                                    <strong>Total Paid : </strong>
+                                    <span t-esc="docs.total_paid"/>
+                                    <br/><br/>
+                                </t>
+                            </p>
+                        </div>
+                    </div>
+
+<!--                    installment section-->
+                    <t t-if="docs.line_ids and docs.type == 'loan'">
+                        <h1 t-attf-style="#{'direction:rtl' if 'ar' in lang else ''}">Installments : </h1>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Amount</th>
+                                </tr>
+
+                                <tr t-foreach="docs.line_ids" t-as="l">
+                                    <td>
+                                        <span t-field="l.date"/>
+                                    </td>
+
+                                    <td>
+                                        <span t-field="l.amount"/>
+                                    </td>
+                                </tr>
+                            </thead>
+
+                        </table>
+
+                    </t>
+
+
+                    <div class="row" style="padding-top:50px;">
+                        <div class="col-xs-6 text-center" style="width: 50%;">
+                            <span class="text-center" style="font-size:16px; border-top:1px solid #393e46;">Employee
+                            </span>
+                        </div>
+                        <div class="col-xs-6 text-center" style="width: 50%;">
+                            <span class="text-center" style="font-size:16px; border-top:1px solid #393e46;">
+                                Manager
+                            </span>
+                        </div>
+<!--                        <div class="col-xs-6 text-center" style="width: 50%;">-->
+<!--                            <span class="text-center" style="font-size:16px; border-top:1px solid #393e46;">-->
+<!--                                Internal Auditor-->
+<!--                            </span>-->
+<!--                        </div>-->
+                    </div>
+
+                </div>
+            </t>
+        </t>
+    </t>
+</template>
+</odoo>

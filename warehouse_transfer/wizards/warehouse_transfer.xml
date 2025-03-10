@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_warehouse_transfer_form" model="ir.ui.view">
+        <field name="name">view.warehouse.transfer.form</field>
+        <field name="model">warehouse.transfer</field>
+        <field name="arch" type="xml">
+            <form string="Warehouse Transfer">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="company_id"  required="1" options="{'no_open': True, 'no_create': True}"/>
+                            <field name="location_id" required="1" options="{'no_open': True, 'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="dest_company_id"  required="1" options="{'no_open': True, 'no_create': True}"/>
+                            <field name="dest_location_id" required="1" options="{'no_open': True, 'no_create': True}"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page name="products" string="Operations">
+                            <div class="alert alert-info" role="alert">
+                                You must check if the product's expiration date is in the future to validate the transfer automatically if not you must validate the transfer manually.
+                            </div>
+                            <field name="line_ids">
+                                <tree editable="bottom">
+                                    <field name="product_id" required="1" options="{'no_open': True, 'no_create': True}"/>
+                                    <field name="available_qty"/>
+                                    <field name="name" invisible="1" force_save="1"/>
+                                    <field name="product_uom_qty"/>
+                                    <field name="lot_id" options="{'no_open': True, 'no_create': True}" domain="[('product_id', '=', product_id)]"/>
+                                    <field name="expiration_date"/>
+                                    <field name="product_uom" options="{'no_open': True, 'no_create': True}" string="Unit of Measure" groups="uom.group_uom" force_save="1" required="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+
+                <footer>
+                    <button name="button_transfer" string="Transfer" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_warehouse_transfer" model="ir.actions.act_window">
+        <field name="name">Warehouse Transfer Stock</field>
+        <field name="res_model">warehouse.transfer</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+
+    <menuitem id="menu_warehouse_transfer_root" name="Transfers"      parent="stock.menu_stock_root"/>
+    <menuitem id="menu_warehouse_transfer"      name="Transfer Stock" action="action_warehouse_transfer" parent="menu_warehouse_transfer_root" sequence="1"/>
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_inventory_overstock,inventory.overstock,model_inventory_overstock,,1,1,1,1
+access_stock_excel_report,stock.excel.report,model_stock_excel_report,,1,1,1,1

@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_inventory_age_wizard,inventory.age.wizard,model_inventory_age_wizard,,1,1,1,1
+access_breakdown_days,breakdown.ldays,model_breakdown_days,,1,1,1,1
+access_inventory_breakdown,inventory.breakdown,model_inventory_breakdown,,1,1,1,1
+access_inventory_age_report_excel,inventory.age.report.excel,model_inventory_age_report_excel,,1,1,1,1
+access_inventory_break_down_excel,inventory.break.down.excel,model_inventory_break_down_excel,,1,1,1,1

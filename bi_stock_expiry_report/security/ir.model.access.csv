@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_expiry_report_wizard,stock.expiry.report.wizard,model_stock_expiry_report_wizard,base.group_user,1,1,1,1
+access_expiry_report_excel,expiry.report.excel,model_expiry_report_excel,base.group_user,1,1,1,1
+access_stock_expiry_report,stock.expiry.report,model_stock_expiry_report,base.group_user,1,1,1,1

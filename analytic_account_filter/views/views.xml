@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+   <record id="view_move_line_order_filter_inherit_analytic_accounts" model="ir.ui.view">
+            <field name="name">move.line.filter.inherit.analytic.accounts</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account.view_account_move_line_filter" />
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="inside">
+                    <filter string="Analytic Account" name="analytic_account_ids" domain="[]" context="{'group_by':'analytic_account_ids'}" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

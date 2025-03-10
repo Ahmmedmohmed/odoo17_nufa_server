@@ -1,0 +1,298 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_zk_attendance_pyzk
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-23 00:54+0000\n"
+"PO-Revision-Date: 2024-03-23 00:54+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_zk_attendance_pyzk
+#: code:addons/hr_zk_attendance_pyzk/models/machine_analysis.py:0
+#, python-format
+msgid "Another User with same Biometric Device ID already exists."
+msgstr "موظف اخر لديه بالفعل نفس كود البصمة"
+
+#. module: hr_zk_attendance_pyzk
+#: model_terms:ir.ui.view,arch_db:hr_zk_attendance_pyzk.view_zk_machine_form
+msgid "Are you sure you want to do this?"
+msgstr "هل انت متاكد ؟"
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_machine__zk_after_date
+msgid "Attend Start Date"
+msgstr "تاريخ بداية الاستيراد"
+
+#. module: hr_zk_attendance_pyzk
+#: model_terms:ir.ui.view,arch_db:hr_zk_attendance_pyzk.view_zk_report_daily_attendance_tree
+msgid "Attendance"
+msgstr "الدوام"
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.actions.act_window,name:hr_zk_attendance_pyzk.action_zk_report_daily_attendance
+msgid "Attendance Analysis"
+msgstr "تحليل الدوام"
+
+#. module: hr_zk_attendance_pyzk
+#: code:addons/hr_zk_attendance_pyzk/models/zk_machine.py:0
+#, python-format
+msgid "Attendance Records Deleted."
+msgstr "تم حذف سجلات الدوام"
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.ui.menu,name:hr_zk_attendance_pyzk.menu_zk_attendance_view
+msgid "Attendance log"
+msgstr "سجل الدوام"
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.actions.act_window,name:hr_zk_attendance_pyzk.zk_machine_action
+msgid "Attendances"
+msgstr "الدوام"
+
+#. module: hr_zk_attendance_pyzk
+#: model_terms:ir.ui.view,arch_db:hr_zk_attendance_pyzk.view_zk_machine_form
+msgid "Biometric Device"
+msgstr "جهاز البصمة"
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_hr_attendance__device_id
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_hr_employee__device_id
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_machine_attendance__device_id
+msgid "Biometric Device ID"
+msgstr "رمز جهاز البصمة"
+
+#. module: hr_zk_attendance_pyzk
+#: model_terms:ir.ui.view,arch_db:hr_zk_attendance_pyzk.view_zk_machine_tree
+msgid "Biometric Machine"
+msgstr "جهاز البصمة"
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.ui.menu,name:hr_zk_attendance_pyzk.zk_machine_menu
+msgid "Biometric Manager"
+msgstr "مدير البصمة"
+
+#. module: hr_zk_attendance_pyzk
+#: model_terms:ir.ui.view,arch_db:hr_zk_attendance_pyzk.view_zk_machine_form
+msgid "Clear Data"
+msgstr "حذف البيانات"
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_machine__company_id
+msgid "Company"
+msgstr "شركة"
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_machine__create_uid
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_machine_attendance__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_machine__create_date
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_machine_attendance__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: hr_zk_attendance_pyzk
+#: model_terms:ir.ui.view,arch_db:hr_zk_attendance_pyzk.view_zk_report_daily_attendance_search
+msgid "Current Month"
+msgstr "الشهرالحالي"
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_report_daily_attendance__punching_day
+#: model_terms:ir.ui.view,arch_db:hr_zk_attendance_pyzk.inherited_hr_attendance_view_filter
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.ui.menu,name:hr_zk_attendance_pyzk.zk_machine_sub_menu
+msgid "Device Configuration"
+msgstr "اعدادات الجهاز"
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_machine__display_name
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_machine_attendance__display_name
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_report_daily_attendance__display_name
+msgid "Display Name"
+msgstr "الاسم"
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.actions.server,name:hr_zk_attendance_pyzk.cron_download_data_ir_actions_server
+#: model:ir.cron,cron_name:hr_zk_attendance_pyzk.cron_download_data
+#: model:ir.cron,name:hr_zk_attendance_pyzk.cron_download_data
+#: model_terms:ir.ui.view,arch_db:hr_zk_attendance_pyzk.view_zk_machine_form
+msgid "Download Data"
+msgstr "استيراد البيانات"
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.model,name:hr_zk_attendance_pyzk.model_hr_employee
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_machine_attendance__employee_id
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_report_daily_attendance__name
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: hr_zk_attendance_pyzk
+#: model_terms:ir.ui.view,arch_db:hr_zk_attendance_pyzk.inherited_hr_attendance_view_filter
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.model,name:hr_zk_attendance_pyzk.model_hr_attendance
+msgid "Hr Attendance Custom"
+msgstr ""
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_machine__id
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_machine_attendance__id
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_report_daily_attendance__id
+msgid "ID"
+msgstr "الرمز"
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.model.fields,help:hr_zk_attendance_pyzk.field_zk_machine__zk_after_date
+msgid "If provided, Attendance module will ignore records before this date."
+msgstr ""
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_machine_attendance__is_sent
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_report_daily_attendance__is_sent
+msgid "Is Sent?"
+msgstr "تم الارسال"
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_machine____last_update
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_machine_attendance____last_update
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_report_daily_attendance____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_machine__write_uid
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_machine_attendance__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_machine__write_date
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_machine_attendance__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_machine__name
+#: model_terms:ir.ui.view,arch_db:hr_zk_attendance_pyzk.view_zk_machine_form
+msgid "Machine IP"
+msgstr "عنوان الجهاز"
+
+#. module: hr_zk_attendance_pyzk
+#: model_terms:ir.ui.view,arch_db:hr_zk_attendance_pyzk.view_zk_report_daily_attendance_search
+msgid "My Attendance"
+msgstr "دوامي"
+
+#. module: hr_zk_attendance_pyzk
+#: model_terms:ir.ui.view,arch_db:hr_zk_attendance_pyzk.view_zk_report_daily_attendance_search
+msgid "Name"
+msgstr "الاسم"
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.model.fields.selection,name:hr_zk_attendance_pyzk.selection__zk_machine_attendance__is_sent__no
+#: model:ir.model.fields.selection,name:hr_zk_attendance_pyzk.selection__zk_report_daily_attendance__is_sent__no
+msgid "No"
+msgstr "لا"
+
+#. module: hr_zk_attendance_pyzk
+#: code:addons/hr_zk_attendance_pyzk/models/zk_machine.py:0
+#, python-format
+msgid "No attendances found in Attendance Device to Download."
+msgstr "لا يوجد بصمات جديدة ليتم استيرادها"
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_machine__port_no
+msgid "Port No"
+msgstr "رقم المنفذ"
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_machine_attendance__punching_time
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_report_daily_attendance__punching_time
+msgid "Punching Time"
+msgstr "وقت البصمة"
+
+#. module: hr_zk_attendance_pyzk
+#: code:addons/hr_zk_attendance_pyzk/models/zk_machine.py:0
+#: code:addons/hr_zk_attendance_pyzk/models/zk_machine.py:0
+#, python-format
+msgid "Pyzk module not Found. Please install it with 'pip3 install pyzk'."
+msgstr ""
+
+#. module: hr_zk_attendance_pyzk
+#: model_terms:ir.ui.view,arch_db:hr_zk_attendance_pyzk.view_zk_report_daily_attendance_search
+msgid "Today"
+msgstr "اليوم"
+
+#. module: hr_zk_attendance_pyzk
+#: model_terms:ir.ui.view,arch_db:hr_zk_attendance_pyzk.view_zk_machine_form
+msgid "Try connection"
+msgstr "اختبار الاتصال"
+
+#. module: hr_zk_attendance_pyzk
+#: code:addons/hr_zk_attendance_pyzk/models/zk_machine.py:0
+#, python-format
+msgid ""
+"Unable to clear Attendance log. Are you sure attendance log is not empty."
+msgstr ""
+
+#. module: hr_zk_attendance_pyzk
+#: code:addons/hr_zk_attendance_pyzk/models/zk_machine.py:0
+#: code:addons/hr_zk_attendance_pyzk/models/zk_machine.py:0
+#, python-format
+msgid ""
+"Unable to connect to Attendance Device. Please use Test Connection button to"
+" verify."
+msgstr ""
+
+#. module: hr_zk_attendance_pyzk
+#: code:addons/hr_zk_attendance_pyzk/models/zk_machine.py:0
+#, python-format
+msgid "Unable to get Users."
+msgstr ""
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_machine__address_id
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_machine_attendance__address_id
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_report_daily_attendance__address_id
+msgid "Working Address"
+msgstr "عنوان العمل"
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.model.fields,field_description:hr_zk_attendance_pyzk.field_zk_machine__zk_timeout
+msgid "ZK Timeout"
+msgstr ""
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.model,name:hr_zk_attendance_pyzk.model_zk_machine_attendance
+msgid "Zk Attendance"
+msgstr ""
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.model.fields.selection,name:hr_zk_attendance_pyzk.selection__zk_machine_attendance__is_sent__yes
+#: model:ir.model.fields.selection,name:hr_zk_attendance_pyzk.selection__zk_report_daily_attendance__is_sent__yes
+msgid "yes"
+msgstr "نعم"
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.model,name:hr_zk_attendance_pyzk.model_zk_machine
+msgid "zk.machine"
+msgstr ""
+
+#. module: hr_zk_attendance_pyzk
+#: model:ir.model,name:hr_zk_attendance_pyzk.model_zk_report_daily_attendance
+msgid "zk.report.daily.attendance"
+msgstr "تقرير الدوام اليومي"

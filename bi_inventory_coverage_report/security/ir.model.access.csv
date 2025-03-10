@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_recommendation_get,product.recommendation.get,model_get_product_recommendation,,1,1,1,1
+access_inventory_coverage_wizard,inventory.coverage.wizard,model_inventory_coverage_wizard,,1,1,1,1
+access_cover_report_excel,cover.report.excel,model_cover_report_excel,,1,1,1,1
+access_product_recommendation,product.recommendation,model_product_recommendation,,1,1,1,1

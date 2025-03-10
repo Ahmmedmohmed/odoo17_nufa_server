@@ -1,0 +1,59 @@
+<odoo>
+    <data noupdate="1">
+        <record id="module_category_hr_loan" model="ir.module.category">
+            <field name="name">Loan</field>
+            <field name="description">User Loan Requests</field>
+            <field name="sequence">18</field>
+            <field name="parent_id" ref="base.module_category_human_resources"/>
+        </record>
+
+        <record id="group_hr_loan_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="hr_loan.module_category_hr_loan"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_hr_loan_manager" model="res.groups">
+            <field name="name">Administrator</field>
+            <field name="category_id" ref="hr_loan.module_category_hr_loan"/>
+            <field name="implied_ids" eval="[(4, ref('hr_loan.group_hr_loan_user'))]"/>
+        </record>
+
+        <record id="base.user_admin" model="res.users">
+            <field name="groups_id" eval="[(4,ref('hr_loan.group_hr_loan_manager'))]"/>
+        </record>
+
+        <!-- Loan Requests rules -->
+        <record id="hr_loan_request_user_rule" model="ir.rule">
+            <field name="name">Loan Requests User</field>
+            <field name="model_id" ref="model_hr_loan"/>
+            <field name="groups" eval="[(4, ref('hr_loan.group_hr_loan_user'))]"/>
+            <field name="domain_force">['|',('create_uid', '=',user.id),('user_id', '=',user.id)]</field>
+        </record>
+        <record id="hr_loan_request_manager_rule" model="ir.rule">
+            <field name="name">Loan Requests Manager</field>
+            <field name="model_id" ref="model_hr_loan"/>
+            <field name="groups" eval="[(4, ref('hr_loan.group_hr_loan_manager'))]"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+        </record>
+        <record id="hr_loan_request_officer_employee_rule" model="ir.rule">
+            <field name="name">Loan Requests Officer Employee</field>
+            <field name="model_id" ref="model_hr_loan"/>
+            <field name="groups" eval="[(4, ref('hr.group_hr_user'))]"/>
+            <field name="domain_force">[('user_employee_id', '=',user.id)]</field>
+        </record>
+
+        <!-- Extra Rights of Loans -->
+        <record id="module_category_extra_rights_hr_loan" model="ir.module.category">
+            <field name="name">Loans</field>
+            <field name="description">Extra Rights Loans</field>
+        </record>
+        <record id="group_manage_exceed_credit_limit" model="res.groups">
+            <field name="name">Manage Exceed the Credit Limit</field>
+            <field name="category_id" ref="hr_loan.module_category_extra_rights_hr_loan"/>
+        </record>
+        <record id="group_manage_direct_approve" model="res.groups">
+            <field name="name">Manage Direct Approve</field>
+            <field name="category_id" ref="hr_loan.module_category_extra_rights_hr_loan"/>
+        </record>
+    </data>
+</odoo>

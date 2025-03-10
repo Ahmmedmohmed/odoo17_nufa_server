@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_get_product_recommendation" model="ir.ui.view">
+            <field name="name">get.product.recommendation.view</field>
+            <field name="model">get.product.recommendation</field>
+            <field name="arch" type="xml">
+                <form string="Product Recommendation">
+                  <sheet>
+		                <group>
+                            <group>
+		                        <field name="product_id"/>
+		                        <field name="warehouse_id"/>
+		                        <field name="supplier_id"/>
+                            </group>
+		                </group>
+                   </sheet>
+               </form>
+            </field>
+        </record>
+
+        <record id="view_tree_get_product_recommendation" model="ir.ui.view">
+            <field name="name">get.tree.product.recommendation.view</field>
+            <field name="model">get.product.recommendation</field>
+            <field name="arch" type="xml">
+                <tree string="Product Recommendation">
+                    <field name="product_id"/>
+                    <field name="warehouse_id"/>
+                    <field name="supplier_id"/>
+               </tree>
+            </field>
+        </record>
+        
+        <record id="action_view_get_product_recommendation" model="ir.actions.act_window">
+            <field name="name">Product Recommendation</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">get.product.recommendation</field>
+            
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+    </data>
+</odoo>

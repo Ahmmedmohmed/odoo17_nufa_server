@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="stock_transfer_tree_view" model="ir.ui.view">
+            <field name="name">stock.transfer.view.tree</field>
+            <field name="model">stock.transfer</field>
+            <field name="arch" type="xml">
+                <tree string="Stock Transfer">
+                    <field name="name"/>
+                    <field name="schedule_date"/>
+                    <field name="location_id"/>
+                    <field name="location_dest_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="stock_transfer_view_form" model="ir.ui.view">
+            <field name="name">stock.transfer.view.form</field>
+            <field name="model">stock.transfer</field>
+            <field name="arch" type="xml">
+                <form string="Stock Transfer">
+                    <header>
+                        <button name="action_process" type="object" string="Process"
+                                 invisible="state not in ('draft')" class="oe_highlight"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,process,done"
+                              readonly="read_only == True"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="open_picking" type="object" class="oe_stat_button" icon="fa-truck"
+                                    invisible="picking_count == 0" >
+                                <field name="picking_count" widget="statinfo" string="Pickings"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1><field name="name" invisible="name == '/'"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="type" readonly="read_only == True or type_check == True"/>
+                                <field name="read_only" invisible="1"/>
+                                <field name="type_check" invisible="1"/>
+                                <field name="location_id"/>
+                                <label for="from_warehouse_id" string="Requested From" invisible="1"/>
+                                <div class="o_row">
+                                    <field name="from_warehouse_id" readonly="1" force_save="1" invisible="1"/>
+                                    <field name="to_warehouse_id" readonly="1" force_save="1" invisible="1"/>
+                                </div>
+                            </group>
+                            <group>
+                                <field name="schedule_date"/>
+                                <field name="location_dest_id" readonly="read_only == True or type_check == True"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Operations">
+                                <field name="line_ids" mode="tree">
+                                    <tree editable="bottom">
+                                        <field name="product_id"/>
+                                        <field name="available_quantity_from"/>
+                                        <field name="available_quantity_to"/>
+                                        <field name="from_from" invisible="0"/>
+                                        <field name="to_to" invisible="0"/>
+                                        <field name="qty"/>
+                                        <field name="product_uom_id"/>
+                                        <field name="product_uom_category_id" invisible="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id='action_stock_transfer' model='ir.actions.act_window'>
+            <field name="name">Warehouse Transfer</field>
+            <field name="res_model">stock.transfer</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a New Transfer
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="stock_transfer_menu"
+                  name="Warehouse Transfer"
+                  parent="stock.menu_stock_warehouse_mgmt"
+                  action="action_stock_transfer"
+                  sequence="200"/>
+        <record id="stock_view_form_warehouse" model="ir.ui.view">
+            <field name="name">stock.view.form.warehouse</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='location_id']" position="after">
+                    <field name="for_cancel"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

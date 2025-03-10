@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="stock_location_warehouse_transfer" model="stock.location">
+        <field name="name">Warehouse Transfer</field>
+        <field name="location_id" ref="stock.stock_location_locations_virtual"/>
+        <field name="usage">transit</field>
+        <field name="company_id"></field>
+    </record>
+</odoo>
