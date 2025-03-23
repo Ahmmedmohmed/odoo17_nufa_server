@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--     Tree view for the salesperson report -->
+     <record id="pos_salesperson.view_pos_order_saleperson_tree_view" model="ir.ui.view">
+        <field name="name">pos.order.saleperson.tree</field>
+        <field name="model">pos.order</field>
+        <field name="arch" type="xml">
+            <tree string="Salesperson Orders">
+                <field name="employee_id" widget="many2one_avatar_user"/>
+                <field name="user_id"/>
+                <field name="config_id"/>
+                <field name="session_id"/>
+                <field name="date_order"/>
+                <field name="amount_total" sum="Total"/>
+            </tree>
+        </field>
+    </record>
+    <record id="pos_salesperson.action_pos_order_saleperson" model="ir.actions.act_window">
+        <field name="name">SalesPerson</field>
+        <field name="res_model">pos.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="pos_salesperson.view_pos_order_saleperson_tree_view"/>
+        <field name="context">{'group_by': 'employee_id'}</field>
+    </record>
+
+    <record id="point_of_sale.action_pos_pos_form" model="ir.actions.act_window">
+        <field name="view_id" ref="point_of_sale.view_pos_order_tree"/>
+    </record>
+
+    <!-- Menuitem for Salesperson Report -->
+    <menuitem id="menu_point_of_sale_saleperson"
+          name="SalesPerson"
+          parent="point_of_sale.menu_point_of_sale"
+          action="pos_salesperson.action_pos_order_saleperson"/>
+</odoo>

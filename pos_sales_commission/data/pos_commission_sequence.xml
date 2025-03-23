@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- <openerp> -->
+<odoo>
+    <data noupdate="1">
+
+        <record id="pos_commission_seq_line" model="ir.sequence">
+            <field name="name">pos.sales.commission.line</field>
+            <field name="code">pos.sales.commission.line</field>
+            <field name="prefix">PSCL/</field>
+            <field name="padding">4</field>
+            <!-- <field name="gr_number" eval="False"/> --> <!-- odoo13 -->
+        </record>
+        <record id="pos_commission_seq" model="ir.sequence">
+            <field name="name">pos.sales.commission</field>
+            <field name="code">pos.sales.commission</field>
+            <field name="prefix">POS-COM/</field>
+            <field name="padding">4</field>
+            <!-- <field name="gr_number" eval="False"/> --> <!-- odoo13 -->
+        </record>
+
+    </data>
+<!-- </openerp> -->
+</odoo>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!--POS Sales Commission -->
+        <record id="rule_pos_sales_commission_account_user" model="ir.rule">
+            <field name="name">Account User - POS Sales Commission</field>
+            <field name="model_id" ref="model_pos_sales_commission" />
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4,ref('account.group_account_invoice'))]" />
+        </record>
+    
+        <record id="rule_pos_sales_commission_sales_user" model="ir.rule">
+            <field name="name">Sales User - POS Sales Commission</field>
+            <field name="model_id" ref="model_pos_sales_commission" />
+            <field name="domain_force">[('commission_user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('sales_team.group_sale_salesman'))]" />
+        </record>
+        
+        <!--POS USER -->
+        <record id="rule_pos_user_sales_commission" model="ir.rule">
+            <field name="name">POS User -Sales Commission</field>
+            <field name="model_id" ref="model_pos_sales_commission" />
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4,ref('point_of_sale.group_pos_user'))]" />
+        </record>
+        
+        <!--POS Manager -->
+        <record id="rule_pos_manager_sales_commission" model="ir.rule">
+            <field name="name">POS Manager - Sales Commission</field>
+            <field name="model_id" ref="model_pos_sales_commission" />
+            <field name="domain_force">[('commission_user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('point_of_sale.group_pos_manager'))]" />
+        </record>
+        
+        <record id="rule_pos_sales_commission_sales_manager" model="ir.rule">
+            <field name="name">Sales Manager - POS Sales Commission</field>
+            <field name="model_id" ref="model_pos_sales_commission" />
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4,ref('sales_team.group_sale_manager'))]" />
+        </record>
+        
+        <!--POS Sales Commission Line-->
+        <record id="rule_pos_sales_commission_line_account_user" model="ir.rule">
+            <field name="name">Account User - POS Sales Commission Line</field>
+            <field name="model_id" ref="model_pos_sales_commission_line" />
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4,ref('account.group_account_invoice'))]" />
+        </record>
+    
+        <record id="rule_pos_sales_commission_line_sales_user" model="ir.rule">
+            <field name="name">Sales User - POS Sales Commission Line</field>
+            <field name="model_id" ref="model_pos_sales_commission_line" />
+            <field name="domain_force">[('commission_user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('sales_team.group_sale_salesman'))]" />
+        </record>
+        
+        <!--POS USER Sales Commission Line-->
+        <record id="rule_pos_user_sales_commission_line" model="ir.rule">
+            <field name="name">POS User - Sales Commission Line</field>
+            <field name="model_id" ref="model_pos_sales_commission_line" />
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4,ref('point_of_sale.group_pos_user'))]" />
+        </record>
+        
+        <!--POS Manager Sales Commission Line-->
+        <record id="rule_pos_manager_sales_commission_line" model="ir.rule">
+            <field name="name">POS Manager - Sales Commission Line</field>
+            <field name="model_id" ref="model_pos_sales_commission_line" />
+            <field name="domain_force">[('commission_user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('point_of_sale.group_pos_manager'))]" />
+        </record>
+        
+        <record id="rule_pos_sales_commission_line_sales_manager" model="ir.rule">
+            <field name="name">Sales Manager - POS Sales Commission Line</field>
+            <field name="model_id" ref="model_pos_sales_commission_line" />
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4,ref('sales_team.group_sale_manager'))]" />
+        </record>
+        
+        <!--Multi Company Record Rules -->
+        
+        <record model="ir.rule" id="pos_sales_commission_custom_multicomp_rule">
+            <field name="name">POS Sales Commission Multi Company</field>
+            <field name="model_id" ref="model_pos_sales_commission"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id','in', company_ids)]</field>
+        </record>
+
+        <record model="ir.rule" id="pos_sales_commission_line_custom_multicomp_rule">
+            <field name="name">POS Sales Commission Line Multi Company</field>
+            <field name="model_id" ref="model_pos_sales_commission_line"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id','in',company_ids)]</field>
+        </record>
+
+    </data>
+</odoo>

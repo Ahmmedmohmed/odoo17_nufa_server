@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_pos_category_form_view_inherit_commission_pos" model="ir.ui.view">
+        <field name="name">pos.category.form.inherit</field>
+        <field name="model">pos.category</field>
+        <field name="inherit_id" ref="point_of_sale.product_pos_category_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sequence']" position="after"> 
+                <group string="Commission">
+<!--         odoo11       <group string="Commission" attrs="{'invisible': [('pos_is_apply', '!=', True)]}-->
+                    <field name="pos_sales_manager_commission" invisible="not pos_is_apply"/>
+                    <field name="pos_sales_person_commission" invisible="not pos_is_apply"/>
+                    <field name="pos_is_apply" invisible="1"/>
+                </group>
+             </xpath>
+        </field>
+    </record>
+
+</odoo>

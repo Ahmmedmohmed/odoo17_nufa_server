@@ -1,0 +1,215 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+            <h2 class="oe_slogan"  style="color:green;"><b>Point of Sale - Commission by Sales</b</h2>
+        <p class="oe_mt32"><b>
+This module provide feature to manage sales commission on Point Of Sales</b>
+        </p>
+<p>
+This module allow company to manage POS sales commission with different options. You can configure after installing module what option/policy your company is following to give POS commissions to your POS sales users.<br/>
+
+We are allowing you to select <b>When to Pay</b> and <b>Calculation based on </b>. Here you can define policy which will be used to give commission to POS  sales team.<br/>
+<br/>
+For every Calculation based on we are allowing you to select:<br/>
+1. Sales Manager Commission %<br/>
+2. Sales Person Commission %<br/>
+<br/>
+If you keep Sales Manager Commission 0% then system will not create sales commission lines and sales commission worksheet. System will work only with single option at time ie for example you can select When to Pay = POS Order Paid and calculation based on = POS Product category so system will run on that and create commissions entries. 
+<br/>
+</p>
+<p>
+<b>Workflow will be:</b> <br/>
+<b>Option1 :</b> POS Order Paid -> Create Sales commission worksheet (if not created for current month) -> Add Sales commission lines on worksheet -> For every POS sales of current month, system will append sales commission lines on worksheet. -> End of month Account may review worksheet and create commission invoice to pay/release commission to sales person and sales manager/leader.<br/>
+</p>
+<p><b>
+Commission to sales person/leader always will be in company currency. Multi currency is supported by this module so POS order can be in different currency but system will take care for it and create commission lines in company currency.</b><br/>
+Sales Commission product is created using data and you still can change commission product on commission worksheet to create commission invoice.<br/>
+Commission amount will be based on Net Revenue Model where it consider amounts without taxes. (This module does not support Gross Margin Model)
+</p>
+<p><br/>
+<b>Menus</b><br/><i>
+---- Invoicing/Commissions<br/>
+---- ---- Invoicing/Commissions/Commission Worksheets<br/>
+---- ---- Invoicing/Commissions/Sales Commissions Lines<br/>
+---- Point of Sale/Commissions<br/>
+---- ---- Point of Sale/Commissions/Commission Worksheets<br/>
+---- ---- Point of Sale/Commissions/Sales Commissions Lines<br/></i>
+</p>
+    </div>
+</section>
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:green;">Configuration on Point of Sale Settings</h2>
+            <p>
+                <div class="oe_demo oe_screenshot">
+                    <img src="sn1.png">
+                </div>
+            </p>
+    </div>
+</section>
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:green;">Calculation based on = POS Product Category</h2>
+            <p>
+                <div class="oe_demo oe_screenshot">
+                    <img src="sn2.png">
+                </div>
+            </p>
+    </div>
+</section>
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:green;">Calculation based on = Product</h2>
+            <p>
+                <div class="oe_demo oe_screenshot">
+                    <img src="sn3.png">
+                </div>
+            </p>
+    </div>
+</section>
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:green;">Calculation based on = Sales Team</h2>
+            <p>
+                <div class="oe_demo oe_screenshot">
+                    <img src="sn4.png">
+                </div>
+            </p>
+    </div>
+</section>
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:green;">Configure POS Sales Team on POS User</h2>
+            <p>
+                <div class="oe_demo oe_screenshot">
+                    <img src="sn5.png">
+                </div>
+            </p>
+    </div>
+</section>
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:green;">Apply Commission on Point of Sale</h2>
+            <p>
+                <div class="oe_demo oe_screenshot">
+                    <img src="sn6.png">
+                </div>
+            </p>
+    </div>
+</section>
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:green;">POS Dashboard - Resumes</h2>
+            <p>
+                <div class="oe_demo oe_screenshot">
+                    <img src="sn7.png">
+                </div>
+            </p>
+    </div>
+</section>
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:green;">Select Products on POS Screen</h2>
+            <p>
+                <div class="oe_demo oe_screenshot">
+                    <img src="sn8.png">
+                </div>
+            </p>
+    </div>
+</section>
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:green;">Order Generated and Paid</h2>
+            <p>
+                <div class="oe_demo oe_screenshot">
+                    <img src="sn9.png">
+                </div>
+            </p>
+    </div>
+</section>
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:green;">Commission Worksheet After POS Order Paid (List View)</h2>
+            <p>
+                <div class="oe_demo oe_screenshot">
+                    <img src="sn10.png">
+                </div>
+            </p>
+    </div>
+</section>
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:green;">Sales Commission Worksheet (Form View)</h2>
+    <p><b>System will create sales commission worksheet for every sales person for every month automatically and insert all sales commision lines inside that and using this sales commision sheet account team can pay sales commision.</b></p>
+<p><b>Using create invoice button account department can release payment and create commision invoice.</b></p>
+            <p>
+                <div class="oe_demo oe_screenshot">
+                    <img src="sn11.png">
+                </div>
+            </p>
+    </div>
+</section>
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:green;">Sales Commission Lines</h2>
+            <p>
+                <div class="oe_demo oe_screenshot">
+                    <img src="sn12.png">
+                </div>
+            </p>
+    </div>
+</section>
+<!--
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan">Invoicing - Commission</h2>
+            <p>
+                <div class="oe_demo oe_screenshot">
+                    <img src="sn13.png">
+                </div>
+            </p>
+    </div>
+</section>-->
+<section class="oe_container">
+    <div class="oe_row">
+        <h2 class="oe_slogan" style="color:green;">PDF Report for Sales Commission Worksheet by Sales Person/Manager</h2>
+            <p>
+                <div class="oe_demo oe_screenshot">
+                    <img src="sn14.png">
+                    <img src="sn18.png">
+                </div>
+            </p>
+    </div>
+</section>
+<section class="oe_container">
+    <div class="oe_row oe_spaced"><hr><font color="Maroon"  >
+        <h2 class="oe_slogan"><b  style="color:Orchid;"  >Similar App! Click on Icon Below</b></h2>
+        <div>
+            <h3<p  style="color:Orchid;">Sales Commission by Sales/Invoice/Payment to Multi Users</p><br/><br/>
+            <a href="https://www.odoo.com/apps/modules/10.0/sales_commission_multi_level/" target='new'>
+                <img class="img-border img-responsive thumbnail" src="account_general_ledger_excel.png">
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<section class="oe_container" >
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Contact / Support</h2>
+        <div class="oe_span6">
+            <div class="oe_picture" style="margin: 25px 10%;">
+                <a href="http://www.probuse.com/">
+                    <img src="500X200-sm.png">
+                </a>
+            </div>
+        </div>
+        <div class="oe_span6">
+            <p class="oe_mt32">
+                If you need any help or want more additional features,<br/> you may contact us through e-mail at <br/>
+                Email:<a href="mailto:contact@probuse.com" target="new">contact@probuse.com</a><br/>
+                Website:<a href="http://www.probuse.com" target="new">www.probuse.com</a><br/>
+                Skype: mustufa_probuse
+            </p>
+        </div>
+    </div>
+</section>

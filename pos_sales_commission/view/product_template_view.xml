@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="view_template_property_form_inherit_pos" model="ir.ui.view">
+        <field name="name">product.template.stock.property.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+<!--             <group name="email_template_and_project" position="after">-->
+            <group name="description" position="after">
+                 <group string="Sales Commission">
+                    <field name="pos_sales_manager_commission" invisible="not pos_is_apply"/>
+                    <field name="pos_sales_person_commission" invisible="not pos_is_apply"/>
+                    <field name="pos_is_commission_product" />
+                    <field name="pos_is_apply" invisible="1"/>
+                </group>
+             </group>
+        </field>
+    </record>
+    
+</odoo>

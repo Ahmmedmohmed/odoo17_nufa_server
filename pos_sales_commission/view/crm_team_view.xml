@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="crm_team_view_form_inherit_commission_pos" model="ir.ui.view">
+        <field name="name">crm.team.form</field>
+        <field name="model">crm.team</field>
+        <field name="inherit_id" ref="sales_team.crm_team_view_form"/>
+        <field name="arch" type="xml">
+             <!-- <xpath expr="//form/sheet/group/group[@name='right']" position="inside"> -->
+            <xpath expr="//form/sheet/group/group[@name='right']" position="after">
+                <group name="sales_commission" string="Sales Commission">
+                    <field name="pos_sales_manager_commission" invisible="not pos_is_apply"/>
+                    <field name="pos_sales_person_commission" invisible="not pos_is_apply"/>
+                    <field name="pos_is_apply" invisible="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
