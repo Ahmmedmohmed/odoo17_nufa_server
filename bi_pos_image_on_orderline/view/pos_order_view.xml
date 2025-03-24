@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_order_view_form_pos_img_orderline" model="ir.ui.view">
+        <field name="name">pos.order.view.form.inherit.point_of_sale.pos.bday.discount</field>
+        <field name="model">pos.order</field>
+        <field name="priority" eval="95"/>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='products']//field[@name='lines']" position="after">
+                <field name="image_not_show" invisible="1"/>
+            </xpath>
+            <xpath expr="//page[@name='products']//field[@name='lines']//tree//field[@name='full_product_name']" position="before">
+                <field name="line_image" class="orderline_class"  widget="image" column_invisible="parent.image_not_show == 0" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

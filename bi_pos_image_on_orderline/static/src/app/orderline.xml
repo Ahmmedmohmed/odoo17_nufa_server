@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="Orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('product-name')]" position="before">
+            <t t-if="env.services.pos.config.allow_image_on_orderline">
+                <span class="orderline-product-img">
+                    <img t-attf-src="/web/image?model=product.product&amp;field=image_128&amp;id={{line.image_id}}&amp;unique=1" style="padding: 5px; height: 55px;"/>
+                </span>
+            </t>
+        </xpath>
+    </t>
+</templates>
