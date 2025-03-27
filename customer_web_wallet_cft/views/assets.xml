@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="assets_frontend" inherit_id="website.assets_frontend">
+        <xpath expr="script[last()]" position="after">
+            <script type="text/javascript"
+                    src="/customer_web_wallet_cft/static/src/js/wallet.js"/>
+        </xpath>
+    </template>
+</odoo>

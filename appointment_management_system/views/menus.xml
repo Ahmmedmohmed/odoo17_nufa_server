@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_appointment_root" name="Appointments" web_icon="appointment_management_system,static/description/icon.png" sequence="10">
+            <menuitem id="menu_appointment_management" name="Appointments" action="appointment_management_action" sequence="1"/>
+
+            <menuitem id="menu_appointment_configuration" name="Configuration" sequence="2">
+                <menuitem id="menu_appointment_service" name="Appointment Services" action="appointment_service_action" sequence="1"/>
+                <menuitem id="menu_appointment_employee" name="Appointment Employees" action="appointment_employee_action" sequence="2"/>
+            </menuitem>
+        </menuitem>
+    </data>
+</odoo>

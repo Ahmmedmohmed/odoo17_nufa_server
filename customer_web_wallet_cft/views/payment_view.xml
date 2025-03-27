@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Payment Acquirer View-->
+    <record id="customer_web_wallet_acquirer_form" model="ir.ui.view">
+        <field name="name">customer.web.wallet.acquirer.form</field>
+        <field name="model">payment.acquirer</field>
+        <field name="inherit_id" ref="payment.acquirer_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='payment_state']" position="after">
+                <group name="acquirer_right">
+                    <field name="wallet_acquirer" groups="base.group_no_one"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!--Payment Transaction View-->
+    <record id="customer_web_wallet_transaction_form" model="ir.ui.view">
+        <field name="name">cusotmer.web.wallet.transaction.form</field>
+        <field name="model">payment.transaction</field>
+        <field name="inherit_id" ref="payment.transaction_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='action_capture']"
+                   position="after">
+                <button type="object" name="action_confirm_wallet"
+                        string="Confirm Wallet Transaction"
+                        class="oe_highlight" attrs="{'invisible': ['|', ('wallet_transaction', '=', False), ('state', '!=', 'pending')]}"/>
+            </xpath>
+            <xpath expr="//field[@name='date']" position="after">
+                <field name="wallet_transaction" readonly="1"/>
+                <field name="wallet_transaction_type" readonly="1"/>
+                <field name="wallet_reference" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

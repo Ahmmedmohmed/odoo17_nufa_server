@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sequence_wallet_payment_transaction" model="ir.sequence">
+        <field name="name">Wallet Payment Transaction</field>
+        <field name="code">wallet.payment.transaction</field>
+        <field name="prefix">WPT</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>
