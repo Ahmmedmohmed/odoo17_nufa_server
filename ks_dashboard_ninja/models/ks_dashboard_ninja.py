@@ -1379,7 +1379,7 @@ class KsDashboardNinjaBoard(models.Model):
                 'model': rec.ks_model_id.model,
                 'model_name': rec.ks_model_id.name,
                 'field_name': rec.ks_domain_field_id.name,
-                'type': rec.ks_domain_field_id.ttype,
+                'field_type': rec.ks_domain_field_id.ttype,
                 'special_data': {}
             }
             if rec.ks_domain_field_id.ttype == 'selection':
