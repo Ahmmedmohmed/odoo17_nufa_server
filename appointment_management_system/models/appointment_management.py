@@ -14,9 +14,16 @@ class AppointmentManagement(models.Model):
     partner_id = fields.Many2one('res.partner', string='Partner', required=True)
     date = fields.Datetime('Date', required=True)
     branch_id = fields.Many2one('res.company', string='Branch', required=True)
-    notes = fields.Text('Notes')
     company_id = fields.Many2one('res.company', required=True, default=lambda self: self.env.company, readonly=True)
-    services_line_ids = fields.One2many('appointment.management.line', 'appointment_id', string='Services Lines')
+    product_id = fields.Many2one('product.product', string='Service', domain=[('is_appointment_service', '=', True)], required=True)
+    employee_id = fields.Many2one('hr.employee', string='Employee', domain=[('is_appointment_employee', '=', True)], required=True)
+    price_unit = fields.Float('Unit Price', required=True)
+    service_rate = fields.Selection([('0', 'Low'), ('1', 'Medium'), ('2', 'High'), ('3', 'Very High')], string='Rating')
+    company_id = fields.Many2one('res.company', required=True, default=lambda self: self.env.company)
+    appointment_id = fields.Many2one('appointment.management', string='Appointment', required=True)
+    state = fields.Selection([('draft', 'Draft'), ('partial', 'Partial Approved'), ('approved', 'Approved'), ('complated', 'Complated'), ('cancelled', 'Cancelled')], default='draft')
+    appointment_type = fields.Selection([('inside', 'Inside'), ('outside', 'Outside')], default='inside', required=True)
+    notes = fields.Text('Notes')
 
 
     @api.model

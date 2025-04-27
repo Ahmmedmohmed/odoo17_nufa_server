@@ -16,16 +16,22 @@ class AppointmentEmployeeTimePlan(models.Model):
     end_minute = fields.Integer(string="End Minute")
 
 
-    @api.constrains('hours')
+    @api.constrains('start_hour', 'end_hour')
     def _check_hours_value(self):
-        if not 1 <= self.hours <= 24:
+        if not 1 <= self.start_hour <= 24:
+            raise ValidationError(_('Hours Value Must Be Between (1 - 24).'))
+
+        if not 1 <= self.end_hour <= 24:
             raise ValidationError(_('Hours Value Must Be Between (1 - 24).'))
 
 
-    @api.constrains('minutes')
+    @api.constrains('start_minute')
     def _check_minutes_value(self):
-        if not 1 <= self.minutes <= 60:
-            raise ValidationError(_('Minutes Value Must Be Between (1 - 60).'))
+        if not 0 <= self.start_minute <= 60:
+            raise ValidationError(_('Minutes Value Must Be Between (0 - 60).'))
+
+        if not 0 <= self.end_minute <= 60:
+            raise ValidationError(_('Minutes Value Must Be Between (0 - 60).'))
 
 
     @api.constrains('start_hour', 'start_minute', 'end_hour', 'end_minute', 'day', 'employee_id')
@@ -34,7 +40,7 @@ class AppointmentEmployeeTimePlan(models.Model):
             start_total = (slot.start_hour * 60) + slot.start_minute
             end_total = (slot.end_hour * 60) + slot.end_minute
 
-            if not start_total >= end_total:
+            if start_total >= end_total:
                 raise ValidationError("End time must be after start time.")
 
             same_day_slots = self.search([('id', '!=', slot.id), ('employee_id', '=', slot.employee_id.id), ('day', '=', slot.day)])

@@ -13,15 +13,21 @@
     'data': [
         # Data Files
         'data/ir_sequence.xml',
+        'data/appointment_employee_slot_cron.xml',
+
 
         # Security Files
         'security/ir.model.access.csv',
 
+
         # Views Files
         'views/appointment_management.xml',
+        'views/appointment_refund_policy.xml',
         'views/product.xml',
         'views/hr_employee.xml',
+        'views/appointment_employee_slot.xml',
 
+        # Menu File
         'views/menus.xml',
     ],
 

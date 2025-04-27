@@ -1,6 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 
 access_appointment_management,appointment_management,model_appointment_management,,1,1,1,1
-access_appointment_management_line,appointment_management_line,model_appointment_management_line,,1,1,1,1
+access_appointment_refund_policy,appointment_refund_policy,model_appointment_refund_policy,,1,1,1,1
 access_appointment_service_price_plan,appointment_service_price_plan,model_appointment_service_price_plan,,1,1,1,1
 access_appointment_employee_time_plan,appointment_employee_time_plan,model_appointment_employee_time_plan,,1,1,1,1
+access_appointment_employee_slot,appointment_employee_slot,model_appointment_employee_slot,,1,1,1,1

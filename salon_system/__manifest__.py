@@ -12,7 +12,7 @@
 
     "license": "LGPL-3",
 
-    "depends": ['base', 'sale', 'account', 'stock', 'stock_landed_costs'],
+    "depends": ['base', 'sale', 'account', 'stock', 'stock_landed_costs', 'purchase_down_payment'],
 
     "data": ['views/stock_picking.xml'],
 }

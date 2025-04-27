@@ -112,6 +112,7 @@ class PurchaseOrderAdvancePayment(models.TransientModel):
         else:
             amount = self.fixed_amount
             name = _('Down Payment')
+
         context = {'lang': order.partner_id.lang}
         del context
         return amount, name
