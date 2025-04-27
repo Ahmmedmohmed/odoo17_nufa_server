@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_stock_picking_form_inherit_landed_cost" model="ir.ui.view">
+            <field name="name">view.stock.picking.form.inherit.landed.cost</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <field name="landed_cost_ids" invisible="1"/>
+                    <button name="action_create_landed_cost" invisible="state == 'draft' or picking_type_code != 'incoming'" string="Create Landed Cost" type="object" class="oe_highlight"/>
+                </xpath>
+                
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="action_view_landed_cost" class="oe_stat_button" icon="fa-bars" type="object" invisible="not landed_cost_ids">
+                        <div class="o_form_field o_stat_info">
+                            <span class="o_stat_text">Landed Cost</span>
+                        </div>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

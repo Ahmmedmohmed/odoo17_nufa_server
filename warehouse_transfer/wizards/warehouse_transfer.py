@@ -113,8 +113,6 @@ class WarehouseTransfer(models.TransientModel):
                 'picking_id': out_picking_id.id
             })
 
-            # out_move._action_confirm()
-
             if line.lot_id:
                 self.env['stock.move.line'].create({
                     'product_id': line.product_id.id,
@@ -144,8 +142,6 @@ class WarehouseTransfer(models.TransientModel):
                 'picking_id': in_picking_id.id
             })
 
-            in_move._action_confirm()
-
             move_lines = self.env['stock.move.line'].search([('move_id', '=', in_move.id)])
 
             for record in move_lines:
@@ -155,9 +151,9 @@ class WarehouseTransfer(models.TransientModel):
 
         out_picking_id.action_confirm()
         out_picking_id.action_assign()
-        out_picking_id.button_validate()
+        # out_picking_id.button_validate()
 
 
         in_picking_id.action_confirm()
         in_picking_id.action_assign()
-        in_picking_id.button_validate()
+        # in_picking_id.button_validate()
