@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+	<t t-name="appointment_management_system_pos.AppointmentPopup">
+		<div class="popup" style="max-width: 700px;">
+
+				<div class="modal-header">
+						<h4 class="modal-title"><t t-esc="props.title" /></h4>
+						<div class="btn" t-on-click="cancel">
+								<i class="fa fa-times" aria-hidden="true"></i>
+						</div>
+				</div>
+				<main class="body modal-body overflow-auto">
+
+
+					<div class="section-financials text-start">
+							<div class="section-financials-body d-flex flex-column flex-sm-row">
+									<table class="table mb-0">
+											<tr>
+													<td>Services:</td>
+													<td>
+														<select class="detail form-select" id="service" name="service_id" t-on-change="onServiceChange">
+																<option value="">None</option>
+																<t t-foreach="appointment_services"  t-as="service" t-key="service.id">
+																		<option  t-att-value="service.id">
+																				<t t-esc="service.name" />
+																		</option>
+																</t>
+														</select>
+													</td>
+											</tr>
+											<tr>
+													<td>Type:</td>
+													<td>
+														<select t-model="changes.appointment_type" class="detail form-select" id="appointment_type" name="appointment_type" t-on-change="onTypeChange">
+																<option value="inside">Inside</option>
+																<option value="outside">Outside</option>
+														</select>
+													</td>
+											</tr>
+											<tr>
+													<td>Branch:</td>
+													<td>
+														<select t-att="{'disabled': _disabledBranch()}" t-model="changes.branch_id" class="detail form-select" id="branch" name="branch_id" t-on-change="onBranchChange">
+																<option value="">None</option>
+																<t t-foreach="availableBranchs"  t-as="branch_id" t-key="branch_id">
+																		<option  t-att-value="branch_id">
+																				<t t-esc="availableBranchs[branch_id]" />
+																		</option>
+																</t>
+														</select>
+													</td>
+											</tr>
+											<tr>
+													<td>Employee:</td>
+													<td>
+														<select t-att="{'disabled': _disabledEmployee()}" t-model="changes.employee_id" class="detail form-select" id="employee" name="employee_id" t-on-change="onEmployeeChange">
+																<option value="">None</option>
+																<t t-foreach="availableEmployees"  t-as="employee_id" t-key="employee_id">
+																		<option  t-att-value="employee_id">
+																				<t t-esc="availableEmployees[employee_id]" />
+																		</option>
+																</t>
+														</select>
+													</td>
+											</tr>
+
+											<tr>
+													<td>Date:</td>
+													<td>
+														<select t-att="{'disabled': _disabledDate()}" t-model="changes.date" class="detail form-select" id="date" name="date_id" t-on-change="onDateChange">
+																<option value="">None</option>
+																<t t-foreach="availabledDates"  t-as="date" t-key="date">
+																		<option  t-att-value="date">
+																				<t t-esc="date" />
+																		</option>
+																</t>
+														</select>
+													</td>
+											</tr>
+											<tr>
+													<td>Appointments:</td>
+													<td>
+														<select t-att="{'disabled': _disabledAvailableAppointments()}" t-model="changes.appointment" class="detail form-select" id="appointment" name="appointment_id" t-on-change="onAppointmentChange">
+																<option value="">None</option>
+																<t t-foreach="availableAppointments"  t-as="slot_id" t-key="slot_id">
+																		<option  t-att-value="slot_id">
+																				<t t-esc="availableAppointments[slot_id]" />
+																		</option>
+																</t>
+														</select>
+													</td>
+											</tr>
+									</table>
+
+							</div>
+					</div>
+
+
+				</main>
+				<footer class="footer modal-footer">
+					<div class="button confirm btn btn-lg btn-primary" t-on-click="confirm">
+						Ok
+					</div>
+					<div class="button cancel btn btn-lg btn-secondary" t-on-click="cancel">
+						Cancel
+					</div>
+				</footer>
+		</div>
+	</t>
+
+</templates>

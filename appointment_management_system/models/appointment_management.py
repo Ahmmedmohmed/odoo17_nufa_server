@@ -20,7 +20,6 @@ class AppointmentManagement(models.Model):
     price_unit = fields.Float('Unit Price', required=True)
     service_rate = fields.Selection([('0', 'Low'), ('1', 'Medium'), ('2', 'High'), ('3', 'Very High')], string='Rating')
     company_id = fields.Many2one('res.company', required=True, default=lambda self: self.env.company)
-    appointment_id = fields.Many2one('appointment.management', string='Appointment', required=True)
     state = fields.Selection([('draft', 'Draft'), ('partial', 'Partial Approved'), ('approved', 'Approved'), ('complated', 'Complated'), ('cancelled', 'Cancelled')], default='draft')
     appointment_type = fields.Selection([('inside', 'Inside'), ('outside', 'Outside')], default='inside', required=True)
     notes = fields.Text('Notes')

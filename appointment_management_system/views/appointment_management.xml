@@ -5,7 +5,7 @@
             <field name="name">view.appointment.management.tree</field>
             <field name="model">appointment.management</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree create="0">
                     <field name="sequence"/>
                     <field name="partner_id"/>
                     <field name="date"/>
