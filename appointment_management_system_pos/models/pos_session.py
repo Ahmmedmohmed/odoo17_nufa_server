@@ -16,7 +16,8 @@ class PosSession(models.Model):
         return result
 
     def _loader_params_appointment_service_price_plan(self):
-        domain = [('branch_id', '=', self.company_id.id)]
+        domain = []
+        # domain = [('branch_id', '=', self.company_id.id)]
         return {'search_params': {'domain': domain, 'fields': ['service_id','service_product_name', 'id', 'department_id', 'branch_id'], 'load': False}}
 
     def _get_pos_ui_appointment_service_price_plan(self, params):
