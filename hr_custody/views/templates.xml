@@ -1,0 +1,7 @@
+<odoo>
+<!--    <template id="hr_custody_assets_backend" name="HR Custody Backend Assets" inherit_id="web.assets_backend">-->
+<!--        <xpath expr="." position="inside">-->
+<!--            <script type="text/javascript" src="/hr_custody/static/src/js/qty_at_date_widget.js"/>-->
+<!--        </xpath>-->
+<!--    </template>-->
+</odoo>

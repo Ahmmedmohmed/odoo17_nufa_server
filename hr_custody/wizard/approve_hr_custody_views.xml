@@ -1,0 +1,42 @@
+<odoo>
+    <record id="view_approve_hr_custody_form" model="ir.ui.view">
+        <field name="name">view.approve.hr.custody.form</field>
+        <field name="model">approve.hr.custody</field>
+        <field name="arch" type="xml">
+            <form string="Approve HR Custody Wizard">
+                <sheet>
+                    <notebook>
+                        <page string="products">
+                            <field name="line_ids">
+                                <tree string="Lines" editable="bottom" create="0" delete="0">
+                                    <field name="custody_line_id" string="Name"
+                                           options="{'no_create': True, 'no_open': True}" force_save="1"/>
+                                    <field name="product_id" options="{'no_create': True, 'no_open': True}"/>
+                                    <field name="quantity" optional="show"/>
+                                    <field name="uom_id" options="{'no_create': True, 'no_open': True}"
+                                           optional="show"/>
+                                    <field name="reason" optional="hide"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+
+                <footer>
+                    <button name="action_approve" string="Approve" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_approve_hr_custody_wizard" model="ir.actions.act_window">
+        <field name="name">Approve</field>
+        <field name="res_model">approve.hr.custody</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="hr_custody.view_approve_hr_custody_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>
+

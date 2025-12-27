@@ -1,0 +1,33 @@
+<odoo>
+    <!-- Employees Custodies -->
+    <menuitem id="menu_hr_custody_main" name="Custodies" parent="hr_employees_operations_menu.menu_employees_operations"
+              sequence="10" groups="hr.group_hr_user,hr_custody.group_hr_custody_user"/>
+    <menuitem id="menu_hr_custody" name="Custodies" parent="hr_custody.menu_hr_custody_main"
+              action="action_hr_custodies" sequence="1"/>
+    <menuitem id="menu_hr_custody_lines_to_disbursement" name="To Disbursement" parent="hr_custody.menu_hr_custody_main"
+              action="action_hr_custody_lines_to_disbursement" sequence="2" groups="hr_custody.group_hr_custody_user"/>
+    <menuitem id="menu_hr_custody_lines_to_return" name="To Return" parent="hr_custody.menu_hr_custody_main"
+              action="action_hr_custody_lines_to_return" sequence="3" groups="hr_custody.group_hr_custody_user"/>
+
+    <!-- Payslip Custodies -->
+    <menuitem id="menu_payslip_hr_custody_main" name="Custodies"
+              parent="hr_payslip_operations_menu.menu_payslip_operations"
+              sequence="50" groups="hr.group_hr_user,hr_custody.group_hr_custody_user"/>
+    <menuitem id="menu_payslip_hr_custody" name="Custodies" parent="hr_custody.menu_payslip_hr_custody_main"
+              action="action_hr_custodies" sequence="1"/>
+    <menuitem id="menu_payslip_hr_custody_lines_to_disbursement" name="To Disbursement"
+              parent="hr_custody.menu_payslip_hr_custody_main" action="action_hr_custody_lines_to_disbursement"
+              sequence="2" groups="hr_custody.group_hr_custody_user"/>
+    <menuitem id="menu_payslip_hr_custody_lines_to_return" name="To Return"
+              parent="hr_custody.menu_payslip_hr_custody_main"
+              action="action_hr_custody_lines_to_return" sequence="3" groups="hr_custody.group_hr_custody_user"/>
+
+    <!-- Account Advances -->
+    <menuitem id="menu_account_custody_main" name="Custody" parent="hr_employees_operations_menu.menu_account_operations"
+              sequence="3"/>
+    <menuitem id="menu_account_hr_custody_lines_to_disbursement" name="To Disbursement" parent="hr_custody.menu_account_custody_main"
+              action="action_hr_custody_lines_to_disbursement" sequence="2"/>
+    <menuitem id="menu_account_hr_custody_lines_to_return" name="To Return" parent="hr_custody.menu_account_custody_main"
+              action="action_hr_custody_lines_to_return" sequence="3"/>
+
+</odoo>

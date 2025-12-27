@@ -1,0 +1,35 @@
+<odoo>
+    <data noupdate="1">
+        <!-- Custodies -related subtypes for messaging / Chatter -->
+        <record id="mt_hr_custody_validated" model="mail.message.subtype">
+            <field name="name">Validated</field>
+            <field name="res_model">hr.custody</field>
+            <field name="default" eval="True"/>
+            <field name="description">Custody has been validated</field>
+        </record>
+        <record id="mt_hr_custody_confirmed" model="mail.message.subtype">
+            <field name="name">Confirmed</field>
+            <field name="res_model">hr.custody</field>
+            <field name="default" eval="True"/>
+            <field name="description">Custody has been confirmed</field>
+        </record>
+        <record id="mt_hr_custody_approved" model="mail.message.subtype">
+            <field name="name">Approved</field>
+            <field name="res_model">hr.custody</field>
+            <field name="default" eval="True"/>
+            <field name="description">Custody has been approved</field>
+        </record>
+        <record id="mt_hr_custody_rejected" model="mail.message.subtype">
+            <field name="name">Rejected</field>
+            <field name="res_model">hr.custody</field>
+            <field name="default" eval="True"/>
+            <field name="description">Custody has been Rejected</field>
+        </record>
+        <record id="mt_hr_custody_canceled" model="mail.message.subtype">
+            <field name="name">Canceled</field>
+            <field name="res_model">hr.custody</field>
+            <field name="default" eval="True"/>
+            <field name="description">Custody has been canceled</field>
+        </record>
+    </data>
+</odoo>

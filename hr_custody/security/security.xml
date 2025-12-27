@@ -1,0 +1,43 @@
+<odoo>
+    <data noupdate="1">
+        <record id="module_category_hr_custody" model="ir.module.category">
+            <field name="name">Custody</field>
+            <field name="description">User Custodies</field>
+            <field name="sequence">19</field>
+            <field name="parent_id" ref="base.module_category_human_resources"/>
+        </record>
+
+        <record id="group_hr_custody_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="hr_custody.module_category_hr_custody"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_hr_custody_manager" model="res.groups">
+            <field name="name">Administrator</field>
+            <field name="category_id" ref="hr_custody.module_category_hr_custody"/>
+            <field name="implied_ids" eval="[(4, ref('hr_custody.group_hr_custody_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+
+        <!-- HR Custody rules -->
+        <record id="hr_custody_request_user_rule" model="ir.rule">
+            <field name="name">Custodies User</field>
+            <field name="model_id" ref="model_hr_custody"/>
+            <field name="groups" eval="[(4, ref('hr_custody.group_hr_custody_user'))]"/>
+            <field name="domain_force">['|',('create_uid', '=',user.id),('user_id', '=',user.id)]</field>
+        </record>
+        <record id="hr_custody_request_manager_rule" model="ir.rule">
+            <field name="name">Custodies Manager</field>
+            <field name="model_id" ref="model_hr_custody"/>
+            <field name="groups" eval="[(4, ref('hr_custody.group_hr_custody_user'))]"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+        </record>
+        <record id="hr_custody_request_officer_employee_rule" model="ir.rule">
+            <field name="name">Custodies Officer Employee</field>
+            <field name="model_id" ref="model_hr_custody"/>
+            <field name="groups" eval="[(4, ref('hr.group_hr_user'))]"/>
+            <field name="domain_force">[('user_employee_id', '=',user.id)]</field>
+        </record>
+
+    </data>
+</odoo>

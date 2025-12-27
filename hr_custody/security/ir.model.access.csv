@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_custody_user,hr.custody.user,model_hr_custody,hr_custody.group_hr_custody_user,1,1,1,1
+access_hr_custody_line_user,hr.custody.line.user,model_hr_custody_line,hr_custody.group_hr_custody_user,1,1,1,1
+
+access_hr_custody_hr_user,hr.custody.group.user,model_hr_custody,hr.group_hr_user,1,1,1,1
+access_hr_custody_line_hr_user,hr.custody.line.group.user,model_hr_custody_line,hr.group_hr_user,1,1,1,1
+
+access_cancel_reject_hr_custody_group_user,cancel.reject.hr.custody.group.user,model_cancel_reject_hr_custody,base.group_user,1,1,1,1
+access_approve_hr_custody_group_user,approve.hr.custody.group.user,model_approve_hr_custody,base.group_user,1,1,1,1
+access_approve_hr_custody_line_group_user,approve.hr.custody.line.group.user,model_approve_hr_custody_line,base.group_user,1,1,1,1

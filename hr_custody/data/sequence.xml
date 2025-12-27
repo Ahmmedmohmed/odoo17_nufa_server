@@ -1,0 +1,11 @@
+<odoo>
+    <data noupdate="1">
+        <record id="sequence_hr_custody" model="ir.sequence">
+            <field name="name">HR Custody Sequence</field>
+            <field name="code">hr.custody</field>
+            <field name="prefix">CUSTODY/</field>
+            <field name="padding">4</field>
+            <field eval="False" name="company_id"/>
+        </record>
+    </data>
+</odoo>
