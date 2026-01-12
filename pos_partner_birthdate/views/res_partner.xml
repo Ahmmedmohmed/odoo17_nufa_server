@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_res_partner_form_additional_fields" model="ir.ui.view">
+        <field name="name">view.res.partner.form.additional.fields</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Personal Information">
+                    <group>
+                        <group>
+                            <field name='first_name'/>
+                            <field name='birth_date'/>
+                            <field name='married_date'/>
+                        </group>
+                        <group>
+                            <field name='last_name'/>
+                            <field name="age"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

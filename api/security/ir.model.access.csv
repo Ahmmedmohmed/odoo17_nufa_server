@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+img_line,img_line,model_img_line,,1,1,1,1
+other_details,other_details,model_other_details,,1,1,1,1
+offers,offers,model_offers,,1,1,1,1
+offers_line,offers_line,model_offers_line,,1,1,1,1
+banner,banner,model_banner,,1,1,1,1
+address_line,address_line,model_address_line,,1,1,1,1
+product_rating,product_rating,model_product_rating,,1,1,1,1
+product_favorite,product_favorite,model_product_favorite,,1,1,1,1
+notifactions,notifactions,model_notifactions,,1,1,1,1
+inbox,inbox,model_inbox,,1,1,1,1
+terms,terms,model_terms,,1,1,1,1
+privacy_policy,privacy_policy,model_privacy_policy,,1,1,1,1
+faq,faq,model_faq,,1,1,1,1
+contact_us,contact_us,model_contact_us,,1,1,1,1
+brand,brand,model_brand,,1,1,1,1

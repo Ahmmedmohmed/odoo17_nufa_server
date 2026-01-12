@@ -151,9 +151,7 @@ class WarehouseTransfer(models.TransientModel):
 
         out_picking_id.action_confirm()
         out_picking_id.action_assign()
-        # out_picking_id.button_validate()
 
 
         in_picking_id.action_confirm()
         in_picking_id.action_assign()
-        # in_picking_id.button_validate()

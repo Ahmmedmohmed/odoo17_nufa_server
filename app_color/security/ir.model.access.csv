@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_app_color_user,app.color user,model_app_color,base.group_user,1,1,1,1
+access_app_main_user,app.main user,model_app_main,base.group_user,1,1,1,1
+sub.color,sub.color,model_sub_color,base.group_user,1,1,1,1
+img,img,model_img,base.group_user,1,1,1,1

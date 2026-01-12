@@ -1,0 +1,84 @@
+<odoo>
+
+    <record id="action_app_main" model="ir.actions.act_window">
+        <field name="name">App Main</field>
+        <field name="res_model">app.main</field>
+        <field name="view_mode">tree,form</field>
+        <field name="target">current</field>
+    </record>
+
+    <record id="action_app_color" model="ir.actions.act_window">
+        <field name="name">App Color</field>
+        <field name="res_model">app.color</field>
+        <field name="view_mode">tree,form</field>
+        <field name="target">current</field>
+    </record>
+
+
+    <record id="view_app_main_form" model="ir.ui.view">
+        <field name="name">app.main.form</field>
+        <field name="model">app.main</field>
+        <field name="arch" type="xml">
+            <form string="App Main">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                    <notebook>
+                        <page name="Colors">
+                            <field name="color_ids" widget="one2many_tags">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="sub_color_ids" widget="many2many_tags"/>
+                                    <field name="sub_color_hex_values"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page name="IMG">
+                            <field name="img_ids" widget="one2many_tags">
+                                <tree editable="bottom">
+                                    <field name="img"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="app_color_form" model="ir.ui.view">
+        <field name="name">app_color_form</field>
+        <field name="model">app.color</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="sub_color_ids" widget="one2many_tags">
+                            <tree editable="bottom">
+                                <field name="color_hex"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <menuitem id="menu_app_main" name="App Main" sequence="10"/>
+
+    <menuitem id="submenu_app_main" name="App Main Records"
+              parent="menu_app_main" action="action_app_main"/>
+
+    <menuitem id="submenu_app_color" name="App Colors"
+              parent="menu_app_main" action="action_app_color"/>
+
+
+</odoo>

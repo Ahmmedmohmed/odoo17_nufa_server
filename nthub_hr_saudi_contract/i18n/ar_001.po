@@ -1,0 +1,391 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* nthub_hr_saudi_contract
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-14 10:23+0000\n"
+"PO-Revision-Date: 2024-05-14 10:23+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.actions.act_window,name:nthub_hr_saudi_contract.action_medical_insurance
+msgid " Medical Insurance"
+msgstr "التأمين الطبي"
+
+#. module: nthub_hr_saudi_contract
+#: model_terms:ir.ui.view,arch_db:nthub_hr_saudi_contract.view_hr_contract_gosi_inherit_form
+msgid "<span>%</span>"
+msgstr ""
+
+#. module: nthub_hr_saudi_contract
+#: model_terms:ir.ui.view,arch_db:nthub_hr_saudi_contract.view_hr_contract_gosi_inherit_form
+msgid "<span>/ month</span>"
+msgstr "<span>/ شهر</span>"
+
+#. module: nthub_hr_saudi_contract
+#: model_terms:ir.ui.view,arch_db:nthub_hr_saudi_contract.view_hr_contract_gosi_inherit_form
+msgid "Allowance"
+msgstr ""
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_medical_insurance__amount
+msgid "Amount"
+msgstr ""
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__amount_occupational_hazards
+msgid "Amount Occupational Hazards"
+msgstr " المخاطر المهنية"
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__amount_company_pension_insurance
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__amount_pension_insurance
+msgid "Amount Pension Insurance"
+msgstr "تأمين التقاعد"
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__amount_company_saned
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__amount_saned
+msgid "Amount Saned"
+msgstr "ساند"
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_medical_insurance__code
+msgid "Code"
+msgstr ""
+
+#. module: nthub_hr_saudi_contract
+#. odoo-python
+#: code:addons/nthub_hr_saudi_contract/models/hr_contract.py:0
+#, python-format
+msgid ""
+"Company Pension Insurance must be between 0 and 100 and not equal to zero"
+msgstr "يجب أن يكون تأمين معاشات الشركة بين 0 و 100 وألا يساوي صفرًا"
+
+#. module: nthub_hr_saudi_contract
+#: model:hr.salary.rule,name:nthub_hr_saudi_contract.hr_rule_company_saned
+msgid "Company Saned"
+msgstr ""
+
+#. module: nthub_hr_saudi_contract
+#. odoo-python
+#: code:addons/nthub_hr_saudi_contract/models/hr_contract.py:0
+#, python-format
+msgid "Company Saned must be between 0 and 100 and not equal to zero"
+msgstr "يجب أن تكون شركة ساند بين 0 و 100 وألا تساوي صفرًا"
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_medical_insurance__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_medical_insurance__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: nthub_hr_saudi_contract
+#: model_terms:ir.ui.view,arch_db:nthub_hr_saudi_contract.view_hr_contract_gosi_inherit_form
+msgid "Deduction"
+msgstr ""
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_medical_insurance__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model,name:nthub_hr_saudi_contract.model_hr_contract
+msgid "Employee Contract"
+msgstr "عقد الموظف"
+
+#. module: nthub_hr_saudi_contract
+#: model:hr.salary.rule,name:nthub_hr_saudi_contract.hr_rule_allowance_end_of_service
+msgid "End Of Service"
+msgstr "نهاية الخدمة"
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__end_of_service
+msgid "End of Service"
+msgstr "نهاية الخدمة"
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__end_of_service_percentage
+msgid "End of Service Percentage"
+msgstr "نسبة نهاية الخدمة"
+
+#. module: nthub_hr_saudi_contract
+#: model:hr.salary.rule,name:nthub_hr_saudi_contract.hr_rule_allowance_food
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__food
+msgid "Food"
+msgstr "الغذاء"
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__food_percentage
+msgid "Food Percentage"
+msgstr "النسبة المئوية للغذاء"
+
+#. module: nthub_hr_saudi_contract
+#: model:hr.salary.rule,name:nthub_hr_saudi_contract.hr_rule_allowance_fuel
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__fuel
+msgid "Fuel"
+msgstr "الوقود"
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__fuel_percentage
+msgid "Fuel Percentage"
+msgstr "النسبة المئوية للوقود"
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__gosi_deduction
+#: model_terms:ir.ui.view,arch_db:nthub_hr_saudi_contract.view_hr_contract_gosi_inherit_form
+msgid "GOSI"
+msgstr "التأمينات "
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__gosi_distributed
+msgid "GOSI  Distributed"
+msgstr "توزيع التأمينات"
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__gosi_suodi
+msgid "GOSI  Suodi"
+msgstr "سعودي"
+
+#. module: nthub_hr_saudi_contract
+#: model:hr.salary.rule,name:nthub_hr_saudi_contract.hr_rule_gosi_deduction
+msgid "GOSI DED"
+msgstr ""
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__gosi_percent
+msgid "GOSI percent"
+msgstr "قيمة التامينات"
+
+#. module: nthub_hr_saudi_contract
+#. odoo-python
+#: code:addons/nthub_hr_saudi_contract/models/hr_contract.py:0
+#, python-format
+msgid "GOSI percent must be between 0 and 100 and not equal to zero"
+msgstr ""
+"يجب أن تكون نسبة التأمينات الاجتماعية (GOSI) بين 0 و 100 وألا تكون مساوية "
+"للصفر"
+
+#. module: nthub_hr_saudi_contract
+#. odoo-python
+#: code:addons/nthub_hr_saudi_contract/models/hr_contract.py:0
+#, python-format
+msgid "GOSI percent must be equal total GOSI percent distributed"
+msgstr "يجب أن تكون نسبة التأمينات متساوية إجمالى نسبة التأمينات الموزعة"
+
+#. module: nthub_hr_saudi_contract
+#: model:hr.salary.rule,name:nthub_hr_saudi_contract.hr_rule_allowance_housing
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__housing
+msgid "Housing"
+msgstr "المنزل"
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__housing_percentage
+msgid "Housing Percentage"
+msgstr "نسبة المنزل"
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model,name:nthub_hr_saudi_contract.model_hr_medical_insurance
+msgid "Hr Medical Insurance"
+msgstr "التأمين الطبي"
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_medical_insurance__id
+msgid "ID"
+msgstr ""
+
+#. module: nthub_hr_saudi_contract
+#: model:hr.salary.rule,name:nthub_hr_saudi_contract.hr_rule_allowance_iqama_fees
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__iqama_fees
+msgid "Iqama Fees"
+msgstr "مصاريف الاقامة"
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__iqama_fees_percentage
+msgid "Iqama Fees Percentage"
+msgstr "نسبة مصاريف الاقامة"
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_medical_insurance____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_medical_insurance__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_medical_insurance__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: nthub_hr_saudi_contract
+#: model:hr.salary.rule,name:nthub_hr_saudi_contract.hr_rule_allowance_leave
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__leave
+msgid "Leave"
+msgstr "الاجازات"
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__leave_percentage
+msgid "Leave Percentage"
+msgstr "نسبة الاجازات"
+
+#. module: nthub_hr_saudi_contract
+#: model:hr.salary.rule,name:nthub_hr_saudi_contract.hr_rule_medical_insurance
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__medical_insurance
+#: model:ir.ui.menu,name:nthub_hr_saudi_contract.menu_medical
+#: model_terms:ir.ui.view,arch_db:nthub_hr_saudi_contract.view_hr_contract_gosi_inherit_form
+msgid "Medical Insurance"
+msgstr "التامينات الطبية"
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__medical_insurance_type
+msgid "Medical Insurance Type"
+msgstr "نوع التامينات الطبية"
+
+#. module: nthub_hr_saudi_contract
+#: model:hr.salary.rule,name:nthub_hr_saudi_contract.hr_rule_allowance_mobile
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__mobile
+msgid "Mobile"
+msgstr "جوال"
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__mobile_percentage
+msgid "Mobile Percentage"
+msgstr "النسبة المئوية للجوال"
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_medical_insurance__name
+msgid "Name"
+msgstr ""
+
+#. module: nthub_hr_saudi_contract
+#: model:hr.salary.rule,name:nthub_hr_saudi_contract.hr_rule_occupational_hazards
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__occupational_hazards
+msgid "Occupational Hazards"
+msgstr "المخاطر المهنية"
+
+#. module: nthub_hr_saudi_contract
+#. odoo-python
+#: code:addons/nthub_hr_saudi_contract/models/hr_contract.py:0
+#, python-format
+msgid "Occupational Hazards must be between 0 and 100 and not equal to zero"
+msgstr "يجب أن تكون المخاطر المهنية بين 0 و 100 وألا تساوي الصفر"
+
+#. module: nthub_hr_saudi_contract
+#: model:hr.salary.rule,name:nthub_hr_saudi_contract.hr_rule_allowance_other
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__other
+msgid "Other"
+msgstr "اخرى"
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__other_percentage
+msgid "Other Percentage"
+msgstr "النسبة المئوية للمصروفات الاخرى"
+
+#. module: nthub_hr_saudi_contract
+#: model:hr.salary.rule,name:nthub_hr_saudi_contract.hr_rule_allowance_overtime
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__overtime
+msgid "Overtime"
+msgstr "العمل الاضافي"
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__overtime_percentage
+msgid "Overtime Percentage"
+msgstr "النسبة المئوية للعمل الاضافي"
+
+#. module: nthub_hr_saudi_contract
+#: model:hr.salary.rule,name:nthub_hr_saudi_contract.hr_rule_pension_insurance
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__pension_insurance
+msgid "Pension Insurance"
+msgstr "تأمين تقاعد  خاص بالموظف"
+
+#. module: nthub_hr_saudi_contract
+#: model:hr.salary.rule,name:nthub_hr_saudi_contract.hr_rule_pension_insurance_company
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__company_pension_insurance
+msgid "Pension Insurance Company"
+msgstr "تأمين تقاعد على بالشركة"
+
+#. module: nthub_hr_saudi_contract
+#. odoo-python
+#: code:addons/nthub_hr_saudi_contract/models/hr_contract.py:0
+#, python-format
+msgid "Pension Insurance must be between 0 and 100 and not equal to zero"
+msgstr "يجب أن يكون تأمين المعاش بين 0 و 100 وألا يساوي الصفر"
+
+#. module: nthub_hr_saudi_contract
+#: model:hr.salary.rule,name:nthub_hr_saudi_contract.hr_rule_saned
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__saned
+msgid "Saned"
+msgstr "ساند"
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__company_saned
+msgid "Saned Company"
+msgstr "ساند خاص بالشركة"
+
+#. module: nthub_hr_saudi_contract
+#. odoo-python
+#: code:addons/nthub_hr_saudi_contract/models/hr_contract.py:0
+#, python-format
+msgid "Saned must be between 0 and 100 and not equal to zero"
+msgstr "يجب أن يكون ساند بين 0 و 100 وألا يساوي صفرًا"
+
+#. module: nthub_hr_saudi_contract
+#: model:hr.salary.rule,name:nthub_hr_saudi_contract.hr_rule_DED_tax
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__tax
+#: model_terms:ir.ui.view,arch_db:nthub_hr_saudi_contract.view_hr_contract_gosi_inherit_form
+msgid "Tax"
+msgstr "الضريبة"
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__tax_amount
+msgid "Tax Amount"
+msgstr "مبلغ الضريبة"
+
+#. module: nthub_hr_saudi_contract
+#: model:hr.salary.rule,name:nthub_hr_saudi_contract.hr_rule_allowance_ticket
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__ticket
+msgid "Ticket"
+msgstr "تذكرة"
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__ticket_percentage
+msgid "Ticket Percentage"
+msgstr "نسبة التذكرة"
+
+#. module: nthub_hr_saudi_contract
+#: model:hr.salary.rule,name:nthub_hr_saudi_contract.hr_rule_allowance_transportation
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__transportation
+msgid "Transportation"
+msgstr "المواصلات"
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__transportation_percentage
+msgid "Transportation Percentage"
+msgstr "نسبة المواصلات"
+
+#. module: nthub_hr_saudi_contract
+#: model:hr.salary.rule,name:nthub_hr_saudi_contract.hr_rule_allowance_work_permission_fees
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__work_permission_fees
+msgid "Work Permission Fees"
+msgstr "مصاريف تصريح العمل"
+
+#. module: nthub_hr_saudi_contract
+#: model:ir.model.fields,field_description:nthub_hr_saudi_contract.field_hr_contract__work_permission_fees_percentage
+msgid "Work Permission Fees Percentage"
+msgstr "نسبة مصاريف تصريح العمل"

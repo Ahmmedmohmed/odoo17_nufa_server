@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+        <record id="view_pos_combo_form_2" model="ir.ui.view">
+            <field name="name">view_pos_combo_form_2</field>
+            <field name="model">pos.combo</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_combo_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='name']" position="after">
+                    <label for="ar_name"/>
+                    <field name="ar_name"/>
+                    <label for="ar_desc"/>
+                    <field name="ar_desc"/>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

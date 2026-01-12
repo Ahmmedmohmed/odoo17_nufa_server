@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-name="PartnerDetailsEditInherit" t-inherit="point_of_sale.PartnerDetailsEdit" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('partner-details-header')]" position="replace">
+            <div class="partner-details-header d-flex pe-2 gap-2">
+                <div class="partner-picture position-relative rounded text-center overflow-hidden">
+                    <t t-if="partnerImageUrl">
+                        <img class="rounded" t-att-src="partnerImageUrl" alt="Partner" style="width: 64px; height: 64px; object-fit: cover;" />
+                    </t>
+                    <t t-else="">
+                        <i class="fa fa-camera" role="img" aria-label="Picture" title="Picture"></i>
+                    </t>
+                    <input type="file" class="image-uploader" t-on-change="uploadImage" />
+                </div>
+
+                <input class="detail partner-name form-control form-control-lg" t-model="changes.first_name" name="first_name" placeholder="First Name"/>
+                <input class="detail partner-name form-control form-control-lg" t-model="changes.last_name" name="last_name" placeholder="Last Name"/>
+            </div>
+        </xpath>
+
+        <xpath expr="//div[hasclass('partner-details-box')]" position="inside">
+            <div class="partner-detail col">
+                <label class="form-label label" for="vat">Birth Date</label>
+                <input class="detail form-control" type="date" id="birth_date" name="birth_date" t-model="changes.birth_date" t-att-class="{'border-danger': missingFields.includes('birth_date')}" />
+            </div>
+
+            <div class="partner-detail col">
+                <label class="form-label label" for="vat">Married Date</label>
+                <input class="detail form-control" type="date" id="married_date" name="married_date" t-model="changes.married_date" t-att-class="{'border-danger': missingFields.includes('married_date')}" />
+            </div>
+        </xpath>
+    </t>
+</templates>

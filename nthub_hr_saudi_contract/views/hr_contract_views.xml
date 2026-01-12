@@ -1,0 +1,196 @@
+<odoo>
+
+    <record id="view_hr_contract_gosi_inherit_form" model="ir.ui.view">
+        <field name="name">view.hr.contract.form</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='information']" position="inside">
+                <group>
+                    <group style="width:50%%">
+                        <separator string="GOSI"/>
+                        <field name="gosi_saudi"/>
+                        <label for="gosi_percent"/>
+                        <div class="o_row">
+                            <field name="gosi_percent" nolabel="1" class="oe_inline"/>
+                            <span>%</span>
+                            <field name="gosi" class="oe_inline" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <span>/ month</span>
+                        </div>
+                        <label for="occupational_hazards_percentage"/>
+                        <div class="o_row">
+                            <field name="occupational_hazards_percentage" nolabel="1" class="oe_inline"/>
+                            <span>%</span>
+                            <field name="occupational_hazards" class="oe_inline" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <span>/ month</span>
+                        </div>
+
+                        <label for="pension_insurance_percentage" invisible="not gosi_saudi"/>
+                        <div class="o_row" invisible="not gosi_saudi">
+                            <field name="pension_insurance_percentage" nolabel="1" class="oe_inline"/>
+                            <span>%</span>
+                            <field name="pension_insurance" class="oe_inline" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <span>/ month</span>
+                        </div>
+
+                        <label for="company_pension_insurance_percentage" invisible="not gosi_saudi"/>
+                        <div class="o_row" invisible="not gosi_saudi">
+                            <field name="company_pension_insurance_percentage" nolabel="1" class="oe_inline"/>
+                            <span>%</span>
+                            <field name="company_pension_insurance" class="oe_inline" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <span>/ month</span>
+                        </div>
+
+                        <label for="saned_percentage" invisible="not gosi_saudi"/>
+                        <div class="o_row" invisible="not gosi_saudi">
+                            <field name="saned_percentage" nolabel="1" class="oe_inline"/>
+                            <span>%</span>
+                            <field name="saned" class="oe_inline" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <span>/ month</span>
+                        </div>
+
+                        <label for="company_saned_percentage" invisible="not gosi_saudi"/>
+                        <div class="o_row" invisible="not gosi_saudi">
+                            <field name="company_saned_percentage" nolabel="1" class="oe_inline"/>
+                            <span>%</span>
+                            <field name="company_saned" class="oe_inline" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <span>/ month</span>
+                        </div>
+
+                    </group>
+
+                    <group style="width:50%%">
+                        <separator string="Allowance"/>
+                        <label for="overtime"/>
+                        <div class="o_row">
+                            <field name="overtime_percentage"  widget="percentage" nolabel="1" class="oe_inline"/>
+
+                            <field name="overtime"  class="oe_inline" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <span>/ month</span>
+                        </div>
+                        <label for="transportation"/>
+                        <div class="o_row">
+                            <field name="transportation_percentage"  widget="percentage" nolabel="1" class="oe_inline"/>
+
+                            <field name="transportation" class="oe_inline" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <span>/ month</span>
+                        </div>
+                        <label for="food"/>
+                        <div class="o_row">
+                            <field name="food_percentage"   widget="percentage" nolabel="1" class="oe_inline"/>
+
+                            <field name="food" class="oe_inline" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <span>/ month</span>
+                        </div>
+                        <label for="housing"/>
+                        <div class="o_row">
+                            <field name="housing_percentage"  widget="percentage" nolabel="1" class="oe_inline"/>
+                            <field name="housing" class="oe_inline" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <span>/ month</span>
+                        </div>
+                        <label for="mobile"/>
+                        <div class="o_row">
+                            <field name="mobile_percentage"  widget="percentage" nolabel="1" class="oe_inline"/>
+                            <field name="mobile" class="oe_inline" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <span>/ month</span>
+                        </div>
+                        <label for="fuel"/>
+                        <div class="o_row">
+                            <field name="fuel_percentage"  widget="percentage" nolabel="1" class="oe_inline"/>
+
+                            <field name="fuel" class="oe_inline" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <span>/ month</span>
+                        </div>
+                        <label for="ticket"/>
+                        <div class="o_row">
+                            <field name="ticket_percentage"  widget="percentage" nolabel="1" class="oe_inline"/>
+
+                            <field name="ticket" class="oe_inline" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <span>/ month</span>
+                        </div>
+                        <label for="other"/>
+                        <div class="o_row">
+                            <field name="other_percentage"  widget="percentage" nolabel="1" class="oe_inline"/>
+
+                            <field name="other" class="oe_inline" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <span>/ month</span>
+                        </div>
+                    </group>
+                </group>
+                <group>
+                    <group style="width:50%%">
+                        <separator string="Deduction"/>
+                        <label for="end_of_service"/>
+                        <div class="o_row">
+                            <field name="end_of_service_percentage"  widget="percentage" nolabel="1" class="oe_inline"/>
+
+                            <field name="end_of_service" class="oe_inline" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <span>/ month</span>
+                        </div>
+                        <label for="iqama_fees"/>
+                        <div class="o_row">
+                            <field name="iqama_fees_percentage"  widget="percentage" nolabel="1" class="oe_inline"/>
+
+                            <field name="iqama_fees" class="oe_inline" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <span>/ month</span>
+                        </div>
+
+                        <label for="leave"/>
+                        <div class="o_row">
+                            <field name="leave_percentage"   widget="percentage" nolabel="1" class="oe_inline"/>
+
+                            <field name="leave" class="oe_inline" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <span>/ month</span>
+                        </div>
+
+                        <label for="work_permission_fees"/>
+                        <div class="o_row">
+                            <field name="work_permission_fees_percentage"  widget="percentage" nolabel="1" class="oe_inline"/>
+
+                            <field name="work_permission_fees" class="oe_inline" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <span>/ month</span>
+                        </div>
+                    </group>
+                    <group style="width:50%%">
+                        <separator string="Tax"/>
+                        <label for="tax"/>
+                        <div class="o_row">
+                            <field name="tax" nolabel="1"  widget="percentage" class="oe_inline"/>
+
+                            <field name="tax_amount" class="oe_inline" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <span>/ month</span>
+                        </div>
+                        <separator string="Medical Insurance"/>
+                        <label for="medical_insurance_type"/>
+                        <div class="o_row">
+                            <field name="medical_insurance_type" nolabel="1" class="oe_inline"/>
+                            <field name="medical_insurance" nolabel="1" class="oe_inline"/>
+
+                        </div>
+
+                    </group>
+
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

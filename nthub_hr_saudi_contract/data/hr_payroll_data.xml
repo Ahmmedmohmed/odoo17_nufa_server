@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="0">
+        <record id="general_employee_structure_type" model="hr.payroll.structure.type">
+            <field name="name">General Employee</field>
+            <field name="country_id" eval="False"/>
+        </record>
+
+        <record id="general_employee_structure" model="hr.payroll.structure">
+            <field name="name">General Employee</field>
+            <field name="type_id" ref="nthub_hr_saudi_contract.general_employee_structure_type"/>
+            <field name="country_id" eval="False"/>
+        </record>
+
+        <!-- region Group Name (Allowance) -->
+        <record id="hr_rule_allowance_overtime" model="hr.salary.rule">
+            <field name="name">Overtime</field>
+            <field name="struct_id" ref="nthub_hr_saudi_contract.general_employee_structure"/>
+            <field name="sequence" eval="105"/>
+            <field name="code">OT</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.overtime > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.overtime</field>
+        </record>
+
+        <record id="hr_rule_allowance_transportation" model="hr.salary.rule">
+            <field name="name">Transportation</field>
+            <field name="struct_id" ref="nthub_hr_saudi_contract.general_employee_structure"/>
+            <field name="sequence" eval="110"/>
+            <field name="code">Transportation</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.transportation > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.transportation</field>
+        </record>
+
+        <record id="hr_rule_allowance_food" model="hr.salary.rule">
+            <field name="name">Food</field>
+            <field name="struct_id" ref="nthub_hr_saudi_contract.general_employee_structure"/>
+            <field name="sequence" eval="115"/>
+            <field name="code">Food</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.food > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.food</field>
+        </record>
+
+        <record id="hr_rule_allowance_housing" model="hr.salary.rule">
+            <field name="name">Housing</field>
+            <field name="struct_id" ref="nthub_hr_saudi_contract.general_employee_structure"/>
+            <field name="sequence" eval="120"/>
+            <field name="code">Housing</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.housing > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.housing</field>
+        </record>
+
+        <record id="hr_rule_allowance_mobile" model="hr.salary.rule">
+            <field name="name">Mobile</field>
+            <field name="struct_id" ref="nthub_hr_saudi_contract.general_employee_structure"/>
+            <field name="sequence" eval="125"/>
+            <field name="code">Mobile</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.mobile > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.mobile</field>
+        </record>
+
+        <record id="hr_rule_allowance_fuel" model="hr.salary.rule">
+            <field name="name">Fuel</field>
+            <field name="struct_id" ref="nthub_hr_saudi_contract.general_employee_structure"/>
+            <field name="sequence" eval="130"/>
+            <field name="code">Fuel</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.fuel > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.fuel</field>
+        </record>
+
+        <record id="hr_rule_allowance_ticket" model="hr.salary.rule">
+            <field name="name">Ticket</field>
+            <field name="struct_id" ref="nthub_hr_saudi_contract.general_employee_structure"/>
+            <field name="sequence" eval="135"/>
+            <field name="code">Ticket</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.ticket > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.ticket</field>
+        </record>
+
+        <record id="hr_rule_allowance_other" model="hr.salary.rule">
+            <field name="name">Other</field>
+            <field name="struct_id" ref="nthub_hr_saudi_contract.general_employee_structure"/>
+            <field name="sequence" eval="160"/>
+            <field name="code">Other</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.other > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.other</field>
+        </record>
+        <!-- endregion -->
+        <!-- region Group Name (GOSI) -->
+        <record id="hr_rule_gosi_deduction" model="hr.salary.rule">
+            <field name="name">GOSI DED</field>
+            <field name="struct_id" ref="nthub_hr_saudi_contract.general_employee_structure"/>
+            <field name="sequence" eval="165"/>
+            <field name="code">GOSI</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.gosi > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -contract.gosi</field>
+        </record>
+
+        <record id="hr_rule_occupational_hazards" model="hr.salary.rule">
+            <field name="name">Occupational Hazards</field>
+            <field name="struct_id" ref="nthub_hr_saudi_contract.general_employee_structure"/>
+            <field name="sequence" eval="170"/>
+            <field name="code">OH</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.occupational_hazards > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -contract.occupational_hazards</field>
+        </record>
+
+        <record id="hr_rule_pension_insurance" model="hr.salary.rule">
+            <field name="name">Pension Insurance</field>
+            <field name="struct_id" ref="nthub_hr_saudi_contract.general_employee_structure"/>
+            <field name="sequence" eval="175"/>
+            <field name="code">PE</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.pension_insurance > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -contract.pension_insurance</field>
+        </record>
+
+        <record id="hr_rule_pension_insurance_company" model="hr.salary.rule">
+            <field name="name">Pension Insurance Company</field>
+            <field name="struct_id" ref="nthub_hr_saudi_contract.general_employee_structure"/>
+            <field name="sequence" eval="180"/>
+            <field name="code">PEICOM</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.company_pension_insurance > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -contract.company_pension_insurance</field>
+        </record>
+
+        <record id="hr_rule_saned" model="hr.salary.rule">
+            <field name="name">Saned</field>
+            <field name="struct_id" ref="nthub_hr_saudi_contract.general_employee_structure"/>
+            <field name="sequence" eval="185"/>
+            <field name="code">SANED</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.saned > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -contract.saned</field>
+        </record>
+
+        <record id="hr_rule_company_saned" model="hr.salary.rule">
+            <field name="name">Company Saned</field>
+            <field name="struct_id" ref="nthub_hr_saudi_contract.general_employee_structure"/>
+            <field name="sequence" eval="190"/>
+            <field name="code">COMSANED</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.company_saned > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -contract.company_saned</field>
+        </record>
+        <!-- endregion -->
+
+        <!-- region Group Name (Deduction) -->
+        <record id="hr_rule_allowance_end_of_service" model="hr.salary.rule">
+            <field name="name">End Of Service</field>
+            <field name="struct_id" ref="nthub_hr_saudi_contract.general_employee_structure"/>
+            <field name="sequence" eval="191"/>
+            <field name="code">EOS</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.end_of_service > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.end_of_service</field>
+        </record>
+
+        <record id="hr_rule_allowance_iqama_fees" model="hr.salary.rule">
+            <field name="name">Iqama Fees</field>
+            <field name="struct_id" ref="nthub_hr_saudi_contract.general_employee_structure"/>
+            <field name="sequence" eval="192"/>
+            <field name="code">Iqama Fees</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.iqama_fees > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.iqama_fees</field>
+        </record>
+
+        <record id="hr_rule_allowance_leave" model="hr.salary.rule">
+            <field name="name">Leave</field>
+            <field name="struct_id" ref="nthub_hr_saudi_contract.general_employee_structure"/>
+            <field name="sequence" eval="193"/>
+            <field name="code">Leave</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.leave > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.leave</field>
+        </record>
+
+        <record id="hr_rule_allowance_work_permission_fees" model="hr.salary.rule">
+            <field name="name">Work Permission Fees</field>
+            <field name="struct_id" ref="nthub_hr_saudi_contract.general_employee_structure"/>
+            <field name="sequence" eval="194"/>
+            <field name="code">Work Permission Fees</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.work_permission_fees > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.work_permission_fees</field>
+        </record>
+        <!-- endregion -->
+
+        <!-- region Group Name (Tax) -->
+        <record id="hr_rule_DED_tax" model="hr.salary.rule">
+            <field name="name">Tax</field>
+            <field name="struct_id" ref="nthub_hr_saudi_contract.general_employee_structure"/>
+            <field name="sequence" eval="195"/>
+            <field name="code">Tax</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.tax_amount > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -contract.tax_amount</field>
+        </record>
+        <!-- endregion -->
+        <!-- region Group Name (Medical Insurance) -->
+        <record id="hr_rule_medical_insurance" model="hr.salary.rule">
+            <field name="name">Medical Insurance</field>
+            <field name="struct_id" ref="nthub_hr_saudi_contract.general_employee_structure"/>
+            <field name="sequence" eval="196"/>
+            <field name="code">Medical Insurance</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.medical_insurance > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.medical_insurance</field>
+        </record>
+        <!-- endregion -->
+    </data>
+</odoo>
