@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_pos_category_form_appointment_inherit" model="ir.ui.view">
+            <field name="name">view.pos.category.form.appointment.inherit</field>
+            <field name="model">pos.category</field>
+            <field name="inherit_id" ref="point_of_sale.product_pos_category_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/*" position="before">
+                    <header>
+                        <field name="is_appointment_category" invisible="1"/>
+
+                        <button name="action_available_in_appointment" string="Available In Appointment" type="object" invisible="is_appointment_category" class="btn btn-success"/>
+                        <button name="action_unavailable_in_appointment" string="Unavailable In Appointment" type="object" invisible="not is_appointment_category" class="btn btn-danger"/>
+                    </header>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="appointment_product_category_action" model="ir.actions.act_window">
+            <field name="name">Appointment Service Category</field>
+            <field name="res_model">pos.category</field>
+            <field name="domain">[('is_appointment_category', '=', 1)]</field>
+            <field name="context">{'default_is_appointment_category': 1}</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

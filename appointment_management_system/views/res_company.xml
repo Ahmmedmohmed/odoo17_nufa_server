@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_res_company_form_appointment_inherit" model="ir.ui.view">
+            <field name="name">view.res.company.form.appointment.inherit</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='social_media']" position="after">
+                    <group string="Appointment Location">
+                        <field name="picking_type_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                        <field name="location_dest_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

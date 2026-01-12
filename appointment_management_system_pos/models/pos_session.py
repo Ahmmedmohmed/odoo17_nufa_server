@@ -5,47 +5,56 @@ from odoo.osv.expression import OR
 import ast
 import json
 
+
 class PosSession(models.Model):
     _inherit = 'pos.session'
 
     def _pos_ui_models_to_load(self):
         result = super()._pos_ui_models_to_load()
         if self.config_id.allow_appointment:
-            # result.append('hr.employee.appointment')
-            result.append('appointment.service.price.plan')
+            result.append('appointment.product.category')
+            result.append('appointment.product.service')
+            result.append('appointment.package.line')
         return result
 
-    def _loader_params_appointment_service_price_plan(self):
-        domain = []
-        # domain = [('branch_id', '=', self.company_id.id)]
-        return {'search_params': {'domain': domain, 'fields': ['service_id','service_product_name', 'id', 'department_id', 'branch_id'], 'load': False}}
 
-    def _get_pos_ui_appointment_service_price_plan(self, params):
-        result = self.env['appointment.service.price.plan'].search_read(**params['search_params'])
-        print(result)
-        appointment_services = []
-        appointment_service_price_plans_by_id = {}
-        appointment_service_price_plans_by_product_id = {}
-        for rec in result:
-            appointment_service_price_plans_by_id[rec['id']] = rec
-            if rec['service_id'] in appointment_service_price_plans_by_product_id:
-                appointment_service_price_plans_by_product_id[rec['service_id']].append(rec)
+    def _loader_params_appointment_product_category(self):
+        return {'search_params': {'domain': [('is_appointment_category', '=', True)], 'fields': ['name', 'id']}}
+
+
+    def _get_pos_ui_appointment_product_category(self, params):
+        categories = self.env['pos.category'].search_read(**params['search_params'])
+        category_by_id = {category['id']: category for category in categories}
+        return categories
+
+    def _loader_params_product_product(self):
+        result = super()._loader_params_product_product()
+        result['search_params']['fields'].extend(['is_appointment_service','is_appointment_package','appointment_package_line_ids'])
+        return result
+
+
+    def _loader_params_appointment_product_service(self):
+        return {'search_params': {'domain': [('is_appointment_service', '=', True)], 'fields': ['name', 'id', 'categ_id','is_appointment_package','appointment_package_line_ids']}}
+
+
+    def _get_pos_ui_appointment_product_service(self, params):
+        services = self.env['product.product'].search_read(**params['search_params'])
+        service_by_categ_id = {}
+        for rec in services:
+            if rec['categ_id'][0] in service_by_categ_id:
+                service_by_categ_id[rec['categ_id'][0]].append(rec)
             else:
-                appointment_services.append({'id':rec['service_id'],'name':rec['service_product_name']})
-                appointment_service_price_plans_by_product_id[rec['service_id']] = []
-                appointment_service_price_plans_by_product_id[rec['service_id']].append(rec)
-        print(appointment_services)
-        print(appointment_service_price_plans_by_product_id)
-
-        final_result = {
-            'appointment_services':appointment_services,
-            'appointment_service_price_plans':result,
-            'appointment_service_price_plans_by_id':appointment_service_price_plans_by_id,
-			'appointment_service_price_plans_by_product_id':appointment_service_price_plans_by_product_id,
-		}
+                service_by_categ_id[rec['categ_id'][0]] = []
+                service_by_categ_id[rec['categ_id'][0]].append(rec)
+        final_result = {'appointment_services':services, 'appointment_services_by_categ_id':service_by_categ_id}
         return final_result
 
-    # def _loader_params_product_product(self):
-    #     result = super()._loader_params_product_product()
-    #     result['search_params']['fields'].extend(["is_appointment_service"])
-    #     return result
+    def _loader_params_appointment_package_line(self):
+        return {'search_params': {'domain': [], 'fields': ['id','product_id']}}
+
+
+    def _get_pos_ui_appointment_package_line(self, params):
+        packages = self.env['appointment.package.line'].search_read(**params['search_params'])
+        package_by_id = {package['id']: package for package in packages}
+        final_result = {'appointment_packages':packages, 'appointment_package_by_id':package_by_id}
+        return final_result

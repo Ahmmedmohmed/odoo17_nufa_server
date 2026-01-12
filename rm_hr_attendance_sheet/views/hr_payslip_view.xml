@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_payslip_view_form" model="ir.ui.view">
+        <field name="name">hr.payslip.form</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Attendance Sheets">
+                    <group>
+                        <field name="attendance_sheet_ids" widget="many2many_tags" readonly="1"/>
+                    </group>
+                    <group>
+                        <group string="Over Time">
+                                    <field name="overtime_no"/>
+                                    <field name="overtime_hours"
+                                           widget="float_time"/>
+                                </group>
+                                <group string="Late In">
+                                    <field name="late_no"/>
+                                    <field name="late_hours"
+                                           widget="float_time"/>
+                                </group>
+                                <group string="Absence">
+                                    <field name="absent_no"/>
+                                    <field name="absent_hours"
+                                           widget="float_time"/>
+                                </group>
+                                <group string="Diffrenece Time">
+                                    <field name="diff_no"/>
+                                    <field name="diff_hours"
+                                           widget="float_time"/>
+                                </group>
+                                 <group string="Working Days">
+                                    <field name="worked_days"/>
+                                    <field name="worked_hours"
+                                           widget="float_time"/>
+                                </group>
+                    </group>
+                </page>
+            </xpath>
+
+
+        </field>
+    </record>
+</odoo>

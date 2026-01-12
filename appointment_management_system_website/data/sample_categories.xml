@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!-- Sample appointment categories for testing -->
+        <record id="category_hair_services" model="pos.category">
+            <field name="name">Hair Services</field>
+            <field name="is_appointment_category">True</field>
+        </record>
+        
+        <record id="category_facial_treatments" model="pos.category">
+            <field name="name">Facial Treatments</field>
+            <field name="is_appointment_category">True</field>
+        </record>
+        
+        <record id="category_nail_services" model="pos.category">
+            <field name="name">Nail Services</field>
+            <field name="is_appointment_category">True</field>
+        </record>
+        
+        <record id="category_spa_treatments" model="pos.category">
+            <field name="name">Spa Treatments</field>
+            <field name="is_appointment_category">True</field>
+        </record>
+        
+        <!-- Sample appointment services -->
+        <record id="service_haircut" model="product.product">
+            <field name="name">Haircut</field>
+            <field name="is_appointment_service">True</field>
+            <field name="pos_categ_ids" eval="[(4, ref('category_hair_services'))]"/>
+            <field name="type">service</field>
+            <field name="list_price">50.0</field>
+        </record>
+        
+        <record id="service_facial" model="product.product">
+            <field name="name">Classic Facial</field>
+            <field name="is_appointment_service">True</field>
+            <field name="pos_categ_ids" eval="[(4, ref('category_facial_treatments'))]"/>
+            <field name="type">service</field>
+            <field name="list_price">80.0</field>
+        </record>
+        
+        <record id="service_manicure" model="product.product">
+            <field name="name">Manicure</field>
+            <field name="is_appointment_service">True</field>
+            <field name="pos_categ_ids" eval="[(4, ref('category_nail_services'))]"/>
+            <field name="type">service</field>
+            <field name="list_price">35.0</field>
+        </record>
+        
+        <!-- Sample package -->
+        <record id="package_spa_day" model="product.product">
+            <field name="name">Spa Day Package</field>
+            <field name="is_appointment_package">True</field>
+            <field name="pos_categ_ids" eval="[(4, ref('category_spa_treatments'))]"/>
+            <field name="type">service</field>
+            <field name="list_price">200.0</field>
+        </record>
+        
+    </data>
+</odoo>

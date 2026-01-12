@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="ir_cron_generate_employee_slots" model="ir.cron">
+        <field name="name">Generate Appointment Employee Slots</field>
+        <field name="model_id" ref="model_appointment_employee_slot"/>
+        <field name="state">code</field>
+        <field name="code">model.action_create_employee_slots()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="active">True</field>
+    </record>
+
+
+    <record id="ir_cron_reset_draft_slots" model="ir.cron">
+        <field name="name">Reset Draft Slots</field>
+        <field name="model_id" ref="model_appointment_employee_slot"/>
+        <field name="state">code</field>
+        <field name="code">model.auto_reset_wait_to_draft()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="active">True</field>
+    </record>
+
+
+    <record id="ir_cron_delete_old_slots" model="ir.cron">
+        <field name="name">Delete Slots</field>
+        <field name="model_id" ref="model_appointment_employee_slot"/>
+        <field name="state">code</field>
+        <field name="code">model.auto_delete_old_slots()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="active">True</field>
+    </record>
+</odoo>

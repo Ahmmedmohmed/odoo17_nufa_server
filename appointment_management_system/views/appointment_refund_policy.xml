@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_appointment_refund_policy_tree" model="ir.ui.view">
+            <field name="name">view.appointment.refund.policy.tree</field>
+            <field name="model">appointment.refund.policy</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="hours_before_appointment" width="50%"/>
+                    <field name="percentage" width="50%"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="appointment_refund_policy_action" model="ir.actions.act_window">
+            <field name="name">Appointment Refund Policy</field>
+            <field name="res_model">appointment.refund.policy</field>
+            <field name="view_mode">tree</field>
+        </record>
+    </data>
+</odoo>

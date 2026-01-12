@@ -1,0 +1,161 @@
+/* Ultra-Simple Calendar Design - No Complex Features */
+
+.calendar_container {
+    margin: 20px auto;
+    max-width: 100%;
+    background: white;
+}
+
+.cal.calandar {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    background: white;
+}
+
+/* Header */
+.cal-head {
+    display: flex;
+    background: #f5f5f5;
+    border-bottom: 1px solid #ccc;
+}
+
+.cal-head .time-header {
+    width: 100px;
+    padding: 20px 10px;
+    background: #e0e0e0;
+    font-weight: bold;
+    text-align: center;
+}
+
+.cal-head .employee-header {
+    flex: 1;
+    padding: 20px 10px;
+    border-left: 1px solid #ccc;
+    text-align: center;
+    background: white;
+}
+
+.employee-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.employee-price {
+    color: #666;
+    font-size: 12px;
+}
+
+/* Body */
+.cal-body {
+    display: flex;
+    min-height: 400px;
+}
+
+.time-column {
+    width: 100px;
+    background: #f9f9f9;
+    border-right: 1px solid #ccc;
+}
+
+.time-slot {
+    height: 40px;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.employee-column {
+    flex: 1;
+    border-left: 1px solid #ccc;
+}
+
+.slot-cell {
+    height: 40px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+}
+
+.slot-button {
+    width: 90%;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.slot-available {
+    background: #007bff;
+    color: white;
+}
+
+.slot-available:hover {
+    background: #0056b3;
+}
+
+.slot-selected {
+    background: #28a745;
+    color: white;
+}
+
+.slot-empty {
+    background: #f8f9fa;
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Booking Summary */
+.booking_summary {
+    margin: 20px 0;
+    padding: 20px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    background: #f8f9fa;
+}
+
+.booking_summary h4 {
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+.booking_actions {
+    margin-top: 15px;
+}
+
+.btn {
+    padding: 10px 15px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn_primary {
+    background: #007bff;
+    color: white;
+}
+
+.btn_secondary {
+    background: #6c757d;
+    color: white;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .cal-head .time-header,
+    .time-column {
+        width: 80px;
+    }
+    
+    .slot-button {
+        font-size: 10px;
+    }
+}

@@ -32,7 +32,7 @@
     'company': 'Cybrosys Techno Solutions',
     'maintainer': 'Cybrosys Techno Solutions',
     'website': 'https://www.cybrosys.com',
-    'depends': ['account_accountant'],
+    'depends': ['account_accountant', 'om_account_budget'],
     'data': [
         'views/crossovered_budget_views.xml',
         'views/account_move_views.xml'

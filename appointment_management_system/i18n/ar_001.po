@@ -1,0 +1,629 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* appointment_management_system
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-28 01:32+0000\n"
+"PO-Revision-Date: 2025-12-28 01:32+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_kanban
+msgid "<span class=\"fa fa-building me-2\" title=\"Branch\"/>"
+msgstr "<span class=\"fa fa-building me-2\" title=\"الفرع\"/>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_kanban
+msgid "<span class=\"fa fa-clock-o me-2\" title=\"Dates\"/>"
+msgstr "<span class=\"fa fa-clock-o me-2\" title=\"التاريخ\"/>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_kanban
+msgid "<span class=\"fa fa-cubes me-2\" title=\"Service\"/>"
+msgstr "<span class=\"fa fa-cubes me-2\" title=\"الخدمة\"/>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_kanban
+msgid "<span class=\"fa fa-dollar me-2\" title=\"Prices\"/>"
+msgstr "<span class=\"fa fa-dollar me-2\" title=\"السعر\"/>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_kanban
+msgid "<span class=\"fa fa-phone me-2\" title=\"Customer Phone\"/>"
+msgstr "<span class=\"fa fa-phone me-2\" title=\"رقم العميل\"/>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_kanban
+msgid "<span class=\"fa fa-user me-2\" aria-label=\"Partner\" title=\"Customer\"/>"
+msgstr "<span class=\"fa fa-user me-2\" aria-label=\"العميل\" title=\"العميل\"/>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_kanban
+msgid "<span class=\"fa fa-users me-2\" title=\"Employee\"/>"
+msgstr "<span class=\"fa fa-users me-2\" title=\"الموظف\"/>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_kanban
+msgid "<strong>Complate</strong>"
+msgstr "<strong>الحجوزات المكتملة</strong>"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_pos_category__is_appointment_category
+msgid "Appointment Category"
+msgstr "فئات الحجوزات"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_product_form_appointment_inherit
+msgid "Appointment Configuration"
+msgstr "إعدادات الحجوزات"
+
+#. module: appointment_management_system
+#: model:ir.actions.act_window,name:appointment_management_system.appointment_department_action
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_package_line__department_id
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_service_price_plan__department_id
+#: model:ir.model.fields,field_description:appointment_management_system.field_hr_department__is_appointment_department
+#: model:ir.ui.menu,name:appointment_management_system.menu_appointment_department
+msgid "Appointment Department"
+msgstr "أقسام موظفي الحجوزات"
+
+#. module: appointment_management_system
+#: model:ir.model,name:appointment_management_system.model_appointment_department_time_plan
+msgid "Appointment Department Time Plan"
+msgstr "الخطة الزمنية للحجوزات"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_hr_employee__is_appointment_employee
+msgid "Appointment Employee"
+msgstr "موظفي الحجوزات"
+
+#. module: appointment_management_system
+#: model:ir.actions.act_window,name:appointment_management_system.appointment_employee_slot_action
+#: model:ir.model,name:appointment_management_system.model_appointment_employee_slot
+msgid "Appointment Employee Slot"
+msgstr "مواعيد حجز الموظفين"
+
+#. module: appointment_management_system
+#: model:ir.ui.menu,name:appointment_management_system.menu_appointment_employee_slot
+msgid "Appointment Employee Slots"
+msgstr "مواعيد حجز الموظفين"
+
+#. module: appointment_management_system
+#: model:ir.actions.act_window,name:appointment_management_system.appointment_employee_action
+#: model:ir.ui.menu,name:appointment_management_system.menu_appointment_employee
+msgid "Appointment Employees"
+msgstr "موظفي الحجوزات"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_res_company_form_appointment_inherit
+msgid "Appointment Location"
+msgstr "مواقع الحجوزات"
+
+#. module: appointment_management_system
+#: model:ir.model,name:appointment_management_system.model_appointment_management
+msgid "Appointment Management"
+msgstr "إدارة الحجوزات"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_product_product__is_appointment_package
+msgid "Appointment Package"
+msgstr "باكدج للحجوزات"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_product_form_appointment_inherit
+msgid "Appointment Package Configuration"
+msgstr "إعدادات باكدج الحجوزات"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_product_product__appointment_package_line_ids
+msgid "Appointment Package Lines"
+msgstr ""
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_service_price_plan__service_product_name
+msgid "Appointment Product Service Name"
+msgstr "أسم الخدمة"
+
+#. module: appointment_management_system
+#: model:ir.actions.act_window,name:appointment_management_system.appointment_refund_policy_action
+#: model:ir.model,name:appointment_management_system.model_appointment_refund_policy
+#: model:ir.ui.menu,name:appointment_management_system.menu_appointment_refund_policy
+msgid "Appointment Refund Policy"
+msgstr "سياسة استرجاع الحجوزات"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__sequence
+msgid "Appointment Sequence"
+msgstr "تسلسل الحجز"
+
+#. module: appointment_management_system
+#: model:ir.actions.act_window,name:appointment_management_system.appointment_service_action
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_service_price_plan__service_id
+#: model:ir.model.fields,field_description:appointment_management_system.field_product_product__is_appointment_service
+msgid "Appointment Service"
+msgstr "خدمة حجوزات"
+
+#. module: appointment_management_system
+#: model:ir.actions.act_window,name:appointment_management_system.appointment_product_category_action
+msgid "Appointment Service Category"
+msgstr "فئات خدمات الحجوزات"
+
+#. module: appointment_management_system
+#: model:ir.model,name:appointment_management_system.model_appointment_service_price_plan
+msgid "Appointment Service Price Plan"
+msgstr "خطة اسعار الخدمات"
+
+#. module: appointment_management_system
+#: model:ir.ui.menu,name:appointment_management_system.menu_appointment_service
+msgid "Appointment Services"
+msgstr "خدمات الحجوزات"
+
+#. module: appointment_management_system
+#: model:ir.ui.menu,name:appointment_management_system.menu_appointment_service_category
+msgid "Appointment Services Category"
+msgstr "فئات خدمات الحجوزات"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_hr_department_form_appointment_inherit
+msgid "Appointment Time Configuration"
+msgstr "اعدادات وقت الحجز"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__appointment_type
+msgid "Appointment Type"
+msgstr "نوع الحجز"
+
+#. module: appointment_management_system
+#: model:ir.actions.act_window,name:appointment_management_system.appointment_management_action
+#: model:ir.ui.menu,name:appointment_management_system.menu_appointment_management
+#: model:ir.ui.menu,name:appointment_management_system.menu_appointment_root
+msgid "Appointments"
+msgstr "الحجوزات"
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_management__state__2
+msgid "Approved"
+msgstr "تم تأكيد الحجز"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_hr_department__plan_ids
+#: model:ir.model.fields,field_description:appointment_management_system.field_product_product__plan_ids
+msgid "Associated Plans"
+msgstr "الخطة "
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_hr_department_form_appointment_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_hr_employee_form_appointment_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_pos_category_form_appointment_inherit
+msgid "Available In Appointment"
+msgstr "متاح في الحجوزات"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__branch_id
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_package_line__branch_id
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_service_price_plan__branch_id
+msgid "Branch"
+msgstr "الفرع"
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_employee_slot__state__cancel
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_management__state__4
+msgid "Cancelled"
+msgstr "ملغي"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_pos_category__image
+msgid "Category Image"
+msgstr ""
+
+#. module: appointment_management_system
+#: model:ir.model,name:appointment_management_system.model_res_company
+msgid "Companies"
+msgstr "الشركات"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__company_id
+msgid "Company"
+msgstr "الشركة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_management__state__3
+msgid "Complated"
+msgstr "تم الإنتهاء"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_product_component__component_id
+msgid "Component"
+msgstr "اسم المكون"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_product_product__product_component_ids
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_product_form_appointment_inherit
+msgid "Components"
+msgstr "المكونات"
+
+#. module: appointment_management_system
+#: model:ir.ui.menu,name:appointment_management_system.menu_appointment_configuration
+msgid "Configuration"
+msgstr "إعدادات"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_hr_department_form_appointment_inherit
+msgid "Confirm Appointment Times"
+msgstr "تأكيد أوقات الحجز"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_department_time_plan__create_uid
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_employee_slot__create_uid
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__create_uid
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_package_line__create_uid
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_policy__create_uid
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_service_price_plan__create_uid
+#: model:ir.model.fields,field_description:appointment_management_system.field_product_component__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_department_time_plan__create_date
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_employee_slot__create_date
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__create_date
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_package_line__create_date
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_policy__create_date
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_service_price_plan__create_date
+#: model:ir.model.fields,field_description:appointment_management_system.field_product_component__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_package_line__currency_id
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_service_price_plan__currency_id
+msgid "Currency"
+msgstr "العملة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_employee_slot__date
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__date
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_department_time_plan__day
+msgid "Day"
+msgstr "اليوم"
+
+#. module: appointment_management_system
+#: model:ir.actions.server,name:appointment_management_system.ir_cron_delete_old_slots_ir_actions_server
+msgid "Delete Slots"
+msgstr ""
+
+#. module: appointment_management_system
+#: model:ir.model,name:appointment_management_system.model_hr_department
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_department_time_plan__department_id
+msgid "Department"
+msgstr "القسم"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_res_company__location_dest_id
+msgid "Destination Location"
+msgstr "الموقع الوجهة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_department_time_plan__display_name
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_employee_slot__display_name
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__display_name
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_package_line__display_name
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_policy__display_name
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_service_price_plan__display_name
+#: model:ir.model.fields,field_description:appointment_management_system.field_product_component__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_employee_slot__state__done
+msgid "Done"
+msgstr "تم الأنتهاء"
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_employee_slot__state__draft
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: appointment_management_system
+#: model:ir.model,name:appointment_management_system.model_hr_employee
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_employee_slot__employee_id
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__employee_id
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_department_time_plan__end_hour
+msgid "End Hour"
+msgstr "ساعة الإنتهاء"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_department_time_plan__end_minute
+msgid "End Minute"
+msgstr "دقيقة الإنتهاء"
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_department_time_plan__day__friday
+msgid "Friday"
+msgstr "الجمعة"
+
+#. module: appointment_management_system
+#: model:ir.actions.server,name:appointment_management_system.ir_cron_generate_employee_slots_ir_actions_server
+msgid "Generate Appointment Employee Slots"
+msgstr "إنشاء مواعيد حجز للموظفين"
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_management__service_rate__2
+msgid "High"
+msgstr "مرتفع"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_policy__hours_before_appointment
+msgid "Hours Before Appointment"
+msgstr "الساعات قبل موعد الحجز"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_department_time_plan__id
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_employee_slot__id
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__id
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_package_line__id
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_policy__id
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_service_price_plan__id
+#: model:ir.model.fields,field_description:appointment_management_system.field_product_component__id
+msgid "ID"
+msgstr ""
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_management__appointment_type__inside
+msgid "Inside"
+msgstr "داخلي"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_hr_department__is_times_confirmed
+msgid "Is Times Confirmed"
+msgstr "هل خطة العمل مأكده"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_department_time_plan__write_uid
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_employee_slot__write_uid
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__write_uid
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_package_line__write_uid
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_policy__write_uid
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_service_price_plan__write_uid
+#: model:ir.model.fields,field_description:appointment_management_system.field_product_component__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_department_time_plan__write_date
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_employee_slot__write_date
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__write_date
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_package_line__write_date
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_policy__write_date
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_service_price_plan__write_date
+#: model:ir.model.fields,field_description:appointment_management_system.field_product_component__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_hr_employee__location_id
+msgid "Location"
+msgstr "الموقع المصدري"
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_management__service_rate__0
+msgid "Low"
+msgstr "منخفض"
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_management__service_rate__1
+msgid "Medium"
+msgstr "متوسط"
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_department_time_plan__day__monday
+msgid "Monday"
+msgstr "الإثنين"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_employee_slot__name
+msgid "Name"
+msgstr "الأسم"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__notes
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_form
+msgid "Notes"
+msgstr "الملاحظات"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_res_company__picking_type_id
+msgid "Operation Type"
+msgstr "نوع العملية"
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_management__appointment_type__outside
+msgid "Outside"
+msgstr "خارجي"
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_management__state__1
+msgid "Partial Approved"
+msgstr "مأكد جزئيا"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__partner_id
+msgid "Partner"
+msgstr "العميل"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__partner_phone
+msgid "Partner Phone"
+msgstr "رقم العميل"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_policy__percentage
+msgid "Percentage (%)"
+msgstr "النسبة المئوية"
+
+#. module: appointment_management_system
+#: model:ir.model,name:appointment_management_system.model_pos_category
+msgid "Point of Sale Category"
+msgstr "فئة نقطة البيع"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_package_line__service_price_inside
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_service_price_plan__service_price_inside
+msgid "Price (Inside)"
+msgstr "السعر (داخلي)"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_package_line__service_price_outside
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_service_price_plan__service_price_outside
+msgid "Price (Outside)"
+msgstr "السعر (خارجي)"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_product_component__product_id
+msgid "Product"
+msgstr "المنتج"
+
+#. module: appointment_management_system
+#: model:ir.model,name:appointment_management_system.model_product_component
+msgid "Product Component"
+msgstr "مكونات المنتج"
+
+#. module: appointment_management_system
+#: model:ir.model,name:appointment_management_system.model_product_product
+msgid "Product Variant"
+msgstr "متغير المنتج "
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_product_component__quantity
+msgid "Quantity"
+msgstr "الكمية"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__service_rate
+msgid "Rating"
+msgstr "التقيم"
+
+#. module: appointment_management_system
+#: model:ir.actions.server,name:appointment_management_system.ir_cron_reset_draft_slots_ir_actions_server
+msgid "Reset Draft Slots"
+msgstr ""
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_department_time_plan__day__saturday
+msgid "Saturday"
+msgstr "السبت"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__product_id
+msgid "Service"
+msgstr "الخدمة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_package_line__product_id
+msgid "Service Name"
+msgstr "أسم الخدمة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_package_line__product_pack_id
+msgid "Service Pack Name"
+msgstr ""
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__slot_ids
+msgid "Slot"
+msgstr "الفترة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_package_line__service_slot_inside
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_service_price_plan__service_slot_inside
+msgid "Slot Number (Inside)"
+msgstr "عدد الفترات (داخلي)"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_package_line__service_slot_outside
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_service_price_plan__service_slot_outside
+msgid "Slot Number (Outside)"
+msgstr "عدد الفترات (خارجي)"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_department_time_plan__start_hour
+msgid "Start Hour"
+msgstr "ساعة البداية"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_department_time_plan__start_minute
+msgid "Start Minute"
+msgstr "دقيقة البداية"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_employee_slot__state
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__state
+msgid "State"
+msgstr "الحالة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_department_time_plan__day__sunday
+msgid "Sunday"
+msgstr "الأحد"
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_department_time_plan__day__thursday
+msgid "Thursday"
+msgstr "الخميس"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_employee_slot__time
+msgid "Time"
+msgstr "الوقت"
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_department_time_plan__day__tuesday
+msgid "Tuesday"
+msgstr "الثلاثاء"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_hr_department_form_appointment_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_hr_employee_form_appointment_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_pos_category_form_appointment_inherit
+msgid "Unavailable In Appointment"
+msgstr "غير متاح في الحجوزات"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__price_unit
+msgid "Unit Price"
+msgstr "السعر"
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_management__service_rate__3
+msgid "Very High"
+msgstr "متميز"
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_employee_slot__state__wait
+msgid "Waiting"
+msgstr "في الإنتظار"
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_department_time_plan__day__wednesday
+msgid "Wednesday"
+msgstr "الأربعاء"
+
+#. module: appointment_management_system
+#: model:ir.model,name:appointment_management_system.model_appointment_package_line
+msgid "appointment.package.line"
+msgstr ""

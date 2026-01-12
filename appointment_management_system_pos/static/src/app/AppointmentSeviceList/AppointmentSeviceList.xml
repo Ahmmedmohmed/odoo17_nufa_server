@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-name="appointment_management_system_pos.AppointmentSeviceList" owl="1">
+        <div class="p-2 product-list-container flex-grow-1 overflow-x-auto">
+            <div t-if="props.products.length != 0" t-attf-class="product-list {{this.pos.productListViewMode}} p-1">
+                <t t-foreach="props.products" t-as="product" t-key="product.id">
+                    <AppointmentSeviceItem
+                        class="pos.productViewMode"
+                        name="product.display_name"
+                        productId="product.id"
+                        orderMenu="props.orderMenu"
+                        price="product.getFormattedUnitPrice()"
+                        imageUrl="product.getImageUrl()"
+                        onClick="() =>props.onClick(product)"
+                        productInfo="true"
+                        onProductInfoClick="() => this.onProductInfoClick(product)"
+                        onRemoveClick="() => props.onRemoveClick(product)"
+                    />
+                </t>
+            </div>
+            <div t-else="" class="product-list-empty no-results-message text-center mt-5">
+                <p>There are no products in this category.</p>
+            </div>
+        </div>
+    </t>
+</templates>

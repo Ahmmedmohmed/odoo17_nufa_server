@@ -1,0 +1,1142 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* appointment_management_system_website
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-23 01:33+0000\n"
+"PO-Revision-Date: 2025-12-23 01:33+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointments
+msgid "(At Your Location)"
+msgstr "(في موقعك)"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid ""
+"<i class=\"fa fa-arrow-left\"/> <span "
+"id=\"backToPreviousServiceText\">العودة للخدمة السابقة</span>"
+msgstr "<i class=\"fa fa-arrow-left\"/> <span id=\"backToPreviousServiceText\">العودة للخدمة السابقة</span>"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "<i class=\"fa fa-arrow-left\"/> Back to Appointments"
+msgstr "<i class=\"fa fa-arrow-left\"/> العودة للمواعيد"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "<i class=\"fa fa-arrow-left\"/> Back to Categories"
+msgstr "<i class=\"fa fa-arrow-left\"/> العودة للفئات"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "<i class=\"fa fa-building\"/> Filter by Branch"
+msgstr "<i class=\"fa fa-building\"/> التصفية حسب الفرع"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid ""
+"<i class=\"fa fa-calendar-check\"/> <span id=\"pageTitle\">Book Your "
+"Appointment</span>"
+msgstr "<i class=\"fa fa-calendar-check\"/> <span id=\"pageTitle\">احجز موعدك</span>"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.appointment_cancelled
+msgid "<i class=\"fa fa-check-circle\"/> Appointment Cancelled"
+msgstr "<i class=\"fa fa-check-circle\"/> تم إلغاء الموعد"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "<i class=\"fa fa-chevron-left\"/> Previous"
+msgstr "<i class=\"fa fa-chevron-left\"/> السابق"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "<i class=\"fa fa-clock-o text-info\"/> Time"
+msgstr "<i class=\"fa fa-clock-o text-info\"/> الوقت"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "<i class=\"fa fa-credit-card\"/> Proceed to Payment"
+msgstr "<i class=\"fa fa-credit-card\"/> المتابعة للدفع"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "<i class=\"fa fa-exclamation-triangle\"/> Cancellation Reason"
+msgstr "<i class=\"fa fa-exclamation-triangle\"/> سبب الإلغاء"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "<i class=\"fa fa-eye\"/> View Cart"
+msgstr "<i class=\"fa fa-eye\"/> عرض السلة"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointments
+msgid "<i class=\"fa fa-eye\"/> View Details"
+msgstr "<i class=\"fa fa-eye\"/> عرض التفاصيل"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "<i class=\"fa fa-filter\"/> Filter Appointments"
+msgstr "<i class=\"fa fa-filter\"/> تصفية المواعيد"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "<i class=\"fa fa-home\"/> Service Address"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.category_selection
+msgid "<i class=\"fa fa-info-circle\"/> No Categories Available"
+msgstr "<i class=\"fa fa-info-circle\"/> لا توجد فئات متاحة"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "<i class=\"fa fa-info-circle\"/> No services available for this category."
+msgstr "<i class=\"fa fa-info-circle\"/> لا توجد خدمات متاحة لهذه الفئة."
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointments
+msgid "<i class=\"fa fa-plus-circle\"/> Book Your First Appointment"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "<i class=\"fa fa-refresh\"/> <span id=\"resetAllButtonText\">Reset All</span>"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "<i class=\"fa fa-scissors\"/> Service Details"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "<i class=\"fa fa-shopping-cart\"/> Booking Summary"
+msgstr "<i class=\"fa fa-shopping-cart\"/> ملخص الحجز"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "<i class=\"fa fa-shopping-cart\"/> Current Cart"
+msgstr "<i class=\"fa fa-shopping-cart\"/> السلة الحالية"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.authentication_required_template
+msgid ""
+"<i class=\"fa fa-sign-in mr-2\"/>\n"
+"                                                        Sign In"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.authentication_required_template
+msgid ""
+"<i class=\"fa fa-sign-in mr-2\"/>\n"
+"                                                        تسجيل الدخول"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "<i class=\"fa fa-star\"/> Rate Service"
+msgstr "<i class=\"fa fa-star\"/> قيم الخدمة"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.rating_submitted
+msgid "<i class=\"fa fa-star\"/> Rating Submitted"
+msgstr "<i class=\"fa fa-star\"/> تم إرسال التقييم"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "<i class=\"fa fa-star\"/> Your Feedback"
+msgstr "<i class=\"fa fa-star\"/> تقييمك"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "<i class=\"fa fa-times\"/> <span id=\"cancelButtonText\">إلغاء</span>"
+msgstr "<i class=\"fa fa-times\"/> <span id=\"cancelButtonText\">إلغاء</span>"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "<i class=\"fa fa-times\"/> Cancel Appointment"
+msgstr "<i class=\"fa fa-times\"/> إلغاء الموعد"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "<i class=\"fa fa-user\"/> Filter by Employee"
+msgstr "<i class=\"fa fa-user\"/> تصفية حسب الموظف"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "<i class=\"fa fa-user\"/> Staff &amp; Branch"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.authentication_required_template
+msgid ""
+"<i class=\"fa fa-user-plus mr-2\"/>\n"
+"                                                        Sign Up"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.authentication_required_template
+msgid ""
+"<i class=\"fa fa-user-plus mr-2\"/>\n"
+"                                                        إنشاء حساب"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "<option value=\"\">Select Service</option>"
+msgstr "<option value=\"\">اختر الخدمة</option>"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid ""
+"<select class=\"form-control\" id=\"branchFilter\" onchange=\"filterAppointments()\">\n"
+"                                                    <option value=\"\">All Branches</option>\n"
+"                                                </select>"
+msgstr ""
+"<select class=\"form-control\" id=\"branchFilter\" "
+"onchange=\"filterAppointments()\">"
+"                                                    <option value=\"\">جميع "
+"الفروع</option>                                                </select>"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid ""
+"<select class=\"form-control\" id=\"employeeFilter\" onchange=\"filterAppointments()\">\n"
+"                                                    <option value=\"\">All Employees</option>\n"
+"                                                </select>"
+msgstr ""
+"<select class=\"form-control\" id=\"employeeFilter\" "
+"onchange=\"filterAppointments()\">"
+"                                                    <option value=\"\">جميع "
+"الموظفين</option>                                                </select>"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid ""
+"<select id=\"locationSelect\" style=\"display: none;\">\n"
+"                                            <option value=\"inside\">At Branch</option>\n"
+"                                            <option value=\"outside\">At Your Location</option>\n"
+"                                        </select>"
+msgstr ""
+"<select id=\"locationSelect\" style=\"display: none;\">"
+"                                            <option value=\"inside\">في "
+"الفرع</option>                                            <option "
+"value=\"outside\">في موقعك</option>                                        "
+"</select>"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid ""
+"<small class=\"opacity-75\">Select your preferred time and "
+"professional</small>"
+msgstr "<small class=\"opacity-75\">اختر الوقت والمختص المفضل</small>"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid ""
+"<small class=\"text-info\">Choose your preferred service, date, and time to "
+"get started</small>"
+msgstr ""
+"<small class=\"text-info\">اختر الخدمة والتاريخ والوقت المفضل للبدء</small>"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.authentication_required_template
+msgid ""
+"<small class=\"text-muted d-block mt-2\">\n"
+"                                                        Already have an account?\n"
+"                                                    </small>"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.authentication_required_template
+msgid ""
+"<small class=\"text-muted d-block mt-2\">\n"
+"                                                        Don't have an account?\n"
+"                                                    </small>"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.authentication_required_template
+msgid ""
+"<small class=\"text-muted d-block mt-2\">\n"
+"                                                        لديك حساب بالفعل؟\n"
+"                                                    </small>"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.authentication_required_template
+msgid ""
+"<small class=\"text-muted d-block mt-2\">\n"
+"                                                        ليس لديك حساب؟\n"
+"                                                    </small>"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.authentication_required_template
+msgid "<small class=\"text-muted\">Appointment History</small>"
+msgstr "<small class=\"text-muted\">تاريخ المواعيد</small>"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.authentication_required_template
+msgid "<small class=\"text-muted\">Book Appointments</small>"
+msgstr "<small class=\"text-muted\">حجز المواعيد</small>"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.authentication_required_template
+msgid "<small class=\"text-muted\">Manage Profile</small>"
+msgstr "<small class=\"text-muted\">إدارة الملف الشخصي</small>"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.authentication_required_template
+msgid "<small class=\"text-muted\">إدارة الملف الشخصي</small>"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.authentication_required_template
+msgid "<small class=\"text-muted\">تاريخ المواعيد</small>"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.authentication_required_template
+msgid "<small class=\"text-muted\">حجز المواعيد</small>"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.authentication_required_template
+msgid ""
+"<small>\n"
+"                                                    <i class=\"fa fa-info-circle mr-1\"/>\n"
+"                                                    You can book appointments and manage your profile after signing in\n"
+"                                                </small>"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.authentication_required_template
+msgid ""
+"<small>\n"
+"                                                    <i class=\"fa fa-info-circle mr-1\"/>\n"
+"                                                    يمكنك حجز المواعيد وإدارة ملفك الشخصي بعد تسجيل الدخول\n"
+"                                                </small>"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid ""
+"<small><i class=\"fa fa-exclamation-triangle\"/> This action cannot be "
+"undone. Your appointment will be cancelled immediately.</small>"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointments
+msgid "<small>Your Rating: </small>"
+msgstr "<small>تقييمك: </small>"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "<span aria-hidden=\"true\">&amp;times;</span>"
+msgstr "<span aria-hidden=\"true\">&amp;times;</span>"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointments
+msgid "<span class=\"badge badge-danger status-badge\">Cancelled</span>"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointments
+msgid "<span class=\"badge badge-info status-badge\">Completed</span>"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "<span class=\"badge badge-info\">Standard Rate</span>"
+msgstr "<span class=\"badge badge-info\">المعدل العادي</span>"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid ""
+"<span class=\"badge badge-primary\">\n"
+"                                                                        <i class=\"fa fa-mouse-pointer\"/> Click to Select\n"
+"                                                                    </span>"
+msgstr ""
+"<span class=\"badge badge-primary\">"
+"                                                                        <i "
+"class=\"fa fa-mouse-pointer\"/> انقر للاختيار"
+"                                                                    </span>"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.category_selection
+msgid ""
+"<span class=\"badge badge-primary\">\n"
+"                                            <i class=\"fa fa-mouse-pointer\"/> Click to Select\n"
+"                                        </span>"
+msgstr ""
+"<span class=\"badge badge-primary\">"
+"                                            <i class=\"fa fa-mouse-"
+"pointer\"/> انقر للاختيار                                        </span>"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointments
+msgid "<span class=\"badge badge-success status-badge\">Approved</span>"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid ""
+"<span class=\"badge badge-success\">\n"
+"                                                                        <i class=\"fa fa-check\"/> Single Service\n"
+"                                                                    </span>"
+msgstr ""
+"<span class=\"badge badge-success\">"
+"                                                                        <i "
+"class=\"fa fa-check\"/> خدمة واحدة"
+"                                                                    </span>"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "<span class=\"badge badge-success\">+$25 Service Fee</span>"
+msgstr "<span class=\"badge badge-success\">+25$ رسوم خدمة</span>"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointments
+msgid "<span class=\"badge badge-warning status-badge\">Pending</span>"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid ""
+"<span class=\"badge badge-warning\">\n"
+"                                                                        <i class=\"fa fa-gift\"/> عرض باقة\n"
+"                                                                    </span>"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.service_selection
+msgid "<span class=\"badge badge_package\">Package</span>"
+msgstr "<span class=\"badge badge_package\">باقة</span>"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.service_selection
+msgid "<span class=\"badge badge_service\">Service</span>"
+msgstr "<span class=\"badge badge_service\">خدمة</span>"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid ""
+"<span class=\"badge bg-danger status-badge-large\">\n"
+"                                                    <i class=\"fa fa-times-circle\"/> Cancelled\n"
+"                                                </span>"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid ""
+"<span class=\"badge bg-info text-white status-badge-large\">\n"
+"                                                    <i class=\"fa fa-check-circle\"/> Completed\n"
+"                                                </span>"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid ""
+"<span class=\"badge bg-success status-badge-large\">\n"
+"                                                    <i class=\"fa fa-check\"/> Approved\n"
+"                                                </span>"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid ""
+"<span class=\"badge bg-warning text-dark status-badge-large\">\n"
+"                                                    <i class=\"fa fa-clock-o\"/> Pending Approval\n"
+"                                                </span>"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.view_appointment_form_readonly
+msgid "<span class=\"o_stat_text\">Sale Order</span>"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "<span class=\"ribbon bg-info\">Service</span>"
+msgstr "<span class=\"ribbon bg-info\">خدمة</span>"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "<span class=\"ribbon bg-success\">Package</span>"
+msgstr "<span class=\"ribbon bg-success\">باقة</span>"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_my_home_appointment
+msgid ""
+"<strong>Appointments</strong><br/>\n"
+"                        <small class=\"text-muted\">View and manage your appointments</small>"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "<strong>Special Notes:</strong><br/>"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "Additional Comments (Optional):"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,help:appointment_management_system_website.field_appointment_management__customer_notes
+msgid "Additional notes from customer for the appointment"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "Any special instructions for the service provider..."
+msgstr "أي تعليمات خاصة لمقدم الخدمة..."
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "Appointment #"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_account_bank_statement_line__appointment_count
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_account_move__appointment_count
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_account_payment__appointment_count
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_res_partner__appointment_count
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_res_users__appointment_count
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_sale_order__appointment_count
+msgid "Appointment Count"
+msgstr "عدد المواعيد"
+
+#. module: appointment_management_system_website
+#: model:ir.model,name:appointment_management_system_website.model_appointment_employee_slot
+msgid "Appointment Employee Slot"
+msgstr "مواعيد حجز الموظفين"
+
+#. module: appointment_management_system_website
+#: model:ir.model,name:appointment_management_system_website.model_appointment_management
+msgid "Appointment Management"
+msgstr "إدارة الحجوزات"
+
+#. module: appointment_management_system_website
+#: model:res.groups,name:appointment_management_system_website.group_appointment_website_user
+msgid "Appointment Website User"
+msgstr "مستخدم موقع المواعيد"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.view_sale_order_form_inherit_appointment
+msgid "Appointments"
+msgstr "المواعيد"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "At Branch"
+msgstr "في الفرع"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "At Your Location"
+msgstr "في موقعك"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.appointment_cancelled
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.rating_submitted
+msgid "Back to My Appointments"
+msgstr "العودة إلى مواعيدي"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.service_selection
+msgid "Back to Previous"
+msgstr "العودة للسابق"
+
+#. module: appointment_management_system_website
+#: model:website.menu,name:appointment_management_system_website.menu_book_appointment
+msgid "Book Appointment"
+msgstr "احجز موعد"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.service_selection
+msgid "Booking"
+msgstr "الحجز"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "Branch"
+msgstr "الفرع"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "Cancel Appointment"
+msgstr "إلغاء الموعد"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.view_appointment_form_readonly
+msgid "Cancel Reason"
+msgstr "سبب الإلغاء"
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_appointment_management__cancel_reason
+msgid "Cancellation Reason"
+msgstr "سبب الإلغاء"
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_appointment_management__cart_reservation_expiry
+msgid "Cart Reservation Expiry"
+msgstr "انتهاء حجز السلة"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.service_selection
+msgid "Category"
+msgstr "الفئة"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "Choose Location"
+msgstr "اختر الموقع"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "Choose Service"
+msgstr "اختر الخدمة"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "Choose Your Time Slot"
+msgstr "اختر الفترة الزمنية"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.category_selection
+msgid "Choose the type of service you're looking for"
+msgstr "اختر نوع الخدمة التي تبحث عنها"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "Choose your preferred service, date, and time"
+msgstr "اختر الخدمة والتاريخ والوقت المفضل"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "City"
+msgstr "المدينة"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "City:"
+msgstr "المدينة:"
+
+#. module: appointment_management_system_website
+#: model:product.template,name:appointment_management_system_website.service_facial_product_template
+msgid "Classic Facial"
+msgstr "تنظيف بشرة كلاسيكي"
+
+#. module: appointment_management_system_website
+#: model:ir.actions.server,name:appointment_management_system_website.ir_cron_cleanup_expired_reservations_ir_actions_server
+msgid "Cleanup Expired Appointment Reservations"
+msgstr "تنظيف حجوزات المواعيد المنتهية الصلاحية"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "Close"
+msgstr "إغلاق"
+
+#. module: appointment_management_system_website
+#: model:ir.model,name:appointment_management_system_website.model_res_partner
+msgid "Contact"
+msgstr "جهة الاتصال"
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_appointment_management__customer_address
+msgid "Customer Address"
+msgstr "عنوان العميل"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.view_appointment_form_readonly
+msgid "Customer Address Details"
+msgstr "تفاصيل عنوان العميل"
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_appointment_management__customer_city
+msgid "Customer City"
+msgstr "مدينة العميل"
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_appointment_management__customer_notes
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.view_appointment_form_readonly
+msgid "Customer Notes"
+msgstr "ملاحظات العميل"
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_appointment_management__customer_phone
+msgid "Customer Phone"
+msgstr "هاتف العميل"
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_appointment_management__customer_street
+msgid "Customer Street"
+msgstr "شارع العميل"
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,help:appointment_management_system_website.field_appointment_management__rating_comment
+msgid "Customer comment about the service"
+msgstr "تعليق العميل حول الخدمة"
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,help:appointment_management_system_website.field_appointment_management__employee_rating
+msgid "Customer rating for the employee"
+msgstr "تقييم العميل للموظف"
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,help:appointment_management_system_website.field_appointment_management__customer_city
+msgid "Customer's city for at-location service"
+msgstr "مدينة العميل للخدمة في الموقع"
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,help:appointment_management_system_website.field_appointment_management__customer_phone
+msgid "Customer's phone number for at-location service"
+msgstr "رقم هاتف العميل للخدمة في الموقع"
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,help:appointment_management_system_website.field_appointment_management__customer_street
+msgid "Customer's street address for at-location service"
+msgstr "عنوان شارع العميل للخدمة في الموقع"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "Date &amp; Time"
+msgstr "التاريخ والوقت"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "Detail"
+msgstr "التفاصيل"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_appointment_management__employee_rating
+msgid "Employee Rating"
+msgstr "تقييم الموظف"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "Enter Service Location"
+msgstr "أدخل موقع الخدمة"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "Enter your reason for cancelling this appointment..."
+msgstr "أدخل سبب إلغاء هذا الموعد..."
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "Enter your street address"
+msgstr "أدخل عنوان الشارع"
+
+#. module: appointment_management_system_website
+#: model:pos.category,name:appointment_management_system_website.category_facial_treatments
+msgid "Facial Treatments"
+msgstr "علاجات الوجه"
+
+#. module: appointment_management_system_website
+#: model:pos.category,name:appointment_management_system_website.category_hair_services
+msgid "Hair Services"
+msgstr "خدمات الشعر"
+
+#. module: appointment_management_system_website
+#: model:product.template,name:appointment_management_system_website.service_haircut_product_template
+msgid "Haircut"
+msgstr "قصة شعر"
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_sale_order_line__is_appointment_custom_price
+msgid "Has Appointment Custom Price"
+msgstr "له سعر مخصص للموعد"
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_appointment_management__has_sale_order
+msgid "Has Sale Order"
+msgstr "له أمر بيع"
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,help:appointment_management_system_website.field_sale_order_line__is_appointment_custom_price
+msgid ""
+"Indicates this order line has a custom price from appointment booking that "
+"should not be recalculated"
+msgstr ""
+"يشير إلى أن بند الطلب هذا له سعر مخصص من حجز الموعد ولا يجب إعادة حسابه"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "Information"
+msgstr "المعلومات"
+
+#. module: appointment_management_system_website
+#: model:ir.model,name:appointment_management_system_website.model_account_move
+msgid "Journal Entry"
+msgstr "قيد اليومية"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "Keep Appointment"
+msgstr "الاحتفاظ بالموعد"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.service_selection
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.view_appointment_tree_website
+msgid "Location"
+msgstr "الموقع"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "Location Type"
+msgstr "نوع الموقع"
+
+#. module: appointment_management_system_website
+#: model:product.template,name:appointment_management_system_website.service_manicure_product_template
+msgid "Manicure"
+msgstr "مانيكير"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointments
+msgid "My Appointments"
+msgstr "مواعيدي"
+
+#. module: appointment_management_system_website
+#: model:pos.category,name:appointment_management_system_website.category_nail_services
+msgid "Nail Services"
+msgstr "خدمات الأظافر"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "Next <i class=\"fa fa-chevron-right\"/>"
+msgstr "التالي <i class=\"fa fa-chevron-right\"/>"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointments
+msgid "No Appointments Yet"
+msgstr "لا توجد مواعيد بعد"
+
+#. module: appointment_management_system_website
+#: model:ir.model,name:appointment_management_system_website.model_payment_transaction
+msgid "Payment Transaction"
+msgstr "معاملة الدفع "
+
+#. module: appointment_management_system_website
+#: model:ir.model,name:appointment_management_system_website.model_account_payment
+msgid "Payments"
+msgstr "الدفعات"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "Phone Number:"
+msgstr "رقم الهاتف:"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "Phone number"
+msgstr "رقم الهاتف"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.category_selection
+msgid "Please contact us to set up service categories."
+msgstr "يرجى الاتصال بنا لإعداد فئات الخدمة."
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "Please provide a reason for cancellation:"
+msgstr "يرجى تقديم سبب الإلغاء:"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.authentication_required_template
+msgid "Please sign in or create an account to book an appointment"
+msgstr "يرجى تسجيل الدخول أو إنشاء حساب لحجز موعد"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "Price"
+msgstr "السعر"
+
+#. module: appointment_management_system_website
+#: model:ir.model,name:appointment_management_system_website.model_product_product
+msgid "Product Variant"
+msgstr "متغير المنتج "
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "Professional"
+msgstr "المختص"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "Rate Your Experience"
+msgstr "قيّم تجربتك"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "Rate the service quality:"
+msgstr "قيّم جودة الخدمة:"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "Rating"
+msgstr "التقييم"
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_appointment_management__rating_comment
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.view_appointment_form_readonly
+msgid "Rating Comment"
+msgstr "تعليق التقييم"
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,help:appointment_management_system_website.field_appointment_management__cancel_reason
+msgid "Reason provided by customer for cancelling the appointment"
+msgstr "السبب المقدم من العميل لإلغاء الموعد"
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_sale_order_line__appointment_id
+msgid "Related Appointment"
+msgstr "الموعد ذو الصلة"
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_account_bank_statement_line__appointment_ids
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_account_move__appointment_ids
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_account_payment__appointment_ids
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_sale_order__appointment_ids
+msgid "Related Appointments"
+msgstr "المواعيد ذات الصلة"
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_appointment_management__order_line_id
+msgid "Related Order Line"
+msgstr "بند الطلب ذو الصلة"
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_appointment_management__sale_order_id
+msgid "Related Sale Order"
+msgstr "أمر البيع ذو الصلة"
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_appointment_employee_slot__reserved_by
+msgid "Reserved By Appointment ID"
+msgstr "محجوز برقم الموعد"
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_appointment_employee_slot__reserved_until
+msgid "Reserved Until"
+msgstr "محجوز حتى"
+
+#. module: appointment_management_system_website
+#: model:ir.model,name:appointment_management_system_website.model_sale_order
+msgid "Sales Order"
+msgstr "أمر البيع"
+
+#. module: appointment_management_system_website
+#: model:ir.model,name:appointment_management_system_website.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "بند أمر المبيعات"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "Select Date"
+msgstr "اختر التاريخ"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "Select Date, Time &amp; Professional"
+msgstr "اختر التاريخ والوقت والمختص"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.category_selection
+msgid "Select Service Category"
+msgstr "اختر فئة الخدمة"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.service_selection
+msgid "Select Your Service"
+msgstr "اختر خدمتك"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "Select a time slot to book"
+msgstr "اختر فترة زمنية للحجز"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.service_selection
+msgid "Service"
+msgstr "الخدمة"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.authentication_required_template
+msgid "Sign In Required"
+msgstr "تسجيل الدخول مطلوب"
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_appointment_management__slot_reserved
+msgid "Slot Reserved"
+msgstr "الفترة محجوزة"
+
+#. module: appointment_management_system_website
+#: model:product.template,name:appointment_management_system_website.package_spa_day_product_template
+msgid "Spa Day Package"
+msgstr "باقة يوم سبا"
+
+#. module: appointment_management_system_website
+#: model:pos.category,name:appointment_management_system_website.category_spa_treatments
+msgid "Spa Treatments"
+msgstr "علاجات السبا"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "Special Instructions (Optional):"
+msgstr "تعليمات خاصة (اختياري):"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "Street Address:"
+msgstr "عنوان الشارع:"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "Submit Rating"
+msgstr "إرسال التقييم"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "Tell us about your experience..."
+msgstr "أخبرنا عن تجربتك..."
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "Time"
+msgstr "الوقت"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "Total Amount"
+msgstr "المبلغ الإجمالي"
+
+#. module: appointment_management_system_website
+#: model:res.groups,comment:appointment_management_system_website.group_appointment_website_user
+msgid "Users who can book appointments through website"
+msgstr "المستخدمون الذين يمكنهم حجز مواعيد عبر الموقع"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "Visit our professional salon for the full experience"
+msgstr "زر صالوننا المهني للحصول على التجربة الكاملة"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
+msgid "We come to you for convenient home service"
+msgstr "نأتي إليك لخدمة منزلية مريحة"
+
+#. module: appointment_management_system_website
+#: model:ir.model,name:appointment_management_system_website.model_website
+msgid "Website"
+msgstr "الموقع الإلكتروني"
+
+#. module: appointment_management_system_website
+#: model:ir.model.fields,field_description:appointment_management_system_website.field_appointment_management__website_booking
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.view_appointment_tree_website
+msgid "Website Booking"
+msgstr "حجز الموقع"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointments
+msgid "You haven't booked any appointments with us yet."
+msgstr "لم تحجز أي مواعيد معنا بعد."
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "Your Comment"
+msgstr "تعليقك"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.authentication_required_template
+msgid "تسجيل الدخول مطلوب"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.authentication_required_template
+msgid "يرجى تسجيل الدخول أو إنشاء حساب جديد لحجز موعد"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "⭐ (Poor)"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "⭐ Poor"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "⭐⭐ (Fair)"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "⭐⭐ Fair"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "⭐⭐⭐ (Good)"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "⭐⭐⭐ Good"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "⭐⭐⭐⭐ (Very Good)"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "⭐⭐⭐⭐ Very Good"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "⭐⭐⭐⭐⭐ (Excellent)"
+msgstr ""
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
+msgid "⭐⭐⭐⭐⭐ Excellent"
+msgstr ""

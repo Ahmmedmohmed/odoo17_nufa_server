@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Security groups for appointment website -->
+    <record id="group_appointment_website_user" model="res.groups">
+        <field name="name">Appointment Website User</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+        <field name="comment">Users who can book appointments through website</field>
+    </record>
+    
+    <!-- Add website users to appointment website group -->
+    <record id="base.group_portal" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('group_appointment_website_user'))]"/>
+    </record>
+    
+    <record id="base.group_user" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('group_appointment_website_user'))]"/>
+    </record>
+    
+    <!-- Record rules for appointment management -->
+    <record id="rule_appointment_management_portal" model="ir.rule">
+        <field name="name">Portal User: Own Appointments Only</field>
+        <field name="model_id" ref="appointment_management_system.model_appointment_management"/>
+        <field name="domain_force">[('partner_id', '=', user.partner_id.id)]</field>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    
+    <!-- Note: Removed overly restrictive product access rule that was blocking regular website products -->
+    
+    <!-- Note: Removed restrictive security rules that were interfering with normal website operation.
+         Access control is handled directly in the appointment booking controllers using sudo() and filtering. -->
+    
+</odoo>

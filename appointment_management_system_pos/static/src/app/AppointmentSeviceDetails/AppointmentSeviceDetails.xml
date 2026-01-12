@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-name="appointment_management_system_pos.AppointmentSeviceDetails" owl="1">
+
+      <div t-if="appointmentDetailsSelectedServicePack" class="p-3 d-flex overflow-auto w-100 shadow-sm justify-content-between">
+          <div class="d-flex bg-view">
+            <t t-foreach="pos.SelectedServices" t-as="product" t-key="product.id">
+              <!-- t-attf-class="{{props.class}} {{highlight(product.id)}} product position-relative btn btn-light d-flex align-items-stretch p-0 m-0 text-start cursor-pointer overflow-hidden transition-base" -->
+                <button tabindex="0"
+                    t-attf-class="{{highlight(product.id)}} product position-relative btn btn-light d-flex align-items-stretch p-0 m-0 text-start cursor-pointer overflow-hidden transition-base"
+                    t-on-click="onClick"
+
+                    t-att-data-product-id="product.id"
+                    t-attf-aria-labelledby="article_product_{{product.id}}">
+
+                    <div t-if="props.imageUrl" class="product-img">
+                        <img class="w-100" t-att-src="props.imageUrl" t-att-alt="product.display_name" />
+                    </div>
+                    <div class="product-content d-flex flex-column justify-content-between h-100 mx-2 py-1">
+                        <div class="overflow-hidden lh-sm fw-bolder product-name"
+                            t-att-class="{'no-image': !props.imageUrl}"
+                            t-attf-id="{{product.id}}"
+                            t-esc="product.display_name" />
+                    </div>
+                </button>
+
+
+            </t>
+          </div>
+      </div>
+      <div t-if="appointmentDetailsSelectedService" class="d-flex flex-column flex-grow-1 align-items-start">
+
+        <div class="section-financials text-start" style="width: -webkit-fill-available;">
+            <div class="section-financials-body d-flex flex-column flex-sm-row">
+                <table class="table mb-0">
+                    <tr>
+                        <td>Type</td>
+                        <td>
+                          <select  t-model="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].appointment_type" class="detail form-select" id="appointment_type" name="appointment_type" t-on-change="onTypeChange">
+                              <option value="inside">Inside</option>
+                              <option value="outside">Outside</option>
+                          </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Branch</td>
+                        <td>
+                          <t t-set="availableBranchs" t-value="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].availableBranchs"/>
+
+                          <select  t-att="{'disabled': !_disabledBranch()}" t-att-value="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].branch_id" class="detail form-select" id="branch" name="branch_id" t-on-change="onBranchChange">
+                              <option value="">None</option>
+                              <t t-foreach="availableBranchs"  t-as="branch_id" t-key="branch_id">
+                                  <option  t-att-value="branch_id">
+                                      <t t-esc="availableBranchs[branch_id]" />
+                                  </option>
+                              </t>
+                          </select>
+                          <!-- <select t-att="{'disabled': !_disabledBranch()}" t-model="changes.branch_id" class="detail form-select" id="branch" name="branch_id" t-on-change="onBranchChange">
+                              <option value="">None</option>
+                              <t t-foreach="availableBranchs"  t-as="branch_id" t-key="branch_id">
+                                  <option  t-att-value="branch_id">
+                                      <t t-esc="availableBranchs[branch_id]" />
+                                  </option>
+                              </t>
+                          </select> -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Employee</td>
+                        <td>
+                          <t t-set="availableEmployees" t-value="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].availableEmployees"/>
+                          <select t-att="{'disabled':! _disabledEmployee()}" t-model="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].employee_id" class="detail form-select" id="employee" name="employee_id" t-on-change="onEmployeeChange">
+                          <!-- <select t-att="{'disabled':! _disabledEmployee()}" t-model="changes.employee_id" class="detail form-select" id="employee" name="employee_id" t-on-change="onEmployeeChange"> -->
+                              <option value="">None</option>
+                              <t t-foreach="availableEmployees"  t-as="employee_id" t-key="employee_id">
+                                  <option  t-att-value="employee_id">
+                                    <t t-esc="availableEmployees[employee_id]" />
+                                      <!-- <t t-esc="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].availableEmployees[employee_id]" /> -->
+                                  </option>
+                              </t>
+                          </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Date</td>
+                        <td>
+                          <t t-set="availabledDates" t-value="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].availabledDates"/>
+                          <select t-att="{'disabled':! _disabledDate()}" t-model="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].date" class="detail form-select" id="date" name="date_id" t-on-change="onDateChange">
+                              <option value="">None</option>
+                              <t t-foreach="availabledDates"  t-as="date" t-key="date">
+                                  <option  t-att-value="date">
+                                      <t t-esc="date" />
+                                  </option>
+                              </t>
+                          </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Appointments</td>
+                        <td>
+                          <t t-set="availableAppointments" t-value="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].availableAppointments"/>
+                          <select t-att="{'disabled':! _disabledAvailableAppointments()}" t-model="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].appointment" class="detail form-select" id="appointment" name="appointment_id" t-on-change="onAppointmentChange">
+                              <option value="">None</option>
+                              <t t-foreach="availableAppointments"  t-as="slot_id" t-key="slot_id">
+                                  <option  t-att-value="slot_id">
+                                    <t t-esc="slot_id" />
+                                      <!-- <t t-esc="availableAppointments[slot_id]['name']" /> -->
+                                  </option>
+                              </t>
+                          </select>
+                        </td>
+                    </tr>
+                </table>
+                <select  style="display: none;"  t-att="{'disabled': !_disabledBranch()}" t-model="changes.branch_id" class="detail form-select" id="branch" name="branch_id" t-on-change="onBranchChange">
+                    <option value="">None</option>
+                    <t t-foreach="availableBranchs"  t-as="branch_id" t-key="branch_id">
+                        <option  t-att-value="branch_id">
+                            <t t-esc="availableBranchs[branch_id]" />
+                        </option>
+                    </t>
+                </select>
+
+            </div>
+        </div>
+
+
+      </div>
+
+
+
+    </t>
+</templates>

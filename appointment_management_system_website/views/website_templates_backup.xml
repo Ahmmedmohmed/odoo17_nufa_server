@@ -1,0 +1,1305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Website Layout Template -->
+    <template id="booking_layout" name="Appointment Booking Layout">
+        <t t-call="website.layout">
+            <t t-set="head">
+                <link rel="stylesheet" type="text/css" href="/appointment_management_system_website/static/src/css/booking.css"/>
+                <script type="text/javascript" src="/appointment_management_system_website/static/src/js/booking.js"></script>
+            </t>
+            <div class="booking_container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 col-md-11 col-sm-12">
+                        <div class="booking_content">
+                            <t t-raw="0"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- Category Selection Page -->
+    <template id="category_selection" name="Category Selection">
+        <t t-call="appointment_management_system_website.booking_layout">
+            <div class="booking_section active">
+                <h1 class="booking_title">Choose Your Service Category</h1>
+                
+                <div class="booking_steps">
+                    <div class="step active">
+                        <div class="step_number">1</div>
+                        <div class="step_title">Category</div>
+                    </div>
+                    <div class="step">
+                        <div class="step_number">2</div>
+                        <div class="step_title">Service</div>
+                    </div>
+                    <div class="step">
+                        <div class="step_number">3</div>
+                        <div class="step_title">Location</div>
+                    </div>
+                    <div class="step">
+                        <div class="step_number">4</div>
+                        <div class="step_title">Booking</div>
+                    </div>
+                </div>
+
+                <div class="category_slider_container">
+                    <div class="category_slider" id="categorySlider">
+                        <t t-foreach="categories" t-as="category">
+                            <div class="category_item" t-att-data-category-id="category.id" onclick="selectCategory(this)">
+                                <div class="category_image">
+                                    <t t-if="category.image">
+                                        <img t-attf-src="data:image/png;base64,#{category.image}" t-att-alt="category.name"/>
+                                    </t>
+                                    <t t-else="">
+                                        <div class="category_placeholder">
+                                            <i class="fa fa-tags"></i>
+                                        </div>
+                                    </t>
+                                </div>
+                                <h3 class="category_name" t-esc="category.name"/>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+
+                <div class="booking_actions">
+                    <a href="/appointment/booking" class="btn btn_secondary">Back to Home</a>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- Service Selection Page -->
+    <template id="service_selection" name="Service Selection">
+        <t t-call="appointment_management_system_website.booking_layout">
+            <div class="booking_section active">
+                <h1 class="booking_title">Select Your Service</h1>
+                
+                <div class="booking_steps">
+                    <div class="step completed">
+                        <div class="step_number">1</div>
+                        <div class="step_title">Category</div>
+                    </div>
+                    <div class="step active">
+                        <div class="step_number">2</div>
+                        <div class="step_title">Service</div>
+                    </div>
+                    <div class="step">
+                        <div class="step_number">3</div>
+                        <div class="step_title">Location</div>
+                    </div>
+                    <div class="step">
+                        <div class="step_number">4</div>
+                        <div class="step_title">Booking</div>
+                    </div>
+                </div>
+
+                <div class="service_grid" id="serviceGrid">
+                    <t t-foreach="services" t-as="service">
+                        <div class="service_item" t-att-data-service-id="service.id" t-att-data-service-type="'package' if service.is_appointment_package else 'single'" onclick="selectService(this)">
+                            <div class="service_image">
+                                <t t-if="service.image_1920">
+                                    <img t-attf-src="data:image/png;base64,#{service.image_1920}" t-att-alt="service.name"/>
+                                </t>
+                                <t t-elif="service.image_128">
+                                    <img t-attf-src="data:image/png;base64,#{service.image_128}" t-att-alt="service.name"/>
+                                </t>
+                                <t t-else="">
+                                    <div class="service_placeholder">
+                                        <i class="fa fa-cut"></i>
+                                    </div>
+                                </t>
+                            </div>
+                            <div class="service_info">
+                                <h4 class="service_name" t-esc="service.name"/>
+                                <p class="service_description" t-esc="service.description or 'Professional service'"/>
+                                <div class="service_type">
+                                    <t t-if="service.is_appointment_package">
+                                        <span class="badge badge_package">Package</span>
+                                    </t>
+                                    <t t-else="">
+                                        <span class="badge badge_service">Service</span>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+
+                <div class="service_actions">
+                    <a href="/appointment/booking/categories" class="btn btn_secondary">Back to Categories</a>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- Enhanced Booking Calendar Page -->
+    <template id="booking_calendar" name="Enhanced Booking Calendar">
+        <t t-call="website.layout">
+            <div class="container-fluid mt-4">
+                <div class="row">
+                    <!-- Left Sidebar - Booking Summary and Cart -->
+                    <div class="col-lg-3 col-md-4">
+                        <div class="card shadow-sm mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">
+                                    <i class="fa fa-calendar-check"></i> Booking Summary
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <!-- Current Selection -->
+                                <div id="currentSelection" style="display: none;">
+                                    <div class="alert alert-info">
+                                        <h6>Selected Appointment</h6>
+                                        <div id="selectedSlotInfo"></div>
+                                        <div class="mt-3">
+                                            <button class="btn btn-success btn-block btn-sm" onclick="addToCart()">
+                                                <i class="fa fa-shopping-cart"></i> Add to Cart
+                                            </button>
+                                            <button class="btn btn-secondary btn-sm mt-1" onclick="cancelSelection()">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Shopping Cart -->
+                                <div class="mt-3">
+                                    <h6>
+                                        <i class="fa fa-shopping-cart"></i> 
+                                        My Cart 
+                                        <span class="badge badge-primary" id="cartCount">0</span>
+                                    </h6>
+                                    <div id="cartItems">
+                                        <div class="text-center text-muted py-3">
+                                            <i class="fa fa-shopping-cart fa-2x mb-2"></i>
+                                            <p>Your cart is empty</p>
+                                        </div>
+                                    </div>
+                                    <div id="cartTotal" style="display: none;">
+                                        <hr/>
+                                        <div class="text-center">
+                                            <strong>Total: $<span id="totalAmount">0.00</span></strong>
+                                        </div>
+                                        <button class="btn btn-warning btn-block mt-2" onclick="proceedToCheckout()">
+                                            <i class="fa fa-credit-card"></i> Proceed to Payment
+                                        </button>
+                                        <a href="/shop/cart" class="btn btn-outline-info btn-block btn-sm mt-1">
+                                            <i class="fa fa-shopping-cart"></i> View Full Cart
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Main Content - Calendar -->
+                    <div class="col-lg-9 col-md-8">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-light">
+                                <h1 class="h3 mb-0">
+                                    <i class="fa fa-calendar"></i> Book Your Appointment
+                                </h1>
+                            </div>
+                            <div class="card-body">
+                                <!-- Date Selector -->
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <label for="appointmentDate" class="form-label">Select Date:</label>
+                                        <input type="date" id="appointmentDate" class="form-control" onchange="loadCalendarForDate()" />
+                                    </div>
+                                </div>
+                                
+                                <!-- Calendar Table -->
+                                <div class="table-responsive">
+                                    <table class="table table-bordered calendar-table">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th style="width: 120px;">
+                                                    <i class="fa fa-clock"></i> TIME
+                                                </th>
+                                                <th class="text-center">
+                                                    <div class="d-flex align-items-center justify-content-center">
+                                                        <img src="/web/static/img/user_menu_avatar.png" class="rounded-circle me-2" width="40" height="40" alt="Sarah"/>
+                                                        <div>
+                                                            <strong>Sarah Johnson</strong><br/>
+                                                            <small>$50.00</small>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <th class="text-center">
+                                                    <div class="d-flex align-items-center justify-content-center">
+                                                        <img src="/web/static/img/user_menu_avatar.png" class="rounded-circle me-2" width="40" height="40" alt="Mike"/>
+                                                        <div>
+                                                            <strong>Mike Davis</strong><br/>
+                                                            <small>$45.00</small>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <th class="text-center">
+                                                    <div class="d-flex align-items-center justify-content-center">
+                                                        <img src="/web/static/img/user_menu_avatar.png" class="rounded-circle me-2" width="40" height="40" alt="Lisa"/>
+                                                        <div>
+                                                            <strong>Lisa Wilson</strong><br/>
+                                                            <small>$55.00</small>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="calendarBody">
+                                            <!-- Time slots will be generated by JavaScript -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Custom Styles -->
+                <style>
+                    .calendar-table th {
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        color: white;
+                        border: none;
+                    }
+                    
+                    .calendar-table td {
+                        vertical-align: middle;
+                        height: 50px;
+                    }
+                    
+                    .time-cell {
+                        background: #f8f9fa;
+                        font-weight: 600;
+                        color: #495057;
+                        text-align: center;
+                    }
+                    
+                    .slot-btn {
+                        width: 100%;
+                        height: 35px;
+                        border: none;
+                        border-radius: 4px;
+                        font-size: 12px;
+                        font-weight: 600;
+                        cursor: pointer;
+                        transition: all 0.2s ease;
+                    }
+                    
+                    .slot-available {
+                        background: #007bff;
+                        color: white;
+                    }
+                    
+                    .slot-available:hover {
+                        background: #0056b3;
+                        transform: translateY(-1px);
+                    }
+                    
+                    .slot-selected {
+                        background: #28a745 !important;
+                        color: white;
+                        transform: scale(1.02);
+                    }
+                    
+                    .slot-booked {
+                        background: #6c757d;
+                        color: white;
+                        cursor: not-allowed;
+                        opacity: 0.7;
+                    }
+                    
+                    .slot-empty {
+                        background: #f8f9fa;
+                        color: #6c757d;
+                        cursor: not-allowed;
+                    }
+                    
+                    .cart-item {
+                        padding: 10px;
+                        border-bottom: 1px solid #eee;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                    }
+                </style>
+                
+                <!-- Enhanced JavaScript -->
+                <script>
+                    // Global variables
+                    let cart = [];
+                    let selectedSlot = null;
+                    
+                    // Initialize on page load
+                    document.addEventListener('DOMContentLoaded', function() {
+                        setDefaultDate();
+                        generateCalendar();
+                        loadCart();
+                    });
+                    
+                    function setDefaultDate() {
+                        const today = new Date().toISOString().split('T')[0];
+                        document.getElementById('appointmentDate').value = today;
+                        document.getElementById('appointmentDate').min = today;
+                    }
+                    
+                    function generateCalendar() {
+                        const tbody = document.getElementById('calendarBody');
+                        tbody.innerHTML = '';
+                        
+                        // Generate 30-minute time slots from 8:00 AM to 5:30 PM
+                        const timeSlots = [];
+                        for (let hour = 8; hour &lt;= 17; hour++) {
+                            for (let minute = 0; minute &lt; 60; minute += 30) {
+                                const timeStr = hour.toString().padStart(2, '0') + ':' + minute.toString().padStart(2, '0');
+                                const displayTime = formatTime(hour, minute);
+                                timeSlots.push({ time: timeStr, display: displayTime });
+                            }
+                        }
+                        
+                        const employees = [
+                            { id: 1, name: 'Sarah Johnson', price: 50 },
+                            { id: 2, name: 'Mike Davis', price: 45 },
+                            { id: 3, name: 'Lisa Wilson', price: 55 }
+                        ];
+                        
+                        // Generate table rows
+                        timeSlots.forEach(function(slot) {
+                            const row = document.createElement('tr');
+                            
+                            // Time cell
+                            const timeCell = document.createElement('td');
+                            timeCell.className = 'time-cell';
+                            timeCell.innerHTML = '<i class="fa fa-clock"></i> ' + slot.display;
+                            row.appendChild(timeCell);
+                            
+                            // Employee cells
+                            employees.forEach(function(emp) {
+                                const cell = document.createElement('td');
+                                cell.className = 'text-center';
+                                
+                                const isAvailable = Math.random() > 0.3;
+                                
+                                if (isAvailable) {
+                                    const button = document.createElement('button');
+                                    button.className = 'slot-btn slot-available';
+                                    button.textContent = slot.display;
+                                    button.onclick = function() {
+                                        selectSlot(slot.time, slot.display, emp);
+                                    };
+                                    cell.appendChild(button);
+                                } else {
+                                    const button = document.createElement('button');
+                                    button.className = 'slot-btn slot-empty';
+                                    button.textContent = '-';
+                                    button.disabled = true;
+                                    cell.appendChild(button);
+                                }
+                                
+                                row.appendChild(cell);
+                            });
+                            
+                            tbody.appendChild(row);
+                        });
+                    }
+                    
+                    function formatTime(hour, minute) {
+                        const period = hour >= 12 ? 'PM' : 'AM';
+                        const displayHour = hour > 12 ? hour - 12 : (hour === 0 ? 12 : hour);
+                        const displayMinute = minute.toString().padStart(2, '0');
+                        return displayHour + ':' + displayMinute + ' ' + period;
+                    }
+                    
+                    function selectSlot(time, displayTime, employee) {
+                        // Clear previous selections
+                        document.querySelectorAll('.slot-btn').forEach(function(btn) {
+                            btn.classList.remove('slot-selected');
+                        });
+                        
+                        // Mark current selection
+                        event.target.classList.add('slot-selected');
+                        
+                        // Store selection
+                        selectedSlot = {
+                            time: time,
+                            displayTime: displayTime,
+                            employee: employee,
+                            date: document.getElementById('appointmentDate').value,
+                            service: 'Hair Cut Service'
+                        };
+                        
+                        // Show selection details
+                        showSelection();
+                    }
+                    
+                    function showSelection() {
+                        const selectionDiv = document.getElementById('currentSelection');
+                        const infoDiv = document.getElementById('selectedSlotInfo');
+                        
+                        infoDiv.innerHTML = 
+                            '<strong><i class="fa fa-calendar"></i> ' + selectedSlot.displayTime + '</strong><br/>' +
+                            '<small class="text-muted">' + formatDate(selectedSlot.date) + '</small><br/>' +
+                            '<strong><i class="fa fa-user"></i> ' + selectedSlot.employee.name + '</strong><br/>' +
+                            '<strong><i class="fa fa-cut"></i> ' + selectedSlot.service + '</strong><br/>' +
+                            '<strong class="text-success">$' + selectedSlot.employee.price + '.00</strong>';
+                        
+                        selectionDiv.style.display = 'block';
+                    }
+                    
+                    async function addToCart() {
+                        if (!selectedSlot) return;
+                        
+                        try {
+                            const response = await fetch('/appointment/cart/add', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    jsonrpc: '2.0',
+                                    method: 'call',
+                                    params: {
+                                        appointment_data: {
+                                            employee_name: selectedSlot.employee.name,
+                                            employee_id: selectedSlot.employee.id,
+                                            date: selectedSlot.date,
+                                            time: selectedSlot.time,
+                                            display_time: selectedSlot.displayTime,
+                                            service: selectedSlot.service,
+                                            price: selectedSlot.employee.price
+                                        }
+                                    }
+                                })
+                            });
+                            
+                            const result = await response.json();
+                            
+                            if (result.result &amp;&amp; result.result.success) {
+                                // Add to local cart
+                                const cartItem = { id: Date.now(), ...selectedSlot };
+                                cart.push(cartItem);
+                                
+                                // Mark slot as booked
+                                const targetButton = document.querySelector('.slot-selected');
+                                if (targetButton) {
+                                    targetButton.classList.remove('slot-available', 'slot-selected');
+                                    targetButton.classList.add('slot-booked');
+                                    targetButton.textContent = 'Booked';
+                                    targetButton.disabled = true;
+                                }
+                                
+                                updateCart();
+                                cancelSelection();
+                                showNotification('Appointment added to cart!', 'success');
+                            } else {
+                                throw new Error(result.result ? result.result.error : 'Failed to add to cart');
+                            }
+                        } catch (error) {
+                            console.error('Cart error:', error);
+                            showNotification('Failed to add to cart: ' + error.message, 'danger');
+                        }
+                    }
+                    
+                    function updateCart() {
+                        const cartItemsDiv = document.getElementById('cartItems');
+                        const cartCount = document.getElementById('cartCount');
+                        const cartTotal = document.getElementById('cartTotal');
+                        const totalAmount = document.getElementById('totalAmount');
+                        
+                        cartCount.textContent = cart.length;
+                        
+                        if (cart.length === 0) {
+                            cartItemsDiv.innerHTML = 
+                                '<div class="text-center text-muted py-3">' +
+                                '<i class="fa fa-shopping-cart fa-2x mb-2"></i>' +
+                                '<p>Your cart is empty</p>' +
+                                '</div>';
+                            cartTotal.style.display = 'none';
+                        } else {
+                            let total = 0;
+                            let itemsHtml = '';
+                            
+                            cart.forEach(function(item) {
+                                total += item.employee.price;
+                                itemsHtml += 
+                                    '<div class="cart-item">' +
+                                    '<div>' +
+                                    '<strong>' + item.displayTime + '</strong><br/>' +
+                                    '<small>' + item.employee.name + ' - ' + item.service + '</small><br/>' +
+                                    '<small class="text-muted">' + formatDate(item.date) + '</small>' +
+                                    '</div>' +
+                                    '<div>' +
+                                    '<strong>$' + item.employee.price + '</strong><br/>' +
+                                    '<button class="btn btn-sm btn-outline-danger" onclick="removeFromCart(' + item.id + ')">' +
+                                    '<i class="fa fa-trash"></i>' +
+                                    '</button>' +
+                                    '</div>' +
+                                    '</div>';
+                            });
+                            
+                            cartItemsDiv.innerHTML = itemsHtml;
+                            totalAmount.textContent = total.toFixed(2);
+                            cartTotal.style.display = 'block';
+                        }
+                    }
+                    
+                    function removeFromCart(itemId) {
+                        cart = cart.filter(function(item) { return item.id !== itemId; });
+                        updateCart();
+                        showNotification('Item removed from cart', 'info');
+                    }
+                    
+                    function cancelSelection() {
+                        selectedSlot = null;
+                        document.getElementById('currentSelection').style.display = 'none';
+                        document.querySelectorAll('.slot-btn').forEach(function(btn) {
+                            btn.classList.remove('slot-selected');
+                        });
+                    }
+                    
+                    function proceedToCheckout() {
+                        if (cart.length === 0) {
+                            showNotification('Your cart is empty!', 'warning');
+                            return;
+                        }
+                        window.location.href = '/shop/checkout';
+                    }
+                    
+                    function loadCalendarForDate() {
+                        generateCalendar();
+                        cancelSelection();
+                    }
+                    
+                    function loadCart() {
+                        const savedCart = sessionStorage.getItem('appointmentCart');
+                        if (savedCart) {
+                            cart = JSON.parse(savedCart);
+                            updateCart();
+                        }
+                    }
+                    
+                    function formatDate(dateStr) {
+                        const date = new Date(dateStr);
+                        return date.toLocaleDateString('en-US', { 
+                            weekday: 'long', 
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric' 
+                        });
+                    }
+                    
+                    function showNotification(message, type) {
+                        const notification = document.createElement('div');
+                        notification.className = 'alert alert-' + type + ' alert-dismissible fade show';
+                        notification.style.position = 'fixed';
+                        notification.style.top = '20px';
+                        notification.style.right = '20px';
+                        notification.style.zIndex = '9999';
+                        notification.innerHTML = 
+                            message +
+                            '<button type="button" class="close" onclick="this.parentElement.remove()">' +
+                            '<span aria-hidden="true">X</span>' +
+                            '</button>';
+                        document.body.appendChild(notification);
+                        
+                        setTimeout(function() {
+                            if (notification.parentElement) {
+                                notification.remove();
+                            }
+                        }, 3000);
+                    }
+                    
+                    // Save cart to session storage
+                    window.addEventListener('beforeunload', function() {
+                        sessionStorage.setItem('appointmentCart', JSON.stringify(cart));
+                    });
+                </script>
+            </div>
+        </t>
+                
+                <div class="booking_steps">
+                    <div class="step completed">
+                        <div class="step_number">1</div>
+                        <div class="step_title">Category</div>
+                    </div>
+                    <div class="step completed">
+                        <div class="step_number">2</div>
+                        <div class="step_title">Service</div>
+                    </div>
+                    <div class="step completed">
+                        <div class="step_number">3</div>
+                        <div class="step_title">Location</div>
+                    </div>
+                    <div class="step active">
+                        <div class="step_number">4</div>
+                        <div class="step_title">Booking</div>
+                    </div>
+                </div>
+
+                <!-- Date Navigation -->
+                <div id="dateNavigation">
+                    <!-- Date navigation buttons will be loaded dynamically -->
+                </div>
+
+                <!-- Simple Static Calendar -->
+                <div class="calendar_container" id="calendarContainer">
+                    <div class="cal calandar">
+                        <div class="cal-head">
+                            <div class="time-header">TIME</div>
+                            <div class="employee-header">
+                                <div class="employee-name">Sarah Johnson</div>
+                                <div class="employee-price">$50.00</div>
+                            </div>
+                            <div class="employee-header">
+                                <div class="employee-name">Mike Davis</div>
+                                <div class="employee-price">$45.00</div>
+                            </div>
+                            <div class="employee-header">
+                                <div class="employee-name">Lisa Wilson</div>
+                                <div class="employee-price">$55.00</div>
+                            </div>
+                        </div>
+                        <div class="cal-body">
+                            <div class="time-column">
+                                <div class="time-slot">8:00</div>
+                                <div class="time-slot">8:30</div>
+                                <div class="time-slot">9:00</div>
+                                <div class="time-slot">9:30</div>
+                                <div class="time-slot">10:00</div>
+                                <div class="time-slot">10:30</div>
+                                <div class="time-slot">11:00</div>
+                                <div class="time-slot">11:30</div>
+                                <div class="time-slot">12:00</div>
+                                <div class="time-slot">12:30</div>
+                                <div class="time-slot">1:00</div>
+                                <div class="time-slot">1:30</div>
+                                <div class="time-slot">2:00</div>
+                                <div class="time-slot">2:30</div>
+                                <div class="time-slot">3:00</div>
+                                <div class="time-slot">3:30</div>
+                                <div class="time-slot">4:00</div>
+                                <div class="time-slot">4:30</div>
+                                <div class="time-slot">5:00</div>
+                                <div class="time-slot">5:30</div>
+                            </div>
+                            <div class="employee-column">
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('8:00', 1)">8:00</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('8:30', 1)">8:30</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('9:00', 1)">9:00</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('9:30', 1)">9:30</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('10:00', 1)">10:00</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('10:30', 1)">10:30</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('11:00', 1)">11:00</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('11:30', 1)">11:30</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-empty">-</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-empty">-</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('1:00', 1)">1:00</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('1:30', 1)">1:30</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('2:00', 1)">2:00</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('2:30', 1)">2:30</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('3:00', 1)">3:00</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('3:30', 1)">3:30</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('4:00', 1)">4:00</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('4:30', 1)">4:30</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('5:00', 1)">5:00</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('5:30', 1)">5:30</button></div>
+                            </div>
+                            <div class="employee-column">
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('8:00', 2)">8:00</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('8:30', 2)">8:30</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('9:00', 2)">9:00</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('9:30', 2)">9:30</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-empty">-</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('10:30', 2)">10:30</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('11:00', 2)">11:00</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('11:30', 2)">11:30</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-empty">-</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-empty">-</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('1:00', 2)">1:00</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('1:30', 2)">1:30</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('2:00', 2)">2:00</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('2:30', 2)">2:30</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('3:00', 2)">3:00</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('3:30', 2)">3:30</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('4:00', 2)">4:00</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('4:30', 2)">4:30</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('5:00', 2)">5:00</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('5:30', 2)">5:30</button></div>
+                            </div>
+                            <div class="employee-column">
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('8:00', 3)">8:00</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('8:30', 3)">8:30</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('9:00', 3)">9:00</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('9:30', 3)">9:30</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('10:00', 3)">10:00</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('10:30', 3)">10:30</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('11:00', 3)">11:00</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('11:30', 3)">11:30</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-empty">-</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-empty">-</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('1:00', 3)">1:00</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('1:30', 3)">1:30</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('2:00', 3)">2:00</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('2:30', 3)">2:30</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('3:00', 3)">3:00</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('3:30', 3)">3:30</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('4:00', 3)">4:00</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('4:30', 3)">4:30</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('5:00', 3)">5:00</button></div>
+                                <div class="slot-cell"><button class="slot-button slot-available" onclick="selectSlot('5:30', 3)">5:30</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Booking Summary Sidebar -->
+                <div class="booking_summary" id="bookingSummary" style="display: none;">
+                    <h4>Booking Summary</h4>
+                    <div id="selectedSlotInfo">
+                        <!-- Selected slot information will be displayed here -->
+                    </div>
+                    <div class="booking_actions">
+                        <button type="button" class="btn btn_primary" id="confirmBookingBtn" onclick="confirmSlotBooking()">Book This Slot</button>
+                        <button type="button" class="btn btn_secondary" onclick="cancelSlotSelection()">Cancel</button>
+                    </div>
+                </div>
+
+                <div class="booking_actions">
+                    <button type="button" class="btn btn_secondary" onclick="goBackToLocation()">Back</button>
+                </div>
+                
+                <!-- Simple Calendar Script -->
+                <script type="text/javascript">
+                    console.log('🟢 CALENDAR DEBUG: Calendar page script executing');
+                    console.log('🟢 CALENDAR DEBUG: Current URL:', window.location.href);
+                    
+                    // Setup default session data if missing (for testing purposes)
+                    function setupDefaultSessionData() {
+                        if (!sessionStorage.getItem('selectedService')) {
+                            const defaultService = {
+                                id: 9, // Our test product ID
+                                name: 'Hair Cut Service',
+                                category_id: 5
+                            };
+                            sessionStorage.setItem('selectedService', JSON.stringify(defaultService));
+                            console.log('🔧 Set default service:', defaultService);
+                        }
+                        
+                        if (!sessionStorage.getItem('selectedBranch')) {
+                            const defaultBranch = {
+                                id: 1,
+                                name: 'Main Branch'
+                            };
+                            sessionStorage.setItem('selectedBranch', JSON.stringify(defaultBranch));
+                            console.log('🔧 Set default branch:', defaultBranch);
+                        }
+                        
+                        if (!sessionStorage.getItem('locationType')) {
+                            sessionStorage.setItem('locationType', 'inside');
+                            console.log('🔧 Set default location type: inside');
+                        }
+                    }
+                    
+                    // Wait for DOM to be fully loaded
+                    document.addEventListener('DOMContentLoaded', function() {
+                        console.log('🟢 CALENDAR DEBUG: DOM loaded, checking elements');
+                        console.log('🟢 CALENDAR DEBUG: Calendar elements exist:', {
+                            calHead: !!document.getElementById('calHead'),
+                            calBody: !!document.getElementById('calBody'),
+                            dateNavigation: !!document.getElementById('dateNavigation'),
+                            calendarContainer: !!document.getElementById('calendarContainer'),
+                            bookingSummary: !!document.getElementById('bookingSummary')
+                        });
+                        
+                        // Setup session data for testing
+                        setupDefaultSessionData();
+                        
+                        // Initialize calendar after a short delay to ensure all scripts are loaded
+                        setTimeout(function() {
+                            console.log('🟢 CALENDAR DEBUG: Attempting calendar initialization...');
+                            
+                            // Check if we have session data for the booking
+                            const selectedService = JSON.parse(sessionStorage.getItem('selectedService') || '{}');
+                            const selectedBranch = JSON.parse(sessionStorage.getItem('selectedBranch') || '{}');
+                            const locationType = sessionStorage.getItem('locationType');
+                            
+                            console.log('🟢 CALENDAR DEBUG: Session data:', {
+                                selectedService,
+                                selectedBranch,
+                                locationType
+                            });
+                            
+                            if (typeof window.initializeCalendar === 'function') {
+                                console.log('🟢 CALENDAR DEBUG: initializeCalendar function found, calling...');
+                                window.initializeCalendar();
+                            } else if (typeof window.forceInitializeCalendar === 'function') {
+                                console.log('🟢 CALENDAR DEBUG: Using forceInitializeCalendar...');
+                                window.forceInitializeCalendar();
+                            } else {
+                                console.log('🔴 CALENDAR DEBUG: No calendar initialization function found');
+                                console.log('🔴 CALENDAR DEBUG: Available window functions:', 
+                                    Object.keys(window).filter(key => key.toLowerCase().includes('calendar')));
+                                
+                                // Force calendar display with test data
+                                window.forceDisplayCalendar = function() {
+                                    console.log('🎨 Forcing calendar display with test data...');
+                                    
+                                    const calHead = document.getElementById('calHead');
+                                    const calBody = document.getElementById('calBody');
+                                    
+                                    if (!calHead || !calBody) {
+                                        console.log('❌ Calendar elements not found');
+                                        return;
+                                    }
+                                    
+                                    // Create test employees
+                                    const testEmployees = {
+                                        1: { name: 'Sarah Johnson', branch_name: 'Main Branch', price_inside: 50.00, duration: 60 },
+                                        2: { name: 'Mike Davis', branch_name: 'Downtown', price_inside: 55.00, duration: 60 },
+                                        3: { name: 'Emma Wilson', branch_name: 'Mall Location', price_inside: 60.00, duration: 60 }
+                                    };
+                                    
+                                    // Create header
+                                    let headerHtml = '<div class="cell">⏰ TIME</div>';
+                                    Object.entries(testEmployees).forEach(([empId, emp]) => {
+                                        headerHtml += '<div class="cell emp-header">' +
+                                            '<div class="emp-avatar">' + emp.name.charAt(0) + '</div>' +
+                                            '<div class="emp-info">' +
+                                                '<div class="emp-name">' + emp.name + '</div>' +
+                                                '<div class="emp-branch">' + emp.branch_name + '</div>' +
+                                                '<div class="emp-price">$' + emp.price_inside + '</div>' +
+                                                '<div class="emp-duration">' + emp.duration + ' min</div>' +
+                                            '</div>' +
+                                        '</div>';
+                                    });
+                                    calHead.innerHTML = headerHtml;
+                                    
+                                    // Create body with time slots (30-minute intervals)
+                                    let timeColumnHtml = '';
+                                    for (let hour = 8; hour &lt;= 18; hour++) {
+                                        for (let minutes = 0; minutes &lt; 60; minutes += 30) {
+                                            const displayHour = hour &gt; 12 ? hour - 12 : hour;
+                                            const ampm = hour &gt;= 12 ? 'PM' : 'AM';
+                                            const minuteStr = minutes === 0 ? '00' : minutes.toString();
+                                            timeColumnHtml += '<div class="time-slot">' + displayHour + ':' + minuteStr + ' ' + ampm + '</div>';
+                                        }
+                                    }
+                                    
+                                    let bodyHtml = '<div class="time-col">' + timeColumnHtml + '</div>';
+                                    Object.keys(testEmployees).forEach(empId => {
+                                        let empColumnHtml = '';
+                                        for (let hour = 8; hour &lt;= 18; hour++) {
+                                            for (let minutes = 0; minutes &lt; 60; minutes += 30) {
+                                                const timeStr = hour + ':' + (minutes === 0 ? '00' : minutes.toString());
+                                                if (hour &gt;= 9 &amp;&amp; hour &lt;= 17 &amp;&amp; Math.random() &gt; 0.3) {
+                                                    // Add available slot button
+                                                    empColumnHtml += '<div class="time-slot-cell has-slots">' +
+                                                        '<button class="slot-btn available" onclick="testSlotSelect(\'' + timeStr + '\', ' + empId + ')">' +
+                                                            timeStr +
+                                                        '</button>' +
+                                                    '</div>';
+                                                } else {
+                                                    empColumnHtml += '<div class="time-slot-cell no-slots">' +
+                                                        '<div class="empty-slot"></div>' +
+                                                    '</div>';
+                                                }
+                                            }
+                                        }
+                                        bodyHtml += '<div class="emp-col" data-employee-id="' + empId + '">' + empColumnHtml + '</div>';
+                                    });
+                                    
+                                    calBody.innerHTML = bodyHtml;
+                                    
+                                    // Update grid columns
+                                    const empCount = Object.keys(testEmployees).length;
+                                    calHead.style.gridTemplateColumns = '100px repeat(' + empCount + ', 1fr)';
+                                    calBody.style.gridTemplateColumns = '100px repeat(' + empCount + ', 1fr)';
+                                    calBody.style.setProperty('--cols', empCount);
+                                    
+                                    console.log('✅ Test calendar displayed successfully!');
+                                };
+                                
+                                // Test slot selection
+                                window.testSlotSelect = function(time, empId) {
+                                    console.log('🎯 Selected slot: ' + time + ' for employee ' + empId);
+                                    
+                                    // Show booking summary
+                                    const summaryDiv = document.getElementById('bookingSummary');
+                                    const slotInfo = document.getElementById('selectedSlotInfo');
+                                    
+                                    if (summaryDiv &amp;&amp; slotInfo) {
+                                        slotInfo.innerHTML = 
+                                            '<p><strong>Time:</strong> ' + time + '</p>' +
+                                            '<p><strong>Employee:</strong> Employee ' + empId + '</p>' +
+                                            '<p><strong>Service:</strong> Hair Cut Service</p>' +
+                                            '<p><strong>Price:</strong> $50.00</p>';
+                                        
+                                        summaryDiv.style.display = 'block';
+                                        
+                                        // Store slot data for booking
+                                        window.selectedSlotData = {
+                                            time: time,
+                                            employee_id: empId,
+                                            service_id: 9,
+                                            price: 50.00
+                                        };
+                                    }
+                                };
+                                
+                                // Auto-display test calendar
+                                setTimeout(window.forceDisplayCalendar, 2000);
+                            }
+                        }, 1500);
+                    });
+                    
+                    // Enhanced slot booking functions
+                    window.confirmSlotBooking = function() {
+                        console.log('🎯 Confirming slot booking...');
+                        
+                        if (!window.selectedSlotData) {
+                            alert('Please select a time slot first.');
+                            return;
+                        }
+                        
+                        const slotData = window.selectedSlotData;
+                        
+                        // Prepare booking data
+                        const bookingData = {
+                            service_id: slotData.service_id || 9,
+                            employee_id: slotData.employee_id || 1,
+                            slot_ids: [323, 324], // Test slot IDs
+                            date: new Date().toISOString().split('T')[0],
+                            appointment_type: 'inside',
+                            price: slotData.price || 50.00
+                        };
+                        
+                        console.log('Booking data:', bookingData);
+                        
+                        // Make booking request
+                        fetch('/book-appointment/api/cart/add', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(bookingData)
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log('Booking response:', data);
+                            if (data.success) {
+                                alert('Appointment booked successfully! Time: ' + slotData.time);
+                                // Hide booking summary
+                                document.getElementById('bookingSummary').style.display = 'none';
+                                window.selectedSlotData = null;
+                            } else {
+                                alert('Booking failed: ' + (data.error || 'Please try again.'));
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Booking error:', error);
+                            alert('Booking failed due to a network error. Please try again.');
+                        });
+                    };
+                    
+                    window.cancelSlotSelection = function() {
+                        console.log('❌ Cancelling slot selection...');
+                        const summaryDiv = document.getElementById('bookingSummary');
+                        if (summaryDiv) {
+                            summaryDiv.style.transition = 'all 0.3s ease-out';
+                            summaryDiv.style.opacity = '0';
+                            summaryDiv.style.transform = 'translateY(-20px)';
+                            setTimeout(() => {
+                                summaryDiv.style.display = 'none';
+                            }, 300);
+                        }
+                        
+                        // Clear selected slot data
+                        window.selectedSlotData = null;
+                    };
+                </script>
+            </div>
+        </t>
+    </template>
+
+    <!-- Package Service Selection Page -->
+    <template id="package_service_selection" name="Package Service Selection">
+        <t t-call="appointment_management_system_website.booking_layout">
+            <div class="booking_section active">
+                <h1 class="booking_title">Configure Package Services</h1>
+                
+                <div class="package_service_list" id="packageServiceList">
+                    <!-- Package services will be loaded dynamically -->
+                </div>
+
+                <div class="package_service_details" id="packageServiceDetails" style="display: none;">
+                    <h4>Book Service: <span id="currentServiceName"></span></h4>
+                    
+                    <!-- Date Selection -->
+                    <div class="detail_group">
+                        <label>Select Date:</label>
+                        <div class="date_options" id="packageDateOptions">
+                            <!-- Dates will be loaded dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Employee Selection -->
+                    <div class="detail_group">
+                        <label>Select Employee:</label>
+                        <div class="employee_dropdown_container">
+                            <div class="employee_dropdown_selected" id="packageEmployeeDropdownSelected">
+                                <span class="selected_text">Choose an employee...</span>
+                                <i class="fa fa-chevron-down"></i>
+                            </div>
+                            <div class="employee_dropdown_options" id="packageEmployeeDropdownOptions" style="display: none;">
+                                <!-- Employee options will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Calendar Grid -->
+                    <div class="calendar_container" id="packageCalendarContainer">
+                        <div class="cal">
+                            <div class="cal-head" id="packageCalHead">
+                                <!-- Calendar header will be loaded dynamically -->
+                            </div>
+                            <div class="cal-body" id="packageCalBody">
+                                <!-- Calendar slots will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="package_service_actions">
+                        <button type="button" class="btn btn_secondary" onclick="cancelPackageService()">Cancel</button>
+                        <button type="button" class="btn btn_primary" onclick="confirmPackageService()">Confirm Service</button>
+                    </div>
+                </div>
+
+                <div class="booking_actions">
+                    <button type="button" class="btn btn_secondary" onclick="goBackToServices()">Back to Services</button>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- Location Selection Page -->
+    <template id="location_selection" name="Location Selection">
+        <t t-call="appointment_management_system_website.booking_layout">
+            <div class="booking_section active">
+                <h1 class="booking_title">Choose Location</h1>
+                
+                <div class="booking_steps">
+                    <div class="step completed">
+                        <div class="step_number">1</div>
+                        <div class="step_title">Category</div>
+                    </div>
+                    <div class="step completed">
+                        <div class="step_number">2</div>
+                        <div class="step_title">Service</div>
+                    </div>
+                    <div class="step active">
+                        <div class="step_number">3</div>
+                        <div class="step_title">Location</div>
+                    </div>
+                    <div class="step">
+                        <div class="step_number">4</div>
+                        <div class="step_title">Booking</div>
+                    </div>
+                </div>
+
+                <div class="detail_group text-center">
+                    <h3>Where would you like your appointment?</h3>
+                    <div class="location_options row justify-content-center mt-4">
+                        <div class="col-md-4 mb-3">
+                            <div class="location_option p-4 border rounded" onclick="selectLocationAndProceed('inside')">
+                                <h4>Inside Branch</h4>
+                                <p>Visit us at our salon</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="location_option p-4 border rounded" onclick="selectLocationAndProceed('outside')">
+                                <h4>At Your Location</h4>
+                                <p>We come to you</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="booking_actions">
+                    <button type="button" class="btn btn_secondary" onclick="goBackToServices()">Back to Services</button>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- Address Input Page (for outside bookings) -->
+    <template id="address_input" name="Address Input">
+        <t t-call="appointment_management_system_website.booking_layout">
+            <div class="booking_section active">
+                <h1 class="booking_title">Service Address</h1>
+                
+                <div class="booking_steps">
+                    <div class="step completed">
+                        <div class="step_number">1</div>
+                        <div class="step_title">Category</div>
+                    </div>
+                    <div class="step completed">
+                        <div class="step_number">2</div>
+                        <div class="step_title">Service</div>
+                    </div>
+                    <div class="step active">
+                        <div class="step_number">3</div>
+                        <div class="step_title">Address</div>
+                    </div>
+                    <div class="step">
+                        <div class="step_number">4</div>
+                        <div class="step_title">Booking</div>
+                    </div>
+                </div>
+
+                <div class="detail_group">
+                    <label for="serviceAddress">Please provide your address</label>
+                    <textarea id="serviceAddress" class="form-control" rows="4" placeholder="Enter your full address where the service should be provided" required="required"></textarea>
+                    <small class="form-text text-muted">Please include street name, building number, area, and any specific directions.</small>
+                </div>
+
+                <div class="booking_actions">
+                    <button type="button" class="btn btn_secondary" onclick="goBackToLocation()">Back</button>
+                    <button type="button" class="btn btn_primary" onclick="proceedWithAddress()">Continue to Calendar</button>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- Main Booking Home Page -->
+    <template id="booking_home" name="Booking Home">
+        <t t-call="website.layout">
+            <div class="booking_container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="text-center mb-5">
+                            <h1 class="booking_title">Book Your Appointment</h1>
+                            <p class="lead">Professional salon services at your convenience</p>
+                        </div>
+                        
+                        <div class="d-flex justify-content-center">
+                            <a href="/appointment/booking/categories" class="btn btn_primary btn-lg">Start Booking</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- Cart Widget -->
+    <template id="cart_widget" name="Cart Widget">
+        <h4>Your Cart</h4>
+        <div id="cartItems">
+            <p class="empty_cart">Your cart is empty</p>
+        </div>
+        <div id="cartTotal" class="cart_total" style="display: none;">
+            <div class="total_row">
+                <span>Total:</span>
+                <span class="total_amount" id="totalAmount">$0.00</span>
+            </div>
+        </div>
+        <div class="cart_actions">
+            <button type="button" class="btn btn_primary btn_full" id="checkoutBtn" style="display: none;" onclick="proceedToCheckout()">Proceed to Checkout</button>
+            <button type="button" class="btn btn_outline btn_full" id="clearCartBtn" style="display: none;" onclick="clearCart()">Remove All</button>
+        </div>
+    </template>
+
+    <!-- Invoice preview template -->
+    <template id="invoice_preview" name="Invoice Preview">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="invoice_preview_container">
+                                <h1>Invoice Preview</h1>
+                                
+                                <div class="invoice_details">
+                                    <div class="customer_info">
+                                        <h4>Customer Information</h4>
+                                        <p><strong>Name:</strong> <t t-esc="partner.name"/></p>
+                                        <p><strong>Email:</strong> <t t-esc="partner.email"/></p>
+                                        <p><strong>Phone:</strong> <t t-esc="partner.phone"/></p>
+                                    </div>
+                                    
+                                    <div class="service_list">
+                                        <h4>Services</h4>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Service</th>
+                                                    <th>Date &amp; Time</th>
+                                                    <th>Employee</th>
+                                                    <th>Price</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <t t-foreach="invoice_lines" t-as="line">
+                                                    <tr>
+                                                        <td><t t-esc="line['product'].name"/></td>
+                                                        <td><t t-esc="line['service_data'].get('date', '')"/></td>
+                                                        <td>
+                                                            <t t-set="employee" t-value="request.env['hr.employee'].browse(line['service_data'].get('employee_id', 0))"/>
+                                                            <t t-esc="employee.name if employee else ''"/>
+                                                        </td>
+                                                        <td>$<t t-esc="'%.2f' % line['price']"/></td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr class="total_row">
+                                                    <td colspan="3"><strong>Total</strong></td>
+                                                    <td><strong>$<t t-esc="'%.2f' % total_amount"/></strong></td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                                
+                                <div class="invoice_actions">
+                                    <a href="/book-appointment" class="btn btn_secondary">Add More Services</a>
+                                    <form method="post" action="/book-appointment/confirm-booking" style="display: inline;">
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        <button type="submit" class="btn btn_primary">Confirm &amp; Pay</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+    
+    <!-- Payment success template -->
+    <template id="payment_success" name="Booking Confirmed">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6 text-center">
+                            <div class="success_container">
+                                <div class="success_icon">
+                                    <i class="fa fa-check-circle fa-5x text-success"></i>
+                                </div>
+                                <h1>Booking Confirmed!</h1>
+                                <p class="lead">Your appointment has been successfully booked and payment received.</p>
+                                
+                                <div class="success_actions">
+                                    <a href="/my/appointments" class="btn btn_primary">View My Appointments</a>
+                                    <a href="/book-appointment" class="btn btn_secondary">Book Another</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+    
+</odoo>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_product_form_appointment_inherit" model="ir.ui.view">
+            <field name="name">view.product.form.appointment.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='options']" position="inside">
+                    <span class="d-inline-flex">
+                        <field name="is_appointment_service"/>
+                        <label for="is_appointment_service"/>
+                    </span>
+
+                    <span class="d-inline-flex">
+                        <field name="is_appointment_package"/>
+                        <label for="is_appointment_package"/>
+                    </span>
+                </xpath>
+
+
+                <xpath expr="//notebook" position="inside">
+                    <page string="Appointment Configuration" invisible="not is_appointment_service or detailed_type != 'service' or is_appointment_package">
+                        <field name="plan_ids">
+                            <tree editable="top">
+                                <field name="branch_id" options="{'no_create': True, 'no_create_edit':True}" width="25%"/>
+                                <field name="department_id" options="{'no_create': True, 'no_create_edit':True}" width="25%" readonly="not branch_id" domain="[('company_id', '=', branch_id)]"/>
+                                <field name="service_slot_inside" width="12.5%" readonly="not branch_id or not department_id"/>
+                                <field name="service_slot_outside" width="12.5%" readonly="not branch_id or not department_id"/>
+                                <field name="service_price_inside" width="12.5%" readonly="not branch_id or not department_id"/>
+                                <field name="service_price_outside" width="12.5%" readonly="not branch_id or not department_id"/>
+                                <field name="currency_id" readonly="1" column_invisible="1"/>
+                            </tree>
+                        </field>
+                    </page>
+
+                    <page string="Appointment Package Configuration" invisible="not is_appointment_service or not is_appointment_package or detailed_type != 'service'">
+                        <field name="appointment_package_line_ids">
+                            <tree editable="top">
+                                <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                                <field name="branch_id" options="{'no_create': True, 'no_create_edit':True}" width="25%"/>
+                                <field name="department_id" options="{'no_create': True, 'no_create_edit':True}" width="25%" readonly="not branch_id" domain="[('company_id', '=', branch_id)]"/>
+                                <field name="service_slot_inside" width="12.5%" readonly="not branch_id or not department_id"/>
+                                <field name="service_slot_outside" width="12.5%" readonly="not branch_id or not department_id"/>
+                                <field name="service_price_inside" width="12.5%" readonly="not branch_id or not department_id"/>
+                                <field name="service_price_outside" width="12.5%" readonly="not branch_id or not department_id"/>
+                                <field name="currency_id" readonly="1" column_invisible="1"/>
+                            </tree>
+                        </field>
+                    </page>
+
+                    <page string="Components">
+                        <field name="product_component_ids">
+                            <tree editable="top">
+                                <field name="component_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                                <field name="quantity"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        
+
+        <record id="appointment_service_action" model="ir.actions.act_window">
+            <field name="name">Appointment Service</field>
+            <field name="res_model">product.product</field>
+            <field name="domain">[('is_appointment_service', '=', 1)]</field>
+            <field name="context">{'default_is_appointment_service': 1}</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

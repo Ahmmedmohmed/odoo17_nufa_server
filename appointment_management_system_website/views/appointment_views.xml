@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Appointment Form View with Readonly Fields and Smart Button -->
+    <record id="view_appointment_form_readonly" model="ir.ui.view">
+        <field name="name">appointment.management.form.readonly</field>
+        <field name="model">appointment.management</field>
+        <field name="inherit_id" ref="appointment_management_system.view_appointment_management_form"/>
+        <field name="arch" type="xml">
+            <!-- Add button_box and smart button to view related sale order -->
+            <xpath expr="//div[@class='oe_title']" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_view_sale_order" type="object" 
+                            class="oe_stat_button" icon="fa-shopping-cart"
+                            invisible="has_sale_order == False">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_text">Sale Order</span>
+                        </div>
+                    </button>
+                </div>
+            </xpath>
+            
+            <!-- Make website booking fields readonly -->
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="readonly">website_booking == True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='product_id']" position="attributes">
+                <attribute name="readonly">website_booking == True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='employee_id']" position="attributes">
+                <attribute name="readonly">website_booking == True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='date']" position="attributes">
+                <attribute name="readonly">website_booking == True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='branch_id']" position="attributes">
+                <attribute name="readonly">website_booking == True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='price_unit']" position="attributes">
+                <attribute name="readonly">website_booking == True</attribute>
+            </xpath>
+            
+            <!-- Add appointment_type field and customer address fields for website bookings -->
+            <xpath expr="//field[@name='notes']" position="before">
+                <field name="website_booking" invisible="1"/>
+                <field name="has_sale_order" invisible="1"/>
+                <field name="sale_order_id" invisible="1"/>
+                <field name="order_line_id" invisible="1"/>
+                <field name="appointment_type" readonly="website_booking == True"/>
+            </xpath>
+            
+            <!-- Add Customer Address Details as notebook page -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Customer Address Details" invisible="appointment_type != 'outside' or website_booking == False">
+                    <group>
+                        <group>
+                            <field name="customer_street" readonly="website_booking == True"/>
+                            <field name="customer_phone" readonly="website_booking == True"/>
+                        </group>
+                        <group>
+                            <field name="customer_city" readonly="website_booking == True"/>
+                        </group>
+                    </group>
+                    <field name="customer_notes" string="Customer Notes" 
+                           readonly="website_booking == True"/>
+                </page>
+                <page string="Rating Comment" invisible="not rating_comment">
+                    <group>
+                        <field name="rating_comment" readonly="1"/>
+                    </group>
+                </page>
+                <page string="Cancel Reason" invisible="not cancel_reason">
+                    <group>
+                        <field name="cancel_reason" readonly="1"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Appointment Tree View to Show Website Booking Status -->
+    <record id="view_appointment_tree_website" model="ir.ui.view">
+        <field name="name">appointment.management.tree.website</field>
+        <field name="model">appointment.management</field>
+        <field name="inherit_id" ref="appointment_management_system.view_appointment_management_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="website_booking" string="Website Booking" optional="hide"/>
+                <field name="appointment_type" string="Location" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

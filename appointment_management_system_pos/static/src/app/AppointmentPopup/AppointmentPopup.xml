@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="appointment_management_system_pos.AppointmentPopup">
+        <div class=" product-selection-combo-popup popup">
+            <div class="modal-header" style="padding: 5px;">
+                <h4 class="button cancel btn btn-lg btn-primary" t-on-click="confirm"><t t-esc="props.confirmText"/></h4>
+                <h4 class="modal-title"><t t-esc="props.title"/></h4>
+                <div class="btn" t-on-click="cancel"><i class="fa fa-times" aria-hidden="true"></i></div>
+            </div>
+
+            <header class="modal-header" t-att-data-product_id="main_product_id">
+                <div class="container d-flex justify-content-center">
+                    <div class="col-6 d-flex justify-content-center">
+                        <Input tModel="[state, 'searchWord']" class="'col-12 p-2'" isSmall="ui.isSmall" placeholder="'Search products ...'" icon="{type: 'fa', value: 'fa-search'}" debounceMillis="100" />
+                    </div>
+                </div>
+            </header>
+
+            <main class="body modal-body">
+                <div class='selection scrollable-y touch-scrollable selection-height'>
+                    <div>
+                        <div class="overflow-auto p-3">
+                            <div class="d-flex overflow-auto w-100 shadow-sm justify-content-center">
+                                <div class="products-widget-control d-flex bg-view justify-content-center" t-att-class="{'h-12': showCategoryImages}">
+                                    <t t-set="showCategoryImages" t-value="getShowCategoryImages()"/>
+                                    <CategorySelector categories="appointment_categories" onClick="(id) => this.switchCategory(id)" showImage="showCategoryImages" class="ui.isSmall ? 'scrollbar-hidden' : ''"/>
+                                </div>
+                            </div>
+
+                            <AppointmentSeviceList class="shadow-sm" products="productsToDisplay" orderMenu="OrderMenuToDisplay" onClick="(product) =>this.addProduct(product)" onRemoveClick="(product) =>this.removeProduct(product)"/>
+
+
+                            <AppointmentSeviceDetails t-if="productsToDisplay.length != 0"
+                                class="pos.productViewMode"
+                                SelectedServices="SelectedServices"
+                                appointmentDetails="pos.appointmentDetails"
+                            />
+                            <!-- onClick="(product) =>this.selectedServicePack(product)" -->
+
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </t>
+</templates>

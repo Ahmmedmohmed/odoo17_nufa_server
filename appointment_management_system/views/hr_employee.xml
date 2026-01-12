@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_hr_employee_form_appointment_inherit" model="ir.ui.view">
+            <field name="name">view.hr.employee.form.appointment.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <field name="is_appointment_employee" invisible="1"/>
+                    <button name="action_available_in_appointment" string="Available In Appointment" type="object" invisible="is_appointment_employee" class="btn btn-success"/>
+                    <button name="action_unavailable_in_appointment" string="Unavailable In Appointment" type="object" invisible="not is_appointment_employee" class="btn btn-danger"/>
+                </xpath>
+
+                <xpath expr="//field[@name='parent_id']" position="after">
+                    <field name="location_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="appointment_employee_action" model="ir.actions.act_window">
+            <field name="name">Appointment Employees</field>
+            <field name="res_model">hr.employee</field>
+            <field name="domain">[('is_appointment_employee', '=', 1)]</field>
+            <field name="context">{'default_is_appointment_employee': 1}</field>
+            <field name="view_mode">list,form</field>
+        </record>
+    </data>
+</odoo>

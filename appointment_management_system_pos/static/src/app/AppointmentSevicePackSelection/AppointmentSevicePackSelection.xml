@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-name="appointment_management_system_pos.AppointmentSevicePackSelection" owl="1">
+        <article tabindex="0"
+            t-attf-class="{{props.class}} {{highlight()}} product position-relative btn btn-light d-flex align-items-stretch p-0 m-0 text-start cursor-pointer overflow-hidden transition-base"
+            t-on-click="onSelect"
+            t-att-data-product-id="props.productId"
+            t-attf-aria-labelledby="article_product_{{props.productId}}">
+            <!-- <div t-if="props.productInfo" class="product-information-tag" t-on-click.stop="props.onProductInfoClick">
+                <i class="product-information-tag-logo fa fa-info" role="img" aria-label="Product Information" title="Product Information" />
+            </div> -->
+            <!-- <div class="product-remove-tag" t-on-click.stop="props.onRemoveClick">
+                <i class="product-remove-tag-logo fa fa-times" role="img" aria-hidden="true"></i>
+            </div> -->
+            <div t-if="props.imageUrl" class="product-img">
+                <img class="w-100" t-att-src="props.imageUrl" t-att-alt="props.name" />
+            </div>
+            <div class="product-content d-flex flex-column justify-content-between h-100 mx-2 py-1">
+                <div class="overflow-hidden lh-sm fw-bolder product-name"
+                    t-att-class="{'no-image': !props.imageUrl}"
+                    t-attf-id="article_product_{{props.productId}}"
+                    t-esc="props.name" />
+                <!-- <span t-if="props.price" class="price-tag text-primary py-1 fw-bolder"
+                    t-esc="props.price" /> -->
+            </div>
+        </article>
+    </t>
+</templates>
