@@ -72,7 +72,6 @@ class Product(models.Model):
         date = datetime.strptime(date, '%Y-%m-%d').date()
         employee_id = self.env['hr.employee'].browse(int(employee_id))
 
-
         if package_id:
             for record in package_id.appointment_package_line_ids.filtered(lambda r: r.product_id.id == self.id):
                 if type == 'inside':
@@ -89,6 +88,7 @@ class Product(models.Model):
                 ('service_id', '=', self.id), 
                 ('department_id', '=', employee_id.department_id.id)
             ] + branch_filter)
+            
             if service_plan_id and type == 'inside':
                 slots = service_plan_id.service_slot_inside
             if service_plan_id and type == 'outside':
@@ -197,6 +197,10 @@ class Product(models.Model):
         result = {}
 
         for group in result_groups:
+            # Skip empty groups to prevent IndexError
+            if not group:
+                continue
+                
             slot_ids = []
 
             for slot in group:

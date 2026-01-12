@@ -4,12 +4,12 @@
     <t t-name="appointment_management_system_pos.TicketScreen" t-inherit="point_of_sale.TicketScreen" t-inherit-mode="extension">
 
       <xpath expr="//Orderline" position="inside" >
-        <ul t-if="line.is_appointment_line">
-            <li> <t t-esc="line.appointment_name"/>  </li>
-            <li> <t t-esc="line.employee_name"/>  </li>
-            <li> <t t-esc="line.branch_name"/>  </li>
-            <li> <t t-esc="line.appointment_type"/>  </li>
-            <li> <t t-esc="line.date"/>_<t t-esc="line.slot_name"/></li>
+        <ul t-if="line.appointmentInfo">
+            <li> <t t-esc="line.appointmentInfo.appointment_name"/>  </li>
+            <li> <t t-esc="line.appointmentInfo.employee_name"/>  </li>
+            <li> <t t-esc="line.appointmentInfo.branch_name"/>  </li>
+            <li> <t t-esc="line.appointmentInfo.appointment_type"/>  </li>
+            <li> <t t-esc="line.appointmentInfo.date"/>_<t t-esc="line.appointmentInfo.slot_name"/></li>
         </ul>
       </xpath>
 
