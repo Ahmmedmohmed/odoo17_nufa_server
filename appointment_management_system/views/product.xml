@@ -34,7 +34,7 @@
                         </field>
                     </page>
 
-                    <page string="Appointment Package Configuration" invisible="not is_appointment_service or not is_appointment_package or detailed_type != 'service'">
+                    <page string="Appointment Package Configuration" invisible="not is_appointment_package or detailed_type != 'service'">
                         <field name="appointment_package_line_ids">
                             <tree editable="top">
                                 <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
@@ -65,7 +65,7 @@
         <record id="appointment_service_action" model="ir.actions.act_window">
             <field name="name">Appointment Service</field>
             <field name="res_model">product.product</field>
-            <field name="domain">[('is_appointment_service', '=', 1)]</field>
+            <field name="domain">['|', ('is_appointment_service', '=', 1), ('is_appointment_package', '=', 1)]</field>
             <field name="context">{'default_is_appointment_service': 1}</field>
             <field name="view_mode">tree,form</field>
         </record>
