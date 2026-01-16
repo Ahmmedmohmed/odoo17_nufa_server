@@ -1,0 +1,212 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_advanced_gosi
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e-20211031\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-09-21 09:15+0000\n"
+"PO-Revision-Date: 2022-09-21 09:15+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_advanced_gosi
+#: model_terms:ir.ui.view,arch_db:hr_advanced_gosi.view_hr_contract_gosi_inherit_form
+msgid "<span>%</span>"
+msgstr "<span>%</span>"
+
+#. module: hr_advanced_gosi
+#: model_terms:ir.ui.view,arch_db:hr_advanced_gosi.view_hr_contract_gosi_inherit_form
+msgid "<span>/ month</span>"
+msgstr "<span>/ شهر</span>"
+
+#. module: hr_advanced_gosi
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_hr_contract__amount_occupational_hazards
+msgid "Amount Occupational Hazards"
+msgstr " المخاطر المهنية"
+
+#. module: hr_advanced_gosi
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_hr_contract__amount_company_pension_insurance
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_hr_contract__amount_pension_insurance
+msgid "Amount Pension Insurance"
+msgstr "تأمين التقاعد"
+
+#. module: hr_advanced_gosi
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_hr_contract__amount_company_saned
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_hr_contract__amount_saned
+msgid "Amount Saned"
+msgstr "ساند"
+
+#. module: hr_advanced_gosi
+#: code:addons/hr_advanced_gosi/models/hr_contract.py:0
+#, python-format
+msgid ""
+"Company Pension Insurance must be between 0 and 100 and not equal to zero"
+msgstr "يجب أن يكون تأمين معاشات الشركة بين 0 و 100 وألا يساوي صفرًا"
+
+#. module: hr_advanced_gosi
+#: code:addons/hr_advanced_gosi/models/hr_contract.py:0
+#, python-format
+msgid "Company Saned must be between 0 and 100 and not equal to zero"
+msgstr "يجب أن تكون شركة ساند بين 0 و 100 وألا تساوي صفرًا"
+
+#. module: hr_advanced_gosi
+#: model:ir.model,name:hr_advanced_gosi.model_res_config_settings
+msgid "Config Settings"
+msgstr "ضبط الاعدادات"
+
+#. module: hr_advanced_gosi
+#: model_terms:ir.actions.act_window,help:hr_advanced_gosi.action_default_gosi
+msgid "Create new GOSI"
+msgstr ""
+
+#. module: hr_advanced_gosi
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_default_gosi__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: hr_advanced_gosi
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_default_gosi__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: hr_advanced_gosi
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_res_config_settings__gosi_id
+msgid "Default GOSI"
+msgstr "التأمينات الافتراضية"
+
+#. module: hr_advanced_gosi
+#: model:ir.model,name:hr_advanced_gosi.model_default_gosi
+msgid "Default Gosi"
+msgstr " التأمينات الافتراضية"
+
+#. module: hr_advanced_gosi
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_default_gosi__display_name
+msgid "Display Name"
+msgstr "اسم العر"
+
+#. module: hr_advanced_gosi
+#: model:ir.model,name:hr_advanced_gosi.model_hr_contract
+msgid "Employee Contract"
+msgstr "عقد الموظف"
+
+#. module: hr_advanced_gosi
+#: model:ir.actions.act_window,name:hr_advanced_gosi.action_default_gosi
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_hr_contract__gosi_deduction
+#: model:ir.ui.menu,name:hr_advanced_gosi.menu_default_gosi
+#: model_terms:ir.ui.view,arch_db:hr_advanced_gosi.view_hr_contract_gosi_inherit_form
+msgid "GOSI"
+msgstr "التأمينات "
+
+#. module: hr_advanced_gosi
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_hr_contract__gosi_distributed
+msgid "GOSI  Distributed"
+msgstr "توزيع التأمينات"
+
+#. module: hr_advanced_gosi
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_hr_contract__gosi_suodi
+msgid "GOSI  Suodi"
+msgstr "سعودي"
+
+#. module: hr_advanced_gosi
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_default_gosi__gosi_percent
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_hr_contract__gosi_percent
+msgid "GOSI percent"
+msgstr "قيمة التامينات"
+
+#. module: hr_advanced_gosi
+#: code:addons/hr_advanced_gosi/models/hr_contract.py:0
+#, python-format
+msgid "GOSI percent must be between 0 and 100 and not equal to zero"
+msgstr ""
+"يجب أن تكون نسبة التأمينات الاجتماعية (GOSI) بين 0 و 100 وألا تكون مساوية "
+"للصفر"
+
+#. module: hr_advanced_gosi
+#: code:addons/hr_advanced_gosi/models/hr_contract.py:0
+#, python-format
+msgid "GOSI percent must be equal total GOSI percent distributed"
+msgstr "يجب أن تكون نسبة التأمينات متساوية إجمالى نسبة التأمينات الموزعة"
+
+#. module: hr_advanced_gosi
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_default_gosi__id
+msgid "ID"
+msgstr ""
+
+#. module: hr_advanced_gosi
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_default_gosi____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: hr_advanced_gosi
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_default_gosi__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: hr_advanced_gosi
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_default_gosi__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: hr_advanced_gosi
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_default_gosi__name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: hr_advanced_gosi
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_default_gosi__occupational_hazards
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_hr_contract__occupational_hazards
+msgid "Occupational Hazards"
+msgstr "المخاطر المهنية"
+
+#. module: hr_advanced_gosi
+#: code:addons/hr_advanced_gosi/models/hr_contract.py:0
+#, python-format
+msgid "Occupational Hazards must be between 0 and 100 and not equal to zero"
+msgstr "يجب أن تكون المخاطر المهنية بين 0 و 100 وألا تساوي الصفر"
+
+#. module: hr_advanced_gosi
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_default_gosi__pension_insurance
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_hr_contract__pension_insurance
+msgid "Pension Insurance"
+msgstr "تأمين تقاعد  خاص بالموظف"
+
+#. module: hr_advanced_gosi
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_default_gosi__company_pension_insurance
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_hr_contract__company_pension_insurance
+msgid "Pension Insurance Company"
+msgstr "تأمين تقاعد على بالشركة"
+
+#. module: hr_advanced_gosi
+#: code:addons/hr_advanced_gosi/models/hr_contract.py:0
+#, python-format
+msgid "Pension Insurance must be between 0 and 100 and not equal to zero"
+msgstr "يجب أن يكون تأمين المعاش بين 0 و 100 وألا يساوي الصفر"
+
+#. module: hr_advanced_gosi
+#: model_terms:ir.ui.view,arch_db:hr_advanced_gosi.view_hr_advanced_settings_form
+msgid "SET DEFAULT GOSI"
+msgstr "تعيين التأمين الافتراضي"
+
+#. module: hr_advanced_gosi
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_default_gosi__saned
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_hr_contract__saned
+msgid "Saned"
+msgstr "ساند"
+
+#. module: hr_advanced_gosi
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_default_gosi__company_saned
+#: model:ir.model.fields,field_description:hr_advanced_gosi.field_hr_contract__company_saned
+msgid "Saned Company"
+msgstr "ساند خاص بالشركة"
+
+#. module: hr_advanced_gosi
+#: code:addons/hr_advanced_gosi/models/hr_contract.py:0
+#, python-format
+msgid "Saned must be between 0 and 100 and not equal to zero"
+msgstr "يجب أن يكون ساند بين 0 و 100 وألا يساوي صفرًا"

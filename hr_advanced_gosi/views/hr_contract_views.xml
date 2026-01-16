@@ -1,0 +1,79 @@
+<odoo>
+
+    <record id="view_hr_contract_gosi_inherit_form" model="ir.ui.view">
+        <field name="name">view.hr.contract.form</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='contract_type_id']" position="after">
+                <field name="employee_gosi"/>
+                <field name="gosi_type"/>
+            </xpath>
+            <xpath expr="//page[@name='information']" position="inside">
+
+                    <group style="width:75%%">
+                        <separator string="GOSI"/>
+                        <field name="gosi_suodi"/>
+                        <label for="gosi_percent"/>
+                        <div class="o_row">
+                            <field name="gosi_percent" nolabel="1" class="oe_inline"/>
+                            <span>%</span>
+                            <field name="gosi_deduction" class="oe_inline" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <span>/ month</span>
+                        </div>
+                        <label for="occupational_hazards"/>
+                        <div class="o_row">
+                            <field name="occupational_hazards" nolabel="1" class="oe_inline"/>
+                            <span>%</span>
+                            <field name="amount_occupational_hazards" class="oe_inline" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <span>/ month</span>
+                        </div>
+
+                        <label for="pension_insurance"
+                                        invisible="gosi_suodi == False"
+                        />
+                        <div class="o_row" invisible="gosi_suodi == False">
+                            <field name="pension_insurance" nolabel="1" class="oe_inline"/>
+                            <span>%</span>
+                            <field name="amount_pension_insurance" class="oe_inline" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <span>/ month</span>
+                        </div>
+
+                        <label for="company_pension_insurance" invisible="gosi_suodi == False"/>
+                        <div class="o_row" invisible="gosi_suodi == False">
+                            <field name="company_pension_insurance" nolabel="1" class="oe_inline"/>
+                            <span>%</span>
+                            <field name="amount_company_pension_insurance" class="oe_inline" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <span>/ month</span>
+                        </div>
+
+                        <label for="saned" invisible="gosi_suodi == False"/>
+                        <div class="o_row" invisible="gosi_suodi == False">
+                            <field name="saned" nolabel="1" class="oe_inline"/>
+                            <span>%</span>
+                            <field name="amount_saned" class="oe_inline" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <span>/ month</span>
+                        </div>
+
+                        <label for="company_saned" invisible="gosi_suodi == False"/>
+                        <div class="o_row" invisible="gosi_suodi == False">
+                            <field name="company_saned" nolabel="1" class="oe_inline"/>
+                            <span>%</span>
+                            <field name="amount_company_saned" class="oe_inline" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <span>/ month</span>
+                        </div>
+
+                    </group>
+
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

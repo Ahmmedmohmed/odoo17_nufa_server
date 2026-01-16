@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="gosi_gosi_action" model="ir.actions.act_window">
+            <field name="name">Saudi Gosi</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">gosi.gosi</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="gosi_gosi_view_tree" model="ir.ui.view">
+            <field name="name">Saudi Gosi Tree</field>
+            <field name="model">gosi.gosi</field>
+            <field name="arch" type="xml">
+                <tree string="gosi_gosi_tree">
+                    <field name="name"/>
+                    <field name="gosi_type"/>
+                    <field name="gosi_percent"/>
+                    <field name="occupational_hazards"/>
+                    <field name="pension_insurance"/>
+                    <field name="company_pension_insurance"/>
+                    <field name="saned"/>
+                    <field name="company_saned"/>
+                </tree>
+            </field>
+        </record>
+        <record id="gosi_gosi_view_form" model="ir.ui.view">
+            <field name="name">gosi.view.form</field>
+            <field name="model">gosi.gosi</field>
+            <field name="arch" type="xml">
+                <form string="gosi_gosi_form">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="gosi_type" />
+                            <field name="gosi_percent" invisible="gosi_type != 'saudi'"/>
+                            <field name="occupational_hazards"/>
+                            <field name="pension_insurance" invisible="gosi_type != 'saudi'"/>
+                            <field name="company_pension_insurance" invisible="gosi_type != 'saudi'"/>
+                            <field name="saned" invisible="gosi_type != 'saudi'"/>
+                            <field name="company_saned" invisible="gosi_type != 'saudi'"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="gosi_gosi_action_menue" name="Saudi Gosi" parent="hr.menu_human_resources_configuration" action="gosi_gosi_action" sequence="100"/>
+    </data>
+</odoo>
