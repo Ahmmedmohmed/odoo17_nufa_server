@@ -153,8 +153,8 @@ class AppointmentWebsiteController(http.Controller):
             lambda p: hasattr(p, 'is_appointment_service') and (p.is_appointment_service or p.is_appointment_package)
         )
         
-        # Filter to only show services with plans
-        services = self._filter_services_with_plans(appointment_products)
+        # Filter services based on appointment flags (no plans requirement)
+        services = self._filter_services_by_flags(appointment_products)
         
         values = {
             'services': services,
@@ -163,6 +163,29 @@ class AppointmentWebsiteController(http.Controller):
         }
         return request.render('appointment_management_system_website.service_selection', values)
 
+    def _filter_services_by_flags(self, appointment_products):
+        """Filter services based on appointment flags only (no plans requirement)"""
+        filtered_services = []
+        for product in appointment_products:
+            # Determine service type based on flags priority
+            has_package_flag = getattr(product, 'is_appointment_package', False)
+            has_service_flag = product.is_appointment_service
+            
+            # Priority: if both flags are set, treat as package
+            if has_package_flag and has_service_flag:
+                filtered_services.append(product)
+            elif has_service_flag and not has_package_flag:
+                filtered_services.append(product)
+            # Skip products that don't match our criteria
+        
+        # Create recordset from filtered products
+        if filtered_services:
+            services = filtered_services[0]
+            for product in filtered_services[1:]:
+                services += product
+            return services
+        else:
+            return request.env['product.product']
 
     @http.route('/appointment/booking/calendar', type='http', auth='public', website=True)
     def booking_calendar(self, category_id=None, **kwargs):
@@ -183,28 +206,8 @@ class AppointmentWebsiteController(http.Controller):
                     lambda p: hasattr(p, 'is_appointment_service') and (p.is_appointment_service or p.is_appointment_package)
                 )
                 
-                # Filter to only show appointment products with plans (using same logic as working all-services endpoint)
-                filtered_services = []
-                for product in appointment_products:
-                    has_plans = False
-                    
-                    if product.is_appointment_service:
-                        # For regular services, check if they have plan_ids
-                        has_plans = len(product.plan_ids) > 0
-                    elif getattr(product, 'is_appointment_package', False):
-                        # For packages, check if they have package lines
-                        has_plans = len(product.appointment_package_line_ids) > 0
-                    
-                    if has_plans:
-                        filtered_services.append(product)
-                
-                # Create recordset from filtered products
-                if filtered_services:
-                    services = filtered_services[0]
-                    for product in filtered_services[1:]:
-                        services += product
-                else:
-                    services = request.env['product.product']
+                # Filter services based on appointment flags (no plans requirement)
+                services = self._filter_services_by_flags(appointment_products)
             except (ValueError, TypeError):
                 pass
         
@@ -216,28 +219,8 @@ class AppointmentWebsiteController(http.Controller):
                 ('is_appointment_package', '=', True)
             ])
             
-            # Filter to only show services with plans (using same logic as working all-services endpoint)
-            filtered_services = []
-            for service in all_appointment_services:
-                has_plans = False
-                
-                if service.is_appointment_service:
-                    # For regular services, check if they have plan_ids
-                    has_plans = len(service.plan_ids) > 0
-                elif getattr(service, 'is_appointment_package', False):
-                    # For packages, check if they have package lines
-                    has_plans = len(service.appointment_package_line_ids) > 0
-                
-                if has_plans:
-                    filtered_services.append(service)
-            
-            # Create recordset from filtered services
-            if filtered_services:
-                services = filtered_services[0]
-                for service in filtered_services[1:]:
-                    services += service
-            else:
-                services = request.env['product.product']
+            # Filter services based on appointment flags (no plans requirement)
+            services = self._filter_services_by_flags(all_appointment_services)
         
         values = {
             'page_title': _('Select Service and Time'),
@@ -759,38 +742,42 @@ class AppointmentWebsiteController(http.Controller):
             else:
                 category_products = all_appointment_products
             
-            # Filter to only show services with plans (using same logic as working all-services endpoint)
+            # Show products based on appointment flags
             import logging
             _logger = logging.getLogger(__name__)
             _logger.info(f"Services API: Processing {len(category_products)} category products")
             
             result = []
             for product in category_products:
-                # Only include services that have plans
-                has_plans = False
+                # Determine service type based on flags priority
+                has_package_flag = getattr(product, 'is_appointment_package', False)
+                has_service_flag = product.is_appointment_service
                 
-                if product.is_appointment_service:
-                    # For regular services, check if they have plan_ids
-                    has_plans = len(product.plan_ids) > 0
-                elif getattr(product, 'is_appointment_package', False):
-                    # For packages, check if they have package lines
-                    has_plans = len(product.appointment_package_line_ids) > 0
+                # Priority: if both flags are set, treat as package
+                if has_package_flag and has_service_flag:
+                    is_package = True
+                    is_service = False
+                elif has_service_flag and not has_package_flag:
+                    is_package = False
+                    is_service = True
+                else:
+                    # Skip products that don't match our criteria
+                    continue
                 
                 # Log each service processing
-                _logger.info(f"Services API: Product '{product.name}' (ID: {product.id}) - Plans: {len(product.plan_ids) if product.is_appointment_service else 'N/A'}, Include: {has_plans}")
+                _logger.info(f"Services API: Product '{product.name}' (ID: {product.id}) - Service Flag: {has_service_flag}, Package Flag: {has_package_flag}, Display As: {'Package' if is_package else 'Service'}")
                 
-                # Only add to result if service has plans
-                if has_plans:
-                    result.append({
-                        'id': product.id,
-                        'name': product.name,
-                        'description': product.description_sale or '',
-                        'is_service': product.is_appointment_service,
-                        'is_package': product.is_appointment_package,
-                        'image': f'/web/image/product.product/{product.id}/image_1920' if product.image_1920 else False,
-                    })
+                # Include all products that match our flag criteria
+                result.append({
+                    'id': product.id,
+                    'name': product.name,
+                    'description': product.description_sale or '',
+                    'is_service': is_service,
+                    'is_package': is_package,
+                    'image': f'/web/image/product.product/{product.id}/image_1920' if product.image_1920 else False,
+                })
             
-            _logger.info(f"Services API: Returning {len(result)} services with plans")
+            _logger.info(f"Services API: Returning {len(result)} appointment products based on flags")
             return result
         except Exception as e:
             import logging
@@ -845,7 +832,7 @@ class AppointmentWebsiteController(http.Controller):
 
     @http.route('/book-appointment/api/all-services', type='json', auth='public', website=True)
     def get_all_appointment_services(self):
-        """Get all appointment services from database - only show services with plans"""
+        """Get all appointment services from database - show based on appointment flags"""
         try:
             # Get all appointment services
             appointment_services = request.env['product.product'].sudo().search([
@@ -861,36 +848,35 @@ class AppointmentWebsiteController(http.Controller):
             _logger.info(f"Processing {total_services} appointment services for website display")
             
             for service in appointment_services:
-                # Only include services that have plans
-                has_plans = False
+                # Determine service type based on flags priority
+                has_package_flag = getattr(service, 'is_appointment_package', False)
+                has_service_flag = service.is_appointment_service
                 
-                if service.is_appointment_service:
-                    # For regular services, check if they have plan_ids
-                    has_plans = len(service.plan_ids) > 0
-                elif getattr(service, 'is_appointment_package', False):
-                    # For packages, check if they have package lines
-                    has_plans = len(service.appointment_package_line_ids) > 0
+                # Priority: if both flags are set, treat as package
+                if has_package_flag and has_service_flag:
+                    is_package = True
+                    is_service = False
+                elif has_service_flag and not has_package_flag:
+                    is_package = False
+                    is_service = True
+                else:
+                    # Skip products that don't match our criteria
+                    continue
                 
                 # Log service analysis
-                plan_count = len(service.plan_ids) if service.is_appointment_service else 0
-                package_count = len(service.appointment_package_line_ids) if getattr(service, 'is_appointment_package', False) else 0
-                _logger.info(f"Service '{service.name}' (ID: {service.id}) - Plans: {plan_count}, Package Lines: {package_count}, Include: {has_plans}")
+                _logger.info(f"Service '{service.name}' (ID: {service.id}) - Service Flag: {has_service_flag}, Package Flag: {has_package_flag}, Display As: {'Package' if is_package else 'Service'}")
                 
-                # Only add to result if service has plans
-                if has_plans:
-                    result.append({
-                        'id': service.id,
-                        'name': service.name,
-                        'description': service.description_sale or '',
-                        'is_service': service.is_appointment_service,
-                        'is_package': getattr(service, 'is_appointment_package', False),
-                        'image': f'/web/image/product.product/{service.id}/image_1920' if service.image_1920 else False,
-                    })
-                else:
-                    # Log which services are being excluded (for debugging)
-                    _logger.info(f"❌ EXCLUDING service '{service.name}' (ID: {service.id}) from website - no plans configured")
+                # Include all products that match our flag criteria
+                result.append({
+                    'id': service.id,
+                    'name': service.name,
+                    'description': service.description_sale or '',
+                    'is_service': is_service,
+                    'is_package': is_package,
+                    'image': f'/web/image/product.product/{service.id}/image_1920' if service.image_1920 else False,
+                })
             
-            _logger.info(f"✅ Returning {len(result)} services with plans (filtered from {total_services} total)")
+            _logger.info(f"✅ Returning {len(result)} appointment products based on flags (from {total_services} total)")
             return result
         except Exception as e:
             import logging
