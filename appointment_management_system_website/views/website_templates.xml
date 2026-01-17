@@ -3390,6 +3390,18 @@
                             service_name: document.querySelector('.service-card.selected h5')?.textContent || 'Selected Service'
                         };
                         
+                        // DEBUG: Log appointment data being sent to cart
+                        console.log('🛒 CART DEBUG - Appointment data being sent:', {
+                            service_id: appointmentData.service_id,
+                            employee_id: appointmentData.employee_id,
+                            branch_id: appointmentData.branch_id,
+                            appointment_type: appointmentData.appointment_type,
+                            price: appointmentData.price,
+                            selectedSlot_price: selectedSlot.price,
+                            location: appointmentData.location,
+                            full_data: appointmentData
+                        });
+                        
                         // Add address data if 'at your location' is selected
                         if (selectedSlot.location === 'outside') {
                             appointmentData.customer_street = document.getElementById('customerAddress').value.trim();
@@ -3429,6 +3441,13 @@
                             
                             return;
                         }
+                        
+                        // DEBUG: Log complete request being sent
+                        console.log('🚀 SENDING CART REQUEST:', {
+                            url: '/appointment/cart/add',
+                            appointment_data: appointmentData,
+                            service_data_param: { appointment_data: appointmentData }
+                        });
                         
                         // Regular single service booking
                         fetch('/appointment/cart/add', {
@@ -4509,6 +4528,7 @@
                         }
                         
                         selectedSlot.price = dynamicPrice;
+                        console.log('💰 FINAL PRICE SET - selectedSlot.price =', dynamicPrice);
                         
                         // Update price in summary
                         const priceInfo = document.getElementById('priceInfo');
@@ -4945,6 +4965,19 @@
                             service_name: document.querySelector('.service-card.selected h5')?.textContent || 'Selected Service'
                         };
                         
+                        // DEBUG: Log appointment data being sent to cart from addToSummaryCart
+                        console.log('🛒 CART DEBUG (addToSummaryCart) - Appointment data:', {
+                            service_id: appointmentData.service_id,
+                            employee_id: appointmentData.employee_id,
+                            branch_id: appointmentData.branch_id,
+                            appointment_type: appointmentData.appointment_type,
+                            price: appointmentData.price,
+                            selectedSlot_price: selectedSlot.price,
+                            location: appointmentData.location,
+                            selectedEmployee: selectedEmployee,
+                            full_data: appointmentData
+                        });
+                        
                         // Add address data if 'at your location' is selected
                         const locationType = document.getElementById('locationSelect')?.value || 'inside';
                         if (locationType === 'outside') {
@@ -4977,6 +5010,13 @@
                         })
                         .then(data => {
                             console.log('Cart response:', data);
+                            console.log('🔍 DETAILED CART RESPONSE (addToSummaryCart):', {
+                                success: data.success || (data.result && data.result.success),
+                                error: data.error || (data.result && data.result.error),
+                                appointment_id: data.appointment_id || (data.result && data.result.appointment_id),
+                                sale_order_id: data.sale_order_id || (data.result && data.result.sale_order_id),
+                                full_response: data
+                            });
                             
                             // Handle JSON-RPC response format
                             let result = data;

@@ -93,7 +93,7 @@ class AppointmentPortalController(CustomerPortal):
                 if success:
                     return request.render("appointment_management_system_website.appointment_cancelled", {
                         'appointment': appointment_sudo,
-                        'message': 'Your appointment has been cancelled successfully.'
+                        'message': _('Your appointment has been cancelled successfully.')
                     })
             return request.redirect(f'/my/appointments/{appointment_id}?error=cancel_failed')
         except:
@@ -109,7 +109,7 @@ class AppointmentPortalController(CustomerPortal):
                 if success:
                     return request.render("appointment_management_system_website.rating_submitted", {
                         'appointment': appointment_sudo,
-                        'message': 'Thank you for your feedback!'
+                        'message': _('Thank you for your feedback!')
                     })
             return request.redirect(f'/my/appointments/{appointment_id}?error=rating_failed')
         except:
@@ -153,8 +153,8 @@ class AppointmentWebsiteController(http.Controller):
             lambda p: hasattr(p, 'is_appointment_service') and (p.is_appointment_service or p.is_appointment_package)
         )
         
-        # Filter services based on appointment flags (no plans requirement)
-        services = self._filter_services_by_flags(appointment_products)
+        # Filter to only show services with plans
+        services = self._filter_services_with_plans(appointment_products)
         
         values = {
             'services': services,
@@ -163,29 +163,6 @@ class AppointmentWebsiteController(http.Controller):
         }
         return request.render('appointment_management_system_website.service_selection', values)
 
-    def _filter_services_by_flags(self, appointment_products):
-        """Filter services based on appointment flags only (no plans requirement)"""
-        filtered_services = []
-        for product in appointment_products:
-            # Determine service type based on flags priority
-            has_package_flag = getattr(product, 'is_appointment_package', False)
-            has_service_flag = product.is_appointment_service
-            
-            # Priority: if both flags are set, treat as package
-            if has_package_flag and has_service_flag:
-                filtered_services.append(product)
-            elif has_service_flag and not has_package_flag:
-                filtered_services.append(product)
-            # Skip products that don't match our criteria
-        
-        # Create recordset from filtered products
-        if filtered_services:
-            services = filtered_services[0]
-            for product in filtered_services[1:]:
-                services += product
-            return services
-        else:
-            return request.env['product.product']
 
     @http.route('/appointment/booking/calendar', type='http', auth='public', website=True)
     def booking_calendar(self, category_id=None, **kwargs):
@@ -206,8 +183,28 @@ class AppointmentWebsiteController(http.Controller):
                     lambda p: hasattr(p, 'is_appointment_service') and (p.is_appointment_service or p.is_appointment_package)
                 )
                 
-                # Filter services based on appointment flags (no plans requirement)
-                services = self._filter_services_by_flags(appointment_products)
+                # Filter to only show appointment products with plans (using same logic as working all-services endpoint)
+                filtered_services = []
+                for product in appointment_products:
+                    has_plans = False
+                    
+                    if product.is_appointment_service:
+                        # For regular services, check if they have plan_ids
+                        has_plans = len(product.plan_ids) > 0
+                    elif getattr(product, 'is_appointment_package', False):
+                        # For packages, check if they have package lines
+                        has_plans = len(product.appointment_package_line_ids) > 0
+                    
+                    if has_plans:
+                        filtered_services.append(product)
+                
+                # Create recordset from filtered products
+                if filtered_services:
+                    services = filtered_services[0]
+                    for product in filtered_services[1:]:
+                        services += product
+                else:
+                    services = request.env['product.product']
             except (ValueError, TypeError):
                 pass
         
@@ -219,8 +216,28 @@ class AppointmentWebsiteController(http.Controller):
                 ('is_appointment_package', '=', True)
             ])
             
-            # Filter services based on appointment flags (no plans requirement)
-            services = self._filter_services_by_flags(all_appointment_services)
+            # Filter to only show services with plans (using same logic as working all-services endpoint)
+            filtered_services = []
+            for service in all_appointment_services:
+                has_plans = False
+                
+                if service.is_appointment_service:
+                    # For regular services, check if they have plan_ids
+                    has_plans = len(service.plan_ids) > 0
+                elif getattr(service, 'is_appointment_package', False):
+                    # For packages, check if they have package lines
+                    has_plans = len(service.appointment_package_line_ids) > 0
+                
+                if has_plans:
+                    filtered_services.append(service)
+            
+            # Create recordset from filtered services
+            if filtered_services:
+                services = filtered_services[0]
+                for service in filtered_services[1:]:
+                    services += service
+            else:
+                services = request.env['product.product']
         
         values = {
             'page_title': _('Select Service and Time'),
@@ -365,12 +382,29 @@ class AppointmentWebsiteController(http.Controller):
             # Calculate price based on plan_ids, employee department, and location
             branch_id = appointment_data.get('branch_id', 1)
             appointment_type = appointment_data.get('appointment_type', 'inside')
+            _logger.info(f"PRICE CALCULATION - service_id: {service_id}, branch_id: {branch_id}, employee_id: {employee_id}, appointment_type: {appointment_type}")
+            
             try:
                 plan_price = product.action_get_appointment_service_price(
                     branch_id, employee_id, appointment_type, False
                 )
-                price = plan_price if plan_price else 0.0
-            except:
+                _logger.info(f"PRICE CALCULATION RESULT - plan_price: {plan_price}, type: {type(plan_price)}")
+                
+                # Add detailed debugging for price condition
+                debug_file = "/tmp/cart_debug.log"
+                with open(debug_file, "a") as f:
+                    f.write(f"CONTROLLER PRICE CHECK - plan_price: {plan_price}, type: {type(plan_price)}\n")
+                    f.write(f"CONTROLLER PRICE CHECK - plan_price truthy: {bool(plan_price)}\n")
+                    f.write(f"CONTROLLER PRICE CHECK - plan_price > 0: {plan_price > 0 if plan_price is not None else 'N/A'}\n")
+                    f.write(f"CONTROLLER PRICE CHECK - condition result: {plan_price and plan_price > 0}\n")
+                
+                price = float(plan_price) if plan_price and plan_price > 0 else 0.0
+                _logger.info(f"FINAL PRICE SET - price: {price}")
+                
+                with open(debug_file, "a") as f:
+                    f.write(f"CONTROLLER FINAL PRICE - price: {price}\n")
+            except Exception as e:
+                _logger.error(f"PRICE CALCULATION ERROR: {str(e)}")
                 price = 0.0
             
             # Handle slot_ids - either validate existing IDs or find slot by time
@@ -455,7 +489,23 @@ class AppointmentWebsiteController(http.Controller):
                     'name': f"{product.name} - Appointment {appointment_data.get('date')} at {appointment_data.get('time')}",
                 }
                 
+                _logger.info(f"ORDER LINE CREATION - price_unit being set: {price}")
+                _logger.info(f"ORDER LINE CREATION - order_line_vals: {order_line_vals}")
+                
+                # Add file-based debugging
+                debug_file = "/tmp/cart_debug.log"
+                with open(debug_file, "a") as f:
+                    f.write(f"CONTROLLER DEBUG - Creating order line with price: {price}, vals: {order_line_vals}\n")
+                
                 order_line = request.env['sale.order.line'].sudo().create(order_line_vals)
+                
+                _logger.info(f"ORDER LINE CREATED - ID: {order_line.id}, price_unit: {order_line.price_unit}, product_uom_qty: {order_line.product_uom_qty}")
+                _logger.info(f"ORDER LINE CREATED - product.list_price: {product.list_price}")
+                _logger.info(f"ORDER LINE CREATED - is_appointment_custom_price: {getattr(order_line, 'is_appointment_custom_price', 'NOT SET')}")
+                
+                # Add more file-based debugging
+                with open(debug_file, "a") as f:
+                    f.write(f"CONTROLLER DEBUG - After creation - order_line.price_unit: {order_line.price_unit}, is_appointment_custom_price: {getattr(order_line, 'is_appointment_custom_price', 'NOT SET')}\n")
                 
                 # Link appointment to sale order and order line
                 appointment.write({
@@ -742,42 +792,38 @@ class AppointmentWebsiteController(http.Controller):
             else:
                 category_products = all_appointment_products
             
-            # Show products based on appointment flags
+            # Filter to only show services with plans (using same logic as working all-services endpoint)
             import logging
             _logger = logging.getLogger(__name__)
             _logger.info(f"Services API: Processing {len(category_products)} category products")
             
             result = []
             for product in category_products:
-                # Determine service type based on flags priority
-                has_package_flag = getattr(product, 'is_appointment_package', False)
-                has_service_flag = product.is_appointment_service
+                # Only include services that have plans
+                has_plans = False
                 
-                # Priority: if both flags are set, treat as package
-                if has_package_flag and has_service_flag:
-                    is_package = True
-                    is_service = False
-                elif has_service_flag and not has_package_flag:
-                    is_package = False
-                    is_service = True
-                else:
-                    # Skip products that don't match our criteria
-                    continue
+                if product.is_appointment_service:
+                    # For regular services, check if they have plan_ids
+                    has_plans = len(product.plan_ids) > 0
+                elif getattr(product, 'is_appointment_package', False):
+                    # For packages, check if they have package lines
+                    has_plans = len(product.appointment_package_line_ids) > 0
                 
                 # Log each service processing
-                _logger.info(f"Services API: Product '{product.name}' (ID: {product.id}) - Service Flag: {has_service_flag}, Package Flag: {has_package_flag}, Display As: {'Package' if is_package else 'Service'}")
+                _logger.info(f"Services API: Product '{product.name}' (ID: {product.id}) - Plans: {len(product.plan_ids) if product.is_appointment_service else 'N/A'}, Include: {has_plans}")
                 
-                # Include all products that match our flag criteria
-                result.append({
-                    'id': product.id,
-                    'name': product.name,
-                    'description': product.description_sale or '',
-                    'is_service': is_service,
-                    'is_package': is_package,
-                    'image': f'/web/image/product.product/{product.id}/image_1920' if product.image_1920 else False,
-                })
+                # Only add to result if service has plans
+                if has_plans:
+                    result.append({
+                        'id': product.id,
+                        'name': product.name,
+                        'description': product.description_sale or '',
+                        'is_service': product.is_appointment_service,
+                        'is_package': product.is_appointment_package,
+                        'image': f'/web/image/product.product/{product.id}/image_1920' if product.image_1920 else False,
+                    })
             
-            _logger.info(f"Services API: Returning {len(result)} appointment products based on flags")
+            _logger.info(f"Services API: Returning {len(result)} services with plans")
             return result
         except Exception as e:
             import logging
@@ -832,7 +878,7 @@ class AppointmentWebsiteController(http.Controller):
 
     @http.route('/book-appointment/api/all-services', type='json', auth='public', website=True)
     def get_all_appointment_services(self):
-        """Get all appointment services from database - show based on appointment flags"""
+        """Get all appointment services from database - only show services with plans"""
         try:
             # Get all appointment services
             appointment_services = request.env['product.product'].sudo().search([
@@ -848,35 +894,36 @@ class AppointmentWebsiteController(http.Controller):
             _logger.info(f"Processing {total_services} appointment services for website display")
             
             for service in appointment_services:
-                # Determine service type based on flags priority
-                has_package_flag = getattr(service, 'is_appointment_package', False)
-                has_service_flag = service.is_appointment_service
+                # Only include services that have plans
+                has_plans = False
                 
-                # Priority: if both flags are set, treat as package
-                if has_package_flag and has_service_flag:
-                    is_package = True
-                    is_service = False
-                elif has_service_flag and not has_package_flag:
-                    is_package = False
-                    is_service = True
-                else:
-                    # Skip products that don't match our criteria
-                    continue
+                if service.is_appointment_service:
+                    # For regular services, check if they have plan_ids
+                    has_plans = len(service.plan_ids) > 0
+                elif getattr(service, 'is_appointment_package', False):
+                    # For packages, check if they have package lines
+                    has_plans = len(service.appointment_package_line_ids) > 0
                 
                 # Log service analysis
-                _logger.info(f"Service '{service.name}' (ID: {service.id}) - Service Flag: {has_service_flag}, Package Flag: {has_package_flag}, Display As: {'Package' if is_package else 'Service'}")
+                plan_count = len(service.plan_ids) if service.is_appointment_service else 0
+                package_count = len(service.appointment_package_line_ids) if getattr(service, 'is_appointment_package', False) else 0
+                _logger.info(f"Service '{service.name}' (ID: {service.id}) - Plans: {plan_count}, Package Lines: {package_count}, Include: {has_plans}")
                 
-                # Include all products that match our flag criteria
-                result.append({
-                    'id': service.id,
-                    'name': service.name,
-                    'description': service.description_sale or '',
-                    'is_service': is_service,
-                    'is_package': is_package,
-                    'image': f'/web/image/product.product/{service.id}/image_1920' if service.image_1920 else False,
-                })
+                # Only add to result if service has plans
+                if has_plans:
+                    result.append({
+                        'id': service.id,
+                        'name': service.name,
+                        'description': service.description_sale or '',
+                        'is_service': service.is_appointment_service,
+                        'is_package': getattr(service, 'is_appointment_package', False),
+                        'image': f'/web/image/product.product/{service.id}/image_1920' if service.image_1920 else False,
+                    })
+                else:
+                    # Log which services are being excluded (for debugging)
+                    _logger.info(f"❌ EXCLUDING service '{service.name}' (ID: {service.id}) from website - no plans configured")
             
-            _logger.info(f"✅ Returning {len(result)} appointment products based on flags (from {total_services} total)")
+            _logger.info(f"✅ Returning {len(result)} services with plans (filtered from {total_services} total)")
             return result
         except Exception as e:
             import logging
@@ -1283,9 +1330,33 @@ class AppointmentWebsiteController(http.Controller):
                     if all(slot.state == 'draft' for slot in slots):
                         slots.write({'state': 'wait'})
                         
+                        # Calculate package total price
+                        total_package_price = 0.0
+                        for service_id, details in service_data['package_services'].items():
+                            try:
+                                service_product = request.env['product.product'].sudo().browse(int(service_id))
+                                service_price = service_product.action_get_appointment_service_price(
+                                    branch_id=details.get('branch_id'),
+                                    employee_id=details.get('employee_id'),
+                                    appointment_type=details.get('appointment_type', 'inside'),
+                                    package_id=service_data['service_id']  # Pass package ID
+                                )
+                                if service_price and service_price > 0:
+                                    total_package_price += float(service_price)
+                                    details['price'] = float(service_price)  # Store individual service price
+                                else:
+                                    details['price'] = 0.0
+                            except Exception as e:
+                                _logger.error(f"Error calculating price for package service {service_id}: {str(e)}")
+                                details['price'] = 0.0
+                        
                         # Enhance service data for cart display
                         service_data['service_name'] = service.name
                         service_data['timestamp'] = timestamp
+                        service_data['price'] = total_package_price
+                        service_data['total_package_price'] = total_package_price
+                        
+                        _logger.info(f"Package cart add - total price: {total_package_price}")
                         
                         cart[cart_key] = service_data
                         request.session['appointment_cart'] = cart
@@ -1304,19 +1375,32 @@ class AppointmentWebsiteController(http.Controller):
                     first_slot = slots[0] if slots else None
                     time_slot = first_slot.name if first_slot else 'Unknown time'
                     
-                    # Get price
+                    # Get and validate price
                     price = service_data.get('price', 0)
-                    if not price:
-                        # Calculate price based on appointment type and location
-                        try:
-                            price = service.action_get_appointment_service_price(
-                                service_data.get('branch_id'),
-                                service_data.get('employee_id'),
-                                service_data.get('appointment_type', 'inside'),
-                                False
-                            )
-                        except:
-                            price = False
+                    _logger.info(f"Cart add - initial price from frontend: {price}")
+                    
+                    # Always calculate price to ensure accuracy
+                    try:
+                        calculated_price = service.action_get_appointment_service_price(
+                            branch_id=service_data.get('branch_id'),
+                            employee_id=service_data.get('employee_id'),
+                            appointment_type=service_data.get('appointment_type', 'inside'),
+                            package_id=False
+                        )
+                        _logger.info(f"Cart add - calculated price: {calculated_price}")
+                        
+                        # Use calculated price if it's valid, otherwise use frontend price
+                        if calculated_price and calculated_price > 0:
+                            price = float(calculated_price)
+                        elif price:
+                            price = float(price)
+                        else:
+                            price = 0.0
+                            
+                    except Exception as e:
+                        _logger.error(f"Price calculation error in cart add: {str(e)}")
+                        # Fallback to frontend price or 0.0
+                        price = float(price) if price else 0.0
                     
                     # Reserve slots
                     slots.write({'state': 'wait'})

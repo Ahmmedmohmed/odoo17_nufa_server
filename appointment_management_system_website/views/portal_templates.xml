@@ -416,9 +416,7 @@
                     <form t-attf-action="/my/appointments/#{appointment.id}/cancel" method="post">
                         <div class="modal-header">
                             <h5 class="modal-title" id="cancelModalLabel">Cancel Appointment</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&amp;times;</span>
-                            </button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" data-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
@@ -445,9 +443,7 @@
                     <form t-attf-action="/my/appointments/#{appointment.id}/rate" method="post">
                         <div class="modal-header">
                             <h5 class="modal-title" id="ratingModalLabel">Rate Your Experience</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&amp;times;</span>
-                            </button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" data-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">

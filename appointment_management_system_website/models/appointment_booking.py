@@ -150,8 +150,20 @@ class AppointmentManagement(models.Model):
         """Submit rating from portal"""
         self.ensure_one()
         if self.state == '3':  # Completed
+            # Map star rating (1-5) to service_rate values (0-3)
+            rating_mapping = {
+                '1': '0',  # 1 star = Low
+                '2': '1',  # 2 stars = Medium  
+                '3': '1',  # 3 stars = Medium
+                '4': '2',  # 4 stars = High
+                '5': '3'   # 5 stars = Very High
+            }
+            
+            service_rate_value = rating_mapping.get(str(rating), '1')  # Default to Medium
+            
             self.write({
-                'employee_rating': rating,
+                'employee_rating': rating,  # Keep both for compatibility
+                'service_rate': service_rate_value,  # Map to backend field
                 'rating_comment': comment,
             })
             return True

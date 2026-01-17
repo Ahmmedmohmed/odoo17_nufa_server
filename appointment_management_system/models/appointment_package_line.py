@@ -19,3 +19,9 @@ class AppointmentPackageLine(models.Model):
     service_slot_outside  = fields.Integer(string='Slot Number (Outside)')
     service_price_inside  = fields.Monetary(string='Price (Inside)')
     service_price_outside = fields.Monetary(string='Price (Outside)')
+    
+    location_type = fields.Selection([
+        ('inside', 'Inside'),
+        ('outside', 'Outside'),
+        ('both', 'Both')
+    ], string='Location Type', default='both', help="Control where this package service can be booked: Inside (At Branch only), Outside (At Your Location only), or Both")

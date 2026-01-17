@@ -92,7 +92,7 @@ msgstr "<i class=\"fa fa-filter\"/> تصفية المواعيد"
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
 msgid "<i class=\"fa fa-home\"/> Service Address"
-msgstr ""
+msgstr "<i class=\"fa fa-home\"/> عنوان الخدمة"
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.category_selection
@@ -107,17 +107,17 @@ msgstr "<i class=\"fa fa-info-circle\"/> لا توجد خدمات متاحة ل�
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointments
 msgid "<i class=\"fa fa-plus-circle\"/> Book Your First Appointment"
-msgstr ""
+msgstr "<i class=\"fa fa-plus-circle\"/> احجز موعدك الأول"
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
 msgid "<i class=\"fa fa-refresh\"/> <span id=\"resetAllButtonText\">Reset All</span>"
-msgstr ""
+msgstr "<i class=\"fa fa-refresh\"/> <span id=\"resetAllButtonText\">إعادة تعيين الكل</span>"
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
 msgid "<i class=\"fa fa-scissors\"/> Service Details"
-msgstr ""
+msgstr "<i class=\"fa fa-scissors\"/> تفاصيل الخدمة"
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
@@ -134,14 +134,14 @@ msgstr "<i class=\"fa fa-shopping-cart\"/> السلة الحالية"
 msgid ""
 "<i class=\"fa fa-sign-in mr-2\"/>\n"
 "                                                        Sign In"
-msgstr ""
+msgstr "<i class=\"fa fa-sign-in mr-2\"/>\n                                                        تسجيل الدخول"
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.authentication_required_template
 msgid ""
 "<i class=\"fa fa-sign-in mr-2\"/>\n"
 "                                                        تسجيل الدخول"
-msgstr ""
+msgstr "<i class=\"fa fa-sign-in mr-2\"/>\n                                                        تسجيل الدخول"
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
@@ -176,14 +176,14 @@ msgstr "<i class=\"fa fa-user\"/> تصفية حسب الموظف"
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
 msgid "<i class=\"fa fa-user\"/> Staff &amp; Branch"
-msgstr ""
+msgstr "<i class=\"fa fa-user\"/> الموظفين والفرع"
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.authentication_required_template
 msgid ""
 "<i class=\"fa fa-user-plus mr-2\"/>\n"
 "                                                        Sign Up"
-msgstr ""
+msgstr "<i class=\"fa fa-user-plus mr-2\"/>\n                                                        إنشاء حساب"
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.authentication_required_template
@@ -335,7 +335,7 @@ msgstr ""
 msgid ""
 "<small><i class=\"fa fa-exclamation-triangle\"/> This action cannot be "
 "undone. Your appointment will be cancelled immediately.</small>"
-msgstr ""
+msgstr "<small><i class=\"fa fa-exclamation-triangle\"/> لا يمكن تراجع هذا الإجراء. سيتم إلغاء موعدك فوراً.</small>"
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointments
@@ -345,17 +345,17 @@ msgstr "<small>تقييمك: </small>"
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
 msgid "<span aria-hidden=\"true\">&amp;times;</span>"
-msgstr "<span aria-hidden=\"true\">&amp;times;</span>"
+msgstr ""
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointments
 msgid "<span class=\"badge badge-danger status-badge\">Cancelled</span>"
-msgstr ""
+msgstr "<span class=\"badge badge-danger status-badge\">ملغي</span>"
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointments
 msgid "<span class=\"badge badge-info status-badge\">Completed</span>"
-msgstr ""
+msgstr "<span class=\"badge badge-info status-badge\">مكتمل</span>"
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
@@ -388,7 +388,7 @@ msgstr ""
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointments
 msgid "<span class=\"badge badge-success status-badge\">Approved</span>"
-msgstr ""
+msgstr "<span class=\"badge badge-success status-badge\">موافق عليه</span>"
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
@@ -410,7 +410,7 @@ msgstr "<span class=\"badge badge-success\">+25$ رسوم خدمة</span>"
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointments
 msgid "<span class=\"badge badge-warning status-badge\">Pending</span>"
-msgstr ""
+msgstr "<span class=\"badge badge-warning status-badge\">قيد الانتظار</span>"
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.booking_calendar
@@ -436,7 +436,7 @@ msgid ""
 "<span class=\"badge bg-danger status-badge-large\">\n"
 "                                                    <i class=\"fa fa-times-circle\"/> Cancelled\n"
 "                                                </span>"
-msgstr ""
+msgstr "<span class=\"badge bg-danger status-badge-large\">\n                                                    <i class=\"fa fa-times-circle\"/> ملغي\n                                                </span>"
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
@@ -444,7 +444,7 @@ msgid ""
 "<span class=\"badge bg-info text-white status-badge-large\">\n"
 "                                                    <i class=\"fa fa-check-circle\"/> Completed\n"
 "                                                </span>"
-msgstr ""
+msgstr "<span class=\"badge bg-info text-white status-badge-large\">\n                                                    <i class=\"fa fa-check-circle\"/> مكتمل\n                                                </span>"
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
@@ -452,7 +452,7 @@ msgid ""
 "<span class=\"badge bg-success status-badge-large\">\n"
 "                                                    <i class=\"fa fa-check\"/> Approved\n"
 "                                                </span>"
-msgstr ""
+msgstr "<span class=\"badge bg-success status-badge-large\">\n                                                    <i class=\"fa fa-check\"/> موافق عليه\n                                                </span>"
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
@@ -460,7 +460,7 @@ msgid ""
 "<span class=\"badge bg-warning text-dark status-badge-large\">\n"
 "                                                    <i class=\"fa fa-clock-o\"/> Pending Approval\n"
 "                                                </span>"
-msgstr ""
+msgstr "<span class=\"badge bg-warning text-dark status-badge-large\">\n                                                    <i class=\"fa fa-clock-o\"/> في انتظار الموافقة\n                                                </span>"
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.view_appointment_form_readonly
@@ -482,7 +482,7 @@ msgstr "<span class=\"ribbon bg-success\">باقة</span>"
 msgid ""
 "<strong>Appointments</strong><br/>\n"
 "                        <small class=\"text-muted\">View and manage your appointments</small>"
-msgstr ""
+msgstr "<strong>المواعيد</strong><br/>\n                        <small class=\"text-muted\">عرض وإدارة مواعيدك</small>"
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
@@ -492,7 +492,7 @@ msgstr ""
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
 msgid "Additional Comments (Optional):"
-msgstr ""
+msgstr "تعليقات إضافية (اختياري):"
 
 #. module: appointment_management_system_website
 #: model:ir.model.fields,help:appointment_management_system_website.field_appointment_management__customer_notes
@@ -507,7 +507,7 @@ msgstr "أي تعليمات خاصة لمقدم الخدمة..."
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
 msgid "Appointment #"
-msgstr ""
+msgstr "رقم الموعد #"
 
 #. module: appointment_management_system_website
 #: model:ir.model.fields,field_description:appointment_management_system_website.field_account_bank_statement_line__appointment_count
@@ -1094,49 +1094,106 @@ msgstr ""
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
 msgid "⭐ (Poor)"
-msgstr ""
+msgstr "⭐ (ضعيف)"
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
 msgid "⭐ Poor"
-msgstr ""
+msgstr "⭐ ضعيف"
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
 msgid "⭐⭐ (Fair)"
-msgstr ""
+msgstr "⭐⭐ (عادي)"
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
 msgid "⭐⭐ Fair"
-msgstr ""
+msgstr "⭐⭐ عادي"
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
 msgid "⭐⭐⭐ (Good)"
-msgstr ""
+msgstr "⭐⭐⭐ (جيد)"
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
 msgid "⭐⭐⭐ Good"
-msgstr ""
+msgstr "⭐⭐⭐ جيد"
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
 msgid "⭐⭐⭐⭐ (Very Good)"
-msgstr ""
+msgstr "⭐⭐⭐⭐ (جيد جدا)"
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
 msgid "⭐⭐⭐⭐ Very Good"
-msgstr ""
+msgstr "⭐⭐⭐⭐ جيد جدا"
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
 msgid "⭐⭐⭐⭐⭐ (Excellent)"
-msgstr ""
+msgstr "⭐⭐⭐⭐⭐ (ممتاز)"
 
 #. module: appointment_management_system_website
 #: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointment_detail
 msgid "⭐⭐⭐⭐⭐ Excellent"
-msgstr ""
+msgstr "⭐⭐⭐⭐⭐ ممتاز"
+
+#. module: appointment_management_system_website
+#: code:addons/appointment_management_system_website/controllers/appointment_website_controller.py:96
+#, python-format
+msgid "Your appointment has been cancelled successfully."
+msgstr "تم إلغاء موعدك بنجاح."
+
+#. module: appointment_management_system_website
+#: code:addons/appointment_management_system_website/controllers/appointment_website_controller.py:112
+#, python-format
+msgid "Thank you for your feedback!"
+msgstr "شكراً لك على تقييمك!"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointments
+msgid "Pending"
+msgstr "قيد الانتظار"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointments
+msgid "Approved"
+msgstr "موافق عليه"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointments
+msgid "Completed"
+msgstr "مكتمل"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointments
+msgid "Cancelled"
+msgstr "ملغي"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointments
+msgid "View Details"
+msgstr "عرض التفاصيل"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointments
+msgid "Your Rating:"
+msgstr "تقييمك:"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointments
+msgid "No Appointments Yet"
+msgstr "لا توجد مواعيد بعد"
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointments
+msgid "You haven't booked any appointments with us yet."
+msgstr "لم تحجز أي مواعيد معنا بعد."
+
+#. module: appointment_management_system_website
+#: model_terms:ir.ui.view,arch_db:appointment_management_system_website.portal_appointments
+msgid "Book Your First Appointment"
+msgstr "احجز موعدك الأول"

@@ -23,12 +23,13 @@
                     <page string="Appointment Configuration" invisible="not is_appointment_service or detailed_type != 'service' or is_appointment_package">
                         <field name="plan_ids">
                             <tree editable="top">
-                                <field name="branch_id" options="{'no_create': True, 'no_create_edit':True}" width="25%"/>
-                                <field name="department_id" options="{'no_create': True, 'no_create_edit':True}" width="25%" readonly="not branch_id" domain="[('company_id', '=', branch_id)]"/>
-                                <field name="service_slot_inside" width="12.5%" readonly="not branch_id or not department_id"/>
-                                <field name="service_slot_outside" width="12.5%" readonly="not branch_id or not department_id"/>
-                                <field name="service_price_inside" width="12.5%" readonly="not branch_id or not department_id"/>
-                                <field name="service_price_outside" width="12.5%" readonly="not branch_id or not department_id"/>
+                                <field name="branch_id" options="{'no_create': True, 'no_create_edit':True}" width="20%"/>
+                                <field name="department_id" options="{'no_create': True, 'no_create_edit':True}" width="20%" readonly="not branch_id" domain="[('company_id', '=', branch_id)]"/>
+                                <field name="location_type" width="15%" readonly="not branch_id or not department_id"/>
+                                <field name="service_slot_inside" width="11%" readonly="not branch_id or not department_id"/>
+                                <field name="service_slot_outside" width="11%" readonly="not branch_id or not department_id"/>
+                                <field name="service_price_inside" width="11.5%" readonly="not branch_id or not department_id"/>
+                                <field name="service_price_outside" width="11.5%" readonly="not branch_id or not department_id"/>
                                 <field name="currency_id" readonly="1" column_invisible="1"/>
                             </tree>
                         </field>
@@ -37,13 +38,14 @@
                     <page string="Appointment Package Configuration" invisible="not is_appointment_package or detailed_type != 'service'">
                         <field name="appointment_package_line_ids">
                             <tree editable="top">
-                                <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
-                                <field name="branch_id" options="{'no_create': True, 'no_create_edit':True}" width="25%"/>
-                                <field name="department_id" options="{'no_create': True, 'no_create_edit':True}" width="25%" readonly="not branch_id" domain="[('company_id', '=', branch_id)]"/>
-                                <field name="service_slot_inside" width="12.5%" readonly="not branch_id or not department_id"/>
-                                <field name="service_slot_outside" width="12.5%" readonly="not branch_id or not department_id"/>
-                                <field name="service_price_inside" width="12.5%" readonly="not branch_id or not department_id"/>
-                                <field name="service_price_outside" width="12.5%" readonly="not branch_id or not department_id"/>
+                                <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" width="20%"/>
+                                <field name="branch_id" options="{'no_create': True, 'no_create_edit':True}" width="18%"/>
+                                <field name="department_id" options="{'no_create': True, 'no_create_edit':True}" width="18%" readonly="not branch_id" domain="[('company_id', '=', branch_id)]"/>
+                                <field name="location_type" width="12%" readonly="not branch_id or not department_id"/>
+                                <field name="service_slot_inside" width="8%" readonly="not branch_id or not department_id"/>
+                                <field name="service_slot_outside" width="8%" readonly="not branch_id or not department_id"/>
+                                <field name="service_price_inside" width="8%" readonly="not branch_id or not department_id"/>
+                                <field name="service_price_outside" width="8%" readonly="not branch_id or not department_id"/>
                                 <field name="currency_id" readonly="1" column_invisible="1"/>
                             </tree>
                         </field>
