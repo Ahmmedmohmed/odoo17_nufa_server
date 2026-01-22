@@ -1,6 +1,49 @@
 // Website booking system for appointments
+
+// Define currency functions immediately - before any other code
+window.getSafeCurrency = window.getSafeCurrency || function(serviceId) { 
+    return window.COMPANY_CURRENCY || '$'; 
+};
+window.getServiceCurrency = window.getServiceCurrency || function(serviceId) { 
+    return window.COMPANY_CURRENCY || '$'; 
+};
+
 (function () {
     'use strict';
+    
+    // Set default currency if not defined
+    if (typeof window.COMPANY_CURRENCY === 'undefined') {
+        window.COMPANY_CURRENCY = '$'; // Default fallback
+    }
+    
+    // Set default service currencies if not defined
+    if (typeof window.SERVICE_CURRENCIES === 'undefined') {
+        window.SERVICE_CURRENCIES = {};
+    }
+    
+    // Function to get currency for a specific service
+    if (typeof window.getServiceCurrency === 'undefined') {
+        window.getServiceCurrency = function(serviceId) {
+            try {
+                if (typeof window.SERVICE_CURRENCIES !== 'undefined' && window.SERVICE_CURRENCIES[serviceId]) {
+                    return window.SERVICE_CURRENCIES[serviceId];
+                }
+                return window.COMPANY_CURRENCY || '$';
+            } catch (e) {
+                console.warn('Error in getServiceCurrency fallback:', e);
+                return '$';
+            }
+        };
+    }
+    
+    // Define a safe currency getter function
+    window.getSafeCurrency = function(serviceId) {
+        if (typeof window.getServiceCurrency === 'function') {
+            return window.getServiceCurrency(serviceId);
+        }
+        // Ultimate fallback
+        return '$';
+    };
 
     // Global functions for template onclick handlers
     window.selectCategory = function(element) {
@@ -809,7 +852,7 @@
                 <div class="emp-info">
                     <div class="emp-name">${empName}</div>
                     <div class="emp-branch">${branchName}</div>
-                    <div class="emp-price">$${price.toFixed(2)}</div>
+                    <div class="emp-price">${window.getSafeCurrency(window.selectedServiceId || null)}${price.toFixed(2)}</div>
                     <div class="emp-duration">${duration} min</div>
                 </div>
             </div>`;
@@ -1088,7 +1131,7 @@
                     const slotButton = document.createElement('button');
                     slotButton.className = 'slot-btn available';
                     slotButton.textContent = slot.time || slot.name;
-                    slotButton.title = `Book appointment at ${slot.time || slot.name} - $${dynamicPrice.toFixed(2)}`;
+                    slotButton.title = `Book appointment at ${slot.time || slot.name} - ${window.getSafeCurrency(window.selectedServiceId || null)}${dynamicPrice.toFixed(2)}`;
                     
                     // Store slot data for booking with dynamic price
                     slotButton.dataset.slotData = JSON.stringify({
@@ -1270,7 +1313,7 @@
                         
                         <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; background: linear-gradient(135deg, #c16d4b 0%, #a85a3c 100%); margin: 12px -12px -12px -12px; padding-left: 12px; padding-right: 12px; border-radius: 0 0 12px 12px;">
                             <strong style="color: white; font-size: 16px;">💰 Total Price:</strong> 
-                            <span id="summaryPrice" style="color: white; font-weight: 800; font-size: 20px;">$${price.toFixed(2)}</span>
+                            <span id="summaryPrice" style="color: white; font-weight: 800; font-size: 20px;">${window.getSafeCurrency(window.selectedServiceId || null)}${price.toFixed(2)}</span>
                         </div>
                     </div>
                 </div>
@@ -1320,7 +1363,7 @@
     function updateSummaryPrice(newPrice) {
         const priceElement = document.getElementById('summaryPrice');
         if (priceElement) {
-            priceElement.textContent = `$${newPrice.toFixed(2)}`;
+            priceElement.textContent = `${window.getSafeCurrency(window.selectedServiceId || null)}${newPrice.toFixed(2)}`;
         }
         
         // Update the stored slot data with the new price
@@ -2758,7 +2801,7 @@
                                         <strong>تشمل الباقة:</strong><br>
                                         ${servicesList}
                                     </p>
-                                    <p class="cart_item_price">$${(item.price || 0).toFixed(2)}</p>
+                                    <p class="cart_item_price">${window.getSafeCurrency(item.service_id || null)}${(item.price || 0).toFixed(2)}</p>
                                 </div>
                                 <button type="button" class="btn btn_remove remove_cart_item" data-cart-key="${key}">
                                     <i class="fa fa-trash"></i>
@@ -2784,7 +2827,7 @@
                                         <strong>Date & Time:</strong> ${dateTime}<br>
                                         <strong>Location:</strong> ${locationText}
                                     </p>
-                                    <p class="cart_item_price">$${(item.price || 0).toFixed(2)}</p>
+                                    <p class="cart_item_price">${window.getSafeCurrency(item.service_id || null)}${(item.price || 0).toFixed(2)}</p>
                                 </div>
                                 <button type="button" class="btn btn_remove remove_cart_item" data-cart-key="${key}">
                                     <i class="fa fa-trash"></i>

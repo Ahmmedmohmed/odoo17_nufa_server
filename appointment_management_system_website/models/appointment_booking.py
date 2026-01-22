@@ -236,6 +236,11 @@ class ResPartner(models.Model):
 class ProductProduct(models.Model):
     _inherit = 'product.product'
     
+    # Add currency field for service-specific currency
+    currency_id = fields.Many2one('res.currency', string='Service Currency', 
+                                  default=lambda self: self.env.company.currency_id,
+                                  help="Currency for this service pricing")
+    
     def get_website_appointment_price(self, appointment_type='inside', branch_id=None, department_id=None):
         """Get appointment price for website display"""
         self.ensure_one()

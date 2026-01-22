@@ -25,7 +25,7 @@
                                         </t>
                                         <t t-else="">
                                             <div class="rounded-circle d-flex align-items-center justify-content-center mx-auto" 
-                                                 style="width: 100px; height: 100px; background-color: #007bff; color: white; font-size: 2rem;">
+                                                 style="width: 100px; height: 100px; background-color: #C76E49; color: white; font-size: 2rem;">
                                                 <i class="fa fa-scissors"></i>
                                             </div>
                                         </t>
@@ -55,7 +55,7 @@
                     .category-card:hover {
                         transform: translateY(-5px);
                         box-shadow: 0 8px 25px rgba(0,123,255,0.15) !important;
-                        border-color: #007bff;
+                        border-color: #C76E49;
                     }
                     
                     .category-card img {
@@ -88,14 +88,14 @@
                     }
                     
                     .date-card:hover {
-                        border-color: #28a745;
+                        border-color: #C76E49;
                         transform: translateY(-2px);
                         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
                     }
                     
                     .date-card.selected {
-                        border-color: #28a745;
-                        background-color: #28a745;
+                        border-color: #C76E49;
+                        background-color: #C76E49;
                         color: white;
                         transform: translateY(-2px);
                         box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
@@ -178,10 +178,64 @@
             </div>
             
             <script type="text/javascript">
+                // Define basic currency function immediately - before any other code
+                window.getSafeCurrency = window.getSafeCurrency || function(serviceId) { return '$'; };
+                window.getServiceCurrency = window.getServiceCurrency || function(serviceId) { return '$'; };
+                
+                // Initialize currency functions immediately
+                (function() {
+                    // Global currency symbol for dynamic pricing
+                    const COMPANY_CURRENCY = '<t t-esc="company_currency"/>';
+                    window.COMPANY_CURRENCY = COMPANY_CURRENCY;
+                    
+                    // Service-specific currencies
+                    const SERVICE_CURRENCIES = <t t-esc="json.dumps(service_currencies)"/>;
+                    window.SERVICE_CURRENCIES = SERVICE_CURRENCIES;
+                    
+                    // Function to get currency for a specific service
+                    window.getServiceCurrency = function(serviceId) {
+                    try {
+                        // Ensure SERVICE_CURRENCIES exists
+                        if (typeof SERVICE_CURRENCIES === 'undefined') {
+                            console.warn('SERVICE_CURRENCIES not defined, using company currency');
+                            return COMPANY_CURRENCY || '$';
+                        }
+                        return SERVICE_CURRENCIES[serviceId] || COMPANY_CURRENCY || '$';
+                    } catch (e) {
+                        console.warn('Error in getServiceCurrency:', e);
+                        return COMPANY_CURRENCY || '$';
+                    }
+                };
+                
+                // Ensure the function is immediately available globally
+                if (!window.getServiceCurrency) {
+                    window.getServiceCurrency = function(serviceId) {
+                        return '$'; // Fallback
+                    };
+                }
+                
+                // Define a safe currency getter function
+                window.getSafeCurrency = function(serviceId) {
+                    try {
+                        if (typeof window.getServiceCurrency === 'function') {
+                            return window.getServiceCurrency(serviceId);
+                        }
+                        // Ultimate fallback
+                        return COMPANY_CURRENCY || '$';
+                    } catch (e) {
+                        console.warn('Error in getSafeCurrency:', e);
+                        return '$';
+                    }
+                };
+                })(); // End of IIFE
+                
                 // Global function for service selection
                 window.selectService = function(element) {
                     const serviceId = element.dataset.serviceId;
                     const serviceType = element.dataset.serviceType;
+                    
+                    // Store selected service ID for currency lookup
+                    window.selectedServiceId = parseInt(serviceId);
                     
                     // Store service selection in sessionStorage for navigation
                     const serviceData = {
@@ -201,6 +255,13 @@
     <!-- Dynamic Calendar Template -->
     <template id="booking_calendar" name="Booking Calendar">
         <t t-call="website.layout">
+            <t t-set="head">
+                <script type="text/javascript">
+                    // Ultra-early currency function definition
+                    window.getSafeCurrency = function(serviceId) { return '<t t-esc="company_currency"/>'; };
+                    window.getServiceCurrency = function(serviceId) { return '<t t-esc="company_currency"/>'; };
+                </script>
+            </t>
             <style>
                 /* Modern CSS Animations */
                 @keyframes slideInUp {
@@ -348,11 +409,11 @@
                 .employee-card:hover {
                     transform: translateY(-8px) scale(1.02);
                     box-shadow: 0 15px 35px rgba(0, 123, 255, 0.15);
-                    border-color: #007bff !important;
+                    border-color: #C76E49 !important;
                 }
                 
                 .employee-card.selected {
-                    border-color: #007bff !important;
+                    border-color: #C76E49 !important;
                     transform: scale(1.05);
                     box-shadow: 0 20px 40px rgba(0, 123, 255, 0.2);
                     background: linear-gradient(135deg, #e3f2fd 0%, #f8f9fa 100%);
@@ -364,7 +425,7 @@
                 }
                 
                 .employee-card:hover img {
-                    border-color: #007bff;
+                    border-color: #C76E49;
                     transform: scale(1.1);
                 }
                 
@@ -400,15 +461,15 @@
                 
                 /* Card Header Gradients */
                 .bg-gradient-primary {
-                    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
+                    background: linear-gradient(135deg, #C76E49 0%, #A85B3D 100%) !important;
                 }
                 
                 .bg-gradient-info {
-                    background: linear-gradient(135deg, #17a2b8 0%, #138496 100%) !important;
+                    background: linear-gradient(135deg, #C76E49 0%, #A85B3D 100%) !important;
                 }
                 
                 .bg-gradient-success {
-                    background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%) !important;
+                    background: linear-gradient(135deg, #C76E49 0%, #A85B3D 100%) !important;
                 }
                 
                 /* Cart Integration Enhancements */
@@ -427,11 +488,11 @@
                 .service-card:hover {
                     transform: translateY(-5px) scale(1.02);
                     box-shadow: 0 15px 35px rgba(0, 123, 255, 0.15);
-                    border-color: #007bff !important;
+                    border-color: #C76E49 !important;
                 }
                 
                 .service-card.selected {
-                    border-color: #007bff !important;
+                    border-color: #C76E49 !important;
                     transform: scale(1.05);
                     box-shadow: 0 20px 40px rgba(0, 123, 255, 0.2);
                     background: linear-gradient(135deg, #e3f2fd 0%, #f8f9fa 100%);
@@ -455,11 +516,11 @@
                 .location-card:hover {
                     transform: translateY(-5px) scale(1.02);
                     box-shadow: 0 15px 35px rgba(0, 123, 255, 0.15);
-                    border-color: #007bff !important;
+                    border-color: #C76E49 !important;
                 }
                 
                 .location-card.selected {
-                    border-color: #28a745 !important;
+                    border-color: #C76E49 !important;
                     transform: scale(1.05);
                     box-shadow: 0 20px 40px rgba(40, 167, 69, 0.2);
                     background: linear-gradient(135deg, #e8f5e8 0%, #f8f9fa 100%);
@@ -477,7 +538,7 @@
                 
                 .slot-btn:hover {
                     background-color: #e8f5e8 !important;
-                    border-color: #28a745 !important;
+                    border-color: #C76E49 !important;
                     transform: scale(1.02);
                     box-shadow: 0 2px 8px rgba(40, 167, 69, 0.2);
                 }
@@ -488,7 +549,7 @@
                 
                 .slot-btn.selected {
                     background-color: #d4edda !important;
-                    border-color: #28a745 !important;
+                    border-color: #C76E49 !important;
                     color: #155724 !important;
                 }
                 
@@ -639,7 +700,7 @@
                     <!-- Left Sidebar -->
                     <div class="col-md-3">
                         <div class="card booking-summary animate-fade-in">
-                            <div class="card-header bg-primary text-white">
+                            <div class="card-header bg-danger text-white">
                                 <h5 class="mb-0"><i class="fa fa-shopping-cart"></i> Booking Summary</h5>
                             </div>
                             <div class="card-body p-0">
@@ -778,7 +839,7 @@
                                                             <span class="ribbon bg-success">Package</span>
                                                         </t>
                                                         <t t-else="">
-                                                            <span class="ribbon bg-info">Service</span>
+                                                            <span class="ribbon bg-danger">Service</span>
                                                         </t>
 
                                                         <div class="card-body text-center">
@@ -791,7 +852,7 @@
                                                                 </t>
                                                                 <t t-else="">
                                                                     <div class="rounded-circle d-flex align-items-center justify-content-center mx-auto" 
-                                                                         style="width: 100px; height: 100px; background-color: #007bff; color: white; font-size: 2rem;">
+                                                                         style="width: 100px; height: 100px; background-color: #C76E49; color: white; font-size: 2rem;">
                                                                         <t t-if="service.is_appointment_package">
                                                                             <i class="fa fa-gift"></i>
                                                                         </t>
@@ -866,7 +927,7 @@
                                                     <div class="card-body text-center">
                                                         <div class="mb-3">
                                                             <div class="rounded-circle d-flex align-items-center justify-content-center mx-auto" 
-                                                                 style="width: 80px; height: 80px; background-color: #17a2b8; color: white; font-size: 2rem;">
+                                                                 style="width: 80px; height: 80px; background-color: #C76E49; color: white; font-size: 2rem;">
                                                                 <i class="fa fa-building"></i>
                                                             </div>
                                                         </div>
@@ -884,7 +945,7 @@
                                                     <div class="card-body text-center">
                                                         <div class="mb-3">
                                                             <div class="rounded-circle d-flex align-items-center justify-content-center mx-auto" 
-                                                                 style="width: 80px; height: 80px; background-color: #28a745; color: white; font-size: 2rem;">
+                                                                 style="width: 80px; height: 80px; background-color: #C76E49; color: white; font-size: 2rem;">
                                                                 <i class="fa fa-home"></i>
                                                             </div>
                                                         </div>
@@ -1297,7 +1358,7 @@
                             } else {
                                 // Highlight the selected service
                                 card.style.boxShadow = '0 0 20px rgba(0, 123, 255, 0.6)';
-                                card.style.borderColor = '#007bff';
+                                card.style.borderColor = '#C76E49';
                                 card.style.borderWidth = '3px';
                                 card.style.borderStyle = 'solid';
                                 
@@ -1309,7 +1370,7 @@
                                         top: 5px;
                                         right: 5px;
                                         z-index: 15;
-                                        background: #007bff;
+                                        background: #C76E49;
                                         color: white;
                                         padding: 4px 8px;
                                         border-radius: 12px;
@@ -1755,7 +1816,9 @@
                         
                         let targetServiceId = serviceIdFromUrl || (serviceData ? serviceData.id : null);
                         
+                        // Initialize selectedServiceId for currency lookup
                         if (targetServiceId) {
+                            window.selectedServiceId = parseInt(targetServiceId);
                             console.log('🔄 Auto-selecting service:', targetServiceId);
                             
                             // Find and select the service card
@@ -1774,13 +1837,16 @@
                                 });
                                 
                                 serviceCard.classList.add('selected');
-                                serviceCard.style.borderColor = '#007bff';
+                                serviceCard.style.borderColor = '#C76E49';
                                 
                                 // Show location selection
                                 showLocationSelection();
                                 
                                 console.log('✅ Service auto-selected and data reset');
                             }
+                        } else {
+                            // No service selected initially
+                            window.selectedServiceId = null;
                         }
                     }
                     
@@ -1799,6 +1865,9 @@
                         const isPackage = isPackageAttr && isPackageAttr !== 'False' && isPackageAttr !== 'false' && isPackageAttr !== '0';
                         console.log('Service selection - ID:', serviceId, 'Package attr:', isPackageAttr, 'Is package:', isPackage);
                         
+                        // Update global selectedServiceId for currency lookup
+                        window.selectedServiceId = parseInt(serviceId);
+                        
                         // Check if this service is already selected (toggle functionality)
                         const isCurrentlySelected = cardElement.classList.contains('selected');
                         
@@ -1811,6 +1880,7 @@
                             
                             // Clear service data
                             currentService = null;
+                            window.selectedServiceId = null;
                             isPackageBooking = false;
                             
                             // Clear hidden inputs
@@ -1850,7 +1920,7 @@
                         
                         // Add selection styling to clicked card
                         cardElement.classList.add('selected');
-                        cardElement.style.borderColor = '#007bff';
+                        cardElement.style.borderColor = '#C76E49';
                         
                         // Update hidden select for JavaScript compatibility
                         const serviceSelect = document.getElementById('serviceSelect');
@@ -1942,7 +2012,7 @@
                         
                         // Add selection styling to clicked card
                         cardElement.classList.add('selected');
-                        cardElement.style.borderColor = locationType === 'inside' ? '#17a2b8' : '#28a745';
+                        cardElement.style.borderColor = locationType === 'inside' ? '#C76E49' : '#C76E49';
                         
                         // Update hidden select for JavaScript compatibility
                         const locationSelect = document.getElementById('locationSelect');
@@ -2948,13 +3018,13 @@
                                 headerHtml += `<div class="employee-photo mb-2">
                                     <img src="${emp.image}" alt="${emp.name}" 
                                          class="rounded-circle" 
-                                         style="width: 50px; height: 50px; object-fit: cover; border: 2px solid #007bff;" />
+                                         style="width: 50px; height: 50px; object-fit: cover; border: 2px solid #C76E49;" />
                                 </div>`;
                             } else {
                                 // Default avatar if no image
                                 headerHtml += `<div class="employee-photo mb-2">
                                     <div class="rounded-circle d-flex align-items-center justify-content-center" 
-                                         style="width: 50px; height: 50px; background-color: #6c757d; color: white; font-weight: bold; border: 2px solid #007bff;">
+                                         style="width: 50px; height: 50px; background-color: #6c757d; color: white; font-weight: bold; border: 2px solid #C76E49;">
                                         ${emp.name.charAt(0).toUpperCase()}
                                     </div>
                                 </div>`;
@@ -3156,7 +3226,7 @@
                                             </div>
                                             <div class="slot-details text-center">
                                                 <small class="text-muted d-block">${emp.branch_name || 'Main Branch'}</small>
-                                                <small class="text-success font-weight-bold">$${price.toFixed(2)} - ${location === 'inside' ? 'At Branch' : 'At Your Location'}</small>
+                                                <small class="text-success font-weight-bold">${window.getSafeCurrency(window.selectedServiceId)}${price.toFixed(2)} - ${location === 'inside' ? 'At Branch' : 'At Your Location'}</small>
                                             </div>
                                         </div>
                                     `;
@@ -3170,13 +3240,13 @@
                                     // Add hover effects
                                     slotBtn.addEventListener('mouseenter', function() {
                                         this.style.backgroundColor = '#e8f5e8';
-                                        this.style.borderColor = '#28a745';
+                                        this.style.borderColor = '#C76E49';
                                         this.style.transform = 'scale(1.02)';
                                     });
                                     
                                     slotBtn.addEventListener('mouseleave', function() {
                                         this.style.backgroundColor = '';
-                                        this.style.borderColor = '#28a745';
+                                        this.style.borderColor = '#C76E49';
                                         this.style.transform = 'scale(1)';
                                     });
                                     
@@ -3247,7 +3317,7 @@
                                 employee: employee.name,
                                 branch: employee.branch_name || 'Main Branch',
                                 location: location === 'inside' ? 'At Branch' : 'At Your Location',
-                                price: '$' + price.toFixed(2)
+                                price: window.getSafeCurrency(window.selectedServiceId) + price.toFixed(2)
                             });
                             
                             document.getElementById('selectedSlot').style.display = 'block';
@@ -3285,7 +3355,7 @@
                                 }
                             }
                             
-                            detailsHtml += '<strong>Price:</strong> $' + price.toFixed(2);
+                            detailsHtml += '<strong>Price:</strong> ' + window.getSafeCurrency(window.selectedServiceId) + price.toFixed(2);
                             
                             const details = document.getElementById('slotDetails');
                             details.innerHTML = detailsHtml;
@@ -4474,7 +4544,7 @@
                             employee: employee?.name || 'Selected Professional',
                             branch: employee?.branch_name || 'Main Branch',
                             location: locationType === 'inside' ? 'At Branch' : 'At Your Location',
-                            price: '$0.00' // Dynamic price, will be updated via price API
+                            price: window.getSafeCurrency(window.selectedServiceId) + '0.00' // Dynamic price, will be updated via price API
                         });
                         
                         // Store selected slot data
@@ -4533,7 +4603,7 @@
                         // Update price in summary
                         const priceInfo = document.getElementById('priceInfo');
                         if (priceInfo) {
-                            priceInfo.textContent = '$' + dynamicPrice.toFixed(2);
+                            priceInfo.textContent = window.getSafeCurrency(window.selectedServiceId) + dynamicPrice.toFixed(2);
                         }
                         
                         // Package service booking is now handled by handlePackageServiceAction()

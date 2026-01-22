@@ -243,6 +243,8 @@ class AppointmentWebsiteController(http.Controller):
             'page_title': _('Select Service and Time'),
             'services': services,
             'category_id': category_id,
+            'company_currency': request.website.company_id.currency_id.symbol,
+            'service_currencies': {service.id: service.currency_id.symbol for service in services},
         }
         return request.render('appointment_management_system_website.booking_calendar', values)
     

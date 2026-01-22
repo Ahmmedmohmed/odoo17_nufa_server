@@ -68,7 +68,7 @@
                     <t t-else="">At Your Location</t><br/>
                     <t t-esc="item.date"/>
                 </p>
-                <p class="cart_item_price">$<t t-esc="(item.price || 0).toFixed(2)"/></p>
+                <p class="cart_item_price"><t t-esc="item.service_currency or company_currency"/><t t-esc="(item.price || 0).toFixed(2)"/></p>
             </div>
             <button type="button" class="btn btn_remove remove_cart_item" t-att-data-cart-key="cartKey">
                 <i class="fa fa-trash"></i>
