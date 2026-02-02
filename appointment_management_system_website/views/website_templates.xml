@@ -197,12 +197,10 @@
                     try {
                         // Ensure SERVICE_CURRENCIES exists
                         if (typeof SERVICE_CURRENCIES === 'undefined') {
-                            console.warn('SERVICE_CURRENCIES not defined, using company currency');
                             return COMPANY_CURRENCY || '$';
                         }
                         return SERVICE_CURRENCIES[serviceId] || COMPANY_CURRENCY || '$';
                     } catch (e) {
-                        console.warn('Error in getServiceCurrency:', e);
                         return COMPANY_CURRENCY || '$';
                     }
                 };
@@ -223,7 +221,6 @@
                         // Ultimate fallback
                         return COMPANY_CURRENCY || '$';
                     } catch (e) {
-                        console.warn('Error in getSafeCurrency:', e);
                         return '$';
                     }
                 };
@@ -769,9 +766,9 @@
                                 <div id="cartPreview" class="border-top" style="display: none;">
                                     <div class="p-3">
                                         <h6 class="mb-3"><i class="fa fa-shopping-cart"></i> Current Cart</h6>
-                                        <div id="cartItems" class="small">
-                                            <!-- Cart items will be shown here -->
-                                        </div>
+<!--                                        <div id="cartItems" class="small">-->
+<!--                                            &lt;!&ndash; Cart items will be shown here &ndash;&gt;-->
+<!--                                        </div>-->
                                         <div class="text-center mt-2">
                                             <a href="/shop/cart" class="btn btn-outline-primary btn-sm">
                                                 <i class="fa fa-eye"></i> View Cart
@@ -1148,8 +1145,6 @@
                         if (typeof Storage !== 'undefined') {
                             sessionStorage.setItem('website_sale_cart_quantity', cartQuantity);
                         }
-                        
-                        console.log(`🛒 Cart badge updated to: ${cartQuantity}`);
                     }
                     
                     let currentEmployees = {};
@@ -1300,8 +1295,7 @@
                     
                     // Service card enable/disable functions
                     function disableAllServicesExcept(selectedServiceId) {
-                        console.log('🔒 Disabling all services except:', selectedServiceId);
-                        
+
                         // Show reset instructions when services are disabled (package mode)
                         showResetInstructions();
                         
@@ -1393,8 +1387,6 @@
                     }
                     
                     function enableAllServices() {
-                        console.log('🔓 Enabling all services');
-                        
                         const serviceCards = document.querySelectorAll('.service-card');
                         serviceCards.forEach(card => {
                             // Remove disabled styling
@@ -1464,51 +1456,34 @@
                     
                     // Loading screen functions
                     function showLoadingScreen(message = 'Loading...') {
-                        try {
-                            console.log('🔄 Showing loading screen with message:', message);
-                            
-                            // Remove existing loading screen if any
-                            const existingLoading = document.getElementById('globalLoadingScreen');
-                            if (existingLoading) {
-                                existingLoading.remove();
-                            }
-                            
-                            const loadingDiv = document.createElement('div');
-                            loadingDiv.id = 'globalLoadingScreen';
-                            loadingDiv.className = 'position-fixed w-100 h-100 d-flex align-items-center justify-content-center';
-                            loadingDiv.style.cssText = 'top: 0; left: 0; background: rgba(0,0,0,0.5); z-index: 99999;';
-                            loadingDiv.innerHTML = `
-                                <div class="bg-white p-4 rounded text-center">
-                                    <div class="spinner-border text-primary mb-3" role="status"></div>
-                                    <div class="text-dark">${message}</div>
-                                </div>
-                            `;
-                            document.body.appendChild(loadingDiv);
-                            console.log('✅ Loading screen added to DOM');
-                        } catch (error) {
-                            console.error('❌ Error showing loading screen:', error);
+                        // Remove existing loading screen if any
+                        const existingLoading = document.getElementById('globalLoadingScreen');
+                        if (existingLoading) {
+                            existingLoading.remove();
                         }
+
+                        const loadingDiv = document.createElement('div');
+                        loadingDiv.id = 'globalLoadingScreen';
+                        loadingDiv.className = 'position-fixed w-100 h-100 d-flex align-items-center justify-content-center';
+                        loadingDiv.style.cssText = 'top: 0; left: 0; background: rgba(0,0,0,0.5); z-index: 99999;';
+                        loadingDiv.innerHTML = `
+                            <div class="bg-white p-4 rounded text-center">
+                                <div class="spinner-border text-primary mb-3" role="status"></div>
+                                <div class="text-dark">${message}</div>
+                            </div>
+                        `;
+                        document.body.appendChild(loadingDiv);
                     }
                     
                     function hideLoadingScreen() {
-                        try {
-                            console.log('🔄 Hiding loading screen');
-                            const loadingDiv = document.getElementById('globalLoadingScreen');
-                            if (loadingDiv) {
-                                loadingDiv.remove();
-                                console.log('✅ Loading screen removed from DOM');
-                            } else {
-                                console.log('⚠️ No loading screen found to remove');
-                            }
-                        } catch (error) {
-                            console.error('❌ Error hiding loading screen:', error);
+                        const loadingDiv = document.getElementById('globalLoadingScreen');
+                        if (loadingDiv) {
+                            loadingDiv.remove();
                         }
                     }
                     
                     // Reset functions for data clearing
                     function resetLocationData() {
-                        console.log('🔄 Resetting location data');
-                        
                         // Clear location selection
                         const locationCards = document.querySelectorAll('.location-card');
                         locationCards.forEach(card => {
@@ -1532,8 +1507,6 @@
                     }
                     
                     function resetDateData() {
-                        console.log('🔄 Resetting date data');
-                        
                         // Reset date selection
                         selectedDate = null;
                         currentDateOffset = 0;
@@ -1558,8 +1531,6 @@
                     }
                     
                     function resetCalendarData() {
-                        console.log('🔄 Resetting calendar data');
-                        
                         // Clear calendar data
                         currentEmployees = {};
                         currentSlots = {};
@@ -1598,7 +1569,6 @@
                     }
                     
                     function resetAllBookingData() {
-                        console.log('🔄 Resetting all booking data after service change');
                         isActiveBookingFlow = false; // Exit active booking mode
                         resetLocationData();
                         resetDateData();
@@ -1606,14 +1576,11 @@
                     }
                     
                     function resetAfterLocationChange() {
-                        console.log('🔄 Resetting data after location change');
                         resetDateData();
                         resetCalendarData();
                     }
                     
                     function resetAfterCartSuccess() {
-                        console.log('🔄 Resetting all selections after successful cart addition');
-                        
                         // Re-enable all services
                         enableAllServices();
                         
@@ -1661,13 +1628,9 @@
                         
                         const dateInput = document.getElementById('currentDateInput');
                         if (dateInput) dateInput.value = '';
-                        
-                        console.log('✅ All selections reset after cart success');
                     }
                     
                     function resetOnPageLoad() {
-                        console.log('🔄 Resetting all selections on page load');
-                        
                         // Re-enable all services
                         enableAllServices();
                         
@@ -1725,7 +1688,6 @@
                             const dateInput = document.getElementById('currentDateInput');
                             if (dateInput) dateInput.value = '';
                             
-                            console.log('✅ Page load reset completed');
                         }, 100); // Small delay to ensure DOM is ready
                     }
                     
@@ -1771,14 +1733,10 @@
                     }
                     
                     document.addEventListener('DOMContentLoaded', function() {
-                        console.log('🚀 Appointment System JavaScript Loaded!');
-                        
+
                         // Initialize translations for static elements
                         initializeTranslations();
-                        
-                        // Log language detection for debugging
-                        console.log('🌍 Detected language:', getCurrentLanguage());
-                        
+
                         // Reset all selections on page load
                         resetOnPageLoad();
                         
@@ -1807,11 +1765,7 @@
                         let serviceData = null;
                         
                         if (selectedServiceFromStorage) {
-                            try {
-                                serviceData = JSON.parse(selectedServiceFromStorage);
-                            } catch (e) {
-                                console.log('Error parsing service data from sessionStorage');
-                            }
+                            serviceData = JSON.parse(selectedServiceFromStorage);
                         }
                         
                         let targetServiceId = serviceIdFromUrl || (serviceData ? serviceData.id : null);
@@ -1819,8 +1773,7 @@
                         // Initialize selectedServiceId for currency lookup
                         if (targetServiceId) {
                             window.selectedServiceId = parseInt(targetServiceId);
-                            console.log('🔄 Auto-selecting service:', targetServiceId);
-                            
+
                             // Find and select the service card
                             const serviceCard = document.querySelector(`[data-service-id="${targetServiceId}"]`);
                             if (serviceCard) {
@@ -1841,8 +1794,6 @@
                                 
                                 // Show location selection
                                 showLocationSelection();
-                                
-                                console.log('✅ Service auto-selected and data reset');
                             }
                         } else {
                             // No service selected initially
@@ -1851,8 +1802,6 @@
                     }
                     
                     function selectService(cardElement) {
-                        console.log('selectService called');
-                        
                         // Prevent any default behavior
                         if (event) {
                             event.preventDefault();
@@ -1863,8 +1812,7 @@
                         const serviceId = cardElement.getAttribute('data-service-id');
                         const isPackageAttr = cardElement.getAttribute('data-is-package');
                         const isPackage = isPackageAttr && isPackageAttr !== 'False' && isPackageAttr !== 'false' && isPackageAttr !== '0';
-                        console.log('Service selection - ID:', serviceId, 'Package attr:', isPackageAttr, 'Is package:', isPackage);
-                        
+
                         // Update global selectedServiceId for currency lookup
                         window.selectedServiceId = parseInt(serviceId);
                         
@@ -1872,8 +1820,6 @@
                         const isCurrentlySelected = cardElement.classList.contains('selected');
                         
                         if (isCurrentlySelected) {
-                            console.log('🔄 Unselecting service:', serviceId);
-                            
                             // Unselect the service
                             cardElement.classList.remove('selected');
                             cardElement.style.borderColor = 'transparent';
@@ -1905,13 +1851,9 @@
                             
                             
                             // Package services section removed - no need to hide
-                            
-                            console.log('✅ Service unselected and data cleared');
                             return false;
                         }
-                        
-                        console.log('📋 Selecting service:', serviceId, 'Is package:', isPackage);
-                        
+
                         // Remove previous selection styling from all cards
                         document.querySelectorAll('.service-card').forEach(card => {
                             card.classList.remove('selected');
@@ -1953,7 +1895,6 @@
                             showLocationSelection();
                         }
                         
-                        console.log('selectService completed without redirect');
                         return false; // Prevent any navigation
                     }
                     
@@ -1968,8 +1909,6 @@
                         const isCurrentlySelected = cardElement.classList.contains('selected');
                         
                         if (isCurrentlySelected) {
-                            console.log('🔄 Unselecting location:', locationType);
-                            
                             // Unselect the location
                             cardElement.classList.remove('selected');
                             cardElement.style.borderColor = 'transparent';
@@ -1995,12 +1934,9 @@
                             const addressSection = document.getElementById('addressSection');
                             if (addressSection) addressSection.style.display = 'none';
                             
-                            console.log('✅ Location unselected and dependent data cleared');
                             return false;
                         }
-                        
-                        console.log('📍 Selecting location:', locationType);
-                        
+
                         // Remove previous selection styling from all cards
                         document.querySelectorAll('.location-card').forEach(card => {
                             card.classList.remove('selected');
@@ -2048,7 +1984,6 @@
                         // Set active booking flow flag when location is selected with a service
                         if (currentService) {
                             isActiveBookingFlow = true;
-                            console.log('🎯 Entered active booking flow mode');
                         }
                         
                         // Show visual feedback
@@ -2082,7 +2017,6 @@
                             loadEmployeesAndShowCalendar();
                         }
                         
-                        console.log('Selected location:', locationType);
                         return false; // Prevent any navigation
                     }
                     
@@ -2123,7 +2057,6 @@
                             block: 'start' 
                         });
                         
-                        console.log('Service selected, showing location selection');
                     }
                     
                     function showPackageServices(packageId) {
@@ -2171,12 +2104,9 @@
                             // Package services section removed - auto-starts with first service
                         })
                         .catch(error => {
-                            console.error('Error loading package services:', error);
                             // Show location selection as fallback
                             showLocationSelection();
                         });
-                        
-                        console.log('Package selected, loading included services');
                     }
                     
                     // showPackageServicesSelection function removed - using loadPackageServices instead
@@ -2249,7 +2179,6 @@
                                     generateSlots();
                                 })
                                 .catch(error => {
-                                    console.error('Error loading employees:', error);
                                     // Fallback to static data
                                     currentEmployees = {
                                         '2': { name: 'Staff Member 1', branch_name: 'Branch 1', image: false, has_image: false },
@@ -2284,7 +2213,6 @@
                             }
                         })
                         .catch(error => {
-                            console.error('Error loading employees:', error);
                             // Fallback handling
                             currentEmployees = {
                                 '2': { name: 'Staff Member 1', branch_name: 'Branch 1', image: false, has_image: false },
@@ -2315,28 +2243,23 @@
                         })
                         .then(response => response.json())
                         .then(data => {
-                            console.log('Service API response:', data);
                             const services = data.result || data;
                             const serviceSelect = document.getElementById('serviceSelect');
                             serviceSelect.innerHTML = '<option value="">Select Service</option>';
                             
                             if (Array.isArray(services) && services.length > 0) {
                                 services.forEach(service => {
-                                    console.log('Processing service:', service);
                                     const isPackage = service.is_package || service.is_appointment_package;
                                     const label = isPackage ? `📦 ${service.name} (Package)` : service.name;
                                     serviceSelect.innerHTML += `<option value="${service.id}" data-is-package="${isPackage}">${label}</option>`;
                                 });
                             } else {
-                                console.warn('No services found from API, response:', services);
                                 serviceSelect.innerHTML += '<option disabled="disabled">No services available</option>';
                             }
                         })
                         .catch(error => {
-                            console.error('Error loading services from all-services API:', error);
-                            
+
                             // Fallback: try to get services from service plans
-                            console.log('Trying fallback service loading...');
                             fetch('/book-appointment/api/service-plans', {
                                 method: 'POST',
                                 headers: {
@@ -2346,7 +2269,6 @@
                             })
                             .then(response => response.json())
                             .then(data => {
-                                console.log('Service plans response:', data);
                                 const plans = data.result || {};
                                 const serviceSelect = document.getElementById('serviceSelect');
                                 serviceSelect.innerHTML = '<option value="">Select Service</option>';
@@ -2371,7 +2293,6 @@
                                 }
                             })
                             .catch(fallbackError => {
-                                console.error('Fallback service loading also failed:', fallbackError);
                                 const serviceSelect = document.getElementById('serviceSelect');
                                 serviceSelect.innerHTML = '<option value="">Select Service</option>';
                                 serviceSelect.innerHTML += '<option disabled="disabled">Error loading services</option>';
@@ -2437,8 +2358,7 @@
                     function selectDate(dateStr) {
                         // Check if this date is already selected (toggle functionality)
                         if (selectedDate === dateStr) {
-                            console.log('🔄 Unselecting date:', dateStr);
-                            
+
                             // Unselect the date
                             selectedDate = null;
                             generateDateCards(); // Refresh to clear selection
@@ -2456,12 +2376,9 @@
                                 stepHeader.innerHTML = 'Select Date, Time & Professional';
                             }
                             
-                            console.log('✅ Date unselected and calendar cleared');
                             return;
                         }
-                        
-                        console.log('📅 Selecting date:', dateStr);
-                        
+
                         selectedDate = dateStr;
                         generateDateCards(); // Refresh to show selection
                         
@@ -2480,28 +2397,20 @@
                     }
                     
                     function previousEmployeePage() {
-                        try {
-                            if (currentEmployeePage > 0) {
-                                currentEmployeePage--;
-                                updateEmployeeHeaders();
-                                renderSlotsTable();
-                            }
-                        } catch (error) {
-                            console.error('Error in previousEmployeePage:', error);
+                        if (currentEmployeePage > 0) {
+                            currentEmployeePage--;
+                            updateEmployeeHeaders();
+                            renderSlotsTable();
                         }
                     }
                     
                     function nextEmployeePage() {
-                        try {
-                            const availableEmployees = getAvailableEmployees();
-                            const maxPages = Math.ceil(availableEmployees.length / employeesPerPage);
-                            if (currentEmployeePage < maxPages - 1) {
-                                currentEmployeePage++;
-                                updateEmployeeHeaders();
-                                renderSlotsTable();
-                            }
-                        } catch (error) {
-                            console.error('Error in nextEmployeePage:', error);
+                        const availableEmployees = getAvailableEmployees();
+                        const maxPages = Math.ceil(availableEmployees.length / employeesPerPage);
+                        if (currentEmployeePage < maxPages - 1) {
+                            currentEmployeePage++;
+                            updateEmployeeHeaders();
+                            renderSlotsTable();
                         }
                     }
                     
@@ -2577,8 +2486,7 @@
                                 
                                 // Store plans globally for pricing calculations (like booking.js does)
                                 window.servicePlans = plans;
-                                console.log('📊 Calendar: Loaded service plans for service', serviceId, ':', plans);
-                                
+
                                 // Extract employees from plans
                                 Object.entries(plans).forEach(([planId, plan]) => {
                                     if (plan.employees) {
@@ -2593,8 +2501,7 @@
                                 
                                 // Store employees globally for pricing calculations (like booking.js does)
                                 window.currentEmployees = currentEmployees;
-                                console.log('📊 Calendar: Loaded', Object.keys(currentEmployees).length, 'employees with plan data');
-                                
+
                                 // Show calendar container
                                 document.getElementById('calendarContainer').style.display = 'block';
                                 
@@ -2613,9 +2520,6 @@
                                     generateSlots();
                                 }
                                 
-                                console.log('Loaded employees:', Object.keys(currentEmployees).length);
-                            } else {
-                                console.error('No service plans found');
                             }
                         })
                         .catch(error => {
@@ -2624,8 +2528,6 @@
                     }
                     
                     function loadPackageServices(packageId) {
-                        console.log('🚀 Loading package services and auto-starting with first service');
-                        
                         // Store the selected package ID for later use
                         selectedPackageId = packageId;
                         
@@ -2657,19 +2559,14 @@
                                     packageServicesList.push(service);
                                 });
                                 
-                                console.log('📦 Package loaded with', services.length, 'services');
-                                console.log('📋 Starting with first service:', packageServicesList[0].name);
-                                
                                 // Auto-start with the first service
                                 startPackageServiceBooking(0);
                                 
                             } else {
-                                console.error('No services found in package');
                                 showMessage(t('no_services_in_package'), 'error');
                             }
                         })
                         .catch(error => {
-                            console.error('Error loading package services:', error);
                             showMessage(t('error_loading_package_services'), 'error');
                         });
                     }
@@ -2677,9 +2574,7 @@
                     function startPackageServiceBooking(serviceIndex) {
                         currentPackageServiceIndex = serviceIndex;
                         const service = packageServicesList[serviceIndex];
-                        
-                        console.log(`📋 Starting service ${serviceIndex + 1} of ${packageServicesList.length}: ${service.name}`);
-                        
+
                         // Set current service for booking
                         currentService = service.id;
                         isPackageBooking = false; // Allow normal booking flow
@@ -2769,10 +2664,7 @@
                                     });
                                 }
                             });
-                            
-                            // Show employee selection first
-                            displayEmployeeCards();
-                            
+
                             // Show calendar for service booking
                             document.getElementById('calendarContainer').style.display = 'none'; // Hide initially
                             updateEmployeeHeaders();
@@ -2784,15 +2676,7 @@
                             console.error('Error loading service employees:', error);
                         });
                     }
-                    
-                    function updatePackageBookingStatus() {
-                        // Simplified function for new streamlined workflow
-                        // No UI elements to update - using auto-progression instead
-                        console.log('📊 Package booking status updated - services booked:', 
-                            Object.keys(packageBookingData).filter(id => packageBookingData[id] !== null).length,
-                            'of', Object.keys(packageServices).length);
-                    }
-                    
+
                     function proceedWithPackageBooking() {
                         const allBooked = Object.values(packageBookingData).every(data => data !== null);
                         
@@ -2862,8 +2746,6 @@
                             
                             // If no employees found from service plans, get all appointment employees with images
                             if (Object.keys(currentEmployees).length === 0) {
-                                console.log('No employees found in service plans, loading all appointment employees with images');
-                                
                                 fetch('/book-appointment/api/all-employees', {
                                     method: 'POST',
                                     headers: {
@@ -2875,12 +2757,10 @@
                                 .then(data => {
                                     const employees = data.result || data;
                                     currentEmployees = employees;
-                                    displayEmployeeCards();
                                     updateEmployeeHeaders();
                                     generateSlots();
                                 })
                                 .catch(error => {
-                                    console.error('Error loading employee images:', error);
                                     // Use basic fallback structure with dynamic loading
                                     fetch('/book-appointment/api/all-employees', {
                                         method: 'POST',
@@ -2890,7 +2770,6 @@
                                     .then(response => response.json())
                                     .then(fallbackData => {
                                         currentEmployees = fallbackData.result || fallbackData;
-                                        displayEmployeeCards();
                                         updateEmployeeHeaders();
                                         generateSlots();
                                     })
@@ -2900,7 +2779,6 @@
                                             '2': { name: 'Staff Member 1', branch_name: 'Branch 1', image: false, has_image: false },
                                             '3': { name: 'Staff Member 2', branch_name: 'Branch 2', image: false, has_image: false }
                                         };
-                                        displayEmployeeCards();
                                         updateEmployeeHeaders();
                                         generateSlots();
                                     });
@@ -2908,12 +2786,10 @@
                                 return; // Exit early to wait for API response
                             }
                             
-                            displayEmployeeCards();
                             updateEmployeeHeaders();
                             generateSlots();
                         })
                         .catch(error => {
-                            console.error('Error loading employees:', error);
                             // Load all employees with images as fallback
                             fetch('/book-appointment/api/all-employees', {
                                 method: 'POST',
@@ -2926,12 +2802,10 @@
                             .then(data => {
                                 const employees = data.result || data;
                                 currentEmployees = employees;
-                                displayEmployeeCards();
                                 updateEmployeeHeaders();
                                 generateSlots();
                             })
                             .catch(fallbackError => {
-                                console.error('Error loading fallback employees:', fallbackError);
                                 // Get branch names dynamically using branches API
                                 fetch('/book-appointment/api/branches', {
                                     method: 'POST',
@@ -2958,7 +2832,6 @@
                                             has_image: false
                                         }
                                     };
-                                    displayEmployeeCards();
                                     updateEmployeeHeaders();
                                     generateSlots();
                                 })
@@ -2968,24 +2841,17 @@
                                         '2': { name: 'Staff Member 1', branch_name: 'Branch 1', image: false, has_image: false },
                                         '3': { name: 'Staff Member 2', branch_name: 'Branch 2', image: false, has_image: false }
                                     };
-                                    displayEmployeeCards();
                                     updateEmployeeHeaders();
                                     generateSlots();
                                 });
                             });
                         });
                     }
-                    
-                    function displayEmployeeCards() {
-                        // Initialize employee display without showing calendar (for package booking flow)
-                        // Calendar will be shown later in the process
-                        console.log('📦 displayEmployeeCards called - initializing employee display');
-                    }
+
                     
                     function updateEmployeeHeaders() {
                         const employeeHeaderElement = document.querySelector('#employeeHeaders');
                         if (!employeeHeaderElement) {
-                            console.warn('Employee headers element not found');
                             return;
                         }
                         
@@ -3081,7 +2947,6 @@
                             .then(response => response.json())
                             .then(data => ({employee_id: empId, slots: data.result || {}}))
                             .catch(error => {
-                                console.error('Error loading slots for employee ' + empId, error);
                                 return {employee_id: empId, slots: {}};
                             });
                         });
@@ -3100,25 +2965,19 @@
                             
                             // If no slots found from API, generate demo slots
                             if (!hasAnySlots) {
-                                console.log('No slots from API, generating demo slots');
                                 generateDemoSlots();
                             }
                             
                             renderSlotsTable();
                             
                             // Populate filters after slots are loaded with only available employees
-                            console.log('🔄 Slots loaded, repopulating filters with available employees...');
                             // populateFiltersWithAvailableEmployees(); // Disabled - keeps all options available
                         })
                         .catch(error => {
-                            console.error('Error loading slots:', error);
                             // Generate demo slots as fallback
                             generateDemoSlots();
                             renderSlotsTable();
-                            
-                            // Populate filters even with demo data
-                            console.log('🔄 Demo slots generated, repopulating filters with available employees...');
-                            // populateFiltersWithAvailableEmployees(); // Disabled - keeps all options available
+
                         });
                     }
                     
@@ -3335,7 +3194,6 @@
                             };
                         })
                         .catch(error => {
-                            console.error('Error loading price:', error);
                             // Use fallback pricing
                             const price = location === 'outside' ? 75 : 50;
                             
@@ -3429,7 +3287,6 @@
                     }
                     
                     function addToCart() {
-                        console.log('🛒 addToCart function called');
                         if (!selectedSlot) return;
                         
                         // Validate address input if 'at your location' is selected
@@ -3438,10 +3295,8 @@
                         }
                         
                         // Show loading screen
-                        console.log('🛒 About to show loading screen in addToCart function');
                         showLoadingScreen('جاري إضافة الخدمة...');
-                        console.log('🛒 showLoadingScreen function called');
-                        
+
                         // Prepare appointment data for cart
                         const employee = currentEmployees[selectedSlot.employee_id];
                         const appointmentData = {
@@ -3459,18 +3314,7 @@
                             branch_name: employee?.branch_name || 'Main Branch',
                             service_name: document.querySelector('.service-card.selected h5')?.textContent || 'Selected Service'
                         };
-                        
-                        // DEBUG: Log appointment data being sent to cart
-                        console.log('🛒 CART DEBUG - Appointment data being sent:', {
-                            service_id: appointmentData.service_id,
-                            employee_id: appointmentData.employee_id,
-                            branch_id: appointmentData.branch_id,
-                            appointment_type: appointmentData.appointment_type,
-                            price: appointmentData.price,
-                            selectedSlot_price: selectedSlot.price,
-                            location: appointmentData.location,
-                            full_data: appointmentData
-                        });
+
                         
                         // Add address data if 'at your location' is selected
                         if (selectedSlot.location === 'outside') {
@@ -3483,7 +3327,6 @@
                         // Check if this is part of a package booking
                         if (Object.keys(packageServices).length > 0 && packageServices[selectedSlot.service_id]) {
                             // Show loading screen for package service
-                            console.log('📦 Showing loading screen for package service booking');
                             showLoadingScreen(t('booking_package_service'));
                             
                             // Store package service booking data
@@ -3506,18 +3349,11 @@
                                 hideLoadingScreen();
                                 
                                 document.getElementById('calendarContainer').style.display = 'none';
-                                        updatePackageBookingStatus();
                             }, 2000);
                             
                             return;
                         }
-                        
-                        // DEBUG: Log complete request being sent
-                        console.log('🚀 SENDING CART REQUEST:', {
-                            url: '/appointment/cart/add',
-                            appointment_data: appointmentData,
-                            service_data_param: { appointment_data: appointmentData }
-                        });
+
                         
                         // Regular single service booking
                         fetch('/appointment/cart/add', {
@@ -3541,8 +3377,7 @@
                             return response.json();
                         })
                         .then(data => {
-                            console.log('Cart response:', data);
-                            
+
                             // Handle JSON-RPC response format
                             let result = data;
                             if (data && data.result) {
@@ -3637,12 +3472,7 @@
                                 } else if (typeof result === 'string') {
                                     errorMsg = result;
                                 }
-                                
-                                console.error('Cart error details:', {
-                                    originalData: data,
-                                    processedResult: result,
-                                    errorMessage: errorMsg
-                                });
+
                                 
                                 // Show error message in booking summary
                                 const errorDiv = document.createElement('div');
@@ -3666,9 +3496,7 @@
                         .catch(error => {
                             // Hide loading screen
                             hideLoadingScreen();
-                            
-                            console.error('Network/Parse error adding to cart:', error);
-                            
+
                             // Show network error message in booking summary
                             const errorDiv = document.createElement('div');
                             errorDiv.className = 'alert alert-danger mt-2';
@@ -3760,7 +3588,6 @@
                                 card.classList.remove('selected');
                             });
                             
-                            console.log('📦 Package mode cancelled and reset');
                         }
                         
                         selectedSlot = null;
@@ -3801,9 +3628,7 @@
                     }
                     
                     function addPackageToCart() {
-                        console.log('📦 addPackageToCart function called - this handles complete package submission');
                         // Show loading screen for complete package booking
-                        console.log('📦 Showing loading screen for complete package booking');
                         showLoadingScreen('جاري إضافة الباقة للسلة...');
                         
                         const packageData = {
@@ -3834,7 +3659,6 @@
                         })
                         .then(response => response.json())
                         .then(data => {
-                            console.log('Package cart response:', data);
                             const result = data.result || data;
                             
                             if (result && (result.success || result.status === 'success')) {
@@ -3879,7 +3703,6 @@
                                 // Redirect to calendar with same category after short delay
                                 setTimeout(() => {
                                     const redirectUrl = `/appointment/booking/calendar${categoryId ? '?category_id=' + categoryId : ''}`;
-                                    console.log('📦 Package added to cart - redirecting to:', redirectUrl);
                                     window.location.href = redirectUrl;
                                 }, 1500);
                             } else {
@@ -3894,7 +3717,6 @@
                             // Hide loading screen on network error
                             hideLoadingScreen();
                             
-                            console.error('Error adding package to cart:', error);
                             showMessage(t('network_error') + ' ' + error.message, 'error');
                         });
                     }
@@ -3944,19 +3766,9 @@
                                 updateCartPreview(parseInt(cartQtyMatch[1]));
                             }
                         })
-                        .catch(error => {
-                            console.log('Cart preview load failed (normal if empty):', error);
-                        });
                     }
                     
                     function updateCartPreview(quantity) {
-                        const cartItems = document.getElementById('cartItems');
-                        cartItems.innerHTML = `
-                            <div class="alert alert-info p-2 mb-2">
-                                <i class="fa fa-info-circle"></i> You have ${quantity} item${quantity > 1 ? 's' : ''} in your cart
-                            </div>
-                        `;
-                        
                         // Add animation
                         const cartPreview = document.getElementById('cartPreview');
                         cartPreview.classList.add('animate-slide-up');
@@ -4134,7 +3946,6 @@
                     function generateSlots() {
                         // This should trigger the existing slot generation logic
                         if (currentEmployees && selectedDate) {
-                            console.log('Generating slots for selected date:', selectedDate);
                             // Clear employee availability tracking for regeneration
                             employeeAvailability = {};
                             // Load slots for the selected date
@@ -4277,7 +4088,6 @@
                             }
                         }
                         
-                        console.log('Selected date:', dateStr);
                     }
                     
                     function generateTimeSlots(currentPageEmployees) {
@@ -4367,9 +4177,6 @@
                                 updateEmployeeSlots(employeeId, data.result);
                             }
                         })
-                        .catch(error => {
-                            console.error(`Error loading slots for employee ${employeeId}:`, error);
-                        });
                     }
                     
                     function updateEmployeeSlots(employeeId, slots) {
@@ -4424,9 +4231,7 @@
                     function updatePackageSlotStates() {
                         // Update slot button states to show conflicts in package booking
                         if (!isPackageBooking || packageUsedSlots.size === 0) return;
-                        
-                        console.log('🔄 Updating package slot states. Used slots:', Array.from(packageUsedSlots));
-                        
+
                         // Get all slot buttons
                         const slotButtons = document.querySelectorAll('.slot-btn');
                         
@@ -4444,7 +4249,6 @@
                                 button.textContent = t('used_in_package');
                                 button.disabled = true;
                                 button.setAttribute('data-package-used', 'true');
-                                console.log('🚫 Marked slot as used:', slotKey);
                             } else if (button.getAttribute('data-package-used') === 'true') {
                                 // This slot was previously marked as used but is now available again
                                 // Restore its original state (check if it's actually available)
@@ -4467,11 +4271,9 @@
                     let isBookingInProgress = false;
                     
                     function bookAppointment(employeeId, time) {
-                        console.log('BookAppointment called with:', {employeeId, time, currentService, selectedDate});
-                        
+
                         // Prevent multiple simultaneous calls
                         if (isBookingInProgress) {
-                            console.log('Booking already in progress, ignoring duplicate call');
                             return;
                         }
                         
@@ -4499,14 +4301,11 @@
                         // Convert time format for database lookup
                         // Frontend time "08:00" -> database time 8.0
                         let dbTime = parseFloat(time.split(':')[0]) + parseFloat(time.split(':')[1]) / 60;
-                        console.log('Looking for slot: employee', employeeId, 'time', time, '(db time:', dbTime + ')', 'date', selectedDate);
-                        
+
                         // For now, don't send any slot_ids to avoid the constraint violation
                         // The backend validation will handle this gracefully
                         let slotId = null;
-                        
-                        console.log('Skipping slot ID lookup to avoid constraint violations');
-                        
+
                         const appointmentData = {
                             service_id: parseInt(currentService),
                             employee_id: parseInt(employeeId),
@@ -4516,9 +4315,7 @@
                             slot_ids: slotId ? [slotId] : [],
                             branch_id: 1
                         };
-                        
-                        console.log('Appointment data:', appointmentData);
-                        
+
                         // Show loading feedback
                         const button = event.target;
                         const originalText = button.textContent;
@@ -4530,8 +4327,7 @@
                         button.disabled = false;
                         
                         // Just populate the summary without adding to cart
-                        console.log('✅ Appointment slot selected successfully');
-                        
+
                         // Get employee data
                         const employee = currentEmployees[employeeId];
                         const serviceName = document.querySelector('.service-card.selected h5')?.textContent || 'Selected Service';
@@ -4570,36 +4366,22 @@
                         
                         // Calculate price dynamically from loaded plan data
                         let dynamicPrice = 0.0;
-                        console.log('🔍 Template pricing debug - employeeId:', employeeId, 'locationType:', locationType);
-                        console.log('🔍 Template pricing debug - window.servicePlans exists:', !!window.servicePlans);
-                        console.log('🔍 Template pricing debug - window.currentEmployees exists:', !!window.currentEmployees);
                         
                         // Get employee data from the properly loaded currentEmployees
                         const empData = window.currentEmployees && window.currentEmployees[employeeId];
-                        console.log('🔍 Template pricing debug - empData:', empData);
-                        
+
                         if (window.servicePlans && empData && empData.plan_id) {
                             const plan = window.servicePlans[empData.plan_id];
-                            console.log('🔍 Template pricing debug - plan for plan_id', empData.plan_id, ':', plan);
-                            
+
                             if (plan) {
                                 dynamicPrice = locationType === 'inside' ? 
                                     (plan.price_inside || 0.0) : 
                                     (plan.price_outside || 0.0);
-                                console.log('✅ Template pricing - got price:', dynamicPrice, 'from plan:', empData.plan_id);
-                            } else {
-                                console.log('❌ Template pricing - no plan found for employee plan_id:', empData.plan_id);
                             }
-                        } else {
-                            console.log('❌ Template pricing - missing data:');
-                            console.log('   - servicePlans exists:', !!window.servicePlans);
-                            console.log('   - empData exists:', !!empData);
-                            console.log('   - empData.plan_id:', empData?.plan_id);
                         }
                         
                         selectedSlot.price = dynamicPrice;
-                        console.log('💰 FINAL PRICE SET - selectedSlot.price =', dynamicPrice);
-                        
+
                         // Update price in summary
                         const priceInfo = document.getElementById('priceInfo');
                         if (priceInfo) {
@@ -4626,7 +4408,6 @@
                         // Reset current service to allow selecting another package service
                         // Don't reset currentService to package ID, will be set when next service is selected
                         
-                        console.log('✅ Booking state reset for next package service');
                     }
                     
                     function hideUnavailableEmployeesAndTimeSlots() {
@@ -4752,7 +4533,6 @@
                             }
                         }
                         
-                        console.log(`Showing ${visibleEmployees} of ${totalEmployees} employees, ${visibleRows} of ${totalRows} time slots`);
                     }
                     
                     function showAllTimeSlots() {
@@ -4766,8 +4546,7 @@
                     
                     // New action button functions
                     function goBackToCategories() {
-                        console.log('🔄 Navigating back to categories');
-                        
+
                         // Re-enable all services when going back
                         enableAllServices();
                         
@@ -4776,8 +4555,7 @@
                     }
                     
                     function resetAllSelections() {
-                        console.log('🔄 Resetting all selections');
-                        
+
                         // Re-enable all services when resetting
                         enableAllServices();
                         
@@ -4825,17 +4603,14 @@
                         const emptySlotDiv = document.getElementById('emptySlot');
                         if (emptySlotDiv) emptySlotDiv.style.display = 'block';
                         
-                        console.log('✅ All selections reset');
                     }
                     
                     function proceedToPayment() {
-                        console.log('💳 Proceeding to payment');
                         // Navigate to cart/checkout page
                         window.location.href = '/shop/cart';
                     }
                     
                     function backToCategories() {
-                        console.log('🔄 Going back to categories');
                         // Navigate back to categories page
                         window.location.href = '/appointment/booking';
                     }
@@ -4852,10 +4627,8 @@
                     }
                     
                     function handlePackageServiceAction() {
-                        console.log('📦 handlePackageServiceAction called - this is the actual package service function!');
-                        
+
                         // TEST: Show loading screen immediately to test if it works
-                        console.log('🧪 TESTING: Showing loading screen immediately');
                         showLoadingScreen('جاري الاختبار...');
                         
                         // First, store the current package service data
@@ -4866,7 +4639,6 @@
                         }
                         
                         // Show loading screen for package service booking
-                        console.log('📦 Showing loading screen for package service booking');
                         showLoadingScreen(t('booking_package_service'));
                         
                         // Check for slot conflicts in package booking
@@ -4879,8 +4651,7 @@
                         
                         // Add slot to used slots set
                         packageUsedSlots.add(slotKey);
-                        console.log('📦 Added slot to used slots:', slotKey, 'Total used slots:', packageUsedSlots.size);
-                        
+
                         // Update UI to show this slot as used
                         updatePackageSlotStates();
                         
@@ -4907,12 +4678,7 @@
                         
                         // Store package service booking data
                         packageBookingData[currentService] = appointmentData;
-                        console.log('📦 Package service data stored:', appointmentData);
-                        
-                        // Service booking status update removed - using streamlined workflow
-                        
-                        // Update package booking status
-                        updatePackageBookingStatus();
+
                         
                         // Check if this is the last service in the package
                         const totalServices = Object.keys(packageServices).length;
@@ -4921,8 +4687,7 @@
                         
                         if (isLastService) {
                             // Last service - add complete package to cart
-                            console.log('📦 All package services booked - adding complete package to cart');
-                            
+
                             // Hide loading screen before proceeding to final package submission with minimum display time
                             setTimeout(() => {
                                 hideLoadingScreen();
@@ -4930,8 +4695,7 @@
                             }, 1000);
                         } else {
                             // Not last service - automatically go to next service
-                            console.log('📦 Package service booked - proceeding to next service');
-                            
+
                             // Show success popup message
                             showMessage(t('service_booked_next'), 'success');
                             
@@ -4991,8 +4755,6 @@
                     }
                     
                     function addToSummaryCart() {
-                        console.log('🛒 addToSummaryCart function called - this is the main single service function');
-                        console.log('🛒 Adding appointment to cart without redirect');
                         
                         if (!selectedSlot || !currentService || !selectedDate || !selectedEmployee) {
                             showMessage(t('select_required_info'), 'error');
@@ -5000,14 +4762,11 @@
                         }
                         
                         // Show loading screen
-                        console.log('🛒 About to show loading screen in addToSummaryCart function');
                         showLoadingScreen('جاري إضافة الخدمة...');
-                        console.log('🛒 showLoadingScreen function called');
-                        
+
                         // Prevent double-clicking
                         const addToCartBtn = document.querySelector('button[onclick="addToSummaryCart()"]');
                         if (addToCartBtn && addToCartBtn.disabled) {
-                            console.log('Add to cart already in progress...');
                             return;
                         }
                         
@@ -5035,18 +4794,7 @@
                             service_name: document.querySelector('.service-card.selected h5')?.textContent || 'Selected Service'
                         };
                         
-                        // DEBUG: Log appointment data being sent to cart from addToSummaryCart
-                        console.log('🛒 CART DEBUG (addToSummaryCart) - Appointment data:', {
-                            service_id: appointmentData.service_id,
-                            employee_id: appointmentData.employee_id,
-                            branch_id: appointmentData.branch_id,
-                            appointment_type: appointmentData.appointment_type,
-                            price: appointmentData.price,
-                            selectedSlot_price: selectedSlot.price,
-                            location: appointmentData.location,
-                            selectedEmployee: selectedEmployee,
-                            full_data: appointmentData
-                        });
+
                         
                         // Add address data if 'at your location' is selected
                         const locationType = document.getElementById('locationSelect')?.value || 'inside';
@@ -5079,15 +4827,6 @@
                             return response.json();
                         })
                         .then(data => {
-                            console.log('Cart response:', data);
-                            console.log('🔍 DETAILED CART RESPONSE (addToSummaryCart):', {
-                                success: data.success || (data.result && data.result.success),
-                                error: data.error || (data.result && data.result.error),
-                                appointment_id: data.appointment_id || (data.result && data.result.appointment_id),
-                                sale_order_id: data.sale_order_id || (data.result && data.result.sale_order_id),
-                                full_response: data
-                            });
-                            
                             // Handle JSON-RPC response format
                             let result = data;
                             if (data && data.result !== undefined) {
@@ -5116,8 +4855,7 @@
                             );
                             
                             if (isSuccess) {
-                                console.log('✅ Appointment added to cart successfully');
-                                
+
                                 // Update cart badge if cart_quantity is provided
                                 if (result.cart_quantity !== undefined) {
                                     updateCartBadge(result.cart_quantity);
@@ -5160,18 +4898,10 @@
                                 // Hide loading screen on error
                                 hideLoadingScreen();
                                 
-                                console.error('Failed to add appointment to cart:', result);
-                                console.error('Result type:', typeof result);
-                                console.error('Result keys:', result ? Object.keys(result) : 'null');
-                                console.error('Result success value:', result ? result.success : 'undefined');
-                                console.error('Result error value:', result ? result.error : 'undefined');
-                                console.error('Full result object:', JSON.stringify(result, null, 2));
-                                
                                 // Show specific error message from server if available
                                 const errorMessage = result && result.error ? 
                                     (typeof result.error === 'string' ? result.error : JSON.stringify(result.error)) : 
                                     'Error adding to cart. Please try again.';
-                                console.error('Error message:', errorMessage);
                                 showMessage(errorMessage, 'error');
                                 
                                 // Reset button on error
@@ -5185,7 +4915,6 @@
                             // Hide loading screen on network error
                             hideLoadingScreen();
                             
-                            console.error('Error adding appointment to cart:', error);
                             showMessage(t('error_adding_cart'), 'error');
                             
                             // Reset button on error
@@ -5232,11 +4961,6 @@
                     let originalEmployeeData = {}; // Store original employee data
                     
                     function populateFiltersWithAvailableEmployees() {
-                        console.log('🎯 Populating filters with available employees only');
-                        console.log('🗓️ Selected date:', selectedDate);
-                        console.log('👥 Current employees:', currentEmployees);
-                        console.log('🕐 Current slots:', currentSlots);
-                        
                         const employeeFilter = document.getElementById('employeeFilter');
                         const branchFilter = document.getElementById('branchFilter');
                         
@@ -5247,7 +4971,6 @@
                         branchFilter.innerHTML = '<option value="">All Branches</option>';
                         
                         if (!currentEmployees || !selectedDate) {
-                            console.log('⚠️ Missing data for filter population');
                             return;
                         }
                         
@@ -5270,9 +4993,6 @@
                             }
                         });
                         
-                        console.log('🎯 Available employees:', Array.from(availableEmployees));
-                        console.log('🏢 Available branches:', Array.from(availableBranches));
-                        
                         // Populate employee filter with available employees
                         availableEmployees.forEach(employeeName => {
                             const option = document.createElement('option');
@@ -5289,47 +5009,36 @@
                             branchFilter.appendChild(option);
                         });
                         
-                        console.log('✅ Filters populated with available staff only');
                     }
                     
                     function showFilters() {
-                        console.log('👁️ showFilters() called');
-                        
+
                         // First, ensure the parent calendar section is visible
                         const calendarMainSection = document.getElementById('calendarMainSection');
                         if (calendarMainSection) {
                             const isMainSectionHidden = calendarMainSection.style.display === 'none';
-                            console.log('📋 calendarMainSection visibility:', {hidden: isMainSectionHidden});
-                            
+
                             if (isMainSectionHidden) {
                                 calendarMainSection.style.display = 'block';
-                                console.log('✅ calendarMainSection shown');
                             }
-                        } else {
-                            console.error('❌ calendarMainSection not found!');
                         }
                         
                         // Then show the filters
                         const appointmentFilters = document.getElementById('appointmentFilters');
                         if (appointmentFilters) {
                             appointmentFilters.style.display = 'block';
-                            console.log('✅ Filters shown successfully');
-                            
+
                             // Scroll to filters section for better visibility
                             setTimeout(() => {
                                 appointmentFilters.scrollIntoView({ behavior: 'smooth', block: 'start' });
                             }, 500);
-                        } else {
-                            console.error('❌ appointmentFilters element not found!');
                         }
                     }
                     
                     function hideFilters() {
-                        console.log('🙈 hideFilters() called');
                         const appointmentFilters = document.getElementById('appointmentFilters');
                         if (appointmentFilters) {
                             appointmentFilters.style.display = 'none';
-                            console.log('✅ Filters hidden successfully');
                         }
                         
                         // Note: We don't hide calendarMainSection here because it contains other elements
@@ -5337,35 +5046,22 @@
                     }
                     
                     function populateFilters() {
-                        console.log('🔍 populateFilters() called');
-                        console.log('👥 Current employees data:', currentEmployees);
-                        console.log('📊 Number of employees:', Object.keys(currentEmployees || {}).length);
-                        
                         // Set flag to prevent filter change events from triggering loops
                         isPopulatingFilters = true;
                         
                         try {
-                            // Check if we have employee data
-                            if (!currentEmployees || Object.keys(currentEmployees).length === 0) {
-                                console.warn('⚠️ No employee data available yet, filters will be empty');
-                                // Don't return - still show filters, just empty for now
-                            }
-                            
                             // Store original data if not already stored and we have data
                             if (currentEmployees && Object.keys(currentEmployees).length > 0) {
                                 if (Object.keys(originalEmployeeData).length === 0) {
                                     originalEmployeeData = JSON.parse(JSON.stringify(currentEmployees));
-                                    console.log('📊 Stored original employee data:', Object.keys(originalEmployeeData).length, 'employees');
                                 }
                             }
                             
                             const employeeFilter = document.getElementById('employeeFilter');
                             const branchFilter = document.getElementById('branchFilter');
                             
-                            console.log('🎛️ Filter elements found:', {employeeFilter: !!employeeFilter, branchFilter: !!branchFilter});
-                            
+
                             if (!employeeFilter || !branchFilter) {
-                                console.warn('⚠️ Filter elements not found, but continuing...');
                                 return;
                             }
                             
@@ -5379,7 +5075,6 @@
                         
                         // Only populate if we have employee data
                         if (!currentEmployees || Object.keys(currentEmployees).length === 0) {
-                            console.log('📋 No employees to populate filters with');
                             return;
                         }
                         
@@ -5395,9 +5090,7 @@
                                 branches.add(employee.branch_name);
                             }
                         });
-                        
-                        console.log('🏢 Found branches:', Array.from(branches));
-                        console.log('👤 Found employees:', Array.from(employees));
+
                         
                         // Populate employee filter
                         employees.forEach(employeeName => {
@@ -5422,10 +5115,7 @@
                         if (currentBranchSelection) {
                             branchFilter.value = currentBranchSelection;
                         }
-                        
-                        console.log('🎯 Filters populated:', {employees: employees.size, branches: branches.size});
-                        console.log('🔄 Restored selections:', {employee: employeeFilter.value, branch: branchFilter.value});
-                        
+
                         } catch (error) {
                             console.error('❌ Error in populateFilters:', error);
                         } finally {
@@ -5437,53 +5127,43 @@
                     // Flag to prevent infinite loops during filter population - moved above functions
                     
                     function filterAppointments() {
-                        console.log('🔍 filterAppointments() called');
-                        
                         // Prevent filtering during filter population to avoid loops
                         if (isPopulatingFilters) {
-                            console.log('⏸️ Skipping filterAppointments - currently populating filters');
                             return;
                         }
                         
-                        try {
-                            const employeeFilter = document.getElementById('employeeFilter')?.value || '';
-                            const branchFilter = document.getElementById('branchFilter')?.value || '';
-                            
-                            console.log('🎛️ Filter values:', {employee: employeeFilter, branch: branchFilter});
-                            
-                            // Start with original employee data
-                            let filteredEmployees = JSON.parse(JSON.stringify(originalEmployeeData));
-                        
-                            // Apply employee filter
-                            if (employeeFilter) {
-                                filteredEmployees = Object.fromEntries(
-                                    Object.entries(filteredEmployees).filter(([id, employee]) => 
-                                        employee.name === employeeFilter
-                                    )
-                                );
-                            }
-                            
-                            // Apply branch filter
-                            if (branchFilter) {
-                                filteredEmployees = Object.fromEntries(
-                                    Object.entries(filteredEmployees).filter(([id, employee]) => 
-                                        employee.branch_name === branchFilter
-                                    )
-                                );
-                            }
-                            
-                            // Update current employees and regenerate calendar
-                            currentEmployees = filteredEmployees;
-                            
-                            // Update headers and regenerate slots
-                            updateEmployeeHeaders();
-                            if (selectedDate) {
-                                generateSlots();
-                            }
-                            
-                            console.log('✅ Filtered employees:', Object.keys(currentEmployees).length);
-                        } catch (error) {
-                            console.error('❌ Error in filterAppointments:', error);
+                        const employeeFilter = document.getElementById('employeeFilter')?.value || '';
+                        const branchFilter = document.getElementById('branchFilter')?.value || '';
+
+
+                        // Start with original employee data
+                        let filteredEmployees = JSON.parse(JSON.stringify(originalEmployeeData));
+
+                        // Apply employee filter
+                        if (employeeFilter) {
+                            filteredEmployees = Object.fromEntries(
+                                Object.entries(filteredEmployees).filter(([id, employee]) =>
+                                    employee.name === employeeFilter
+                                )
+                            );
+                        }
+
+                        // Apply branch filter
+                        if (branchFilter) {
+                            filteredEmployees = Object.fromEntries(
+                                Object.entries(filteredEmployees).filter(([id, employee]) =>
+                                    employee.branch_name === branchFilter
+                                )
+                            );
+                        }
+
+                        // Update current employees and regenerate calendar
+                        currentEmployees = filteredEmployees;
+
+                        // Update headers and regenerate slots
+                        updateEmployeeHeaders();
+                        if (selectedDate) {
+                            generateSlots();
                         }
                     }
                     
