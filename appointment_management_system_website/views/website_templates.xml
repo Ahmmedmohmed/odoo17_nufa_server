@@ -143,19 +143,19 @@
                 <div class="service_grid" id="serviceGrid">
                     <t t-foreach="services" t-as="service">
                         <div class="service_item" t-att-data-service-id="service.id" t-att-data-service-type="'package' if service.is_appointment_package else 'single'" onclick="selectService(this)">
-                            <div class="service_image">
-                                <t t-if="service.image_1920">
-                                    <img t-attf-src="data:image/png;base64,#{service.image_1920}" t-att-alt="service.name"/>
-                                </t>
-                                <t t-elif="service.image_128">
-                                    <img t-attf-src="data:image/png;base64,#{service.image_128}" t-att-alt="service.name"/>
-                                </t>
-                                <t t-else="">
-                                    <div class="service_placeholder">
-                                        <i class="fa fa-cut"></i>
-                                    </div>
-                                </t>
-                            </div>
+<!--                            <div class="service_image">-->
+<!--                                <t t-if="service.image_1920">-->
+<!--                                    <img t-attf-src="data:image/png;base64,#{service.image_1920}" t-att-alt="service.name"/>-->
+<!--                                </t>-->
+<!--                                <t t-elif="service.image_128">-->
+<!--                                    <img t-attf-src="data:image/png;base64,#{service.image_128}" t-att-alt="service.name"/>-->
+<!--                                </t>-->
+<!--                                <t t-else="">-->
+<!--                                    <div class="service_placeholder">-->
+<!--                                        <i class="fa fa-cut"></i>-->
+<!--                                    </div>-->
+<!--                                </t>-->
+<!--                            </div>-->
                             <div class="service_info">
                                 <h4 class="service_name" t-esc="service.name"/>
                                 <p class="service_description" t-esc="service.description or 'Professional service'"/>
@@ -843,25 +843,25 @@
                                                         </t>
 
                                                         <div class="card-body text-center">
-                                                            <div class="mb-3">
-                                                                <t t-if="service.image_1920">
-                                                                    <img t-att-src="'/web/image/product.product/' + str(service.id) + '/image_1920'" 
-                                                                         class="img-fluid rounded-circle border border-primary" 
-                                                                         style="width: 100px; height: 100px; object-fit: cover;"
-                                                                         t-att-alt="service.name"/>
-                                                                </t>
-                                                                <t t-else="">
-                                                                    <div class="rounded-circle d-flex align-items-center justify-content-center mx-auto" 
-                                                                         style="width: 100px; height: 100px; background-color: #C76E49; color: white; font-size: 2rem;">
-                                                                        <t t-if="service.is_appointment_package">
-                                                                            <i class="fa fa-gift"></i>
-                                                                        </t>
-                                                                        <t t-else="">
-                                                                            <i class="fa fa-cut"></i>
-                                                                        </t>
-                                                                    </div>
-                                                                </t>
-                                                            </div>
+<!--                                                            <div class="mb-3">-->
+<!--                                                                <t t-if="service.image_1920">-->
+<!--                                                                    <img t-att-src="'/web/image/product.product/' + str(service.id) + '/image_1920'" -->
+<!--                                                                         class="img-fluid rounded-circle border border-primary" -->
+<!--                                                                         style="width: 100px; height: 100px; object-fit: cover;"-->
+<!--                                                                         t-att-alt="service.name"/>-->
+<!--                                                                </t>-->
+<!--                                                                <t t-else="">-->
+<!--                                                                    <div class="rounded-circle d-flex align-items-center justify-content-center mx-auto" -->
+<!--                                                                         style="width: 100px; height: 100px; background-color: #C76E49; color: white; font-size: 2rem;">-->
+<!--                                                                        <t t-if="service.is_appointment_package">-->
+<!--                                                                            <i class="fa fa-gift"></i>-->
+<!--                                                                        </t>-->
+<!--                                                                        <t t-else="">-->
+<!--                                                                            <i class="fa fa-cut"></i>-->
+<!--                                                                        </t>-->
+<!--                                                                    </div>-->
+<!--                                                                </t>-->
+<!--                                                            </div>-->
                                                             <h5 class="card-title font-weight-bold text-primary" t-field="service.name"/>
                                                             <p class="card-text text-muted" t-field="service.description_sale"/>
                                                             <div class="mt-3">
