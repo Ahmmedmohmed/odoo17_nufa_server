@@ -173,9 +173,7 @@ class AppointmentWebsiteController(http.Controller):
         if category_id:
             try:
                 category_id = int(category_id)
-                all_products = request.env['product.product'].sudo().search([
-                    ('pos_categ_ids', 'in', [category_id]), ('is_published', '=', True)
-                ])
+                all_products = request.env['product.product'].sudo().search([('pos_categ_ids', 'in', [category_id])])
                 appointment_products = all_products.filtered(
                     lambda p: hasattr(p, 'is_appointment_service') and (p.is_appointment_service or p.is_appointment_package)
                 )
@@ -201,7 +199,7 @@ class AppointmentWebsiteController(http.Controller):
                     for product in filtered_services[1:]:
                         services += product
                 else:
-                    services = request.env['product.product'].sudo().search([('pos_categ_ids', 'in', [category_id]), ('is_published', '=', True)])
+                    services = request.env['product.product'].sudo().search([('pos_categ_ids', 'in', [category_id])])
 
             except (ValueError, TypeError):
                 pass

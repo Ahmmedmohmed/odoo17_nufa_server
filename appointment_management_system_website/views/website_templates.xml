@@ -31,11 +31,6 @@
                                         </t>
                                     </div>
                                     <h5 class="card-title font-weight-bold text-primary" t-field="category.name"/>
-                                    <div class="mt-3">
-                                        <span class="badge badge-primary">
-                                            <i class="fa fa-mouse-pointer"></i> Click to Select
-                                        </span>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -143,19 +138,6 @@
                 <div class="service_grid" id="serviceGrid">
                     <t t-foreach="services" t-as="service">
                         <div class="service_item" t-att-data-service-id="service.id" t-att-data-service-type="'package' if service.is_appointment_package else 'single'" onclick="selectService(this)">
-<!--                            <div class="service_image">-->
-<!--                                <t t-if="service.image_1920">-->
-<!--                                    <img t-attf-src="data:image/png;base64,#{service.image_1920}" t-att-alt="service.name"/>-->
-<!--                                </t>-->
-<!--                                <t t-elif="service.image_128">-->
-<!--                                    <img t-attf-src="data:image/png;base64,#{service.image_128}" t-att-alt="service.name"/>-->
-<!--                                </t>-->
-<!--                                <t t-else="">-->
-<!--                                    <div class="service_placeholder">-->
-<!--                                        <i class="fa fa-cut"></i>-->
-<!--                                    </div>-->
-<!--                                </t>-->
-<!--                            </div>-->
                             <div class="service_info">
                                 <h4 class="service_name" t-esc="service.name"/>
                                 <p class="service_description" t-esc="service.description or 'Professional service'"/>
@@ -282,6 +264,7 @@
                     text-align: center;
                     border-radius: 5px;
                     z-index: 1;
+                    background: linear-gradient(135deg, #C76E49 0%, #A85B3D 100%) !important;
                 }
 
                 @keyframes fadeIn {
@@ -473,6 +456,10 @@
                 .booking-summary {
                     position: sticky;
                     top: 20px;
+                }
+
+                .card-header {
+                    background: linear-gradient(135deg, #C76E49 0%, #A85B3D 100%) !important;
                 }
                 
                 /* Service Card Enhancements */
@@ -696,7 +683,7 @@
                     <!-- Left Sidebar -->
                     <div class="col-md-3">
                         <div class="card booking-summary animate-fade-in">
-                            <div class="card-header bg-danger text-white">
+                            <div class="card-header text-white">
                                 <h5 class="mb-0"><i class="fa fa-shopping-cart"></i> Booking Summary</h5>
                             </div>
                             <div class="card-body p-0">
@@ -765,9 +752,6 @@
                                 <div id="cartPreview" class="border-top" style="display: none;">
                                     <div class="p-3">
                                         <h6 class="mb-3"><i class="fa fa-shopping-cart"></i> Current Cart</h6>
-<!--                                        <div id="cartItems" class="small">-->
-<!--                                            &lt;!&ndash; Cart items will be shown here &ndash;&gt;-->
-<!--                                        </div>-->
                                         <div class="text-center mt-2">
                                             <a href="/shop/cart" class="btn btn-outline-primary btn-sm">
                                                 <i class="fa fa-eye"></i> View Cart
@@ -832,32 +816,13 @@
                                                          t-att-data-is-package="service.is_appointment_package"
                                                          onclick="return selectService(this);">
                                                         <t t-if="service.is_appointment_package">
-                                                            <span class="ribbon bg-success">Package</span>
+                                                            <span class="ribbon">Package</span>
                                                         </t>
                                                         <t t-else="">
-                                                            <span class="ribbon bg-danger">Service</span>
+                                                            <span class="ribbon">Service</span>
                                                         </t>
 
                                                         <div class="card-body text-center mt-5">
-<!--                                                            <div class="mb-3">-->
-<!--                                                                <t t-if="service.image_1920">-->
-<!--                                                                    <img t-att-src="'/web/image/product.product/' + str(service.id) + '/image_1920'" -->
-<!--                                                                         class="img-fluid rounded-circle border border-primary" -->
-<!--                                                                         style="width: 100px; height: 100px; object-fit: cover;"-->
-<!--                                                                         t-att-alt="service.name"/>-->
-<!--                                                                </t>-->
-<!--                                                                <t t-else="">-->
-<!--                                                                    <div class="rounded-circle d-flex align-items-center justify-content-center mx-auto" -->
-<!--                                                                         style="width: 100px; height: 100px; background-color: #C76E49; color: white; font-size: 2rem;">-->
-<!--                                                                        <t t-if="service.is_appointment_package">-->
-<!--                                                                            <i class="fa fa-gift"></i>-->
-<!--                                                                        </t>-->
-<!--                                                                        <t t-else="">-->
-<!--                                                                            <i class="fa fa-cut"></i>-->
-<!--                                                                        </t>-->
-<!--                                                                    </div>-->
-<!--                                                                </t>-->
-<!--                                                            </div>-->
                                                             <h5 class="card-title font-weight-bold text-primary" t-field="service.name"/>
                                                             <p class="card-text text-muted" t-field="service.description_sale"/>
                                                             <div class="mt-3">
@@ -871,11 +836,6 @@
                                                                         <i class="fa fa-check"></i> Single Service
                                                                     </span>
                                                                 </t>
-                                                                <div class="mt-2">
-                                                                    <span class="badge badge-primary">
-                                                                        <i class="fa fa-mouse-pointer"></i> Click to Select
-                                                                    </span>
-                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -902,8 +862,6 @@
                                 </select>
                             </div>
                         </div>
-
-                        <!-- Package services section removed - now auto-starts with first service -->
 
                         <!-- Step 2: Location Selection -->
                         <div class="card mb-4 animate-fade-in" id="locationSelectionSection" style="display: none;">
@@ -2594,7 +2552,7 @@
                                 <div class="text-center">
                                     <div>📦 ${t('package_service_number')} ${serviceIndex + 1} ${t('of')} ${packageServicesList.length}</div>
                                     <div>
-                                        <span class="badge bg-primary text-white px-3 py-2 fs-5">${service.name}</span>
+                                        <span class="badge text-white px-3 py-2 fs-5" style="background: linear-gradient(135deg, #C76E49 0%, #A85B3D 100%) !important;">${service.name}</span>
                                     </div>
                                 </div>
                             `;
@@ -5165,9 +5123,6 @@
                             generateSlots();
                         }
                     }
-                    
-                    // Debug function removed - filters are now working properly
-                    
                 // ]]>
                 </script>
             </div>
