@@ -269,8 +269,6 @@ class Product(models.Model):
             date = datetime.strptime(appointmentDetail.get('date'), "%Y-%m-%d").date()
             time_str = slot_ids.mapped('name')[0]
             time = datetime.strptime(time_str, "%H:%M").time()
-            combined = datetime.combine(date, time).replace(tzinfo=ZoneInfo(self.env.user.tz))
-
             local_dt = datetime.combine(date, time).replace(tzinfo=ZoneInfo(self.env.user.tz))
             utc_dt = local_dt.astimezone(ZoneInfo("UTC"))
             final_dt = utc_dt.replace(tzinfo=None)

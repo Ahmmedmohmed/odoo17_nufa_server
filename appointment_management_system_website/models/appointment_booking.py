@@ -60,9 +60,12 @@ class AppointmentManagement(models.Model):
     def create_from_cart(self, appointment_data):
         """Create appointment when adding to cart with Partial Approved state"""
 
+        # Combine date and time from slot_ids to create proper datetime
+        appointment_datetime = self._get_appointment_datetime(appointment_data)
+
         vals = {
             'partner_id': appointment_data.get('partner_id'),
-            'date': appointment_data.get('date'),
+            'date': appointment_datetime,  # Use combined datetime instead of just date
             'branch_id': appointment_data.get('branch_id'),
             'company_id': appointment_data.get('company_id'),
             'product_id': appointment_data.get('product_id'),
@@ -85,8 +88,15 @@ class AppointmentManagement(models.Model):
             vals['slot_ids'] = [(6, 0, appointment_data['slot_ids'])]
 
         try:
+            # Log the datetime being used for debugging
+            import logging
+            _logger = logging.getLogger(__name__)
+            _logger.info(f"Creating appointment with datetime: {appointment_datetime} for date: {appointment_data.get('date')}")
+            
             appointment = self.create(vals)
         except Exception as e:
+            import logging
+            _logger = logging.getLogger(__name__)
             _logger.error(f"Error creating appointment: {str(e)}")
             raise
         
@@ -162,6 +172,76 @@ class AppointmentManagement(models.Model):
             })
             return True
         return False
+    
+    def _get_appointment_datetime(self, appointment_data):
+        """Combine date and time from slot with proper timezone handling using slot name"""
+        from zoneinfo import ZoneInfo
+        
+        date_str = appointment_data.get('date')
+        if not date_str:
+            return fields.Datetime.now()
+        
+        # Get slot IDs and process them
+        slot_ids_list = appointment_data.get('slot_ids', [])
+        if slot_ids_list:
+            try:
+                # Get the slot objects
+                slot_ids = self.env['appointment.employee.slot'].sudo().browse(slot_ids_list)
+                if slot_ids:
+                    # Use the logic from the provided code snippet
+                    date = datetime.strptime(appointment_data.get('date'), "%Y-%m-%d").date()
+                    time_str = slot_ids.mapped('name')[0]  # Get time string from slot name (e.g., "08:00")
+                    time = datetime.strptime(time_str, "%H:%M").time()
+                    
+                    # Get user timezone, with explicit fallback
+                    user_tz = self.env.user.tz or 'Asia/Riyadh'
+                    
+                    local_dt = datetime.combine(date, time).replace(tzinfo=ZoneInfo(user_tz))
+                    utc_dt = local_dt.astimezone(ZoneInfo("UTC"))
+                    
+                    # WORKAROUND: Add 1 hour to compensate for Odoo frontend timezone handling
+                    # This is needed because the frontend seems to be applying UTC+2 instead of UTC+3
+                    corrected_utc = utc_dt + timedelta(hours=1)
+                    final_dt = corrected_utc.replace(tzinfo=None)
+                    
+                    # Enhanced logging for debugging
+                    import logging
+                    _logger = logging.getLogger(__name__)
+                    _logger.info(f"=== Appointment Timezone Debug ===")
+                    _logger.info(f"User TZ: {user_tz}")
+                    _logger.info(f"Slot name: {time_str}")
+                    _logger.info(f"Date: {date}")
+                    _logger.info(f"Local DT: {local_dt}")
+                    _logger.info(f"UTC DT: {utc_dt}")
+                    _logger.info(f"Corrected UTC (+1h): {corrected_utc}")
+                    _logger.info(f"Final stored: {final_dt}")
+                    _logger.info(f"=== End Debug ===")
+                    
+                    return fields.Datetime.to_string(final_dt)
+                        
+            except Exception as e:
+                import logging
+                _logger = logging.getLogger(__name__)
+                _logger.error(f"Error processing slot with provided logic: {str(e)}")
+                
+                # Fallback to simple conversion if the above fails
+                try:
+                    first_slot = self.env['appointment.employee.slot'].sudo().browse(slot_ids_list[0])
+                    if first_slot.exists():
+                        # Convert slot time (float) to time object as fallback
+                        hour = int(first_slot.time)
+                        minute = int((first_slot.time - hour) * 60)
+                        appointment_time = datetime.min.time().replace(hour=hour, minute=minute)
+                        appointment_date = datetime.strptime(date_str, '%Y-%m-%d').date()
+                        appointment_datetime = datetime.combine(appointment_date, appointment_time)
+                        return fields.Datetime.to_string(appointment_datetime)
+                except Exception as fallback_error:
+                    _logger.error(f"Fallback conversion also failed: {str(fallback_error)}")
+        
+        # Final fallback to date with default time (00:00)
+        appointment_date = datetime.strptime(date_str, '%Y-%m-%d').date()
+        appointment_datetime = datetime.combine(appointment_date, datetime.min.time())
+        return fields.Datetime.to_string(appointment_datetime)
     
     def cancel_reservation(self):
         """Cancel slot reservation (e.g., when cart item is removed or expires)"""

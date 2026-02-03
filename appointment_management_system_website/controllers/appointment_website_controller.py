@@ -410,7 +410,7 @@ class AppointmentWebsiteController(http.Controller):
                         else:
                             return {'success': False, 'error': 'Selected time slot is not available or already reserved. Please select a different time.'}
                 except Exception as e:
-                    return {'success': False, 'error': 'Error checking slot availability'}
+                    return {'success': False, 'error': f'Error checking slot availability: {str(e)}'}
             
             if not slot_ids:
                 return {'success': False, 'error': 'Selected time slot is not available. Please select a different time.'}
@@ -570,6 +570,10 @@ class AppointmentWebsiteController(http.Controller):
                             if slot and slot.is_available_for_booking():
                                 slot_ids = [slot.id]
                     except Exception as e:
+                        # Log error for debugging
+                        import logging
+                        _logger = logging.getLogger(__name__)
+                        _logger.error(f"Error finding slot for package service: {str(e)}")
                         pass
                 
                 if slot_ids:
