@@ -8,19 +8,7 @@
 
     'summary': 'Website booking system for salon appointments',
 
-    'description': """
-        Website Booking System for Salon Appointments
-        ============================================
-        
-        This module extends the appointment management system to provide:
-        - Website booking interface for customers
-        - Category-based service selection
-        - Inside/outside branch booking options
-        - Package booking with multiple services
-        - Live cart calculation and invoice preview
-        - Customer portal for appointment history
-        - Professional UI with brand theming
-    """,
+    'description': """ Appointment Management System Website """,
     
     'depends': [
         'base',
@@ -55,7 +43,6 @@
     'assets': {
         'web.assets_frontend': [
             'appointment_management_system_website/static/src/css/booking.css',
-            # 'appointment_management_system_website/static/src/js/booking_minimal.js',  # Disabled - conflicts with template functions
         ],
     },
 

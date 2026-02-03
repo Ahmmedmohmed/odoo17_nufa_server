@@ -59,9 +59,7 @@ class AppointmentManagement(models.Model):
     @api.model
     def create_from_cart(self, appointment_data):
         """Create appointment when adding to cart with Partial Approved state"""
-        import logging
-        _logger = logging.getLogger(__name__)
-        _logger.info(f"Creating appointment with data: {appointment_data}")
+
         vals = {
             'partner_id': appointment_data.get('partner_id'),
             'date': appointment_data.get('date'),
@@ -85,13 +83,9 @@ class AppointmentManagement(models.Model):
         # Handle slot_ids if provided
         if 'slot_ids' in appointment_data:
             vals['slot_ids'] = [(6, 0, appointment_data['slot_ids'])]
-        
-        _logger.info(f"Final vals for appointment creation: {vals}")
-        
+
         try:
             appointment = self.create(vals)
-            _logger.info(f"Created appointment with ID: {appointment.id}")
-            _logger.info(f"Appointment customer fields: street={appointment.customer_street}, phone={appointment.customer_phone}, city={appointment.customer_city}, notes={appointment.customer_notes}")
         except Exception as e:
             _logger.error(f"Error creating appointment: {str(e)}")
             raise
