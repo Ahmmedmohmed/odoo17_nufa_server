@@ -2464,6 +2464,8 @@
                                 
                                 // Initialize employee pagination
                                 currentEmployeePage = 0;
+                                showFilters();
+                                populateFilters();
                                 updateEmployeeHeaders();
                                 updateEmployeeNavigation();
                                 

@@ -11,6 +11,7 @@ class AppointmentManagement(models.Model):
     customer_address = fields.Text(string='Customer Address')
     sale_order_id = fields.Many2one('sale.order', string='Related Sale Order')
     order_line_id = fields.Many2one('sale.order.line', string='Related Order Line')
+    currency_id = fields.Many2one('res.currency', string='Currency', compute='_compute_currency_id', store=True)
     cart_reservation_expiry = fields.Datetime(string='Cart Reservation Expiry')
     slot_reserved = fields.Boolean(string='Slot Reserved', default=False)
     
@@ -36,9 +37,16 @@ class AppointmentManagement(models.Model):
 
     @api.depends('sale_order_id')
     def _compute_has_sale_order(self):
-        """Compute if appointment has a related sale order"""
         for appointment in self:
             appointment.has_sale_order = bool(appointment.sale_order_id)
+
+    @api.depends('sale_order_id', 'sale_order_id.currency_id')
+    def _compute_currency_id(self):
+        for appointment in self:
+            if appointment.sale_order_id:
+                appointment.currency_id = appointment.sale_order_id.currency_id
+            else:
+                appointment.currency_id = appointment.env.company.currency_id
 
     def action_view_sale_order(self):
         """Action to view the related sale order"""
@@ -507,12 +515,13 @@ class WebsiteSale(models.Model):
     
     def sale_confirm_order(self, transaction=None):
         """Override to confirm appointments after website sale confirmation"""
+        order = self.sale_get_order()
         result = super().sale_confirm_order(transaction=transaction)
         
-        # Get the sale order from current session
-        order = self.sale_get_order()
+        if order and order.state in ('draft', 'sent'):
+            order.action_confirm()
+        
         if order and order.state in ('sale', 'done'):
-            # Confirm all pending appointments
             pending_appointments = order.appointment_ids.filtered(lambda a: a.state == '1')
             for appointment in pending_appointments:
                 appointment.confirm_appointment_payment(order)
@@ -522,20 +531,27 @@ class WebsiteSale(models.Model):
 
 class PaymentTransaction(models.Model):
     _inherit = 'payment.transaction'
-    
-    def _post_process(self):
-        """Override to confirm appointments after payment success"""
-        res = super()._post_process()
-        
-        for transaction in self:
-            if transaction.state == 'done' and transaction.sale_order_ids:
-                for order in transaction.sale_order_ids:
-                    # Confirm pending appointments
-                    pending_appointments = order.appointment_ids.filtered(lambda a: a.state == '1')
-                    for appointment in pending_appointments:
-                        appointment.confirm_appointment_payment(order)
-        
-        return res
+
+    def _set_pending(self, state_message=None, extra_allowed_states=()):
+        txs = super()._set_pending(state_message=state_message, extra_allowed_states=extra_allowed_states)
+        self._confirm_appointment_orders()
+        return txs
+
+    def _set_authorized(self, state_message=None, **kwargs):
+        txs = super()._set_authorized(state_message=state_message, **kwargs)
+        self._confirm_appointment_orders()
+        return txs
+
+    def _set_done(self, state_message=None, extra_allowed_states=()):
+        txs = super()._set_done(state_message=state_message, extra_allowed_states=extra_allowed_states)
+        self._confirm_appointment_orders()
+        return txs
+
+    def _confirm_appointment_orders(self):
+        for tx in self:
+            for order in tx.sale_order_ids:
+                if order.appointment_ids and order.state in ('draft', 'sent'):
+                    order.with_context(send_email=True).action_confirm()
 
 
 class AccountPayment(models.Model):

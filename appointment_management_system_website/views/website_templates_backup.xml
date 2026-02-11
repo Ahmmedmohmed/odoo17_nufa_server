@@ -261,7 +261,7 @@
                 <!-- Custom Styles -->
                 <style>
                     .calendar-table th {
-                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        background: linear-gradient(135deg, #C76E49 0%, #A85B3D 100%);
                         color: white;
                         border: none;
                     }

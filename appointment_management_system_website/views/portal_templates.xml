@@ -42,7 +42,7 @@
                     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
                 }
                 .appointment-header {
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    background: linear-gradient(135deg, #C76E49 0%, #A85B3D 100%);
                     color: white;
                     border-radius: 10px 10px 0 0;
                     padding: 15px;
@@ -148,7 +148,7 @@
                                     
                                     <div class="d-flex justify-content-between align-items-center">
                                         <span class="font-weight-bold text-success">
-                                            $<span t-esc="'%.2f' % appointment.price_unit"/>
+                                            <span t-esc="'%.2f' % appointment.price_unit"/> <span t-esc="appointment.currency_id.symbol or ''"/>
                                         </span>
                                         <a t-attf-href="/my/appointments/#{appointment.id}" class="btn btn-outline-primary btn-sm">
                                             <i class="fa fa-eye"></i> View Details
@@ -176,7 +176,7 @@
                     margin-bottom: 30px;
                 }
                 .appointment-detail-header {
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    background: linear-gradient(135deg, #C76E49 0%, #A85B3D 100%);
                     color: white;
                     padding: 25px;
                 }
@@ -328,7 +328,7 @@
                                             <div class="mb-3">
                                                 <label class="font-weight-bold text-muted">Total Amount</label>
                                                 <div class="h4 text-success font-weight-bold">
-                                                    $<span t-esc="'%.2f' % appointment.price_unit"/>
+                                                    <span t-esc="'%.2f' % appointment.price_unit"/> <span t-esc="appointment.currency_id.symbol or ''"/>
                                                 </div>
                                             </div>
                                         </div>
