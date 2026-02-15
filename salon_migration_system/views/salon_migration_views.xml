@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="salon_migration_view_tree" model="ir.ui.view">
+        <field name="name">salon.migration.tree</field>
+        <field name="model">salon.migration</field>
+        <field name="arch" type="xml">
+            <tree string="Salon Migrations">
+                <field name="name"/>
+                <field name="url"/>
+                <field name="database"/>
+                <field name="username"/>
+                <field name="state" widget="badge" decoration-success="state == 'done'" decoration-info="state == 'connected'" decoration-danger="state == 'failed'" decoration-muted="state == 'draft'"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="salon_migration_view_form" model="ir.ui.view">
+        <field name="name">salon.migration.form</field>
+        <field name="model">salon.migration</field>
+        <field name="arch" type="xml">
+            <form string="Salon Migration">
+                <header>
+                    <button name="action_test_connection" type="object" string="Test Connection" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_migrate" type="object" string="Start Migration" class="btn-primary" invisible="state not in ('connected', 'failed')"/>
+                    <button name="action_test_connection" type="object" string="Re-Test Connection" invisible="state not in ('connected', 'failed', 'done')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,connected,done"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Connection Details">
+                            <field name="name"/>
+                            <field name="url" placeholder="https://your-odoo-instance.com"/>
+                            <field name="database"/>
+                            <field name="username"/>
+                            <field name="password" password="True"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Migration Log">
+                            <field name="log"/>
+                        </page>
+                        <page string="Migration Details">
+                            <field name="migration_line_ids">
+                                <tree string="Migration Lines">
+                                    <field name="model"/>
+                                    <field name="name"/>
+                                    <field name="remote_id"/>
+                                    <field name="local_id"/>
+                                    <field name="action" widget="badge" decoration-success="action == 'created'" decoration-info="action == 'updated'" decoration-warning="action == 'skipped'"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="salon_migration_action" model="ir.actions.act_window">
+        <field name="name">Salon Migration</field>
+        <field name="res_model">salon.migration</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="salon_migration_menu_root" name="Salon Migration" web_icon="salon_migration_system,static/description/icon.png" sequence="100"/>
+    <menuitem id="salon_migration_menu" name="Migrations" parent="salon_migration_menu_root" action="salon_migration_action" sequence="10"/>
+
+</odoo>

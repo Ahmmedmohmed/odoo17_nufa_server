@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+  <t t-name="appointment_management_system_pos.OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension">
+      <xpath expr="//Orderline" position="inside">
+        <ul t-if="line.is_appointment_line">
+            <li> <t t-esc="line.appointment_name"/>  </li>
+            <li> <t t-esc="line.employee_name"/>  </li>
+            <li> <t t-esc="line.branch_name"/>  </li>
+            <li> <t t-esc="line.appointment_type"/>  </li>
+            <li> <t t-esc="line.date"/>-<t t-esc="line.slot_name"/></li>
+        </ul>
+      </xpath>
+
+    </t>
+
+
+
+
+</templates>
