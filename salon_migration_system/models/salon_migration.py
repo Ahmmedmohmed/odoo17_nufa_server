@@ -474,7 +474,11 @@ class SalonMigration(models.Model):
                     vals['supplier_taxes_id'] = [(6, 0, local_stax_ids)]
 
             if existing:
-                existing.write(vals)
+                update_vals = {k: v for k, v in vals.items() if k not in ('type', 'uom_id', 'uom_po_id', 'categ_id')}
+                try:
+                    existing.write(update_vals)
+                except Exception as e:
+                    self._append_log('Warning updating product %s: %s' % (product_name, str(e)))
                 product_map[remote_id] = existing.id
                 self._create_migration_line('product.product', remote_id, existing.id, product_name, 'updated')
                 self._append_log('Updated product: %s' % product_name)
