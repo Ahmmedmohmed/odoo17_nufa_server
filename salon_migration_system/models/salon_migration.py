@@ -262,20 +262,35 @@ class SalonMigration(models.Model):
         ]
 
         remote_categs = None
+        remote_categ_ids = None
+        try:
+            remote_categ_ids = models_proxy.execute_kw(
+                self.database, uid, self.password,
+                'pos.category', 'search',
+                [[]]
+            )
+        except Exception as e:
+            self._append_log('Could not fetch POS categories from remote database: %s' % str(e))
+            return
+
+        if not remote_categ_ids:
+            self._append_log('No POS categories found on remote database.')
+            return
+
         for categ_fields in categ_fields_sets:
             try:
                 remote_categs = models_proxy.execute_kw(
                     self.database, uid, self.password,
-                    'pos.category', 'search_read',
-                    [[]],
-                    {'fields': categ_fields, 'limit': False}
+                    'pos.category', 'read',
+                    [remote_categ_ids],
+                    {'fields': categ_fields}
                 )
                 break
             except Exception:
                 continue
 
         if remote_categs is None:
-            self._append_log('Could not fetch POS categories from remote database.')
+            self._append_log('Could not read POS categories from remote database.')
             return
 
         self._append_log('Found %d POS categories to migrate.' % len(remote_categs))
@@ -294,7 +309,10 @@ class SalonMigration(models.Model):
             if rc.get('parent_id'):
                 local_parent_id = get_or_create_categ(rc['parent_id'][0])
 
-            local = self.env['pos.category'].search([('name', '=', rc['name'])], limit=1)
+            local = self.env['pos.category'].search([
+                ('name', '=', rc['name']),
+                ('parent_id', '=', local_parent_id or False),
+            ], limit=1)
 
             if local:
                 pos_categ_map[remote_id] = local.id
@@ -372,12 +390,22 @@ class SalonMigration(models.Model):
         remote_products = None
         for product_fields in product_fields_sets:
             try:
-                remote_products = models_proxy.execute_kw(
+                remote_ids = models_proxy.execute_kw(
                     self.database, uid, self.password,
-                    'product.product', 'search_read',
-                    [['|', ('active', '=', True), ('active', '=', False)]],
-                    {'fields': product_fields, 'limit': False}
+                    'product.product', 'search',
+                    [[]],
+                    {'context': {'active_test': False}}
                 )
+                remote_products = []
+                batch_size = 100
+                for i in range(0, len(remote_ids), batch_size):
+                    batch = models_proxy.execute_kw(
+                        self.database, uid, self.password,
+                        'product.product', 'read',
+                        [remote_ids[i:i + batch_size]],
+                        {'fields': product_fields}
+                    )
+                    remote_products.extend(batch)
                 break
             except Exception:
                 continue
@@ -502,12 +530,20 @@ class SalonMigration(models.Model):
         if self._has_field('appointment.service.price.plan', 'location_type'):
             plan_fields.append('location_type')
 
-        remote_plans = models_proxy.execute_kw(
+        remote_plan_ids = models_proxy.execute_kw(
             self.database, uid, self.password,
-            'appointment.service.price.plan', 'search_read',
-            [[]],
-            {'fields': plan_fields, 'limit': False}
+            'appointment.service.price.plan', 'search',
+            [[]]
         )
+        remote_plans = []
+        for i in range(0, len(remote_plan_ids), 100):
+            batch = models_proxy.execute_kw(
+                self.database, uid, self.password,
+                'appointment.service.price.plan', 'read',
+                [remote_plan_ids[i:i + 100]],
+                {'fields': plan_fields}
+            )
+            remote_plans.extend(batch)
 
         self._append_log('Found %d price plans to migrate.' % len(remote_plans))
 
@@ -561,12 +597,20 @@ class SalonMigration(models.Model):
         if self._has_field('appointment.package.line', 'location_type'):
             line_fields.append('location_type')
 
-        remote_lines = models_proxy.execute_kw(
+        remote_line_ids = models_proxy.execute_kw(
             self.database, uid, self.password,
-            'appointment.package.line', 'search_read',
-            [[]],
-            {'fields': line_fields, 'limit': False}
+            'appointment.package.line', 'search',
+            [[]]
         )
+        remote_lines = []
+        for i in range(0, len(remote_line_ids), 100):
+            batch = models_proxy.execute_kw(
+                self.database, uid, self.password,
+                'appointment.package.line', 'read',
+                [remote_line_ids[i:i + 100]],
+                {'fields': line_fields}
+            )
+            remote_lines.extend(batch)
 
         self._append_log('Found %d package lines to migrate.' % len(remote_lines))
 
@@ -620,12 +664,20 @@ class SalonMigration(models.Model):
 
         comp_fields = ['component_id', 'quantity', 'product_id']
 
-        remote_components = models_proxy.execute_kw(
+        remote_comp_ids = models_proxy.execute_kw(
             self.database, uid, self.password,
-            'product.component', 'search_read',
-            [[]],
-            {'fields': comp_fields, 'limit': False}
+            'product.component', 'search',
+            [[]]
         )
+        remote_components = []
+        for i in range(0, len(remote_comp_ids), 100):
+            batch = models_proxy.execute_kw(
+                self.database, uid, self.password,
+                'product.component', 'read',
+                [remote_comp_ids[i:i + 100]],
+                {'fields': comp_fields}
+            )
+            remote_components.extend(batch)
 
         self._append_log('Found %d product components to migrate.' % len(remote_components))
 
