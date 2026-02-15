@@ -488,6 +488,9 @@ class SalonMigration(models.Model):
                 self._create_migration_line('product.product', remote_id, new_product.id, product_name, 'created')
                 self._append_log('Created product: %s' % product_name)
 
+    def _has_field(self, model, field_name):
+        return field_name in self.env[model]._fields
+
     def _migrate_price_plans(self, uid, models_proxy, product_map):
         self._append_log('--- Migrating Price Plans ---')
 
@@ -495,8 +498,9 @@ class SalonMigration(models.Model):
             'service_id', 'department_id', 'branch_id', 'currency_id',
             'service_slot_inside', 'service_slot_outside',
             'service_price_inside', 'service_price_outside',
-            'location_type',
         ]
+        if self._has_field('appointment.service.price.plan', 'location_type'):
+            plan_fields.append('location_type')
 
         remote_plans = models_proxy.execute_kw(
             self.database, uid, self.password,
@@ -534,8 +538,9 @@ class SalonMigration(models.Model):
                 'service_slot_outside': rplan.get('service_slot_outside', 0),
                 'service_price_inside': rplan.get('service_price_inside', 0.0),
                 'service_price_outside': rplan.get('service_price_outside', 0.0),
-                'location_type': rplan.get('location_type', 'both'),
             }
+            if self._has_field('appointment.service.price.plan', 'location_type') and rplan.get('location_type'):
+                vals['location_type'] = rplan['location_type']
 
             if existing:
                 self._create_migration_line('appointment.service.price.plan', rplan['id'], existing.id, 'Plan for service %d' % local_service_id, 'skipped')
@@ -552,8 +557,9 @@ class SalonMigration(models.Model):
             'product_id', 'product_pack_id', 'department_id', 'branch_id', 'currency_id',
             'service_slot_inside', 'service_slot_outside',
             'service_price_inside', 'service_price_outside',
-            'location_type',
         ]
+        if self._has_field('appointment.package.line', 'location_type'):
+            line_fields.append('location_type')
 
         remote_lines = models_proxy.execute_kw(
             self.database, uid, self.password,
@@ -597,8 +603,9 @@ class SalonMigration(models.Model):
                 'service_slot_outside': rline.get('service_slot_outside', 0),
                 'service_price_inside': rline.get('service_price_inside', 0.0),
                 'service_price_outside': rline.get('service_price_outside', 0.0),
-                'location_type': rline.get('location_type', 'both'),
             }
+            if self._has_field('appointment.package.line', 'location_type') and rline.get('location_type'):
+                vals['location_type'] = rline['location_type']
 
             if existing:
                 self._create_migration_line('appointment.package.line', rline['id'], existing.id, 'Package line %d' % local_product_id, 'skipped')
