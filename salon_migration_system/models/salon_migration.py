@@ -22,6 +22,7 @@ class SalonMigration(models.Model):
     state = fields.Selection([
         ('draft', 'Draft'),
         ('connected', 'Connected'),
+        ('fetched', 'Data Fetched'),
         ('done', 'Done'),
         ('failed', 'Failed'),
     ], string='State', default='draft')
@@ -70,60 +71,248 @@ class SalonMigration(models.Model):
         self.log = (self.log or '') + '\n' + message
         _logger.info(message)
 
-    def _get_or_create_record(self, model, domain, vals):
-        existing = self.env[model].search(domain, limit=1)
-        if existing:
-            return existing
-        return self.env[model].create(vals)
+    def _has_field(self, model, field_name):
+        return field_name in self.env[model]._fields
 
-    def _resolve_many2one(self, model, remote_id, uid, models_proxy, name_field='name'):
+    def _batch_read(self, uid, models_proxy, model, ids, fields_list, batch_size=50):
+        results = []
+        for i in range(0, len(ids), batch_size):
+            batch = models_proxy.execute_kw(
+                self.database, uid, self.password,
+                model, 'read',
+                [ids[i:i + batch_size]],
+                {'fields': fields_list}
+            )
+            results.extend(batch)
+        return results
+
+    def _fetch_all_remote_data(self, uid, models_proxy):
+        remote_data = {}
+
+        self._append_log('--- Fetching all remote data ---')
+
+        self._append_log('Fetching products...')
+        product_fields = [
+            'name', 'sale_ok', 'purchase_ok', 'is_appointment_package',
+            'is_appointment_service', 'detailed_type', 'type', 'lst_price',
+            'taxes_id', 'supplier_taxes_id', 'standard_price', 'list_price',
+            'barcode', 'default_code', 'categ_id', 'pos_categ_ids',
+            'available_in_pos', 'plan_ids', 'appointment_package_line_ids',
+            'product_component_ids',
+        ]
+        product_ids = models_proxy.execute_kw(
+            self.database, uid, self.password,
+            'product.product', 'search',
+            [['&', ('detailed_type', '=', 'service'),
+              '|',
+              ('is_appointment_package', '=', True),
+              ('is_appointment_service', '=', True)]]
+        )
+        remote_data['products'] = self._batch_read(uid, models_proxy, 'product.product', product_ids, product_fields) if product_ids else []
+        self._append_log('Fetched %d products.' % len(remote_data['products']))
+
+        all_categ_ids = set()
+        all_pos_categ_ids = set()
+        all_tax_ids = set()
+        for rp in remote_data['products']:
+            if rp.get('categ_id'):
+                all_categ_ids.add(rp['categ_id'][0])
+            for pc_id in (rp.get('pos_categ_ids') or []):
+                all_pos_categ_ids.add(pc_id)
+            for t_id in (rp.get('taxes_id') or []):
+                all_tax_ids.add(t_id)
+            for t_id in (rp.get('supplier_taxes_id') or []):
+                all_tax_ids.add(t_id)
+
+        self._append_log('Fetching product categories...')
+        if all_categ_ids:
+            remote_data['product_categories'] = self._batch_read(
+                uid, models_proxy, 'product.category', list(all_categ_ids), ['name']
+            )
+        else:
+            remote_data['product_categories'] = []
+        self._append_log('Fetched %d product categories.' % len(remote_data['product_categories']))
+
+        self._append_log('Fetching POS categories...')
+        if all_pos_categ_ids:
+            remote_data['pos_categories'] = self._batch_read(
+                uid, models_proxy, 'pos.category', list(all_pos_categ_ids), ['name']
+            )
+        else:
+            remote_data['pos_categories'] = []
+        self._append_log('Fetched %d POS categories.' % len(remote_data['pos_categories']))
+
+        self._append_log('Fetching taxes...')
+        if all_tax_ids:
+            remote_data['taxes'] = self._batch_read(
+                uid, models_proxy, 'account.tax', list(all_tax_ids), ['name', 'type_tax_use', 'amount']
+            )
+        else:
+            remote_data['taxes'] = []
+        self._append_log('Fetched %d taxes.' % len(remote_data['taxes']))
+
+        self._append_log('Fetching price plans...')
+        plan_fields = [
+            'service_id', 'department_id', 'branch_id', 'currency_id',
+            'service_slot_inside', 'service_slot_outside',
+            'service_price_inside', 'service_price_outside',
+        ]
+        if self._has_field('appointment.service.price.plan', 'location_type'):
+            plan_fields.append('location_type')
+        plan_ids = models_proxy.execute_kw(
+            self.database, uid, self.password,
+            'appointment.service.price.plan', 'search', [[]]
+        )
+        remote_data['price_plans'] = self._batch_read(uid, models_proxy, 'appointment.service.price.plan', plan_ids, plan_fields) if plan_ids else []
+        self._append_log('Fetched %d price plans.' % len(remote_data['price_plans']))
+
+        self._append_log('Fetching package lines...')
+        line_fields = [
+            'product_id', 'product_pack_id', 'department_id', 'branch_id', 'currency_id',
+            'service_slot_inside', 'service_slot_outside',
+            'service_price_inside', 'service_price_outside',
+        ]
+        if self._has_field('appointment.package.line', 'location_type'):
+            line_fields.append('location_type')
+        line_ids = models_proxy.execute_kw(
+            self.database, uid, self.password,
+            'appointment.package.line', 'search', [[]]
+        )
+        remote_data['package_lines'] = self._batch_read(uid, models_proxy, 'appointment.package.line', line_ids, line_fields) if line_ids else []
+        self._append_log('Fetched %d package lines.' % len(remote_data['package_lines']))
+
+        self._append_log('Fetching product components...')
+        comp_ids = models_proxy.execute_kw(
+            self.database, uid, self.password,
+            'product.component', 'search', [[]]
+        )
+        remote_data['components'] = self._batch_read(uid, models_proxy, 'product.component', comp_ids, ['component_id', 'quantity', 'product_id']) if comp_ids else []
+        self._append_log('Fetched %d product components.' % len(remote_data['components']))
+
+        all_dept_ids = set()
+        all_branch_ids = set()
+        all_currency_ids = set()
+        for rplan in remote_data['price_plans']:
+            if rplan.get('department_id'):
+                all_dept_ids.add(rplan['department_id'][0])
+            if rplan.get('branch_id'):
+                all_branch_ids.add(rplan['branch_id'][0])
+            if rplan.get('currency_id'):
+                all_currency_ids.add(rplan['currency_id'][0])
+        for rline in remote_data['package_lines']:
+            if rline.get('department_id'):
+                all_dept_ids.add(rline['department_id'][0])
+            if rline.get('branch_id'):
+                all_branch_ids.add(rline['branch_id'][0])
+            if rline.get('currency_id'):
+                all_currency_ids.add(rline['currency_id'][0])
+
+        self._append_log('Fetching departments...')
+        if all_dept_ids:
+            remote_data['departments'] = self._batch_read(
+                uid, models_proxy, 'hr.department', list(all_dept_ids), ['name']
+            )
+        else:
+            remote_data['departments'] = []
+        self._append_log('Fetched %d departments.' % len(remote_data['departments']))
+
+        self._append_log('Fetching companies/branches...')
+        if all_branch_ids:
+            remote_data['companies'] = self._batch_read(
+                uid, models_proxy, 'res.company', list(all_branch_ids), ['name']
+            )
+        else:
+            remote_data['companies'] = []
+        self._append_log('Fetched %d companies.' % len(remote_data['companies']))
+
+        self._append_log('Fetching currencies...')
+        if all_currency_ids:
+            remote_data['currencies'] = self._batch_read(
+                uid, models_proxy, 'res.currency', list(all_currency_ids), ['name']
+            )
+        else:
+            remote_data['currencies'] = []
+        self._append_log('Fetched %d currencies.' % len(remote_data['currencies']))
+
+        comp_product_ids = set()
+        for rc in remote_data['components']:
+            if rc.get('component_id'):
+                comp_product_ids.add(rc['component_id'][0])
+        existing_product_remote_ids = {rp['id'] for rp in remote_data['products']}
+        missing_comp_ids = comp_product_ids - existing_product_remote_ids
+        if missing_comp_ids:
+            self._append_log('Fetching %d missing component products...' % len(missing_comp_ids))
+            remote_data['component_products'] = self._batch_read(
+                uid, models_proxy, 'product.product', list(missing_comp_ids),
+                ['name', 'default_code', 'list_price', 'type']
+            )
+        else:
+            remote_data['component_products'] = []
+
+        self._append_log('--- All remote data fetched successfully ---')
+        return remote_data
+
+    def _build_cache(self, remote_data):
+        cache = {}
+        cache['categ_by_id'] = {rc['id']: rc['name'] for rc in remote_data.get('product_categories', [])}
+        cache['pos_categ_by_id'] = {rc['id']: rc['name'] for rc in remote_data.get('pos_categories', [])}
+        cache['tax_by_id'] = {rt['id']: rt for rt in remote_data.get('taxes', [])}
+        cache['dept_by_id'] = {rd['id']: rd['name'] for rd in remote_data.get('departments', [])}
+        cache['company_by_id'] = {rc['id']: rc['name'] for rc in remote_data.get('companies', [])}
+        cache['currency_by_id'] = {rc['id']: rc['name'] for rc in remote_data.get('currencies', [])}
+        cache['comp_product_by_id'] = {rp['id']: rp for rp in remote_data.get('component_products', [])}
+        return cache
+
+    def _resolve_categ_local(self, remote_id, cache):
+        if not remote_id:
+            return self.env.ref('product.product_category_all').id
+        remote_name = cache['categ_by_id'].get(remote_id[0] if isinstance(remote_id, (list, tuple)) else remote_id)
+        if not remote_name:
+            return self.env.ref('product.product_category_all').id
+        local = self.env['product.category'].search([('name', '=', remote_name)], limit=1)
+        if not local:
+            local = self.env['product.category'].create({'name': remote_name})
+            self._append_log('Created product category: %s' % remote_name)
+        return local.id
+
+    def _resolve_pos_categ_local(self, remote_ids, cache):
+        if not remote_ids:
+            return []
+        local_ids = []
+        for rid in remote_ids:
+            remote_name = cache['pos_categ_by_id'].get(rid)
+            if not remote_name:
+                continue
+            local = self.env['pos.category'].search([('name', '=', remote_name)], limit=1)
+            if not local:
+                local = self.env['pos.category'].create({'name': remote_name})
+                self._append_log('Created POS category: %s' % remote_name)
+            local_ids.append(local.id)
+        return local_ids
+
+    def _resolve_taxes_local(self, remote_ids, cache):
+        if not remote_ids:
+            return []
+        local_ids = []
+        for rid in remote_ids:
+            tax_data = cache['tax_by_id'].get(rid)
+            if not tax_data:
+                continue
+            local = self.env['account.tax'].search([
+                ('name', '=', tax_data['name']),
+                ('type_tax_use', '=', tax_data.get('type_tax_use', 'sale')),
+            ], limit=1)
+            if local:
+                local_ids.append(local.id)
+        return local_ids
+
+    def _resolve_department_local(self, remote_id, cache):
         if not remote_id:
             return False
-        remote_data = models_proxy.execute_kw(
-            self.database, uid, self.password,
-            model, 'read', [remote_id[0]], {'fields': [name_field]}
-        )
-        if not remote_data:
-            return False
-        remote_name = remote_data[0].get(name_field)
+        rid = remote_id[0] if isinstance(remote_id, (list, tuple)) else remote_id
+        remote_name = cache['dept_by_id'].get(rid)
         if not remote_name:
             return False
-        local = self.env[model].search([(name_field, '=', remote_name)], limit=1)
-        if not local:
-            try:
-                local = self.env[model].create({name_field: remote_name})
-                self._append_log('Created %s: %s' % (model, remote_name))
-            except Exception as e:
-                self._append_log('Failed to create %s "%s": %s' % (model, remote_name, str(e)))
-                return False
-        return local.id
-
-    def _resolve_company(self, remote_id, uid, models_proxy):
-        if not remote_id:
-            return self.env.company.id
-        remote_data = models_proxy.execute_kw(
-            self.database, uid, self.password,
-            'res.company', 'read', [remote_id[0]], {'fields': ['name']}
-        )
-        if not remote_data:
-            return self.env.company.id
-        remote_name = remote_data[0].get('name')
-        local = self.env['res.company'].search([('name', '=', remote_name)], limit=1)
-        if not local:
-            local = self.env['res.company'].create({'name': remote_name})
-            self._append_log('Created company: %s' % remote_name)
-        return local.id
-
-    def _resolve_department(self, remote_id, uid, models_proxy):
-        if not remote_id:
-            return False
-        remote_data = models_proxy.execute_kw(
-            self.database, uid, self.password,
-            'hr.department', 'read', [remote_id[0]], {'fields': ['name']}
-        )
-        if not remote_data:
-            return False
-        remote_name = remote_data[0].get('name')
         local = self.env['hr.department'].search([('name', '=', remote_name)], limit=1)
         if not local:
             try:
@@ -137,67 +326,45 @@ class SalonMigration(models.Model):
                 return False
         return local.id
 
-    def _resolve_currency(self, remote_id, uid, models_proxy):
+    def _resolve_company_local(self, remote_id, cache):
+        if not remote_id:
+            return self.env.company.id
+        rid = remote_id[0] if isinstance(remote_id, (list, tuple)) else remote_id
+        remote_name = cache['company_by_id'].get(rid)
+        if not remote_name:
+            return self.env.company.id
+        local = self.env['res.company'].search([('name', '=', remote_name)], limit=1)
+        if not local:
+            local = self.env['res.company'].create({'name': remote_name})
+            self._append_log('Created company: %s' % remote_name)
+        return local.id
+
+    def _resolve_currency_local(self, remote_id, cache):
         if not remote_id:
             return self.env.company.currency_id.id
-        remote_data = models_proxy.execute_kw(
-            self.database, uid, self.password,
-            'res.currency', 'read', [remote_id[0]], {'fields': ['name']}
-        )
-        if not remote_data:
+        rid = remote_id[0] if isinstance(remote_id, (list, tuple)) else remote_id
+        remote_name = cache['currency_by_id'].get(rid)
+        if not remote_name:
             return self.env.company.currency_id.id
-        remote_name = remote_data[0].get('name')
         local = self.env['res.currency'].search([('name', '=', remote_name)], limit=1)
         if local:
             return local.id
         return self.env.company.currency_id.id
 
-    def _resolve_categ_id(self, remote_id, uid, models_proxy):
-        if not remote_id:
-            return self.env.ref('product.product_category_all').id
-        remote_data = models_proxy.execute_kw(
-            self.database, uid, self.password,
-            'product.category', 'read', [remote_id[0]], {'fields': ['name']}
-        )
-        if not remote_data:
-            return self.env.ref('product.product_category_all').id
-        remote_name = remote_data[0].get('name')
-        local = self.env['product.category'].search([('name', '=', remote_name)], limit=1)
-        if not local:
-            local = self.env['product.category'].create({'name': remote_name})
-            self._append_log('Created product category: %s' % remote_name)
-        return local.id
-
-    def _resolve_uom_id(self, remote_id, uid, models_proxy):
-        if not remote_id:
-            return self.env.ref('uom.product_uom_unit').id
-        remote_data = models_proxy.execute_kw(
-            self.database, uid, self.password,
-            'uom.uom', 'read', [remote_id[0]], {'fields': ['name']}
-        )
-        if not remote_data:
-            return self.env.ref('uom.product_uom_unit').id
-        remote_name = remote_data[0].get('name')
-        local = self.env['uom.uom'].search([('name', '=', remote_name)], limit=1)
-        if local:
-            return local.id
-        return self.env.ref('uom.product_uom_unit').id
-
-    def _resolve_pos_categ_ids(self, remote_ids, uid, models_proxy):
-        if not remote_ids:
-            return []
-        remote_data = models_proxy.execute_kw(
-            self.database, uid, self.password,
-            'pos.category', 'read', remote_ids, {'fields': ['name']}
-        )
-        local_ids = []
-        for rec in remote_data:
-            local = self.env['pos.category'].search([('name', '=', rec['name'])], limit=1)
-            if not local:
-                local = self.env['pos.category'].create({'name': rec['name']})
-                self._append_log('Created POS category: %s' % rec['name'])
-            local_ids.append(local.id)
-        return local_ids
+    def _find_existing_product(self, default_code, barcode, name):
+        if default_code:
+            existing = self.env['product.product'].search([('default_code', '=', default_code)], limit=1)
+            if existing:
+                return existing
+        if barcode:
+            existing = self.env['product.product'].search([('barcode', '=', barcode)], limit=1)
+            if existing:
+                return existing
+        if name:
+            existing = self.env['product.product'].search([('name', '=', name)], limit=1)
+            if existing:
+                return existing
+        return False
 
     def _get_unique_barcode(self, barcode):
         if not barcode:
@@ -206,23 +373,6 @@ class SalonMigration(models.Model):
         if existing:
             return False
         return barcode
-
-    def _resolve_taxes(self, remote_ids, uid, models_proxy):
-        if not remote_ids:
-            return []
-        remote_data = models_proxy.execute_kw(
-            self.database, uid, self.password,
-            'account.tax', 'read', remote_ids, {'fields': ['name', 'type_tax_use', 'amount']}
-        )
-        local_ids = []
-        for rec in remote_data:
-            local = self.env['account.tax'].search([
-                ('name', '=', rec['name']),
-                ('type_tax_use', '=', rec.get('type_tax_use', 'sale')),
-            ], limit=1)
-            if local:
-                local_ids.append(local.id)
-        return local_ids
 
     def action_migrate(self):
         self.ensure_one()
@@ -234,14 +384,17 @@ class SalonMigration(models.Model):
             self.write({'state': 'connected'})
             self._append_log('Connected to %s' % self.url)
 
-            pos_categ_map = {}
+            remote_data = self._fetch_all_remote_data(uid, models_proxy)
+            self.write({'state': 'fetched'})
+            self._append_log('All data fetched. Processing locally...')
+
+            cache = self._build_cache(remote_data)
             product_map = {}
 
-            self._migrate_pos_categories(uid, models_proxy, pos_categ_map)
-            self._migrate_products(uid, models_proxy, product_map, pos_categ_map)
-            self._migrate_price_plans(uid, models_proxy, product_map)
-            self._migrate_package_lines(uid, models_proxy, product_map)
-            self._migrate_product_components(uid, models_proxy, product_map)
+            self._process_products(remote_data, cache, product_map)
+            self._process_price_plans(remote_data, cache, product_map)
+            self._process_package_lines(remote_data, cache, product_map)
+            self._process_product_components(remote_data, cache, product_map)
 
             self.write({'state': 'done'})
             self._append_log('Migration completed successfully.')
@@ -251,258 +404,53 @@ class SalonMigration(models.Model):
             self._append_log('Migration failed: %s' % str(e))
             raise UserError(_('Migration failed: %s') % str(e))
 
-    def _migrate_pos_categories(self, uid, models_proxy, pos_categ_map):
-        self._append_log('--- Migrating POS Categories ---')
+    def _process_products(self, remote_data, cache, product_map):
+        self._append_log('--- Processing Products ---')
 
-        categ_fields_sets = [
-            ['name', 'parent_id', 'sequence', 'image_128', 'is_appointment_category', 'image'],
-            ['name', 'parent_id', 'sequence', 'image_128', 'is_appointment_category'],
-            ['name', 'parent_id', 'sequence', 'image_128'],
-            ['name', 'parent_id', 'sequence'],
-        ]
-
-        remote_categs = None
-        remote_categ_ids = None
-        try:
-            remote_categ_ids = models_proxy.execute_kw(
-                self.database, uid, self.password,
-                'pos.category', 'search',
-                [[]]
-            )
-        except Exception as e:
-            self._append_log('Could not fetch POS categories from remote database: %s' % str(e))
-            return
-
-        if not remote_categ_ids:
-            self._append_log('No POS categories found on remote database.')
-            return
-
-        for categ_fields in categ_fields_sets:
-            try:
-                remote_categs = models_proxy.execute_kw(
-                    self.database, uid, self.password,
-                    'pos.category', 'read',
-                    [remote_categ_ids],
-                    {'fields': categ_fields}
-                )
-                break
-            except Exception:
-                continue
-
-        if remote_categs is None:
-            self._append_log('Could not read POS categories from remote database.')
-            return
-
-        self._append_log('Found %d POS categories to migrate.' % len(remote_categs))
-
-        remote_categ_dict = {rc['id']: rc for rc in remote_categs}
-
-        def get_or_create_categ(remote_id):
-            if remote_id in pos_categ_map:
-                return pos_categ_map[remote_id]
-
-            rc = remote_categ_dict.get(remote_id)
-            if not rc:
-                return False
-
-            local_parent_id = False
-            if rc.get('parent_id'):
-                local_parent_id = get_or_create_categ(rc['parent_id'][0])
-
-            local = self.env['pos.category'].search([
-                ('name', '=', rc['name']),
-                ('parent_id', '=', local_parent_id or False),
-            ], limit=1)
-
-            if local:
-                pos_categ_map[remote_id] = local.id
-                self._create_migration_line('pos.category', remote_id, local.id, rc['name'], 'skipped')
-                self._append_log('Skipped POS category (already exists): %s' % rc['name'])
-            else:
-                vals = {
-                    'name': rc['name'],
-                    'parent_id': local_parent_id or False,
-                    'sequence': rc.get('sequence', 10),
-                }
-                if rc.get('image_128'):
-                    vals['image_128'] = rc['image_128']
-                if rc.get('is_appointment_category') is not None:
-                    vals['is_appointment_category'] = rc['is_appointment_category']
-                if rc.get('image'):
-                    vals['image'] = rc['image']
-                local = self.env['pos.category'].create(vals)
-                pos_categ_map[remote_id] = local.id
-                self._create_migration_line('pos.category', remote_id, local.id, rc['name'], 'created')
-                self._append_log('Created POS category: %s' % rc['name'])
-
-            return pos_categ_map[remote_id]
-
-        for rc in remote_categs:
-            try:
-                get_or_create_categ(rc['id'])
-            except Exception as e:
-                self._append_log('Error migrating POS category %s: %s' % (rc.get('name', rc['id']), str(e)))
-
-    def _migrate_products(self, uid, models_proxy, product_map, pos_categ_map):
-        self._append_log('--- Migrating Products ---')
-
-        product_fields_sets = [
-            [
-                'name', 'default_code', 'list_price', 'standard_price',
-                'type', 'categ_id', 'uom_id', 'uom_po_id',
-                'is_appointment_service', 'is_appointment_package',
-                'sale_ok', 'purchase_ok', 'active', 'barcode',
-                'description', 'description_sale', 'description_purchase',
-                'pos_categ_ids', 'available_in_pos',
-                'weight', 'volume', 'image_1920',
-                'taxes_id', 'supplier_taxes_id',
-                'avg_rating', 'top', 'price_after_discount',
-                'ar_name', 'ar_description',
-            ],
-            [
-                'name', 'default_code', 'list_price', 'standard_price',
-                'type', 'categ_id', 'uom_id', 'uom_po_id',
-                'is_appointment_service', 'is_appointment_package',
-                'sale_ok', 'purchase_ok', 'active', 'barcode',
-                'description', 'description_sale',
-                'pos_categ_ids', 'available_in_pos',
-                'weight', 'volume', 'image_1920',
-                'taxes_id', 'supplier_taxes_id',
-            ],
-            [
-                'name', 'default_code', 'list_price', 'standard_price',
-                'type', 'categ_id', 'uom_id', 'uom_po_id',
-                'is_appointment_service', 'is_appointment_package',
-                'sale_ok', 'purchase_ok', 'active', 'barcode',
-                'description', 'description_sale',
-                'pos_categ_ids', 'available_in_pos',
-            ],
-            [
-                'name', 'default_code', 'list_price', 'standard_price',
-                'type', 'categ_id', 'uom_id', 'uom_po_id',
-                'is_appointment_service', 'is_appointment_package',
-                'sale_ok', 'purchase_ok', 'active', 'barcode',
-                'description', 'description_sale',
-                'pos_categ_id', 'available_in_pos',
-            ],
-        ]
-
-        remote_products = None
-        for product_fields in product_fields_sets:
-            try:
-                remote_ids = models_proxy.execute_kw(
-                    self.database, uid, self.password,
-                    'product.product', 'search',
-                    [[]],
-                    {'context': {'active_test': False}}
-                )
-                remote_products = []
-                batch_size = 100
-                for i in range(0, len(remote_ids), batch_size):
-                    batch = models_proxy.execute_kw(
-                        self.database, uid, self.password,
-                        'product.product', 'read',
-                        [remote_ids[i:i + batch_size]],
-                        {'fields': product_fields}
-                    )
-                    remote_products.extend(batch)
-                break
-            except Exception:
-                continue
-
-        if remote_products is None:
-            self._append_log('Could not fetch products from remote database.')
-            return
-
-        self._append_log('Found %d products to migrate.' % len(remote_products))
-
-        for rp in remote_products:
+        for rp in remote_data.get('products', []):
             remote_id = rp['id']
             product_name = rp.get('name', '')
+            default_code = rp.get('default_code') or False
+            barcode = rp.get('barcode') or False
 
-            existing = self.env['product.product'].search([('name', '=', product_name)], limit=1)
+            categ_id = self._resolve_categ_local(rp.get('categ_id'), cache)
+            if not categ_id:
+                self._append_log('Skipping product %s: mandatory categ_id not resolved.' % product_name)
+                continue
 
-            categ_id = self._resolve_categ_id(rp.get('categ_id'), uid, models_proxy)
-            uom_id = self._resolve_uom_id(rp.get('uom_id'), uid, models_proxy)
-            uom_po_id = self._resolve_uom_id(rp.get('uom_po_id'), uid, models_proxy)
+            local_pos_categ_ids = self._resolve_pos_categ_local(rp.get('pos_categ_ids') or [], cache)
+            local_tax_ids = self._resolve_taxes_local(rp.get('taxes_id') or [], cache)
+            local_stax_ids = self._resolve_taxes_local(rp.get('supplier_taxes_id') or [], cache)
 
             vals = {
                 'name': product_name,
-                'default_code': rp.get('default_code') or False,
-                'list_price': rp.get('list_price', 0.0),
-                'standard_price': rp.get('standard_price', 0.0),
-                'type': rp.get('type', 'consu'),
-                'categ_id': categ_id,
-                'uom_id': uom_id,
-                'uom_po_id': uom_po_id,
-                'is_appointment_service': rp.get('is_appointment_service', False),
-                'is_appointment_package': rp.get('is_appointment_package', False),
                 'sale_ok': rp.get('sale_ok', True),
                 'purchase_ok': rp.get('purchase_ok', False),
-                'active': rp.get('active', True),
-                'barcode': self._get_unique_barcode(rp.get('barcode')),
-                'description': rp.get('description') or False,
-                'description_sale': rp.get('description_sale') or False,
+                'is_appointment_package': rp.get('is_appointment_package', False),
+                'is_appointment_service': rp.get('is_appointment_service', False),
+                'detailed_type': rp.get('detailed_type', 'service'),
+                'type': rp.get('type', 'service'),
+                'lst_price': rp.get('lst_price', 0.0),
+                'standard_price': rp.get('standard_price', 0.0),
+                'list_price': rp.get('list_price', 0.0),
+                'barcode': self._get_unique_barcode(barcode),
+                'default_code': default_code,
+                'categ_id': categ_id,
+                'available_in_pos': rp.get('available_in_pos', False),
             }
 
-            if rp.get('description_purchase'):
-                vals['description_purchase'] = rp['description_purchase']
+            if local_pos_categ_ids:
+                vals['pos_categ_ids'] = [(6, 0, local_pos_categ_ids)]
 
-            if rp.get('weight'):
-                vals['weight'] = rp['weight']
+            if local_tax_ids:
+                vals['taxes_id'] = [(6, 0, local_tax_ids)]
 
-            if rp.get('volume'):
-                vals['volume'] = rp['volume']
+            if local_stax_ids:
+                vals['supplier_taxes_id'] = [(6, 0, local_stax_ids)]
 
-            if rp.get('image_1920'):
-                vals['image_1920'] = rp['image_1920']
-
-            if rp.get('avg_rating'):
-                vals['avg_rating'] = rp['avg_rating']
-
-            if rp.get('top') is not None:
-                vals['top'] = rp['top']
-
-            if rp.get('price_after_discount'):
-                vals['price_after_discount'] = rp['price_after_discount']
-
-            if rp.get('ar_name'):
-                vals['ar_name'] = rp['ar_name']
-
-            if rp.get('ar_description'):
-                vals['ar_description'] = rp['ar_description']
-
-            remote_categ_ids = rp.get('pos_categ_ids') or []
-            if not remote_categ_ids and rp.get('pos_categ_id'):
-                rid = rp['pos_categ_id']
-                if isinstance(rid, list):
-                    remote_categ_ids = [rid[0]]
-                elif isinstance(rid, int) and rid:
-                    remote_categ_ids = [rid]
-            if remote_categ_ids:
-                local_pos_categ_ids = []
-                for remote_categ_id in remote_categ_ids:
-                    local_cid = pos_categ_map.get(remote_categ_id)
-                    if local_cid:
-                        local_pos_categ_ids.append(local_cid)
-                if local_pos_categ_ids:
-                    vals['pos_categ_ids'] = [(6, 0, local_pos_categ_ids)]
-
-            if rp.get('available_in_pos') is not None:
-                vals['available_in_pos'] = rp['available_in_pos']
-
-            if rp.get('taxes_id'):
-                local_tax_ids = self._resolve_taxes(rp['taxes_id'], uid, models_proxy)
-                if local_tax_ids:
-                    vals['taxes_id'] = [(6, 0, local_tax_ids)]
-
-            if rp.get('supplier_taxes_id'):
-                local_stax_ids = self._resolve_taxes(rp['supplier_taxes_id'], uid, models_proxy)
-                if local_stax_ids:
-                    vals['supplier_taxes_id'] = [(6, 0, local_stax_ids)]
-
+            existing = self._find_existing_product(default_code, barcode, product_name)
             if existing:
-                update_vals = {k: v for k, v in vals.items() if k not in ('type', 'uom_id', 'uom_po_id', 'categ_id')}
+                update_vals = {k: v for k, v in vals.items() if k not in ('type', 'detailed_type')}
                 try:
                     existing.write(update_vals)
                 except Exception as e:
@@ -511,52 +459,27 @@ class SalonMigration(models.Model):
                 self._create_migration_line('product.product', remote_id, existing.id, product_name, 'updated')
                 self._append_log('Updated product: %s' % product_name)
             else:
-                new_product = self.env['product.product'].create(vals)
-                product_map[remote_id] = new_product.id
-                self._create_migration_line('product.product', remote_id, new_product.id, product_name, 'created')
-                self._append_log('Created product: %s' % product_name)
+                try:
+                    new_product = self.env['product.product'].create(vals)
+                    product_map[remote_id] = new_product.id
+                    self._create_migration_line('product.product', remote_id, new_product.id, product_name, 'created')
+                    self._append_log('Created product: %s' % product_name)
+                except Exception as e:
+                    self._append_log('Error creating product %s: %s' % (product_name, str(e)))
 
-    def _has_field(self, model, field_name):
-        return field_name in self.env[model]._fields
+    def _process_price_plans(self, remote_data, cache, product_map):
+        self._append_log('--- Processing Price Plans ---')
 
-    def _migrate_price_plans(self, uid, models_proxy, product_map):
-        self._append_log('--- Migrating Price Plans ---')
-
-        plan_fields = [
-            'service_id', 'department_id', 'branch_id', 'currency_id',
-            'service_slot_inside', 'service_slot_outside',
-            'service_price_inside', 'service_price_outside',
-        ]
-        if self._has_field('appointment.service.price.plan', 'location_type'):
-            plan_fields.append('location_type')
-
-        remote_plan_ids = models_proxy.execute_kw(
-            self.database, uid, self.password,
-            'appointment.service.price.plan', 'search',
-            [[]]
-        )
-        remote_plans = []
-        for i in range(0, len(remote_plan_ids), 100):
-            batch = models_proxy.execute_kw(
-                self.database, uid, self.password,
-                'appointment.service.price.plan', 'read',
-                [remote_plan_ids[i:i + 100]],
-                {'fields': plan_fields}
-            )
-            remote_plans.extend(batch)
-
-        self._append_log('Found %d price plans to migrate.' % len(remote_plans))
-
-        for rplan in remote_plans:
+        for rplan in remote_data.get('price_plans', []):
             service_remote_id = rplan.get('service_id') and rplan['service_id'][0]
             local_service_id = product_map.get(service_remote_id)
             if not local_service_id:
                 self._append_log('Skipping price plan %d: service not found.' % rplan['id'])
                 continue
 
-            department_id = self._resolve_department(rplan.get('department_id'), uid, models_proxy)
-            branch_id = self._resolve_company(rplan.get('branch_id'), uid, models_proxy)
-            currency_id = self._resolve_currency(rplan.get('currency_id'), uid, models_proxy)
+            department_id = self._resolve_department_local(rplan.get('department_id'), cache)
+            branch_id = self._resolve_company_local(rplan.get('branch_id'), cache)
+            currency_id = self._resolve_currency_local(rplan.get('currency_id'), cache)
 
             domain = [
                 ('service_id', '=', local_service_id),
@@ -586,35 +509,10 @@ class SalonMigration(models.Model):
                 self._create_migration_line('appointment.service.price.plan', rplan['id'], new_plan.id, 'Plan for service %d' % local_service_id, 'created')
                 self._append_log('Created price plan for service ID %d' % local_service_id)
 
-    def _migrate_package_lines(self, uid, models_proxy, product_map):
-        self._append_log('--- Migrating Package Lines ---')
+    def _process_package_lines(self, remote_data, cache, product_map):
+        self._append_log('--- Processing Package Lines ---')
 
-        line_fields = [
-            'product_id', 'product_pack_id', 'department_id', 'branch_id', 'currency_id',
-            'service_slot_inside', 'service_slot_outside',
-            'service_price_inside', 'service_price_outside',
-        ]
-        if self._has_field('appointment.package.line', 'location_type'):
-            line_fields.append('location_type')
-
-        remote_line_ids = models_proxy.execute_kw(
-            self.database, uid, self.password,
-            'appointment.package.line', 'search',
-            [[]]
-        )
-        remote_lines = []
-        for i in range(0, len(remote_line_ids), 100):
-            batch = models_proxy.execute_kw(
-                self.database, uid, self.password,
-                'appointment.package.line', 'read',
-                [remote_line_ids[i:i + 100]],
-                {'fields': line_fields}
-            )
-            remote_lines.extend(batch)
-
-        self._append_log('Found %d package lines to migrate.' % len(remote_lines))
-
-        for rline in remote_lines:
+        for rline in remote_data.get('package_lines', []):
             product_remote_id = rline.get('product_id') and rline['product_id'][0]
             pack_remote_id = rline.get('product_pack_id') and rline['product_pack_id'][0]
 
@@ -625,9 +523,9 @@ class SalonMigration(models.Model):
                 self._append_log('Skipping package line %d: product not found.' % rline['id'])
                 continue
 
-            department_id = self._resolve_department(rline.get('department_id'), uid, models_proxy)
-            branch_id = self._resolve_company(rline.get('branch_id'), uid, models_proxy)
-            currency_id = self._resolve_currency(rline.get('currency_id'), uid, models_proxy)
+            department_id = self._resolve_department_local(rline.get('department_id'), cache)
+            branch_id = self._resolve_company_local(rline.get('branch_id'), cache)
+            currency_id = self._resolve_currency_local(rline.get('currency_id'), cache)
 
             domain = [
                 ('product_id', '=', local_product_id),
@@ -659,29 +557,10 @@ class SalonMigration(models.Model):
                 self._create_migration_line('appointment.package.line', rline['id'], new_line.id, 'Package line %d' % local_product_id, 'created')
                 self._append_log('Created package line for product ID %d' % local_product_id)
 
-    def _migrate_product_components(self, uid, models_proxy, product_map):
-        self._append_log('--- Migrating Product Components ---')
+    def _process_product_components(self, remote_data, cache, product_map):
+        self._append_log('--- Processing Product Components ---')
 
-        comp_fields = ['component_id', 'quantity', 'product_id']
-
-        remote_comp_ids = models_proxy.execute_kw(
-            self.database, uid, self.password,
-            'product.component', 'search',
-            [[]]
-        )
-        remote_components = []
-        for i in range(0, len(remote_comp_ids), 100):
-            batch = models_proxy.execute_kw(
-                self.database, uid, self.password,
-                'product.component', 'read',
-                [remote_comp_ids[i:i + 100]],
-                {'fields': comp_fields}
-            )
-            remote_components.extend(batch)
-
-        self._append_log('Found %d product components to migrate.' % len(remote_components))
-
-        for rcomp in remote_components:
+        for rcomp in remote_data.get('components', []):
             product_remote_id = rcomp.get('product_id') and rcomp['product_id'][0]
             component_remote_id = rcomp.get('component_id') and rcomp['component_id'][0]
 
@@ -694,20 +573,16 @@ class SalonMigration(models.Model):
 
             if not local_component_id:
                 if component_remote_id:
-                    comp_data = models_proxy.execute_kw(
-                        self.database, uid, self.password,
-                        'product.product', 'read', [component_remote_id],
-                        {'fields': ['name', 'default_code', 'list_price', 'type']}
-                    )
+                    comp_data = cache['comp_product_by_id'].get(component_remote_id)
                     if comp_data:
-                        comp_name = comp_data[0].get('name')
+                        comp_name = comp_data.get('name')
                         local_comp = self.env['product.product'].search([('name', '=', comp_name)], limit=1)
                         if not local_comp:
                             local_comp = self.env['product.product'].create({
                                 'name': comp_name,
-                                'default_code': comp_data[0].get('default_code') or False,
-                                'list_price': comp_data[0].get('list_price', 0.0),
-                                'type': comp_data[0].get('type', 'consu'),
+                                'default_code': comp_data.get('default_code') or False,
+                                'list_price': comp_data.get('list_price', 0.0),
+                                'type': comp_data.get('type', 'consu'),
                             })
                             self._append_log('Created component product: %s' % comp_name)
                         local_component_id = local_comp.id

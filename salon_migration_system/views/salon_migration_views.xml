@@ -10,7 +10,7 @@
                 <field name="url"/>
                 <field name="database"/>
                 <field name="username"/>
-                <field name="state" widget="badge" decoration-success="state == 'done'" decoration-info="state == 'connected'" decoration-danger="state == 'failed'" decoration-muted="state == 'draft'"/>
+                <field name="state" widget="badge" decoration-success="state == 'done'" decoration-info="state in ('connected', 'fetched')" decoration-danger="state == 'failed'" decoration-muted="state == 'draft'"/>
             </tree>
         </field>
     </record>
@@ -24,7 +24,7 @@
                     <button name="action_test_connection" type="object" string="Test Connection" class="btn-primary" invisible="state != 'draft'"/>
                     <button name="action_migrate" type="object" string="Start Migration" class="btn-primary" invisible="state not in ('connected', 'failed')"/>
                     <button name="action_test_connection" type="object" string="Re-Test Connection" invisible="state not in ('connected', 'failed', 'done')"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,connected,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,connected,fetched,done"/>
                 </header>
                 <sheet>
                     <group>
