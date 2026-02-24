@@ -25,7 +25,7 @@
                             <tree editable="top">
                                 <field name="branch_id" options="{'no_create': True, 'no_create_edit':True}" width="20%"/>
                                 <field name="department_id" options="{'no_create': True, 'no_create_edit':True}" width="20%" readonly="not branch_id" domain="[('company_id', '=', branch_id)]"/>
-                                <field name="location_type" width="15%" readonly="not branch_id or not department_id"/>
+<!--                                <field name="location_type" width="15%" readonly="not branch_id or not department_id"/>-->
                                 <field name="service_slot_inside" width="11%" readonly="not branch_id or not department_id"/>
                                 <field name="service_slot_outside" width="11%" readonly="not branch_id or not department_id"/>
                                 <field name="service_price_inside" width="11.5%" readonly="not branch_id or not department_id"/>
@@ -41,7 +41,7 @@
                                 <field name="product_id" options="{'no_create': True, 'no_create_edit':True}" width="20%"/>
                                 <field name="branch_id" options="{'no_create': True, 'no_create_edit':True}" width="18%"/>
                                 <field name="department_id" options="{'no_create': True, 'no_create_edit':True}" width="18%" readonly="not branch_id" domain="[('company_id', '=', branch_id)]"/>
-                                <field name="location_type" width="12%" readonly="not branch_id or not department_id"/>
+<!--                                <field name="location_type" width="12%" readonly="not branch_id or not department_id"/>-->
                                 <field name="service_slot_inside" width="8%" readonly="not branch_id or not department_id"/>
                                 <field name="service_slot_outside" width="8%" readonly="not branch_id or not department_id"/>
                                 <field name="service_price_inside" width="8%" readonly="not branch_id or not department_id"/>
