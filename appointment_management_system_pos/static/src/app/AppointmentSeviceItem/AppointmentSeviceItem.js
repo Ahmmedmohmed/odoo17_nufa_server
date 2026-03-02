@@ -20,6 +20,7 @@ export class AppointmentSeviceItem extends ProductCard {
         var highlightClass = '';
         if (this.pos.appointmentDetails) {
           var SelectedServiceId = this.pos.SelectedService?this.pos.SelectedService.id:false;
+          console.log(SelectedServiceId , this.props.productId);
           if (SelectedServiceId == this.props.productId) {
             highlightClass = 'green_border';
           }

@@ -41,25 +41,20 @@ patch(Orderline.prototype, {
     },
 
     getDisplayData() {
-        // Get the base display data without any appointment fields
-        const baseData = super.getDisplayData();
-        
-        // Add appointment fields separately as part of a nested object to avoid prop validation issues
-        const result = {
-            ...baseData,
-            appointmentInfo: this.is_appointment_line ? {
-                is_appointment_line: this.is_appointment_line,
-                appointment_id: this.appointment_id,
-                appointment_name: this.appointment_name,
-                employee_name: this.employee_name,
-                branch_name: this.branch_name,
-                appointment_type: this.appointment_type,
-                date: this.date,
-                slot_name: this.slot_name,
-            } : null
+
+        // console.log(this.getUomLine());
+        return {
+            ...super.getDisplayData(),
+            is_appointment_line: this.is_appointment_line,
+            appointment_id: this.appointment_id,
+            appointment_name: this.appointment_name,
+            employee_name: this.employee_name,
+            branch_name: this.branch_name,
+            appointment_type: this.appointment_type,
+            date: this.date,
+            slot_name: this.slot_name,
+            // appointmentDetail: this.appointmentDetail,
         };
-        
-        return result;
     },
 
 });

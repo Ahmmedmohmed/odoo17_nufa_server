@@ -68,10 +68,12 @@ export class AppointmentSeviceDetails extends Component {
     }
 
     onClick(ev) {
+      console.log('onClick',this);
       if (ev.target.id != '') {
         this.pos.appointmentDetails['selectedService'] = parseInt(ev.target.id);
         this.availableBranchs = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availableBranchs
         this.changes.branch_id = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].branch_id.toString()
+        // this.availableEmployees = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availableEmployees
         this.changes.employee_id = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].employee_id.toString()
 
       }
@@ -89,6 +91,7 @@ export class AppointmentSeviceDetails extends Component {
 
     _disabledBranch() {
       var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
+      console.log('sdzfsdafsdfsdf',changes.syncBranchs != true);
       if (changes.syncBranchs != true ) {
         return false;
       }
@@ -149,6 +152,7 @@ export class AppointmentSeviceDetails extends Component {
         this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncDates = false;
         this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncAppointments = false;
         if (branch_id != '') {
+          // this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].branch_id = parseInt(branch_id);
           this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].branch_name = changes['availableBranchs'][parseInt(branch_id)];
           this.getAvailableEmployees();
 
@@ -165,6 +169,7 @@ export class AppointmentSeviceDetails extends Component {
         this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncDates = false;
         this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncAppointments = false;
         if(employee_id != ''){
+          // this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].employee_id = parseInt(employee_id);
           this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].employee_name = changes['availableEmployees'][parseInt(employee_id)];
           this.getAvailableDates();
 
@@ -206,6 +211,7 @@ export class AppointmentSeviceDetails extends Component {
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncBranchs = true;
       this.availableBranchs = availableBranchs;
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availableBranchs = availableBranchs;
+      console.log(availableBranchs);
       this.render();
     }
     async getAvailableEmployees(){
@@ -217,7 +223,9 @@ export class AppointmentSeviceDetails extends Component {
           [changes.service_id,changes.branch_id,this.pos.appointmentDetails['isSelectedServicePack']? this.pos.appointmentDetails['service_id']:false]
       );
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncEmployees = true;
+      // this.availableEmployees = availableEmployees;
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availableEmployees = availableEmployees;
+      console.log(availableEmployees);
       this.render();
     }
     async getAvailableDates(){
@@ -230,6 +238,7 @@ export class AppointmentSeviceDetails extends Component {
       );
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncDates = true;
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availabledDates = availabledDates;
+      console.log(availabledDates);
       this.render();
     }
     async getAvailableAppointments(){
@@ -240,9 +249,22 @@ export class AppointmentSeviceDetails extends Component {
           "action_get_appointment_employee_slot",
           [changes.service_id,changes.employee_id,changes.date,changes.appointment_type,changes.branch_id,this.pos.appointmentDetails['isSelectedServicePack']? this.pos.appointmentDetails['service_id']:false]
       );
+      // 1. Convert to array of [key, value] pairs
+      // const entries = Object.entries(availableAppointments);
+      //
+      // // 2. Sort by the 'name' field in each value object
+      // entries.sort((a, b) => a[1].name.localeCompare(b[1].name));
 
+      // this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availableAppointmentsSorded = entries;
+      //
+      // // 3. Convert back to object (optional)
+      // const sortedObj = Object.fromEntries(entries);
+
+      console.log(availableAppointments);
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncAppointments = true;
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availableAppointments = availableAppointments;
+      console.log(availableAppointments);
       this.render();
     }
+
 }

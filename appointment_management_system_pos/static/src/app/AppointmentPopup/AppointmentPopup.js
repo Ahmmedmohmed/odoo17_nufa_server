@@ -39,7 +39,10 @@ export class AppointmentPopup extends AbstractAwaitablePopup {
 
         this.appointment_categories = [];
         for (var i = 0; i < this.pos.appointment_categories.length; i++) {
-          this.appointment_categories.push(this.pos.db.category_by_id[this.pos.appointment_categories[i].id])
+          var cat = this.pos.db.category_by_id[this.pos.appointment_categories[i].id];
+          if (cat) {
+            this.appointment_categories.push(cat);
+          }
         }
         this.appointment_categories = this.appointment_categories.map((category) => {
             const isRootCategory = category.id === this.pos.db.root_category_id;
@@ -60,6 +63,9 @@ export class AppointmentPopup extends AbstractAwaitablePopup {
                     `/web/image?model=pos.category&field=image_128&id=${category.id}&unique=${category.write_date}`,
             };
         })
+        if (this.appointment_categories.length > 0 && !this.pos.SelectedCategoryId) {
+            this.pos.SelectedCategoryId = this.appointment_categories[0].id;
+        }
         this.appointment_services = this.pos.appointment_services;
         this.state = useState({ searchWord: ''});
 
@@ -123,21 +129,26 @@ export class AppointmentPopup extends AbstractAwaitablePopup {
     }
 
     get productsToDisplay() {
-        this.appointment_services = this.pos.appointment_services_by_categ_id[this.SelectedCategoryId];
-
         const { db } = this.pos;
         let list = [];
         if (this.searchWord !== "") {
             list = db.search_product_in_category(this.SelectedCategoryId, this.searchWord);
+            list = list.filter((product) => product.is_appointment_service);
         } else {
-            list = db.get_product_by_category(this.SelectedCategoryId);
+            var categId = this.SelectedCategoryId;
+            list = Object.values(db.product_by_id).filter((product) => {
+                if (!product.is_appointment_service || !product.active || !product.available_in_pos) {
+                    return false;
+                }
+                if (categId && categId !== 0) {
+                    return product.pos_categ_ids && product.pos_categ_ids.includes(categId);
+                }
+                return true;
+            });
         }
-
-        list = list.filter((product) => product.is_appointment_service);
         return list.sort(function (a, b) {
             return a.display_name.localeCompare(b.display_name);
         });
-        return list;
     }
 
 
@@ -223,6 +234,7 @@ export class AppointmentPopup extends AbstractAwaitablePopup {
       var flag = true;
       if (this.pos.appointmentDetails['services']) {
         for (const [key, value] of Object.entries(this.pos.appointmentDetails['services'])) {
+          console.log(key,value);
           if (
             value.service_id == ''||
             value.employee_id == ''||
@@ -245,6 +257,7 @@ export class AppointmentPopup extends AbstractAwaitablePopup {
             body: _t("Missing Data."),
         });
       }else {
+        console.log('kljlkj');
         await this.createAppointments();
         super.confirm();
       }
@@ -261,6 +274,9 @@ export class AppointmentPopup extends AbstractAwaitablePopup {
       this.render();
     }
 
+		/**
+		 * @override
+		 */
 		async getPayload() {
       return this.pos.appointmentDetails;
 		}

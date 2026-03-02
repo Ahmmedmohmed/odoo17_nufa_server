@@ -10,6 +10,13 @@ export class AppointmentSevicePackSelection extends Component {
         class: { String, optional: true },
         name: String,
         productId: Number,
+        // price: String,
+        // imageUrl: [String, Boolean],
+        // productInfo: { Boolean, optional: true },
+        // onClick: { type: Function, optional: true },
+        // onProductInfoClick: { type: Function, optional: true },
+        // onRemoveClick: { type: Function, optional: true },
+        // appointments: { type: Object, optional: true },
     }
     static defaultProps = {
         class: "",
@@ -20,6 +27,7 @@ export class AppointmentSevicePackSelection extends Component {
         this.pos = usePos();
     }
     onSelect() {
+      console.log('onClick',this);
       if (this.props.productId) {
         this.pos.appointmentDetails['selectedService'] = this.props.productId;
       }
@@ -28,6 +36,7 @@ export class AppointmentSevicePackSelection extends Component {
     highlight() {
         var highlightClass = '';
         var SelectedServiceId = this.pos.appointmentDetails['selectedService'];
+        console.log(SelectedServiceId , this.props.productId);
         if (SelectedServiceId == this.props.productId) {
           highlightClass = 'green_border';
         }

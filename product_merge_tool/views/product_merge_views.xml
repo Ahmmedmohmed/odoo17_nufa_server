@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="seq_product_merge_tool" model="ir.sequence">
+        <field name="name">Product Merge Tool</field>
+        <field name="code">product.merge.tool</field>
+        <field name="prefix">MERGE/</field>
+        <field name="padding">4</field>
+    </record>
+
+    <record id="product_merge_tool_tree" model="ir.ui.view">
+        <field name="name">product.merge.tool.tree</field>
+        <field name="model">product.merge.tool</field>
+        <field name="arch" type="xml">
+            <tree string="Product Merges">
+                <field name="name"/>
+                <field name="total_groups"/>
+                <field name="total_duplicates"/>
+                <field name="total_merged"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'done'"
+                       decoration-info="state in ('scanning', 'ready', 'merging')"
+                       decoration-danger="state == 'failed'"
+                       decoration-muted="state == 'draft'"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="product_merge_tool_form" model="ir.ui.view">
+        <field name="name">product.merge.tool.form</field>
+        <field name="model">product.merge.tool</field>
+        <field name="arch" type="xml">
+            <form string="Product Merge Tool">
+                <header>
+                    <button name="action_scan" type="object" string="Scan Duplicates"
+                            class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_merge_all" type="object" string="Merge All"
+                            class="btn-primary" invisible="state != 'ready'"
+                            confirm="This will merge all duplicate products. This action cannot be undone. Continue?"/>
+                    <button name="action_scan" type="object" string="Re-Scan"
+                            invisible="state not in ('ready', 'done', 'failed')"/>
+                    <button name="action_reset" type="object" string="Reset"
+                            invisible="state == 'draft'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,ready,merging,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="total_groups"/>
+                            <field name="total_duplicates"/>
+                        </group>
+                        <group>
+                            <field name="total_merged"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Merge Groups">
+                            <field name="merge_line_ids">
+                                <tree string="Merge Groups" editable="bottom">
+                                    <field name="match_type"/>
+                                    <field name="match_key"/>
+                                    <field name="duplicate_count"/>
+                                    <field name="template_ids" widget="many2many_tags"/>
+                                    <field name="survivor_tmpl_id"/>
+                                    <field name="state" widget="badge"
+                                           decoration-success="state == 'merged'"
+                                           decoration-danger="state == 'failed'"
+                                           decoration-warning="state == 'pending'"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Log">
+                            <field name="log" widget="text" readonly="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="product_merge_tool_action" model="ir.actions.act_window">
+        <field name="name">Product Merge</field>
+        <field name="res_model">product.merge.tool</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="product_merge_tool_menu_root"
+              name="Product Merge"
+              web_icon="product_merge_tool,static/description/icon.png"
+              sequence="99"/>
+    <menuitem id="product_merge_tool_menu"
+              name="Merge Tool"
+              parent="product_merge_tool_menu_root"
+              action="product_merge_tool_action"
+              sequence="10"/>
+
+</odoo>

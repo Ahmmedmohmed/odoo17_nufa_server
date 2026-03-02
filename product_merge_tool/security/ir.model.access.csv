@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_merge_tool,product.merge.tool,model_product_merge_tool,base.group_system,1,1,1,1
+access_product_merge_tool_line,product.merge.tool.line,model_product_merge_tool_line,base.group_system,1,1,1,1

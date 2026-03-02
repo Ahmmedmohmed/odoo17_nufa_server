@@ -46,6 +46,7 @@ class PosSession(models.Model):
             else:
                 service_by_categ_id[rec['categ_id'][0]] = []
                 service_by_categ_id[rec['categ_id'][0]].append(rec)
+        print(service_by_categ_id)
         final_result = {'appointment_services':services, 'appointment_services_by_categ_id':service_by_categ_id}
         return final_result
 
