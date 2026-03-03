@@ -56,7 +56,7 @@ class PosOrderLine(models.Model):
             'pack_lot_ids': [[0, 0, lot] for lot in orderline.pack_lot_ids.export_for_ui()],
             'customer_note': orderline.customer_note,
             'refunded_qty': orderline.refunded_qty,
-            'refunded_orderline_id': orderline.refunded_orderline_id,
+            'refunded_orderline_id': orderline.refunded_orderline_id.id if orderline.refunded_orderline_id else False,
             'id': orderline.id,
             'combo_parent_id': orderline.combo_parent_id.id,
             'combo_line_ids': orderline.combo_line_ids.mapped('id'),

@@ -446,6 +446,10 @@ class AppointmentWebsiteController(http.Controller):
             try:
                 # Get or create website sale order
                 website = request.env['website'].get_current_website()
+                sale_company = website.company_id
+                partner = request.env.user.partner_id
+                if partner.company_id and partner.company_id != sale_company:
+                    partner.sudo().write({'company_id': False})
                 order = website.sale_get_order(force_create=True)
                 
                 # Create order line directly to avoid parameter conflicts
@@ -453,8 +457,8 @@ class AppointmentWebsiteController(http.Controller):
                     'order_id': order.id,
                     'product_id': product.id,
                     'product_uom_qty': 1,
-                    'price_unit': price,  # Use the calculated price from plan_ids
-                    'is_appointment_custom_price': True,  # Flag to prevent price recalculation
+                    'price_unit': price,
+                    'is_appointment_custom_price': True,
                     'name': f"{product.name} - Appointment {appointment_data.get('date')} at {appointment_data.get('time')}",
                 }
 
@@ -616,6 +620,10 @@ class AppointmentWebsiteController(http.Controller):
             # Add package to cart as single line
             try:
                 website = request.env['website'].get_current_website()
+                sale_company = website.company_id
+                partner = request.env.user.partner_id
+                if partner.company_id and partner.company_id != sale_company:
+                    partner.sudo().write({'company_id': False})
                 order = website.sale_get_order(force_create=True)
                 
                 # Create detailed package description

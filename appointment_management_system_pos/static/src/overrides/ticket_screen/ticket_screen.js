@@ -112,8 +112,8 @@ patch(TicketScreen.prototype, {
       const serviceLines = order.orderlines.filter(line => line.appointment_id);
       for (var i = 0; i < destinationOrder.orderlines.length; i++) {
         var line = destinationOrder.orderlines[i];
-        var service = serviceLines.filter(l => l.id == line.refunded_orderline_id)
-        if (service) {
+        var service = serviceLines.filter(l => l.id == line.refunded_orderline_id);
+        if (service && service.length > 0) {
           line.appointment_id = service[0].appointment_id;
           line.is_appointment_line = true;
           destinationOrder.set_screen_data({ name: "PaymentScreen" });

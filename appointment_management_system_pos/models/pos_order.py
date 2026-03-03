@@ -29,8 +29,16 @@ class PosOrder(models.Model):
     def _process_order(self, order, draft, existing_order):
         order_id = super(PosOrder, self)._process_order(order, draft, existing_order)
         if order_id:
-            order = self.env['pos.order'].browse(order_id)
-            order.isAppointment = True in order.lines.mapped('product_id').mapped('is_appointment_service')
+            pos_order = self.env['pos.order'].browse(order_id)
+            pos_order.isAppointment = True in pos_order.lines.mapped('product_id').mapped('is_appointment_service')
+            for line in pos_order.lines.filtered(lambda l: l.appointment_id):
+                status = '2'
+                if line.refunded_orderline_id:
+                    status = '4'
+                appointment = line.appointment_id
+                for slot in appointment.slot_ids:
+                    slot.sudo().write({'state': 'done' if status == '2' else 'draft'})
+                appointment.sudo().write({'state': status})
         return order_id
 
 
@@ -78,7 +86,7 @@ class PosOrder(models.Model):
         # order_id = super(PosOrder, self)._process_order(order, draft, existing_order)
 
         lines = []
-        lines = order.lines.filtered(lambda line: line.appointment_id.state == '2').export_appointment_for_ui()
+        lines = order.lines.filtered(lambda line: line.appointment_id).export_appointment_for_ui()
         lines = list(filter(lambda line: line != None, lines))
 
         return {

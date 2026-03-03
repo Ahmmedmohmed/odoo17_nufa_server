@@ -266,10 +266,18 @@ class Product(models.Model):
 
             price = service_id.action_get_appointment_service_price(appointmentDetail.get('branch_id'), appointmentDetail.get('employee_id'), appointmentDetail.get('appointment_type'), package_id)
 
-            date = datetime.strptime(appointmentDetail.get('date'), "%Y-%m-%d").date()
+            taxes = service_id.taxes_id
+            if taxes:
+                tax_res = taxes.compute_all(price, currency=service_id.currency_id or self.env.company.currency_id, quantity=1, product=service_id, partner=self.env['res.partner'].browse(partner_id) if partner_id else False)
+                price_incl = tax_res['total_included']
+            else:
+                price_incl = price
+
+            appt_date = datetime.strptime(appointmentDetail.get('date'), "%Y-%m-%d").date()
             time_str = slot_ids.mapped('name')[0]
-            time = datetime.strptime(time_str, "%H:%M").time()
-            local_dt = datetime.combine(date, time).replace(tzinfo=ZoneInfo(self.env.user.tz))
+            appt_time = datetime.strptime(time_str, "%H:%M").time()
+            user_tz = 'Asia/Riyadh'
+            local_dt = datetime.combine(appt_date, appt_time).replace(tzinfo=ZoneInfo(user_tz))
             utc_dt = local_dt.astimezone(ZoneInfo("UTC"))
             final_dt = utc_dt.replace(tzinfo=None)
 
@@ -279,7 +287,7 @@ class Product(models.Model):
                 'product_id': record,
                 'employee_id': appointmentDetail.get('employee_id'),
                 'branch_id': appointmentDetail.get('branch_id'),
-                'price_unit': price,
+                'price_unit': price_incl,
                 'appointment_type': appointmentDetail.get('appointment_type'),
                 'state': '1',
                 'slot_ids': [(6, 0, slot_ids.ids)]

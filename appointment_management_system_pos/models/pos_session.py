@@ -27,6 +27,11 @@ class PosSession(models.Model):
         category_by_id = {category['id']: category for category in categories}
         return categories
 
+    def _loader_params_pos_category(self):
+        result = super()._loader_params_pos_category()
+        result['search_params']['fields'].append('is_appointment_category')
+        return result
+
     def _loader_params_product_product(self):
         result = super()._loader_params_product_product()
         result['search_params']['fields'].extend(['is_appointment_service','is_appointment_package','appointment_package_line_ids'])

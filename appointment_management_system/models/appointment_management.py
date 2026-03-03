@@ -7,7 +7,7 @@ from datetime import datetime, time
 class AppointmentManagement(models.Model):
     _name = 'appointment.management'
     _description = 'Appointment Management'
-    _check_company_auto = True
+    _check_company_auto = False
     _rec_name = 'sequence'
     _order = 'state'
 

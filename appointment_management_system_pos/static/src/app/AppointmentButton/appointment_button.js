@@ -29,9 +29,7 @@ export class AppointmentButton extends Component {
       console.log(confirmed);
       console.log(payload);
       if (confirmed) {
-        debugger
         for (const [key, value] of Object.entries(this.pos.appointmentDetails['services'])) {
-          console.log(key,value);
           const service = await this.pos.db.get_product_by_id(key);
           var line = await this.pos.get_order().add_product(service,{
               quantity: 1,
@@ -45,29 +43,15 @@ export class AppointmentButton extends Component {
               slot_name:value.slot_name,
               date:value.date
           });
-          line.appointmentDetail = value
-          // line.appointment_id = value.appointment_id
-          // line.employee_name = value.employee_name
-          // line.branch_name = value.branch_name
-          // line.slot_name = value.slot_name
-          // line.date = value.date
-          // line.appointment_type = value.appointment_type
-          // line.is_appointment_line = true
+          line.appointmentDetail = value;
           line.full_product_name =
             this.pos.appointmentDetails['isSelectedServicePack'] ?
               line.full_product_name+'('+this.pos.appointmentDetails['ServicePackFullName']+')':line.full_product_name;
-
-          // if (
-          //   value.service_id == ''||
-          //   value.employee_id == ''||
-          //   value.date == ''||
-          //   value.slot_ids == ''
-          // ) {
-          //   flag= false;
-          // }
         }
-
-
+        this.pos.appointmentDetails = null;
+        this.pos.SelectedService = null;
+        this.pos.SelectedServices = [];
+        this.pos.isSelectedServicePack = false;
       }
       return;
     }
