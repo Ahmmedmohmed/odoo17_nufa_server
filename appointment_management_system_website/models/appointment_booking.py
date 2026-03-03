@@ -68,12 +68,13 @@ class AppointmentManagement(models.Model):
     def create_from_cart(self, appointment_data):
         """Create appointment when adding to cart with Partial Approved state"""
 
-        # Combine date and time from slot_ids to create proper datetime
         appointment_datetime = self._get_appointment_datetime(appointment_data)
+        display_date = self._get_display_date(appointment_data)
 
         vals = {
             'partner_id': appointment_data.get('partner_id'),
-            'date': appointment_datetime,  # Use combined datetime instead of just date
+            'date': appointment_datetime,
+            'display_date': display_date,
             'branch_id': appointment_data.get('branch_id'),
             'company_id': appointment_data.get('company_id'),
             'product_id': appointment_data.get('product_id'),
@@ -182,31 +183,39 @@ class AppointmentManagement(models.Model):
         return False
     
     def _get_appointment_datetime(self, appointment_data):
-        """Combine date and time from slot name with proper timezone conversion"""
-        from zoneinfo import ZoneInfo
-        
         date_str = appointment_data.get('date')
         if not date_str:
             return fields.Datetime.now()
-        
+
         slot_ids_list = appointment_data.get('slot_ids', [])
         if slot_ids_list:
             try:
                 slot_ids = self.env['appointment.employee.slot'].sudo().browse(slot_ids_list)
                 if slot_ids:
-                    appt_date = datetime.strptime(date_str, "%Y-%m-%d").date()
-                    time_str = slot_ids.mapped('name')[0]
+                    first_slot = slot_ids[0]
+                    appt_date = first_slot.date
+                    time_str = first_slot.name
                     appt_time = datetime.strptime(time_str, "%H:%M").time()
-                    user_tz = 'Asia/Riyadh'
-                    local_dt = datetime.combine(appt_date, appt_time).replace(tzinfo=ZoneInfo(user_tz))
-                    utc_dt = local_dt.astimezone(ZoneInfo("UTC"))
-                    final_dt = utc_dt.replace(tzinfo=None)
-                    return fields.Datetime.to_string(final_dt)
+                    naive_dt = datetime.combine(appt_date, appt_time)
+                    return fields.Datetime.to_string(naive_dt)
             except Exception:
                 pass
-        
+
         appointment_date = datetime.strptime(date_str, '%Y-%m-%d').date()
         return fields.Datetime.to_string(datetime.combine(appointment_date, datetime.min.time()))
+
+    def _get_display_date(self, appointment_data):
+        slot_ids_list = appointment_data.get('slot_ids', [])
+        if slot_ids_list:
+            try:
+                slot_ids = self.env['appointment.employee.slot'].sudo().browse(slot_ids_list)
+                if slot_ids:
+                    first_slot = slot_ids[0]
+                    return f"{first_slot.date.strftime('%Y-%m-%d')} {first_slot.name}:00"
+            except Exception:
+                pass
+        date_str = appointment_data.get('date', '')
+        return date_str
     
     def cancel_reservation(self):
         """Cancel slot reservation (e.g., when cart item is removed or expires)"""

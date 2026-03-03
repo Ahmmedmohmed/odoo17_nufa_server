@@ -16,6 +16,7 @@ class AppointmentManagement(models.Model):
     partner_id = fields.Many2one('res.partner', string='Partner', required=True)
     partner_phone = fields.Char(string='Partner Phone', related='partner_id.phone')
     date = fields.Datetime('Date', required=True)
+    display_date = fields.Char('Display Date')
     branch_id = fields.Many2one('res.company', string='Branch', required=True)
     company_id = fields.Many2one('res.company', required=True, default=lambda self: self.env.company, readonly=True)
     product_id = fields.Many2one('product.product', string='Service', domain=[('is_appointment_service', '=', True)], required=True)

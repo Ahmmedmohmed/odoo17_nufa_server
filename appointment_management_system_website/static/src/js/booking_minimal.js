@@ -359,12 +359,16 @@
         }
         
         // Build booking data
+        const slotIds = Array.isArray(slotId) ? slotId : [slotId];
+        const selectedDate = window.selectedDate || new Date().toISOString().split('T')[0];
         const bookingData = {
-            service_id: selectedService.id,
-            employee_id: employeeId,
-            slot_id: slotId,
+            service_id: parseInt(selectedService.id),
+            employee_id: parseInt(employeeId.toString().split('_').pop()),
+            slot_ids: slotIds,
+            date: selectedDate,
             appointment_type: locationType,
-            customer_address: serviceAddress
+            customer_address: serviceAddress,
+            branch_id: 1
         };
         
         // Add to cart via API

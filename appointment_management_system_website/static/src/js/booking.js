@@ -1583,14 +1583,23 @@ window.getServiceCurrency = window.getServiceCurrency || function(serviceId) {
         const selectedService = JSON.parse(sessionStorage.getItem('selectedService') || '{}');
         const locationType = sessionStorage.getItem('locationType') || 'inside';
         const serviceAddress = sessionStorage.getItem('serviceAddress') || '';
+        const selectedDate = window.selectedDate || new Date().toISOString().split('T')[0];
+        const selectedBranch = JSON.parse(sessionStorage.getItem('selectedBranch') || '{}');
         
         if (!selectedService.id) {
             alert('No service selected. Please go back and select a service.');
             return;
         }
         
-        // Build booking data
+        const slotIds = Array.isArray(slotId) ? slotId : [slotId];
         const bookingData = {
+            service_id: parseInt(selectedService.id),
+            employee_id: parseInt(employeeId),
+            slot_ids: slotIds,
+            date: selectedDate,
+            appointment_type: locationType,
+            customer_address: serviceAddress,
+            branch_id: selectedBranch.id || 1
         };
         
         // Add to cart via API
@@ -1599,10 +1608,13 @@ window.getServiceCurrency = window.getServiceCurrency || function(serviceId) {
             headers: {
                 'Content-Type': 'application/json',
             },
+            body: JSON.stringify({
                 jsonrpc: '2.0',
                 method: 'call',
                 params: {
+                    service_data: bookingData
                 },
+                id: Date.now()
             })
         })
         .then(response => response.json())

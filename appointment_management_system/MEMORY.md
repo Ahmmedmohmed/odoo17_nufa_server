@@ -47,8 +47,8 @@ Core Odoo 17 module for salon/appointment management. Provides the foundational 
   - `action_get_available_location_types(branch_id, employee_id, package_id)` - Returns available location types (inside/outside/both)
   - `action_get_appointment_employee(branch_id, package_id)` - Returns dict of {employee_id: employee_name}; has fallback logic if no exact branch match
   - `action_get_appointment_date(employee_id, package_id)` - Returns list of next 30 date strings
-  - `action_get_appointment_employee_slot(employee_id, date, type, branch, package_id)` - Returns available slot groups based on required_slots from price plan
-  - `action_get_appointment_service_price(branch_id, employee_id, appointment_type, package_id)` - Calculates price from plan_ids; has fallback to department-only match; writes debug to `/tmp/cart_debug.log`
+  - `action_get_appointment_employee_slot(employee_id, date, type, branch, package_id)` - Returns available slot groups based on required_slots from price plan; has branch fallback (if no plan matches with given branch, searches again without branch filter)
+  - `action_get_appointment_service_price(branch_id, employee_id, appointment_type, package_id)` - Calculates price from plan_ids; has fallback to department-only match
   - `action_create_appointments(partner_id, appointmentDetails)` - Creates appointments from POS/website data, handles timezone conversion (user TZ -> UTC), sets slots to 'wait'
   - `get_all_available_slot_groups_records(employee_id, appointment_date, required_slots)` - Finds consecutive available slot groups
 

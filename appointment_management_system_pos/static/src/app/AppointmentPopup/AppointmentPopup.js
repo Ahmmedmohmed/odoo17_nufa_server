@@ -69,7 +69,7 @@ export class AppointmentPopup extends AbstractAwaitablePopup {
         this.appointment_services = this.pos.appointment_services;
         this.state = useState({ searchWord: ''});
 
-        this.pos.appointmentDetails = null;
+        this.pos.appointmentDetails = {};
         this.pos.SelectedService = null;
         this.pos.SelectedServices = [];
         this.pos.isSelectedServicePack = false;

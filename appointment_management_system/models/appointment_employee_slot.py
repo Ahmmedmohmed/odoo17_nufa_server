@@ -13,6 +13,7 @@ class AppointmentEmployeeSlot(models.Model):
     employee_id = fields.Many2one('hr.employee', string='Employee', required=True)
     date = fields.Date(string='Date', required=True)
     time = fields.Float(string='Time', required=True)
+    appointment_datetime = fields.Char(string='Appointment Datetime')
     state = fields.Selection([('draft', 'Draft'), ('wait', 'Waiting'), ('done', 'Done'), ('cancel', 'Cancelled')], default='draft')
 
 
@@ -83,7 +84,9 @@ class AppointmentEmployeeSlot(models.Model):
                             time_float  = slot_hour + (slot_minute / 60.0)
 
                             if (current_date, time_float) not in existing_slot_keys:
-                                self.create({'name': f'{slot_hour:02d}:{slot_minute:02d}', 'employee_id': employee.id, 'date': current_date, 'time': time_float, 'state': 'draft'})
+                                slot_name = f'{slot_hour:02d}:{slot_minute:02d}'
+                                appt_dt = f'{current_date.strftime("%Y-%m-%d")} {slot_name}:00'
+                                self.create({'name': slot_name, 'employee_id': employee.id, 'date': current_date, 'time': time_float, 'appointment_datetime': appt_dt, 'state': 'draft'})
                                 existing_slot_keys.add((current_date, time_float))
 
                             current_slot_start += 30

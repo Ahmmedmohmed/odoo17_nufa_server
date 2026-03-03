@@ -179,6 +179,23 @@ Odoo 17 POS (Point of Sale) integration module for the appointment management sy
 - Override in `static/src/overrides/product_screen/product_list.js` patches `ProductsWidget.productsToDisplay` to filter them out
 - They remain visible only inside the Appointment popup
 
+## Fixes Applied
+
+### Orderline Prop Validation Fix (`salesperson_pos_order_line/static/src/js/orderline.js`)
+- **Problem:** `salesperson_pos_order_line` module was overriding `Orderline.props.line` with a new shape containing only `cashier` and `employee_id`, completely destroying the original shape (`productName`, `price`, `qty`, `"*": true` wildcard, etc.). This caused `OwlError: Invalid props for component 'Orderline': 'line' doesn't have the correct shape` with ALL keys rejected.
+- **Root Cause:** `Orderline.props = { ...Orderline.props, line: { shape: { cashier, employee_id } } }` — the spread copies top-level props but `line:` fully replaces the original `line` prop definition.
+- **Fix:** Added `type: Object` and `...Orderline.props.line.shape` to preserve the original shape while adding new keys. The `"*": true` wildcard from the original shape now allows appointment fields (`is_appointment_line`, `appointment_id`, `employee_name`, `branch_name`, `appointment_type`, `date`, `slot_name`) added by `getDisplayData()` override.
+
+### appointmentDetails Null Fix
+- **Problem:** `this.pos.appointmentDetails = null` caused `OwlError: Invalid props for component 'AppointmentSeviceDetails': 'appointmentDetails' is not a object` because Owl prop validation rejects `null` for `type: Object`.
+- **Fix:** Changed `null` to `{}` in two files:
+  - `AppointmentPopup.js` line 72: `this.pos.appointmentDetails = {}`
+  - `appointment_button.js` line 51: `this.pos.appointmentDetails = {}`
+
+### Multi-Slot Website Booking Fix (`appointment_management_system/models/product.py`)
+- **Problem:** Booking a 2-slot service from the website only reserved 1 slot because `branch_id=1` was sent but the service price plan only existed for branches 2 and 3. No matching plan found → `slots` defaulted to 1.
+- **Fix:** Added department-only fallback in `action_get_appointment_employee_slot` — when no plan matches with the given branch, search again without branch filter (`limit=1`).
+
 ## Known Issues / Debug Artifacts
 - `debugger` statement in AppointmentButton click handler
 - `print()` statement in pos_session.py `_get_pos_ui_appointment_product_service`

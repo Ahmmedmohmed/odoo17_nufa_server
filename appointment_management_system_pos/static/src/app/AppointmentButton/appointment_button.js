@@ -48,7 +48,7 @@ export class AppointmentButton extends Component {
             this.pos.appointmentDetails['isSelectedServicePack'] ?
               line.full_product_name+'('+this.pos.appointmentDetails['ServicePackFullName']+')':line.full_product_name;
         }
-        this.pos.appointmentDetails = null;
+        this.pos.appointmentDetails = {};
         this.pos.SelectedService = null;
         this.pos.SelectedServices = [];
         this.pos.isSelectedServicePack = false;

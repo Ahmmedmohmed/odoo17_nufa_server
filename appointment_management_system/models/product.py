@@ -2,7 +2,6 @@
 
 from odoo import api, fields, models, _
 from datetime import datetime, date, timedelta
-from zoneinfo import ZoneInfo
 from collections import OrderedDict
 
 
@@ -72,9 +71,6 @@ class Product(models.Model):
         return available_types
 
     def action_get_appointment_employee(self, branch_id, package_id=False):
-        import logging
-        _logger = logging.getLogger(__name__)
-        
         package_id = self.env['product.product'].browse(int(package_id))
         dict = {}
 
@@ -84,17 +80,13 @@ class Product(models.Model):
                 for employee in employee_ids:
                     dict[employee.id] = employee.display_name
         else:
-            # Try exact branch match first
             matching_plans = self.plan_ids.filtered(lambda record: record.branch_id.id == int(branch_id))
-            _logger.info(f"Employee lookup - Service: {self.id}, Branch: {branch_id}, Found {len(matching_plans)} matching plans")
             
             if matching_plans:
                 employee_ids = matching_plans.mapped('department_id').member_ids.filtered(lambda r: r.is_appointment_employee == True)
                 for employee in employee_ids:
                     dict[employee.id] = employee.display_name
             else:
-                # FALLBACK: If no exact branch match, return employees from all available plans
-                _logger.warning(f"Employee lookup - No employees found for branch {branch_id}, using fallback to show all available employees for service {self.id}")
                 employee_ids = self.plan_ids.mapped('department_id').member_ids.filtered(lambda r: r.is_appointment_employee == True)
                 for employee in employee_ids:
                     dict[employee.id] = employee.display_name
@@ -113,7 +105,7 @@ class Product(models.Model):
 
     def action_get_appointment_employee_slot(self, employee_id, date, type, branch, package_id=False):
         package_id = self.env['product.product'].browse(int(package_id))
-        slots = 99
+        slots = 1
         dict = {}
         date = datetime.strptime(date, '%Y-%m-%d').date()
         employee_id = self.env['hr.employee'].browse(int(employee_id))
@@ -125,7 +117,6 @@ class Product(models.Model):
                 if type == 'outside':
                     slots = record.service_slot_outside
         else:
-            # Handle null branch_id by providing a default or filtering it out
             branch_filter = []
             if branch and str(branch).strip():
                 branch_filter = [('branch_id', '=', int(branch))]
@@ -135,118 +126,65 @@ class Product(models.Model):
                 ('department_id', '=', employee_id.department_id.id)
             ] + branch_filter)
             
+            if not service_plan_id and branch_filter:
+                service_plan_id = self.env['appointment.service.price.plan'].search([
+                    ('service_id', '=', self.id), 
+                    ('department_id', '=', employee_id.department_id.id)
+                ], limit=1)
+            
             if service_plan_id and type == 'inside':
-                slots = service_plan_id.service_slot_inside
+                slots = service_plan_id[0].service_slot_inside
             if service_plan_id and type == 'outside':
-                slots = service_plan_id.service_slot_outside
+                slots = service_plan_id[0].service_slot_outside
 
         return self.get_all_available_slot_groups_records(employee_id.id, date, slots)
 
 
     def action_get_appointment_service_price(self, branch_id, employee_id, appointment_type, package_id=False):
-        import logging
-        _logger = logging.getLogger(__name__)
-        
         try:
             branch_id = int(branch_id)
             employee_obj = self.env['hr.employee'].browse(int(employee_id))
             package_obj = self.env['product.product'].browse(int(package_id)) if package_id else False
 
-            _logger.info(f"Pricing calculation - Service: {self.id}, Branch: {branch_id}, Employee: {employee_obj.id}, Type: {appointment_type}, Package: {package_obj.id if package_obj else 'None'}")
-            
-            # Add file-based debugging
-            debug_file = "/tmp/cart_debug.log"
-            with open(debug_file, "a") as f:
-                f.write(f"PRODUCT PRICE CALC - Service: {self.id}, Branch: {branch_id}, Employee: {employee_obj.id}, Department: {employee_obj.department_id.id if employee_obj.department_id else 'None'}, Type: {appointment_type}\n")
-
-            # Check if employee has department
             if not employee_obj.department_id:
-                _logger.warning(f"Employee {employee_obj.id} has no department assigned")
                 return 0.0
 
             if appointment_type == 'inside' and package_obj:
                 package_line = package_obj.appointment_package_line_ids.filtered(
                     lambda r: r.product_id.id == self.id and r.branch_id.id == branch_id and r.department_id.id == employee_obj.department_id.id
                 )
-                _logger.info(f"Package inside pricing - found {len(package_line)} matching lines")
                 if package_line:
-                    price = float(package_line[0].service_price_inside)
-                    _logger.info(f"Package inside price: {price}")
-                    return price
+                    return float(package_line[0].service_price_inside)
                 return 0.0
 
             elif appointment_type == 'outside' and package_obj:
                 package_line = package_obj.appointment_package_line_ids.filtered(
                     lambda r: r.product_id.id == self.id and r.branch_id.id == branch_id and r.department_id.id == employee_obj.department_id.id
                 )
-                _logger.info(f"Package outside pricing - found {len(package_line)} matching lines")
                 if package_line:
-                    price = float(package_line[0].service_price_outside)
-                    _logger.info(f"Package outside price: {price}")
-                    return price
+                    return float(package_line[0].service_price_outside)
                 return 0.0
 
             elif appointment_type == 'inside':
                 plan = self.plan_ids.filtered(lambda r: r.branch_id.id == branch_id and r.department_id.id == employee_obj.department_id.id)
-                _logger.info(f"Service inside pricing - found {len(plan)} matching plans")
-                
-                with open(debug_file, "a") as f:
-                    f.write(f"PRODUCT PRICE CALC - Looking for plans with branch {branch_id} and department {employee_obj.department_id.id}\n")
-                    f.write(f"PRODUCT PRICE CALC - Found {len(plan)} matching plans\n")
-                
                 if plan:
-                    price = float(plan[0].service_price_inside)
-                    _logger.info(f"Service inside price: {price}")
-                    
-                    with open(debug_file, "a") as f:
-                        f.write(f"PRODUCT PRICE CALC - Returning price: {price}\n")
-                    
-                    return price
+                    return float(plan[0].service_price_inside)
                 else:
-                    # FALLBACK: Try to find plan with matching department_id only (ignoring branch_id mismatch)
                     department_plan = self.plan_ids.filtered(lambda r: r.department_id.id == employee_obj.department_id.id)
                     if department_plan:
-                        price = float(department_plan[0].service_price_inside)
-                        _logger.warning(f"Service inside pricing - Using fallback plan for department {employee_obj.department_id.id}, price: {price}")
-                        
-                        with open(debug_file, "a") as f:
-                            f.write(f"PRODUCT PRICE CALC - FALLBACK - Using department-only match, price: {price}\n")
-                        
-                        return price
-                    
-                    # Debug: show available plans
-                    available_plans = [(p.branch_id.id, p.department_id.id, p.service_price_inside) for p in self.plan_ids]
-                    _logger.info(f"Available plans for service {self.id}: {available_plans}")
-                    
-                    with open(debug_file, "a") as f:
-                        f.write(f"PRODUCT PRICE CALC - No matching plans found. Available plans: {available_plans}\n")
-                
+                        return float(department_plan[0].service_price_inside)
                 return 0.0
 
             else:  # outside
                 plan = self.plan_ids.filtered(lambda r: r.branch_id.id == branch_id and r.department_id.id == employee_obj.department_id.id)
-                _logger.info(f"Service outside pricing - found {len(plan)} matching plans")
                 if plan:
-                    price = float(plan[0].service_price_outside)
-                    _logger.info(f"Service outside price: {price}")
-                    return price
+                    return float(plan[0].service_price_outside)
                 else:
-                    # FALLBACK: Try to find plan with matching department_id only (ignoring branch_id mismatch)
                     department_plan = self.plan_ids.filtered(lambda r: r.department_id.id == employee_obj.department_id.id)
                     if department_plan:
-                        price = float(department_plan[0].service_price_outside)
-                        _logger.warning(f"Service outside pricing - Using fallback plan for department {employee_obj.department_id.id}, price: {price}")
-                        
-                        with open(debug_file, "a") as f:
-                            f.write(f"PRODUCT PRICE CALC - FALLBACK OUTSIDE - Using department-only match, price: {price}\n")
-                        
-                        return price
-                    
-                    # Debug: show available plans
-                    _logger.info(f"Available plans for service {self.id}: {[(p.branch_id.id, p.department_id.id, p.service_price_outside) for p in self.plan_ids]}")
+                        return float(department_plan[0].service_price_outside)
                 return 0.0
-        except Exception as e:
-            _logger.error(f"Error calculating appointment service price: {str(e)}")
+        except Exception:
             return 0.0
 
 
@@ -273,17 +211,17 @@ class Product(models.Model):
             else:
                 price_incl = price
 
-            appt_date = datetime.strptime(appointmentDetail.get('date'), "%Y-%m-%d").date()
-            time_str = slot_ids.mapped('name')[0]
+            first_slot = slot_ids[0]
+            appt_date = first_slot.date
+            time_str = first_slot.name
             appt_time = datetime.strptime(time_str, "%H:%M").time()
-            user_tz = 'Asia/Riyadh'
-            local_dt = datetime.combine(appt_date, appt_time).replace(tzinfo=ZoneInfo(user_tz))
-            utc_dt = local_dt.astimezone(ZoneInfo("UTC"))
-            final_dt = utc_dt.replace(tzinfo=None)
+            naive_dt = datetime.combine(appt_date, appt_time)
+            display_date_str = naive_dt.strftime("%Y-%m-%d %H:%M")
 
             appointment_id = self.env['appointment.management'].sudo().create({
                 'partner_id': partner_id,
-                'date': final_dt,
+                'date': naive_dt,
+                'display_date': display_date_str,
                 'product_id': record,
                 'employee_id': appointmentDetail.get('employee_id'),
                 'branch_id': appointmentDetail.get('branch_id'),

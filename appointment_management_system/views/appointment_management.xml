@@ -8,7 +8,7 @@
                 <tree create="0">
                     <field name="sequence"/>
                     <field name="partner_id"/>
-                    <field name="date"/>
+                    <field name="display_date"/>
                     <field name="appointment_type"/>
                     <field name="branch_id"/>
                     <field name="company_id"/>
@@ -40,7 +40,8 @@
                                 <field name="company_id"/>
                             </group>
                             <group>
-                                <field name="date"/>
+                                <field name="display_date"/>
+                                <field name="date" invisible="1"/>
                                 <field name="employee_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                 <field name="service_rate" widget="priority"/>
                                 <field name="branch_id" options="{'no_create': True, 'no_create_edit':True}"/>
@@ -64,6 +65,7 @@
                 <kanban class="o_kanban_dashboard o_kanban_small_column" sample="1" create="0" default_order="date asc" default_group_by="state">
                     <field name="sequence"/>
                     <field name="partner_id"/>
+                    <field name="display_date"/>
                     <field name="date"/>
                     <field name="appointment_type"/>
                     <field name="branch_id"/>
@@ -99,9 +101,9 @@
                                                     <field name="employee_id"/>
                                                 </div>
                                                 
-                                                <div t-if="record.date.raw_value" class="text-muted o_row">
+                                                <div t-if="record.display_date.value" class="text-muted o_row">
                                                     <span class="fa fa-clock-o me-2" title="Dates"/>
-                                                    <field name="date"/>
+                                                    <field name="display_date"/>
                                                 </div>
 
                                                 <div t-if="record.price_unit.raw_value" class="text-muted o_row">

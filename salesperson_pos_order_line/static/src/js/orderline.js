@@ -5,10 +5,9 @@ import { Orderline } from "@point_of_sale/app/generic_components/orderline/order
 Orderline.props = {
     ...Orderline.props,
     line: {
-
+        type: Object,
         shape: {
-            cashier: { type: String, optional: true },
-            employee_id:{ type: Number, optional: true },
+            ...Orderline.props.line.shape,
         }
     }
 }

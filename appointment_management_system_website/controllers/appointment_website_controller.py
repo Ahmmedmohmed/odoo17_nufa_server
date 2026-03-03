@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import json
+import logging
 from datetime import datetime, date, timedelta
+
+_logger = logging.getLogger(__name__)
 from odoo import http, _
 from odoo.http import request
 from odoo.addons.portal.controllers.portal import CustomerPortal
@@ -385,7 +388,6 @@ class AppointmentWebsiteController(http.Controller):
             slot_ids = appointment_data.get('slot_ids', [])
             if isinstance(slot_ids, list):
                 slot_ids = [sid for sid in slot_ids if sid is not None]
-
             
             # If no slot IDs provided, try to find the slot based on employee, date, and time
             if not slot_ids and appointment_data.get('time'):
@@ -1015,64 +1017,17 @@ class AppointmentWebsiteController(http.Controller):
 
     @http.route('/book-appointment/api/slots', type='json', auth='public', website=True)
     def get_employee_slots(self, service_id=None, employee_id=None, date=None, appointment_type=None, branch_id=None, package_id=False):
-        """Get available time slots for an employee"""
-        # Try service-based slot fetching first (respects slot limits from plans)
-        if service_id and employee_id and date:
-            try:
-                service = request.env['product.product'].sudo().browse(service_id)
-                slots = service.action_get_appointment_employee_slot(
-                    employee_id, date, appointment_type, branch_id, package_id
-                )
-                # If service method returns results, use them
-                if slots:
-                    return slots
-            except Exception as e:
-                # Log error but continue to fallback method
-                pass
-        
-        # Fallback: Get slots directly from employee slot table
-        if employee_id and date:
-            try:
-                # Parse date if it's a string
-                if isinstance(date, str):
-                    from datetime import datetime
-                    date = datetime.strptime(date, '%Y-%m-%d').date()
-                
-                # Get all slots for employee/date, then filter by availability
-                all_slots = request.env['appointment.employee.slot'].sudo().search([
-                    ('employee_id', '=', int(employee_id)),
-                    ('date', '=', date),
-                ])
-                
-                # Filter to only available slots (includes expired reservations auto-cleanup)
-                slots = all_slots.filtered(lambda s: s.is_available_for_booking())
-                
-                # Group slots by time for calendar display
-                result = {}
-                for slot in slots:
-                    time_str = f"{int(slot.time):02d}:{int((slot.time % 1) * 60):02d}"
-                    if time_str not in result:
-                        duration = self._get_service_duration(service_id, appointment_type)
-                        result[time_str] = {
-                            'name': time_str,
-                            'id': slot.id,
-                            'ids': [slot.id],
-                            'employee_id': slot.employee_id.id,
-                            'time': time_str,
-                            'duration': duration,
-                            'state': slot.state,
-                            'price': self._get_slot_price(service_id, employee_id, appointment_type, branch_id),
-                            'end_time': self._calculate_end_time(slot.time, duration)
-                        }
-                    else:
-                        # Add to existing time slot group
-                        result[time_str]['ids'].append(slot.id)
-                
-                return result
-            except Exception as e:
-                # Return empty dict on error
-                return {}
-        else:
+        if not service_id or not employee_id or not date:
+            return {}
+        try:
+            service = request.env['product.product'].sudo().browse(service_id)
+            slots = service.action_get_appointment_employee_slot(
+                employee_id, date, appointment_type or 'inside', branch_id, package_id
+            )
+            if slots:
+                return slots
+            return service.get_all_available_slot_groups_records(int(employee_id), date if not isinstance(date, str) else datetime.strptime(date, '%Y-%m-%d').date(), 1)
+        except Exception:
             return {}
     
     def _get_slot_price(self, service_id, employee_id, appointment_type, branch_id):

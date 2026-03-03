@@ -6,10 +6,11 @@
             <field name="model">appointment.employee.slot</field>
             <field name="arch" type="xml">
                 <tree editable="top" create="0" edit="0">
-                    <field name="name" width="25%"/>
-                    <field name="employee_id" width="25%"/>
-                    <field name="date" width="20%"/>
-                    <field name="time" width="20%" widget="float_time"/>
+                    <field name="name" width="15%"/>
+                    <field name="employee_id" width="20%"/>
+                    <field name="date" width="15%"/>
+                    <field name="time" width="15%" widget="float_time"/>
+                    <field name="appointment_datetime" width="25%"/>
                     <field name="state" width="10%" widget="badge" decoration-success="state == 'done'" decoration-info="state == 'draft'" decoration-primary="state == 'wait'" decoration-danger="state == 'cancel'"/>
                 </tree>
             </field>

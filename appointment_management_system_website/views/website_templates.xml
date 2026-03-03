@@ -1122,6 +1122,7 @@
                     let packageServicesList = []; // Ordered list of package services
                     let currentPackageServiceIndex = 0; // Current service index in package
                     let employeeAvailability = {}; // Track which employees have available slots
+                    let employeeSlotData = {}; // Store API slot data per employee for multi-slot booking
                     let isActiveBookingFlow = false; // Track if we're in active booking mode (service + location selected)
                     let isPopulatingFilters = false; // Flag to prevent infinite loops during filter population
                     let packageUsedSlots = new Set(); // Track slots used in package booking to prevent conflicts
@@ -2896,11 +2897,16 @@
                                     'Content-Type': 'application/json',
                                 },
                                 body: JSON.stringify({
-                                    service_id: parseInt(serviceId),
-                                    employee_id: parseInt(empId),
-                                    date: selectedDate,
-                                    appointment_type: document.getElementById('locationSelect').value,
-                                    branch_id: currentEmployees[empId]?.branch_id || currentBranchId
+                                    jsonrpc: '2.0',
+                                    method: 'call',
+                                    params: {
+                                        service_id: parseInt(serviceId),
+                                        employee_id: parseInt(empId),
+                                        date: selectedDate,
+                                        appointment_type: document.getElementById('locationSelect').value,
+                                        branch_id: currentEmployees[empId]?.branch_id || currentBranchId
+                                    },
+                                    id: Date.now()
                                 })
                             })
                             .then(response => response.json())
@@ -3248,6 +3254,7 @@
                     function addToCart() {
                         if (!selectedSlot) return;
                         
+                        
                         // Validate address input if 'at your location' is selected
                         if (!validateAddressInput()) {
                             return;
@@ -3258,8 +3265,9 @@
 
                         // Prepare appointment data for cart
                         const employee = currentEmployees[selectedSlot.employee_id];
+                        const resolvedSlotIds = selectedSlot.slot_data?.ids || (selectedSlot.slot_data?.id ? [selectedSlot.slot_data.id] : []);
                         const appointmentData = {
-                            service_id: parseInt(currentService),  // Use the selected service ID
+                            service_id: parseInt(currentService),
                             employee_id: parseInt(selectedSlot.employee_id),
                             employee_name: selectedSlot.employee_name,
                             date: selectedSlot.date,
@@ -3267,7 +3275,7 @@
                             display_time: selectedSlot.time,
                             price: selectedSlot.price,
                             location: selectedSlot.location,
-                            slot_ids: selectedSlot.slot_data.ids || [selectedSlot.slot_data.id],
+                            slot_ids: resolvedSlotIds,
                             appointment_type: selectedSlot.location,
                             branch_id: employee?.branch_id || currentBranchId,
                             branch_name: employee?.branch_name || 'Main Branch',
@@ -3814,7 +3822,8 @@
                         
                         if (currentEmployeePage < totalPages - 1) {
                             currentEmployeePage++;
-                            employeeAvailability = {}; // Clear availability tracking
+                            employeeAvailability = {};
+                            employeeSlotData = {};
                             updateEmployeeHeaders();
                             updateEmployeeNavigation();
                             generateSlots(); // Regenerate slots for new employee page
@@ -3824,7 +3833,8 @@
                     function previousEmployeePage() {
                         if (currentEmployeePage > 0) {
                             currentEmployeePage--;
-                            employeeAvailability = {}; // Clear availability tracking
+                            employeeAvailability = {};
+                            employeeSlotData = {};
                             updateEmployeeHeaders();
                             updateEmployeeNavigation();
                             generateSlots(); // Regenerate slots for new employee page
@@ -3905,8 +3915,8 @@
                     function generateSlots() {
                         // This should trigger the existing slot generation logic
                         if (currentEmployees && selectedDate) {
-                            // Clear employee availability tracking for regeneration
                             employeeAvailability = {};
+                            employeeSlotData = {};
                             // Load slots for the selected date
                             loadSlotsForDate(selectedDate);
                             // Show filters when slots are regenerated (but don't repopulate to preserve selections)
@@ -4032,8 +4042,8 @@
                         element.classList.add('selected');
                         selectedDate = dateStr;
                         
-                        // Clear employee availability tracking for new date
                         employeeAvailability = {};
+                        employeeSlotData = {};
                         
                         // Regenerate calendar for new date
                         if (currentEmployees && Object.keys(currentEmployees).length > 0) {
@@ -4141,6 +4151,9 @@
                     function updateEmployeeSlots(employeeId, slots) {
                         // Track availability for this employee
                         let hasAnyAvailableSlots = false;
+                        
+                        // Store full slot data for multi-slot booking lookup
+                        employeeSlotData[employeeId] = slots;
                         
                         // Update the slot buttons for this employee with actual availability
                         const employeeCells = document.querySelectorAll(`[data-employee-id="${employeeId}"]`);
@@ -4261,9 +4274,23 @@
                         // Frontend time "08:00" -> database time 8.0
                         let dbTime = parseFloat(time.split(':')[0]) + parseFloat(time.split(':')[1]) / 60;
 
-                        // For now, don't send any slot_ids to avoid the constraint violation
-                        // The backend validation will handle this gracefully
-                        let slotId = null;
+                        // Look up slot data from API response for this employee+time
+                        let slotData = null;
+                        const empSlots = employeeSlotData[employeeId];
+                        if (empSlots && typeof empSlots === 'object') {
+                            if (empSlots[time]) {
+                                slotData = empSlots[time];
+                            } else {
+                                // Try matching by slot name
+                                Object.values(empSlots).forEach(s => {
+                                    if (s.name === time) slotData = s;
+                                });
+                                if (slotData) {
+                                } else {
+                                }
+                            }
+                        } else {
+                        }
 
                         const appointmentData = {
                             service_id: parseInt(currentService),
@@ -4271,7 +4298,7 @@
                             date: selectedDate,
                             time: time,
                             appointment_type: locationType,
-                            slot_ids: slotId ? [slotId] : [],
+                            slot_ids: slotData ? (slotData.ids || [slotData.id]) : [],
                             branch_id: 1
                         };
 
@@ -4307,11 +4334,12 @@
                             time: time,
                             employee_id: employeeId,
                             employee_name: employee?.name || 'Selected Professional',
+                            slot_data: slotData,
                             price: 0.0,
                             date: selectedDate,
                             location: locationType,
                             service_id: currentService,
-                            id: slotId
+                            id: slotData ? slotData.id : null
                         };
                         
                         selectedEmployee = {
@@ -4737,6 +4765,7 @@
                         
                         // Create booking data in the same format as working addToCart function
                         const employee = currentEmployees[selectedSlot.employee_id] || selectedEmployee;
+                        const resolvedSlotIds = selectedSlot.slot_data?.ids || (selectedSlot.id ? [selectedSlot.id] : []);
                         const appointmentData = {
                             service_id: parseInt(currentService),
                             employee_id: parseInt(selectedEmployee.id),
@@ -4746,7 +4775,7 @@
                             display_time: selectedSlot.time,
                             price: selectedSlot.price,
                             location: document.getElementById('locationSelect')?.value || 'inside',
-                            slot_ids: selectedSlot.id ? [selectedSlot.id] : [],
+                            slot_ids: resolvedSlotIds,
                             appointment_type: document.getElementById('locationSelect')?.value || 'inside',
                             branch_id: employee?.branch_id || 1,
                             branch_name: employee?.branch_name || 'Main Branch',
