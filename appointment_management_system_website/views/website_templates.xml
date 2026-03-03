@@ -1127,6 +1127,13 @@
                     let isPopulatingFilters = false; // Flag to prevent infinite loops during filter population
                     let packageUsedSlots = new Set(); // Track slots used in package booking to prevent conflicts
                     
+                    function toLocalDateStr(d) {
+                        const y = d.getFullYear();
+                        const m = String(d.getMonth() + 1).padStart(2, '0');
+                        const day = String(d.getDate()).padStart(2, '0');
+                        return y + '-' + m + '-' + day;
+                    }
+                    
                     // Translation system for dynamic language support
                     const translations = {
                         'ar': {
@@ -2289,7 +2296,7 @@
                         for (let i = 0; i < 7; i++) {
                             const date = new Date(today);
                             date.setDate(today.getDate() + currentDateOffset + i);
-                            const dateStr = date.toISOString().split('T')[0];
+                            const dateStr = toLocalDateStr(date);
                             
                             const dayName = date.toLocaleDateString('en-US', { weekday: 'short' });
                             const dayNum = date.getDate();
@@ -3955,7 +3962,7 @@
                             const currentDate = new Date(today);
                             currentDate.setDate(today.getDate() + i);
                             
-                            const dateStr = currentDate.toISOString().split('T')[0];
+                            const dateStr = toLocalDateStr(currentDate);
                             const dayName = currentDate.toLocaleDateString('en-US', { weekday: 'short' });
                             const dayNumber = currentDate.getDate();
                             const monthName = currentDate.toLocaleDateString('en-US', { month: 'short' });
@@ -3987,7 +3994,7 @@
                         
                         // Auto-select today
                         if (!selectedDate) {
-                            selectedDate = today.toISOString().split('T')[0];
+                            selectedDate = toLocalDateStr(today);
                         }
                     }
                     

@@ -1007,7 +1007,10 @@ class AppointmentWebsiteController(http.Controller):
         elif employee_id:
             # Generate next 30 days as available dates
             dates = []
-            today = datetime.now().date()
+            import pytz
+            user_tz = request.env.user.tz or 'UTC'
+            tz = pytz.timezone(user_tz)
+            today = datetime.now(tz).date()
             for i in range(30):
                 date_str = (today + timedelta(days=i)).strftime('%Y-%m-%d')
                 dates.append(date_str)

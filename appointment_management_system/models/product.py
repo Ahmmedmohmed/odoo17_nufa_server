@@ -3,6 +3,7 @@
 from odoo import api, fields, models, _
 from datetime import datetime, date, timedelta
 from collections import OrderedDict
+import pytz
 
 
 
@@ -96,9 +97,12 @@ class Product(models.Model):
 
     def action_get_appointment_date(self, employee_id, package_id=False):
         days_list = []
+        user_tz = self.env.user.tz or 'UTC'
+        tz = pytz.timezone(user_tz)
+        today = datetime.now(tz).date()
 
         for x in range(30):
-            days_list.append(str(date.today() + timedelta(days=x)))
+            days_list.append(str(today + timedelta(days=x)))
 
         return days_list
 
