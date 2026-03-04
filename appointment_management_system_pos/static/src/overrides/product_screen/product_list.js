@@ -7,7 +7,7 @@ patch(ProductsWidget.prototype, {
     get productsToDisplay() {
         let list = super.productsToDisplay;
         list = list.filter(
-            (product) => !product.is_appointment_service && !product.is_appointment_package
+            (product) => product.is_appointment_service !== true && product.is_appointment_package !== true
         );
         return list;
     },

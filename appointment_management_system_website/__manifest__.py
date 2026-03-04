@@ -12,6 +12,7 @@
     
     'depends': [
         'base',
+        'base_automation',
         'website',
         'website_sale',
         'sale',
@@ -37,6 +38,7 @@
         'data/website_menu.xml',
         'data/sample_categories.xml',
         'data/ir_cron.xml',
+        'data/auto_confirm_appointment_order.xml',
     ],
 
 

@@ -471,7 +471,7 @@ class AppointmentWebsiteController(http.Controller):
                     'sale_order_id': order.id,
                     'order_line_id': order_line.id,
                 })
-                    
+
                 return {
                     'success': True,
                     'appointment_id': appointment.id,
@@ -650,7 +650,7 @@ class AppointmentWebsiteController(http.Controller):
                     'sale_order_id': order.id,
                     'order_line_id': order_line.id,
                 })
-                
+
                 return {
                     'success': True,
                     'appointment_ids': appointment_ids,
