@@ -11,6 +11,11 @@ class SaleOrder(models.Model):
         compute='_compute_appointment_count'
     )
 
+    def action_confirm(self):
+        if self.filtered(lambda o: o.website_id):
+            return super(SaleOrder, self.sudo()).action_confirm()
+        return super().action_confirm()
+
     @api.depends('order_line')
     def _compute_appointment_count(self):
         """Compute the number of appointments related to this order"""
