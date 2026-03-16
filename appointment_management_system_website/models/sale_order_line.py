@@ -45,22 +45,10 @@ class SaleOrderLine(models.Model):
 
     @api.onchange('product_id', 'product_uom_qty', 'product_uom')
     def _onchange_product_id_check_availability(self):
-        """Override to prevent price changes on product changes for appointment services"""
-
-        
-        # Store the current custom price before onchange
-        stored_price = None
         if self.is_appointment_custom_price:
-            stored_price = self.price_unit
-
-
-        result = super()._onchange_product_id_check_availability()
-        
-        # For appointment services with custom pricing, restore the custom price_unit
-        if self.is_appointment_custom_price and stored_price is not None and self.price_unit != stored_price:
-            self.price_unit = stored_price
-        
-        return result
+            return
+        if hasattr(super(), '_onchange_product_id_check_availability'):
+            return super()._onchange_product_id_check_availability()
 
     @api.model_create_multi
     def create(self, vals_list):
