@@ -15,11 +15,8 @@ class StockTransfer(models.Model):
         ('process', 'Processing'),
         ('done', 'Done')],
         default='draft', copy=False, tracking=True)
-    type = fields.Selection([('send', 'Send'), ('receive', 'Receive')], default='receive', copy=False, required=True,
-                            states={'process': [('readonly', True)], 'done': [('readonly', True)]},
-                            )
-    line_ids = fields.One2many('stock.transfer.line', 'transfer_id',
-                               states={'process': [('readonly', True)], 'done': [('readonly', True)]})
+    type = fields.Selection([('send', 'Send'), ('receive', 'Receive')], default='receive', copy=False, required=True)
+    line_ids = fields.One2many('stock.transfer.line', 'transfer_id')
     location_id = fields.Many2one('stock.location', string='From', domain="[('usage', '=', 'internal')]",tracking=True,check_company=False,index=True,)
     location_dest_id = fields.Many2one('stock.location', string='To', domain="[('usage', '=', 'internal')]", tracking=True,check_company=False,precompute=True, readonly=False,index=True,
                                        required=True)

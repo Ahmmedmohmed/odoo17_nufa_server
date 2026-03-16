@@ -39,8 +39,7 @@ class AttendanceSheet(models.Model):
                                     string='Department', store=True)
     company_id = fields.Many2one('res.company', string='Company', readonly=True,
                                  copy=False, required=True,
-                                 default=lambda self: self.env.company,
-                                 states={'draft': [('readonly', False)]})
+                                 default=lambda self: self.env.company)
     date_from = fields.Date(string='Date From', readonly=True, required=True,
                             default=lambda self: fields.Date.to_string(
                                 date.today().replace(day=1)), )
@@ -89,9 +88,7 @@ class AttendanceSheet(models.Model):
                                     string="Attendance Policy ", required=True)
     payslip_id = fields.Many2one(comodel_name='hr.payslip', string='PaySlip')
 
-    contract_id = fields.Many2one('hr.contract', string='Contract',
-                                  readonly=True,
-                                  states={'draft': [('readonly', False)]})
+    contract_id = fields.Many2one('hr.contract', string='Contract', readonly=True)
 
     # fix deletion of contract
     def write(self, vals):
