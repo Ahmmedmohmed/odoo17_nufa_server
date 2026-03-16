@@ -137,7 +137,7 @@
                                     
                                     <div class="oe_kanban_bottom_right">
                                         <div class="o_project_kanban_boxes d-flex align-items-baseline">
-                                            <a class="o_project_kanban_box btn btn-success" name="action_appointment_complate" type="object" invisible="state != '2'">
+                                            <a class="o_project_kanban_box btn btn-success" name="action_appointment_complate" type="object" invisible="state != '2'" role="button">
                                                 <strong>Complate</strong>
                                             </a>
                                         </div>
