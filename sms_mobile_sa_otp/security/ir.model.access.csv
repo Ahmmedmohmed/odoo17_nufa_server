@@ -1,2 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-product_template_img,product_template_img,model_product_template_img,,1,1,1,1

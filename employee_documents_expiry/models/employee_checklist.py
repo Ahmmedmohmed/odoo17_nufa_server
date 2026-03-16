@@ -29,12 +29,12 @@ class EmployeeChecklist(models.Model):
     _inherit = 'mail.thread'
     _description = "Employee Checklist"
 
-    name = fields.Char(string='Document Name', copy=False, required=1,
+    name = fields.Char(string='Document Name', copy=False, required=True,
                        help="Enter Document Name")
     document_type = fields.Selection([('entry', 'Entry Process'),
                                       ('exit', 'Exit Process'),
                                       ('other', 'Other')],
-                                     string='Checklist Type', required=1,
+                                     string='Checklist Type', required=True,
                                      help="Select checklist type for document")
 
     def name_get(self):
