@@ -6,7 +6,7 @@ from io import StringIO
 from odoo import api, fields, models
 from datetime import date
 from odoo.tools.float_utils import float_round
-# from odoo.exceptions import Warning
+from odoo.exceptions import ValidationError
 
 
 import io
@@ -616,7 +616,7 @@ class sale_day_book_wizard(models.TransientModel):
                 }
             return res
         else:
-            raise Warning (""" You Don't have xlwt library.\n Please install it by executing this command :  sudo pip3 install xlwt""")
+            raise ValidationError(""" You Don't have xlwt library.\n Please install it by executing this command :  sudo pip3 install xlwt""")
         
 
 
