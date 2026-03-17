@@ -29,7 +29,7 @@ class accessResUserProfiles(models.Model):
         comodel_name="user.profile.lines", inverse_name="access_profile_id", string="Profile lines"
     )
     access_user_ids = fields.Many2many(
-        "res.users", "user_profiles_users_rel", "user_id", "profile_id", string="Users"
+        "res.users", "user_profiles_users_rel", "user_id", "profile_id", string="Profile Users"
     )
     access_record_rule_ids = fields.Many2many(
         comodel_name="ir.rule",

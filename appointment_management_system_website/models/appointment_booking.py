@@ -427,14 +427,10 @@ class SaleOrder(models.Model):
             order.appointment_count = len(order.appointment_ids)
     
     def action_confirm(self):
-        """Override to confirm appointments when order is confirmed"""
-        res = super().action_confirm()
-        
-        # Confirm all related appointments
-        for appointment in self.appointment_ids.filtered(lambda a: a.state == '1'):
-            appointment.confirm_appointment_payment(self)
-        
-        return res
+        """Override to handle website orders with sudo"""
+        if self.filtered(lambda o: o.website_id):
+            return super(SaleOrder, self.sudo()).action_confirm()
+        return super().action_confirm()
     
     def action_view_appointments(self):
         """Action to view related appointments"""
@@ -480,19 +476,8 @@ class WebsiteSale(models.Model):
     _inherit = 'website'
     
     def sale_confirm_order(self, transaction=None):
-        """Override to confirm appointments after website sale confirmation"""
-        order = self.sale_get_order()
-        result = super().sale_confirm_order(transaction=transaction)
-        
-        if order and order.state in ('draft', 'sent'):
-            order.action_confirm()
-        
-        if order and order.state in ('sale', 'done'):
-            pending_appointments = order.appointment_ids.filtered(lambda a: a.state == '1')
-            for appointment in pending_appointments:
-                appointment.confirm_appointment_payment(order)
-        
-        return result
+        """Override - do not auto-approve appointments here, wait for payment completion"""
+        return super().sale_confirm_order(transaction=transaction)
 
 
 class PaymentTransaction(models.Model):
@@ -500,12 +485,14 @@ class PaymentTransaction(models.Model):
 
     def _set_pending(self, state_message=None, extra_allowed_states=()):
         txs = super()._set_pending(state_message=state_message, extra_allowed_states=extra_allowed_states)
-        self._confirm_appointment_orders()
+        for tx in txs:
+            for order in tx.sale_order_ids:
+                if order.appointment_ids and order.state in ('draft', 'sent'):
+                    order.with_context(send_email=True).action_confirm()
         return txs
 
     def _set_authorized(self, state_message=None, **kwargs):
         txs = super()._set_authorized(state_message=state_message, **kwargs)
-        self._confirm_appointment_orders()
         return txs
 
     def _set_done(self, state_message=None, extra_allowed_states=()):
@@ -516,8 +503,12 @@ class PaymentTransaction(models.Model):
     def _confirm_appointment_orders(self):
         for tx in self:
             for order in tx.sale_order_ids:
-                if order.appointment_ids and order.state in ('draft', 'sent'):
-                    order.with_context(send_email=True).action_confirm()
+                if order.appointment_ids:
+                    if order.state in ('draft', 'sent'):
+                        order.with_context(send_email=True).action_confirm()
+                    pending_appointments = order.appointment_ids.filtered(lambda a: a.state == '1')
+                    for appointment in pending_appointments:
+                        appointment.confirm_appointment_payment(order)
 
 
 class AccountPayment(models.Model):

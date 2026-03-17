@@ -11,7 +11,7 @@
                 <field name="access_password_expire_date" invisible="1"/>
                 <field name="access_admin_user" invisible="1" force_save="1"/>
             </xpath>
-            <xpath expr="//div[@class='oe_button_box']/button[@name='action_show_groups']" position="before">
+            <xpath expr="//div[hasclass('oe_button_box')]/button[@name='action_show_groups']" position="before">
                 <button
                         class="oe_stat_button"
                         string="Create Profile"

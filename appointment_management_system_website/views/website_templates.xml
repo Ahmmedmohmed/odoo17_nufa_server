@@ -3330,6 +3330,8 @@
 
                         
                         // Regular single service booking
+                        console.log('=== CART ADD === appointmentData:', JSON.stringify(appointmentData, null, 2));
+                        console.log('=== CART ADD === selectedSlot:', JSON.stringify(selectedSlot, null, 2));
                         fetch('/appointment/cart/add', {
                             method: 'POST',
                             headers: {
@@ -3351,15 +3353,18 @@
                             return response.json();
                         })
                         .then(data => {
+                            console.log('=== CART ADD === Raw response:', JSON.stringify(data, null, 2));
 
                             // Handle JSON-RPC response format
                             let result = data;
                             if (data && data.result) {
                                 result = data.result;
                             }
+                            console.log('=== CART ADD === Parsed result:', JSON.stringify(result, null, 2));
                             
                             // Check for JSON-RPC errors first
                             if (data && data.error) {
+                                console.error('=== CART ADD === JSON-RPC error:', JSON.stringify(data.error, null, 2));
                                 throw new Error(data.error.message || 'Server error');
                             }
                             
@@ -4749,8 +4754,14 @@
                     }
                     
                     function addToSummaryCart() {
+                        console.log('=== addToSummaryCart CALLED ===');
+                        console.log('=== selectedSlot:', JSON.stringify(selectedSlot, null, 2));
+                        console.log('=== currentService:', currentService);
+                        console.log('=== selectedDate:', selectedDate);
+                        console.log('=== selectedEmployee:', JSON.stringify(selectedEmployee, null, 2));
                         
                         if (!selectedSlot || !currentService || !selectedDate || !selectedEmployee) {
+                            console.warn('=== MISSING DATA: selectedSlot=', !!selectedSlot, 'currentService=', !!currentService, 'selectedDate=', !!selectedDate, 'selectedEmployee=', !!selectedEmployee);
                             showMessage(t('select_required_info'), 'error');
                             return;
                         }
@@ -4801,6 +4812,7 @@
                         }
                         
                         // Add to cart via API using the working endpoint
+                        console.log('=== CART ADD === appointmentData:', JSON.stringify(appointmentData, null, 2));
                         fetch('/appointment/cart/add', {
                             method: 'POST',
                             headers: {
@@ -4816,21 +4828,25 @@
                             })
                         })
                         .then(response => {
+                            console.log('=== CART ADD === HTTP response status:', response.status);
                             if (!response.ok) {
                                 throw new Error(`HTTP ${response.status}: ${response.statusText}`);
                             }
                             return response.json();
                         })
                         .then(data => {
+                            console.log('=== CART ADD === Raw response:', JSON.stringify(data, null, 2));
                             // Handle JSON-RPC response format
                             let result = data;
                             if (data && data.result !== undefined) {
                                 result = data.result;
                             }
+                            console.log('=== CART ADD === Parsed result:', JSON.stringify(result, null, 2));
                             
                             // Check for JSON-RPC errors first
                             if (data && data.error) {
                                 const errorMsg = typeof data.error === 'string' ? data.error : (data.error.message || JSON.stringify(data.error));
+                                console.error('=== CART ADD === JSON-RPC error:', errorMsg);
                                 throw new Error(errorMsg || 'Server error');
                             }
                             
@@ -4907,6 +4923,7 @@
                             }
                         })
                         .catch(error => {
+                            console.error('=== CART ADD === catch error:', error.message, error);
                             // Hide loading screen on network error
                             hideLoadingScreen();
                             

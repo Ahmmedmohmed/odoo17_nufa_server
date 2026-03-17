@@ -52,7 +52,7 @@ class ProductAttributeValue(models.Model):
     _name = 'product.attribute.value'
     _inherit = ['product.attribute.value', 'dr.cache.mixin']
 
-    dr_image = fields.Binary('Image')
+    dr_image = fields.Binary('Attribute Image')
     dr_brand_description = fields.Text('Description', translate=True)
     ds_name = fields.Char('Search DS Name', compute="_compute_ds_name", search="_search_ds_name")
 
@@ -69,7 +69,7 @@ class ProductTemplateAttributeValue(models.Model):
     _name = 'product.template.attribute.value'
     _inherit = ['product.template.attribute.value', 'dr.cache.mixin']
 
-    dr_image = fields.Binary('Image', related='product_attribute_value_id.dr_image')
+    dr_image = fields.Binary('Attribute Image', related='product_attribute_value_id.dr_image')
     dr_thumb_image = fields.Image('Swatch Image', max_width=128, max_height=128)
 
 

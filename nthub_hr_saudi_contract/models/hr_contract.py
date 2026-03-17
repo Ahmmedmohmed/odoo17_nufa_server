@@ -35,23 +35,23 @@ class HrContract(models.Model):
 
     # region ---------------------- Group Name (Gosi) ---------------------------------
     gosi_saudi = fields.Boolean(string="GOSI Saudi", copy=False, tracking=True, default=True)
-    gosi = fields.Float(string="GOSI", copy=False, tracking=True, store=True)
+    gosi = fields.Float(string="GOSI Percentage", copy=False, tracking=True, store=True)
     gosi_percent = fields.Float(string="GOSI percent", copy=False, tracking=True)
 
-    occupational_hazards_percentage = fields.Float(string="Occupational Hazards", copy=False, tracking=True, )
+    occupational_hazards_percentage = fields.Float(string="Occupational Hazards %", copy=False, tracking=True, )
     occupational_hazards = fields.Monetary(string="Amount Occupational Hazards", copy=False, tracking=True,
                                            store=True)
-    pension_insurance_percentage = fields.Float(string="Pension Insurance", copy=False, tracking=True, )
+    pension_insurance_percentage = fields.Float(string="Pension Insurance %", copy=False, tracking=True, )
     pension_insurance = fields.Monetary(string="Amount Pension Insurance", copy=False, tracking=True, store=True)
 
-    company_pension_insurance_percentage = fields.Float(string="Pension Insurance Company", copy=False, tracking=True, )
-    company_pension_insurance = fields.Monetary(string="Amount Pension Insurance", copy=False, tracking=True,
+    company_pension_insurance_percentage = fields.Float(string="Pension Insurance Company %", copy=False, tracking=True, )
+    company_pension_insurance = fields.Monetary(string="Amount Company Pension Insurance", copy=False, tracking=True,
                                                 store=True)
-    saned_percentage = fields.Float(string="Saned", copy=False, tracking=True, )
+    saned_percentage = fields.Float(string="Saned %", copy=False, tracking=True, )
     saned = fields.Monetary(string="Amount Saned", copy=False, tracking=True, store=True)
 
-    company_saned_percentage = fields.Float(string="Saned Company", copy=False, tracking=True)
-    company_saned = fields.Monetary(string="Amount Saned", copy=False, tracking=True, store=True)
+    company_saned_percentage = fields.Float(string="Saned Company %", copy=False, tracking=True)
+    company_saned = fields.Monetary(string="Amount Company Saned", copy=False, tracking=True, store=True)
     # endregion
 
     # region ---------------------- Group Name (Deduction) ---------------------------------

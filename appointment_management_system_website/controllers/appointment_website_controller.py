@@ -276,28 +276,31 @@ class AppointmentWebsiteController(http.Controller):
     def add_appointment_to_cart(self, **kwargs):
         """Add appointment service or package to Odoo eCommerce cart and create draft appointments"""
         try:
-            # For JSON-RPC format with type='json', appointment_data comes directly in kwargs
             appointment_data = kwargs.get('appointment_data', {})
+            _logger.info('=== CART ADD START === kwargs keys: %s', list(kwargs.keys()))
+            _logger.info('=== CART ADD === appointment_data: %s', appointment_data)
 
-            # Check if this is a package booking
             is_package = appointment_data.get('is_package', False)
             service_id = appointment_data.get('service_id')
             
             if not service_id:
+                _logger.warning('=== CART ADD === No service_id in appointment_data')
                 return {'error': 'Service ID is required'}
             
             product = request.env['product.product'].sudo().browse(int(service_id))
             if not product.exists():
+                _logger.warning('=== CART ADD === Product %s not found', service_id)
                 return {'error': 'Service/Package not found'}
             
-            # Handle package booking
+            _logger.info('=== CART ADD === Product found: %s (id=%s), is_package=%s', product.name, product.id, is_package)
+            
             if is_package and 'package_services' in appointment_data:
                 return self._handle_package_cart_addition(product, appointment_data)
             
-            # Handle single service booking (existing logic)
             return self._handle_single_service_cart_addition(product, appointment_data)
             
         except Exception as e:
+            _logger.error('=== CART ADD === Top-level exception: %s', str(e), exc_info=True)
             return {
                 'success': False,
                 'error': str(e)
@@ -367,63 +370,73 @@ class AppointmentWebsiteController(http.Controller):
     def _handle_single_service_cart_addition(self, product, appointment_data):
         """Handle adding a single service to cart"""
         try:
-            # Get service ID from appointment data or product
             service_id = appointment_data.get('service_id') or product.id
-            
-            # Get actual user and employee details
-            employee_id = int(appointment_data.get('employee_id', 2))  # Use test employee as fallback
-            partner_id = request.env.user.partner_id.id  # Use actual logged-in user
-            company_id = request.website.company_id.id  # Use website's company
-            
-            # Calculate price based on plan_ids, employee department, and location
+            employee_id = int(appointment_data.get('employee_id', 2))
+            partner_id = request.env.user.partner_id.id
+            company_id = request.website.company_id.id
             branch_id = appointment_data.get('branch_id', 1)
             appointment_type = appointment_data.get('appointment_type', 'inside')
+
+            _logger.info('=== SINGLE SERVICE === service_id=%s, employee_id=%s, partner_id=%s, company_id=%s, branch_id=%s, type=%s',
+                         service_id, employee_id, partner_id, company_id, branch_id, appointment_type)
 
             try:
                 plan_price = product.action_get_appointment_service_price(branch_id, employee_id, appointment_type, False)
                 price = float(plan_price) if plan_price and plan_price > 0 else 0.0
+                _logger.info('=== SINGLE SERVICE === Calculated price: %s (raw plan_price: %s)', price, plan_price)
             except Exception as e:
+                _logger.error('=== SINGLE SERVICE === Price calculation error: %s', str(e), exc_info=True)
                 price = 0.0
             
             slot_ids = appointment_data.get('slot_ids', [])
             if isinstance(slot_ids, list):
                 slot_ids = [sid for sid in slot_ids if sid is not None]
             
-            # If no slot IDs provided, try to find the slot based on employee, date, and time
+            _logger.info('=== SINGLE SERVICE === slot_ids from data: %s, time: %s, date: %s',
+                         slot_ids, appointment_data.get('time'), appointment_data.get('date'))
+            
             if not slot_ids and appointment_data.get('time'):
                 try:
-                    # Convert time string to float (e.g., "08:00" -> 8.0)
                     time_str = appointment_data.get('time', '')
                     if ':' in time_str:
                         hour, minute = time_str.split(':')
                         db_time = float(hour) + float(minute) / 60
                         
-                        # Find available slot in database (check availability)
+                        _logger.info('=== SINGLE SERVICE === Searching slot: employee=%s, date=%s, time=%s',
+                                     employee_id, appointment_data.get('date'), db_time)
+                        
                         slot = request.env['appointment.employee.slot'].sudo().search([
                             ('employee_id', '=', employee_id),
                             ('date', '=', appointment_data.get('date')),
                             ('time', '=', db_time),
                         ], limit=1)
                         
+                        _logger.info('=== SINGLE SERVICE === Found slot: %s (id=%s, state=%s)',
+                                     bool(slot), slot.id if slot else None, slot.state if slot else None)
+                        
                         if slot and slot.is_available_for_booking():
                             slot_ids = [slot.id]
                         else:
+                            _logger.warning('=== SINGLE SERVICE === Slot not available')
                             return {'success': False, 'error': 'Selected time slot is not available or already reserved. Please select a different time.'}
                 except Exception as e:
+                    _logger.error('=== SINGLE SERVICE === Slot search error: %s', str(e), exc_info=True)
                     return {'success': False, 'error': f'Error checking slot availability: {str(e)}'}
             
             if not slot_ids:
+                _logger.warning('=== SINGLE SERVICE === No slot_ids available, returning error')
                 return {'success': False, 'error': 'Selected time slot is not available. Please select a different time.'}
             
-            # Validate slots are available for booking
             available_slots = request.env['appointment.employee.slot'].sudo().browse(slot_ids).filtered(
                 lambda s: s.is_available_for_booking()
             )
             
+            _logger.info('=== SINGLE SERVICE === Available slots after filter: %s (from %s)', available_slots.ids, slot_ids)
+            
             if not available_slots:
+                _logger.warning('=== SINGLE SERVICE === All slots unavailable after availability check')
                 return {'success': False, 'error': 'Selected time slots are no longer available. Please select different time slots.'}
             
-            # Prepare appointment data for creation with reservation
             appointment_creation_data = {
                 'partner_id': partner_id,
                 'product_id': int(service_id),
@@ -441,20 +454,35 @@ class AppointmentWebsiteController(http.Controller):
                 'customer_notes': appointment_data.get('customer_notes'),
             }
             
-            # Create appointment with slot reservation (Partial Approved state)
+            _logger.info('=== SINGLE SERVICE === Creating appointment with data: %s', appointment_creation_data)
             appointment = request.env['appointment.management'].sudo().create_from_cart(appointment_creation_data)
+            _logger.info('=== SINGLE SERVICE === Appointment created: id=%s, sequence=%s, state=%s',
+                         appointment.id, appointment.sequence, appointment.state)
             
-            # Try to add to cart (with proper error handling)
             try:
-                # Get or create website sale order
                 website = request.env['website'].get_current_website()
                 sale_company = website.company_id
                 partner = request.env.user.partner_id
-                if partner.company_id and partner.company_id != sale_company:
-                    partner.sudo().write({'company_id': False})
-                order = website.sale_get_order(force_create=True)
+                _logger.info('=== SINGLE SERVICE === Website: %s, company: %s, partner: %s (company: %s)',
+                             website.id, sale_company.id, partner.id, partner.company_id.id if partner.company_id else None)
                 
-                # Create order line directly to avoid parameter conflicts
+                if partner.company_id and partner.company_id != sale_company:
+                    _logger.info('=== SINGLE SERVICE === Clearing partner company_id')
+                    partner.sudo().write({'company_id': False})
+                
+                order = website.sale_get_order(force_create=True)
+                _logger.info('=== SINGLE SERVICE === Sale order: %s (id=%s, state=%s)',
+                             order.name if order else None, order.id if order else None, order.state if order else None)
+                
+                if not order:
+                    _logger.error('=== SINGLE SERVICE === sale_get_order returned None/False!')
+                    return {
+                        'success': True,
+                        'appointment_id': appointment.id,
+                        'cart_error': 'Could not get or create sale order',
+                        'note': 'Appointment created but cart failed'
+                    }
+                
                 order_line_vals = {
                     'order_id': order.id,
                     'product_id': product.id,
@@ -463,14 +491,16 @@ class AppointmentWebsiteController(http.Controller):
                     'is_appointment_custom_price': True,
                     'name': f"{product.name} - Appointment {appointment_data.get('date')} at {appointment_data.get('time')}",
                 }
+                _logger.info('=== SINGLE SERVICE === Creating order line: %s', order_line_vals)
 
                 order_line = request.env['sale.order.line'].sudo().create(order_line_vals)
+                _logger.info('=== SINGLE SERVICE === Order line created: id=%s, price=%s', order_line.id, order_line.price_unit)
                 
-                # Link appointment to sale order and order line
                 appointment.write({
                     'sale_order_id': order.id,
                     'order_line_id': order_line.id,
                 })
+                _logger.info('=== SINGLE SERVICE === Appointment linked to order. SUCCESS!')
 
                 return {
                     'success': True,
@@ -483,7 +513,7 @@ class AppointmentWebsiteController(http.Controller):
                 }
                 
             except Exception as cart_error:
-                # If cart fails, still return success for appointment creation
+                _logger.error('=== SINGLE SERVICE === Cart error: %s', str(cart_error), exc_info=True)
                 return {
                     'success': True,
                     'appointment_id': appointment.id,
@@ -493,6 +523,7 @@ class AppointmentWebsiteController(http.Controller):
                 }
             
         except Exception as e:
+            _logger.error('=== SINGLE SERVICE === Outer exception: %s', str(e), exc_info=True)
             return {
                 'success': False,
                 'error': str(e)

@@ -24,9 +24,9 @@ class HrContract(models.Model):
 
     amount_occupational_hazards = fields.Monetary(string="Amount Occupational Hazards", copy=False, tracking=True,  store=True)
     amount_pension_insurance = fields.Monetary(string="Amount Pension Insurance", copy=False, tracking=True, store=True)
-    amount_company_pension_insurance = fields.Monetary(string="Amount Pension Insurance", copy=False, tracking=True, store=True)
+    amount_company_pension_insurance = fields.Monetary(string="Amount Company Pension Insurance", copy=False, tracking=True, store=True)
     amount_saned = fields.Monetary(string="Amount Saned", copy=False, tracking=True, store=True)
-    amount_company_saned = fields.Monetary(string="Amount Saned", copy=False, tracking=True, store=True)
+    amount_company_saned = fields.Monetary(string="Amount Company Saned", copy=False, tracking=True, store=True)
     employee_gosi = fields.Many2one(
         comodel_name='gosi.gosi',
         string='Employee Gosi',

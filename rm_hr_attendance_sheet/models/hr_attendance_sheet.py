@@ -82,7 +82,7 @@ class AttendanceSheet(models.Model):
                                string="Total absence Hours", readonly=True,
                                store=True)
     tot_worked_hour = fields.Float(compute="_compute_sheet_total",
-                                   string="Total Late In", readonly=True,
+                                   string="Total Worked Hours", readonly=True,
                                    store=True)
     att_policy_id = fields.Many2one(comodel_name='hr.attendance.policy',
                                     string="Attendance Policy ", required=True)
@@ -902,7 +902,7 @@ class AttendanceSheetLine(models.Model):
     act_diff_time = fields.Float("Actual Diff Time",
                                  help="Diffrence between the working time and attendance time(s) ",
                                  readonly=True)
-    status = fields.Selection(string="Status",
+    status = fields.Selection(string="Day Status",
                               selection=[('ab', 'Absence'),
                                          ('weekend', 'Week End'),
                                          ('ph', 'Public Holiday'),

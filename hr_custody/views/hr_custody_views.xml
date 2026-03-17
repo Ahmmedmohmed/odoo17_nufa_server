@@ -72,7 +72,7 @@
                 <field name="reason" optional="hide"/>
                 <field name="user_id" optional="show"/>
 
-                <button name="action_get_picking" type="object" icon="fa-truck"/>
+                <button name="action_get_picking" type="object" icon="fa-truck" title="View Picking"/>
             </tree>
         </field>
     </record>
@@ -186,7 +186,7 @@
                     <field name="done_state" invisible="1"/>
                     <div class="oe_button_box" name="button_box">
                         <button class="oe_stat_button" type="object" name="action_get_pickings"
-                                icon="fa-truck" invisible="pickings_count == 0">
+                                icon="fa-truck" title="Deliveries" invisible="pickings_count == 0">
                             <field string="Delivery" name="pickings_count" widget="statinfo"/>
                         </button>
                     </div>
@@ -258,10 +258,10 @@
                                     <field name="done_state" invisible="1" optional="hide"/>
                                     <field name="inventory_state" optional="hide"/>
 
-                                    <button name="action_disbursement" type="object" icon="fa-truck"
+                                    <button name="action_disbursement" type="object" icon="fa-truck" title="Disburse"
                                             invisible="done_state != 'approve' or inventory_state != False"
                                             groups="hr_custody.group_hr_custody_user"/>
-                                    <button name="action_get_picking" type="object" icon="fa-truck"
+                                    <button name="action_get_picking" type="object" icon="fa-truck" title="View Picking"
                                             invisible="stock_picking_id == False"
                                             groups="hr_custody.group_hr_custody_user"/>
                                 </tree>

@@ -87,10 +87,10 @@
                 <field name="is_paid" invisible="1"/>
                 <field name="complete_disbursement" invisible="1"/>
 
-                <button name="action_payment" type="object" icon="fa-money"
+                <button name="action_payment" type="object" icon="fa-money" title="Payment"
                         invisible="done_state != 'approve' or is_paid or complete_disbursement"
                         groups="hr_loan.group_hr_loan_user"/>
-                <button name="action_disbursement" type="object" icon="fa-money"
+                <button name="action_disbursement" type="object" icon="fa-money" title="Disbursement"
                         invisible="done_state != 'approve' or complete_disbursement"
                         groups="hr_loan.group_hr_loan_user"/>
             </tree>
@@ -143,11 +143,11 @@
                         </button>
 
                         <button class="oe_stat_button" type="object" name="action_get_payslips"
-                                icon="fa-money" invisible="payslips_count == 0">
+                                icon="fa-money" title="Payslips" invisible="payslips_count == 0">
                             <field string="Payslips" name="payslips_count" widget="statinfo"/>
                         </button>
                         <button class="oe_stat_button" type="object" name="action_get_payments"
-                                icon="fa-money" invisible="payments_count == 0">
+                                icon="fa-money" title="Payments" invisible="payments_count == 0">
                             <field string="Payments" name="payments_count" widget="statinfo"/>
                         </button>
                     </div>

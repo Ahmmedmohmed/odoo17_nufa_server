@@ -9,8 +9,8 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
 
-    first_name = fields.Char("First Name")
-    last_name = fields.Char("Last Name")
+    first_name = fields.Char("Partner First Name")
+    last_name = fields.Char("Partner Last Name")
     birth_date = fields.Date("Birth Date")
     married_date = fields.Date("Married Date")
     age = fields.Integer(readonly=True, compute="_compute_age")
