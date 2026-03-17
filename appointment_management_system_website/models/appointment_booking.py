@@ -427,10 +427,16 @@ class SaleOrder(models.Model):
             order.appointment_count = len(order.appointment_ids)
     
     def action_confirm(self):
-        """Override to handle website orders with sudo"""
+        """Override to handle website orders and approve appointments"""
         if self.filtered(lambda o: o.website_id):
-            return super(SaleOrder, self.sudo()).action_confirm()
-        return super().action_confirm()
+            res = super(SaleOrder, self.sudo()).action_confirm()
+        else:
+            res = super().action_confirm()
+        for order in self:
+            pending_appointments = order.appointment_ids.filtered(lambda a: a.state == '1')
+            for appointment in pending_appointments:
+                appointment.confirm_appointment_payment(order)
+        return res
     
     def action_view_appointments(self):
         """Action to view related appointments"""

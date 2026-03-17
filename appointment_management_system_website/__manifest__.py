@@ -38,7 +38,6 @@
         'data/website_menu.xml',
         'data/sample_categories.xml',
         'data/ir_cron.xml',
-        'data/auto_confirm_appointment_order.xml',
     ],
 
 
