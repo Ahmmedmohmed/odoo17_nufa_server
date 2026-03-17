@@ -7,14 +7,14 @@ from odoo.exceptions import ValidationError
 class HrEmployee(models.Model):
     _inherit = "hr.employee"
 
-    credit_limit_loan = fields.Float("Credit Limit")
-    credit_limit_advance = fields.Float("Credit Limit")
-    total_loans = fields.Float(string="Total", compute="_compute_total_loans")
-    remaining_loans = fields.Float(string="Remaining", compute="_compute_total_loans")
-    paid_loans = fields.Float(string="Paid", compute="_compute_total_loans")
-    total_advances = fields.Float(string="Total", compute="_compute_total_loans")
-    remaining_advances = fields.Float(string="Remaining", compute="_compute_total_loans")
-    paid_advances = fields.Float(string="Paid", compute="_compute_total_loans")
+    credit_limit_loan = fields.Float("Loan Credit Limit")
+    credit_limit_advance = fields.Float("Advance Credit Limit")
+    total_loans = fields.Float(string="Total Loans", compute="_compute_total_loans")
+    remaining_loans = fields.Float(string="Remaining Loans", compute="_compute_total_loans")
+    paid_loans = fields.Float(string="Paid Loans", compute="_compute_total_loans")
+    total_advances = fields.Float(string="Total Advances", compute="_compute_total_loans")
+    remaining_advances = fields.Float(string="Remaining Advances", compute="_compute_total_loans")
+    paid_advances = fields.Float(string="Paid Advances", compute="_compute_total_loans")
     loan_and_advance_user = fields.Many2one("res.users", string="Advance  and Loan User",  required=False,
                               default=lambda self: self.env.user )
 

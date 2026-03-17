@@ -5,6 +5,7 @@ from lxml import etree
 
 class accessFilterGroupAccess(models.Model):
     _name = 'filter.group.access'
+    _description = "Filter Group Access"
 
     access_model_id = fields.Many2one('ir.model', string='Model', domain="[('id', 'in', access_profile_domain_model )]")
     access_model_name = fields.Char(string='Model Name', related='access_model_id.model', readonly=True, store=True)

@@ -30,6 +30,6 @@ class IrAttachment(models.Model):
                                       'doc_attachment_ids',
                                       'attach_id3',
                                       'doc_id',
-                                      string="Attachment", invisible=1,
+                                      string="Attachment",
                                       help="Choose Employee Document for"
                                            " Attachment")

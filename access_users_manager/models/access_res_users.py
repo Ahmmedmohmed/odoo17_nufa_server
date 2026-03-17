@@ -25,8 +25,7 @@ class accessResUsersInherit(models.Model):
                                              'user_management_id', 'Access Pack')
     access_password_update = fields.Datetime('Password last update time', default=datetime.now())
     access_password_expire_date = fields.Date(string='Password expire date')
-    access_recent_activity_line = fields.One2many('recent.activity', 'access_user_id', string='Recent Activity', readonly=True,
-                                              _compute='compute_duration')
+    access_recent_activity_line = fields.One2many('recent.activity', 'access_user_id', string='Recent Activity', readonly=True)
     access_admin_user = fields.Boolean(compute='compute_is_admin_user', string='Admin User', store=True)
 
     @api.depends('groups_id', 'access_admin_user')

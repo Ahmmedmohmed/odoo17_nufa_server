@@ -183,7 +183,7 @@ class AccountPaymentLoanInstallmentLine(models.Model):
     account_payment_id = fields.Many2one("account.payment", string="Account Payment", ondelete="cascade", copy=False,
                                          required=True)
     loan_installment_line_id = fields.Many2one("hr.loan.installment.line", string="Loan Installment", required=True)
-    amount = fields.Monetary(string="Amount", required=True, digits="Account", copy=False)
+    amount = fields.Monetary(string="Amount", required=True, copy=False)
     currency_id = fields.Many2one(related="account_payment_id.currency_id", string="Currency", readonly=True,
                                   store=True)
 

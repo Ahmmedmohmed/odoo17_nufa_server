@@ -26,29 +26,28 @@ class ResPartner(models.Model):
         readonly=False,
     )
 
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
         """Add inverted names at creation if unavailable."""
         context = dict(self.env.context)
-        name = vals.get("name", context.get("default_name"))
+        for vals in vals_list:
+            name = vals.get("name", context.get("default_name"))
 
-        if name is not None:
-            # Calculate the splitted fields
-            inverted = self._get_inverse_name(
-                self._get_whitespace_cleaned_name(name),
-                vals.get("is_company", self.default_get(["is_company"])["is_company"]),
-            )
-            for key, value in inverted.items():
-                if not vals.get(key) or context.get("copy"):
-                    vals[key] = value
+            if name is not None:
+                inverted = self._get_inverse_name(
+                    self._get_whitespace_cleaned_name(name),
+                    vals.get("is_company", self.default_get(["is_company"])["is_company"]),
+                )
+                for key, value in inverted.items():
+                    if not vals.get(key) or context.get("copy"):
+                        vals[key] = value
 
-            # Remove the combined fields
-            if "name" in vals:
-                del vals["name"]
-            if "default_name" in context:
-                del context["default_name"]
+                if "name" in vals:
+                    del vals["name"]
+                if "default_name" in context:
+                    del context["default_name"]
 
-        return super(ResPartner, self.with_context(context)).create(vals)
+        return super(ResPartner, self.with_context(context)).create(vals_list)
 
     def copy(self, default=None):
         """Ensure partners are copied right.

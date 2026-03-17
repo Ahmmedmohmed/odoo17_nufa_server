@@ -17,4 +17,5 @@
     'depends': ['base', 'web', 'stock_account', 'product_expiry'],
 
     'data': ['data/stock_location.xml', 'security/ir.model.access.csv', 'wizards/warehouse_transfer.xml', 'views/stock_picking.xml'],
+    'license': 'LGPL-3',
 }

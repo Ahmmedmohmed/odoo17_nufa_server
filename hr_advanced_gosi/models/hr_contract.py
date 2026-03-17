@@ -129,14 +129,14 @@ class GosiForSaudi(models.Model):
 
     name = fields.Char()
 
-    gosi_percent = fields.Float(string="GOSI percent", copy=False, tracking=True)
-    occupational_hazards = fields.Float(string="Occupational Hazards", copy=False, tracking=True,default=2 )
+    gosi_percent = fields.Float(string="GOSI percent", copy=False)
+    occupational_hazards = fields.Float(string="Occupational Hazards", copy=False, default=2)
 
-    pension_insurance = fields.Float(string="Pension Insurance", copy=False, tracking=True, default=0 )
-    company_pension_insurance = fields.Float(string="Pension Insurance Company", copy=False, tracking=True,default=0  )
+    pension_insurance = fields.Float(string="Pension Insurance", copy=False, default=0)
+    company_pension_insurance = fields.Float(string="Pension Insurance Company", copy=False, default=0)
 
-    saned = fields.Float(string="Saned", copy=False, tracking=True,default=0)
-    company_saned = fields.Float(string="Saned Company", copy=False, tracking=True,default=0 )
+    saned = fields.Float(string="Saned", copy=False, default=0)
+    company_saned = fields.Float(string="Saned Company", copy=False, default=0)
     gosi_type  = fields.Selection(
         string='Gosi Type',
         selection=[('none_saudi', 'None Saudi'),

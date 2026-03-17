@@ -26,15 +26,14 @@ class ResPartner(models.Model):
             record.age = age
 
 
-    @api.model
-    def create(self, vals):
-        if vals.get('first_name') and vals.get('last_name'):
-            vals['name'] = vals.get('first_name') + ' ' + vals.get('last_name')
-        elif vals.get('first_name'):
-            vals['name'] = vals.get('first_name')
-        elif vals.get('last_name'):
-            vals['name'] = vals.get('last_name')
-        else:
-            pass
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get('first_name') and vals.get('last_name'):
+                vals['name'] = vals.get('first_name') + ' ' + vals.get('last_name')
+            elif vals.get('first_name'):
+                vals['name'] = vals.get('first_name')
+            elif vals.get('last_name'):
+                vals['name'] = vals.get('last_name')
         
-        return super(ResPartner, self).create(vals)
+        return super(ResPartner, self).create(vals_list)

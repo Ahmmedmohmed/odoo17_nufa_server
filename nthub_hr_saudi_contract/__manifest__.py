@@ -22,5 +22,6 @@
         'data/hr_payroll_data.xml',
         'views/hr_contract_views.xml',
         'views/hr_medical_insurance.xml',
-    ]
+    ],
+    'license': 'LGPL-3',
 }

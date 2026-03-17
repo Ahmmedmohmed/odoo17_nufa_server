@@ -14,7 +14,7 @@ class accessAccessManagement(models.Model):
         return self.env['user.profiles'].sudo().search([('implied_ids', '=', self.env.ref('base.group_system').id)]).ids
 
     name = fields.Char(string='Name')
-    active = fields.Boolean(string='Active', default=True, invisible=True)
+    active = fields.Boolean(string='Active', default=True)
     access_readonly = fields.Boolean(string="Readonly",
                                  help='Make the whole database readonly for the users added in this profile.')
     access_hide_chatter = fields.Boolean(string="Hide Chatter", help="Hide all chatter's for the selected user")
@@ -35,7 +35,7 @@ class accessAccessManagement(models.Model):
     access_hide_filters_groups_line = fields.One2many('filter.group.access', 'access_user_manager_id', string='Filter Group')
     access_ir_model_access = fields.Many2many('ir.model.access', string='Access Rights', readonly=True)
     access_ir_rule = fields.Many2many('ir.rule', string='Record Rules', readonly=True)
-    access_profile_domain_model = fields.Many2many('ir.model', invisible=True)
+    access_profile_domain_model = fields.Many2many('ir.model')
     access_profile_based_menu = fields.Many2many('ir.ui.menu', 'related_menu_for_profiles', 'profile_ids', 'menu_ids',
                                              compute='_compute_profile_based_menu', store=True)
     is_profile = fields.Boolean(string='Profile Exist')

@@ -42,6 +42,7 @@ class AppMain(models.Model):
 
 class SubColor(models.Model):
     _name = 'sub.color'
+    _description = "Sub Color"
 
     color_hex = fields.Char(string="Hex Color", required=True)
     description = fields.Text(string="Description")
@@ -50,6 +51,7 @@ class SubColor(models.Model):
 
 class Img(models.Model):
     _name = 'img'
+    _description = "Image"
 
     img = fields.Binary(string="Image")
     app_main_id = fields.Many2one('app.main', string="App Main")

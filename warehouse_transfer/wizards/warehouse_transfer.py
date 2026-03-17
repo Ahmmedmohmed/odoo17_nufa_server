@@ -6,6 +6,7 @@ from odoo.exceptions import ValidationError
 
 class WarehouseTransfer(models.TransientModel):
     _name = 'warehouse.transfer'
+    _description = "Warehouse Transfer"
 
     company_id       = fields.Many2one('res.company', required=True, default=lambda self: self.env.user.company_id)
     dest_company_id  = fields.Many2one('res.company', string='Destination Company')

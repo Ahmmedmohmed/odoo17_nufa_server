@@ -5,6 +5,7 @@ from odoo import api, models
 
 class ReportHrLoan(models.AbstractModel):
     _name = 'report.hr_loan.report_loanprint'
+    _description = "HR Loan Report"
 
     @api.model
     def render_html(self, docids, data=None):

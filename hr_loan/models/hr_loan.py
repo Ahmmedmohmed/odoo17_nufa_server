@@ -17,7 +17,7 @@ class HRLoan(models.Model):
     department_id = fields.Many2one(related="employee_id.department_id", string="Department", readonly=True, store=True)
     manager_id = fields.Many2one(related="employee_id.parent_id", string="Manager", store=True)
     job_id = fields.Many2one(related="employee_id.job_id", string="Job Position", store=True, readonly=True)
-    amount = fields.Monetary(string="Amount", required=True, digits="Account", tracking=True)
+    amount = fields.Monetary(string="Amount", required=True, tracking=True)
     number_installments = fields.Integer(string="Number Installments", default=1, required=True, readonly=True,
                                          tracking=True)
     installment_type = fields.Selection([("monthly", "Monthly"), ("quarterly", "Quarterly")], string="Installment Type",
@@ -352,9 +352,9 @@ class HRLoanInstallmentLine(models.Model):
 
     loan_id = fields.Many2one("hr.loan", string="Loan", ondelete="cascade", copy=False, required=True)
     date = fields.Date("Date", required=True, copy=False)
-    amount = fields.Monetary(string="Amount", required=True, digits="Account", copy=False)
+    amount = fields.Monetary(string="Amount", required=True, copy=False)
     currency_id = fields.Many2one(related="loan_id.currency_id", string="Currency", readonly=True, store=True)
-    paid_amount = fields.Monetary(string="Paid Amount", digits="Account", copy=False, readonly=True)
+    paid_amount = fields.Monetary(string="Paid Amount", copy=False, readonly=True)
     remaining_amount = fields.Monetary(string="Remaining Amount", compute="_compute_remaining_amount", store=True,
                                        readonly=True)
     is_paid = fields.Boolean(string="Is Paid", compute="_compute_remaining_amount", store=True, readonly=True)

@@ -13,4 +13,5 @@
     "data": ['views/res_partner.xml'],
 
     "assets": {"point_of_sale._assets_pos": ["pos_partner_birthdate/static/src/xml/PartnerDetailsEdit.xml", "pos_partner_birthdate/static/src/js/PartnerDetailsEdit.js"]},
+    'license': 'LGPL-3',
 }

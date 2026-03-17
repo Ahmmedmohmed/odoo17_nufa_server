@@ -19,6 +19,7 @@ except ImportError:
 
 class ZkMachine(models.Model):
     _name = 'zk.machine'
+    _description = "ZK Machine"
 
     name = fields.Char(string='Machine IP', required=True)
     port_no = fields.Integer(string='Port No', required=True, default="4370")

@@ -11,5 +11,6 @@
         'views/pos_combo.xml',
 
     ],
+    'license': 'LGPL-3',
 
 }

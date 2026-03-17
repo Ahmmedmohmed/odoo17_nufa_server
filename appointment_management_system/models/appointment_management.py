@@ -57,29 +57,29 @@ class AppointmentManagement(models.Model):
 
 
 
-    @api.model
-    def create(self, vals):
-        if vals.get('sequence', _('New')) == _('New'):
-            vals['sequence'] = self.env['ir.sequence'].next_by_code('appointment.management.sequence') or _('New')
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get('sequence', _('New')) == _('New'):
+                vals['sequence'] = self.env['ir.sequence'].next_by_code('appointment.management.sequence') or _('New')
+            
+            if 'slot_ids' in vals and vals['slot_ids']:
+                slot_commands = vals['slot_ids']
+                if isinstance(slot_commands, list):
+                    valid_slot_ids = []
+                    for command in slot_commands:
+                        if isinstance(command, tuple) and len(command) >= 3:
+                            if command[0] == 6:
+                                slot_ids_to_check = command[2] if command[2] else []
+                                existing_slots = self.env['appointment.employee.slot'].search([('id', 'in', slot_ids_to_check)])
+                                valid_slot_ids = existing_slots.ids
+                                if valid_slot_ids != slot_ids_to_check:
+                                    vals['slot_ids'] = [(6, 0, valid_slot_ids)]
+                            elif command[0] == 4:
+                                if self.env['appointment.employee.slot'].browse(command[1]).exists():
+                                    valid_slot_ids.append(command[1])
         
-        # Validate slot_ids if provided to prevent foreign key constraint violations
-        if 'slot_ids' in vals and vals['slot_ids']:
-            slot_commands = vals['slot_ids']
-            if isinstance(slot_commands, list):
-                valid_slot_ids = []
-                for command in slot_commands:
-                    if isinstance(command, tuple) and len(command) >= 3:
-                        if command[0] == 6:  # (6, 0, [ids]) - replace all
-                            slot_ids_to_check = command[2] if command[2] else []
-                            existing_slots = self.env['appointment.employee.slot'].search([('id', 'in', slot_ids_to_check)])
-                            valid_slot_ids = existing_slots.ids
-                            if valid_slot_ids != slot_ids_to_check:
-                                vals['slot_ids'] = [(6, 0, valid_slot_ids)]
-                        elif command[0] == 4:  # (4, id) - add existing record
-                            if self.env['appointment.employee.slot'].browse(command[1]).exists():
-                                valid_slot_ids.append(command[1])
-        
-        return super(AppointmentManagement, self).create(vals)
+        return super(AppointmentManagement, self).create(vals_list)
 
     def write(self, vals):
         # Validate slot_ids if being updated to prevent foreign key constraint violations

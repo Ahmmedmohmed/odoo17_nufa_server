@@ -5,6 +5,7 @@ from odoo import models, fields, api
 
 class WarehouseTransferLine(models.TransientModel):
     _name = 'warehouse.transfer.line'
+    _description = "Warehouse Transfer Line"
 
 
     name            = fields.Char('Description', index=True)

@@ -53,7 +53,7 @@ class AttendanceSheet(models.Model):
     state = fields.Selection([
         ('draft', 'Draft'),
         ('confirm', 'Confirmed'),
-        ('done', 'Approved')], default='draft', track_visibility='onchange',
+        ('done', 'Approved')], default='draft', tracking=True,
         string='Status', required=True, readonly=True, index=True,
         help=' * The \'Draft\' status is used when a HR user is creating a new  attendance sheet. '
              '\n* The \'Confirmed\' status is used when  attendance sheet is confirmed by HR user.'
@@ -868,12 +868,9 @@ class AttendanceSheet(models.Model):
 
 class AttendanceSheetLine(models.Model):
     _name = 'attendance.sheet.line'
+    _description = "Attendance Sheet Line"
 
-    state = fields.Selection([
-        ('draft', 'Draft'),
-        ('sum', 'Summary'),
-        ('confirm', 'Confirmed'),
-        ('done', 'Approved')], related='att_sheet_id.state', store=True, )
+    state = fields.Selection(related='att_sheet_id.state', store=True, )
 
     date = fields.Date("Date")
     day = fields.Selection([

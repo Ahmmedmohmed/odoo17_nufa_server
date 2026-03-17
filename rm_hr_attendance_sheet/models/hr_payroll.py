@@ -15,7 +15,7 @@ class HrPayslip(models.Model):
     _inherit = 'hr.payslip'
 
     attendance_sheet_ids = fields.One2many(comodel_name='attendance.sheet', inverse_name='payslip_id',
-                                           string='Attendance Sheets', ondelete='cascade')
+                                           string='Attendance Sheets')
 
     overtime_no = fields.Integer(string="Overtime No", compute='_compute_att_sheet_data')
     overtime_hours = fields.Float(string="Overtime Hours", compute='_compute_att_sheet_data')

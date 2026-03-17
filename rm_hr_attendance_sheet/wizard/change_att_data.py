@@ -1,6 +1,7 @@
 from odoo import models, fields, api, _
 class attendance_sheet_line_change(models.TransientModel):
     _name = "attendance.sheet.line.change"
+    _description = "Attendance Sheet Line Change"
     overtime = fields.Float("Overtime")
     late_in = fields.Float("Late In")
     diff_time = fields.Float("Diff Time")

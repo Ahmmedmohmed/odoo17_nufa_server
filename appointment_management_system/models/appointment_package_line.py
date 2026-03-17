@@ -5,6 +5,7 @@ from odoo import api, fields, models, _
 
 class AppointmentPackageLine(models.Model):
     _name = 'appointment.package.line'
+    _description = "Appointment Package Line"
 
 
     product_id = fields.Many2one('product.product', string='Service Name', domain=[('is_appointment_service', '=', True), ('is_appointment_package', '=', False)])

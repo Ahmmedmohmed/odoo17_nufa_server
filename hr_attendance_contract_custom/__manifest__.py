@@ -53,4 +53,5 @@ Egypt Taxes Python Code Rules:
             'hr_attendance_contract_custom/static/src/xml/action_menus.xml',
         ],
     },
+    'license': 'LGPL-3',
 }
