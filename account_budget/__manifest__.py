@@ -13,6 +13,7 @@ Use budgets to compare actual with expected revenues and costs
         'security/ir.model.access.csv',
         'security/account_budget_security.xml',
         'views/account_budget_views.xml',
+        'views/account_move_views.xml',
         'views/account_analytic_account_views.xml',
     ],
     'demo': ['data/account_budget_demo.xml'],

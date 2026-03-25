@@ -113,6 +113,7 @@ Budgets
                                    nolabel="1" readonly="state != 'draft'">
                                 <tree string="Budget Lines" decoration-success="is_above_budget and planned_amount &gt; 0" decoration-danger="is_above_budget and planned_amount &lt; 0" editable="bottom">
                                     <field name="general_budget_id" domain="['|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]" />
+                                    <field name="alert_type"/>
                                     <field name="analytic_account_id" domain="['|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]" groups="analytic.group_analytic_accounting"/>
                                     <field name="date_from"/>
                                     <field name="date_to"/>
@@ -131,6 +132,7 @@ Budgets
                                         <group>
                                             <field name="currency_id" invisible="1"/>
                                             <field name="general_budget_id"/>
+                                            <field name="alert_type"/>
                                             <field name="planned_amount"/>
                                             <field name="analytic_account_id"
                                                    domain="['|', ('company_id', '=', parent.company_id), ('company_id', '=', False)]"

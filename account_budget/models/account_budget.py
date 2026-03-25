@@ -95,7 +95,9 @@ class CrossoveredBudgetLines(models.Model):
         string='Company', store=True, readonly=True)
     is_above_budget = fields.Boolean(compute='_is_above_budget')
     crossovered_budget_state = fields.Selection(related='crossovered_budget_id.state', string='Budget State', store=True, readonly=True)
+    alert_type = fields.Selection([('warning', 'Warning Message'), ('ignore', 'Ignore'), ('stop', 'Stop/ Restrict')], string="Alert Type", help="Type of Alert")
 
+    
     @api.model
     def _read_group(self, domain, groupby=(), aggregates=(), having=(), offset=0, limit=None, order=None):
         SPECIAL = {'practical_amount:sum', 'theoritical_amount:sum', 'percentage:avg'}
