@@ -969,6 +969,7 @@ class AppointmentWebsiteController(http.Controller):
             
             plans_data[str(plan.id)] = {
                 'id': plan.id,
+                'branch_id': plan.branch_id.id if plan.branch_id else False,
                 'branch_name': plan.branch_id.name if plan.branch_id else 'Main Branch',
                 'department_id': plan.department_id.id,
                 'department_name': plan.department_id.name,

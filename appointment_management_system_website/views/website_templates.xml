@@ -2110,15 +2110,15 @@
                             // Collect all employees from all plans with real branch names and IDs
                             Object.values(plans).forEach(plan => {
                                 if (plan.employees && plan.branch_name) {
-                                    if (plan.id && !currentBranchId) {
-                                        currentBranchId = plan.id;
+                                    if (plan.branch_id && !currentBranchId) {
+                                        currentBranchId = plan.branch_id;
                                     }
                                     
                                     Object.entries(plan.employees).forEach(([empId, empData]) => {
                                         currentEmployees[empId] = {
                                             ...empData,
                                             branch_name: plan.branch_name,
-                                            branch_id: plan.id || currentBranchId
+                                            branch_id: plan.branch_id || currentBranchId
                                         };
                                     });
                                 }
@@ -2455,10 +2455,15 @@
                                 // Extract employees from plans
                                 Object.entries(plans).forEach(([planId, plan]) => {
                                     if (plan.employees) {
+                                        if (plan.branch_id && !currentBranchId) {
+                                            currentBranchId = plan.branch_id;
+                                        }
                                         Object.entries(plan.employees).forEach(([empId, empData]) => {
                                             currentEmployees[empId] = {
                                                 ...empData,
-                                                plan_id: planId
+                                                plan_id: planId,
+                                                branch_id: plan.branch_id || currentBranchId,
+                                                branch_name: plan.branch_name || 'Main Branch'
                                             };
                                         });
                                     }
@@ -2616,17 +2621,15 @@
                             // Collect all employees from all plans with real branch names and IDs
                             Object.values(plans).forEach(plan => {
                                 if (plan.employees && plan.branch_name) {
-                                    // Update current branch ID from the first plan
-                                    if (plan.id && !currentBranchId) {
-                                        currentBranchId = plan.id;
+                                    if (plan.branch_id && !currentBranchId) {
+                                        currentBranchId = plan.branch_id;
                                     }
                                     
-                                    // Ensure each employee gets the correct branch name from the plan
                                     Object.entries(plan.employees).forEach(([empId, empData]) => {
                                         currentEmployees[empId] = {
                                             ...empData,
                                             branch_name: plan.branch_name,
-                                            branch_id: plan.id || currentBranchId
+                                            branch_id: plan.branch_id || currentBranchId
                                         };
                                     });
                                 }
@@ -2695,9 +2698,8 @@
                             // Collect all employees from all plans with real branch names and IDs
                             Object.values(plans).forEach(plan => {
                                 if (plan.employees && plan.branch_name) {
-                                    // Update current branch ID from the first plan (or could be made selectable)
-                                    if (plan.id && !currentBranchId) {
-                                        currentBranchId = plan.id;
+                                    if (plan.branch_id && !currentBranchId) {
+                                        currentBranchId = plan.branch_id;
                                     }
                                     
                                     // Ensure each employee gets the correct branch name from the plan
@@ -2705,7 +2707,7 @@
                                         currentEmployees[empId] = {
                                             ...empData,
                                             branch_name: plan.branch_name, // Use dynamic branch name from plan
-                                            branch_id: plan.id || currentBranchId // Store branch ID for API calls
+                                            branch_id: plan.branch_id || currentBranchId
                                         };
                                     });
                                 }
@@ -4800,7 +4802,10 @@
                             service_name: document.querySelector('.service-card.selected h5')?.textContent || 'Selected Service'
                         };
                         
-
+                        console.log('=== BRANCH DEBUG === employee object:', JSON.stringify(employee, null, 2));
+                        console.log('=== BRANCH DEBUG === employee?.branch_id:', employee?.branch_id);
+                        console.log('=== BRANCH DEBUG === currentBranchId:', currentBranchId);
+                        console.log('=== BRANCH DEBUG === final branch_id in appointmentData:', appointmentData.branch_id);
                         
                         // Add address data if 'at your location' is selected
                         const locationType = document.getElementById('locationSelect')?.value || 'inside';

@@ -1760,8 +1760,21 @@ window.getServiceCurrency = window.getServiceCurrency || function(serviceId) {
             document.addEventListener('change', (e) => {
                 if (e.target.id === 'branch_select') {
                     this.state.serviceDetails.branch_id = parseInt(e.target.value) || null;
+                    
+                    // Save selected branch to sessionStorage for cart usage
                     if (this.state.serviceDetails.branch_id) {
+                        const branchName = this.state.branches[this.state.serviceDetails.branch_id] || 'Unknown Branch';
+                        const selectedBranch = {
+                            id: this.state.serviceDetails.branch_id,
+                            name: branchName
+                        };
+                        sessionStorage.setItem('selectedBranch', JSON.stringify(selectedBranch));
+                        console.log('🏢 Saved selected branch to sessionStorage:', selectedBranch);
+                        
                         this.loadEmployees();
+                    } else {
+                        // Clear selected branch if no branch selected
+                        sessionStorage.removeItem('selectedBranch');
                     }
                 }
             });
@@ -2170,9 +2183,23 @@ window.getServiceCurrency = window.getServiceCurrency || function(serviceId) {
             if (branchSelect) {
                 branchSelect.addEventListener('change', (e) => {
                     this.state.packageServiceDetails[service.id].branch_id = parseInt(e.target.value) || null;
+                    
+                    // Save selected branch to sessionStorage for package services too
                     if (this.state.packageServiceDetails[service.id].branch_id) {
+                        const branchId = this.state.packageServiceDetails[service.id].branch_id;
+                        // Find branch name from the loaded branches data
+                        const branchName = Object.entries(this.state.branches || {}).find(([id, name]) => id == branchId)?.[1] || 'Unknown Branch';
+                        const selectedBranch = {
+                            id: branchId,
+                            name: branchName
+                        };
+                        sessionStorage.setItem('selectedBranch', JSON.stringify(selectedBranch));
+                        console.log('🏢 Saved package branch to sessionStorage:', selectedBranch);
+                        
                         this.loadPackageServiceEmployees(service);
                     } else {
+                        // Clear selected branch if no branch selected
+                        sessionStorage.removeItem('selectedBranch');
                         // Clear employee selection if no branch selected
                         const employeeSelect = document.getElementById(`package_employee_select_${service.id}`);
                         if (employeeSelect) {
