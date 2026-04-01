@@ -11,6 +11,7 @@ class SaleOrderLine(models.Model):
         default=False,
         help="Indicates this order line has a custom price from appointment booking that should not be recalculated"
     )
+    branch_id = fields.Many2one('res.company', string='Branch')
     
 
     @api.depends('product_id', 'product_uom_qty', 'product_uom')

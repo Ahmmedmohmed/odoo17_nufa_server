@@ -10,6 +10,9 @@
                     <field name="appointment_count" widget="statinfo" string="Appointments"/>
                 </button>
             </xpath>
+            <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="before">
+                <field name="branch_id" optional="show"/>
+            </xpath>
         </field>
     </record>
 </odoo>

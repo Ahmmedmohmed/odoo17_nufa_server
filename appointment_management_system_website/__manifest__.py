@@ -33,6 +33,7 @@
         'views/authentication_required_template.xml',
         'views/sale_order_line_views.xml',
         'views/appointment_views.xml',
+        'views/res_company_views.xml',
         
         # Data
         'data/website_menu.xml',
@@ -44,6 +45,8 @@
     'assets': {
         'web.assets_frontend': [
             'appointment_management_system_website/static/src/css/booking.css',
+            'appointment_management_system_website/static/src/css/branch_popup.css',
+            'appointment_management_system_website/static/src/js/branch_popup.js',
         ],
     },
 

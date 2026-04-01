@@ -489,6 +489,7 @@ class AppointmentWebsiteController(http.Controller):
                     'product_uom_qty': 1,
                     'price_unit': price,
                     'is_appointment_custom_price': True,
+                    'branch_id': int(branch_id) if branch_id else False,
                     'name': f"{product.name} - Appointment {appointment_data.get('date')} at {appointment_data.get('time')}",
                 }
                 _logger.info('=== SINGLE SERVICE === Creating order line: %s', order_line_vals)
@@ -663,13 +664,15 @@ class AppointmentWebsiteController(http.Controller):
                 package_description = f"{package_product.name} - Complete Package\n"
                 package_description += "\n".join(detailed_description_parts)
                 
-                # Create single order line for the package
+                first_service_data = next(iter(package_services.values()), {})
+                package_branch_id = first_service_data.get('branch_id', False)
                 order_line_vals = {
                     'order_id': order.id,
                     'product_id': package_product.id,
                     'product_uom_qty': 1,
                     'price_unit': total_price,
                     'is_appointment_custom_price': True,
+                    'branch_id': int(package_branch_id) if package_branch_id else False,
                     'name': package_description,
                 }
                 
