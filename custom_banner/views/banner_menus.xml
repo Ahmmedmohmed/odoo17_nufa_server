@@ -1,0 +1,11 @@
+<odoo>
+    <record id="action_custom_banner" model="ir.actions.act_window">
+        <field name="name">Banners</field>
+        <field name="res_model">custom.banner</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_banner_root" name="Banner" sequence="10"/>
+    <menuitem id="menu_banner_management" name="Banner Management" 
+              parent="menu_banner_root" action="action_custom_banner"/>
+</odoo>
