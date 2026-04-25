@@ -1,10 +1,39 @@
 /** @odoo-module **/
+// Updated: 2026-04-25 Component destruction fix v2
 
 import { _t } from "@web/core/l10n/translation";
 import { PaymentScreen } from "@point_of_sale/app/screens/payment_screen/payment_screen";
 import { patch } from "@web/core/utils/patch";
 import { PosLoyaltyCard } from "@pos_loyalty/overrides/models/loyalty";
 import { ErrorPopup } from "@point_of_sale/app/errors/popups/error_popup";
+
+// Safe ORM wrapper to handle component destruction
+function safeOrmCall(context, model, method, args, kwargs) {
+    return new Promise((resolve, reject) => {
+        // Check if component is destroyed before making the call
+        if (!context.__owl__ || context.__owl__.status === "destroyed") {
+            resolve({ successful: true, payload: {} });
+            return;
+        }
+        
+        context.orm.call(model, method, args, kwargs)
+            .then(result => {
+                // Check again after the async call
+                if (!context.__owl__ || context.__owl__.status === "destroyed") {
+                    resolve({ successful: true, payload: {} });
+                    return;
+                }
+                resolve(result);
+            })
+            .catch(error => {
+                if (error.message && error.message.includes("Component is destroyed")) {
+                    resolve({ successful: true, payload: {} });
+                    return;
+                }
+                reject(error);
+            });
+    });
+}
 
 patch(PaymentScreen.prototype, {
     //@override
@@ -35,7 +64,8 @@ patch(PaymentScreen.prototype, {
         // No need to do an rpc if no existing coupon is being used.
         if (Object.keys(pointChanges || {}).length > 0 || newCodes.length) {
             try {
-                const { successful, payload } = await this.orm.call(
+                const { successful, payload } = await safeOrmCall(
+                    this,
                     "pos.order",
                     "validate_coupon_programs",
                     [[], pointChanges, newCodes]
@@ -67,8 +97,12 @@ patch(PaymentScreen.prototype, {
                     });
                     return;
                 }
-            } catch {
-                // Do nothing with error, while this validation step is nice for error messages
+            } catch (error) {
+                // Handle component destruction errors gracefully
+                if (error.message?.includes("Component is destroyed")) {
+                    return;
+                }
+                // Do nothing with other errors, while this validation step is nice for error messages
                 // it should not be blocking.
             }
         }
@@ -127,10 +161,13 @@ patch(PaymentScreen.prototype, {
             })
         );
         if (Object.keys(couponData || []).length > 0) {
-            const payload = await this.orm.call("pos.order", "confirm_coupon_programs", [
-                server_ids,
-                couponData,
-            ]);
+            try {
+                const payload = await safeOrmCall(
+                    this,
+                    "pos.order",
+                    "confirm_coupon_programs",
+                    [server_ids, couponData]
+                );
             if (payload.coupon_updates) {
                 for (const couponUpdate of payload.coupon_updates) {
                     let dbCoupon = couponCache[couponUpdate.old_id];
@@ -167,6 +204,14 @@ patch(PaymentScreen.prototype, {
                 order.has_pdf_gift_card = Object.keys(payload.coupon_report).length > 0;
             }
             order.new_coupon_info = payload.new_coupon_info;
+            } catch (error) {
+                // Handle component destruction errors gracefully
+                if (error.message?.includes("Component is destroyed")) {
+                    return super._postPushOrderResolve(order, server_ids);
+                }
+                // Re-throw other errors
+                throw error;
+            }
         }
         return super._postPushOrderResolve(order, server_ids);
     },
