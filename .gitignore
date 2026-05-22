@@ -1,4 +1,6 @@
-__pycache__/
-*.py[cod]
-*$py.class
 *.pyc
+__pycache__/
+*.DS_Store
+.idea/
+.vscode/
+.git/
