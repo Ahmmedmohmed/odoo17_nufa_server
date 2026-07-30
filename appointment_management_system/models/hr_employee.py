@@ -7,10 +7,12 @@ class HREmployee(models.Model):
     _inherit = 'hr.employee'
 
     resource_calendar_id = fields.Many2one(
-        'resource.calendar',  # لازم نحدد اسم الموديل المربوط بيه
+        'resource.calendar',
         required=True,
         default=lambda self: self.env.company.resource_calendar_id,
-        check_company=False,  # 🚀 السطر السحري اللي هيفك القيود بين الفروع
+        check_company=False,
+        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
+        # 🚀 السطر ده ضروري جداً لنسف الدومين القديم
         help="Employee's working schedule."
     )
 
