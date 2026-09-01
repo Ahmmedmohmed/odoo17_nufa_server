@@ -38,8 +38,11 @@
         # Menu File
         'views/menus.xml',
 
-        'Invoices/report_invoice_template.xml',
+        # قمنا برفع هذا الملف للأعلى لأنه يحتوي على كود إنشاء مقاس الورقة A4
         'Invoices/report_pos_receipt.xml',
+
+        # الآن يمكن لهذه الملفات استخدام مقاس الورقة بأمان
+        'Invoices/report_invoice_template.xml',
         'Invoices/saleorder_report.xml',
 
     ],
