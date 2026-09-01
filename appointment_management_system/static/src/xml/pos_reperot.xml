@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('pos-receipt')]" position="replace">
+
+            <div class="pos-receipt" style="font-family: 'Cairo', 'Tajawal', 'Arial', sans-serif; direction: rtl; text-align: right; color: #333333; width: 100%; max-width: 320px; margin: 0 auto; background: #ffffff; padding: 10px 5px;">
+
+                <t t-set="is_credit_note" t-value="props.data.amount_total &lt; 0" />
+
+                <div style="text-align: center; margin-bottom: 12px;">
+                    <t t-if="props.data.headerData.company.id">
+                        <img class="pos-receipt-logo" t-attf-src="/web/image?model=res.company&amp;id={{props.data.headerData.company.id}}&amp;field=logo" alt="Logo" style="max-width: 70%; margin-bottom: 8px;"/>
+                    </t>
+                    <div style="color: #df7b8e; font-weight: 900; font-size: 18px; margin-bottom: 4px;"><t t-esc="props.data.headerData.company.name" /></div>
+
+                    <div style="font-size: 11px; line-height: 1.5; color: #555;">
+                        <t t-if="props.data.headerData.company.vat">الرقم الضريبي: <span style="font-family: monospace;"><t t-esc="props.data.headerData.company.vat"/></span><br/></t>
+                        <t t-if="props.data.headerData.company.phone">هاتف: <span style="font-family: monospace;"><t t-esc="props.data.headerData.company.phone"/></span><br/></t>
+                    </div>
+                </div>
+
+                <div style="text-align: center; border-bottom: 2px dashed #df7b8e; padding-bottom: 8px; margin-bottom: 15px;">
+                    <t t-if="is_credit_note">
+                        <h4 style="color: #df7b8e; margin: 0; font-weight: 800; font-size: 16px;">إشعار دائن</h4>
+                        <h5 style="color: #df7b8e; margin: 0; font-weight: 600; font-size: 12px;">Simplified Tax Credit Note</h5>
+                    </t>
+                    <t t-else="">
+                        <h4 style="color: #df7b8e; margin: 0; font-weight: 800; font-size: 16px;">فاتورة ضريبية مبسطة</h4>
+                        <h5 style="color: #df7b8e; margin: 0; font-weight: 600; font-size: 12px;">Simplified Tax Invoice</h5>
+                    </t>
+                </div>
+
+                <div style="border: 1px solid #e6e6e6; border-radius: 8px; overflow: hidden; margin-bottom: 15px; font-size: 11px;">
+                    <div style="background-color: #fdf5f6; color: #df7b8e; text-align: center; padding: 6px; font-weight: bold; border-bottom: 1px solid #e6e6e6;">
+                        تفاصيل الفاتورة
+                    </div>
+                    <div style="padding: 8px; line-height: 1.8;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>رقم الفاتورة:</span> <strong><t t-esc="props.data.name"/></strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>التاريخ والوقت:</span> <strong dir="ltr"><t t-esc="props.data.date"/></strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>الكاشير:</span> <strong><t t-esc="props.data.headerData.cashier"/></strong>
+                        </div>
+
+                        <t t-if="props.data.partner">
+                            <div style="display: flex; justify-content: space-between; border-top: 1px dashed #eee; padding-top: 3px; margin-top: 3px;">
+                                <span>العميل:</span> <strong style="color: #df7b8e;"><t t-esc="props.data.partner.name"/></strong>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+
+                <table style="width: 100%; font-size: 11px; margin-bottom: 15px; border-collapse: collapse; text-align: center;">
+                    <thead style="background-color: #df7b8e; color: white;">
+                        <tr>
+                            <th style="padding: 6px 2px; text-align: right; width: 50%;">الصنف</th>
+                            <th style="padding: 6px 2px; width: 25%;">الكمية</th>
+                            <th style="padding: 6px 2px; width: 25%;">السعر</th>
+                        </tr>
+                    </thead>
+                    <tbody style="border-bottom: 1px dashed #ccc;">
+                        <t t-foreach="props.data.orderlines" t-as="line" t-key="line.id">
+
+                            <t t-set="is_negative" t-value="(line.price_with_tax !== undefined and line.price_with_tax &lt; 0) or ('' + line.price).includes('-')" />
+
+                            <t t-if="!is_negative or is_credit_note">
+                                <tr style="border-bottom: 1px solid #eee;">
+                                    <td style="padding: 8px 2px; text-align: right; font-weight: bold; line-height: 1.3;">
+                                        <!-- عرض اسم المنتج/الخدمة بالعربي أولاً -->
+                                        <t t-esc="line.product_name_ar || line.productName"/>
+
+                                        <t t-if="!line.package_services or line.package_services.length === 0">
+                                            <t t-if="line.employee_name or line.slot_name or line.date">
+                                                <div style="font-size: 9px; color: #df7b8e; margin-top: 4px; font-weight: normal; line-height: 1.6;">
+                                                    <t t-if="line.employee_name">
+                                                        <i class="fa fa-user-o" style="margin-left: 3px;"></i>الموظفة: <t t-esc="line.employee_name_ar || line.employee_name"/><br/>
+                                                    </t>
+                                                    <t t-if="line.branch_name">
+                                                        <i class="fa fa-map-marker" style="margin-left: 3px;"></i>الفرع: <t t-esc="line.branch_name_ar || line.branch_name"/><br/>
+                                                    </t>
+                                                    <!-- تم التعديل هنا: تصفير دقائق وقت الموعد للإيصال الحراري -->
+                                                    <t t-if="line.slot_name || line.date">
+                                                        <i class="fa fa-clock-o" style="margin-left: 3px;"></i>الوقت: <t t-esc="(line.slot_name_ar || line.slot_name || line.date || '').replace(/:[0-9]{2}/, ':00')"/>
+                                                    </t>
+                                                </div>
+                                            </t>
+                                        </t>
+
+                                        <t t-if="line.package_services and line.package_services.length &gt; 0">
+                                            <div style="margin-top: 5px; padding-right: 5px; border-right: 2px solid #df7b8e;">
+                                                <t t-foreach="line.package_services" t-as="sub_srv" t-key="sub_srv_index">
+                                                    <div style="font-size: 9px; color: #555; margin-bottom: 5px; font-weight: normal; line-height: 1.5;">
+                                                        <strong style="color: #df7b8e;">
+                                                            <!-- عرض اسم الخدمة داخل الباقة بالعربي -->
+                                                            <i class="fa fa-circle" style="font-size: 5px; margin-left: 3px; vertical-align: middle;"></i> <t t-esc="sub_srv.name_ar || sub_srv.name"/>
+                                                        </strong><br/>
+                                                        <t t-if="sub_srv.employee_name">
+                                                            <i class="fa fa-user-o" style="margin-left: 3px;"></i>الموظفة: <t t-esc="sub_srv.employee_name_ar || sub_srv.employee_name"/>
+                                                        </t>
+                                                        <!-- تم التعديل هنا: تصفير دقائق الخدمات داخل الباقة -->
+                                                        <t t-if="sub_srv.date">
+                                                            | <i class="fa fa-clock-o" style="margin-left: 3px;"></i>الوقت: <t t-esc="(sub_srv.date_ar || sub_srv.date || '').replace(/:[0-9]{2}/, ':00')"/>
+                                                        </t>
+                                                    </div>
+                                                </t>
+                                            </div>
+                                        </t>
+
+                                        <t t-if="line.discount &gt; 0">
+                                            <div style="font-size: 9px; color: #df7b8e; margin-top: 2px;">خصم: <t t-esc="line.discount"/>%</div>
+                                        </t>
+                                    </td>
+
+                                    <td style="padding: 8px 2px; vertical-align: top;">
+                                        <t t-esc="Math.abs(line.qty)"/>
+                                    </td>
+
+                                    <td style="padding: 8px 2px; vertical-align: top;">
+                                        <t t-esc="(typeof line.price === 'number' ? props.formatCurrency(Math.abs(line.price)) : ('' + line.price).replace('-', '')).replace('SAR', 'ر.س').replace('SR', 'ر.س')"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
+                    </tbody>
+                </table>
+
+                <t t-set="negative_lines_discount" t-value="0"/>
+                <t t-if="!is_credit_note">
+                    <t t-foreach="props.data.orderlines" t-as="neg_line" t-key="neg_line.id + '_neg'">
+                        <t t-set="is_neg" t-value="(neg_line.price_with_tax !== undefined and neg_line.price_with_tax &lt; 0) or ('' + neg_line.price).includes('-')" />
+
+                        <t t-if="is_neg">
+                            <t t-if="neg_line.price_with_tax !== undefined">
+                                <t t-set="negative_lines_discount" t-value="negative_lines_discount + Math.abs(neg_line.price_with_tax)"/>
+                            </t>
+                            <t t-else="">
+                                <t t-set="cleaned_str" t-value="('' + neg_line.price).replace('SAR', '').replace('SR', '').replace('ر.س', '').split(' ').join('')" />
+                                <t t-set="raw_price" t-value="(cleaned_str * 1) || 0" />
+                                <t t-set="abs_price" t-value="raw_price &lt; 0 ? (raw_price * -1) : raw_price" />
+                                <t t-set="negative_lines_discount" t-value="negative_lines_discount + (abs_price * neg_line.qty)"/>
+                            </t>
+                        </t>
+                    </t>
+                </t>
+
+                <t t-set="total_combined_discount" t-value="(props.data.total_discount || 0) + negative_lines_discount"/>
+                <t t-set="subtotal_before_discount" t-value="props.data.amount_total + total_combined_discount" />
+
+                <div style="border: 1px solid #e6e6e6; border-radius: 8px; overflow: hidden; margin-bottom: 15px; font-size: 11px;">
+
+                    <t t-if="!is_credit_note">
+                        <div style="display: flex; justify-content: space-between; padding: 6px 10px; border-bottom: 1px solid #eee;">
+                            <span style="color: #555;">الإجمالي قبل الخصم</span>
+                            <strong><t t-esc="props.formatCurrency(subtotal_before_discount).replace('SAR', 'ر.س').replace('SR', 'ر.س')"/></strong>
+                        </div>
+
+                        <t t-if="total_combined_discount &gt; 0">
+                            <t t-set="discount_percentage" t-value="Math.round((total_combined_discount / (subtotal_before_discount || 1)) * 100)"/>
+                            <div style="display: flex; justify-content: space-between; padding: 6px 10px; border-bottom: 1px solid #eee; background-color: #fdf5f6;">
+                                <span style="color: #df7b8e; font-weight: bold;">خصم (<t t-esc="discount_percentage"/>%)</span>
+                                <strong style="color: #df7b8e;"><t t-esc="props.formatCurrency(total_combined_discount).replace('SAR', 'ر.س').replace('SR', 'ر.س')"/></strong>
+                            </div>
+
+                            <div style="display: flex; justify-content: space-between; padding: 6px 10px; border-bottom: 1px solid #eee;">
+                                <span style="color: #555;">الإجمالي قبل الضريبة (بعد الخصم)</span>
+                                <strong><t t-esc="props.formatCurrency(props.data.total_without_tax || 0).replace('SAR', 'ر.س').replace('SR', 'ر.س')"/></strong>
+                            </div>
+                        </t>
+                        <t t-else="">
+                            <div style="display: flex; justify-content: space-between; padding: 6px 10px; border-bottom: 1px solid #eee;">
+                                <span style="color: #555;">الإجمالي قبل الضريبة</span>
+                                <strong><t t-esc="props.formatCurrency(props.data.total_without_tax || 0).replace('SAR', 'ر.س').replace('SR', 'ر.س')"/></strong>
+                            </div>
+                        </t>
+                    </t>
+                    <t t-else="">
+                        <div style="display: flex; justify-content: space-between; padding: 6px 10px; border-bottom: 1px solid #eee;">
+                            <span style="color: #555;">الإجمالي قبل الضريبة</span>
+                            <strong><t t-esc="props.formatCurrency(Math.abs(props.data.total_without_tax || 0)).replace('SAR', 'ر.س').replace('SR', 'ر.س')"/></strong>
+                        </div>
+                        <t t-if="props.data.total_discount &gt; 0">
+                            <div style="display: flex; justify-content: space-between; padding: 6px 10px; border-bottom: 1px solid #eee; background-color: #fdf5f6;">
+                                <span style="color: #df7b8e; font-weight: bold;">إجمالي الخصم</span>
+                                <strong style="color: #df7b8e;"><t t-esc="props.formatCurrency(Math.abs(props.data.total_discount)).replace('SAR', 'ر.س').replace('SR', 'ر.س')"/></strong>
+                            </div>
+                        </t>
+                    </t>
+
+                    <t t-foreach="props.data.tax_details" t-as="tax" t-key="tax.tax.id">
+                        <div style="display: flex; justify-content: space-between; padding: 6px 10px; border-bottom: 1px solid #eee;">
+                            <span style="color: #555;">الضريبة (<t t-esc="tax.tax.name"/>)</span>
+                            <strong><t t-esc="props.formatCurrency(Math.abs(tax.amount || 0)).replace('SAR', 'ر.س').replace('SR', 'ر.س')"/></strong>
+                        </div>
+                    </t>
+                    <div style="display: flex; justify-content: space-between; padding: 10px; background-color: #df7b8e; color: white; font-size: 14px;">
+                        <strong>الإجمالي شامل الضريبة</strong>
+                        <strong><t t-esc="props.formatCurrency(Math.abs(props.data.amount_total || 0)).replace('SAR', 'ر.س').replace('SR', 'ر.س')"/></strong>
+                    </div>
+                </div>
+
+                <div style="font-size: 11px; margin-bottom: 20px; border: 1px solid #e6e6e6; border-radius: 8px; padding: 8px;">
+                    <div style="color: #df7b8e; font-weight: bold; margin-bottom: 8px; text-align: center; border-bottom: 1px dashed #eee; padding-bottom: 5px;">
+                        <t t-if="is_credit_note">المبلغ المسترد</t>
+                        <t t-else="">طريقة الدفع</t>
+                    </div>
+
+                    <t t-foreach="props.data.paymentlines" t-as="line" t-key="line.cid">
+                        <div style="display: flex; justify-content: space-between; padding: 3px 5px;">
+                            <span><t t-esc="line.name"/></span>
+                            <strong><t t-esc="props.formatCurrency(Math.abs(line.amount || 0)).replace('SAR', 'ر.س').replace('SR', 'ر.س')"/></strong>
+                        </div>
+                    </t>
+                    <div style="display: flex; justify-content: space-between; padding: 5px; margin-top: 5px; border-top: 1px solid #eee;">
+                        <span style="color: #555;">المتبقي (الباقي)</span>
+                        <strong><t t-esc="props.formatCurrency(Math.abs(props.data.change || 0)).replace('SAR', 'ر.س').replace('SR', 'ر.س')"/></strong>
+                    </div>
+                </div>
+
+                <t t-if="props.data.loyaltyStats">
+                    <t t-foreach="props.data.loyaltyStats or []" t-as="_loyaltyStat" t-key="_loyaltyStat.couponId">
+                        <div t-if="_loyaltyStat.program.portal_visible and (_loyaltyStat.points.won || _loyaltyStat.points.spent)" style="border: 1px solid #df7b8e; border-radius: 8px; margin-bottom: 15px; background-color: #fdf5f6; padding: 10px; text-align: center;">
+                            <div style="color: #df7b8e; font-weight: 900; font-size: 13px; border-bottom: 1px dashed #df7b8e; padding-bottom: 5px; margin-bottom: 8px;">
+                                <i class="fa fa-star"></i> <t t-esc="_loyaltyStat.program.name"/>
+                            </div>
+                            <div style="font-size: 11px; line-height: 1.6;">
+                                <t t-if="_loyaltyStat.points.won">
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span><t t-esc="_loyaltyStat.points.name"/> مكتسبة:</span>
+                                        <strong style="color: #333;"><t t-esc="_loyaltyStat.points.won"/></strong>
+                                    </div>
+                                </t>
+                                <t t-if="_loyaltyStat.points.spent">
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span><t t-esc="_loyaltyStat.points.name"/> مستخدمة:</span>
+                                        <strong style="color: #333;"><t t-esc="_loyaltyStat.points.spent"/></strong>
+                                    </div>
+                                </t>
+                                <t t-if="_loyaltyStat.points.balance">
+                                    <div style="display: flex; justify-content: space-between; margin-top: 5px; border-top: 1px solid #e6e6e6; padding-top: 5px;">
+                                        <span>الرصيد المتاح من <t t-esc="_loyaltyStat.points.name"/>:</span>
+                                        <strong style="color: #df7b8e;"><t t-esc="_loyaltyStat.points.balance"/></strong>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+
+                <t t-if="props.data.new_coupon_info and props.data.new_coupon_info.length !== 0">
+                    <div style="border: 1px solid #df7b8e; border-radius: 8px; margin-bottom: 15px; padding: 10px; text-align: center; background-color: #fff;">
+                        <div style="color: #df7b8e; font-weight: bold; font-size: 13px; margin-bottom: 8px; border-bottom: 1px dashed #eee; padding-bottom: 5px;">
+                            <i class="fa fa-gift"></i> كوبونات هدايا (للزيارة القادمة)
+                        </div>
+                        <t t-foreach="props.data.new_coupon_info" t-as="coupon_info" t-key="coupon_info.code">
+                            <div style="border: 1px dashed #df7b8e; border-radius: 6px; padding: 8px; margin-top: 8px; background-color: #fdf5f6;">
+                                <div style="font-weight: bold; font-size: 12px; color: #333;">
+                                    <t t-esc="coupon_info['program_name']"/>
+                                </div>
+                                <div style="font-size: 10px; color: #555; margin-bottom: 5px;">
+                                    <span>صالح حتى: </span>
+                                    <t t-if="coupon_info['expiration_date']">
+                                        <t t-esc="coupon_info['expiration_date']"/>
+                                    </t>
+                                    <t t-else="">
+                                        مفتوح (بدون تاريخ انتهاء)
+                                    </t>
+                                </div>
+                                <div style="margin: 5px 0;">
+                                    <img t-att-src="'/report/barcode/Code128/'+coupon_info['code']" style="max-width: 100%; height: 50px;" alt="Barcode"/>
+                                </div>
+                                <div style="font-weight: bold; font-size: 11px; letter-spacing: 2px;">
+                                    <t t-esc="coupon_info['code']"/>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+
+                <t t-if="props.data.headerData.is_gcc_country and !props.data.headerData.is_settlement and props.data.headerData.qr_code">
+                    <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
+                        <div style="color: #df7b8e; font-size: 11px; font-weight: bold; margin-bottom: 8px;">رمز الاستجابة السريع (ZATCA)</div>
+                        <div style="display: inline-block; border: 1px solid #e6e6e6; border-radius: 8px; padding: 5px; background: #fff;">
+                            <img t-att-src="props.data.headerData.qr_code" style="max-width: 140px; width: 140px;" alt="ZATCA QR Code"/>
+                        </div>
+                    </div>
+                </t>
+
+                <div style="text-align: center; margin-top: 15px; padding-top: 12px; border-top: 2px solid #df7b8e; font-size: 11px; color: #555;">
+                    <div style="font-weight: bold; color: #df7b8e; margin-bottom: 5px; font-size: 13px;">شكراً لاختياركم <t t-esc="props.data.headerData.company.name"/></div>
+                    <div style="margin-bottom: 5px;">نسعد بخدمتكم دائماً</div>
+                    <t t-if="props.data.headerData.company.website">
+                        <div style="direction: ltr; font-family: monospace; color: #df7b8e; margin-top: 5px;"><t t-esc="props.data.headerData.company.website"/></div>
+                    </t>
+                </div>
+
+                <div style="display: none !important;">
+                    <div class="pos-receipt-amount">
+                        TOTAL
+                        <span t-esc="props.formatCurrency(props.data.amount_total)" class="pos-receipt-right-align"/>
+                    </div>
+                    <t t-if="props.data.rounding_applied">
+                        <div class="pos-receipt-amount">
+                          Rounding
+                        <span t-esc='props.formatCurrency(props.data.rounding_applied)' class="pos-receipt-right-align"/>
+                        </div>
+                        <div class="pos-receipt-amount">
+                          To Pay
+                         <span t-esc='props.formatCurrency(props.data.amount_total + props.data.rounding_applied)' class="pos-receipt-right-align"/>
+                      </div>
+                    </t>
+                    <div class="pos-receipt-amount receipt-change mt-2">
+                        CHANGE
+                        <span t-esc="props.formatCurrency(props.data.change)" class="pos-receipt-right-align"/>
+                    </div>
+                    <t t-if="props.data.total_discount">
+                        <div>
+                            Discounts
+                            <span t-esc="props.formatCurrency(props.data.total_discount)" class="pos-receipt-right-align"/>
+                        </div>
+                    </t>
+                    <div t-if="props.data.tax_details.length > 0" class="pos-receipt-taxes">
+                        <span />
+                        <span>Tax</span>
+                        <span>Amount</span>
+                        <span>Base</span>
+                        <span>Total</span>
+                    </div>
+
+                    <OrderWidget lines="props.data.orderlines" t-slot-scope="scope" editable="false">
+                        <t t-set="line" t-value="scope.line"/>
+                        <Orderline line="omit(scope.line, 'customerNote')" class="{ 'pe-none': true }"/>
+                    </OrderWidget>
+
+                    <div class="paymentlines" t-foreach="props.data.paymentlines" t-as="line" t-key="line_index">
+                        <span t-esc="props.formatCurrency(line.amount, false)" class="pos-receipt-right-align"/>
+                    </div>
+
+                    <div class="before-footer"></div>
+                    <div class="pos-receipt-order-data" />
+                </div>
+
+            </div>
+        </xpath>
+    </t>
+</templates>

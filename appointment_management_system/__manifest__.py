@@ -46,7 +46,6 @@
 
 'assets': {
         'web.assets_backend': [
-            # 'appointment_management_system/static/src/js/calendar_header_filters.js',
             'appointment_management_system/static/src/views/calendar/calendar_controller.xml',
             'appointment_management_system/static/src/xml/calendar_header.xml',
             'appointment_management_system/static/src/css/kanban.css',
@@ -54,9 +53,13 @@
             'appointment_management_system/static/src/xml/booking_screen.xml',
             'appointment_management_system/static/src/js/override_create_button.js',
         ],
+        'point_of_sale._assets_pos': [
+            'appointment_management_system/static/src/xml/pos_reperot.xml',
+        ],
     },
 
     'installable': True,
 
     'application': True,
+
 }
