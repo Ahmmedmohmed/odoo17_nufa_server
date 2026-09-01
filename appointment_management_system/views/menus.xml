@@ -5,7 +5,7 @@
 
             <menuitem id="menu_appointment_management" name="All Appointments" action="appointment_management_action" sequence="1"/>
 
-            <menuitem id="menu_appointment_create_direct" name="New Appointment" action="action_appointment_booking_wizard" sequence="2"/>
+<!--            <menuitem id="menu_appointment_create_direct" name="New Appointment" action="action_appointment_booking_wizard" sequence="2"/>-->
 
             <menuitem id="menu_appointment_refund_requests" name="Refund Requests" action="appointment_refund_request_action" sequence="3"/>
 
