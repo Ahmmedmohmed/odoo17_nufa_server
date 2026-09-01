@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_appointment_booking_wizard" model="ir.actions.client">
+            <field name="name">New Booking</field>
+            <field name="tag">appointment_booking_screen_tag</field>
+            <field name="target">main</field> </record>
+    </data>
+</odoo>

@@ -1,0 +1,16 @@
+/* Fix priority stars displaying vertically in kanban cards */
+.o_kanban_view .o_appointment_stars .o_priority .o_priority_star {
+    display: inline-block !important;
+}
+.o_kanban_view .o_appointment_stars .o_priority {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 2px;
+}
+
+/* Force kanban bottom section to stack vertically */
+.o_kanban_view .o_kanban_record .o_kanban_record_bottom {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+}

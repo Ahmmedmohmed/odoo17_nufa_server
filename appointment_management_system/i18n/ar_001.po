@@ -627,3 +627,1066 @@ msgstr "الأربعاء"
 #: model:ir.model,name:appointment_management_system.model_appointment_package_line
 msgid "appointment.package.line"
 msgstr ""
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__is_printed
+msgid "Is Printed"
+msgstr "تمت الطباعة"
+
+#. module: appointment_management_system
+#: name:action_print_ticket
+msgid "Print Ticket"
+msgstr "طباعة الوصل"
+
+#. module: appointment_management_system
+#: name:action_print_ticket
+msgid "Print"
+msgstr "طباعة"
+
+#. module: appointment_management_system
+msgid "Not Printed"
+msgstr "لم يطبع بعد"
+
+#. module: appointment_management_system
+msgid "Printed"
+msgstr "تمت الطباعة"
+
+#. module: appointment_management_system
+#: model:ir.ui.menu,name:appointment_management_system.menu_appointment_root
+msgid "Appointments"
+msgstr "إدارة الحجوزات"
+
+#. module: appointment_management_system
+#: model:ir.ui.menu,name:appointment_management_system.menu_appointment_management
+msgid "All Appointments"
+msgstr "كافة الحجوزات"
+
+#. module: appointment_management_system
+#: model:ir.ui.menu,name:appointment_management_system.menu_appointment_create_direct
+msgid "New Appointment"
+msgstr "حجز موعد جديد "
+
+#. module: appointment_management_system
+#: model:ir.ui.menu,name:appointment_management_system.menu_appointment_refund_requests
+msgid "Refund Requests"
+msgstr "طلبات الاسترجاع"
+
+#. module: appointment_management_system
+#: model:ir.ui.menu,name:appointment_management_system.menu_appointment_configuration
+msgid "Configuration"
+msgstr "الإعدادات"
+
+#. module: appointment_management_system
+msgid "New Booking and Payment"
+msgstr "حجز موعد جديد والدفع"
+
+#. module: appointment_management_system
+msgid "Choose details to complete your booking successfully"
+msgstr "قم باختيار التفاصيل لإتمام الحجز بنجاح"
+
+#. module: appointment_management_system
+msgid "1. Category"
+msgstr "1. التصنيف"
+
+#. module: appointment_management_system
+msgid "2. Service/Package"
+msgstr "2. الخدمة/الباقة"
+
+#. module: appointment_management_system
+msgid "3. Details"
+msgstr "3. التفاصيل"
+
+#. module: appointment_management_system
+msgid "4. Payment"
+msgstr "4. الدفع"
+
+#. module: appointment_management_system
+msgid "Select Category"
+msgstr "اختر التصنيف"
+
+#. module: appointment_management_system
+msgid "Show All Services and Packages"
+msgstr "عرض كل الخدمات والباقات"
+
+#. module: appointment_management_system
+msgid "Select Service or Package"
+msgstr "اختر الخدمة أو الباقة"
+
+#. module: appointment_management_system
+msgid "Back to Categories"
+msgstr "رجوع للتصنيفات"
+
+#. module: appointment_management_system
+msgid "Package"
+msgstr "باقة (Package)"
+
+#. module: appointment_management_system
+msgid "Package Contents"
+msgstr "محتويات الباقة"
+
+#. module: appointment_management_system
+msgid "Cancel Package and Return"
+msgstr "إلغاء الباقة والرجوع"
+
+#. module: appointment_management_system
+msgid "You are now purchasing a package: ("
+msgstr "أنت تقوم الآن بشراء باقة: ("
+
+#. module: appointment_management_system
+msgid "The customer will pay the full package price now. Please select the <strong>first service</strong> to be executed today."
+msgstr "العميل سيدفع ثمن الباقة كاملاً الآن. يرجى اختيار <strong>الخدمة الأولى</strong> التي سيتم تنفيذها في موعد اليوم."
+
+#. module: appointment_management_system
+msgid "Select for today's session"
+msgstr "اخترني لجلسة اليوم"
+
+#. module: appointment_management_system
+msgid "Booking Service ("
+msgstr "حجز الخدمة ("
+
+#. module: appointment_management_system
+msgid " of "
+msgstr " من "
+
+#. module: appointment_management_system
+msgid ")"
+msgstr ")"
+
+#. module: appointment_management_system
+msgid "Service Booking Settings"
+msgstr "إعدادات حجز الخدمة"
+
+#. module: appointment_management_system
+msgid "Back"
+msgstr "رجوع"
+
+#. module: appointment_management_system
+msgid "Booking Type"
+msgstr "نوع الحجز"
+
+#. module: appointment_management_system
+msgid "Inside (Branch)"
+msgstr "داخلي (بالفرع)"
+
+#. module: appointment_management_system
+msgid "Outside (Home)"
+msgstr "خارجي (منزلي)"
+
+#. module: appointment_management_system
+msgid "Available Branch"
+msgstr "الفرع المتاح"
+
+#. module: appointment_management_system
+msgid "-- Select Branch --"
+msgstr "-- اختر الفرع --"
+
+#. module: appointment_management_system
+msgid "Available Specialist"
+msgstr "الأخصائية المتاحة"
+
+#. module: appointment_management_system
+msgid "-- Select Specialist --"
+msgstr "-- اختر الأخصائية --"
+
+#. module: appointment_management_system
+msgid "Available Dates for Specialist"
+msgstr "الأيام المتاحة للأخصائية"
+
+#. module: appointment_management_system
+msgid "-- Select Booking Date --"
+msgstr "-- اختر يوم الحجز --"
+
+#. module: appointment_management_system
+msgid "Sorry, no available dates for this specialist."
+msgstr "عفواً، لا توجد أيام متاحة لهذه الأخصائية."
+
+#. module: appointment_management_system
+msgid "Available Times (Slots)"
+msgstr "الأوقات المتاحة (Slots)"
+
+#. module: appointment_management_system
+msgid "-- Select Suitable Time --"
+msgstr "-- اختر الوقت المناسب --"
+
+#. module: appointment_management_system
+msgid "No appointments available on this day."
+msgstr "لا توجد مواعيد متاحة في هذا اليوم."
+
+#. module: appointment_management_system
+msgid "Next: Book Next Package Service"
+msgstr "التالي: حجز الخدمة القادمة بالباقة"
+
+#. module: appointment_management_system
+msgid "Next: Customer Details and Payment"
+msgstr "التالي: بيانات العميل والدفع"
+
+#. module: appointment_management_system
+msgid "Customer Details and Payment"
+msgstr "بيانات العميل والدفع"
+
+#. module: appointment_management_system
+msgid "Select Customer"
+msgstr "اختر العميل"
+
+#. module: appointment_management_system
+msgid "-- Select a customer from the list --"
+msgstr "-- اختر عميلاً من القائمة --"
+
+#. module: appointment_management_system
+msgid "No number"
+msgstr "بدون رقم"
+
+#. module: appointment_management_system
+msgid "Payment Method (POS)"
+msgstr "طريقة الدفع (POS Payment Methods)"
+
+#. module: appointment_management_system
+msgid "-- Select payment method for immediate payment --"
+msgstr "-- اختر طريقة الدفع للسداد الفوري --"
+
+#. module: appointment_management_system
+msgid "Additional Notes"
+msgstr "ملاحظات إضافية"
+
+#. module: appointment_management_system
+msgid "Confirm Booking and Issue Invoice"
+msgstr "تأكيد الحجز وإصدار الفاتورة"
+
+#. module: appointment_management_system
+msgid "Booking and Payment Confirmed Successfully!"
+msgstr "تم تأكيد الحجز والدفع بنجاح!"
+
+#. module: appointment_management_system
+msgid "Booking Number: "
+msgstr "رقم الحجز: "
+
+#. module: appointment_management_system
+msgid "New Booking"
+msgstr "حجز جديد"
+
+#. module: appointment_management_system
+msgid "Print Invoice"
+msgstr "طباعة الفاتورة"
+
+#. module: appointment_management_system
+msgid "Booking Summary"
+msgstr "ملخص الحجز"
+
+#. module: appointment_management_system
+msgid "Category"
+msgstr "التصنيف"
+
+#. module: appointment_management_system
+msgid "Package: "
+msgstr "باقة: "
+
+#. module: appointment_management_system
+msgid "Service"
+msgstr "الخدمة"
+
+#. module: appointment_management_system
+msgid "Branch"
+msgstr "الفرع"
+
+#. module: appointment_management_system
+msgid "Specialist"
+msgstr "الأخصائية"
+
+#. module: appointment_management_system
+msgid "Date & Time"
+msgstr "الموعد"
+
+#. module: appointment_management_system
+msgid "Booking now: "
+msgstr "جاري حجز: "
+
+#. module: appointment_management_system
+msgid "Customer"
+msgstr "العميل"
+
+#. module: appointment_management_system
+msgid "Total Amount"
+msgstr "المبلغ الإجمالي"
+
+#. module: appointment_management_system
+msgid "SAR"
+msgstr "ر.س"
+
+#. module: appointment_management_system
+msgid "New Booking and Payment"
+msgstr "حجز موعد جديد والدفع"
+
+#. module: appointment_management_system
+msgid "Choose details to complete your booking successfully"
+msgstr "قم باختيار التفاصيل لإتمام الحجز بنجاح"
+
+#. module: appointment_management_system
+msgid "1. Category"
+msgstr "1. التصنيف"
+
+#. module: appointment_management_system
+msgid "2. Service/Package"
+msgstr "2. الخدمة/الباقة"
+
+#. module: appointment_management_system
+msgid "3. Details"
+msgstr "3. التفاصيل"
+
+#. module: appointment_management_system
+msgid "4. Payment"
+msgstr "4. الدفع"
+
+#. module: appointment_management_system
+msgid "Select Category"
+msgstr "اختر التصنيف"
+
+#. module: appointment_management_system
+msgid "Show All Services and Packages"
+msgstr "عرض كل الخدمات والباقات"
+
+#. module: appointment_management_system
+msgid "Select Service or Package"
+msgstr "اختر الخدمة أو الباقة"
+
+#. module: appointment_management_system
+msgid "Back to Categories"
+msgstr "رجوع للتصنيفات"
+
+#. module: appointment_management_system
+msgid "Package"
+msgstr "باقة (Package)"
+
+#. module: appointment_management_system
+msgid "Package Contents"
+msgstr "محتويات الباقة"
+
+#. module: appointment_management_system
+msgid "Cancel Package and Return"
+msgstr "إلغاء الباقة والرجوع"
+
+#. module: appointment_management_system
+msgid "You are now purchasing a package: ("
+msgstr "أنت تقوم الآن بشراء باقة: ("
+
+#. module: appointment_management_system
+msgid "The customer will pay the full package price now. Please select the <strong>first service</strong> to be executed today."
+msgstr "العميل سيدفع ثمن الباقة كاملاً الآن. يرجى اختيار <strong>الخدمة الأولى</strong> التي سيتم تنفيذها في موعد اليوم."
+
+#. module: appointment_management_system
+msgid "Select for today's session"
+msgstr "اخترني لجلسة اليوم"
+
+#. module: appointment_management_system
+msgid "Booking Service ("
+msgstr "حجز الخدمة ("
+
+#. module: appointment_management_system
+msgid " of "
+msgstr " من "
+
+#. module: appointment_management_system
+msgid ")"
+msgstr ")"
+
+#. module: appointment_management_system
+msgid "Service Booking Settings"
+msgstr "إعدادات حجز الخدمة"
+
+#. module: appointment_management_system
+msgid "Back"
+msgstr "رجوع"
+
+#. module: appointment_management_system
+msgid "Booking Type"
+msgstr "نوع الحجز"
+
+#. module: appointment_management_system
+msgid "Inside (Branch)"
+msgstr "داخلي (بالفرع)"
+
+#. module: appointment_management_system
+msgid "Outside (Home)"
+msgstr "خارجي (منزلي)"
+
+#. module: appointment_management_system
+msgid "Available Branch"
+msgstr "الفرع المتاح"
+
+#. module: appointment_management_system
+msgid "-- Select Branch --"
+msgstr "-- اختر الفرع --"
+
+#. module: appointment_management_system
+msgid "Available Specialist"
+msgstr "الأخصائية المتاحة"
+
+#. module: appointment_management_system
+msgid "-- Select Specialist --"
+msgstr "-- اختر الأخصائية --"
+
+#. module: appointment_management_system
+msgid "Available Dates for Specialist"
+msgstr "الأيام المتاحة للأخصائية"
+
+#. module: appointment_management_system
+msgid "-- Select Booking Date --"
+msgstr "-- اختر يوم الحجز --"
+
+#. module: appointment_management_system
+msgid "Sorry, no available dates for this specialist."
+msgstr "عفواً، لا توجد أيام متاحة لهذه الأخصائية."
+
+#. module: appointment_management_system
+msgid "Available Times (Slots)"
+msgstr "الأوقات المتاحة (Slots)"
+
+#. module: appointment_management_system
+msgid "-- Select Suitable Time --"
+msgstr "-- اختر الوقت المناسب --"
+
+#. module: appointment_management_system
+msgid "No appointments available on this day."
+msgstr "لا توجد مواعيد متاحة في هذا اليوم."
+
+#. module: appointment_management_system
+msgid "Next: Book Next Package Service"
+msgstr "التالي: حجز الخدمة القادمة بالباقة"
+
+#. module: appointment_management_system
+msgid "Next: Customer Details and Payment"
+msgstr "التالي: بيانات العميل والدفع"
+
+#. module: appointment_management_system
+msgid "Customer Details and Payment"
+msgstr "بيانات العميل والدفع"
+
+#. module: appointment_management_system
+msgid "Select Customer"
+msgstr "اختر العميل"
+
+#. module: appointment_management_system
+msgid "-- Select a customer from the list --"
+msgstr "-- اختر عميلاً من القائمة --"
+
+#. module: appointment_management_system
+msgid "No number"
+msgstr "بدون رقم"
+
+#. module: appointment_management_system
+msgid "Payment Method (POS)"
+msgstr "طريقة الدفع (POS Payment Methods)"
+
+#. module: appointment_management_system
+msgid "-- Select payment method for immediate payment --"
+msgstr "-- اختر طريقة الدفع للسداد الفوري --"
+
+#. module: appointment_management_system
+msgid "Additional Notes"
+msgstr "ملاحظات إضافية"
+
+#. module: appointment_management_system
+msgid "Confirm Booking and Issue Invoice"
+msgstr "تأكيد الحجز وإصدار الفاتورة"
+
+#. module: appointment_management_system
+msgid "Booking and Payment Confirmed Successfully!"
+msgstr "تم تأكيد الحجز والدفع بنجاح!"
+
+#. module: appointment_management_system
+msgid "Booking Number: "
+msgstr "رقم الحجز: "
+
+#. module: appointment_management_system
+msgid "New Booking"
+msgstr "حجز جديد"
+
+#. module: appointment_management_system
+msgid "Print Invoice"
+msgstr "طباعة الفاتورة"
+
+#. module: appointment_management_system
+msgid "Booking Summary"
+msgstr "ملخص الحجز"
+
+#. module: appointment_management_system
+msgid "Category"
+msgstr "التصنيف"
+
+#. module: appointment_management_system
+msgid "Package: "
+msgstr "باقة: "
+
+#. module: appointment_management_system
+msgid "Service"
+msgstr "الخدمة"
+
+#. module: appointment_management_system
+msgid "Branch"
+msgstr "الفرع"
+
+#. module: appointment_management_system
+msgid "Specialist"
+msgstr "الأخصائية"
+
+#. module: appointment_management_system
+msgid "Date & Time"
+msgstr "الموعد"
+
+#. module: appointment_management_system
+msgid "Booking now: "
+msgstr "جاري حجز: "
+
+#. module: appointment_management_system
+msgid "Customer"
+msgstr "العميل"
+
+#. module: appointment_management_system
+msgid "Total Amount"
+msgstr "المبلغ الإجمالي"
+
+#. module: appointment_management_system
+msgid "SAR"
+msgstr "ر.س"
+#. module: appointment_management_system
+msgid "New Booking and Payment"
+msgstr "حجز موعد جديد والدفع"
+
+#. module: appointment_management_system
+msgid "Choose details to complete your booking successfully"
+msgstr "قم باختيار التفاصيل لإتمام الحجز بنجاح"
+
+#. module: appointment_management_system
+msgid "1. Category"
+msgstr "1- التصنيف"
+
+#. module: appointment_management_system
+msgid "2. Service/Package"
+msgstr "2- الخدمة/الباقة"
+
+#. module: appointment_management_system
+msgid "3. Details"
+msgstr "3- التفاصيل"
+
+#. module: appointment_management_system
+msgid "4. Payment"
+msgstr "4- الدفع والتأكيد"
+
+#. module: appointment_management_system
+msgid "Select Category"
+msgstr "اختر التصنيف"
+
+#. module: appointment_management_system
+msgid "Show All Services and Packages"
+msgstr "عرض كل الخدمات والباقات"
+
+#. module: appointment_management_system
+msgid "Select Service or Package"
+msgstr "اختر الخدمة أو الباقة"
+
+#. module: appointment_management_system
+msgid "Back to Categories"
+msgstr "الرجوع للتصنيفات"
+
+#. module: appointment_management_system
+msgid "Package"
+msgstr "باقة"
+
+#. module: appointment_management_system
+msgid "Package Contents"
+msgstr "محتويات الباقة"
+
+#. module: appointment_management_system
+msgid "Cancel Package and Return"
+msgstr "إلغاء الباقة والرجوع"
+
+#. module: appointment_management_system
+msgid "You are now purchasing a package: ("
+msgstr "أنت تقوم الآن بشراء باقة: ("
+
+#. module: appointment_management_system
+msgid "The customer will pay the full package price now. Please select the <strong>first service</strong> to be executed today."
+msgstr "العميل سيدفع ثمن الباقة كاملاً الآن. يرجى اختيار <strong>الخدمة الأولى</strong> التي سيتم تنفيذها اليوم."
+
+#. module: appointment_management_system
+msgid "Select for today's session"
+msgstr "اخترني لجلسة اليوم"
+
+#. module: appointment_management_system
+msgid "Booking Service ("
+msgstr "حجز الخدمة ("
+
+#. module: appointment_management_system
+msgid ") of "
+msgstr ") من "
+
+#. module: appointment_management_system
+msgid "Service Booking Settings"
+msgstr "إعدادات الحجز المتقدمة"
+
+#. module: appointment_management_system
+msgid "Back"
+msgstr "العودة"
+
+#. module: appointment_management_system
+msgid "Booking Type"
+msgstr "نوع الحجز"
+
+#. module: appointment_management_system
+msgid "Inside (Branch)"
+msgstr "داخلي (بالفرع)"
+
+#. module: appointment_management_system
+msgid "Outside (Home)"
+msgstr "خارجي (منزلي)"
+
+#. module: appointment_management_system
+msgid "Available Branch"
+msgstr "الفرع المتاح"
+
+#. module: appointment_management_system
+msgid "-- Select Branch --"
+msgstr "-- اختر الفرع --"
+
+#. module: appointment_management_system
+msgid "Available Specialist"
+msgstr "الأخصائية المتاحة"
+
+#. module: appointment_management_system
+msgid "-- Select Specialist --"
+msgstr "-- اختر الأخصائية --"
+
+#. module: appointment_management_system
+msgid "Available Dates for Specialist"
+msgstr "الأيام المتاحة للأخصائية"
+
+#. module: appointment_management_system
+msgid "-- Select Booking Date --"
+msgstr "-- اختر يوم الحجز --"
+
+#. module: appointment_management_system
+msgid "Sorry, no available dates for this specialist."
+msgstr "عفواً، لا توجد أيام متاحة لهذه الأخصائية."
+
+#. module: appointment_management_system
+msgid "Available Times (Slots)"
+msgstr "الأوقات المتاحة (Slots)"
+
+#. module: appointment_management_system
+msgid "-- Select Suitable Time --"
+msgstr "-- اختر الوقت المناسب --"
+
+#. module: appointment_management_system
+msgid "No appointments available on this day."
+msgstr "لا توجد مواعيد متاحة في هذا اليوم."
+
+#. module: appointment_management_system
+msgid "Next: Book Next Package Service"
+msgstr "التالي: حجز الخدمة القادمة بالباقة"
+
+#. module: appointment_management_system
+msgid "Next: Customer Details and Payment"
+msgstr "التالي: بيانات العميل والدفع"
+
+#. module: appointment_management_system
+msgid "Customer Details and Payment"
+msgstr "بيانات العميل والدفع"
+
+#. module: appointment_management_system
+msgid "Select Customer"
+msgstr "اختر العميل"
+
+#. module: appointment_management_system
+msgid "-- Select a customer from the list --"
+msgstr "-- اختر عميلاً من القائمة --"
+
+#. module: appointment_management_system
+msgid "No number"
+msgstr "بدون رقم"
+
+#. module: appointment_management_system
+msgid "Payment Method (POS)"
+msgstr "طريقة الدفع (POS)"
+
+#. module: appointment_management_system
+msgid "-- Select payment method for immediate payment --"
+msgstr "-- اختر طريقة الدفع للسداد الفوري --"
+
+#. module: appointment_management_system
+msgid "Additional Notes"
+msgstr "ملاحظات إضافية"
+
+#. module: appointment_management_system
+msgid "Confirm Booking and Issue Invoice"
+msgstr "تأكيد الحجز وإصدار الفاتورة"
+
+#. module: appointment_management_system
+msgid "Booking and Payment Confirmed Successfully!"
+msgstr "تم تأكيد الحجز والدفع بنجاح!"
+
+#. module: appointment_management_system
+msgid "Booking Number: "
+msgstr "رقم الحجز: "
+
+#. module: appointment_management_system
+msgid "New Booking"
+msgstr "حجز جديد"
+
+#. module: appointment_management_system
+msgid "Print Invoice"
+msgstr "طباعة الفاتورة"
+
+#. module: appointment_management_system
+msgid "Booking Summary"
+msgstr "ملخص الحجز"
+
+#. module: appointment_management_system
+msgid "Category"
+msgstr "التصنيف"
+
+#. module: appointment_management_system
+msgid "Package: "
+msgstr "باقة: "
+
+#. module: appointment_management_system
+msgid "Service"
+msgstr "الخدمة"
+
+#. module: appointment_management_system
+msgid "Branch"
+msgstr "الفرع"
+
+#. module: appointment_management_system
+msgid "Specialist"
+msgstr "الأخصائية"
+
+#. module: appointment_management_system
+msgid "Date & Time"
+msgstr "الموعد"
+
+#. module: appointment_management_system
+msgid "Booking now: "
+msgstr "جاري حجز: "
+
+#. module: appointment_management_system
+msgid "Customer"
+msgstr "العميل"
+
+#. module: appointment_management_system
+msgid "Total Amount"
+msgstr "المبلغ الإجمالي"
+
+#. module: appointment_management_system
+msgid "SAR"
+msgstr "ر.س"
+
+#. module: appointment_management_system
+msgid "Employee Commissions"
+msgstr "عمولات الموظفين"
+
+#. module: appointment_management_system
+msgid "Commission Withdrawal"
+msgstr "سحب العمولة"
+
+#. module: appointment_management_system
+msgid "Confirm Withdrawal"
+msgstr "تأكيد السحب"
+
+#. module: appointment_management_system
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: appointment_management_system
+msgid "Withdraw Commission Balance"
+msgstr "سحب رصيد العمولات"
+
+#. module: appointment_management_system
+msgid "Commission Ledger"
+msgstr "سجل العمولات"
+
+#. module: appointment_management_system
+msgid "Withdraw Employee Balance"
+msgstr "سحب رصيد الموظف"
+
+#. module: appointment_management_system
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: appointment_management_system
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: appointment_management_system
+msgid "Reference (Origin)"
+msgstr "المرجع (العملية)"
+
+#. module: appointment_management_system
+msgid "Amount"
+msgstr "القيمة"
+
+#. module: appointment_management_system
+msgid "Total Balance"
+msgstr "إجمالي الرصيد"
+
+#. module: appointment_management_system
+msgid "Employee Commission Ledger"
+msgstr "سجل عمولات الموظفين"
+
+#. module: appointment_management_system
+msgid "Employee Commissions"
+msgstr "عمولات الموظفين"
+
+#. module: appointment_management_system
+msgid "Start Service"
+msgstr "بدء الخدمة"
+
+#. module: appointment_management_system
+msgid "Service Start Time"
+msgstr "وقت بدء الخدمة"
+
+#. module: appointment_management_system
+msgid "Service End Time"
+msgstr "وقت انتهاء الخدمة"
+
+#. module: appointment_management_system
+msgid "Duration (Minutes)"
+msgstr "المدة (بالدقائق)"
+
+#. module: appointment_management_system
+msgid "In Progress"
+msgstr "قيد التنفيذ"
+
+#. module: appointment_management_system
+msgid "Service Time Tracking"
+msgstr "تتبع وقت الخدمة"
+
+#. module: appointment_management_system
+msgid "New Booking and Payment"
+msgstr "حجز موعد جديد والدفع"
+
+#. module: appointment_management_system
+msgid "Choose details to complete your booking successfully"
+msgstr "اختر التفاصيل لإتمام حجزك بنجاح"
+
+#. module: appointment_management_system
+msgid "1. Category"
+msgstr "1. التصنيف"
+
+#. module: appointment_management_system
+msgid "2. Service/Package"
+msgstr "2. الخدمة/الباقة"
+
+#. module: appointment_management_system
+msgid "3. Details"
+msgstr "3. التفاصيل"
+
+#. module: appointment_management_system
+msgid "4. Payment"
+msgstr "4. الدفع"
+
+#. module: appointment_management_system
+msgid "Select Category"
+msgstr "اختر التصنيف"
+
+#. module: appointment_management_system
+msgid "Show All Services and Packages"
+msgstr "عرض كل الخدمات والباقات"
+
+#. module: appointment_management_system
+msgid "Select Service or Package"
+msgstr "اختر الخدمة أو الباقة"
+
+#. module: appointment_management_system
+msgid "Back to Categories"
+msgstr "الرجوع للتصنيفات"
+
+#. module: appointment_management_system
+msgid "Package"
+msgstr "باقة"
+
+#. module: appointment_management_system
+msgid "Package Contents"
+msgstr "محتويات الباقة"
+
+#. module: appointment_management_system
+msgid "Cancel Package and Return"
+msgstr "إلغاء الباقة والرجوع"
+
+#. module: appointment_management_system
+msgid "You are now purchasing a package:"
+msgstr "أنت تقوم الآن بشراء باقة:"
+
+#. module: appointment_management_system
+msgid "The customer will pay the full package price now. Please select the first service to be executed today."
+msgstr "سيدفع العميل ثمن الباقة كاملاً الآن. يرجى اختيار الخدمة الأولى التي سيتم تنفيذها اليوم."
+
+#. module: appointment_management_system
+msgid "Select for today's session"
+msgstr "اختر لجلسة اليوم"
+
+#. module: appointment_management_system
+msgid "Booking Service"
+msgstr "حجز خدمة"
+
+#. module: appointment_management_system
+msgid "of"
+msgstr "من"
+
+#. module: appointment_management_system
+msgid "Service Booking Settings"
+msgstr "إعدادات حجز الخدمة"
+
+#. module: appointment_management_system
+msgid "Back"
+msgstr "رجوع"
+
+#. module: appointment_management_system
+msgid "Booking Type"
+msgstr "نوع الحجز"
+
+#. module: appointment_management_system
+msgid "Inside (Branch)"
+msgstr "داخلي (بالفرع)"
+
+#. module: appointment_management_system
+msgid "Outside (Home)"
+msgstr "خارجي (منزلي)"
+
+#. module: appointment_management_system
+msgid "Available Branch"
+msgstr "الفرع المتاح"
+
+#. module: appointment_management_system
+msgid "-- Select Branch --"
+msgstr "-- اختر الفرع --"
+
+#. module: appointment_management_system
+msgid "Available Specialist"
+msgstr "الأخصائية المتاحة"
+
+#. module: appointment_management_system
+msgid "-- Select Specialist --"
+msgstr "-- اختر الأخصائية --"
+
+#. module: appointment_management_system
+msgid "Available Dates for Specialist"
+msgstr "الأيام المتاحة للأخصائية"
+
+#. module: appointment_management_system
+msgid "-- Select Booking Date --"
+msgstr "-- اختر يوم الحجز --"
+
+#. module: appointment_management_system
+msgid "Sorry, no available dates for this specialist."
+msgstr "عفواً، لا توجد أيام متاحة لهذه الأخصائية."
+
+#. module: appointment_management_system
+msgid "Available Times (Slots)"
+msgstr "الأوقات المتاحة"
+
+#. module: appointment_management_system
+msgid "-- Select Suitable Time --"
+msgstr "-- اختر الوقت المناسب --"
+
+#. module: appointment_management_system
+msgid "No appointments available on this day."
+msgstr "لا توجد مواعيد متاحة في هذا اليوم."
+
+#. module: appointment_management_system
+msgid "Next: Book Next Package Service"
+msgstr "التالي: حجز الخدمة القادمة بالباقة"
+
+#. module: appointment_management_system
+msgid "Next: Customer Details and Payment"
+msgstr "التالي: بيانات العميل والدفع"
+
+#. module: appointment_management_system
+msgid "Customer Details and Payment"
+msgstr "بيانات العميل والدفع"
+
+#. module: appointment_management_system
+msgid "Select Customer"
+msgstr "اختر العميل"
+
+#. module: appointment_management_system
+msgid "-- Select a customer from the list --"
+msgstr "-- اختر عميلاً من القائمة --"
+
+#. module: appointment_management_system
+msgid "No number"
+msgstr "بدون رقم"
+
+#. module: appointment_management_system
+msgid "Payment Method (POS)"
+msgstr "طريقة الدفع (نقاط البيع)"
+
+#. module: appointment_management_system
+msgid "-- Select payment method for immediate payment --"
+msgstr "-- اختر طريقة الدفع للسداد الفوري --"
+
+#. module: appointment_management_system
+msgid "Additional Notes"
+msgstr "ملاحظات إضافية"
+
+#. module: appointment_management_system
+msgid "Confirm Booking and Issue Invoice"
+msgstr "تأكيد الحجز وإصدار الفاتورة"
+
+#. module: appointment_management_system
+msgid "Booking and Payment Confirmed Successfully!"
+msgstr "تم تأكيد الحجز والدفع بنجاح!"
+
+#. module: appointment_management_system
+msgid "Booking Number:"
+msgstr "رقم الحجز:"
+
+#. module: appointment_management_system
+msgid "New Booking"
+msgstr "حجز جديد"
+
+#. module: appointment_management_system
+msgid "Print Invoice"
+msgstr "طباعة الفاتورة"
+
+#. module: appointment_management_system
+msgid "Booking Summary"
+msgstr "ملخص الحجز"
+
+#. module: appointment_management_system
+msgid "Category"
+msgstr "التصنيف"
+
+#. module: appointment_management_system
+msgid "Service"
+msgstr "الخدمة"
+
+#. module: appointment_management_system
+msgid "Branch"
+msgstr "الفرع"
+
+#. module: appointment_management_system
+msgid "Specialist"
+msgstr "الأخصائية"
+
+#. module: appointment_management_system
+msgid "Date & Time"
+msgstr "التاريخ والوقت"
+
+#. module: appointment_management_system
+msgid "Package:"
+msgstr "باقة:"
+
+#. module: appointment_management_system
+msgid "Booking now:"
+msgstr "جاري حجز:"
+
+#. module: appointment_management_system
+msgid "Customer"
+msgstr "العميل"
+
+#. module: appointment_management_system
+msgid "Total Amount"
+msgstr "المبلغ الإجمالي"
+
+#. module: appointment_management_system
+msgid "SAR"
+msgstr "ر.س"

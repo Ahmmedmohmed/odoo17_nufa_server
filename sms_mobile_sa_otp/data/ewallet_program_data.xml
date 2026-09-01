@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Customer eWallet Program for displaying balances in default Odoo UI -->
+        <!-- eWallet Trigger Product for refund functionality -->
+        <record id="customer_ewallet_topup_product" model="product.product">
+            <field name="name">eWallet Top-up</field>
+            <field name="list_price">0</field>
+            <field name="detailed_type">service</field>
+            <field name="purchase_ok" eval="False"/>
+            <field name="sale_ok" eval="True"/>
+            <field name="available_in_pos" eval="True"/>
+        </record>
+
+        <record id="customer_ewallet_program" model="loyalty.program">
+            <field name="name">Customer Wallet</field>
+            <field name="program_type">ewallet</field>
+            <field name="applies_on">future</field>
+            <field name="trigger">auto</field>
+            <field name="portal_visible">True</field>
+            <field name="portal_point_name">SAR</field>
+            <field name="trigger_product_ids" eval="[(4, ref('customer_ewallet_topup_product'))]"/>
+        </record>
+
+        <!-- eWallet Reward Configuration -->
+        <record id="customer_ewallet_reward" model="loyalty.reward">
+            <field name="reward_type">discount</field>
+            <field name="discount_mode">per_point</field>
+            <field name="discount">1</field>
+            <field name="discount_applicability">order</field>
+            <field name="required_points">1</field>
+            <field name="description">eWallet</field>
+            <field name="program_id" ref="sms_mobile_sa_otp.customer_ewallet_program"/>
+        </record>
+
+        <!-- eWallet Rule Configuration -->
+        <record id="customer_ewallet_rule" model="loyalty.rule">
+            <field name="reward_point_amount">1</field>
+            <field name="reward_point_mode">money</field>
+            <field name="reward_point_split">False</field>
+            <field name="product_ids" eval="[(4, ref('loyalty.ewallet_product_50'))]"/>
+            <field name="program_id" ref="sms_mobile_sa_otp.customer_ewallet_program"/>
+        </record>
+    </data>
+</odoo>

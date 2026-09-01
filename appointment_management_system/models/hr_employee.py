@@ -5,7 +5,6 @@ from odoo import api, fields, models, _
 
 class HREmployee(models.Model):
     _inherit = 'hr.employee'
-
     resource_calendar_id = fields.Many2one(
         'resource.calendar',
         required=True,
@@ -16,9 +15,9 @@ class HREmployee(models.Model):
         help="Employee's working schedule."
     )
 
-
     is_appointment_employee = fields.Boolean(string='Appointment Employee')
     location_id = fields.Many2one('stock.location', string='Location')
+
 
 
     def action_available_in_appointment(self):

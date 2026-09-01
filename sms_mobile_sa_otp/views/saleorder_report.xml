@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- 1. التعديل على أمر الطباعة الافتراضي لإضافة حجم الورق المخصص -->
+    <record id="sale.action_report_saleorder" model="ir.actions.report">
+        <field name="paperformat_id" ref="sms_mobile_sa_otp.paperformat_invoice_a4"/>
+    </record>
+
+    <!-- 2. وراثة قالب عرض السعر/أمر البيع الافتراضي واستبدال محتواه -->
+    <template id="custom_report_saleorder_document_inherit" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//t[@t-call='web.external_layout']" position="replace">
+            <t t-call="web.basic_layout">
+
+                <!-- إجبار التقرير على اللغة العربية واستخدام المتغير doc الممرر من القالب الأساسي -->
+                <t t-set="o" t-value="doc.with_context(lang='ar_001')" />
+
+                <t t-set="color_pink" t-value="'#df7b8e'"/>
+                <t t-set="color_light_pink" t-value="'#fdf5f6'"/>
+                <t t-set="color_border" t-value="'#e6e6e6'"/>
+
+                <t t-set="display_discount" t-value="any(l.discount for l in o.order_line)"/>
+                <t t-set="is_branch" t-value="o.company_id.name not in ['صالونات نوف', 'صالون نوف', 'Noof Salons']"/>
+
+                <div class="page" style="font-family: 'Cairo', 'Tajawal', 'Arial', sans-serif; direction: rtl; text-align: right; color: #333; font-size: 13px;">
+
+                    <!-- الهيدر واللوجو -->
+                    <div class="row" style="margin-bottom: 20px; border-bottom: 2px solid #df7b8e; padding-bottom: 15px; align-items: center;">
+                        <div class="col-6 text-right">
+                            <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="max-height: 90px; width: auto;" alt="Logo"/>
+                        </div>
+                        <div class="col-6 text-left" t-attf-style="color: {{color_pink}}; line-height: 1.3;">
+                            <h2 style="font-weight: 900; margin: 0; font-size: 28px;">صالونات نوف</h2>
+
+                            <t t-if="is_branch">
+                                <h4 style="font-weight: 700; margin: 2px 0 5px 0; font-size: 16px; color: #555;">
+                                    فرع: <t t-esc="o.company_id.name"/>
+                                </h4>
+                            </t>
+
+                            <div style="display: inline-block; background-color: #fdf5f6; padding: 4px 12px; border-radius: 6px; border: 1px solid #df7b8e; margin-top: 5px;">
+                                <strong style="font-size: 14px;">
+                                    <t t-if="o.state == 'cancel'">أمر بيع (ملغي)</t>
+                                    <t t-elif="o.state in ['draft', 'sent']">عرض سعر</t>
+                                    <t t-else="">أمر بيع</t>
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- الصناديق العلوية (الشركة، الطلب، العميل) -->
+                    <div class="row" style="margin-bottom: 25px; align-items: stretch;">
+                        <div class="col-4">
+                            <div t-attf-style="border: 1px solid {{color_border}}; border-radius: 12px; height: 100%; overflow: hidden;">
+                                <div t-attf-style="background-color: {{color_light_pink}}; color: {{color_pink}}; text-align: center; padding: 8px; font-weight: bold; border-bottom: 1px solid {{color_border}};">
+                                    <i class="fa fa-store" style="margin-left: 5px;"></i> بيانات الشركة
+                                </div>
+                                <div style="padding: 10px; line-height: 1.8;">
+                                    <t t-if="is_branch">
+                                        <span style="color: #777; font-size: 11px;">الشركة الأم:</span>
+                                        <strong t-attf-style="color: {{color_pink}}; font-size: 14px;">صالونات نوف</strong>
+                                        <hr style="margin: 4px 0; border-top: 1px dashed #ccc;"/>
+                                        <span style="color: #777; font-size: 11px;">بيانات الفرع المصدر:</span><br/>
+                                    </t>
+
+                                    <strong><t t-esc="o.company_id.name"/></strong><br/>
+                                    <t t-if="o.company_id.street"><t t-esc="o.company_id.street"/><br/></t>
+                                    <t t-esc="o.company_id.with_context(lang='ar_001').city"/> <t t-if="o.company_id.country_id">- <t t-esc="o.company_id.country_id.with_context(lang='ar_001').name"/></t><br/>
+                                    <t t-if="o.company_id.vat">
+                                        الرقم الضريبي: <span style="font-family: monospace;"><t t-esc="o.company_id.vat"/></span><br/>
+                                    </t>
+                                    <t t-if="o.company_id.phone"><i class="fa fa-phone" t-attf-style="color: {{color_pink}};"></i> <t t-esc="o.company_id.phone"/><br/></t>
+                                    <t t-if="o.company_id.email"><i class="fa fa-envelope" t-attf-style="color: {{color_pink}};"></i> <t t-esc="o.company_id.email"/></t>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div t-attf-style="border: 1px solid {{color_border}}; border-radius: 12px; height: 100%; overflow: hidden;">
+                                <div t-attf-style="background-color: {{color_light_pink}}; color: {{color_pink}}; text-align: center; padding: 8px; font-weight: bold; border-bottom: 1px solid {{color_border}};">
+                                    <i class="fa fa-file-text-o" style="margin-left: 5px;"></i> تفاصيل الطلب
+                                </div>
+                                <div style="padding: 10px; line-height: 1.8;">
+                                    <div class="d-flex justify-content-between">
+                                        <span>رقم المستند:</span> <strong><t t-esc="o.name"/></strong>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <span>التاريخ:</span>
+                                        <span><span t-esc="o.date_order" t-options="{'widget': 'date', 'format': 'dd-MM-yyyy'}"/> <i class="fa fa-calendar" t-attf-style="color: {{color_pink}};"></i></span>
+                                    </div>
+                                    <div class="d-flex justify-content-between" t-if="o.validity_date and o.state in ['draft', 'sent']">
+                                        <span>تاريخ الانتهاء:</span>
+                                        <span><span t-esc="o.validity_date" t-options="{'widget': 'date', 'format': 'dd-MM-yyyy'}"/> <i class="fa fa-hourglass-half" t-attf-style="color: {{color_pink}};"></i></span>
+                                    </div>
+                                    <div class="d-flex justify-content-between" t-if="o.user_id">
+                                        <span>المبيعات:</span>
+                                        <strong><t t-esc="o.user_id.with_context(lang='ar_001').name"/> <i class="fa fa-user-circle-o" t-attf-style="color: {{color_pink}};"></i></strong>
+                                    </div>
+                                    <div class="d-flex justify-content-between" t-if="o.client_order_ref">
+                                        <span>مرجع العميل:</span>
+                                        <strong><t t-esc="o.client_order_ref"/> <i class="fa fa-bookmark" t-attf-style="color: {{color_pink}};"></i></strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div t-attf-style="border: 1px solid {{color_border}}; border-radius: 12px; height: 100%; overflow: hidden;">
+                                <div t-attf-style="background-color: {{color_light_pink}}; color: {{color_pink}}; text-align: center; padding: 8px; font-weight: bold; border-bottom: 1px solid {{color_border}};">
+                                    <i class="fa fa-user" style="margin-left: 5px;"></i> عنوان الفوترة للعميل
+                                </div>
+                                <div style="padding: 10px; line-height: 1.8;">
+                                    <strong><t t-esc="o.partner_id.with_context(lang='ar_001').name"/></strong><br/>
+                                    <t t-if="o.partner_id.street"><t t-esc="o.partner_id.street"/><br/></t>
+                                    <t t-if="o.partner_id.city or o.partner_id.country_id">
+                                        <t t-esc="o.partner_id.with_context(lang='ar_001').city"/> <t t-if="o.partner_id.country_id">- <t t-esc="o.partner_id.country_id.with_context(lang='ar_001').name"/></t> <i class="fa fa-map-marker" t-attf-style="color: {{color_pink}};"></i><br/>
+                                    </t>
+                                    <t t-if="o.partner_id.vat">
+                                        الرقم الضريبي: <span style="font-family: monospace;"><t t-esc="o.partner_id.vat"/></span><br/>
+                                    </t>
+                                    <t t-if="o.partner_id.phone or o.partner_id.mobile">
+                                        <span style="font-family: monospace;"><t t-esc="o.partner_id.phone or o.partner_id.mobile"/></span> <i class="fa fa-phone" t-attf-style="color: {{color_pink}};"></i>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- جدول المنتجات وتفاصيل الحجز -->
+                    <table class="table table-borderless table-sm" style="width: 100%; font-size: 13px; margin-bottom: 20px; text-align: center;">
+                        <thead t-attf-style="background-color: {{color_pink}}; color: white;">
+                            <tr>
+                                <th style="padding: 10px; width: 5%;">#</th>
+                                <th style="padding: 10px; text-align: right; width: 35%;">الوصف</th>
+                                <th style="padding: 10px;">الكمية</th>
+                                <th style="padding: 10px;">سعر الوحدة</th>
+                                <th t-if="display_discount" style="padding: 10px;">الخصم (%)</th>
+                                <th style="padding: 10px;">الضرائب</th>
+                                <th style="padding: 10px; text-align: left;">المبلغ (بدون ضريبة)</th>
+                            </tr>
+                        </thead>
+                        <tbody style="border-bottom: 1px dashed #ccc;">
+                            <t t-set="line_count" t-value="1"/>
+
+                            <t t-foreach="o.order_line" t-as="line">
+                                <!-- استثناء سطور العناوين/الملاحظات وكذلك استثناء سطور التوصيل -->
+                                <t t-if="not ('display_type' in line and line.display_type) and not ('is_delivery' in line and line.is_delivery)">
+                                    <tr style="border-bottom: 1px solid #eee;">
+                                        <td style="padding-top: 15px;"><t t-esc="line_count"/></td>
+
+                                        <td style="padding-top: 15px; text-align: right;">
+                                            <strong style="font-size: 14px;"><t t-esc="line.product_id.with_context(lang='ar_001').name"/></strong>
+
+                                            <!-- بلوك تفاصيل الحجز -->
+                                            <t t-if="'appointment_id' in line and line.appointment_id">
+                                                <t t-set="app_id" t-value="line.appointment_id"/>
+                                                <br/>
+                                                <div style="font-size: 10px; color: #555; margin-top: 4px; line-height: 1.6; font-weight: normal;">
+
+                                                    <!-- الموظفة -->
+                                                    <t t-if="app_id.employee_id">
+                                                        <i class="fa fa-user-o" style="color: #df7b8e; margin-left: 3px;"></i>الموظفة: <t t-esc="app_id.employee_id.with_context(lang='ar_001').name"/><br/>
+                                                    </t>
+
+                                                    <!-- الفرع -->
+                                                    <t t-if="'branch_id' in app_id and app_id.branch_id">
+                                                        <i class="fa fa-map-marker" style="color: #df7b8e; margin-left: 3px;"></i>الفرع: <t t-esc="app_id.branch_id.with_context(lang='ar_001').name"/><br/>
+                                                    </t>
+                                                    <t t-elif="'company_id' in app_id and app_id.company_id">
+                                                        <i class="fa fa-map-marker" style="color: #df7b8e; margin-left: 3px;"></i>الفرع: <t t-esc="app_id.company_id.with_context(lang='ar_001').name"/><br/>
+                                                    </t>
+
+                                                    <!-- الوقت -->
+                                                    <t t-if="app_id.date">
+                                                        <i class="fa fa-clock-o" style="color: #df7b8e; margin-left: 3px;"></i>الوقت:
+                                                        <t t-set="app_slot_line" t-value="app_id.slot_ids[0] if 'slot_ids' in app_id and app_id.slot_ids else False"/>
+                                                        <t t-if="app_slot_line">
+                                                            <span t-esc="app_id.date" t-options="{'widget': 'date', 'format': 'yyyy-MM-dd'}"/> |
+                                                            <t t-set="s_hour" t-value="int(app_slot_line.time)"/>
+                                                            <t t-set="s_minute" t-value="int(round((app_slot_line.time - s_hour) * 60))"/>
+                                                            <t t-set="s_ampm" t-value="'مساءً' if s_hour &gt;= 12 else 'صباحاً'"/>
+                                                            <t t-set="s_display_hour" t-value="s_hour - 12 if s_hour &gt; 12 else (12 if s_hour == 0 else s_hour)"/>
+                                                            <!-- تم التعديل هنا لتجاهل الدقائق وعرضها بصيغة :00 -->
+                                                            <span t-esc="'%02d:00 %s' % (s_display_hour, s_ampm)"/>
+                                                        </t>
+                                                        <t t-else="">
+                                                            <!-- تم تعديل الصيغة هنا إلى hh:00 -->
+                                                            <span t-esc="app_id.date" t-options="{'widget': 'datetime', 'format': 'yyyy-MM-dd hh:00 a', 'tz_name': 'Asia/Riyadh'}"/>
+                                                        </t>
+                                                    </t>
+                                                </div>
+                                            </t>
+                                        </td>
+
+                                        <td style="padding-top: 15px;">
+                                            <t t-esc="line.product_uom_qty" t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+
+                                        <td style="padding-top: 15px;">
+                                            <t t-esc="line.price_unit" t-options='{"widget": "float", "precision": 2}'/> ر.س
+                                        </td>
+
+                                        <td t-if="display_discount" style="padding-top: 15px;">
+                                            <t t-if="line.discount">
+                                                <t t-esc="line.discount"/> %
+                                            </t>
+                                        </td>
+
+                                        <td style="padding-top: 15px;">
+                                            <t t-if="'tax_id' in line and line.tax_id" t-esc="', '.join(map(lambda x: x.name, line.tax_id))"/>
+                                        </td>
+
+                                        <td style="padding-top: 15px; text-align: left;">
+                                            <strong><t t-esc="line.price_subtotal" t-options='{"widget": "float", "precision": 2}'/> ر.س</strong>
+                                        </td>
+                                    </tr>
+                                    <t t-set="line_count" t-value="line_count + 1"/>
+                                </t>
+
+                                <t t-if="'display_type' in line and line.display_type == 'line_section'">
+                                    <tr>
+                                        <td colspan="7" t-attf-style="background-color: {{color_light_pink}}; color: {{color_pink}}; text-align: right; padding: 10px; font-weight: bold;">
+                                            <t t-esc="line.name"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <t t-if="'display_type' in line and line.display_type == 'line_note'">
+                                    <tr>
+                                        <td colspan="7" style="text-align: right; padding: 10px; font-style: italic; color: #777;">
+                                            - <t t-esc="line.name"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </t>
+                        </tbody>
+                    </table>
+
+                    <!-- ملخص الحسابات والتفقيط -->
+                    <div class="row" style="margin-bottom: 25px; align-items: stretch;">
+
+                        <div class="col-7">
+                            <div t-attf-style="border: 1px solid {{color_border}}; border-radius: 12px; padding: 15px; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                                <div t-attf-style="color: {{color_pink}}; font-weight: bold; margin-bottom: 10px; font-size: 14px;">
+                                    المبلغ الإجمالي بالحروف <i class="fa fa-file-text-o" style="float: left;"></i>
+                                </div>
+                                <div style="font-size: 14px; font-weight: bold; color: #555; line-height: 1.6;">
+                                    <t t-esc="o.currency_id.with_context(lang='ar_001').amount_to_text(o.amount_total).replace('Riyals', 'ريال').replace('Riyal', 'ريال').replace('Halalas', 'هللة').replace('Halala', 'هللة').replace('and', 'و').replace('SAR', 'ريال سعودي')"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-5">
+                            <div t-attf-style="border: 1px solid {{color_border}}; border-radius: 12px; overflow: hidden; height: 100%;">
+                                <div class="d-flex justify-content-between" style="padding: 10px 15px; border-bottom: 1px solid #eee;">
+                                    <span style="color: #555;">الإجمالي قبل الضريبة</span>
+                                    <strong><t t-esc="o.amount_untaxed" t-options='{"widget": "float", "precision": 2}'/> ر.س</strong>
+                                </div>
+                                <div class="d-flex justify-content-between" style="padding: 10px 15px; border-bottom: 1px solid #eee;">
+                                    <span style="color: #555;">الضرائب المضافة</span>
+                                    <strong><t t-esc="o.amount_tax" t-options='{"widget": "float", "precision": 2}'/> ر.س</strong>
+                                </div>
+                                <div class="d-flex justify-content-between" t-attf-style="padding: 12px 15px; background-color: {{color_pink}}; color: white; font-size: 16px;">
+                                    <strong>الإجمالي شامل الضريبة</strong>
+                                    <strong><t t-esc="o.amount_total" t-options='{"widget": "float", "precision": 2}'/> ر.س</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- عرض الباركود (إن وجد) -->
+                    <div class="row text-center" style="font-size: 12px; margin-bottom: 20px;">
+                        <div class="col-3 offset-9 text-left">
+                            <div style="display: inline-block; border: 1px solid #ddd; padding: 5px; border-radius: 8px;">
+                                <t t-set="final_inv" t-value="False"/>
+                                <t t-if="'invoice_ids' in o and o.invoice_ids">
+                                    <t t-set="posted_invs" t-value="o.invoice_ids.filtered(lambda i: i.state == 'posted')"/>
+                                    <t t-if="posted_invs"><t t-set="final_inv" t-value="posted_invs[0]"/></t>
+                                </t>
+
+                                <t t-set="qr_str" t-value="final_inv.l10n_sa_qr_code_str if final_inv and 'l10n_sa_qr_code_str' in final_inv and final_inv.l10n_sa_qr_code_str else False"/>
+                                <t t-set="qr_img" t-value="final_inv.zatca_qr_code if final_inv and 'zatca_qr_code' in final_inv and final_inv.zatca_qr_code else False"/>
+
+                                <t t-if="qr_str">
+                                    <img t-att-src="'/report/barcode/QR/%s?width=120&amp;height=120' % qr_str" alt="ZATCA QR" style="max-height: 120px; width: 120px;"/>
+                                </t>
+                                <t t-elif="qr_img">
+                                    <img t-att-src="'data:image/png;base64,%s' % qr_img" style="max-height: 120px; width: 120px;" alt="ZATCA QR Code"/>
+                                </t>
+                                <t t-else="">
+                                    <span style="font-size: 10px; color: #999; padding: 10px; text-align: center; display: inline-block;">
+                                        <t t-if="not final_inv">لم يتم إصدار<br/>الفاتورة النهائية</t>
+                                        <t t-else="">لا يوجد QR</t>
+                                    </span>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- الشروط والأحكام -->
+                    <div class="row" style="font-size: 13px;">
+                        <div class="col-12">
+                            <t t-if="o.note or o.payment_term_id">
+                                <div t-attf-style="border: 1px solid {{color_border}}; border-radius: 12px; padding: 12px; background-color: #fafafa; margin-bottom: 20px;">
+
+                                    <t t-if="o.payment_term_id">
+                                        <span t-attf-style="color: {{color_pink}}; font-weight: bold;"><i class="fa fa-credit-card"></i> شروط الدفع:</span>
+                                        <span style="color: #555;"><t t-esc="o.payment_term_id.with_context(lang='ar_001').name"/></span>
+                                        <hr style="margin: 8px 0; border-top: 1px dashed #ddd;"/>
+                                    </t>
+
+                                    <t t-if="o.note">
+                                        <span t-attf-style="color: {{color_pink}}; font-weight: bold;"><i class="fa fa-comment-o"></i> الشروط والأحكام / ملاحظات:</span><br/>
+                                        <span style="color: #555; white-space: pre-line;"><t t-esc="o.note"/></span>
+                                    </t>
+
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+
+                    <!-- حسابات السوشيال ميديا -->
+                    <div class="text-center" style="margin-top: 30px; padding-top: 15px; border-top: 2px solid #df7b8e; color: #555;">
+                        <div style="font-size: 18px; margin-bottom: 5px;">
+                            <i class="fa fa-instagram" t-attf-style="color: {{color_pink}}; margin: 0 10px;"></i>
+                            <i class="fa fa-snapchat-ghost" t-attf-style="color: {{color_pink}}; margin: 0 10px;"></i>
+                            <i class="fa fa-music" t-attf-style="color: {{color_pink}}; margin: 0 10px;"></i>
+                        </div>
+                        <strong style="font-size: 14px;"><t t-esc="o.company_id.with_context(lang='ar_001').name"/></strong><br/>
+
+                        <a t-attf-href="http://{{ o.company_id.website or 'www.noofbeauty.sa' }}" t-attf-style="color: {{color_pink}}; text-decoration: none;">
+                            <t t-esc="o.company_id.website or 'www.noofbeauty.sa'"/>
+                        </a>
+                    </div>
+
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>

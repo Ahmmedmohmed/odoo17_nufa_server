@@ -1,0 +1,74 @@
+<odoo>
+    <data>
+        <!-- Sale Order Form View - Add guest cart fields -->
+        <record id="view_order_form_sale_inh" model="ir.ui.view">
+            <field name="name">view_order_form_sale_inh</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@name='order_lines']/field[@name='order_line']/tree" position="inside">
+                    <field name="is_scheduled" optional="hide"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="is_guest_cart" invisible="not is_guest_cart"/>
+                    <field name="device_id" invisible="not is_guest_cart"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Sale Order Tree View - Add guest cart indicator -->
+        <record id="view_order_tree_sale_guest_cart" model="ir.ui.view">
+            <field name="name">sale.order.tree.guest.cart</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="is_guest_cart" optional="show" string="Guest"/>
+                    <field name="device_id" optional="hide"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Sale Order Search View - Add filter for guest carts -->
+        <record id="view_sales_order_filter_guest_cart" model="ir.ui.view">
+            <field name="name">sale.order.search.guest.cart</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='my_quotation']" position="after">
+                    <separator/>
+                    <filter string="Guest Carts" name="guest_carts" domain="[('is_guest_cart', '=', True)]"/>
+                    <filter string="Registered User Carts" name="user_carts" domain="[('is_guest_cart', '=', False), ('origin', 'in', ['product_cart', 'service_cart'])]"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="device_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Menu Action for Guest Carts -->
+        <record id="action_guest_carts" model="ir.actions.act_window">
+            <field name="name">Guest Carts</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_guest_cart', '=', True), ('state', '=', 'draft')]</field>
+            <field name="context">{'search_default_guest_carts': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No guest carts found
+                </p>
+                <p>
+                    Guest carts are created by users who haven't logged in yet.
+                    They will appear here when guests add items to their cart via the mobile app.
+                </p>
+            </field>
+        </record>
+
+        <!-- Menu Item for Guest Carts under Sales -->
+        <menuitem id="menu_guest_carts"
+            name="Guest Carts"
+            parent="sale.sale_order_menu"
+            action="action_guest_carts"
+            sequence="15"/>
+    </data>
+</odoo>

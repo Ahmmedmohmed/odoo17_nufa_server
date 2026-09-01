@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-inherit="web.CalendarController" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('o_calendar_buttons')]" position="after">
+            <div class="d-inline-flex gap-2 ms-3" t-if="props.resModel == 'appointment.management'">
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown">
+                        Filters
+                    </button>
+                    <div class="dropdown-menu">
+                        <h6 class="dropdown-header">Quick Filters</h6>
+                        <a class="dropdown-item" href="#" t-on-click="() => this.model.setScale('day')">View Today</a>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </t>
+</templates>

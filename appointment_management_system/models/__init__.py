@@ -14,3 +14,13 @@ from . import res_company
 
 from . import appointment_management
 from . import appointment_refund_policy
+from . import sale_order
+# from . import payment_state
+
+from . import  appointment_refund_request
+
+from . import fortestemploy
+
+from . import  res_config_settings
+
+from . import  commission_withdrawal_wizard

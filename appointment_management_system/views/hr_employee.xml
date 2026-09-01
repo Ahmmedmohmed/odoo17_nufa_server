@@ -20,11 +20,12 @@
 
 
         <record id="appointment_employee_action" model="ir.actions.act_window">
-            <field name="name">Appointment Employees</field>
-            <field name="res_model">hr.employee</field>
-            <field name="domain">[('is_appointment_employee', '=', 1)]</field>
-            <field name="context">{'default_is_appointment_employee': 1}</field>
-            <field name="view_mode">list,form</field>
-        </record>
+    <field name="name">Appointment Employees</field>
+    <field name="res_model">hr.employee</field>
+    <field name="domain">[('is_appointment_employee', '=', 1)]</field>
+    <field name="context">{'default_is_appointment_employee': 1}</field>
+    <field name="view_mode">list,form</field>
+    <field name="target">current</field>
+</record>
     </data>
 </odoo>

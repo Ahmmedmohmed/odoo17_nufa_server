@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_product_review_form" model="ir.ui.view">
+        <field name="name">product.review.form</field>
+        <field name="model">product.review</field>
+        <field name="arch" type="xml">
+            <form string="Product Review">
+                <header>
+                    <button name="action_approve" string="Approve" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_reject" string="Reject" type="object" class="btn-danger" invisible="state != 'draft'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,approved,rejected"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="partner_id"/>
+                            <field name="employee_id"/>
+                        </group>
+                        <group>
+                            <field name="rating" widget="priority"/>
+                            <field name="create_date" readonly="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="comment"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_product_review_tree" model="ir.ui.view">
+        <field name="name">product.review.tree</field>
+        <field name="model">product.review</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="state == 'draft'" decoration-success="state == 'approved'" decoration-danger="state == 'rejected'">
+                <field name="product_id"/>
+                <field name="partner_id"/>
+                <field name="rating" widget="priority" readonly="1"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'approved'" decoration-danger="state == 'rejected'"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_product_review" model="ir.actions.act_window">
+        <field name="name">Product Reviews</field>
+        <field name="res_model">product.review</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_product_reviews"
+              name="Reviews"
+              parent="sale.product_menu_catalog"
+              action="action_product_review"
+              sequence="100"/>
+</odoo>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_inherit_otp" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.otp</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="otp_code"/>
+                <field name="verify"/>
+                <field name="exist"/>
+                <field name="password"/>
+                <field name="birthday"/>
+                <field name="marriage_date"/>
+                <field name="fcm_token"/>
+                <field name="refresh_token"/>
+                <field name="refresh_token_expiration"/>
+            </xpath>
+
+            <xpath expr="//notebook/page[@name='sales_purchases']" position="after">
+                <page string="Location">
+                    <group>
+                        <field name="long"/>
+                        <field name="late"/>
+                    </group>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_res_country_form_inherit_phone_length" model="ir.ui.view">
+        <field name="name">res.country.form.inherit.phone.length</field>
+        <field name="model">res.country</field>
+        <field name="inherit_id" ref="base.view_country_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='phone_code']" position="after">
+                <field name="phone_length"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

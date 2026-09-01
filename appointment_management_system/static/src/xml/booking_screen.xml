@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="appointment_management_system.BookingScreenTemplate">
+        <div class="o_booking_wizard_screen w-100 h-100 overflow-auto" style="background-color: #F8F9FA; font-family: 'Cairo', 'Tajawal', sans-serif;">
+
+            <div class="container-fluid p-4 pb-5 mb-5">
+
+                <t t-if="state.step != 5">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 bg-white p-3 rounded-4 shadow-sm border">
+                        <div>
+                            <h3 class="fw-bold m-0" style="color: #1A1A1A;" t-esc="t.newBookingAndPayment"/>
+                            <span class="text-muted fs-6" t-esc="t.chooseDetails"/>
+                        </div>
+                        <div class="d-flex gap-2 flex-wrap mt-2 mt-md-0">
+                            <span t-att-class="state.step >= 1 ? 'badge rounded-pill p-2 px-3 bg-primary shadow-sm' : 'badge rounded-pill p-2 px-3 bg-light text-dark'" t-esc="t.step1Label"/>
+                            <span t-att-class="state.step >= 2 ? 'badge rounded-pill p-2 px-3 bg-primary shadow-sm' : 'badge rounded-pill p-2 px-3 bg-light text-dark'" t-esc="t.step2Label"/>
+                            <span t-att-class="state.step >= 3 ? 'badge rounded-pill p-2 px-3 bg-primary shadow-sm' : 'badge rounded-pill p-2 px-3 bg-light text-dark'" t-esc="t.step3Label"/>
+                            <span t-att-class="state.step >= 4 ? 'badge rounded-pill p-2 px-3 bg-primary shadow-sm' : 'badge rounded-pill p-2 px-3 bg-light text-dark'" t-esc="t.step4Label"/>
+                        </div>
+                    </div>
+                </t>
+
+                <div class="row g-4">
+                    <div t-att-class="state.step == 5 ? 'col-12' : 'col-lg-8 col-md-12'">
+
+                        <!-- ==================== STEP 1: Category ==================== -->
+                        <t t-if="state.step == 1">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="fw-bold m-0">
+                                    <i class="fa fa-th-large text-warning ms-2 me-2"/>
+                                    <t t-esc="t.selectCategory"/>
+                                </h5>
+                                <button class="btn btn-sm btn-outline-primary fw-bold px-3 rounded-pill"
+                                        t-on-click="() => this.selectCategory(false)"
+                                        t-esc="t.showAllServicesAndPackages"/>
+                            </div>
+                            <div class="row g-3">
+                                <t t-foreach="state.categories" t-as="categ" t-key="categ.id">
+                                    <div class="col-md-4 col-sm-6">
+                                        <div class="card border-0 shadow-sm rounded-4 p-3 text-center btn-hover h-100 overflow-hidden"
+                                             style="cursor: pointer;" t-on-click="() => this.selectCategory(categ)">
+                                            <img t-att-src="categ.image_url" class="card-img-top mx-auto mb-2"
+                                                 style="width: 80px; height: 80px; object-fit: contain; border-radius: 10px; background: #f0f0f0;"
+                                                 onerror="this.src='/appointment_management_system/static/description/icon.png'"/>
+                                            <h6 class="fw-bold m-0" t-esc="categ.name"/>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                        </t>
+
+                        <!-- ==================== STEP 2: Service / Package ==================== -->
+                        <t t-if="state.step == 2">
+                            <t t-if="!state.showPackageServices">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="fw-bold m-0">
+                                        <i class="fa fa-magic text-warning ms-2 me-2"/>
+                                        <t t-esc="t.selectServiceOrPackage"/>
+                                    </h5>
+                                    <button class="btn btn-dark px-4 rounded-pill shadow-sm fw-bold"
+                                            t-on-click="() => this.state.step = 1">
+                                        <i class="fa fa-chevron-left ms-2 me-2"/>
+                                        <t t-esc="t.backToCategories"/>
+                                    </button>
+                                </div>
+                                <div class="row g-3">
+                                    <t t-foreach="state.services" t-as="srv" t-key="srv.id">
+                                        <div class="col-md-4 col-sm-6">
+                                            <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100 position-relative"
+                                                 style="cursor: pointer;" t-on-click="() => this.selectService(srv)">
+                                                <div t-if="srv.is_package"
+                                                     class="position-absolute top-0 start-0 m-2 badge bg-danger fs-6 rounded-pill shadow-sm"
+                                                     t-esc="t.package"/>
+                                                <img t-att-src="srv.image_url" class="card-img-top"
+                                                     style="height: 140px; object-fit: cover; background-color: #f0f0f0;"
+                                                     onerror="this.src='/appointment_management_system/static/description/icon.png'"/>
+                                                <div class="card-body p-3 text-center">
+                                                    <h6 class="fw-bold text-dark mb-2" t-esc="srv.name"/>
+                                                    <span class="badge rounded-pill bg-light text-dark fw-bold border px-3 py-2"
+                                                          style="color: #B8860B !important; font-size: 14px;"
+                                                          t-esc="srv.price + ' ' + t.sar"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </div>
+                            </t>
+
+                            <t t-if="state.showPackageServices">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="fw-bold m-0">
+                                        <i class="fa fa-list text-warning ms-2 me-2"/>
+                                        <t t-esc="t.packageContents"/>
+                                    </h5>
+                                    <button class="btn btn-danger px-4 rounded-pill shadow-sm fw-bold"
+                                            t-on-click="() => { this.state.showPackageServices = false; this.state.selectedPackage = null; }">
+                                        <i class="fa fa-times ms-2 me-2"/>
+                                        <t t-esc="t.cancelPackageAndReturn"/>
+                                    </button>
+                                </div>
+                                <div class="alert alert-info border-0 shadow-sm rounded-4 mb-4">
+                                    <h6 class="fw-bold mb-2">
+                                        <i class="fa fa-gift ms-2 me-2"/>
+                                        <t t-esc="t.youArePurchasingPackage"/>
+                                        (<t t-esc="state.selectedPackage.name"/>)
+                                    </h6>
+                                    <p class="mb-0 fs-6" t-esc="t.packagePaymentNote"/>
+                                </div>
+                                <div class="row g-3">
+                                    <t t-foreach="state.packageServices" t-as="psrv" t-key="psrv.id">
+                                        <div class="col-md-4 col-sm-6">
+                                            <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100 position-relative"
+                                                 style="cursor: pointer; border: 2px solid #28a745 !important;"
+                                                 t-on-click="() => this.selectPackageService(psrv)">
+                                                <div class="position-absolute top-0 start-0 m-2 badge bg-success fs-6 rounded-pill shadow-sm"
+                                                     t-esc="t.selectForTodaySession"/>
+                                                <img t-att-src="psrv.image_url" class="card-img-top"
+                                                     style="height: 140px; object-fit: cover; background-color: #f0f0f0;"
+                                                     onerror="this.src='/appointment_management_system/static/description/icon.png'"/>
+                                                <div class="card-body p-3 text-center">
+                                                    <h6 class="fw-bold text-dark m-0" t-esc="psrv.name"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </div>
+                            </t>
+                        </t>
+
+                        <!-- ==================== STEP 3: Details ==================== -->
+                        <t t-if="state.step == 3">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <t t-if="state.isPackageMode">
+                                    <h5 class="fw-bold m-0">
+                                        <i class="fa fa-list-alt text-warning ms-2 me-2"/>
+                                        <t t-esc="t.bookingService"/>
+                                        (<t t-esc="state.currentPackageIndex + 1"/>
+                                        <t t-esc="t.of"/>
+                                        <t t-esc="state.packageServices.length"/>)
+                                    </h5>
+                                </t>
+                                <t t-else="">
+                                    <h5 class="fw-bold m-0">
+                                        <i class="fa fa-list-alt text-warning ms-2 me-2"/>
+                                        <t t-esc="t.serviceBookingSettings"/>
+                                    </h5>
+                                </t>
+                                <button class="btn btn-dark px-4 rounded-pill shadow-sm fw-bold" t-on-click="step3Back">
+                                    <i class="fa fa-chevron-left ms-2 me-2"/>
+                                    <t t-esc="t.back"/>
+                                </button>
+                            </div>
+
+                            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white mb-4">
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <label class="fw-bold text-muted mb-2" t-esc="t.bookingType"/>
+                                        <select class="form-select rounded-3 p-2" t-model="state.appointment_type" t-on-change="onTypeChange">
+                                            <option value="inside" t-esc="t.insideBranch"/>
+                                            <option value="outside" t-esc="t.outsideHome"/>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="fw-bold text-muted mb-2" t-esc="t.availableBranch"/>
+                                        <select class="form-select rounded-3 p-2" t-on-change="onBranchChange">
+                                            <option value="" t-esc="t.selectBranch"/>
+                                            <t t-foreach="state.availableBranches" t-as="b" t-key="b.id">
+                                                <option t-att-value="b.id" t-att-selected="state.selectedBranch?.id === b.id" t-esc="b.name"/>
+                                            </t>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="fw-bold text-muted mb-2" t-esc="t.availableSpecialist"/>
+                                        <select class="form-select rounded-3 p-2" t-att-disabled="!state.selectedBranch" t-on-change="onEmployeeChange">
+                                            <option value="" t-esc="t.selectSpecialist"/>
+                                            <t t-foreach="state.availableEmployees" t-as="e" t-key="e.id">
+                                                <option t-att-value="e.id" t-att-selected="state.selectedEmployee?.id === e.id" t-esc="e.name"/>
+                                            </t>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="fw-bold text-muted mb-2" t-esc="t.availableDatesForSpecialist"/>
+                                        <select class="form-select rounded-3 p-2"
+                                                t-att-disabled="state.selectedEmployee ? state.availableDates.length == 0 : true"
+                                                t-on-change="onDateChange">
+                                            <option value="" t-esc="t.selectBookingDate"/>
+                                            <t t-foreach="state.availableDates" t-as="d" t-key="d.date">
+                                                <option t-att-value="d.date" t-att-selected="state.selectedDate === d.date" t-esc="d.label"/>
+                                            </t>
+                                        </select>
+                                        <small t-if="state.selectedEmployee ? state.availableDates.length == 0 : false"
+                                               class="text-danger mt-1 d-block" t-esc="t.sorryNoDates"/>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="fw-bold text-muted mb-2" t-esc="t.availableTimesSlots"/>
+                                        <select class="form-select rounded-3 p-2 border-warning"
+                                                t-att-disabled="state.availableSlots.length == 0"
+                                                t-on-change="onSlotChange">
+                                            <option value="" t-esc="t.selectSuitableTime"/>
+                                            <t t-foreach="state.availableSlots" t-as="slot" t-key="slot.id">
+                                                <option t-att-value="slot.name" t-esc="slot.name"/>
+                                            </t>
+                                        </select>
+                                        <small t-if="state.selectedDate ? state.availableSlots.length == 0 : false"
+                                               class="text-danger mt-1 d-block" t-esc="t.noAppointmentsAvailable"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary w-100 py-3 rounded-3 fw-bold fs-5 shadow-sm" t-on-click="nextStep3">
+                                <t t-if="state.isPackageMode &amp;&amp; state.currentPackageIndex &lt; state.packageServices.length - 1"
+                                   t-esc="t.nextBookNextPackageService"/>
+                                <t t-else="" t-esc="t.nextCustomerDetailsPayment"/>
+                            </button>
+                        </t>
+
+                        <!-- ==================== STEP 4: Payment ==================== -->
+                        <t t-if="state.step == 4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="fw-bold m-0">
+                                    <i class="fa fa-credit-card text-warning ms-2 me-2"/>
+                                    <t t-esc="t.customerDetailsAndPayment"/>
+                                </h5>
+                                <button class="btn btn-dark px-4 rounded-pill shadow-sm fw-bold" t-on-click="step3Back">
+                                    <i class="fa fa-chevron-left ms-2 me-2"/>
+                                    <t t-esc="t.back"/>
+                                </button>
+                            </div>
+
+                            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+                                <div class="mb-3">
+                                    <label class="fw-bold text-muted mb-2" t-esc="t.selectCustomer"/>
+                                    <select class="form-select rounded-3 p-2 border-primary" t-on-change="onPartnerChange">
+                                        <option value="" t-esc="t.selectCustomerFromList"/>
+                                        <t t-foreach="state.partners" t-as="p" t-key="p.id">
+                                            <option t-att-value="p.id" t-esc="p.name + ' (' + (p.phone || t.noNumber) + ')'"/>
+                                        </t>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="fw-bold text-muted mb-2" t-esc="t.paymentMethodPOS"/>
+                                    <select class="form-select rounded-3 p-2 border-success" t-on-change="onPaymentMethodChange">
+                                        <option value="" t-esc="t.selectPaymentMethod"/>
+                                        <t t-foreach="state.payment_methods" t-as="pm" t-key="pm.id">
+                                            <option t-att-value="pm.id" t-esc="pm.name"/>
+                                        </t>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="fw-bold text-muted mb-2" t-esc="t.additionalNotes"/>
+                                    <textarea class="form-control rounded-3" rows="2" t-model="state.notes"/>
+                                </div>
+                                <button class="btn btn-success w-100 py-3 rounded-3 fw-bold fs-5 mt-3 shadow-sm"
+                                        t-on-click="confirmBooking" t-att-disabled="state.isSubmitting">
+                                    <i class="fa fa-check-circle ms-2 me-2"/>
+                                    <t t-esc="t.confirmBookingAndInvoice"/>
+                                </button>
+                            </div>
+                        </t>
+
+                        <!-- ==================== STEP 5: Success ==================== -->
+                        <t t-if="state.step == 5">
+                            <div class="card border-0 shadow-lg rounded-4 p-5 bg-white text-center mt-4">
+                                <div class="mb-4">
+                                    <div class="rounded-circle mx-auto d-flex align-items-center justify-content-center"
+                                         style="width: 100px; height: 100px; background-color: #e8f5e9; color: #28a745;">
+                                        <i class="fa fa-check fa-4x"/>
+                                    </div>
+                                </div>
+                                <h2 class="fw-bold text-success mb-3" t-esc="t.bookingConfirmedSuccess"/>
+                                <h4 class="text-muted mb-4">
+                                    <t t-esc="t.bookingNumber"/>
+                                    <span class="fw-bold text-dark" t-esc="state.confirmedRef"/>
+                                </h4>
+                                <div class="d-flex justify-content-center gap-3 mt-4">
+                                    <button class="btn btn-outline-primary px-4 py-2 fs-5 rounded-pill" t-on-click="resetWizard">
+                                        <i class="fa fa-plus ms-2 me-2"/>
+                                        <t t-esc="t.newBooking"/>
+                                    </button>
+                                    <button t-if="state.confirmedInvoiceId"
+                                            class="btn btn-success px-4 py-2 fs-5 rounded-pill shadow-sm"
+                                            t-on-click="printInvoice">
+                                        <i class="fa fa-print ms-2 me-2"/>
+                                        <t t-esc="t.printInvoice"/>
+                                    </button>
+                                </div>
+                            </div>
+                        </t>
+
+                    </div>
+
+                    <!-- ==================== Sidebar: Booking Summary ==================== -->
+                    <div class="col-lg-4 col-md-12" t-if="state.step != 5">
+                        <div class="card border-0 shadow-lg rounded-4 p-4 sticky-top bg-white"
+                             style="top: 20px; border-top: 4px solid #D4AF37 !important;">
+                            <h5 class="fw-bold mb-3 text-center" style="color: #1A1A1A;" t-esc="t.bookingSummary"/>
+                            <hr class="dashed mb-3"/>
+
+                            <div class="d-flex flex-column gap-3">
+
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="text-muted">
+                                        <i class="fa fa-th-large ms-2 me-2 text-warning"/>
+                                        <t t-esc="t.category"/>
+                                    </span>
+                                    <strong class="text-start" t-esc="state.selectedCategory ? state.selectedCategory.name : '-'"/>
+                                </div>
+
+                                <t t-if="!state.isPackageMode">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted">
+                                            <i class="fa fa-scissors ms-2 me-2 text-warning"/>
+                                            <t t-esc="t.service"/>
+                                        </span>
+                                        <strong class="text-start" t-esc="state.selectedService ? state.selectedService.name : '-'"/>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted">
+                                            <i class="fa fa-building ms-2 me-2 text-warning"/>
+                                            <t t-esc="t.branch"/>
+                                        </span>
+                                        <strong class="text-start" t-esc="state.selectedBranch ? state.selectedBranch.name : '-'"/>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted">
+                                            <i class="fa fa-user-md ms-2 me-2 text-warning"/>
+                                            <t t-esc="t.specialist"/>
+                                        </span>
+                                        <strong class="text-start" t-esc="state.selectedEmployee ? state.selectedEmployee.name : '-'"/>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted">
+                                            <i class="fa fa-calendar ms-2 me-2 text-warning"/>
+                                            <t t-esc="t.dateAndTime"/>
+                                        </span>
+                                        <strong class="text-start" dir="ltr">
+                                            <t t-esc="state.selectedDate || '-'"/>
+                                            <t t-if="state.selectedSlot" t-esc="state.selectedSlot.name"/>
+                                        </strong>
+                                    </div>
+                                </t>
+
+                                <t t-if="state.isPackageMode">
+                                    <div class="alert alert-danger p-2 mb-0 border-0 rounded-3 text-center shadow-sm">
+                                        <i class="fa fa-gift ms-2 me-2"/>
+                                        <strong><t t-esc="t.packageLabel"/></strong>
+                                        <t t-esc="state.selectedPackage.name"/>
+                                    </div>
+
+                                    <t t-foreach="state.packageSelections" t-as="sel" t-key="sel.product_id">
+                                        <div class="p-3 mb-0 rounded-3 border bg-light shadow-sm position-relative text-start">
+                                            <div class="position-absolute top-0 start-0 m-2">
+                                                <i class="fa fa-check-circle text-success fs-5"/>
+                                            </div>
+                                            <div class="fw-bold text-dark mb-2" t-esc="sel.service_name"/>
+                                            <div class="d-flex justify-content-between text-muted" style="font-size:12px;">
+                                                <span><i class="fa fa-user-md ms-1 me-1 text-warning"/><t t-esc="sel.employee_name"/></span>
+                                                <span dir="ltr"><i class="fa fa-calendar ms-1 me-1 text-warning"/><t t-esc="sel.date"/> <t t-esc="sel.slot_name"/></span>
+                                            </div>
+                                        </div>
+                                    </t>
+
+                                    <t t-if="state.selectedService &amp;&amp; state.currentPackageIndex == state.packageSelections.length">
+                                        <div class="p-3 mb-0 rounded-3 border border-warning bg-white shadow-sm position-relative text-start">
+                                            <div class="position-absolute top-0 start-0 m-2">
+                                                <i class="fa fa-spinner fa-spin text-warning fs-5"/>
+                                            </div>
+                                            <div class="fw-bold text-dark mb-2">
+                                                <t t-esc="t.bookingNow"/>
+                                                <t t-esc="state.selectedService.name"/>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                                <span class="text-muted" style="font-size:12px;">
+                                                    <i class="fa fa-user-md ms-1 me-1 text-warning"/>
+                                                    <t t-esc="t.specialist"/>
+                                                </span>
+                                                <strong style="font-size:12px;" t-esc="state.selectedEmployee ? state.selectedEmployee.name : '...'"/>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <span class="text-muted" style="font-size:12px;">
+                                                    <i class="fa fa-calendar ms-1 me-1 text-warning"/>
+                                                    <t t-esc="t.dateAndTime"/>
+                                                </span>
+                                                <strong style="font-size:12px;" dir="ltr">
+                                                    <t t-esc="state.selectedDate || '...'"/>
+                                                    <t t-if="state.selectedSlot" t-esc="state.selectedSlot.name"/>
+                                                </strong>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </t>
+
+                                <hr class="dashed m-0"/>
+
+                                <div class="d-flex justify-content-between align-items-center mt-2">
+                                    <span class="text-muted">
+                                        <i class="fa fa-user ms-2 me-2 text-warning"/>
+                                        <t t-esc="t.customer"/>
+                                    </span>
+                                    <strong class="text-start" t-esc="state.selectedPartner ? state.selectedPartner.name : '-'"/>
+                                </div>
+                            </div>
+
+                            <div class="mt-4 p-3 rounded-3 text-center"
+                                 style="background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.3);">
+                                <span class="text-muted d-block" style="font-size: 13px;" t-esc="t.totalAmount"/>
+                                <span class="fw-bold fs-3" style="color: #B8860B;"
+                                      t-esc="state.calculatedPrice + ' ' + t.sar"/>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

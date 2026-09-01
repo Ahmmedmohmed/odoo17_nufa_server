@@ -1,0 +1,128 @@
+#. module: wallet_module_name
+msgid "Manual Adjustment"
+msgstr "تعديل يدوي"
+
+#. module: wallet_module_name
+msgid "Order Refund"
+msgstr "استرجاع طلب"
+
+#. module: wallet_module_name
+msgid "Cashback"
+msgstr "كاش باك"
+
+#. module: wallet_module_name
+msgid "Wallet Top-up"
+msgstr "شحن المحفظة"
+
+#. module: wallet_module_name
+msgid "Gift/Voucher"
+msgstr "هدية/قسيمة"
+
+#. module: wallet_module_name
+msgid "Loyalty Points Conversion"
+msgstr "تحويل نقاط الولاء"
+
+#. module: wallet_module_name
+msgid "Promotional Credit"
+msgstr "رصيد ترويجي"
+
+#. module: wallet_module_name
+msgid "Order Payment"
+msgstr "دفع طلب"
+
+#. module: wallet_module_name
+msgid "Service Payment"
+msgstr "دفع خدمة"
+
+#. module: wallet_module_name
+msgid "Appointment Payment"
+msgstr "دفع موعد"
+
+#. module: wallet_module_name
+msgid "Other"
+msgstr "أخرى"
+
+
+#. module: sms_mobile_sa_otp
+msgid "Wallet Transfer Requests"
+msgstr "طلبات تحويل المحفظة"
+
+#. module: sms_mobile_sa_otp
+msgid "Wallet Transfer Request"
+msgstr "طلب تحويل محفظة"
+
+#. module: sms_mobile_sa_otp
+msgid "Approve &amp; Deduct Wallet"
+msgstr "موافقة وخصم الرصيد"
+
+#. module: sms_mobile_sa_otp
+msgid "Decline"
+msgstr "رفض"
+
+#. module: sms_mobile_sa_otp
+msgid "Mark Processing"
+msgstr "تحديد كـ قيد التنفيذ"
+
+#. module: sms_mobile_sa_otp
+msgid "Mark Completed"
+msgstr "تحديد كـ مكتمل"
+
+#. module: sms_mobile_sa_otp
+msgid "Pending"
+msgstr "قيد الانتظار"
+
+#. module: sms_mobile_sa_otp
+msgid "Approved"
+msgstr "تمت الموافقة"
+
+#. module: sms_mobile_sa_otp
+msgid "Processing"
+msgstr "قيد التنفيذ"
+
+#. module: sms_mobile_sa_otp
+msgid "Completed"
+msgstr "مكتمل"
+
+#. module: sms_mobile_sa_otp
+msgid "Declined"
+msgstr "مرفوض"
+
+#. module: sms_mobile_sa_otp
+msgid "Customer Information"
+msgstr "بيانات العميل"
+
+#. module: sms_mobile_sa_otp
+msgid "Accounting &amp; Wallet"
+msgstr "الحسابات والمحفظة"
+
+#. module: sms_mobile_sa_otp
+msgid "Bank Account Details"
+msgstr "تفاصيل الحساب البنكي"
+
+#. module: sms_mobile_sa_otp
+msgid "Customer Notes"
+msgstr "ملاحظات العميل"
+
+#. module: sms_mobile_sa_otp
+msgid "Admin Response"
+msgstr "رد الإدارة"
+
+#. module: sms_mobile_sa_otp
+msgid "Admin Notes"
+msgstr "ملاحظات الإدارة"
+
+#. module: sms_mobile_sa_otp
+msgid "Timestamps"
+msgstr "التوقيت"
+
+#. module: sms_mobile_sa_otp
+msgid "Confirm Decline"
+msgstr "تأكيد الرفض"
+
+#. module: sms_mobile_sa_otp
+msgid "Confirm &amp; Post Entry"
+msgstr "تأكيد وترحيل القيد"
+
+#. module: sms_mobile_sa_otp
+msgid "Search Transfer Requests"
+msgstr "البحث في طلبات التحويل"

@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Tree View -->
+        <record id="view_appointment_refund_request_tree" model="ir.ui.view">
+            <field name="name">appointment.refund.request.tree</field>
+            <field name="model">appointment.refund.request</field>
+            <field name="arch" type="xml">
+                <tree string="Refund Requests" decoration-warning="state=='pending'" decoration-info="state=='processing'" decoration-success="state=='completed'" decoration-danger="state=='declined'" decoration-primary="state=='approved'">
+                    <field name="sequence"/>
+                    <field name="appointment_id"/>
+                    <field name="partner_id"/>
+                    <field name="refund_amount" sum="Total Refund"/>
+                    <field name="refund_method"/>
+                    <field name="state" widget="badge" decoration-warning="state=='pending'" decoration-info="state=='processing'" decoration-success="state in ('completed', 'approved')" decoration-danger="state=='declined'"/>
+                    <field name="requested_at"/>
+                    <field name="reviewed_at"/>
+                    <field name="reviewed_by"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_appointment_refund_request_form" model="ir.ui.view">
+            <field name="name">appointment.refund.request.form</field>
+            <field name="model">appointment.refund.request</field>
+            <field name="arch" type="xml">
+                <form string="Refund Request">
+                    <header>
+                        <button name="action_approve" type="object" string="Approve" class="btn-primary" invisible="state != 'pending'"/>
+                        <button name="action_decline" type="object" string="Decline" class="btn-danger" invisible="state != 'pending'"/>
+                        <button name="action_mark_processing" type="object" string="Mark Processing" class="btn-warning" invisible="state != 'approved' or refund_method == 'wallet'"/>
+                        <button name="action_mark_completed" type="object" string="Mark Completed" class="btn-success" invisible="state not in ('approved', 'processing') or refund_method == 'wallet'"/>
+                        <field name="state" widget="statusbar" statusbar_visible="pending,approved,processing,completed"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="sequence" readonly="1"/>
+                            </h1>
+                        </div>
+
+                        <group>
+                            <group string="Appointment Information">
+                                <field name="appointment_id" readonly="1"/>
+                                <field name="partner_id" readonly="1"/>
+                                <field name="original_price" readonly="1"/>
+                                <field name="refund_amount" readonly="1"/>
+                            </group>
+                            <group string="Refund Method">
+                                <field name="refund_method" readonly="1"/>
+                            </group>
+                        </group>
+
+                        <!-- Bank Transfer Details -->
+                        <group string="Bank Transfer Details" invisible="refund_method != 'bank_transfer'">
+                            <group>
+                                <field name="bank_name" readonly="1"/>
+                                <field name="account_holder_name" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="account_number" readonly="1"/>
+                                <field name="swift_code" readonly="1"/>
+                            </group>
+                        </group>
+
+                        <!-- Same Card Details -->
+                        <group string="Card Information" invisible="refund_method != 'same_card'">
+                            <group>
+                                <field name="card_type" readonly="1"/>
+                                <field name="card_last_four" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="transaction_reference" readonly="1"/>
+                            </group>
+                        </group>
+
+                        <group string="Customer Request">
+                            <field name="reason" readonly="1" nolabel="1" colspan="2"/>
+                        </group>
+
+                        <group string="Admin Response" invisible="state == 'pending'">
+                            <group>
+                                <field name="reviewed_by" readonly="1"/>
+                                <field name="reviewed_at" readonly="1"/>
+                                <field name="completed_at" readonly="1" invisible="state != 'completed'"/>
+                            </group>
+                            <group invisible="state != 'declined'">
+                                <field name="decline_reason" readonly="1"/>
+                            </group>
+                        </group>
+
+                        <group string="Admin Notes">
+                            <field name="admin_notes" nolabel="1" colspan="2" placeholder="Add internal notes here..."/>
+                        </group>
+
+                        <group string="Timestamps">
+                            <group>
+                                <field name="requested_at" readonly="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="view_appointment_refund_request_search" model="ir.ui.view">
+            <field name="name">appointment.refund.request.search</field>
+            <field name="model">appointment.refund.request</field>
+            <field name="arch" type="xml">
+                <search string="Search Refund Requests">
+                    <field name="sequence"/>
+                    <field name="appointment_id"/>
+                    <field name="partner_id"/>
+                    <separator/>
+                    <filter name="filter_pending" string="Pending" domain="[('state', '=', 'pending')]"/>
+                    <filter name="filter_approved" string="Approved" domain="[('state', '=', 'approved')]"/>
+                    <filter name="filter_processing" string="Processing" domain="[('state', '=', 'processing')]"/>
+                    <filter name="filter_completed" string="Completed" domain="[('state', '=', 'completed')]"/>
+                    <filter name="filter_declined" string="Declined" domain="[('state', '=', 'declined')]"/>
+                    <separator/>
+                    <filter name="filter_bank_transfer" string="Bank Transfer" domain="[('refund_method', '=', 'bank_transfer')]"/>
+                    <filter name="filter_same_card" string="Same Card" domain="[('refund_method', '=', 'same_card')]"/>
+                    <filter name="filter_wallet" string="Wallet" domain="[('refund_method', '=', 'wallet')]"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                        <filter name="group_method" string="Refund Method" context="{'group_by': 'refund_method'}"/>
+                        <filter name="group_partner" string="Customer" context="{'group_by': 'partner_id'}"/>
+                        <filter name="group_reviewed_by" string="Reviewed By" context="{'group_by': 'reviewed_by'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Kanban View -->
+        <record id="view_appointment_refund_request_kanban" model="ir.ui.view">
+            <field name="name">appointment.refund.request.kanban</field>
+            <field name="model">appointment.refund.request</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="state" class="o_kanban_mobile">
+                    <field name="sequence"/>
+                    <field name="partner_id"/>
+                    <field name="refund_amount"/>
+                    <field name="refund_method"/>
+                    <field name="state"/>
+                    <field name="decline_reason"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card oe_kanban_global_click">
+                                <div class="oe_kanban_content">
+                                    <div class="o_kanban_record_top">
+                                        <div class="o_kanban_record_headings">
+                                            <strong class="o_kanban_record_title">
+                                                <field name="sequence"/>
+                                            </strong>
+                                        </div>
+                                        <span t-if="record.state.raw_value == 'pending'" class="badge bg-warning">Pending</span>
+                                        <span t-if="record.state.raw_value == 'approved'" class="badge bg-primary">Approved</span>
+                                        <span t-if="record.state.raw_value == 'processing'" class="badge bg-info">Processing</span>
+                                        <span t-if="record.state.raw_value == 'completed'" class="badge bg-success">Completed</span>
+                                        <span t-if="record.state.raw_value == 'declined'" class="badge bg-danger">Declined</span>
+                                    </div>
+                                    <div class="o_kanban_record_body">
+                                        <div><strong>Customer:</strong> <field name="partner_id"/></div>
+                                        <div><strong>Amount:</strong> <field name="refund_amount" widget="monetary"/></div>
+                                        <div><strong>Method:</strong> <field name="refund_method"/></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Decline Wizard Form -->
+        <record id="view_appointment_refund_decline_wizard_form" model="ir.ui.view">
+            <field name="name">appointment.refund.decline.wizard.form</field>
+            <field name="model">appointment.refund.decline.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Decline Refund Request">
+                    <group>
+                        <field name="refund_request_id" readonly="1"/>
+                        <field name="decline_reason" required="1" placeholder="Please provide a reason for declining this refund request..."/>
+                    </group>
+                    <footer>
+                        <button name="action_confirm_decline" type="object" string="Confirm Decline" class="btn-danger"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="appointment_refund_request_action" model="ir.actions.act_window">
+            <field name="name">Refund Requests</field>
+            <field name="res_model">appointment.refund.request</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="search_view_id" ref="view_appointment_refund_request_search"/>
+            <field name="context">{'search_default_filter_pending': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No refund requests yet
+                </p>
+                <p>
+                    Refund requests from customers will appear here.
+                    You can approve, decline, or mark them as completed.
+                </p>
+            </field>
+        </record>
+
+        <!-- Sequence for Refund Request -->
+        <record id="seq_appointment_refund_request" model="ir.sequence">
+            <field name="name">Appointment Refund Request Sequence</field>
+            <field name="code">appointment.refund.request.sequence</field>
+            <field name="prefix">REF/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

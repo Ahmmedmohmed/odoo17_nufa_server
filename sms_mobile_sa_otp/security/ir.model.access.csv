@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+product_template_img,product_template_img,model_product_template_img,,1,1,1,1
+access_wallet_transaction_user,wallet.transaction.user,model_wallet_transaction,,1,1,1,0
+access_wallet_transaction_manager,wallet.transaction.manager,model_wallet_transaction,base.group_system,1,1,1,1
+access_wallet_transfer_request_user,wallet.transfer.request.user,model_wallet_transfer_request,,1,1,1,0
+access_wallet_transfer_request_manager,wallet.transfer.request.manager,model_wallet_transfer_request,base.group_system,1,1,1,1
+access_wallet_transfer_decline_wizard,wallet.transfer.decline.wizard,model_wallet_transfer_decline_wizard,,1,1,1,1
+access_wallet_transfer_complete_wizard,wallet.transfer.complete.wizard,model_wallet_transfer_complete_wizard,,1,1,1,1
+access_product_review_portal,product.review.portal,model_product_review,base.group_portal,1,0,1,0
+access_product_review_user,product.review.user,model_product_review,base.group_user,1,0,1,0
+access_product_review_manager,product.review.manager,model_product_review,sales_team.group_sale_manager,1,1,1,1
+access_product_stock_notification,product.stock.notification,model_product_stock_notification,base.group_user,1,1,1,1

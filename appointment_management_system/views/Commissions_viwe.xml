@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ==========================================
+         1. شاشات طرق الدفع (Payout Methods)
+         ========================================== -->
+    <record id="view_wallet_payout_method_tree" model="ir.ui.view">
+        <field name="name">wallet.payout.method.tree</field>
+        <field name="model">wallet.payout.method</field>
+        <field name="arch" type="xml">
+            <tree string="Payout Methods">
+                <field name="employee_id"/>
+                <field name="type"/>
+                <field name="label"/>
+                <field name="active" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_wallet_payout_method_form" model="ir.ui.view">
+        <field name="name">wallet.payout.method.form</field>
+        <field name="model">wallet.payout.method</field>
+        <field name="arch" type="xml">
+            <form string="Payout Method">
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="type"/>
+                            <field name="label"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                        <group attrs="{'invisible': [('type', '!=', 'bank_account')]}">
+                            <field name="bank_name"/>
+                            <field name="account_holder_name"/>
+                            <field name="iban"/>
+                        </group>
+                        <group attrs="{'invisible': [('type', '!=', 'mobile_wallet')]}">
+                            <field name="wallet_provider"/>
+                            <field name="phone_number"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wallet_payout_methods" model="ir.actions.act_window">
+        <field name="name">Payout Methods</field>
+        <field name="res_model">wallet.payout.method</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- ==========================================
+         2. شاشات طلبات السحب (Withdrawal Requests)
+         ========================================== -->
+    <record id="view_wallet_withdrawal_request_tree" model="ir.ui.view">
+        <field name="name">wallet.withdrawal.request.tree</field>
+        <field name="model">wallet.withdrawal.request</field>
+        <field name="arch" type="xml">
+            <tree string="Withdrawal Requests" decoration-info="state == 'requested'" decoration-success="state == 'completed'" decoration-danger="state == 'rejected'">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="amount" sum="Total Requested"/>
+                <field name="payout_method_id"/>
+                <field name="create_date" string="Request Date"/>
+                <field name="state" widget="badge" decoration-info="state == 'requested'" decoration-success="state == 'completed'" decoration-danger="state == 'rejected'"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_wallet_withdrawal_request_form" model="ir.ui.view">
+        <field name="name">wallet.withdrawal.request.form</field>
+        <field name="model">wallet.withdrawal.request</field>
+        <field name="arch" type="xml">
+            <form string="Withdrawal Request">
+                <header>
+                    <!-- أزرار الموافقة والرفض تظهر فقط لو الطلب معلق -->
+                    <button name="action_approve" type="object" string="Approve &amp; Deduct" class="btn-success" attrs="{'invisible': [('state', '!=', 'requested')]}"/>
+                    <button name="action_reject" type="object" string="Reject" class="btn-danger" attrs="{'invisible': [('state', '!=', 'requested')]}"/>
+                    <field name="state" widget="statusbar" statusbar_visible="requested,processing,completed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="amount" widget="monetary"/>
+                            <field name="payout_method_id"/>
+                        </group>
+                        <group>
+                            <field name="create_date" readonly="1"/>
+                            <field name="completed_date" attrs="{'invisible': [('state', '!=', 'completed')]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Admin Notes">
+                            <field name="notes" placeholder="Add internal notes here..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wallet_withdrawal_requests" model="ir.actions.act_window">
+        <field name="name">Withdrawal Requests</field>
+        <field name="res_model">wallet.withdrawal.request</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- ==========================================
+         3. القوائم (Menus)
+         ========================================== -->
+    <!-- قائمة رئيسية للمحفظة تحت قائمة الحجوزات -->
+    <menuitem id="menu_wallet_root"
+              name="Wallet &amp; Payouts"
+              parent="menu_appointment_root"
+              sequence="95"/>
+
+    <menuitem id="menu_withdrawal_requests"
+              name="Withdrawal Requests"
+              parent="menu_wallet_root"
+              action="action_wallet_withdrawal_requests"
+              sequence="10"/>
+
+    <menuitem id="menu_payout_methods"
+              name="Payout Methods"
+              parent="menu_wallet_root"
+              action="action_wallet_payout_methods"
+              sequence="20"/>
+
+</odoo>

@@ -2,41 +2,46 @@
 
 from odoo import api, fields, models, _
 from datetime import datetime, date, timedelta
+from zoneinfo import ZoneInfo
 from collections import OrderedDict
-import pytz
-
 
 
 class Product(models.Model):
     _inherit = 'product.product'
 
-
     is_appointment_service = fields.Boolean(string='Appointment Service')
     is_appointment_package = fields.Boolean(string='Appointment Package')
-    appointment_package_line_ids = fields.One2many('appointment.package.line', 'product_pack_id', string='Appointment Package Lines')
+    appointment_package_line_ids = fields.One2many('appointment.package.line', 'product_pack_id',
+                                                   string='Appointment Package Lines')
     plan_ids = fields.One2many('appointment.service.price.plan', 'service_id', string='Associated Plans')
     product_component_ids = fields.One2many('product.component', 'product_id', string='Components')
-
 
     def action_update_appointment(self, appointment_id, status):
         appointment_id = self.env['appointment.management'].sudo().search([('id', '=', appointment_id)])
         for slot in appointment_id.slot_ids:
-            slot.sudo().update({'state':'done' if status == '2' else 'draft'})
+            slot.sudo().update({'state': 'done' if status == '2' else 'draft'})
         appointment_id.write({'state': status})
 
-
     def action_get_appointment_branch(self, package_id=False):
-        package_id = self.env['product.product'].browse(int(package_id))
-        dict = {}
+        """
+        🚀 التعديل: جلب الفروع من خطط أسعار الخدمة نفسها لضمان ظهور كل الفروع،
+        سواء كانت الخدمة منفردة أو داخل باقة.
+        """
+        res_dict = {}
 
-        if package_id:
-            for record in package_id.appointment_package_line_ids.filtered(lambda r: r.product_id.id == self.id):
-                dict[record.branch_id.id] = record.branch_id.display_name
-        else:
-            branch_ids = self.plan_ids.mapped('branch_id')
-            for branch in branch_ids:
-                dict[branch.id] = branch.display_name
-        return dict
+        # 1. جلب الفروع من خطط أسعار الخدمة (الطبيعي والمنطقي)
+        branch_ids = self.plan_ids.mapped('branch_id')
+        for branch in branch_ids:
+            res_dict[branch.id] = branch.display_name
+
+        # 2. كبديل احتياطي (لو الخدمة ملهاش خطة أسعار)، نقرأ من إعدادات سطر الباقة
+        if not res_dict and package_id:
+            package_obj = self.env['product.product'].browse(int(package_id))
+            for record in package_obj.appointment_package_line_ids.filtered(lambda r: r.product_id.id == self.id):
+                if record.branch_id:
+                    res_dict[record.branch_id.id] = record.branch_id.display_name
+
+        return res_dict
 
     def action_get_available_location_types(self, branch_id, employee_id, package_id=False):
         """Get available location types based on location_type selection field"""
@@ -57,8 +62,8 @@ class Product(models.Model):
             employee = self.env['hr.employee'].browse(int(employee_id)) if employee_id else False
             if employee and employee.department_id:
                 plan = self.plan_ids.filtered(
-                    lambda r: r.branch_id.id == int(branch_id) and 
-                             r.department_id.id == employee.department_id.id
+                    lambda r: r.branch_id.id == int(branch_id) and
+                              r.department_id.id == employee.department_id.id
                 )
                 if plan:
                     location_type = plan[0].location_type
@@ -72,44 +77,52 @@ class Product(models.Model):
         return available_types
 
     def action_get_appointment_employee(self, branch_id, package_id=False):
-        package_id = self.env['product.product'].browse(int(package_id))
-        dict = {}
+        """
+        🚀 التعديل: إجبار الكود على تصفية الموظفين بناءً على الفرع المختار،
+        حتى لو كانت الخدمة جزء من باقة.
+        """
+        import logging
+        _logger = logging.getLogger(__name__)
 
-        if package_id:
-            for record in package_id.appointment_package_line_ids.filtered(lambda r: r.product_id.id == self.id):
-                employee_ids = record.department_id.member_ids.filtered(lambda r: r.is_appointment_employee == True)
-                for employee in employee_ids:
-                    dict[employee.id] = employee.display_name
+        res_dict = {}
+
+        # 1. البحث عن خطط الأسعار المطابقة للفرع المختار
+        matching_plans = self.plan_ids.filtered(lambda record: record.branch_id.id == int(branch_id))
+
+        if matching_plans:
+            employee_ids = matching_plans.mapped('department_id').member_ids.filtered(
+                lambda r: r.is_appointment_employee == True)
+            for employee in employee_ids:
+                res_dict[employee.id] = employee.display_name
         else:
-            matching_plans = self.plan_ids.filtered(lambda record: record.branch_id.id == int(branch_id))
-            
-            if matching_plans:
-                employee_ids = matching_plans.mapped('department_id').member_ids.filtered(lambda r: r.is_appointment_employee == True)
-                for employee in employee_ids:
-                    dict[employee.id] = employee.display_name
-            else:
-                employee_ids = self.plan_ids.mapped('department_id').member_ids.filtered(lambda r: r.is_appointment_employee == True)
-                for employee in employee_ids:
-                    dict[employee.id] = employee.display_name
+            # 2. كبديل احتياطي للباقات
+            if package_id:
+                package_obj = self.env['product.product'].browse(int(package_id))
+                for record in package_obj.appointment_package_line_ids.filtered(lambda r: r.product_id.id == self.id):
+                    employee_ids = record.department_id.member_ids.filtered(lambda r: r.is_appointment_employee == True)
+                    for employee in employee_ids:
+                        res_dict[employee.id] = employee.display_name
 
-        return dict
+            # 3. خط الدفاع الأخير لو مفيش حاجة رجعت
+            if not res_dict:
+                employee_ids = self.plan_ids.mapped('department_id').member_ids.filtered(
+                    lambda r: r.is_appointment_employee == True)
+                for employee in employee_ids:
+                    res_dict[employee.id] = employee.display_name
 
+        return res_dict
 
     def action_get_appointment_date(self, employee_id, package_id=False):
         days_list = []
-        user_tz = self.env.user.tz or 'UTC'
-        tz = pytz.timezone(user_tz)
-        today = datetime.now(tz).date()
 
         for x in range(30):
-            days_list.append(str(today + timedelta(days=x)))
+            days_list.append(str(date.today() + timedelta(days=x)))
 
         return days_list
 
-
     def action_get_appointment_employee_slot(self, employee_id, date, type, branch, package_id=False):
         package_id = self.env['product.product'].browse(int(package_id))
-        slots = 1
+        slots = 99
         dict = {}
         date = datetime.strptime(date, '%Y-%m-%d').date()
         employee_id = self.env['hr.employee'].browse(int(employee_id))
@@ -121,147 +134,254 @@ class Product(models.Model):
                 if type == 'outside':
                     slots = record.service_slot_outside
         else:
+            # Handle null branch_id by providing a default or filtering it out
             branch_filter = []
             if branch and str(branch).strip():
                 branch_filter = [('branch_id', '=', int(branch))]
-            
+
             service_plan_id = self.env['appointment.service.price.plan'].search([
-                ('service_id', '=', self.id), 
-                ('department_id', '=', employee_id.department_id.id)
-            ] + branch_filter)
-            
-            if not service_plan_id and branch_filter:
-                service_plan_id = self.env['appointment.service.price.plan'].search([
-                    ('service_id', '=', self.id), 
-                    ('department_id', '=', employee_id.department_id.id)
-                ], limit=1)
-            
+                                                                                    ('service_id', '=', self.id),
+                                                                                    ('department_id', '=',
+                                                                                     employee_id.department_id.id)
+                                                                                ] + branch_filter)
+
             if service_plan_id and type == 'inside':
-                slots = service_plan_id[0].service_slot_inside
+                slots = service_plan_id.service_slot_inside
             if service_plan_id and type == 'outside':
-                slots = service_plan_id[0].service_slot_outside
+                slots = service_plan_id.service_slot_outside
 
         return self.get_all_available_slot_groups_records(employee_id.id, date, slots)
 
-
     def action_get_appointment_service_price(self, branch_id, employee_id, appointment_type, package_id=False):
+        import logging
+        _logger = logging.getLogger(__name__)
+
         try:
             branch_id = int(branch_id)
             employee_obj = self.env['hr.employee'].browse(int(employee_id))
             package_obj = self.env['product.product'].browse(int(package_id)) if package_id else False
 
+            _logger.info(
+                f"Pricing calculation - Service: {self.id}, Branch: {branch_id}, Employee: {employee_obj.id}, Type: {appointment_type}, Package: {package_obj.id if package_obj else 'None'}")
+
+            # Add file-based debugging
+            debug_file = "/tmp/cart_debug.log"
+            with open(debug_file, "a") as f:
+                f.write(
+                    f"PRODUCT PRICE CALC - Service: {self.id}, Branch: {branch_id}, Employee: {employee_obj.id}, Department: {employee_obj.department_id.id if employee_obj.department_id else 'None'}, Type: {appointment_type}\n")
+
+            # Check if employee has department
             if not employee_obj.department_id:
+                _logger.warning(f"Employee {employee_obj.id} has no department assigned")
                 return 0.0
 
             if appointment_type == 'inside' and package_obj:
                 package_line = package_obj.appointment_package_line_ids.filtered(
-                    lambda r: r.product_id.id == self.id and r.branch_id.id == branch_id and r.department_id.id == employee_obj.department_id.id
+                    lambda
+                        r: r.product_id.id == self.id and r.branch_id.id == branch_id and r.department_id.id == employee_obj.department_id.id
                 )
+                _logger.info(f"Package inside pricing - found {len(package_line)} matching lines")
                 if package_line:
-                    return float(package_line[0].service_price_inside)
+                    price = float(package_line[0].service_price_inside)
+                    _logger.info(f"Package inside price: {price}")
+                    return price
                 return 0.0
 
             elif appointment_type == 'outside' and package_obj:
                 package_line = package_obj.appointment_package_line_ids.filtered(
-                    lambda r: r.product_id.id == self.id and r.branch_id.id == branch_id and r.department_id.id == employee_obj.department_id.id
+                    lambda
+                        r: r.product_id.id == self.id and r.branch_id.id == branch_id and r.department_id.id == employee_obj.department_id.id
                 )
+                _logger.info(f"Package outside pricing - found {len(package_line)} matching lines")
                 if package_line:
-                    return float(package_line[0].service_price_outside)
+                    price = float(package_line[0].service_price_outside)
+                    _logger.info(f"Package outside price: {price}")
+                    return price
                 return 0.0
 
             elif appointment_type == 'inside':
-                plan = self.plan_ids.filtered(lambda r: r.branch_id.id == branch_id and r.department_id.id == employee_obj.department_id.id)
+                plan = self.plan_ids.filtered(
+                    lambda r: r.branch_id.id == branch_id and r.department_id.id == employee_obj.department_id.id)
+                _logger.info(f"Service inside pricing - found {len(plan)} matching plans")
+
+                with open(debug_file, "a") as f:
+                    f.write(
+                        f"PRODUCT PRICE CALC - Looking for plans with branch {branch_id} and department {employee_obj.department_id.id}\n")
+                    f.write(f"PRODUCT PRICE CALC - Found {len(plan)} matching plans\n")
+
                 if plan:
-                    return float(plan[0].service_price_inside)
+                    price = float(plan[0].service_price_inside)
+                    _logger.info(f"Service inside price: {price}")
+
+                    with open(debug_file, "a") as f:
+                        f.write(f"PRODUCT PRICE CALC - Returning price: {price}\n")
+
+                    return price
                 else:
-                    department_plan = self.plan_ids.filtered(lambda r: r.department_id.id == employee_obj.department_id.id)
+                    # FALLBACK: Try to find plan with matching department_id only (ignoring branch_id mismatch)
+                    department_plan = self.plan_ids.filtered(
+                        lambda r: r.department_id.id == employee_obj.department_id.id)
                     if department_plan:
-                        return float(department_plan[0].service_price_inside)
+                        price = float(department_plan[0].service_price_inside)
+                        _logger.warning(
+                            f"Service inside pricing - Using fallback plan for department {employee_obj.department_id.id}, price: {price}")
+
+                        with open(debug_file, "a") as f:
+                            f.write(f"PRODUCT PRICE CALC - FALLBACK - Using department-only match, price: {price}\n")
+
+                        return price
+
+                    # Debug: show available plans
+                    available_plans = [(p.branch_id.id, p.department_id.id, p.service_price_inside) for p in
+                                       self.plan_ids]
+                    _logger.info(f"Available plans for service {self.id}: {available_plans}")
+
+                    with open(debug_file, "a") as f:
+                        f.write(f"PRODUCT PRICE CALC - No matching plans found. Available plans: {available_plans}\n")
+
                 return 0.0
 
             else:  # outside
-                plan = self.plan_ids.filtered(lambda r: r.branch_id.id == branch_id and r.department_id.id == employee_obj.department_id.id)
+                plan = self.plan_ids.filtered(
+                    lambda r: r.branch_id.id == branch_id and r.department_id.id == employee_obj.department_id.id)
+                _logger.info(f"Service outside pricing - found {len(plan)} matching plans")
                 if plan:
-                    return float(plan[0].service_price_outside)
+                    price = float(plan[0].service_price_outside)
+                    _logger.info(f"Service outside price: {price}")
+                    return price
                 else:
-                    department_plan = self.plan_ids.filtered(lambda r: r.department_id.id == employee_obj.department_id.id)
+                    # FALLBACK: Try to find plan with matching department_id only (ignoring branch_id mismatch)
+                    department_plan = self.plan_ids.filtered(
+                        lambda r: r.department_id.id == employee_obj.department_id.id)
                     if department_plan:
-                        return float(department_plan[0].service_price_outside)
+                        price = float(department_plan[0].service_price_outside)
+                        _logger.warning(
+                            f"Service outside pricing - Using fallback plan for department {employee_obj.department_id.id}, price: {price}")
+
+                        with open(debug_file, "a") as f:
+                            f.write(
+                                f"PRODUCT PRICE CALC - FALLBACK OUTSIDE - Using department-only match, price: {price}\n")
+
+                        return price
+
+                    # Debug: show available plans
+                    _logger.info(
+                        f"Available plans for service {self.id}: {[(p.branch_id.id, p.department_id.id, p.service_price_outside) for p in self.plan_ids]}")
                 return 0.0
-        except Exception:
+        except Exception as e:
+            _logger.error(f"Error calculating appointment service price: {str(e)}")
             return 0.0
 
 
+    # 👇 هنا زودنا service_id عشان يستقبل المتغير الأول اللي جاي من الجافاسكريبت
+    @api.model
+    def action_create_appointments(self, service_id, partner_id, appointmentDetails):
+        if not appointmentDetails:
+            return False
 
-    def action_create_appointments(self, partner_id, appointmentDetails):
-        package_id = appointmentDetails['service_id'] if appointmentDetails['isSelectedServicePack'] else False
+        package_id = appointmentDetails.get('service_id') if appointmentDetails.get('isSelectedServicePack') else False
+        pos_reference = appointmentDetails.get('pos_reference', False)
+
+        # 🚀 1. جلب اسم الباقة بالعربي وإرساله للفرونت إند (في حال كانت باقة)
+        if package_id:
+            pkg_obj = self.env['product.product'].browse(int(package_id))
+            appointmentDetails['package_arabic_name'] = pkg_obj.with_context(lang='ar_001').display_name or pkg_obj.name
 
         for record in appointmentDetails['services']:
-            service_id = self.env['product.product'].browse(int(record))
+            service_id_obj = self.env['product.product'].browse(int(record))  # تحويل record لـ int
             appointmentDetail = appointmentDetails['services'][record]
             requested_slot_ids = appointmentDetail.get('slot_ids', [])
             slot_ids = self.env['appointment.employee.slot'].sudo().search([('id', 'in', requested_slot_ids)])
-            
-            # Skip this service if no valid slots are found
+
             if not slot_ids:
                 continue
 
-            price = service_id.action_get_appointment_service_price(appointmentDetail.get('branch_id'), appointmentDetail.get('employee_id'), appointmentDetail.get('appointment_type'), package_id)
+            price = service_id_obj.action_get_appointment_service_price(
+                appointmentDetail.get('branch_id'),
+                appointmentDetail.get('employee_id'),
+                appointmentDetail.get('appointment_type'),
+                package_id
+            )
 
-            taxes = service_id.taxes_id
-            if taxes:
-                tax_res = taxes.compute_all(price, currency=service_id.currency_id or self.env.company.currency_id, quantity=1, product=service_id, partner=self.env['res.partner'].browse(partner_id) if partner_id else False)
-                price_incl = tax_res['total_included']
-            else:
-                price_incl = price
+            # 🚀 2. الخدعة: جلب الأسماء بالعربي واستبدال القيم الإنجليزية بها مباشرة لترتاح من تعديلات الفرونت إند
+            emp_obj = self.env['hr.employee'].browse(
+                int(appointmentDetail.get('employee_id'))) if appointmentDetail.get('employee_id') else False
+            branch_obj = self.env['res.company'].browse(
+                int(appointmentDetail.get('branch_id'))) if appointmentDetail.get('branch_id') else False
 
-            first_slot = slot_ids[0]
-            appt_date = first_slot.date
-            time_str = first_slot.name
-            appt_time = datetime.strptime(time_str, "%H:%M").time()
-            naive_dt = datetime.combine(appt_date, appt_time)
-            display_date_str = naive_dt.strftime("%Y-%m-%d %H:%M")
+            # حقن اسم الخدمة بالعربي
+            appointmentDetails['services'][record]['service_name'] = service_id_obj.with_context(
+                lang='ar_001').display_name or service_id_obj.name
 
+            # حقن اسم الموظفة والفرع بالعربي
+            if emp_obj:
+                appointmentDetails['services'][record]['employee_name'] = emp_obj.with_context(lang='ar_001').name
+            if branch_obj:
+                appointmentDetails['services'][record]['branch_name'] = branch_obj.with_context(lang='ar_001').name
+
+            # معالجة الوقت بناءً على منطقة المستخدم الزمنية
+            date = datetime.strptime(appointmentDetail.get('date'), "%Y-%m-%d").date()
+            time_str = slot_ids.mapped('name')[0]
+            time = datetime.strptime(time_str, "%H:%M").time()
+
+            user_tz = self.env.user.tz or 'UTC'
+            local_dt = datetime.combine(date, time).replace(tzinfo=ZoneInfo(user_tz))
+            utc_dt = local_dt.astimezone(ZoneInfo("UTC"))
+            final_dt = utc_dt.replace(tzinfo=None)
+
+            # إنشاء الحجز
             appointment_id = self.env['appointment.management'].sudo().create({
+                'appointment_ref': self.env['ir.sequence'].next_by_code('appointment.management') or 'New',
                 'partner_id': partner_id,
-                'date': naive_dt,
-                'display_date': display_date_str,
-                'product_id': record,
+                'date': final_dt,
+                'product_id': int(record),  # تحويل لـ int لضمان التوافق
                 'employee_id': appointmentDetail.get('employee_id'),
                 'branch_id': appointmentDetail.get('branch_id'),
-                'price_unit': price_incl,
+                'price_unit': price,
                 'appointment_type': appointmentDetail.get('appointment_type'),
                 'state': '1',
+                'pos_reference': pos_reference,
                 'slot_ids': [(6, 0, slot_ids.ids)]
             })
 
+            # تحديث البيانات للعودة للـ POS
             appointmentDetails['services'][record]['appointment_id'] = appointment_id.id
-            appointmentDetails['services'][record]['appointment_name'] = appointment_id.sequence
+            appointmentDetails['services'][record]['appointment_name'] = appointment_id.appointment_ref
+            appointmentDetails['services'][record]['pos_receipt_number'] = pos_reference
             appointmentDetails['services'][record]['price'] = price
 
+            # تحديث حالة السلوت باستخدام write للأداء الأفضل
             for slot in appointment_id.slot_ids:
-                slot.sudo().update({'state': 'wait'})
+                slot.sudo().write({'state': 'wait'})
 
         return appointmentDetails
-
-
     def get_all_available_slot_groups_records(self, employee_id, appointment_date, required_slots):
-        available_slots = self.env['appointment.employee.slot'].search([('employee_id', '=', int(employee_id)), ('date', '=', appointment_date), ('state', '=', 'draft')])
+
+        available_slots = self.env['appointment.employee.slot'].search([
+            ('employee_id', '=', int(employee_id)),
+            ('date', '=', appointment_date),
+            ('state', '=', 'draft')
+        ])
 
         if not available_slots:
             return []
 
+        # ترتيب الـ slots حسب الوقت
         sorted_slots = sorted(available_slots, key=lambda s: s.time)
 
+        # تجميع الـ slots المتتالية
         consecutive_groups = []
         current_group = [sorted_slots[0]]
 
         for i in range(1, len(sorted_slots)):
+
             prev_time = round(sorted_slots[i - 1].time, 1)
             curr_time = round(sorted_slots[i].time, 1)
 
+            # فرق نص ساعة
             if curr_time == prev_time + 0.5:
                 current_group.append(sorted_slots[i])
+
             else:
                 consecutive_groups.append(current_group)
                 current_group = [sorted_slots[i]]
@@ -269,23 +389,45 @@ class Product(models.Model):
         if current_group:
             consecutive_groups.append(current_group)
 
+        # استخراج الجروبات الصالحة فقط
         result_groups = []
+
         for group in consecutive_groups:
+
+            # تجاهل أي group فيه slot مش draft
+            valid_group = all(slot.state == 'draft' for slot in group)
+
+            if not valid_group:
+                continue
+
+            # التأكد إن الجروب يحتوي عدد كافي من الـ slots
             if len(group) >= required_slots:
+
                 for i in range(len(group) - required_slots + 1):
+
                     selected = group[i:i + required_slots]
-                    result_groups.append(selected)
+
+                    # تأكد إن كل الـ selected draft
+                    if all(slot.state == 'draft' for slot in selected):
+                        result_groups.append(selected)
+
+        # تجهيز النتيجة النهائية
         result = {}
 
         for group in result_groups:
-            # Skip empty groups to prevent IndexError
+
             if not group:
                 continue
-                
+
             slot_ids = []
 
             for slot in group:
                 slot_ids.append(slot.id)
 
-            result[group[0].name] = {'name': group[0].name, 'id': group[0].id, 'ids': slot_ids}
+            result[group[0].name] = {
+                'name': group[0].name,
+                'id': group[0].id,
+                'ids': slot_ids
+            }
+
         return result

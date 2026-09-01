@@ -2,9 +2,14 @@
 <odoo>
     <data>
         <menuitem id="menu_appointment_root" name="Appointments" web_icon="appointment_management_system,static/description/icon.png" sequence="10">
-            <menuitem id="menu_appointment_management" name="Appointments" action="appointment_management_action" sequence="1"/>
 
-            <menuitem id="menu_appointment_configuration" name="Configuration" sequence="2">
+            <menuitem id="menu_appointment_management" name="All Appointments" action="appointment_management_action" sequence="1"/>
+
+            <menuitem id="menu_appointment_create_direct" name="New Appointment" action="action_appointment_booking_wizard" sequence="2"/>
+
+            <menuitem id="menu_appointment_refund_requests" name="Refund Requests" action="appointment_refund_request_action" sequence="3"/>
+
+            <menuitem id="menu_appointment_configuration" name="Configuration" sequence="10">
                 <menuitem id="menu_appointment_service_category" name="Appointment Services Category" action="appointment_product_category_action" sequence="1"/>
                 <menuitem id="menu_appointment_service" name="Appointment Services" action="appointment_service_action" sequence="2"/>
                 <menuitem id="menu_appointment_department" name="Appointment Department" action="appointment_department_action" sequence="3"/>

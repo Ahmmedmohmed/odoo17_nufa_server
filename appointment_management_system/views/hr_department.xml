@@ -11,13 +11,19 @@
                         <field name="is_appointment_department" invisible="1"/>
                         <field name="is_times_confirmed" invisible="1"/>
 
+                        <button name="action_view_department_employees"
+                                string="Employees"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-users"
+                                invisible="not is_appointment_department"/>
+
                         <button name="action_available_in_appointment" string="Available In Appointment" type="object" invisible="is_appointment_department" class="btn btn-success"/>
                         <button name="action_unavailable_in_appointment" string="Unavailable In Appointment" type="object" invisible="not is_appointment_department" class="btn btn-danger"/>
                         <button name="action_confirm_times" string="Confirm Appointment Times" type="object" invisible="is_times_confirmed" class="btn btn-success"/>
                     </header>
                 </xpath>
 
-                
                 <xpath expr="//sheet" position="inside">
                     <notebook>
                         <page string="Appointment Time Configuration" invisible="not is_appointment_department">
@@ -35,7 +41,6 @@
                 </xpath>
             </field>
         </record>
-
 
         <record id="appointment_department_action" model="ir.actions.act_window">
             <field name="name">Appointment Department</field>

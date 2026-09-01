@@ -8,7 +8,7 @@
 
     'summary': 'A system for managing appointments.',
 
-    'depends': ['base', 'hr', 'product', 'stock', 'point_of_sale'],
+    'depends': ['base', 'hr', 'product', 'stock', 'point_of_sale' , 'pos_sales_commission'],
 
     'data': [
         # Data Files
@@ -23,19 +23,35 @@
         # Views Files
         'views/appointment_management.xml',
         'views/appointment_refund_policy.xml',
+        'views/Commissions_viwe.xml',
         'views/pos_category.xml',
         'views/product.xml',
         'views/hr_employee.xml',
         'views/hr_department.xml',
         'views/appointment_employee_slot.xml',
         'views/res_company.xml',
-
+        # 'views/appointment_report.xml',
+        'views/report_receipt_template.xml',
+        'views/appointment_refund_request.xml',
+        'views/res_config_settings_views.xml',
+          'views/booking_client_action.xml',
         # Menu File
         'views/menus.xml',
     ],
 
+'assets': {
+        'web.assets_backend': [
+            # 'appointment_management_system/static/src/js/calendar_header_filters.js',
+            'appointment_management_system/static/src/views/calendar/calendar_controller.xml',
+            'appointment_management_system/static/src/xml/calendar_header.xml',
+            'appointment_management_system/static/src/css/kanban.css',
+            'appointment_management_system/static/src/js/booking_screen.js',
+            'appointment_management_system/static/src/xml/booking_screen.xml',
+            'appointment_management_system/static/src/js/override_create_button.js',
+        ],
+    },
+
     'installable': True,
 
     'application': True,
-    'license': 'LGPL-3',
 }

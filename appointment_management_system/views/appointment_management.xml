@@ -5,31 +5,78 @@
             <field name="name">view.appointment.management.tree</field>
             <field name="model">appointment.management</field>
             <field name="arch" type="xml">
-                <tree >
-                    <field name="sequence"/>
-                    <field name="partner_id"/>
-                    <field name="display_date"/>
-                    <field name="appointment_type"/>
-                    <field name="branch_id"/>
-                    <field name="company_id"/>
-                    <field name="state" widget="badge" decoration-success="state == '3'" decoration-primary="state == '2'" decoration-danger="state == '4'"/>
+                <tree create="0" sample="1">
+                    <field name="appointment_ref" decoration-bf="1"/>
+                    <field name="partner_id" optional="show"/>
+                    <field name="date" optional="show"/>
+                    <field name="employee_id" optional="show"/>
+                    <field name="appointment_type" optional="show"/>
+                    <field name="branch_id" optional="show"/>
+
+                    <field name="company_id" optional="hide"/>
+                    <field name="is_printed" string="Printed" widget="boolean_toggle" optional="hide"/>
+
+                    <field name="state" widget="badge"
+                           decoration-muted="state == '0'"
+                           decoration-warning="state == '1'"
+                           decoration-primary="state == '2'"
+                           decoration-success="state == '3'"
+                           decoration-danger="state == '4'"/>
+
+                    <button name="action_print_ticket" string="Print" type="object" icon="fa-print"/>
                 </tree>
             </field>
         </record>
-
 
         <record id="view_appointment_management_form" model="ir.ui.view">
             <field name="name">view.appointment.management.form</field>
             <field name="model">appointment.management</field>
             <field name="arch" type="xml">
                 <form>
-                    <header>
-                        <field name="state" widget="statusbar"/>
-                    </header>
+                      <header>
+    <!-- زر الطباعة: متاح دائماً إلا لو الحجز ملغي -->
+    <button name="action_print_ticket"
+            string="Print Ticket"
+            type="object"
+            class="oe_highlight"
+            icon="fa-print"
+            invisible="state == '4'"/>
+
+    <!-- زر البدء: يظهر فقط في حالة (Approved) -->
+    <button name="action_start_service"
+            type="object"
+            string="Start Service"
+            class="btn-primary"
+            invisible="state != '2'"/>
+
+    <!-- زر الإكمال: يظهر فقط في حالة (In Progress) بعد بدء الخدمة -->
+    <button name="action_appointment_complate"
+            string="Complete"
+            type="object"
+            class="btn-success"
+            invisible="state != 'start'"/>
+
+    <!-- زر الإلغاء: يختفي لو الحجز اكتمل أو اتلغى -->
+    <button name="action_appointment_cancel"
+            string="Cancel"
+            type="object"
+            class="btn-danger"
+            invisible="state in ('3', '4')"/>
+
+    <!-- زر استثناء المرتجع: يظهر فقط لو الحجز ملغي وفيه خصم -->
+    <button name="action_admin_refund_exception"
+            string="Refund Exception (Refund Deduction)"
+            type="object"
+            class="btn-warning"
+            invisible="state != '4' or deduction_amount == 0"/>
+
+    <!-- شريط الحالة: إظهار دورة العمل بالترتيب -->
+    <field name="state" widget="statusbar" statusbar_visible="1,2,start,3"/>
+</header>
                     <sheet>
                         <div class="oe_title">
                             <h1>
-                                <field name="sequence"/>
+                                <field name="appointment_ref"/>
                             </h1>
                         </div>
                         <group>
@@ -37,19 +84,37 @@
                                 <field name="partner_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                 <field name="product_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                 <field name="price_unit"/>
+                                <field name="is_printed" readonly="1"/>
                                 <field name="company_id"/>
+                                <field name="slot_ids" widget="many2many_tags"/>
                             </group>
                             <group>
-                                <field name="display_date"/>
-                                <field name="date" invisible="1"/>
+                                <field name="date"/>
                                 <field name="employee_id" options="{'no_create': True, 'no_create_edit':True}"/>
                                 <field name="service_rate" widget="priority"/>
                                 <field name="branch_id" options="{'no_create': True, 'no_create_edit':True}"/>
                             </group>
                         </group>
+                        <group string="تتبع وقت الخدمة">
+                    <field name="service_start_time"/>
+                    <field name="service_end_time"/>
+                    <field name="service_duration"/>
+                </group>
                         <notebook>
                             <page string="Notes">
                                 <field name="notes"/>
+                            </page>
+                            <page string="Cancellation Details" invisible="state != '4'">
+                                <group>
+                                    <group>
+                                        <field name="cancelled_at"/>
+                                        <field name="deduction_percentage"/>
+                                    </group>
+                                    <group>
+                                        <field name="refund_amount"/>
+                                        <field name="deduction_amount"/>
+                                    </group>
+                                </group>
                             </page>
                         </notebook>
                     </sheet>
@@ -57,21 +122,25 @@
             </field>
         </record>
 
-
         <record id="view_appointment_management_kanban" model="ir.ui.view">
             <field name="name">view.appointment.management.kanban</field>
             <field name="model">appointment.management</field>
             <field name="arch" type="xml">
-                <kanban class="o_kanban_dashboard o_kanban_small_column" sample="1" create="0" default_order="date asc" default_group_by="state">
-                    <field name="sequence"/>
+               <kanban class="o_kanban_dashboard o_kanban_small_column"
+        sample="1"
+        create="0"
+        default_order="id desc"
+        default_group_by="state"
+        records_draggable="true">
+                    <field name="appointment_ref"/>
                     <field name="partner_id"/>
-                    <field name="display_date"/>
                     <field name="date"/>
                     <field name="appointment_type"/>
                     <field name="branch_id"/>
                     <field name="company_id"/>
                     <field name="partner_phone"/>
                     <field name="state"/>
+                    <field name="is_printed"/>
                     <templates>
                         <t t-name="kanban-box">
                             <div t-attf-class="o_has_icon oe_kanban_content oe_kanban_card">
@@ -79,67 +148,64 @@
                                     <div class="o_kanban_card_content mw-100">
                                         <div class="o_kanban_primary_left">
                                             <div class="o_primary me-5">
-                                                <span class="o_text_overflow" t-att-title="record.sequence.value"><t t-esc="record.sequence.value"/></span>
-
+                                                <span class="o_text_overflow" t-if="record.appointment_ref &amp;&amp; record.appointment_ref.value" t-att-title="record.appointment_ref.value">
+                                                  <t t-esc="record.appointment_ref.value"/>
+                                                </span>
                                                 <span class="o_text_overflow text-muted" t-if="record.partner_id.value">
                                                     <span class="fa fa-user me-2" aria-label="Partner" title="Customer"/>
                                                     <t t-esc="record.partner_id.value"/>
                                                 </span>
-
                                                 <div t-if="record.partner_phone.raw_value" class="text-muted o_row">
                                                     <span class="fa fa-phone me-2" title="Customer Phone"/>
                                                     <field name="partner_phone"/>
                                                 </div>
-
                                                 <div t-if="record.product_id.raw_value" class="text-muted o_row">
                                                     <span class="fa fa-cubes me-2" title="Service"/>
                                                     <field name="product_id"/>
                                                 </div>
-
                                                 <div t-if="record.employee_id.raw_value" class="text-muted o_row">
                                                     <span class="fa fa-users me-2" title="Employee"/>
                                                     <field name="employee_id"/>
                                                 </div>
-                                                
-                                                <div t-if="record.display_date.value" class="text-muted o_row">
+                                                <div t-if="record.date.raw_value" class="text-muted o_row">
                                                     <span class="fa fa-clock-o me-2" title="Dates"/>
-                                                    <field name="display_date"/>
+                                                    <field name="date"/>
                                                 </div>
-
                                                 <div t-if="record.price_unit.raw_value" class="text-muted o_row">
                                                     <span class="fa fa-dollar me-2" title="Prices"/>
                                                     <field name="price_unit"/>
                                                 </div>
-
                                                 <div t-if="record.branch_id.raw_value" class="text-muted o_row">
                                                     <span class="fa fa-building me-2" title="Branch"/>
                                                     <field name="branch_id"/>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <span t-if="record.is_printed.raw_value" class="badge rounded-pill text-bg-success">Printed</span>
+                                                    <span t-if="!record.is_printed.raw_value" class="badge rounded-pill text-bg-warning">Not Printed</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-
                                 <div class="o_kanban_record_bottom mt-3">
                                     <div class="oe_kanban_bottom_left">
                                         <div class="row">
                                             <div class="col-4">
                                                 <field name="appointment_type" class="float-left" widget="badge" decoration-success="appointment_type == 'inside'" decoration-danger="appointment_type == 'outside'"/>
                                             </div>
-
                                             <div class="col-8">
                                                 <field name="service_rate" widget="priority" readonly="1" class="float-end"/>
                                             </div>
                                         </div>
                                     </div>
-
-                                    
                                     <div class="oe_kanban_bottom_right">
-                                        <div class="o_project_kanban_boxes d-flex align-items-baseline">
-                                            <a class="o_project_kanban_box btn btn-success" name="action_appointment_complate" type="object" invisible="state != '2'" role="button">
-                                                <strong>Complate</strong>
-                                            </a>
+                                        <div class="o_project_kanban_boxes d-flex align-items-baseline gap-1">
+                                            <button class="btn btn-primary btn-sm" name="action_print_ticket" type="object">
+                                                Print
+                                            </button>
+                                            <button class="btn btn-success btn-sm" name="action_appointment_complate" type="object" invisible="state != '2'">
+                                                <strong>Complete</strong>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -150,11 +216,81 @@
             </field>
         </record>
 
+        <record id="view_appointment_management_graph" model="ir.ui.view">
+            <field name="name">view.appointment.management.graph</field>
+            <field name="model">appointment.management</field>
+            <field name="arch" type="xml">
+                <graph string="Appointments Analysis" type="bar">
+                    <field name="date" type="row"/>
+                    <field name="branch_id" type="col"/>
+                    <field name="price_unit" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="view_appointment_management_pivot" model="ir.ui.view">
+            <field name="name">view.appointment.management.pivot</field>
+            <field name="model">appointment.management</field>
+            <field name="arch" type="xml">
+                <pivot string="Appointments Pivot">
+                    <field name="date" type="row"/>
+                    <field name="branch_id" type="col"/>
+                    <field name="price_unit" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="view_appointment_management_calendar" model="ir.ui.view">
+            <field name="name">view.appointment.management.calendar</field>
+            <field name="model">appointment.management</field>
+            <field name="arch" type="xml">
+                <calendar string="Appointments Calendar" date_start="date" color="state" event_open_popup="true" mode="day">
+                    <field name="employee_id" filters="1"/>
+                    <field name="state" filters="1"/>
+                    <field name="branch_id" filters="1"/>
+                    <field name="partner_id" filters="1"/>
+                    <field name="is_printed"/>
+                    <field name="product_id"/>
+                    <field name="price_unit"/>
+                </calendar>
+            </field>
+        </record>
+
+        <record id="view_appointment_management_search" model="ir.ui.view">
+            <field name="name">appointment.management.search</field>
+            <field name="model">appointment.management</field>
+            <field name="arch" type="xml">
+                <search string="Search Appointments">
+                    <field name="appointment_ref"/>
+                    <field name="partner_id"/>
+                    <field name="employee_id"/>
+                    <field name="partner_phone" string="Phone Number"/>
+
+                    <filter name="not_printed" string="Not Printed" domain="[('is_printed','=',False)]"/>
+                    <filter name="printed" string="Printed" domain="[('is_printed','=',True)]"/>
+                    <separator/>
+                    <filter name="filter_approved" string="Approved" domain="[('state','=','2')]"/>
+                    <filter name="filter_completed" string="Completed" domain="[('state','=','3')]"/>
+
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_state" string="Status" context="{'group_by':'state'}"/>
+                        <filter name="group_employee" string="Employee" context="{'group_by':'employee_id'}"/>
+                    </group>
+
+                    <searchpanel>
+                        <field name="appointment_type" string="Type" icon="fa-tags" enable_counters="1"/>
+                        <field name="state" string="Status" icon="fa-info-circle" enable_counters="1"/>
+                        <field name="branch_id" string="Branch" icon="fa-building" enable_counters="1"/>
+                    </searchpanel>
+                </search>
+            </field>
+        </record>
 
         <record id="appointment_management_action" model="ir.actions.act_window">
             <field name="name">Appointments</field>
             <field name="res_model">appointment.management</field>
-            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_mode">calendar,kanban,tree,form,graph,pivot</field>
+            <field name="search_view_id" ref="view_appointment_management_search"/>
             <field name="target">current</field>
         </record>
     </data>
