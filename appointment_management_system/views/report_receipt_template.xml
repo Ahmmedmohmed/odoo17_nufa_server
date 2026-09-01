@@ -65,17 +65,27 @@
 
                     <t t-set="order_date" t-value="o.sale_order_id.date_order if o.sale_order_id else (pos_order.date_order if pos_order else o.date)"/>
 
-                    <t t-set="app_slot" t-value="o.slot_ids[0] if o.slot_ids else False"/>
                     <t t-set="s_time_str" t-value="''"/>
-                    <t t-if="app_slot">
-                        <t t-set="time_float" t-value="app_slot.time"/>
-                        <t t-set="s_hour" t-value="int(time_float)"/>
-                        <!-- لم نعد بحاجة للدقائق الفعلية هنا لكن تركنا المتغير لأغراض برمجية -->
-                        <t t-set="s_minute" t-value="int(round((time_float - s_hour) * 60))"/>
+                    <t t-if="o.slot_ids">
+                        <t t-set="first_slot" t-value="o.slot_ids[0]"/>
+                        <t t-set="s_hour" t-value="int(first_slot.time)"/>
+                        <t t-set="s_minute" t-value="int(round((first_slot.time - s_hour) * 60))"/>
                         <t t-set="s_ampm" t-value="'مساءً' if s_hour &gt;= 12 else 'صباحاً'"/>
-                        <t t-set="s_display_hour" t-value="s_hour - 12 if s_hour &gt; 12 else (12 if s_hour == 0 else s_hour)"/>
-                        <!-- تم التعديل هنا: تثبيت الدقائق على :00 -->
-                        <t t-set="s_time_str" t-value="'%02d:00 %s' % (s_display_hour, s_ampm)"/>
+                        <t t-set="s_disp" t-value="s_hour - 12 if s_hour &gt; 12 else (12 if s_hour == 0 else s_hour)"/>
+                        <t t-set="start_t" t-value="'%02d:%02d %s' % (s_disp, s_minute, s_ampm)"/>
+
+                        <t t-if="len(o.slot_ids) &gt; 1">
+                            <t t-set="last_slot" t-value="o.slot_ids[-1]"/>
+                            <t t-set="e_hour" t-value="int(last_slot.time)"/>
+                            <t t-set="e_minute" t-value="int(round((last_slot.time - e_hour) * 60))"/>
+                            <t t-set="e_ampm" t-value="'مساءً' if e_hour &gt;= 12 else 'صباحاً'"/>
+                            <t t-set="e_disp" t-value="e_hour - 12 if e_hour &gt; 12 else (12 if e_hour == 0 else e_hour)"/>
+                            <t t-set="end_t" t-value="'%02d:%02d %s' % (e_disp, e_minute, e_ampm)"/>
+                            <t t-set="s_time_str" t-value="'من ' + start_t + ' إلى ' + end_t"/>
+                        </t>
+                        <t t-else="">
+                            <t t-set="s_time_str" t-value="start_t"/>
+                        </t>
                     </t>
 
                     <div style="border: 1px solid #e6e6e6; border-radius: 8px; margin-bottom: 12px; overflow: hidden;">
@@ -95,8 +105,7 @@
                                 <span style="color: #555;">وقت الحجز:</span>
                                 <strong style="color: #000;">
                                     <t t-if="s_time_str"><t t-esc="s_time_str"/></t>
-                                    <!-- تم التعديل هنا: استخدام صيغة hh:00 -->
-                                    <t t-else=""><span t-field="o.date" t-options='{"widget": "datetime", "format": "hh:00 a", "tz_name": "Asia/Riyadh"}'/></t>
+                                    <t t-else=""><span t-field="o.date" t-options='{"widget": "datetime", "format": "hh:mm a", "tz_name": "Asia/Riyadh"}'/></t>
                                 </strong>
                             </div>
                             <div style="display: flex; justify-content: space-between;">
@@ -146,8 +155,7 @@
                                 <strong><t t-esc="o.with_context(lang='ar_001').product_id.name"/></strong><br/>
                                 <span style="font-size: 8px; color: #df7b8e;">
                                     <t t-if="s_time_str"><t t-esc="s_time_str"/></t>
-                                    <!-- تم التعديل هنا أيضاً: استخدام صيغة hh:00 -->
-                                    <t t-else=""><span t-field="o.date" t-options='{"widget": "datetime", "format": "hh:00 a", "tz_name": "Asia/Riyadh"}'/></t>
+                                    <t t-else=""><span t-field="o.date" t-options='{"widget": "datetime", "format": "hh:mm a", "tz_name": "Asia/Riyadh"}'/></t>
                                 </span>
                             </td>
 
