@@ -2,10 +2,10 @@
 <odoo>
 
     <record id="account.account_invoices" model="ir.actions.report">
-        <field name="paperformat_id" ref="Appointment_Management_System.paperformat_invoice_a4"/>
+        <field name="paperformat_id" ref="appointment_management_system.paperformat_invoice_a4"/>
     </record>
     <record id="account.account_invoices_without_payment" model="ir.actions.report">
-        <field name="paperformat_id" ref="Appointment_Management_System.paperformat_invoice_a4"/>
+        <field name="paperformat_id" ref="appointment_management_system.paperformat_invoice_a4"/>
     </record>
 
     <template id="report_invoice_modern_template">
@@ -533,7 +533,7 @@
 
     <template id="force_modern_invoice_over_gcc" inherit_id="account.report_invoice" priority="9999">
         <xpath expr="//t[@t-call='web.html_container']" position="replace">
-            <t t-call="Appointment_Management_System.report_invoice_modern_template"/>
+            <t t-call="appointment_management_system.report_invoice_modern_template"/>
         </xpath>
     </template>
 
