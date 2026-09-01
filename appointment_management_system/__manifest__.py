@@ -37,6 +37,11 @@
           'views/booking_client_action.xml',
         # Menu File
         'views/menus.xml',
+
+        'Invoices/report_invoice_template.xml',
+        'Invoices/report_pos_receipt.xml',
+        'Invoices/saleorder_report.xml',
+
     ],
 
 'assets': {
