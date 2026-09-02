@@ -172,19 +172,32 @@
                                                     <!-- الوقت -->
                                                     <t t-if="app_id.date">
                                                         <i class="fa fa-clock-o" style="color: #df7b8e; margin-left: 3px;"></i>الوقت:
-                                                        <t t-set="app_slot_line" t-value="app_id.slot_ids[0] if 'slot_ids' in app_id and app_id.slot_ids else False"/>
-                                                        <t t-if="app_slot_line">
+                                                        <t t-if="'slot_ids' in app_id and app_id.slot_ids">
                                                             <span t-esc="app_id.date" t-options="{'widget': 'date', 'format': 'yyyy-MM-dd'}"/> |
-                                                            <t t-set="s_hour" t-value="int(app_slot_line.time)"/>
-                                                            <t t-set="s_minute" t-value="int(round((app_slot_line.time - s_hour) * 60))"/>
+
+                                                            <t t-set="sorted_slots" t-value="app_id.slot_ids.sorted(key=lambda s: s.time)"/>
+                                                            <t t-set="first_slot" t-value="sorted_slots[0]"/>
+                                                            <t t-set="s_hour" t-value="int(first_slot.time)"/>
+                                                            <t t-set="s_minute" t-value="int(round((first_slot.time - s_hour) * 60))"/>
                                                             <t t-set="s_ampm" t-value="'مساءً' if s_hour &gt;= 12 else 'صباحاً'"/>
                                                             <t t-set="s_display_hour" t-value="s_hour - 12 if s_hour &gt; 12 else (12 if s_hour == 0 else s_hour)"/>
-                                                            <!-- تم التعديل هنا لتجاهل الدقائق وعرضها بصيغة :00 -->
-                                                            <span t-esc="'%02d:00 %s' % (s_display_hour, s_ampm)"/>
+                                                            <t t-set="start_t" t-value="'%02d:%02d %s' % (s_display_hour, s_minute, s_ampm)"/>
+
+                                                            <t t-if="len(sorted_slots) &gt; 1">
+                                                                <t t-set="last_slot" t-value="sorted_slots[-1]"/>
+                                                                <t t-set="e_hour" t-value="int(last_slot.time)"/>
+                                                                <t t-set="e_minute" t-value="int(round((last_slot.time - e_hour) * 60))"/>
+                                                                <t t-set="e_ampm" t-value="'مساءً' if e_hour &gt;= 12 else 'صباحاً'"/>
+                                                                <t t-set="e_display_hour" t-value="e_hour - 12 if e_hour &gt; 12 else (12 if e_hour == 0 else e_hour)"/>
+                                                                <t t-set="end_t" t-value="'%02d:%02d %s' % (e_display_hour, e_minute, e_ampm)"/>
+                                                                <span t-esc="'من ' + start_t + ' إلى ' + end_t"/>
+                                                            </t>
+                                                            <t t-else="">
+                                                                <span t-esc="start_t"/>
+                                                            </t>
                                                         </t>
                                                         <t t-else="">
-                                                            <!-- تم تعديل الصيغة هنا إلى hh:00 -->
-                                                            <span t-esc="app_id.date" t-options="{'widget': 'datetime', 'format': 'yyyy-MM-dd hh:00 a', 'tz_name': 'Asia/Riyadh'}"/>
+                                                            <span t-esc="app_id.date" t-options="{'widget': 'datetime', 'format': 'yyyy-MM-dd hh:mm a', 'tz_name': 'Asia/Riyadh'}"/>
                                                         </t>
                                                     </t>
                                                 </div>

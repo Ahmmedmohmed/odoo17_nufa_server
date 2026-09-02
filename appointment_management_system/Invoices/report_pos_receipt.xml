@@ -153,18 +153,32 @@
 
                                     <div class="col-3" style="border-left: 1px solid #eee;">
                                         <span style="color: #777;">الوقت <i class="fa fa-clock-o" t-attf-style="color: {{color_pink}};"></i></span><br/>
-                                        <t t-set="app_slot" t-value="o.slot_ids[0] if is_appointment and 'slot_ids' in o and o.slot_ids else (first_app.slot_ids[0] if first_app and 'slot_ids' in first_app and first_app.slot_ids else False)"/>
-                                        <t t-if="app_slot">
-                                            <t t-set="s_hour" t-value="int(app_slot.time)"/>
-                                            <t t-set="s_minute" t-value="int(round((app_slot.time - s_hour) * 60))"/>
+                                        <!-- التعديل هنا: جلب كل المواعيد، ترتيبها، وعرض (من - إلى) -->
+                                        <t t-set="all_slots" t-value="o.slot_ids if is_appointment and 'slot_ids' in o and o.slot_ids else (first_app.slot_ids if first_app and 'slot_ids' in first_app and first_app.slot_ids else False)"/>
+                                        <t t-if="all_slots">
+                                            <t t-set="sorted_slots" t-value="all_slots.sorted(key=lambda s: s.time)"/>
+                                            <t t-set="first_slot" t-value="sorted_slots[0]"/>
+                                            <t t-set="s_hour" t-value="int(first_slot.time)"/>
+                                            <t t-set="s_minute" t-value="int(round((first_slot.time - s_hour) * 60))"/>
                                             <t t-set="s_ampm" t-value="'مساءً' if s_hour &gt;= 12 else 'صباحاً'"/>
                                             <t t-set="s_display_hour" t-value="s_hour - 12 if s_hour &gt; 12 else (12 if s_hour == 0 else s_hour)"/>
-                                            <!-- تم التعديل هنا: تثبيت الدقائق على :00 -->
-                                            <strong><t t-esc="'%02d:00 %s' % (s_display_hour, s_ampm)"/></strong>
+                                            <t t-set="start_t" t-value="'%02d:%02d %s' % (s_display_hour, s_minute, s_ampm)"/>
+
+                                            <t t-if="len(sorted_slots) &gt; 1">
+                                                <t t-set="last_slot" t-value="sorted_slots[-1]"/>
+                                                <t t-set="e_hour" t-value="int(last_slot.time)"/>
+                                                <t t-set="e_minute" t-value="int(round((last_slot.time - e_hour) * 60))"/>
+                                                <t t-set="e_ampm" t-value="'مساءً' if e_hour &gt;= 12 else 'صباحاً'"/>
+                                                <t t-set="e_display_hour" t-value="e_hour - 12 if e_hour &gt; 12 else (12 if e_hour == 0 else e_hour)"/>
+                                                <t t-set="end_t" t-value="'%02d:%02d %s' % (e_display_hour, e_minute, e_ampm)"/>
+                                                <strong><t t-esc="'من ' + start_t + ' إلى ' + end_t"/></strong>
+                                            </t>
+                                            <t t-else="">
+                                                <strong><t t-esc="start_t"/></strong>
+                                            </t>
                                         </t>
                                         <t t-else="">
-                                            <!-- تم التعديل هنا: تغيير فورمات الدقائق إلى 00 -->
-                                            <strong><span t-esc="app_date_real" t-options="{'widget': 'datetime', 'format': 'hh:00 a', 'tz_name': 'Asia/Riyadh'}"/></strong>
+                                            <strong><span t-esc="app_date_real" t-options="{'widget': 'datetime', 'format': 'hh:mm a', 'tz_name': 'Asia/Riyadh'}"/></strong>
                                         </t>
                                     </div>
 
@@ -248,18 +262,32 @@
                                                             <i class="fa fa-calendar-check-o" style="color: #df7b8e;"></i> موعد:
                                                             <span t-esc="line.appointment_id.date" t-options="{'widget': 'date', 'format': 'yyyy-MM-dd'}"/> |
 
-                                                            <t t-set="app_slot_line" t-value="line.appointment_id.slot_ids[0] if 'slot_ids' in line.appointment_id and line.appointment_id.slot_ids else False"/>
-                                                            <t t-if="app_slot_line">
-                                                                <t t-set="s_hour" t-value="int(app_slot_line.time)"/>
-                                                                <t t-set="s_minute" t-value="int(round((app_slot_line.time - s_hour) * 60))"/>
+                                                            <!-- التعديل هنا: الفرز بداخل سطور الطلب لعرض (من - إلى) -->
+                                                            <t t-set="all_slots_line" t-value="line.appointment_id.slot_ids if 'slot_ids' in line.appointment_id and line.appointment_id.slot_ids else False"/>
+                                                            <t t-if="all_slots_line">
+                                                                <t t-set="sorted_slots_line" t-value="all_slots_line.sorted(key=lambda s: s.time)"/>
+                                                                <t t-set="first_slot_line" t-value="sorted_slots_line[0]"/>
+                                                                <t t-set="s_hour" t-value="int(first_slot_line.time)"/>
+                                                                <t t-set="s_minute" t-value="int(round((first_slot_line.time - s_hour) * 60))"/>
                                                                 <t t-set="s_ampm" t-value="'مساءً' if s_hour &gt;= 12 else 'صباحاً'"/>
                                                                 <t t-set="s_display_hour" t-value="s_hour - 12 if s_hour &gt; 12 else (12 if s_hour == 0 else s_hour)"/>
-                                                                <!-- تم التعديل هنا: تثبيت الدقائق على :00 -->
-                                                                <strong style="color:#000;"><t t-esc="'%02d:00 %s' % (s_display_hour, s_ampm)"/></strong>
+                                                                <t t-set="start_t" t-value="'%02d:%02d %s' % (s_display_hour, s_minute, s_ampm)"/>
+
+                                                                <t t-if="len(sorted_slots_line) &gt; 1">
+                                                                    <t t-set="last_slot_line" t-value="sorted_slots_line[-1]"/>
+                                                                    <t t-set="e_hour" t-value="int(last_slot_line.time)"/>
+                                                                    <t t-set="e_minute" t-value="int(round((last_slot_line.time - e_hour) * 60))"/>
+                                                                    <t t-set="e_ampm" t-value="'مساءً' if e_hour &gt;= 12 else 'صباحاً'"/>
+                                                                    <t t-set="e_display_hour" t-value="e_hour - 12 if e_hour &gt; 12 else (12 if e_hour == 0 else e_hour)"/>
+                                                                    <t t-set="end_t" t-value="'%02d:%02d %s' % (e_display_hour, e_minute, e_ampm)"/>
+                                                                    <strong style="color:#000;"><t t-esc="'من ' + start_t + ' إلى ' + end_t"/></strong>
+                                                                </t>
+                                                                <t t-else="">
+                                                                    <strong style="color:#000;"><t t-esc="start_t"/></strong>
+                                                                </t>
                                                             </t>
                                                             <t t-else="">
-                                                                <!-- تم التعديل هنا: تغيير فورمات الدقائق إلى 00 -->
-                                                                <strong style="color:#000;"><span t-esc="line.appointment_id.date" t-options="{'widget': 'datetime', 'format': 'hh:00 a', 'tz_name': 'Asia/Riyadh'}"/></strong>
+                                                                <strong style="color:#000;"><span t-esc="line.appointment_id.date" t-options="{'widget': 'datetime', 'format': 'hh:mm a', 'tz_name': 'Asia/Riyadh'}"/></strong>
                                                             </t>
 
                                                             <br/>
