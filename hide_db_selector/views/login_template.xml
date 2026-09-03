@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="hide_db_selector" inherit_id="web.login" name="Hide Database Selector">
+
+        <!-- إخفاء حقل قاعدة البيانات بالكامل (الليبل + الإنبوت + زر تحديد) -->
+        <xpath expr="//div[hasclass('oe_login_form')]//div[hasclass('o_database_selection')]" position="attributes">
+            <attribute name="style">display:none !important;</attribute>
+        </xpath>
+
+    </template>
+</odoo>

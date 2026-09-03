@@ -1,0 +1,12 @@
+/* إخفاء حقل قاعدة البيانات - Odoo 17 */
+
+/* الكونتينر الرئيسي لاختيار قاعدة البيانات */
+.oe_login_form .o_database_selection {
+    display: none !important;
+}
+
+/* fallback لو الكلاس اتغير */
+.oe_login_form div:has(input[name="db"]),
+.oe_login_form div:has(select[name="db"]) {
+    display: none !important;
+}
