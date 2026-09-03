@@ -1,12 +1,37 @@
-/* إخفاء حقل قاعدة البيانات - Odoo 17 */
+/* ===================================================
+   Hide Database Selector - Odoo 17
+   إخفاء حقل اختيار قاعدة البيانات من صفحة اللوجن
+   =================================================== */
 
-/* الكونتينر الرئيسي لاختيار قاعدة البيانات */
-.oe_login_form .o_database_selection {
+/* الـ label + input + button الخاصة بقاعدة البيانات */
+.o_login_form div:has(> select#db),
+.o_login_form div:has(> input[name="db"]),
+.oe_login_form div:has(> select#db),
+.oe_login_form div:has(> input[name="db"]) {
     display: none !important;
 }
 
-/* fallback لو الكلاس اتغير */
-.oe_login_form div:has(input[name="db"]),
-.oe_login_form div:has(select[name="db"]) {
+/* الـ label نفسه لو كان بره الـ div */
+label[for="db"] {
+    display: none !important;
+}
+
+/* زر تحديد قاعدة البيانات */
+.o_database_selection,
+.o_db_select,
+div:has(> .btn_db_select),
+div:has(> button[data-action="selectDB"]) {
+    display: none !important;
+}
+
+/* Fallback شامل - select الـ db مهما كان wrapper-ه */
+select#db,
+select[name="db"] {
+    display: none !important;
+}
+
+/* إخفاء الـ row/container اللي بيحتوي على اختيار DB */
+.o_login_wrap .o_database_selection,
+.o_action_manager .o_database_selection {
     display: none !important;
 }

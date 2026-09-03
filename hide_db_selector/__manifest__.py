@@ -6,9 +6,6 @@
     'summary': 'إخفاء حقل قاعدة البيانات من صفحة تسجيل الدخول',
     'author': 'Custom',
     'depends': ['web'],
-    'data': [
-        'views/login_template.xml',
-    ],
     'assets': {
         'web.assets_frontend': [
             'hide_db_selector/static/src/css/hide_db.css',
