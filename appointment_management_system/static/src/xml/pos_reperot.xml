@@ -90,9 +90,8 @@
                                                             <t t-set="slots_array" t-value="clean_slots.split(',')"/>
 
                                                             <t t-set="start_time" t-value="slots_array[0]"/>
-
-                                                            <t t-set="app_type" t-value="line.appointment_type || 'inside'"/>
-                                                            <t t-set="slot_count" t-value="app_type == 'outside' ? (line.service_slot_outside || 1) : (line.service_slot_inside || 1)"/>
+                                                            <!-- الاعتماد المباشر على عدد السلوتات المُرسلة من الباك إند -->
+                                                            <t t-set="slot_count" t-value="slots_array.length"/>
 
                                                             <t t-set="start_h" t-value="(start_time.split(':')[0]) * 1"/>
                                                             <t t-set="start_m" t-value="(start_time.split(':')[1]) * 1"/>
@@ -133,9 +132,8 @@
                                                                 <t t-set="sub_arr" t-value="sub_clean.split(',')"/>
 
                                                                 <t t-set="sub_start_time" t-value="sub_arr[0]"/>
-
-                                                                <t t-set="sub_app_type" t-value="sub_srv.appointment_type || 'inside'"/>
-                                                                <t t-set="sub_slot_count" t-value="sub_app_type == 'outside' ? (sub_srv.service_slot_outside || 1) : (sub_srv.service_slot_inside || 1)"/>
+                                                                <!-- الاعتماد المباشر على عدد السلوتات المُرسلة من الباك إند -->
+                                                                <t t-set="sub_slot_count" t-value="sub_arr.length"/>
 
                                                                 <t t-set="sub_start_h" t-value="(sub_start_time.split(':')[0]) * 1"/>
                                                                 <t t-set="sub_start_m" t-value="(sub_start_time.split(':')[1]) * 1"/>
