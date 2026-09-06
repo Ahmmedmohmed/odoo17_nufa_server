@@ -85,9 +85,9 @@
                                                     <t t-if="line.slot_name || line.date">
                                                         <i class="fa fa-clock-o" style="margin-left: 3px;"></i>الوقت:
                                                         <t t-set="raw_slots" t-value="line.slot_name_ar || line.slot_name || line.date || ''"/>
-                                                        <t t-if="raw_slots and typeof raw_slots === 'string' and raw_slots.includes(',')">
-                                                            <t t-set="slots_array" t-value="raw_slots.replace(/ /g, '').split(',').sort()"/>
-                                                            <t t-esc="'من ' + slots_array[0] + ' إلى ' + slots_array[slots_array.length - 1]"/>
+                                                        <t t-if="raw_slots and raw_slots.indexOf(',') != -1">
+                                                            <t t-set="slots_array" t-value="raw_slots.split(',')"/>
+                                                            <t t-esc="'من ' + slots_array[0].trim() + ' إلى ' + slots_array[slots_array.length - 1].trim()"/>
                                                         </t>
                                                         <t t-else="">
                                                             <t t-esc="raw_slots"/>
@@ -111,9 +111,9 @@
                                                         <t t-if="sub_srv.date">
                                                             | <i class="fa fa-clock-o" style="margin-left: 3px;"></i>الوقت:
                                                             <t t-set="sub_raw" t-value="sub_srv.date_ar || sub_srv.date || ''"/>
-                                                            <t t-if="sub_raw and typeof sub_raw === 'string' and sub_raw.includes(',')">
-                                                                <t t-set="sub_arr" t-value="sub_raw.replace(/ /g, '').split(',').sort()"/>
-                                                                <t t-esc="'من ' + sub_arr[0] + ' إلى ' + sub_arr[sub_arr.length - 1]"/>
+                                                            <t t-if="sub_raw and sub_raw.indexOf(',') != -1">
+                                                                <t t-set="sub_arr" t-value="sub_raw.split(',')"/>
+                                                                <t t-esc="'من ' + sub_arr[0].trim() + ' إلى ' + sub_arr[sub_arr.length - 1].trim()"/>
                                                             </t>
                                                             <t t-else="">
                                                                 <t t-esc="sub_raw"/>
@@ -344,14 +344,16 @@
                         <span>Total</span>
                     </div>
 
-                    <OrderWidget lines="props.data.orderlines" t-slot-scope="scope" editable="false">
-                        <t t-set="line" t-value="scope.line"/>
-                        <Orderline line="omit(scope.line, 'customerNote')" class="{ 'pe-none': true }"/>
-                    </OrderWidget>
-
                     <div class="paymentlines" t-foreach="props.data.paymentlines" t-as="line" t-key="line_index">
                         <span t-esc="props.formatCurrency(line.amount, false)" class="pos-receipt-right-align"/>
                     </div>
+
+                    <t t-if="false">
+                        <OrderWidget lines="props.data.orderlines" t-slot-scope="scope" editable="false">
+                            <t t-set="line" t-value="scope.line"/>
+                            <Orderline line="omit(scope.line, 'customerNote')" class="{ 'pe-none': true }"/>
+                        </OrderWidget>
+                    </t>
 
                     <div class="before-footer"></div>
                     <div class="pos-receipt-order-data" />
