@@ -91,17 +91,18 @@
                                                             <t t-set="sorted_array" t-value="slots_array.sort()"/>
 
                                                             <t t-set="start_time" t-value="sorted_array[0]"/>
-                                                            <t t-set="last_slot" t-value="sorted_array[sorted_array.length - 1]"/>
+                                                            <t t-set="slot_count" t-value="sorted_array.length"/>
 
-                                                            <t t-set="last_h" t-value="(last_slot.split(':')[0]) * 1"/>
-                                                            <t t-set="last_m" t-value="(last_slot.split(':')[1]) * 1"/>
+                                                            <t t-set="start_h" t-value="(start_time.split(':')[0]) * 1"/>
+                                                            <t t-set="start_m" t-value="(start_time.split(':')[1]) * 1"/>
 
-                                                            <t t-set="is_rollover" t-value="(last_m + 30) &gt;= 60"/>
-                                                            <t t-set="end_h" t-value="is_rollover ? last_h + 1 : last_h"/>
-                                                            <t t-set="end_m" t-value="is_rollover ? (last_m + 30 - 60) : (last_m + 30)"/>
+                                                            <t t-set="total_mins" t-value="(start_h * 60) + start_m + (slot_count * 30)"/>
+
+                                                            <t t-set="end_h" t-value="((total_mins - (total_mins % 60)) / 60) % 24"/>
+                                                            <t t-set="end_m" t-value="total_mins % 60"/>
 
                                                             <t t-set="end_h_str" t-value="end_h &lt; 10 ? '0' + end_h : '' + end_h"/>
-                                                            <t t-set="end_m_str" t-value="end_m &lt; 10 ? '0' + end_m : '' + end_m"/>
+                                                            <t t-set="end_m_str" t-value="end_m == 0 ? '00' : (end_m &lt; 10 ? '0' + end_m : '' + end_m)"/>
 
                                                             <t t-esc="'من ' + start_time + ' إلى ' + end_h_str + ':' + end_m_str"/>
                                                         </t>
@@ -133,17 +134,18 @@
                                                                 <t t-set="sub_sorted" t-value="sub_arr.sort()"/>
 
                                                                 <t t-set="sub_start_time" t-value="sub_sorted[0]"/>
-                                                                <t t-set="sub_last_slot" t-value="sub_sorted[sub_sorted.length - 1]"/>
+                                                                <t t-set="sub_slot_count" t-value="sub_sorted.length"/>
 
-                                                                <t t-set="sub_last_h" t-value="(sub_last_slot.split(':')[0]) * 1"/>
-                                                                <t t-set="sub_last_m" t-value="(sub_last_slot.split(':')[1]) * 1"/>
+                                                                <t t-set="sub_start_h" t-value="(sub_start_time.split(':')[0]) * 1"/>
+                                                                <t t-set="sub_start_m" t-value="(sub_start_time.split(':')[1]) * 1"/>
 
-                                                                <t t-set="sub_is_rollover" t-value="(sub_last_m + 30) &gt;= 60"/>
-                                                                <t t-set="sub_end_h" t-value="sub_is_rollover ? sub_last_h + 1 : sub_last_h"/>
-                                                                <t t-set="sub_end_m" t-value="sub_is_rollover ? (sub_last_m + 30 - 60) : (sub_last_m + 30)"/>
+                                                                <t t-set="sub_total_mins" t-value="(sub_start_h * 60) + sub_start_m + (sub_slot_count * 30)"/>
+
+                                                                <t t-set="sub_end_h" t-value="((sub_total_mins - (sub_total_mins % 60)) / 60) % 24"/>
+                                                                <t t-set="sub_end_m" t-value="sub_total_mins % 60"/>
 
                                                                 <t t-set="sub_end_h_str" t-value="sub_end_h &lt; 10 ? '0' + sub_end_h : '' + sub_end_h"/>
-                                                                <t t-set="sub_end_m_str" t-value="sub_end_m &lt; 10 ? '0' + sub_end_m : '' + sub_end_m"/>
+                                                                <t t-set="sub_end_m_str" t-value="sub_end_m == 0 ? '00' : (sub_end_m &lt; 10 ? '0' + sub_end_m : '' + sub_end_m)"/>
 
                                                                 <t t-esc="'من ' + sub_start_time + ' إلى ' + sub_end_h_str + ':' + sub_end_m_str"/>
                                                             </t>
