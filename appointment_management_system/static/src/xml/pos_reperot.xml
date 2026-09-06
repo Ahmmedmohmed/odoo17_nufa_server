@@ -349,11 +349,6 @@
                         <span>Total</span>
                     </div>
 
-                    <OrderWidget lines="props.data.orderlines" t-slot-scope="scope" editable="false">
-                        <t t-set="line" t-value="scope.line"/>
-                        <Orderline line="omit(scope.line, 'customerNote')" class="{ 'pe-none': true }"/>
-                    </OrderWidget>
-
                     <div class="paymentlines" t-foreach="props.data.paymentlines" t-as="line" t-key="line_index">
                         <span t-esc="props.formatCurrency(line.amount, false)" class="pos-receipt-right-align"/>
                     </div>
