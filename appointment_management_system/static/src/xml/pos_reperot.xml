@@ -93,8 +93,8 @@
                                                             <t t-set="start_time" t-value="sorted_array[0]"/>
                                                             <t t-set="last_slot" t-value="sorted_array[sorted_array.length - 1]"/>
 
-                                                            <t t-set="last_h" t-value="parseInt(last_slot.split(':')[0]) || 0"/>
-                                                            <t t-set="last_m" t-value="parseInt(last_slot.split(':')[1]) || 0"/>
+                                                            <t t-set="last_h" t-value="(last_slot.split(':')[0]) * 1"/>
+                                                            <t t-set="last_m" t-value="(last_slot.split(':')[1]) * 1"/>
 
                                                             <t t-set="is_rollover" t-value="(last_m + 30) &gt;= 60"/>
                                                             <t t-set="end_h" t-value="is_rollover ? last_h + 1 : last_h"/>
@@ -135,8 +135,8 @@
                                                                 <t t-set="sub_start_time" t-value="sub_sorted[0]"/>
                                                                 <t t-set="sub_last_slot" t-value="sub_sorted[sub_sorted.length - 1]"/>
 
-                                                                <t t-set="sub_last_h" t-value="parseInt(sub_last_slot.split(':')[0]) || 0"/>
-                                                                <t t-set="sub_last_m" t-value="parseInt(sub_last_slot.split(':')[1]) || 0"/>
+                                                                <t t-set="sub_last_h" t-value="(sub_last_slot.split(':')[0]) * 1"/>
+                                                                <t t-set="sub_last_m" t-value="(sub_last_slot.split(':')[1]) * 1"/>
 
                                                                 <t t-set="sub_is_rollover" t-value="(sub_last_m + 30) &gt;= 60"/>
                                                                 <t t-set="sub_end_h" t-value="sub_is_rollover ? sub_last_h + 1 : sub_last_h"/>
