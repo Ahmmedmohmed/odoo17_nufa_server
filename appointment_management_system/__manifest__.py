@@ -58,6 +58,7 @@
         ],
         'point_of_sale._assets_pos': [
             'appointment_management_system/static/src/xml/pos_reperot.xml',
+'appointment_management_system/static/src/xml/pos_receipt_fix.js',
         ],
     },
 
