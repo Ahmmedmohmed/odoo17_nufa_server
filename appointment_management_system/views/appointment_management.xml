@@ -5,7 +5,7 @@
             <field name="name">view.appointment.management.tree</field>
             <field name="model">appointment.management</field>
             <field name="arch" type="xml">
-                <tree create="0" sample="1">
+                <tree  sample="1">
                     <field name="appointment_ref" decoration-bf="1"/>
                     <field name="partner_id" optional="show"/>
                     <field name="date" optional="show"/>
