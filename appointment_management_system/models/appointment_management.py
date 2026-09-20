@@ -4,11 +4,12 @@ from odoo import models, fields, api, _
 from datetime import datetime, time
 import base64
 import logging
-from odoo import models, fields, api, _
 import qrcode
 from io import BytesIO
-_logger = logging.getLogger(__name__)
+from odoo.exceptions import UserError
 import random
+
+_logger = logging.getLogger(__name__)
 
 class AppointmentManagement(models.Model):
     _name = 'appointment.management'
@@ -37,10 +38,10 @@ class AppointmentManagement(models.Model):
         ('1', 'Partial Approved'),
         ('2', 'Approved'),
         ('start', 'In Progress'),
-        ('pause', 'Paused'),  # الحالة الجديدة: مؤقت / متوقف
-        ('3', 'Completed'),  # تم تصحيح الإملاء
+        ('pause', 'Paused'),
+        ('3', 'Completed'),
         ('4', 'Cancelled'),
-        ('no_show', 'No Show')  # الحالة الجديدة: لم يحضر
+        ('no_show', 'No Show')
     ])
     service_start_time = fields.Datetime(string='Service Start Time', readonly=True)
     service_end_time = fields.Datetime(string='Service End Time', readonly=True)
@@ -53,12 +54,8 @@ class AppointmentManagement(models.Model):
     refund_amount = fields.Float('Refund Amount', readonly=True)
     deduction_amount = fields.Float('Deduction Amount', readonly=True)
     pos_reference = fields.Char(string='POS Receipt Reference')
-    is_commission_calculated = fields.Boolean(string='Commission Calculated', default=False, copy=False)
     sale_order_id = fields.Many2one('sale.order', string='Sale Order', readonly=True)
     has_sale_order = fields.Boolean(string='Has Sale Order', default=False)
-
-
-    # أضف الحقل ده داخل الكلاس
     is_printed = fields.Boolean(string='Is Printed', default=False, readonly=True)
 
     def action_appointment_cancel(self):
@@ -87,11 +84,9 @@ class AppointmentManagement(models.Model):
                 'deduction_percentage': 0.0,
             })
 
-
     def action_print_ticket(self):
         """دالة تقوم بتغيير الحالة للطباعة واستدعاء التقرير"""
-        self.write({'is_printed': True})  # تحديث الحالة لتصبح 'تمت الطباعة'
-        # استدعاء التقرير باستخدام الـ ID اللي هنعرفه في الخطوة الجاية
+        self.write({'is_printed': True})
         return self.env.ref('appointment_management_system.action_report_appointment_receipt').report_action(self)
 
     def action_appointment_complate(self):
@@ -106,7 +101,7 @@ class AppointmentManagement(models.Model):
             for record in self.product_id.product_component_ids:
                 lines.append((0, 0, {
                     'product_id': record.component_id.id,
-                    'name': self.sequence,
+                    'name': self.appointment_ref,
                     'product_uom_qty': record.quantity,
                     'location_id': self.employee_id.location_id.id,
                     'location_dest_id': self.env.company.location_dest_id.id
@@ -116,113 +111,10 @@ class AppointmentManagement(models.Model):
                 'picking_type_id': self.env.company.picking_type_id.id,
                 'location_id': self.employee_id.location_id.id,
                 'location_dest_id': self.env.company.location_dest_id.id,
-                'origin': self.sequence,
+                'origin': self.appointment_ref,
                 'state': 'confirmed',
                 'move_ids_without_package': lines,
             })
-
-    def _generate_employee_commission(self):
-        """ دالة مركزية تحسب العمولة أوتوماتيكياً للموظف (بشكل صامت وبدون إيقاف النظام) """
-        from datetime import datetime
-        from dateutil.relativedelta import relativedelta
-
-        for appt in self:
-            # 1. لو العمولة اتحسبت قبل كده، نتجاهل بهدوء ونسمح بأي تعديلات أخرى على الحجز
-            if appt.is_commission_calculated:
-                continue
-
-            # 2. البحث عن مصدر الأموال (أمر بيع أم فاتورة كاشير؟)
-            sale_order = getattr(appt, 'sale_order_id', False)
-            pos_lines = self.env['pos.order.line'].sudo().search([('appointment_id', '=', appt.id)])
-            pos_order = pos_lines[0].order_id if pos_lines else False
-
-            # لو مفيش مصدر مالي، نتخطى حساب العمولة ونسمح باكتمال الحجز
-            if not sale_order and not pos_order:
-                continue
-
-            emp_id = appt.employee_id.id
-            prod_id = appt.product_id.id
-
-            if not emp_id or not prod_id:
-                continue
-
-            service_price = appt.price_unit
-            if service_price <= 0:
-                service_price = appt.product_id.lst_price
-
-            if service_price <= 0:
-                continue
-
-            # 3. البحث عن النسبة المخصصة للموظف
-            rate_record = self.env['employee.service.commission'].search([
-                ('employee_id', '=', emp_id),
-                ('product_id', '=', prod_id)
-            ], limit=1)
-
-            # 🚀 التعديل السحري هنا: لو ملهاش عمولة، هنـ continue في صمت والحجز يكتمل عادي جداً
-            if not rate_record or rate_record.commission_percentage <= 0:
-                continue
-
-            # حساب قيمة العمولة (ملحوظة: لو بتستخدم widget="percentage" احذف / 100)
-            commission_amount = (service_price * rate_record.commission_percentage) / 100
-
-            if commission_amount > 0:
-                # البحث عن محفظة للموظف
-                commission = self.env['pos.sales.commission'].search([
-                    ('commission_employee_id', '=', emp_id),
-                    ('start_date', '<=', appt.date),
-                    ('end_date', '>=', appt.date),
-                    ('state', '=', 'draft'),
-                    ('company_id', '=', appt.company_id.id),
-                ], limit=1)
-
-                # إنشاء محفظة إذا لم توجد
-                if not commission:
-                    today = fields.Date.today()
-                    first_day = today.replace(day=1)
-                    last_day = datetime(today.year, today.month, 1) + relativedelta(months=1, days=-1, hours=23,
-                                                                                    minutes=59, seconds=59)
-
-                    commission = self.env['pos.sales.commission'].create({
-                        'start_date': first_day,
-                        'end_date': last_day,
-                        'commission_employee_id': emp_id,
-                        'company_id': appt.company_id.id,
-                        'currency_id': appt.company_id.currency_id.id,
-                    })
-
-                commission_product = self.env['product.product'].search([('pos_is_commission_product', '=', 1)],
-                                                                        limit=1)
-                if not commission_product:
-                    continue  # لو مفيش منتج عمولة، هنتخطى بهدوء
-
-                # تحديد المرجع اللي هيظهر في سطر العمولة (اسم فاتورة الـ POS أو أمر البيع)
-                origin_name = sale_order.name if sale_order else pos_order.name
-
-                # تحديد فريق المبيعات واليوزر لتجنب خطأ الحقول الإجبارية
-                user_id = appt.employee_id.user_id.id or self.env.uid
-                sales_team = appt.employee_id.user_id.team_id.id or self.env.user.team_id.id or self.env[
-                    'crm.team'].search([], limit=1).id
-
-                # إنشاء سطر العمولة الفعلي
-                self.env['pos.sales.commission.line'].create({
-                    'commission_employee_id': emp_id,
-                    'commission_user_id': user_id,
-                    'sales_team_id': sales_team,
-                    'amount': commission_amount,
-                    'origin': origin_name,
-                    'type': 'sales_person',
-                    'product_id': commission_product.id,
-                    'date': fields.Datetime.now(),
-                    'src_sale_order_id': sale_order.id if sale_order else False,
-                    'src_order_id': pos_order.id if pos_order else False,
-                    'sales_commission_id': commission.id,
-                    'company_id': appt.company_id.id,
-                    'currency_id': appt.company_id.currency_id.id,
-                })
-
-            # تحديث الحقل لمنع التكرار نهائياً بعد الحساب الناجح
-            appt.sudo().write({'is_commission_calculated': True})
 
     @api.depends('service_start_time', 'service_end_time')
     def _compute_service_duration(self):
@@ -243,8 +135,6 @@ class AppointmentManagement(models.Model):
                 'state': 'start',
                 'service_start_time': fields.Datetime.now()
             })
-
-
 
     @api.model
     def create(self, vals):
@@ -272,20 +162,18 @@ class AppointmentManagement(models.Model):
 
     def _create_auto_pos_refund(self, order):
         """دالة لمحاكاة مرتجع الكاشير أوتوماتيكياً بإنشاء فاتورة سالبة ودفعها"""
-        # البحث عن جلسة كاشير مفتوحة لنفس الفرع/النقطة
         session = self.env['pos.session'].sudo().search([
             ('config_id', '=', order.config_id.id),
             ('state', '=', 'opened')
         ], limit=1)
 
         if not session:
-            return False  # مفيش جلسة مفتوحة، نستخدم الخطة البديلة (Refund Request)
+            return False
 
         refund_lines = []
         refund_total = 0.0
         refund_tax = 0.0
 
-        # تجهيز سطور المرتجع (بالسالب) للسطور المرتبطة بهذا الحجز فقط
         for line in order.lines.filtered(lambda l: l.appointment_id.id == self.id):
             refund_lines.append((0, 0, {
                 'product_id': line.product_id.id,
@@ -305,14 +193,12 @@ class AppointmentManagement(models.Model):
             return False
 
         try:
-            # توليد رقم مرجعي وهمي يطابق صيغة أودو القياسية عشان الفرونت إند ميضربش
             dummy_uid = f"{random.randrange(10000, 99999)}-{random.randrange(100, 999)}-{random.randrange(1000, 9999)}"
 
-            # 3. إنشاء فاتورة المرتجع
             refund_order = self.env['pos.order'].sudo().create({
                 'session_id': session.id,
                 'partner_id': order.partner_id.id,
-                'pos_reference': f'Refund {dummy_uid}',  # 🚀 التعديل السحري هنا
+                'pos_reference': f'Refund {dummy_uid}',
                 'lines': refund_lines,
                 'amount_total': refund_total,
                 'amount_paid': refund_total,
@@ -324,13 +210,11 @@ class AppointmentManagement(models.Model):
             return False
 
     def write(self, vals):
-        # 🚀 تأمين تسجيل الوقت من خلال الـ API للموبايل أبلكيشن
         if vals.get('state') == 'start':
             vals['service_start_time'] = fields.Datetime.now()
         elif vals.get('state') == '3':
             vals['service_end_time'] = fields.Datetime.now()
 
-        # Validate slot_ids if being updated
         if 'slot_ids' in vals and vals['slot_ids']:
             slot_commands = vals['slot_ids']
             if isinstance(slot_commands, list):
@@ -390,7 +274,6 @@ class AppointmentManagement(models.Model):
 
             # 2. التزامن العكسي للحالة (تأكيد، إغلاق، أو إلغاء)
             if 'state' in vals:
-                # 🚀 تحديث لدعم الحالة الجديدة (start) في التزامن
                 if vals['state'] in ['2', 'start', '3']:
                     if record.slot_ids:
                         record.slot_ids.sudo().write({
@@ -436,10 +319,6 @@ class AppointmentManagement(models.Model):
                             except Exception as e:
                                 pass
 
-            # 3. حساب العمولة
-            if record.state == '3':
-                record.sudo()._generate_employee_commission()
-
         return res
 
     zatca_qr_code = fields.Binary(string="ZATCA QR Code", compute="_compute_zatca_qr_code", store=True)
@@ -448,7 +327,6 @@ class AppointmentManagement(models.Model):
     def _compute_zatca_qr_code(self):
         for rec in self:
             try:
-                # Generate TLV Data with dummy fallbacks
                 seller_name = rec.branch_id.name or rec.company_id.name or "Kaya Clinic"
                 vat_no = rec.branch_id.vat or rec.company_id.vat or "312345678901233"
                 timestamp = rec.date.isoformat() if rec.date else datetime.now().isoformat()
@@ -467,7 +345,6 @@ class AppointmentManagement(models.Model):
 
                 qr_data = base64.b64encode(tlv_data).decode('utf-8')
 
-                # Generate Image
                 qr = qrcode.QRCode(version=1, box_size=10, border=4)
                 qr.add_data(qr_data)
                 qr.make(fit=True)
@@ -482,7 +359,6 @@ class AppointmentManagement(models.Model):
 
     @api.model
     def get_booking_initial_data(self):
-        """ جلب التصنيفات، العملاء، وطرق الدفع (نفس التي تظهر في الـ POS فقط) """
         categories = self.env['pos.category'].search_read(
             [('is_appointment_category', '=', True)],
             ['id', 'name']
@@ -500,7 +376,6 @@ class AppointmentManagement(models.Model):
         if not partners:
             partners = self.env['res.partner'].search_read([], ['id', 'name', 'phone'], limit=50)
 
-        # 🚀 التعديل الجذري لطرق الدفع: جلب الطرق المربوطة بإعدادات الـ POS النشطة فقط
         pos_configs = self.env['pos.config'].search([('company_id', 'in', [self.env.company.id, False])])
         valid_pm_ids = pos_configs.mapped('payment_method_ids.id')
 
@@ -514,12 +389,11 @@ class AppointmentManagement(models.Model):
             'partners': partners,
             'payment_methods': payment_methods,
         }
+
     @api.model
     def get_category_services(self, category_id=False):
-        """ 🚀 جلب الخدمات والباقات (Packages) """
         domain = ['|', ('is_appointment_service', '=', True), ('is_appointment_package', '=', True)]
         if category_id:
-            # دمج الشروط بأمان في أودو
             domain = ['&', ('pos_categ_ids', 'in', [int(category_id)])] + domain
 
         products = self.env['product.product'].search(domain)
@@ -530,14 +404,13 @@ class AppointmentManagement(models.Model):
                 'id': p.id,
                 'name': p.display_name or p.name,
                 'price': p.lst_price,
-                'is_package': p.is_appointment_package,  # تمييز الباقة
+                'is_package': p.is_appointment_package,
                 'image_url': f"/web/image?model=product.product&id={p.id}&field=image_128",
             })
         return services_data
 
     @api.model
     def get_package_services(self, package_id):
-        """ 🚀 دالة جديدة لجلب محتويات (خدمات) الباقة """
         package = self.env['product.product'].browse(int(package_id))
         lines = package.appointment_package_line_ids
         services_data = []
@@ -568,26 +441,23 @@ class AppointmentManagement(models.Model):
 
     @api.model
     def create_direct_appointment(self, vals):
-        """ إنشاء الحجوزات، فاتورة المبيعات، والدفع التلقائي (يدعم الباقات المتعددة) """
         from datetime import datetime
         from zoneinfo import ZoneInfo
 
         partner_id = int(vals.get('partner_id'))
         package_id = int(vals.get('package_id')) if vals.get('package_id') else False
         price = float(vals.get('price', 0.0))
-        appointments_data = vals.get('appointments', [])  # 🚀 قائمة الخدمات التي تم حجزها
+        appointments_data = vals.get('appointments', [])
 
         if not appointments_data:
             return {'status': 'error', 'message': 'No appointments data provided'}
 
-        # 1. تجهيز الدفع
         payment_method_id = int(vals.get('payment_method_id')) if vals.get('payment_method_id') else False
         journal_id = False
         if payment_method_id:
             pm = self.env['pos.payment.method'].browse(payment_method_id)
             journal_id = pm.journal_id.id if pm.journal_id else False
 
-        # 2. إنشاء أمر البيع والفاتورة (للباقة كاملة أو للخدمة الفردية)
         sale_product_id = package_id if package_id else int(appointments_data[0]['product_id'])
         invoice_id = False
         sale_order = False
@@ -620,7 +490,6 @@ class AppointmentManagement(models.Model):
             import logging
             logging.getLogger(__name__).error(f"Failed to process billing: {str(e)}")
 
-        # 3. إنشاء الحجوزات (Loop) لجميع خدمات الباقة
         created_appointments = []
         first_ref = ""
         user_tz = self.env.user.tz or 'Asia/Riyadh'
@@ -636,7 +505,6 @@ class AppointmentManagement(models.Model):
             local_dt = datetime.combine(date_obj, time_obj).replace(tzinfo=ZoneInfo(user_tz))
             utc_dt = local_dt.astimezone(ZoneInfo("UTC")).replace(tzinfo=None)
 
-            # 🚀 السعر للخدمة الفردية 0 لو دي باقة، ولو خدمة عادية تاخد السعر الطبيعي
             app_price = 0.0 if package_id else price
 
             appointment = self.create({
@@ -662,5 +530,3 @@ class AppointmentManagement(models.Model):
 
         res_id = created_appointments[0].id if created_appointments else False
         return {'status': 'success', 'res_id': res_id, 'ref': first_ref, 'invoice_id': invoice_id}
-
-
