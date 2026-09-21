@@ -39,7 +39,7 @@ class PosOrderLine(models.Model):
             'employee_name': orderline.employee_name,
             'is_appointment_line': orderline.is_appointment_line,
             'appointment_id': orderline.appointment_id.id if orderline.appointment_id else False,
-            'appointment_name': orderline.appointment_id.sequence if orderline.appointment_id else False,
+            'appointment_name': orderline.appointment_id.appointment_ref if orderline.appointment_id else False,
             'qty': orderline.qty,
             'attribute_value_ids': orderline.attribute_value_ids.filtered(lambda av: av.ptav_active).ids,
             'custom_attribute_value_ids': orderline.custom_attribute_value_ids.read(['id', 'name', 'custom_product_template_attribute_value_id', 'custom_value'], load=False),
