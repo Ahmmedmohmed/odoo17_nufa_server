@@ -5,7 +5,7 @@
             <field name="name">view.appointment.management.tree</field>
             <field name="model">appointment.management</field>
             <field name="arch" type="xml">
-                <tree  sample="1">
+                <tree sample="1">
                     <field name="appointment_ref" decoration-bf="1"/>
                     <field name="partner_id" optional="show"/>
                     <field name="date" optional="show"/>
@@ -33,46 +33,46 @@
             <field name="model">appointment.management</field>
             <field name="arch" type="xml">
                 <form>
-                      <header>
-    <!-- زر الطباعة: متاح دائماً إلا لو الحجز ملغي -->
-    <button name="action_print_ticket"
-            string="Print Ticket"
-            type="object"
-            class="oe_highlight"
-            icon="fa-print"
-            invisible="state == '4'"/>
+                    <header>
+                        <!-- زر الطباعة: متاح دائماً إلا لو الحجز ملغي -->
+                        <button name="action_print_ticket"
+                                string="Print Ticket"
+                                type="object"
+                                class="oe_highlight"
+                                icon="fa-print"
+                                invisible="state == '4'"/>
 
-    <!-- زر البدء: يظهر فقط في حالة (Approved) -->
-    <button name="action_start_service"
-            type="object"
-            string="Start Service"
-            class="btn-primary"
-            invisible="state != '2'"/>
+                        <!-- زر البدء: يظهر فقط في حالة (Approved) -->
+                        <button name="action_start_service"
+                                type="object"
+                                string="Start Service"
+                                class="btn-primary"
+                                invisible="state != '2'"/>
 
-    <!-- زر الإكمال: يظهر فقط في حالة (In Progress) بعد بدء الخدمة -->
-    <button name="action_appointment_complate"
-            string="Complete"
-            type="object"
-            class="btn-success"
-            invisible="state != 'start'"/>
+                        <!-- زر الإكمال: يظهر فقط في حالة (In Progress) بعد بدء الخدمة -->
+                        <button name="action_appointment_complate"
+                                string="Complete"
+                                type="object"
+                                class="btn-success"
+                                invisible="state != 'start'"/>
 
-    <!-- زر الإلغاء: يختفي لو الحجز اكتمل أو اتلغى -->
-    <button name="action_appointment_cancel"
-            string="Cancel"
-            type="object"
-            class="btn-danger"
-            invisible="state in ('3', '4')"/>
+                        <!-- زر الإلغاء: يختفي لو الحجز اكتمل أو اتلغى -->
+                        <button name="action_appointment_cancel"
+                                string="Cancel"
+                                type="object"
+                                class="btn-danger"
+                                invisible="state in ('3', '4')"/>
 
-    <!-- زر استثناء المرتجع: يظهر فقط لو الحجز ملغي وفيه خصم -->
-    <button name="action_admin_refund_exception"
-            string="Refund Exception (Refund Deduction)"
-            type="object"
-            class="btn-warning"
-            invisible="state != '4' or deduction_amount == 0"/>
+                        <!-- زر استثناء المرتجع: يظهر فقط لو الحجز ملغي وفيه خصم -->
+                        <button name="action_admin_refund_exception"
+                                string="Refund Exception (Refund Deduction)"
+                                type="object"
+                                class="btn-warning"
+                                invisible="state != '4' or deduction_amount == 0"/>
 
-    <!-- شريط الحالة: إظهار دورة العمل بالترتيب -->
-    <field name="state" widget="statusbar" statusbar_visible="1,2,start,3"/>
-</header>
+                        <!-- شريط الحالة: إظهار دورة العمل بالترتيب -->
+                        <field name="state" widget="statusbar" statusbar_visible="1,2,start,3"/>
+                    </header>
                     <sheet>
                         <div class="oe_title">
                             <h1>
@@ -96,10 +96,10 @@
                             </group>
                         </group>
                         <group string="تتبع وقت الخدمة">
-                    <field name="service_start_time"/>
-                    <field name="service_end_time"/>
-                    <field name="service_duration"/>
-                </group>
+                            <field name="service_start_time"/>
+                            <field name="service_end_time"/>
+                            <field name="service_duration"/>
+                        </group>
                         <notebook>
                             <page string="Notes">
                                 <field name="notes"/>
@@ -126,12 +126,12 @@
             <field name="name">view.appointment.management.kanban</field>
             <field name="model">appointment.management</field>
             <field name="arch" type="xml">
+               <!-- شيلنا الـ create="0" عشان الـ Import يشتغل -->
                <kanban class="o_kanban_dashboard o_kanban_small_column"
-        sample="1"
-        create="0"
-        default_order="id desc"
-        default_group_by="state"
-        records_draggable="true">
+                       sample="1"
+                       default_order="id desc"
+                       default_group_by="state"
+                       records_draggable="true">
                     <field name="appointment_ref"/>
                     <field name="partner_id"/>
                     <field name="date"/>
@@ -200,10 +200,18 @@
                                     </div>
                                     <div class="oe_kanban_bottom_right">
                                         <div class="o_project_kanban_boxes d-flex align-items-baseline gap-1">
-                                            <button class="btn btn-primary btn-sm" name="action_print_ticket" type="object">
+                                            <!-- زر الطباعة -->
+                                            <button class="btn btn-secondary btn-sm" name="action_print_ticket" type="object">
                                                 Print
                                             </button>
-                                            <button class="btn btn-success btn-sm" name="action_appointment_complate" type="object" invisible="state != '2'">
+
+                                            <!-- 🚀 التعديل هنا: زر البدء هيظهر في حالة Approved (2) 🚀 -->
+                                            <button class="btn btn-primary btn-sm" name="action_start_service" type="object" invisible="state != '2'">
+                                                <strong>Start Service</strong>
+                                            </button>
+
+                                            <!-- 🚀 التعديل هنا: زر الإكمال هيظهر في حالة In Progress (start) فقط 🚀 -->
+                                            <button class="btn btn-success btn-sm" name="action_appointment_complate" type="object" invisible="state != 'start'">
                                                 <strong>Complete</strong>
                                             </button>
                                         </div>
