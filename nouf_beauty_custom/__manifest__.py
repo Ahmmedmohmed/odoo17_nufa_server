@@ -8,6 +8,12 @@
     'data': [
         'views/res_partner_views.xml',
     ],
+
+    'assets': {
+            'point_of_sale._assets_pos': [
+                'nouf_beauty_custom/static/src/js/partner_editor_validation.js',
+            ],
+        },
     'installable': True,
     'application': False,
     'auto_install': False,
