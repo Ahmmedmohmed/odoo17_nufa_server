@@ -10,6 +10,43 @@ import { _t } from "@web/core/l10n/translation";
 import { useState } from "@odoo/owl";
 import { ErrorPopup } from "@point_of_sale/app/errors/popups/error_popup";
 
+// ─── Translation map ───────────────────────────────────────────────────────────
+const TRANSLATIONS = {
+    ar: {
+        type:             'نوع الخدمة',
+        branch:           'الفرع',
+        employee:         'الموظف / الأخصائية',
+        date:             'التاريخ',
+        appointments:     'المواعيد المتاحة',
+        none:             'لا يوجد',
+        internalServices: 'خدمات داخلية',
+        externalServices: 'خدمات خارجية',
+    },
+    en: {
+        type:             'Type',
+        branch:           'Branch',
+        employee:         'Employee',
+        date:             'Date',
+        appointments:     'Appointments',
+        none:             'None',
+        internalServices: 'Internal Services',
+        externalServices: 'External Services',
+    },
+};
+
+function getLang() {
+    // Odoo stores the active language in the html lang attribute
+    const lang = document.documentElement.lang || 'en';
+    // Normalize: "ar_001" → "ar", "en_US" → "en"
+    const code = lang.split('_')[0].toLowerCase();
+    return TRANSLATIONS[code] ? code : 'en';
+}
+
+function t(key) {
+    return TRANSLATIONS[getLang()][key] || TRANSLATIONS['en'][key] || key;
+}
+// ──────────────────────────────────────────────────────────────────────────────
+
 export class AppointmentSeviceDetails extends Component {
     static template = "appointment_management_system_pos.AppointmentSeviceDetails";
     static props = {
@@ -24,14 +61,14 @@ export class AppointmentSeviceDetails extends Component {
     };
 
     // ─── Translation getters ───────────────────────────────────────────────────
-    get labelType()             { return _t('Type'); }
-    get labelBranch()           { return _t('Branch'); }
-    get labelEmployee()         { return _t('Employee'); }
-    get labelDate()             { return _t('Date'); }
-    get labelAppointments()     { return _t('Appointments'); }
-    get labelNone()             { return _t('None'); }
-    get labelInternalServices() { return _t('Internal Services'); }
-    get labelExternalServices() { return _t('External Services'); }
+    get labelType()             { return t('type'); }
+    get labelBranch()           { return t('branch'); }
+    get labelEmployee()         { return t('employee'); }
+    get labelDate()             { return t('date'); }
+    get labelAppointments()     { return t('appointments'); }
+    get labelNone()             { return t('none'); }
+    get labelInternalServices() { return t('internalServices'); }
+    get labelExternalServices() { return t('externalServices'); }
     // ──────────────────────────────────────────────────────────────────────────
 
     setup() {
@@ -144,7 +181,6 @@ export class AppointmentSeviceDetails extends Component {
     onBranchChange(ev) {
         const branch_id = ev.target.value;
         var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
-
         this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].branch_id = branch_id;
         this.changes.branch_id = branch_id;
         this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].employee_id = '';
