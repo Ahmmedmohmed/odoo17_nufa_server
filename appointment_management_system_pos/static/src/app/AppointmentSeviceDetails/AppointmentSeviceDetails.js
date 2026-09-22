@@ -53,6 +53,8 @@ export class AppointmentSeviceDetails extends Component {
 
         this.selectedService=this.pos.appointmentDetails?this.pos.appointmentDetails['selectedService']:[];
 
+        this._t = _t;
+
     }
     get appointmentDetailsSelectedService() {
       if (this.pos.appointmentDetails) {
