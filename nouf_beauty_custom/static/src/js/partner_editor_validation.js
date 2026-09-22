@@ -1,11 +1,16 @@
 /** @odoo-module */
 
-import { PartnerEditor } from "@point_of_sale/app/screens/partner_list/partner_editor/partner_editor";
+// 1. نستدعي الموديول بالكامل بدل استدعاء اسم كلاس بعينه
+import * as PartnerEditorModule from "@point_of_sale/app/screens/partner_list/partner_editor/partner_editor";
 import { patch } from "@web/core/utils/patch";
 import { ErrorPopup } from "@point_of_sale/app/errors/popups/error_popup";
 import { _t } from "@web/core/l10n/translation";
 
-patch(PartnerEditor.prototype, {
+// 2. نستخرج الكلاس أوتوماتيك أياً كان اسمه في نسختك (PartnerEditor أو PartnerDetailsEdit)
+const PartnerEditorClass = PartnerEditorModule.PartnerEditor || PartnerEditorModule.PartnerDetailsEdit || Object.values(PartnerEditorModule)[0];
+
+// 3. نعمل الباتش على الكلاس المستخرج
+patch(PartnerEditorClass.prototype, {
     async save() {
         const changes = this.state.changes;
         const partner = this.props.partner || {};
