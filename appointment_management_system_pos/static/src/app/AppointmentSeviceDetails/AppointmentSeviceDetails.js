@@ -52,19 +52,13 @@ export class AppointmentSeviceDetails extends Component {
         });
 
         this.selectedService = this.pos.appointmentDetails ? this.pos.appointmentDetails['selectedService'] : [];
-
-        // ✅ الترجمة الديناميكية: يتم ترجمة الكلمات هنا وتمريرها جاهزة لملف الـ XML
-        this.pos_t = {
-            type: _t("Type"),
-            branch: _t("Branch"),
-            employee: _t("Employee"),
-            date: _t("Date"),
-            appointments: _t("Appointments"),
-            none: _t("None"),
-            internal: _t("Internal Services"),
-            external: _t("External Services")
-        };
     }
+
+    // 🚀 الدالة دي هترجع True لو الواجهة عربي (RTL) و False لو إنجليزي
+    get isAr() {
+        return document.documentElement.dir === 'rtl';
+    }
+
     get appointmentDetailsSelectedService() {
       if (this.pos.appointmentDetails) {
         return this.pos.appointmentDetails['selectedService'];
