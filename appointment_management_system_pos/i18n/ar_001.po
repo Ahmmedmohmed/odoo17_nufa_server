@@ -1,0 +1,31 @@
+#. module: appointment_management_system_pos
+msgid "Type"
+msgstr "نوع الخدمة"
+
+#. module: appointment_management_system_pos
+msgid "Branch"
+msgstr "الفرع"
+
+#. module: appointment_management_system_pos
+msgid "Employee"
+msgstr "الموظف / الأخصائية"
+
+#. module: appointment_management_system_pos
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: appointment_management_system_pos
+msgid "Appointments"
+msgstr "المواعيد المتاحة"
+
+#. module: appointment_management_system_pos
+msgid "None"
+msgstr "لا يوجد"
+
+#. module: appointment_management_system_pos
+msgid "Internal Services"
+msgstr "خدمات داخلية"
+
+#. module: appointment_management_system_pos
+msgid "External Services"
+msgstr "خدمات خارجية"

@@ -36,9 +36,9 @@
                     <tr>
                         <td>Type</td>
                         <td>
-                          <select  t-model="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].appointment_type" class="detail form-select" id="appointment_type" name="appointment_type" t-on-change="onTypeChange">
-                              <option value="inside">Inside</option>
-                              <option value="outside">Outside</option>
+                          <select t-model="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].appointment_type" class="detail form-select" id="appointment_type" name="appointment_type" t-on-change="onTypeChange">
+                              <option value="inside">Internal Services</option>
+                              <option value="outside">External Services</option>
                           </select>
                         </td>
                     </tr>
