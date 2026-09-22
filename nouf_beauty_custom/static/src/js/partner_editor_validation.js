@@ -7,16 +7,19 @@ import { _t } from "@web/core/l10n/translation";
 
 patch(PartnerEditor.prototype, {
     async save() {
-        // الصح: التغييرات في state.changes
         const changes = this.state.changes;
         const partner = this.props.partner || {};
 
+        // نجيب القيمة الحالية في الـ field
         let mobile = changes.mobile !== undefined
             ? changes.mobile
             : partner.mobile;
 
-        // 1. التحقق من وجود رقم الجوال
-        if (!mobile) {
+        // نحول لـ string ونشيل المسافات
+        let cleanMobile = mobile ? mobile.toString().replace(/\s+/g, '') : '';
+
+        // 1. التحقق إن الموبايل مش فاضي
+        if (!cleanMobile) {
             this.env.services.popup.add(ErrorPopup, {
                 title: _t('خطأ في الإدخال'),
                 body: _t('حقل رقم الجوال مطلوب، يرجى إدخال الرقم.'),
@@ -24,8 +27,7 @@ patch(PartnerEditor.prototype, {
             return false;
         }
 
-        // 2. إزالة المسافات والتحقق من 10 أرقام
-        let cleanMobile = mobile.toString().replace(/\s+/g, '');
+        // 2. التحقق من 10 أرقام بالظبط
         if (!/^\d{10}$/.test(cleanMobile)) {
             this.env.services.popup.add(ErrorPopup, {
                 title: _t('خطأ في الإدخال'),
@@ -34,7 +36,6 @@ patch(PartnerEditor.prototype, {
             return false;
         }
 
-        // كل الشروط اتحققت، نكمل الحفظ
         return super.save(...arguments);
     }
 });
