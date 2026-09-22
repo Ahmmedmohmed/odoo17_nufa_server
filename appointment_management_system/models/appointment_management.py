@@ -46,7 +46,10 @@ class AppointmentManagement(models.Model):
     service_start_time = fields.Datetime(string='Service Start Time', readonly=True)
     service_end_time = fields.Datetime(string='Service End Time', readonly=True)
     service_duration = fields.Char(string='Duration (Minutes)', compute='_compute_service_duration', store=True)
-    appointment_type = fields.Selection([('inside', 'Inside'), ('outside', 'Outside')], default='inside', required=True)
+    appointment_type = fields.Selection([
+        ('inside', 'Internal Services'),
+        ('outside', 'External Services')
+    ], string='Appointment Type', default='inside', required=True)
     notes = fields.Text('Notes')
     slot_ids = fields.Many2many('appointment.employee.slot')
     cancelled_at = fields.Datetime('Cancelled At', readonly=True)

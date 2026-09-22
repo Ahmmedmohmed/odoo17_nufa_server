@@ -1690,3 +1690,28 @@ msgstr "المبلغ الإجمالي"
 #. module: appointment_management_system
 msgid "SAR"
 msgstr "ر.س"
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_management__appointment_type__inside
+msgid "Internal Services"
+msgstr "خدمات داخلية"
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_management__appointment_type__outside
+msgid "External Services"
+msgstr "خدمات خارجية"
+
+#. module: appointment_management_system
+msgid "Inside"
+msgstr "خدمات داخلية"
+
+#. module: appointment_management_system
+msgid "Outside"
+msgstr "خدمات خارجية"
+
+#. module: appointment_management_system
+msgid "Inside (Branch)"
+msgstr "خدمات داخلية"
+
+#. module: appointment_management_system
+msgid "Outside (Home)"
+msgstr "خدمات خارجية"
