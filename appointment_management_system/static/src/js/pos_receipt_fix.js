@@ -1,10 +1,14 @@
 /** @odoo-module **/
-import { Orderline } from 'point_of_sale.models';
+
+// 1. المسار الصحيح لاستدعاء Orderline في أودو 17
+import { Orderline } from "@point_of_sale/app/store/models";
 import { patch } from "@web/core/utils/patch";
 
-patch(Orderline.prototype, "appointment_management_system.receipt_fix", {
+// 2. تحديث طريقة الباتش بدون اسم سترينج
+patch(Orderline.prototype, {
     export_for_printing() {
-        const line = this._super(...arguments);
+        // 3. استخدام super القياسية بدلاً من this._super القديمة
+        const line = super.export_for_printing(...arguments);
 
         // هنا بنبعت الحقول للفاتورة عشان الـ XML يقدر يقرأها
         // بافتراض إن الحقول دي موجودة جوا المنتج (Product)
