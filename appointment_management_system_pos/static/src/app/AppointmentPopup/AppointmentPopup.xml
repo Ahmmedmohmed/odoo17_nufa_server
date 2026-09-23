@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
     <t t-name="appointment_management_system_pos.AppointmentPopup">
-        <div class=" product-selection-combo-popup popup">
+        <div class="product-selection-combo-popup popup">
+
+            <style>
+                /* 🚀 CSS مخصص لمنع تداخل الصور واحتوائها داخل الإطار */
+                .product-selection-combo-popup .products-widget-control img,
+                .product-selection-combo-popup .category-button img,
+                .product-selection-combo-popup .product-img img {
+                    object-fit: contain !important;
+                    max-width: 100% !important;
+                    max-height: 70px !important; /* تقييد ارتفاع الصورة لتكون متناسقة */
+                    width: auto !important;
+                    height: auto !important;
+                    margin: 0 auto !important;
+                }
+
+                /* إجبار الإطار الخارجي للصورة على عدم التمدد وتوسيط المحتوى */
+                .product-selection-combo-popup .category-button,
+                .product-selection-combo-popup .product-img,
+                .product-selection-combo-popup .product {
+                    overflow: hidden !important;
+                    min-width: 0 !important; /* خدعة الفليكس بوكس لمنع الصورة من كسر الإطار */
+                }
+            </style>
+
             <div class="modal-header" style="padding: 5px;">
                 <h4 class="button cancel btn btn-lg btn-primary" t-on-click="confirm"><t t-esc="props.confirmText"/></h4>
                 <h4 class="modal-title"><t t-esc="props.title"/></h4>
@@ -29,14 +52,11 @@
 
                             <AppointmentSeviceList class="shadow-sm" products="productsToDisplay" orderMenu="OrderMenuToDisplay" onClick="(product) =>this.addProduct(product)" onRemoveClick="(product) =>this.removeProduct(product)"/>
 
-
                             <AppointmentSeviceDetails t-if="productsToDisplay.length != 0"
                                 class="pos.productViewMode"
                                 SelectedServices="SelectedServices"
                                 appointmentDetails="pos.appointmentDetails"
                             />
-                            <!-- onClick="(product) =>this.selectedServicePack(product)" -->
-
                         </div>
                     </div>
                 </div>
