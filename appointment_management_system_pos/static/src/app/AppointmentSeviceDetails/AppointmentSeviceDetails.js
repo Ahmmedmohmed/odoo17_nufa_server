@@ -98,6 +98,10 @@ export class AppointmentSeviceDetails extends Component {
 
         this.selectedService=this.pos.appointmentDetails?this.pos.appointmentDetails['selectedService']:[];
 
+        this.t = t;
+
+        this.popup = useService("popup");
+
     }
     get appointmentDetailsSelectedService() {
       if (this.pos.appointmentDetails) {

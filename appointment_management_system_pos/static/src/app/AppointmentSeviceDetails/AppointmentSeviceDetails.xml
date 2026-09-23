@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates id="template" xml:space="preserve">
-    <t t-name="appointment_management_system_pos.AppointmentSeviceDetails" owl="1" t-translation="on">
+    <t t-name="appointment_management_system_pos.AppointmentSeviceDetails" owl="1">
 
       <div t-if="appointmentDetailsSelectedServicePack" class="p-3 d-flex overflow-auto w-100 shadow-sm justify-content-between">
           <div class="d-flex bg-view">
             <t t-foreach="pos.SelectedServices" t-as="product" t-key="product.id">
-              <!-- t-attf-class="{{props.class}} {{highlight(product.id)}} product position-relative btn btn-light d-flex align-items-stretch p-0 m-0 text-start cursor-pointer overflow-hidden transition-base" -->
                 <button tabindex="0"
                     t-attf-class="{{highlight(product.id)}} product position-relative btn btn-light d-flex align-items-stretch p-0 m-0 text-start cursor-pointer overflow-hidden transition-base"
                     t-on-click="onClick"
-
                     t-att-data-product-id="product.id"
                     t-attf-aria-labelledby="article_product_{{product.id}}">
 
@@ -23,55 +21,34 @@
                             t-esc="product.display_name" />
                     </div>
                 </button>
-
-
             </t>
           </div>
       </div>
-      <div t-if="appointmentDetailsSelectedService" class="d-flex flex-column flex-grow-1 align-items-start">
 
+      <div t-if="appointmentDetailsSelectedService" class="d-flex flex-column flex-grow-1 align-items-start">
         <div class="section-financials text-start" style="width: -webkit-fill-available;">
             <div class="section-financials-body d-flex flex-column flex-sm-row">
                 <table class="table mb-0">
-                    <style>
-                        /* CSS لإظهار اللغة المناسبة بناءً على اتجاه الشاشة */
-                        html[dir="rtl"] .en-text { display: none !important; }
-                        html[dir="ltr"] .ar-text { display: none !important; }
-                        html:not([dir="rtl"]) .ar-text { display: none !important; }
-                    </style>
                     <tr>
-                        <!-- 🚀 إضافة مسافات وعرض ثابت للعمود الأول لضبط المسافات -->
-                        <td class="w-25 py-3 pe-4 align-middle fw-bold">
-                            <span class="ar-text">نوع الخدمة</span>
-                            <span class="en-text">Type</span>
-                        </td>
+                        <td class="w-25 py-3 pe-4 align-middle fw-bold" t-esc="labelType"></td>
                         <td class="py-2">
                           <select t-model="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].appointment_type"
                                   class="detail form-select w-100" id="appointment_type" name="appointment_type"
                                   t-on-change="onTypeChange">
-                              <option value="inside">
-                                  <span class="ar-text">خدمات داخلية</span><span class="en-text">Internal Services</span>
-                              </option>
-                              <option value="outside">
-                                  <span class="ar-text">خدمات خارجية</span><span class="en-text">External Services</span>
-                              </option>
+                              <option value="inside" t-esc="labelInternalServices"></option>
+                              <option value="outside" t-esc="labelExternalServices"></option>
                           </select>
                         </td>
                     </tr>
                     <tr>
-                        <td class="w-25 py-3 pe-4 align-middle fw-bold">
-                            <span class="ar-text">الفرع</span>
-                            <span class="en-text">Branch</span>
-                        </td>
+                        <td class="w-25 py-3 pe-4 align-middle fw-bold" t-esc="labelBranch"></td>
                         <td class="py-2">
                           <t t-set="availableBranchs" t-value="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].availableBranchs"/>
                           <select t-att="{'disabled': !_disabledBranch()}"
                                   t-att-value="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].branch_id"
                                   class="detail form-select w-100" id="branch" name="branch_id"
                                   t-on-change="onBranchChange">
-                              <option value="">
-                                  <span class="ar-text">لا يوجد</span><span class="en-text">None</span>
-                              </option>
+                              <option value="" t-esc="labelNone"></option>
                               <t t-foreach="availableBranchs" t-as="branch_id" t-key="branch_id">
                                   <option t-att-value="branch_id">
                                       <t t-esc="availableBranchs[branch_id]" />
@@ -81,19 +58,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="w-25 py-3 pe-4 align-middle fw-bold">
-                            <span class="ar-text">الموظف / الأخصائية</span>
-                            <span class="en-text">Employee</span>
-                        </td>
+                        <td class="w-25 py-3 pe-4 align-middle fw-bold" t-esc="labelEmployee"></td>
                         <td class="py-2">
                           <t t-set="availableEmployees" t-value="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].availableEmployees"/>
                           <select t-att="{'disabled': !_disabledEmployee()}"
                                   t-model="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].employee_id"
                                   class="detail form-select w-100" id="employee" name="employee_id"
                                   t-on-change="onEmployeeChange">
-                              <option value="">
-                                  <span class="ar-text">لا يوجد</span><span class="en-text">None</span>
-                              </option>
+                              <option value="" t-esc="labelNone"></option>
                               <t t-foreach="availableEmployees" t-as="employee_id" t-key="employee_id">
                                   <option t-att-value="employee_id">
                                       <t t-esc="availableEmployees[employee_id]" />
@@ -103,19 +75,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="w-25 py-3 pe-4 align-middle fw-bold">
-                            <span class="ar-text">التاريخ</span>
-                            <span class="en-text">Date</span>
-                        </td>
+                        <td class="w-25 py-3 pe-4 align-middle fw-bold" t-esc="labelDate"></td>
                         <td class="py-2">
                           <t t-set="availabledDates" t-value="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].availabledDates"/>
                           <select t-att="{'disabled': !_disabledDate()}"
                                   t-model="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].date"
                                   class="detail form-select w-100" id="date" name="date_id"
                                   t-on-change="onDateChange">
-                              <option value="">
-                                  <span class="ar-text">لا يوجد</span><span class="en-text">None</span>
-                              </option>
+                              <option value="" t-esc="labelNone"></option>
                               <t t-foreach="availabledDates" t-as="date" t-key="date">
                                   <option t-att-value="date">
                                       <t t-esc="date" />
@@ -125,19 +92,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="w-25 py-3 pe-4 align-middle fw-bold">
-                            <span class="ar-text">المواعيد المتاحة</span>
-                            <span class="en-text">Appointments</span>
-                        </td>
+                        <td class="w-25 py-3 pe-4 align-middle fw-bold" t-esc="labelAppointments"></td>
                         <td class="py-2">
                           <t t-set="availableAppointments" t-value="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].availableAppointments"/>
                           <select t-att="{'disabled': !_disabledAvailableAppointments()}"
                                   t-model="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].appointment"
                                   class="detail form-select w-100" id="appointment" name="appointment_id"
                                   t-on-change="onAppointmentChange">
-                              <option value="">
-                                  <span class="ar-text">لا يوجد</span><span class="en-text">None</span>
-                              </option>
+                              <option value="" t-esc="labelNone"></option>
                               <t t-foreach="availableAppointments" t-as="slot_id" t-key="slot_id">
                                   <option t-att-value="slot_id">
                                       <t t-esc="slot_id" />
@@ -147,10 +109,10 @@
                         </td>
                     </tr>
                 </table>
-                <select  style="display: none;"  t-att="{'disabled': !_disabledBranch()}" t-model="changes.branch_id" class="detail form-select" id="branch" name="branch_id" t-on-change="onBranchChange">
-                    <option value="" t-esc="labelNone"/>
-                    <t t-foreach="availableBranchs"  t-as="branch_id" t-key="branch_id">
-                        <option  t-att-value="branch_id">
+                <select style="display: none;" t-att="{'disabled': !_disabledBranch()}" t-model="changes.branch_id" class="detail form-select w-100" id="branch" name="branch_id" t-on-change="onBranchChange">
+                    <option value="" t-esc="labelNone"></option>
+                    <t t-foreach="availableBranchs" t-as="branch_id" t-key="branch_id">
+                        <option t-att-value="branch_id">
                             <t t-esc="availableBranchs[branch_id]" />
                         </option>
                     </t>
@@ -159,10 +121,7 @@
             </div>
         </div>
 
-
       </div>
-
-
 
     </t>
 </templates>
