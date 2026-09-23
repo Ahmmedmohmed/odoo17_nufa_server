@@ -1,6 +1,6 @@
 /** @odoo-module */
 
-import { PartnerEditor } from "@point_of_sale/app/screens/partner_list/partner_editor/partner_editor";
+import { PartnerDetailsEdit } from "@point_of_sale/app/screens/partner_list/partner_editor/partner_editor";
 import { patch } from "@web/core/utils/patch";
 import { ErrorPopup } from "@point_of_sale/app/errors/popups/error_popup";
 
@@ -22,52 +22,48 @@ const MESSAGES = {
     },
 };
 
-patch(PartnerEditor.prototype, {
+if (PartnerDetailsEdit && PartnerDetailsEdit.prototype) {
+    patch(PartnerDetailsEdit.prototype, {
 
-    async save() {
-        // القيود دي بتتفعّل بس مع "عميل جديد" - العميل القديم (عنده id فعلاً) مش هيتأثر
-        const isNewPartner = !this.props.partner || !this.props.partner.id;
+        async save() {
+            // القيود دي بتتفعّل بس مع "عميل جديد" - العميل القديم مش هيتأثر
+            const isNewPartner = !this.props.partner || !this.props.partner.id;
 
-        if (isNewPartner) {
-            // تحديد لغة الرسائل حسب اتجاه الواجهة الحالي (rtl = عربي)
-            const isArabic = this.env.services.localization.direction === "rtl";
-            const t = isArabic ? MESSAGES.ar : MESSAGES.en;
+            if (isNewPartner) {
+                const dir = (document.documentElement.dir || document.body.dir || "").toLowerCase();
+                const isArabic = dir === "rtl";
+                const t = isArabic ? MESSAGES.ar : MESSAGES.en;
 
-            const changes = this.state.changes;
-            const partner = this.props.partner || {};
+                const changes = this.state.changes;
+                const partner = this.props.partner || {};
 
-            let mobile = changes.mobile !== undefined ? changes.mobile
-                       : changes.phone !== undefined ? changes.phone
-                       : (partner.mobile || partner.phone || "");
+                let mobile = changes.mobile !== undefined ? changes.mobile
+                           : changes.phone !== undefined ? changes.phone
+                           : (partner.mobile || partner.phone || "");
 
-            const cleanMobile = mobile ? mobile.toString().replace(/\s+/g, "") : "";
+                const cleanMobile = mobile ? mobile.toString().replace(/\s+/g, "") : "";
 
-            // 1. الحقل فاضي
-            if (!cleanMobile) {
-                this.env.services.popup.add(ErrorPopup, { title: t.title, body: t.empty });
-                return false;
+                if (!cleanMobile) {
+                    this.env.services.popup.add(ErrorPopup, { title: t.title, body: t.empty });
+                    return false;
+                }
+                if (!/^\d+$/.test(cleanMobile)) {
+                    this.env.services.popup.add(ErrorPopup, { title: t.title, body: t.invalid });
+                    return false;
+                }
+                if (cleanMobile.length < 10) {
+                    this.env.services.popup.add(ErrorPopup, { title: t.title, body: t.tooShort });
+                    return false;
+                }
+                if (cleanMobile.length > 10) {
+                    this.env.services.popup.add(ErrorPopup, { title: t.title, body: t.tooLong });
+                    return false;
+                }
             }
 
-            // 2. فيه حروف أو رموز
-            if (!/^\d+$/.test(cleanMobile)) {
-                this.env.services.popup.add(ErrorPopup, { title: t.title, body: t.invalid });
-                return false;
-            }
-
-            // 3. أقل من 10 أرقام
-            if (cleanMobile.length < 10) {
-                this.env.services.popup.add(ErrorPopup, { title: t.title, body: t.tooShort });
-                return false;
-            }
-
-            // 4. أكتر من 10 أرقام
-            if (cleanMobile.length > 10) {
-                this.env.services.popup.add(ErrorPopup, { title: t.title, body: t.tooLong });
-                return false;
-            }
+            return super.save(...arguments);
         }
-
-        // كل حاجة تمام (أو ده عميل قديم مش خاضع للقيد) → نكمل الحفظ الطبيعي
-        return super.save(...arguments);
-    }
-});
+    });
+} else {
+    console.error("⚠️ nouf_beauty_custom: PartnerDetailsEdit undefined - راجع مسار الـ import");
+}

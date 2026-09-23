@@ -35,11 +35,15 @@ const TRANSLATIONS = {
 };
 
 function getLang() {
-    // Odoo stores the active language in the html lang attribute
-    const lang = document.documentElement.lang || 'en';
-    // Normalize: "ar_001" → "ar", "en_US" → "en"
-    const code = lang.split('_')[0].toLowerCase();
-    return TRANSLATIONS[code] ? code : 'en';
+    // نجرب أولاً اتجاه الصفحة - أضمن مؤشر لأن أودو بيظبطه صح دايماً مع العربي
+    const dir = (document.documentElement.dir || document.body.dir || '').toLowerCase();
+    if (dir === 'rtl') {
+        return 'ar';
+    }
+
+    // fallback: نقرأ الـ lang ونقسمها على شرطة أو أندرسكور مع بعض
+    const lang = (document.documentElement.lang || 'en').split(/[-_]/)[0].toLowerCase();
+    return TRANSLATIONS[lang] ? lang : 'en';
 }
 
 function t(key) {
