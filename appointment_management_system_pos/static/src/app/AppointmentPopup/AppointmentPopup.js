@@ -1,296 +1,309 @@
-/** @odoo-module */
+/** @odoo-module **/
 
+import { usePos } from "@point_of_sale/app/store/pos_hook";
+import { ProductCard } from "@point_of_sale/app/generic_components/product_card/product_card";
+import { Component, onMounted } from "@odoo/owl";
+import { useService } from "@web/core/utils/hooks";
+import { AbstractAwaitablePopup } from "@point_of_sale/app/popup/abstract_awaitable_popup";
+import { useAutoFocusToLast } from "@point_of_sale/app/utils/hooks";
 import { _t } from "@web/core/l10n/translation";
 import { useState } from "@odoo/owl";
-import { useService } from "@web/core/utils/hooks";
-import { usePos } from "@point_of_sale/app/store/pos_hook";
-import { Input } from "@point_of_sale/app/generic_components/inputs/input/input";
-import { unaccent } from "@web/core/utils/strings";
 import { ErrorPopup } from "@point_of_sale/app/errors/popups/error_popup";
-import { AbstractAwaitablePopup } from "@point_of_sale/app/popup/abstract_awaitable_popup";
-import { AppointmentSeviceList } from "@appointment_management_system_pos/app/AppointmentSeviceList/AppointmentSeviceList";
-import { AppointmentSeviceDetails } from "@appointment_management_system_pos/app/AppointmentSeviceDetails/AppointmentSeviceDetails";
-import { AppointmentSevicePackSelection } from "@appointment_management_system_pos/app/AppointmentSevicePackSelection/AppointmentSevicePackSelection";
-import { CategorySelector } from "@point_of_sale/app/generic_components/category_selector/category_selector";
 
+// ─── Translation map ───────────────────────────────────────────────────────────
+const TRANSLATIONS = {
+    ar: {
+        type:             'نوع الخدمة',
+        branch:           'الفرع',
+        employee:         'الموظف / الأخصائية',
+        date:             'التاريخ',
+        appointments:     'المواعيد المتاحة',
+        none:             'لا يوجد',
+        internalServices: 'خدمات داخلية',
+        externalServices: 'خدمات خارجية',
+    },
+    en: {
+        type:             'Type',
+        branch:           'Branch',
+        employee:         'Employee',
+        date:             'Date',
+        appointments:     'Appointments',
+        none:             'None',
+        internalServices: 'Internal Services',
+        externalServices: 'External Services',
+    },
+};
 
-export class AppointmentPopup extends AbstractAwaitablePopup {
-    static template = "appointment_management_system_pos.AppointmentPopup";
-    static components = {
-        AppointmentSeviceList,
-        AppointmentSeviceDetails,
-        AppointmentSevicePackSelection,
-        CategorySelector,
-        Input
-    };
+function getLang() {
+    // Try all possible places Odoo stores the language
+    const candidates = [
+        // 1. Odoo session info (most reliable)
+        typeof odoo !== 'undefined' && odoo.session_info && odoo.session_info.user_context && odoo.session_info.user_context.lang,
+        // 2. HTML lang attribute
+        document.documentElement.lang,
+        // 3. Cookie
+        (document.cookie.match(/(?:^|;)\s*frontend_lang=([^;]*)/) || [])[1],
+        // 4. localStorage
+        localStorage.getItem('lang'),
+    ];
 
+    for (const lang of candidates) {
+        if (lang && typeof lang === 'string') {
+            // Normalize: "ar_001" → "ar", "ar_SY" → "ar", "en_US" → "en"
+            const code = lang.split('_')[0].toLowerCase();
+            if (TRANSLATIONS[code]) {
+                console.log('[AppointmentSeviceDetails] Language detected:', lang, '→', code);
+                return code;
+            }
+        }
+    }
+    console.log('[AppointmentSeviceDetails] Language not detected, falling back to en');
+    return 'en';
+}
+
+function t(key) {
+    return TRANSLATIONS[getLang()][key] || TRANSLATIONS['en'][key] || key;
+}
+// ──────────────────────────────────────────────────────────────────────────────
+
+export class AppointmentSeviceDetails extends Component {
+    static template = "appointment_management_system_pos.AppointmentSeviceDetails";
+    static props = {
+        class: { String, optional: true },
+        onClick: { type: Function, optional: true },
+        SelectedServices: { type: Object, optional: true },
+        appointmentDetails: { type: Object, optional: true },
+    }
     static defaultProps = {
-        confirmText: _t("Confirm"),
-        cancelText: _t("Cancel"),
-        confirmKey: false,
+        onClick: () => {},
+        class: "",
     };
+
+    // ─── Translation getters ───────────────────────────────────────────────────
+    get labelType()             { return t('type'); }
+    get labelBranch()           { return t('branch'); }
+    get labelEmployee()         { return t('employee'); }
+    get labelDate()             { return t('date'); }
+    get labelAppointments()     { return t('appointments'); }
+    get labelNone()             { return t('none'); }
+    get labelInternalServices() { return t('internalServices'); }
+    get labelExternalServices() { return t('externalServices'); }
+    // ──────────────────────────────────────────────────────────────────────────
 
     setup() {
         super.setup();
-        this.pos = usePos();
-        this.orm = useService("orm");
-        this.ui = useState(useService("ui"));
         this.popup = useService("popup");
+        this.orm = useService("orm");
+        this.pos = usePos();
+        this._id = 0;
+        this.availableBranchs = []
+        this.availableEmployees = []
+        this.changes = useState({
+            categ_id: '',
+            branch_id: '',
+            employee_id: '',
+            service_id: '',
+            date: '',
+            price: 0,
+            appointment_type: 'inside',
+            appointment: '',
+            appointment_id: false,
+            syncBranchs: false,
+            syncEmployees: false,
+            syncPrices: false,
+            syncDates: false,
+            syncAppointments: false,
+        });
 
-        this.appointment_categories = [];
-        for (var i = 0; i < this.pos.appointment_categories.length; i++) {
-          var cat = this.pos.db.category_by_id[this.pos.appointment_categories[i].id];
-          if (cat) {
-            this.appointment_categories.push(cat);
-          }
-        }
-        this.appointment_categories = this.appointment_categories.map((category) => {
-            const isRootCategory = category.id === this.pos.db.root_category_id;
-            const showSeparator =
-                !isRootCategory &&
-                [
-                    ...this.pos.db.get_category_ancestors_ids(this.pos.selectedCategoryId),
-                    this.pos.selectedCategoryId,
-                ].includes(category.id);
-            return {
-                id: category.id,
-                name: !isRootCategory ? category.name : "",
-                icon: isRootCategory ? "fa-home fa-2x" : "",
-                separator: "fa-caret-right",
-                showSeparator,
-                imageUrl:
-                    category?.has_image &&
-                    `/web/image?model=pos.category&field=image_128&id=${category.id}&unique=${category.write_date}`,
-            };
-        })
-        if (this.appointment_categories.length > 0 && !this.pos.SelectedCategoryId) {
-            this.pos.SelectedCategoryId = this.appointment_categories[0].id;
-        }
-        this.appointment_services = this.pos.appointment_services;
-        this.state = useState({ searchWord: ''});
+        this.selectedService=this.pos.appointmentDetails?this.pos.appointmentDetails['selectedService']:[];
 
-        this.pos.appointmentDetails = {};
-        this.pos.SelectedService = null;
-        this.pos.SelectedServices = [];
-        this.pos.isSelectedServicePack = false;
     }
     get appointmentDetailsSelectedService() {
       if (this.pos.appointmentDetails) {
         return this.pos.appointmentDetails['selectedService'];
-
       }
         return false;
     }
-    get SelectedCategoryId() {
-        return this.pos.SelectedCategoryId;
+    get appointmentDetailsSelectedServicePack() {
+      if (this.pos.appointmentDetails) {
+        return this.pos.appointmentDetails['selectedService'] && this.pos.appointmentDetails['isSelectedServicePack'];
+      }
+        return false;
     }
-    get isSelectedServicePack() {
-        return this.pos.isSelectedServicePack;
+
+    onClick(ev) {
+      console.log('onClick',this);
+      if (ev.target.id != '') {
+        this.pos.appointmentDetails['selectedService'] = parseInt(ev.target.id);
+        this.availableBranchs = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availableBranchs
+        this.changes.branch_id = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].branch_id.toString()
+        this.changes.employee_id = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].employee_id.toString()
+      }
+      this.render();
     }
-    get searchWord() {
-        return this.state.searchWord.trim();
-    }
-    get CategoryActive() {
-        if(this.SelectedCategoryId == this.categ.id){
-            return 'active';
+
+    highlight(id) {
+        var highlightClass = '';
+        var SelectedServiceId = this.pos.appointmentDetails['selectedService'];
+        if (SelectedServiceId == id) {
+          highlightClass = 'green_border';
         }
-        return '';
+        return highlightClass;
     }
-    switchCategory(categId) {
-        this.pos.SelectedCategoryId = categId;
-        this.pos.SelectedService = null;
-        if (this.pos.appointmentDetails) {
-          this.pos.appointmentDetails['selectedService'] = null;
-          this.pos.appointmentDetails['services'] = null;
+
+    _disabledBranch() {
+      var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
+      console.log('sdzfsdafsdfsdf',changes.syncBranchs != true);
+      if (changes.syncBranchs != true ) {
+        return false;
+      }
+      return true;
+    }
+
+    _disabledEmployee() {
+      var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
+      if (changes.syncEmployees != true ) {
+        return false;
+      }
+      return true;
+    }
+
+    _disabledDate() {
+      var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
+      if (changes.syncDates != true ) {
+        return false;
+      }
+      return true;
+    }
+
+    _disabledAvailableAppointments() {
+      var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
+      if (changes.syncAppointments != true ) {
+        return false;
+      }
+      return true;
+    }
+
+    onTypeChange(ev) {
+        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].appointment_type= ev.target.value;
+        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].branch_id = '';
+        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].employee_id = '';
+        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].date = '';
+        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].slot_ids = '';
+        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncBranchs = false;
+        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncEmployees = false;
+        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncDates = false;
+        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncAppointments = false;
+        this.getBranches();
+        this.render();
+    }
+    onBranchChange(ev) {
+        const branch_id = ev.target.value;
+        var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
+        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].branch_id = branch_id;
+        this.changes.branch_id = branch_id;
+        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].employee_id = '';
+        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].date = '';
+        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].slot_ids = '';
+        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncPrices = false;
+        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncEmployees = false;
+        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncDates = false;
+        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncAppointments = false;
+        if (branch_id != '') {
+          this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].branch_name = changes['availableBranchs'][parseInt(branch_id)];
+          this.getAvailableEmployees();
+        }
+        this.render();
+    }
+    onEmployeeChange(ev) {
+        const employee_id = ev.target.value;
+        var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
+        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].employee_id = employee_id;
+        this.changes.employee_id = employee_id;
+        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].date = '';
+        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].slot_ids = '';
+        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncDates = false;
+        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncAppointments = false;
+        if(employee_id != ''){
+          this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].employee_name = changes['availableEmployees'][parseInt(employee_id)];
+          this.getAvailableDates();
         }
         this.render();
     }
 
-    search_product(product) {
-        const { db } = this.pos;
-        var query = this.searchWord;
-        try {
-            // eslint-disable-next-line no-useless-escape
-            query = query.replace(/[\[\]\(\)\+\*\?\.\-\!\&\^\$\|\~\_\{\}\:\,\\\/]/g, ".");
-            query = query.replace(/ /g, ".+");
-            var re = RegExp("([0-9]+):.*?" + unaccent(query), "gi");
-        } catch {
-            return [];
+    onDateChange(ev) {
+        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].date= ev.target.value;
+        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].slot_ids = '';
+        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncAppointments = false;
+        if(this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].date != ''){
+          this.getAvailableAppointments();
         }
-        var r = re.exec(db._product_search_string(product));
-        if(r){
-            return true;
-        }
-        return false;
+        this.render();
     }
 
-    getShowCategoryImages() {
-        return (
-            this.pos.show_category_images &&
-            Object.values(this.pos.db.category_by_id).some((category) => category.has_image) &&
-            !this.ui.isSmall
-        );
-    }
-
-    get productsToDisplay() {
-        const { db } = this.pos;
-        let list = [];
-        if (this.searchWord !== "") {
-            list = db.search_product_in_category(this.SelectedCategoryId, this.searchWord);
-            list = list.filter((product) => product.is_appointment_service);
-        } else {
-            var categId = this.SelectedCategoryId;
-            list = Object.values(db.product_by_id).filter((product) => {
-                if (!product.is_appointment_service || !product.active || !product.available_in_pos) {
-                    return false;
-                }
-                if (categId && categId !== 0) {
-                    return product.pos_categ_ids && product.pos_categ_ids.includes(categId);
-                }
-                return true;
-            });
+    onAppointmentChange(ev) {
+        var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
+        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].slot_ids= ev.target.value;
+        if(ev.target.value != ''){
+          this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].slot_ids= changes['availableAppointments'][ev.target.value].ids;
+          this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].slot_name= changes['availableAppointments'][ev.target.value].name;
         }
-        return list.sort(function (a, b) {
-            return a.display_name.localeCompare(b.display_name);
-        });
+        this.render();
     }
 
-
-    selectedServicePack(ev){
-      this.pos.appointmentDetails['selectedService'] =ev.target.id;
+    async getBranches(){
+      var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
+      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncBranchs = false;
+      const availableBranchs = await this.orm.call(
+          "product.product",
+          "action_get_appointment_branch",
+          [changes.service_id,this.pos.appointmentDetails['isSelectedServicePack']? this.pos.appointmentDetails['service_id']:false]
+      );
+      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncBranchs = true;
+      this.availableBranchs = availableBranchs;
+      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availableBranchs = availableBranchs;
+      console.log(availableBranchs);
+      this.render();
+    }
+    async getAvailableEmployees(){
+      var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
+      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncEmployees = false;
+      const availableEmployees = await this.orm.call(
+          "product.product",
+          "action_get_appointment_employee",
+          [changes.service_id,changes.branch_id,this.pos.appointmentDetails['isSelectedServicePack']? this.pos.appointmentDetails['service_id']:false]
+      );
+      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncEmployees = true;
+      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availableEmployees = availableEmployees;
+      console.log(availableEmployees);
+      this.render();
+    }
+    async getAvailableDates(){
+      var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
+      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncDates = false;
+      const availabledDates = await this.orm.call(
+          "product.product",
+          "action_get_appointment_date",
+          [changes.service_id,changes.employee_id,this.pos.appointmentDetails['isSelectedServicePack']? this.pos.appointmentDetails['service_id']:false]
+      );
+      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncDates = true;
+      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availabledDates = availabledDates;
+      console.log(availabledDates);
+      this.render();
+    }
+    async getAvailableAppointments(){
+      var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
+      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncAppointments = false;
+      const availableAppointments = await this.orm.call(
+          "product.product",
+          "action_get_appointment_employee_slot",
+          [changes.service_id,changes.employee_id,changes.date,changes.appointment_type,changes.branch_id,this.pos.appointmentDetails['isSelectedServicePack']? this.pos.appointmentDetails['service_id']:false]
+      );
+      console.log(availableAppointments);
+      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncAppointments = true;
+      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availableAppointments = availableAppointments;
+      console.log(availableAppointments);
       this.render();
     }
 
-
-    async addProduct(product){
-      this.pos.appointmentDetails = {};
-      this.pos.SelectedService = product;
-      this.pos.SelectedServices = [];
-      this.pos.isSelectedServicePack = product && product.appointment_package_line_ids.length>0;
-      this.pos.appointmentDetails['services'] = {}
-      this.pos.appointmentDetails['service_id'] = product.id
-      if (product ) {
-        if (this.pos.isSelectedServicePack) {
-          this.pos.appointmentDetails['isSelectedServicePack'] =true;
-          this.pos.appointmentDetails['ServicePackFullName'] =product.display_name;
-          for (var i = 0; i < product.appointment_package_line_ids.length; i++) {
-            var product_id = this.pos.appointment_package_by_id[product.appointment_package_line_ids[i]]['product_id'][0];
-            var prod = this.pos.db.get_product_by_id(product_id);
-            this.pos.SelectedServices.push(prod);
-            var obj = {
-              'service_id':product_id,
-              'branch_id': '',
-              'employee_id': '',
-              'date': '',
-              'price': 0,
-              'appointment_type': 'inside',
-              'slot_ids': '',
-              'appointment_id': false,
-              'availableBranchs':[],
-              'availableAppointments':[],
-              'availableAppointmentsSorded':[],
-              'availabledDates':[],
-              'availableEmployees':[],
-            }
-            this.pos.appointmentDetails['services'][product_id] = obj
-            await this.pos.getBranches(product_id);
-          }
-          this.pos.appointmentDetails['selectedService'] =this.pos.appointment_package_by_id[product.appointment_package_line_ids[0]]['product_id'][0];
-
-        }else {
-          this.pos.SelectedServices.push(product);
-          var obj = {
-            'service_id':product.id,
-            'branch_id': '',
-            'employee_id': '',
-            'date': '',
-            'price': 0,
-            'appointment_type': 'inside',
-            'slot_ids': '',
-            'appointment_id': false,
-            'availableBranchs':[],
-            'availableAppointments':[],
-            'availableAppointmentsSorded':[],
-            'availabledDates':[],
-            'availableEmployees':[],
-          }
-          this.pos.appointmentDetails['services'][product.id] = obj
-          await this.pos.getBranches(product.id);
-          this.pos.appointmentDetails['selectedService'] = product.id;
-          this.pos.appointmentDetails['isSelectedServicePack'] =false;
-        }
-
-
-      }
-
-      this.render();
-
-    }
-
-    removeProduct(product) {
-      this.pos.SelectedService = null;
-      this.pos.appointmentDetails['selectedService'] = null;
-      this.pos.appointmentDetails['services'] = null;
-      this.render();
-    }
-
-    async confirm() {
-      var flag = true;
-      if (this.pos.appointmentDetails['services']) {
-        for (const [key, value] of Object.entries(this.pos.appointmentDetails['services'])) {
-          console.log(key,value);
-          if (
-            value.service_id == ''||
-            value.employee_id == ''||
-            value.date == ''||
-            value.slot_ids == ''
-          ) {
-            flag= false;
-          }
-        }
-      }else {
-        flag= false;
-      }
-
-
-
-
-      if (!flag) {
-        this.popup.add(ErrorPopup, {
-            title: _t("Missing Fields."),
-            body: _t("Missing Data."),
-        });
-      }else {
-        console.log('kljlkj');
-        await this.createAppointments();
-        super.confirm();
-      }
-    }
-
-    async createAppointments(){
-      var appointmentDetails = this.pos.appointmentDetails;
-      var partner_id = false;
-      if (this.pos.get_order().get_partner()) {
-        partner_id = this.pos.get_order().get_partner().id;
-      }
-      const createAppointment = await this.orm.call("product.product", "action_create_appointments", [appointmentDetails['service_id'],partner_id,appointmentDetails]);
-      this.pos.appointmentDetails = createAppointment;
-      this.render();
-    }
-
-		/**
-		 * @override
-		 */
-		async getPayload() {
-      return this.pos.appointmentDetails;
-		}
-    cancel() {
-        super.cancel();
-        this.pos.SelectedService = null;
-        if (this.pos.appointmentDetails) {
-          this.pos.appointmentDetails['selectedService'] = null;
-          this.pos.appointmentDetails['services'] = null;
-        }
-
-    }
 }
