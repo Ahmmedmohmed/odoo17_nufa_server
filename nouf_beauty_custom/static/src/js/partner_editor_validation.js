@@ -6,35 +6,36 @@ import { ErrorPopup } from "@point_of_sale/app/errors/popups/error_popup";
 import { _t } from "@web/core/l10n/translation";
 
 patch(PartnerListScreen.prototype, {
-    async savePartner(partner, changes) {
-        // التحقق: هل العميل جديد؟ (العميل الجديد ملوش ID لسه)
-        const isNewPartner = !partner || !partner.id;
+    async savePartner(partnerDetails) {
+        // في أودو 17، الدالة دي بتستلم بيانات العميل عشان تحفظها
+        // العميل الجديد بيكون لسه ملوش id
+        const isNewPartner = !partnerDetails.id;
 
-        // هنطبق الإجبار في حالتين بس:
-        // 1. العميل جديد.
-        // 2. العميل قديم بس الكاشير بيعدل رقم موبايله تحديداً دلوقتي.
-        if (isNewPartner || changes.mobile !== undefined) {
-            let mobile = changes.mobile !== undefined ? changes.mobile : (partner ? partner.mobile : '');
-            let cleanMobile = mobile ? mobile.toString().replace(/\s+/g, '') : '';
+        // 🚀 هنطبق الإجبار فقط وحصرياً لو الكاشير بيكريت عميل جديد!
+        if (isNewPartner) {
+            let mobile = partnerDetails.mobile || '';
+            let cleanMobile = mobile.toString().replace(/\s+/g, '');
 
+            // 1. لو ساب الموبايل فاضي
             if (!cleanMobile) {
                 this.env.services.popup.add(ErrorPopup, {
                     title: _t('خطأ في الإدخال'),
-                    body: _t('حقل رقم الجوال مطلوب، يرجى إدخال الرقم.'),
+                    body: _t('حقل رقم الجوال مطلوب للعملاء الجدد، يرجى إدخال الرقم.'),
                 });
-                return; // 🛑 نمنع الإنشاء
+                return; // 🛑 إيقاف إنشاء العميل فوراً
             }
 
+            // 2. لو كتب رقم مش 10 أرقام
             if (!/^\d{10}$/.test(cleanMobile)) {
                 this.env.services.popup.add(ErrorPopup, {
                     title: _t('خطأ في الإدخال'),
                     body: _t('عفواً، يجب أن يتكون رقم الجوال من 10 أرقام صحيحة.'),
                 });
-                return; // 🛑 نمنع الإنشاء
+                return; // 🛑 إيقاف إنشاء العميل فوراً
             }
         }
 
-        // لو العميل قديم ومعدلش الموبايل، أو لو الموبايل الجديد سليم، نحفظ طبيعي
-        return super.savePartner(partner, changes);
+        // لو العميل قديم، أو لو العميل جديد ورقمه سليم 100%، هنكمل الحفظ في الداتا بيز
+        return super.savePartner(...arguments);
     }
 });

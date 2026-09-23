@@ -251,7 +251,7 @@ export class AppointmentPopup extends AbstractAwaitablePopup {
             flag = false;
         }
 
-        // 🚀 إضافة تحقق العميل ورقم الجوال هنا
+        // 🚀 التأكد من اختيار العميل فقط (عشان العملاء القدام يعدوا عادي جداً ويحجزوا بدون رسائل خطأ)
         const currentPartner = this.pos.get_order().get_partner();
 
         if (!currentPartner) {
@@ -259,20 +259,10 @@ export class AppointmentPopup extends AbstractAwaitablePopup {
                 title: _t("عميل غير محدد"),
                 body: _t("يجب اختيار العميل أولاً لإتمام الحجز."),
             });
-            return; // نوقف عملية الحفظ
+            return; // نوقف عملية الحجز
         }
 
-        // تنظيف رقم الموبايل للتأكد إنه 10 أرقام
-        let mobile = currentPartner.mobile || currentPartner.phone || '';
-        let cleanMobile = mobile.toString().replace(/\s+/g, '');
-
-        if (!cleanMobile || !/^\d{10}$/.test(cleanMobile)) {
-            this.popup.add(ErrorPopup, {
-                title: _t("رقم جوال غير صالح"),
-                body: _t("عفواً، يجب أن يتكون رقم جوال العميل من 10 أرقام صحيحة."),
-            });
-            return; // نوقف عملية الحفظ
-        }
+        // ⛔️ تم إزالة كود فحص الـ 10 أرقام من هنا نهائياً لتسهيل الحجز للعملاء القدام!
 
         if (!flag) {
             this.popup.add(ErrorPopup, {
