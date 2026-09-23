@@ -18,6 +18,7 @@
 
         # Security Files
         'security/ir.model.access.csv',
+        'security/ir.rule.xml',
 
 
         # Views Files
