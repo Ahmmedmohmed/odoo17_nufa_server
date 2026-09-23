@@ -211,6 +211,7 @@ export class AppointmentSeviceDetails extends Component {
         this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncAppointments = false;
         if(employee_id != ''){
           this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].employee_name = changes['availableEmployees'][parseInt(employee_id)];
+          // لو الموظف اتغير يدوياً، نستدعي التواريخ الخاصة بيه
           this.getAvailableDates();
         }
         this.render();
@@ -236,7 +237,7 @@ export class AppointmentSeviceDetails extends Component {
         this.render();
     }
 
-    // 1️⃣ جلب الفروع وإجبار النظام على فرع الموظف الحالي
+    // 1️⃣ فلترة وقفل الفروع على فرع الكاشير الحالي فقط
     async getBranches(){
       var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncBranchs = false;
@@ -247,21 +248,27 @@ export class AppointmentSeviceDetails extends Component {
       );
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncBranchs = true;
 
-      // -- فلترة الفروع بناءً على شركة جلسة نقطة البيع الحالية --
-      const currentCompanyId = this.pos.company ? this.pos.company.id.toString() : "";
+      // -- استخراج الفرع الخاص بنقطة البيع الحالية بدقة --
+      let posCompanyId = this.pos.company ? this.pos.company.id : (this.pos.config && this.pos.config.company_id ? this.pos.config.company_id[0] : null);
       let filteredBranches = {};
 
-      if (currentCompanyId && availableBranchs && availableBranchs[currentCompanyId]) {
-          filteredBranches[currentCompanyId] = availableBranchs[currentCompanyId];
-      } else {
-          // حالة احتياطية إذا لم يتم الربط بشكل صحيح
+      if (posCompanyId) {
+          for (let key in availableBranchs) {
+              if (key == posCompanyId) { // استخدمنا == لتجاهل فرق النص أو الرقم
+                  filteredBranches[key] = availableBranchs[key];
+              }
+          }
+      }
+
+      // لو لسبب غير متوقع لم يتطابق أي فرع، نعرض القائمة الافتراضية
+      if (Object.keys(filteredBranches).length === 0) {
           filteredBranches = availableBranchs;
       }
 
       this.availableBranchs = filteredBranches;
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availableBranchs = filteredBranches;
 
-      // -- الاختيار التلقائي لأول فرع متاح واستدعاء الموظفين --
+      // التحديد التلقائي لفرع الكاشير واستدعاء الموظفين
       if (filteredBranches && Object.keys(filteredBranches).length > 0) {
           const firstBranchId = Object.keys(filteredBranches)[0];
           this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].branch_id = firstBranchId;
@@ -272,7 +279,7 @@ export class AppointmentSeviceDetails extends Component {
       this.render();
     }
 
-    // 2️⃣ جلب الموظفين والاختيار التلقائي
+    // 2️⃣ البحث الذكي عن الموظف اللي عنده حجوزات "اليوم"
     async getAvailableEmployees(){
       var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncEmployees = false;
@@ -284,18 +291,82 @@ export class AppointmentSeviceDetails extends Component {
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncEmployees = true;
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availableEmployees = availableEmployees;
 
-      // -- الاختيار التلقائي لأول موظف واستدعاء التواريخ --
+      // -- بدء عملية البحث الذكي --
       if (availableEmployees && Object.keys(availableEmployees).length > 0) {
-          const firstEmpId = Object.keys(availableEmployees)[0];
-          this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].employee_id = firstEmpId;
-          this.changes.employee_id = firstEmpId;
-          await this.getAvailableDates();
+          const empIds = Object.keys(availableEmployees);
+
+          // تجهيز تاريخ اليوم للمقارنة
+          const today = new Date();
+          const yyyy = today.getFullYear();
+          const mm = String(today.getMonth() + 1).padStart(2, '0');
+          const dd = String(today.getDate()).padStart(2, '0');
+          const todayStr = `${yyyy}-${mm}-${dd}`;
+
+          let targetEmpId = null;
+          let targetDate = null;
+          let targetEmpDates = null;
+
+          let firstEmpId = empIds[0];
+          let firstEmpDates = null;
+
+          // البحث في كل الموظفين عن من لديه موعد اليوم
+          for (let empId of empIds) {
+              const dates = await this.orm.call(
+                  "product.product",
+                  "action_get_appointment_date",
+                  [changes.service_id, empId, this.pos.appointmentDetails['isSelectedServicePack']? this.pos.appointmentDetails['service_id']:false]
+              );
+
+              if (empId === firstEmpId) {
+                  firstEmpDates = dates; // نحتفظ ببيانات أول موظف احتياطياً
+              }
+
+              let isTodayAvail = false;
+              if (Array.isArray(dates)) {
+                  isTodayAvail = dates.includes(todayStr);
+              } else if (dates && typeof dates === 'object') {
+                  isTodayAvail = Object.keys(dates).includes(todayStr) || Object.values(dates).includes(todayStr);
+              } else if (typeof dates === 'string') {
+                  isTodayAvail = dates === todayStr;
+              }
+
+              if (isTodayAvail) {
+                  targetEmpId = empId;
+                  targetDate = todayStr;
+                  targetEmpDates = dates;
+                  break; // وجدنا الموظف المناسب! نوقف حلقة البحث
+              }
+          }
+
+          // لو لم نجد أحداً متاحاً اليوم، نختار أول موظف وأول تاريخ له
+          if (!targetEmpId) {
+              targetEmpId = firstEmpId;
+              targetEmpDates = firstEmpDates;
+
+              if (Array.isArray(firstEmpDates) && firstEmpDates.length > 0) {
+                  targetDate = firstEmpDates[0];
+              } else if (firstEmpDates && typeof firstEmpDates === 'object' && Object.keys(firstEmpDates).length > 0) {
+                  targetDate = Object.values(firstEmpDates)[0];
+              }
+          }
+
+          // -- تعبئة البيانات وتفعيل الاختيارات في الشاشة --
+          this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].employee_id = targetEmpId;
+          this.changes.employee_id = targetEmpId;
+
+          this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncDates = true;
+          this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availabledDates = targetEmpDates;
+
+          if (targetDate) {
+              this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].date = targetDate;
+              await this.getAvailableAppointments();
+          }
       }
 
       this.render();
     }
 
-    // 3️⃣ جلب التواريخ والاختيار التلقائي لليوم (أو أول تاريخ متاح)
+    // 3️⃣ تعمل كبديل احتياطي لو قام الكاشير بتغيير الموظف يدوياً من القائمة
     async getAvailableDates(){
       var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncDates = false;
@@ -309,14 +380,12 @@ export class AppointmentSeviceDetails extends Component {
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncDates = true;
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availabledDates = availabledDates;
 
-      // -- تجهيز تاريخ اليوم بصيغة YYYY-MM-DD --
       const today = new Date();
       const yyyy = today.getFullYear();
       const mm = String(today.getMonth() + 1).padStart(2, '0');
       const dd = String(today.getDate()).padStart(2, '0');
       const todayStr = `${yyyy}-${mm}-${dd}`;
 
-      // -- فحص وجود تاريخ اليوم في القائمة القادمة من الباك إند --
       let isTodayAvailable = false;
       if (Array.isArray(availabledDates)) {
           isTodayAvailable = availabledDates.includes(todayStr);
@@ -326,12 +395,10 @@ export class AppointmentSeviceDetails extends Component {
           isTodayAvailable = availabledDates === todayStr;
       }
 
-      // -- التحديد التلقائي --
       if (isTodayAvailable) {
           this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].date = todayStr;
           await this.getAvailableAppointments();
       } else if (availabledDates) {
-          // لو تاريخ اليوم غير متاح، يختار أول تاريخ متاح في القائمة
           let firstDate = null;
           if (Array.isArray(availabledDates) && availabledDates.length > 0) {
               firstDate = availabledDates[0];
