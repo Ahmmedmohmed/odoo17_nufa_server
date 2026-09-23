@@ -3,6 +3,7 @@
 import { PartnerDetailsEdit } from "@point_of_sale/app/screens/partner_list/partner_editor/partner_editor";
 import { patch } from "@web/core/utils/patch";
 import { ErrorPopup } from "@point_of_sale/app/errors/popups/error_popup";
+import { localization } from "@web/core/l10n/localization";
 
 // كل رسائل الخطأ متجمعة هنا (عربي / إنجليزي) - مفيش أي اعتماد على ملفات .po
 const MESSAGES = {
