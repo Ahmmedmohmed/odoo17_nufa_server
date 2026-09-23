@@ -9,6 +9,7 @@ import { useAutoFocusToLast } from "@point_of_sale/app/utils/hooks";
 import { _t } from "@web/core/l10n/translation";
 import { useState } from "@odoo/owl";
 import { ErrorPopup } from "@point_of_sale/app/errors/popups/error_popup";
+import { localization } from "@web/core/l10n/localization";
 
 // ─── Translation map ───────────────────────────────────────────────────────────
 const TRANSLATIONS = {
@@ -35,14 +36,15 @@ const TRANSLATIONS = {
 };
 
 function getLang() {
-    // نجرب أولاً اتجاه الصفحة - أضمن مؤشر لأن أودو بيظبطه صح دايماً مع العربي
-    const dir = (document.documentElement.dir || document.body.dir || '').toLowerCase();
-    if (dir === 'rtl') {
+    // مش بنعتمد على document.documentElement.dir/lang لأن الـ POS
+    // مش دايمًا بيظبطهم على الـ <html> زي الـ backend (ممكن يرجعوا فاضيين).
+    // localization جاي من جلسة اليوزر نفسها، فهو أضمن مصدر لمعرفة الاتجاه/اللغة.
+    if (localization.direction === 'rtl') {
         return 'ar';
     }
 
-    // fallback: نقرأ الـ lang ونقسمها على شرطة أو أندرسكور مع بعض
-    const lang = (document.documentElement.lang || 'en').split(/[-_]/)[0].toLowerCase();
+    // fallback: نقرأ لغة الجلسة ونقسمها على شرطة أو أندرسكور مع بعض
+    const lang = (localization.lang || 'en').split(/[-_]/)[0].toLowerCase();
     return TRANSLATIONS[lang] ? lang : 'en';
 }
 
