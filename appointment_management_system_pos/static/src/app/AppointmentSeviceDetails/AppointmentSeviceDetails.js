@@ -239,45 +239,48 @@ export class AppointmentSeviceDetails extends Component {
 
     // 1️⃣ فلترة وقفل الفروع على فرع الكاشير الحالي فقط
     async getBranches(){
-      var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
-      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncBranchs = false;
-      const availableBranchs = await this.orm.call(
-          "product.product",
-          "action_get_appointment_branch",
-          [changes.service_id,this.pos.appointmentDetails['isSelectedServicePack']? this.pos.appointmentDetails['service_id']:false]
-      );
-      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncBranchs = true;
+  var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
+  this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncBranchs = false;
 
-      // -- استخراج الفرع الخاص بنقطة البيع الحالية بدقة --
-      let posCompanyId = this.pos.company ? this.pos.company.id : (this.pos.config && this.pos.config.company_id ? this.pos.config.company_id[0] : null);
-      let filteredBranches = {};
+  const availableBranchs = await this.orm.call(
+      "product.product",
+      "action_get_appointment_branch",
+      [changes.service_id, this.pos.appointmentDetails['isSelectedServicePack']? this.pos.appointmentDetails['service_id']:false]
+  );
+  this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncBranchs = true;
 
-      if (posCompanyId) {
-          for (let key in availableBranchs) {
-              if (key == posCompanyId) { // استخدمنا == لتجاهل فرق النص أو الرقم
-                  filteredBranches[key] = availableBranchs[key];
-              }
+  // -- معرف "نقطة البيع" الحالية اللي شغال عليها الكاشير دلوقتي --
+  const currentConfigId = this.pos.config ? this.pos.config.id : null;
+
+  // 🔍 مهم: شوف الـ console وقارن الرقمين دول ببعض عشان نتأكد إنهم بيتطابقوا
+  console.log('DEBUG currentConfigId:', currentConfigId, '| availableBranchs:', availableBranchs);
+
+  let filteredBranches = {};
+  if (currentConfigId) {
+      for (let key in availableBranchs) {
+          if (String(key) === String(currentConfigId)) {
+              filteredBranches[key] = availableBranchs[key];
           }
       }
+  }
 
-      // لو لسبب غير متوقع لم يتطابق أي فرع، نعرض القائمة الافتراضية
-      if (Object.keys(filteredBranches).length === 0) {
-          filteredBranches = availableBranchs;
-      }
+  if (Object.keys(filteredBranches).length === 0) {
+      console.warn('⚠️ pos.config.id مش متطابق مع مفاتيح availableBranchs - شوف الـ console.log فوق');
+      filteredBranches = availableBranchs; // fallback مؤقت عشان الشغل ميقفش
+  }
 
-      this.availableBranchs = filteredBranches;
-      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availableBranchs = filteredBranches;
+  this.availableBranchs = filteredBranches;
+  this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availableBranchs = filteredBranches;
 
-      // التحديد التلقائي لفرع الكاشير واستدعاء الموظفين
-      if (filteredBranches && Object.keys(filteredBranches).length > 0) {
-          const firstBranchId = Object.keys(filteredBranches)[0];
-          this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].branch_id = firstBranchId;
-          this.changes.branch_id = firstBranchId;
-          await this.getAvailableEmployees();
-      }
+  if (Object.keys(filteredBranches).length > 0) {
+      const onlyBranchId = Object.keys(filteredBranches)[0];
+      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].branch_id = onlyBranchId;
+      this.changes.branch_id = onlyBranchId;
+      await this.getAvailableEmployees();
+  }
 
-      this.render();
-    }
+  this.render();
+}
 
     // 2️⃣ البحث الذكي عن الموظف اللي عنده حجوزات "اليوم"
     async getAvailableEmployees(){
