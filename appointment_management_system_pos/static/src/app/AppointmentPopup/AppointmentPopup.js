@@ -235,36 +235,54 @@ export class AppointmentPopup extends AbstractAwaitablePopup {
     }
 
     async confirm() {
-      var flag = true;
-      if (this.pos.appointmentDetails['services']) {
-        for (const [key, value] of Object.entries(this.pos.appointmentDetails['services'])) {
-          console.log(key,value);
-          if (
-            value.service_id == ''||
-            value.employee_id == ''||
-            value.date == ''||
-            value.slot_ids == ''
-          ) {
-            flag= false;
-          }
+        var flag = true;
+        if (this.pos.appointmentDetails['services']) {
+            for (const [key, value] of Object.entries(this.pos.appointmentDetails['services'])) {
+                if (
+                    value.service_id == '' ||
+                    value.employee_id == '' ||
+                    value.date == '' ||
+                    value.slot_ids == ''
+                ) {
+                    flag = false;
+                }
+            }
+        } else {
+            flag = false;
         }
-      }else {
-        flag= false;
-      }
 
+        // 🚀 إضافة تحقق العميل ورقم الجوال هنا
+        const currentPartner = this.pos.get_order().get_partner();
 
+        if (!currentPartner) {
+            this.popup.add(ErrorPopup, {
+                title: _t("عميل غير محدد"),
+                body: _t("يجب اختيار العميل أولاً لإتمام الحجز."),
+            });
+            return; // نوقف عملية الحفظ
+        }
 
+        // تنظيف رقم الموبايل للتأكد إنه 10 أرقام
+        let mobile = currentPartner.mobile || currentPartner.phone || '';
+        let cleanMobile = mobile.toString().replace(/\s+/g, '');
 
-      if (!flag) {
-        this.popup.add(ErrorPopup, {
-            title: _t("Missing Fields."),
-            body: _t("Missing Data."),
-        });
-      }else {
-        console.log('kljlkj');
-        await this.createAppointments();
-        super.confirm();
-      }
+        if (!cleanMobile || !/^\d{10}$/.test(cleanMobile)) {
+            this.popup.add(ErrorPopup, {
+                title: _t("رقم جوال غير صالح"),
+                body: _t("عفواً، يجب أن يتكون رقم جوال العميل من 10 أرقام صحيحة."),
+            });
+            return; // نوقف عملية الحفظ
+        }
+
+        if (!flag) {
+            this.popup.add(ErrorPopup, {
+                title: _t("Missing Fields."),
+                body: _t("Missing Data."),
+            });
+        } else {
+            await this.createAppointments();
+            super.confirm();
+        }
     }
 
     async createAppointments(){
