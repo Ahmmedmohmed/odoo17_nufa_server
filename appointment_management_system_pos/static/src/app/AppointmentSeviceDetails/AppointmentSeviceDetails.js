@@ -36,14 +36,9 @@ const TRANSLATIONS = {
 };
 
 function getLang() {
-    // مش بنعتمد على document.documentElement.dir/lang لأن الـ POS
-    // مش دايمًا بيظبطهم على الـ <html> زي الـ backend (ممكن يرجعوا فاضيين).
-    // localization جاي من جلسة اليوزر نفسها، فهو أضمن مصدر لمعرفة الاتجاه/اللغة.
     if (localization.direction === 'rtl') {
         return 'ar';
     }
-
-    // fallback: نقرأ لغة الجلسة ونقسمها على شرطة أو أندرسكور مع بعض
     const lang = (localization.lang || 'en').split(/[-_]/)[0].toLowerCase();
     return TRANSLATIONS[lang] ? lang : 'en';
 }
@@ -103,18 +98,17 @@ export class AppointmentSeviceDetails extends Component {
         });
 
         this.selectedService=this.pos.appointmentDetails?this.pos.appointmentDetails['selectedService']:[];
-
         this.t = t;
-
         this.popup = useService("popup");
-
     }
+
     get appointmentDetailsSelectedService() {
       if (this.pos.appointmentDetails) {
         return this.pos.appointmentDetails['selectedService'];
       }
         return false;
     }
+
     get appointmentDetailsSelectedServicePack() {
       if (this.pos.appointmentDetails) {
         return this.pos.appointmentDetails['selectedService'] && this.pos.appointmentDetails['isSelectedServicePack'];
@@ -123,7 +117,6 @@ export class AppointmentSeviceDetails extends Component {
     }
 
     onClick(ev) {
-      console.log('onClick',this);
       if (ev.target.id != '') {
         this.pos.appointmentDetails['selectedService'] = parseInt(ev.target.id);
         this.availableBranchs = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availableBranchs
@@ -144,7 +137,6 @@ export class AppointmentSeviceDetails extends Component {
 
     _disabledBranch() {
       var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
-      console.log('sdzfsdafsdfsdf',changes.syncBranchs != true);
       if (changes.syncBranchs != true ) {
         return false;
       }
@@ -188,6 +180,7 @@ export class AppointmentSeviceDetails extends Component {
         this.getBranches();
         this.render();
     }
+
     onBranchChange(ev) {
         const branch_id = ev.target.value;
         var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
@@ -206,6 +199,7 @@ export class AppointmentSeviceDetails extends Component {
         }
         this.render();
     }
+
     onEmployeeChange(ev) {
         const employee_id = ev.target.value;
         var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
@@ -253,9 +247,9 @@ export class AppointmentSeviceDetails extends Component {
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncBranchs = true;
       this.availableBranchs = availableBranchs;
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availableBranchs = availableBranchs;
-      console.log(availableBranchs);
       this.render();
     }
+
     async getAvailableEmployees(){
       var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncEmployees = false;
@@ -266,22 +260,50 @@ export class AppointmentSeviceDetails extends Component {
       );
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncEmployees = true;
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availableEmployees = availableEmployees;
-      console.log(availableEmployees);
       this.render();
     }
+
+    // 🚀 تم إضافة منطق التحديد التلقائي هنا
     async getAvailableDates(){
       var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncDates = false;
+
       const availabledDates = await this.orm.call(
           "product.product",
           "action_get_appointment_date",
           [changes.service_id,changes.employee_id,this.pos.appointmentDetails['isSelectedServicePack']? this.pos.appointmentDetails['service_id']:false]
       );
+
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncDates = true;
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availabledDates = availabledDates;
-      console.log(availabledDates);
+
+      // -- تجهيز تاريخ اليوم بصيغة YYYY-MM-DD ليتطابق مع القوائم --
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      const todayStr = `${yyyy}-${mm}-${dd}`;
+
+      // -- فحص وجود تاريخ اليوم في القائمة القادمة من الباك إند --
+      let isTodayAvailable = false;
+      if (Array.isArray(availabledDates)) {
+          isTodayAvailable = availabledDates.includes(todayStr);
+      } else if (availabledDates && typeof availabledDates === 'object') {
+          isTodayAvailable = Object.keys(availabledDates).includes(todayStr) || Object.values(availabledDates).includes(todayStr);
+      } else if (typeof availabledDates === 'string') {
+          isTodayAvailable = availabledDates === todayStr;
+      }
+
+      // -- التحديد التلقائي --
+      if (isTodayAvailable) {
+          this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].date = todayStr;
+          // تفعيل جلب الأوقات تلقائياً بما أن التاريخ تحدد
+          await this.getAvailableAppointments();
+      }
+
       this.render();
     }
+
     async getAvailableAppointments(){
       var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncAppointments = false;
@@ -290,11 +312,8 @@ export class AppointmentSeviceDetails extends Component {
           "action_get_appointment_employee_slot",
           [changes.service_id,changes.employee_id,changes.date,changes.appointment_type,changes.branch_id,this.pos.appointmentDetails['isSelectedServicePack']? this.pos.appointmentDetails['service_id']:false]
       );
-      console.log(availableAppointments);
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncAppointments = true;
       this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availableAppointments = availableAppointments;
-      console.log(availableAppointments);
       this.render();
     }
-
 }
