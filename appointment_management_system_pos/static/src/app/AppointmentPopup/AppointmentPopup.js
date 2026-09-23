@@ -66,8 +66,8 @@ function t(key) {
 }
 // ──────────────────────────────────────────────────────────────────────────────
 
-export class AppointmentSeviceDetails extends Component {
-    static template = "appointment_management_system_pos.AppointmentSeviceDetails";
+export class AppointmentPopup extends Component {
+    static template = "appointment_management_system_pos.AppointmentPopup";
     static props = {
         class: { String, optional: true },
         onClick: { type: Function, optional: true },
