@@ -4,24 +4,39 @@
         <div class="product-selection-combo-popup popup">
 
             <style>
-                /* 🚀 CSS مخصص لمنع تداخل الصور واحتوائها داخل الإطار */
+                /* 🚀 CSS مخصص لتوحيد مقاسات جميع الصور بشكل إجباري */
                 .product-selection-combo-popup .products-widget-control img,
                 .product-selection-combo-popup .category-button img,
                 .product-selection-combo-popup .product-img img {
-                    object-fit: contain !important;
-                    max-width: 100% !important;
-                    max-height: 110px !important; /* 🌟 كبرنا الارتفاع هنا عشان الصورة تكون أوضح وأكبر */
-                    width: auto !important;
-                    height: auto !important;
+                    width: 90px !important;      /* عرض ثابت للجميع */
+                    height: 90px !important;     /* طول ثابت للجميع */
+                    object-fit: contain !important; /* احتواء الصورة دون تشويه */
                     margin: 0 auto !important;
+                    display: block !important;
                 }
 
-                /* إجبار الإطار الخارجي للصورة على عدم التمدد وتوسيط المحتوى */
+                /* توحيد مقاسات الأزرار (المربعات) الحاوية للصور */
                 .product-selection-combo-popup .category-button,
-                .product-selection-combo-popup .product-img,
                 .product-selection-combo-popup .product {
+                    min-width: 110px !important;
+                    max-width: 130px !important;
+                    display: flex !important;
+                    flex-direction: column !important;
+                    align-items: center !important;
+                    justify-content: start !important;
+                    padding: 10px 5px !important;
                     overflow: hidden !important;
-                    min-width: 0 !important; /* خدعة الفليكس بوكس لمنع الصورة من كسر الإطار */
+                }
+
+                /* ضبط شكل النص تحت الصورة ليكون متوسيطاً ومقروءاً */
+                .product-selection-combo-popup .category-button .name,
+                .product-selection-combo-popup .product-content .product-name {
+                    width: 100% !important;
+                    text-align: center !important;
+                    margin-top: 8px !important;
+                    font-size: 13px !important;
+                    white-space: normal !important; /* السماح بنزول النص سطرين */
+                    line-height: 1.2 !important;
                 }
             </style>
 
