@@ -34,19 +34,20 @@
             <div class="section-financials-body d-flex flex-column flex-sm-row">
                 <table class="table mb-0">
                     <style>
-                        /* CSS بسيط لإظهار اللغة المناسبة بناءً على اتجاه الشاشة */
+                        /* CSS لإظهار اللغة المناسبة بناءً على اتجاه الشاشة */
                         html[dir="rtl"] .en-text { display: none !important; }
                         html[dir="ltr"] .ar-text { display: none !important; }
                         html:not([dir="rtl"]) .ar-text { display: none !important; }
                     </style>
                     <tr>
-                        <td>
+                        <!-- 🚀 إضافة مسافات وعرض ثابت للعمود الأول لضبط المسافات -->
+                        <td class="w-25 py-3 pe-4 align-middle fw-bold">
                             <span class="ar-text">نوع الخدمة</span>
                             <span class="en-text">Type</span>
                         </td>
-                        <td>
+                        <td class="py-2">
                           <select t-model="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].appointment_type"
-                                  class="detail form-select" id="appointment_type" name="appointment_type"
+                                  class="detail form-select w-100" id="appointment_type" name="appointment_type"
                                   t-on-change="onTypeChange">
                               <option value="inside">
                                   <span class="ar-text">خدمات داخلية</span><span class="en-text">Internal Services</span>
@@ -58,15 +59,15 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td class="w-25 py-3 pe-4 align-middle fw-bold">
                             <span class="ar-text">الفرع</span>
                             <span class="en-text">Branch</span>
                         </td>
-                        <td>
+                        <td class="py-2">
                           <t t-set="availableBranchs" t-value="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].availableBranchs"/>
                           <select t-att="{'disabled': !_disabledBranch()}"
                                   t-att-value="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].branch_id"
-                                  class="detail form-select" id="branch" name="branch_id"
+                                  class="detail form-select w-100" id="branch" name="branch_id"
                                   t-on-change="onBranchChange">
                               <option value="">
                                   <span class="ar-text">لا يوجد</span><span class="en-text">None</span>
@@ -80,15 +81,15 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td class="w-25 py-3 pe-4 align-middle fw-bold">
                             <span class="ar-text">الموظف / الأخصائية</span>
                             <span class="en-text">Employee</span>
                         </td>
-                        <td>
+                        <td class="py-2">
                           <t t-set="availableEmployees" t-value="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].availableEmployees"/>
                           <select t-att="{'disabled': !_disabledEmployee()}"
                                   t-model="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].employee_id"
-                                  class="detail form-select" id="employee" name="employee_id"
+                                  class="detail form-select w-100" id="employee" name="employee_id"
                                   t-on-change="onEmployeeChange">
                               <option value="">
                                   <span class="ar-text">لا يوجد</span><span class="en-text">None</span>
@@ -102,15 +103,15 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td class="w-25 py-3 pe-4 align-middle fw-bold">
                             <span class="ar-text">التاريخ</span>
                             <span class="en-text">Date</span>
                         </td>
-                        <td>
+                        <td class="py-2">
                           <t t-set="availabledDates" t-value="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].availabledDates"/>
                           <select t-att="{'disabled': !_disabledDate()}"
                                   t-model="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].date"
-                                  class="detail form-select" id="date" name="date_id"
+                                  class="detail form-select w-100" id="date" name="date_id"
                                   t-on-change="onDateChange">
                               <option value="">
                                   <span class="ar-text">لا يوجد</span><span class="en-text">None</span>
@@ -124,15 +125,15 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td class="w-25 py-3 pe-4 align-middle fw-bold">
                             <span class="ar-text">المواعيد المتاحة</span>
                             <span class="en-text">Appointments</span>
                         </td>
-                        <td>
+                        <td class="py-2">
                           <t t-set="availableAppointments" t-value="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].availableAppointments"/>
                           <select t-att="{'disabled': !_disabledAvailableAppointments()}"
                                   t-model="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].appointment"
-                                  class="detail form-select" id="appointment" name="appointment_id"
+                                  class="detail form-select w-100" id="appointment" name="appointment_id"
                                   t-on-change="onAppointmentChange">
                               <option value="">
                                   <span class="ar-text">لا يوجد</span><span class="en-text">None</span>
