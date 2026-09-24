@@ -1716,3 +1716,19 @@ msgstr "خدمات داخلية"
 #. module: appointment_management_system
 msgid "Outside (Home)"
 msgstr "خدمات خارجية"
+
+#. module: appointment_management_system
+msgid "Are you sure you want to reset the appointment to (Approved)? The previous start time will be cleared for rescheduling."
+msgstr "هل أنت متأكد من إرجاع الحجز لحالة (مؤكد/لم يبدأ)؟ سيتم تصفير وقت البدء السابق لإتاحة إعادة الجدولة."
+
+#. module: appointment_management_system
+msgid "Reset to Approved (Reschedule)"
+msgstr "تراجع لإعادة الجدولة"
+
+#. module: appointment_management_system
+msgid "Reset to Approved"
+msgstr "إعادة جدولة"
+
+#. module: appointment_management_system
+msgid "Cannot reset the appointment for rescheduling if it is 'Completed' or 'Cancelled'."
+msgstr "لا يمكن إرجاع الحجز لإعادة الجدولة إذا كان 'مكتملاً' أو 'ملغياً'."

@@ -58,7 +58,7 @@ patch(PosStore.prototype, {
       }
     },
 
-    // البحث الذكي عن الموظف اللي عنده حجوزات "اليوم" - بيشتغل من ساعة إضافة الخدمة مباشرة
+    // البحث الذكي عن الموظف اللي عنده حجوزات "اليوم" - كل طلبات التواريخ بتتنفذ بالتوازي مش واحد ورا التاني
     async autoSelectEmployeeAndDate(selectedService) {
       const changes = this.appointmentDetails['services'][selectedService];
       changes.syncEmployees = false;
@@ -83,24 +83,23 @@ patch(PosStore.prototype, {
       const dd = String(today.getDate()).padStart(2, '0');
       const todayStr = `${yyyy}-${mm}-${dd}`;
 
+      // 🚀 نجيب تواريخ كل الموظفين مرة واحدة بالتوازي (بدل التتابع اللي كان بيسبب التأخير)
+      const results = await Promise.all(
+          empIds.map(async (empId) => {
+              const dates = await this.orm.call(
+                  "product.product",
+                  "action_get_appointment_date",
+                  [changes.service_id, empId, this.appointmentDetails['isSelectedServicePack']? this.appointmentDetails['service_id']:false]
+              );
+              return { empId, dates };
+          })
+      );
+
       let targetEmpId = null;
       let targetDate = null;
       let targetEmpDates = null;
 
-      let firstEmpId = empIds[0];
-      let firstEmpDates = null;
-
-      for (let empId of empIds) {
-          const dates = await this.orm.call(
-              "product.product",
-              "action_get_appointment_date",
-              [changes.service_id, empId, this.appointmentDetails['isSelectedServicePack']? this.appointmentDetails['service_id']:false]
-          );
-
-          if (empId === firstEmpId) {
-              firstEmpDates = dates;
-          }
-
+      for (const { empId, dates } of results) {
           let isTodayAvail = false;
           if (Array.isArray(dates)) {
               isTodayAvail = dates.includes(todayStr);
@@ -119,13 +118,14 @@ patch(PosStore.prototype, {
       }
 
       if (!targetEmpId) {
-          targetEmpId = firstEmpId;
-          targetEmpDates = firstEmpDates;
+          const first = results[0];
+          targetEmpId = first.empId;
+          targetEmpDates = first.dates;
 
-          if (Array.isArray(firstEmpDates) && firstEmpDates.length > 0) {
-              targetDate = firstEmpDates[0];
-          } else if (firstEmpDates && typeof firstEmpDates === 'object' && Object.keys(firstEmpDates).length > 0) {
-              targetDate = Object.values(firstEmpDates)[0];
+          if (Array.isArray(first.dates) && first.dates.length > 0) {
+              targetDate = first.dates[0];
+          } else if (first.dates && typeof first.dates === 'object' && Object.keys(first.dates).length > 0) {
+              targetDate = Object.values(first.dates)[0];
           }
       }
 

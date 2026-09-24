@@ -45,7 +45,7 @@
                         <td class="py-2">
                           <t t-set="availableBranchs" t-value="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].availableBranchs"/>
                           <select t-att="{'disabled': !_disabledBranch()}"
-                                  t-att-value="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].branch_id"
+                                  t-model="pos.appointmentDetails['services'][pos.appointmentDetails['selectedService']].branch_id"
                                   class="detail form-select w-100" id="branch" name="branch_id"
                                   t-on-change="onBranchChange">
                               <option value="" t-esc="labelNone"></option>
@@ -109,15 +109,6 @@
                         </td>
                     </tr>
                 </table>
-                <select style="display: none;" t-att="{'disabled': !_disabledBranch()}" t-model="changes.branch_id" class="detail form-select w-100" id="branch" name="branch_id" t-on-change="onBranchChange">
-                    <option value="" t-esc="labelNone"></option>
-                    <t t-foreach="availableBranchs" t-as="branch_id" t-key="branch_id">
-                        <option t-att-value="branch_id">
-                            <t t-esc="availableBranchs[branch_id]" />
-                        </option>
-                    </t>
-                </select>
-
             </div>
         </div>
 
