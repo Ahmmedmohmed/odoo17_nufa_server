@@ -335,6 +335,7 @@ msgstr "تم الأنتهاء"
 msgid "Available"
 msgstr "متاح"
 
+
 #. module: appointment_management_system
 #: model:ir.model,name:appointment_management_system.model_hr_employee
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_employee_slot__employee_id
