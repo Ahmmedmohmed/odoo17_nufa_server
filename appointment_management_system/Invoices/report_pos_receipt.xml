@@ -53,18 +53,18 @@
                     <t t-set="tax_val" t-value="o.amount_tax if not is_appointment else o.price_unit - (o.price_unit / 1.15)"/>
                     <t t-set="total_val" t-value="o.amount_total if not is_appointment else o.price_unit"/>
 
-                    <t t-set="color_pink" t-value="'#df7b8e'"/>
-                    <t t-set="color_light_pink" t-value="'#fdf5f6'"/>
+                    <t t-set="color_apricot" t-value="'#F28C73'"/>
+                    <t t-set="color_light_apricot" t-value="'#FFF4F1'"/>
                     <t t-set="color_text" t-value="'#333333'"/>
                     <t t-set="color_border" t-value="'#e6e6e6'"/>
 
                     <div class="page" style="font-family: 'Cairo', 'Tajawal', 'Arial', sans-serif; direction: rtl; text-align: right; color: #333; font-size: 13px;">
 
-                        <div class="row" style="margin-bottom: 20px; border-bottom: 2px solid #df7b8e; padding-bottom: 15px; align-items: center;">
+                        <div class="row" style="margin-bottom: 20px; border-bottom: 2px solid #F28C73; padding-bottom: 15px; align-items: center;">
                             <div class="col-6 text-right">
                                 <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="max-height: 90px; width: auto;" alt="Logo"/>
                             </div>
-                            <div class="col-6 text-left" t-attf-style="color: {{color_pink}}; line-height: 1.2;">
+                            <div class="col-6 text-left" t-attf-style="color: {{color_apricot}}; line-height: 1.2;">
                                 <h3 style="font-weight: 800; margin: 0; font-size: 24px;">
                                     <t t-if="not is_appointment and o.state == 'cancel'">فاتورة مبيعات (ملغاة)</t>
                                     <t t-elif="is_appointment and o.state == '4'">حجز ملغي</t>
@@ -81,21 +81,21 @@
                         <div class="row" style="margin-bottom: 20px;">
                             <div class="col-4">
                                 <div t-attf-style="border: 1px solid {{color_border}}; border-radius: 12px; height: 100%; overflow: hidden;">
-                                    <div t-attf-style="background-color: {{color_light_pink}}; color: {{color_pink}}; text-align: center; padding: 8px; font-weight: bold; border-bottom: 1px solid {{color_border}};">
+                                    <div t-attf-style="background-color: {{color_light_apricot}}; color: {{color_apricot}}; text-align: center; padding: 8px; font-weight: bold; border-bottom: 1px solid {{color_border}};">
                                         <i class="fa fa-store" style="margin-left: 5px;"></i> معلومات البائع
                                     </div>
                                     <div style="padding: 10px; line-height: 1.8;">
                                         <strong><t t-esc="seller_name"/></strong><br/>
                                         المملكة العربية السعودية - <t t-esc="o.company_id.with_context(lang='ar_001').city"/><br/>
                                         الرقم الضريبي: <span style="font-family: monospace;"><t t-esc="o.company_id.vat"/></span><br/>
-                                        <i class="fa fa-phone" t-attf-style="color: {{color_pink}};"></i> <t t-esc="o.company_id.phone"/><br/>
-                                        <i class="fa fa-envelope" t-attf-style="color: {{color_pink}};"></i> <t t-esc="o.company_id.email"/>
+                                        <i class="fa fa-phone" t-attf-style="color: {{color_apricot}};"></i> <t t-esc="o.company_id.phone"/><br/>
+                                        <i class="fa fa-envelope" t-attf-style="color: {{color_apricot}};"></i> <t t-esc="o.company_id.email"/>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div t-attf-style="border: 1px solid {{color_border}}; border-radius: 12px; height: 100%; overflow: hidden;">
-                                    <div t-attf-style="background-color: {{color_light_pink}}; color: {{color_pink}}; text-align: center; padding: 8px; font-weight: bold; border-bottom: 1px solid {{color_border}};">
+                                    <div t-attf-style="background-color: {{color_light_apricot}}; color: {{color_apricot}}; text-align: center; padding: 8px; font-weight: bold; border-bottom: 1px solid {{color_border}};">
                                         <i class="fa fa-file-text-o" style="margin-left: 5px;"></i> بيانات الفاتورة
                                     </div>
                                     <div style="padding: 10px; line-height: 1.8;">
@@ -103,16 +103,16 @@
                                             <span>المرجع:</span> <strong><t t-esc="doc_name"/></strong>
                                         </div>
                                         <div class="d-flex justify-content-between">
-                                            <span>التاريخ:</span> <span><span t-esc="doc_date" t-options="{'widget': 'date', 'format': 'dd-MM-yyyy'}"/> <i class="fa fa-calendar" t-attf-style="color: {{color_pink}};"></i></span>
+                                            <span>التاريخ:</span> <span><span t-esc="doc_date" t-options="{'widget': 'date', 'format': 'dd-MM-yyyy'}"/> <i class="fa fa-calendar" t-attf-style="color: {{color_apricot}};"></i></span>
                                         </div>
                                         <div class="d-flex justify-content-between" t-if="not is_appointment and 'validity_date' in o and o.validity_date">
-                                            <span>تاريخ الانتهاء:</span> <span><span t-esc="o.validity_date" t-options="{'widget': 'date', 'format': 'dd-MM-yyyy'}"/> <i class="fa fa-hourglass-half" t-attf-style="color: {{color_pink}};"></i></span>
+                                            <span>تاريخ الانتهاء:</span> <span><span t-esc="o.validity_date" t-options="{'widget': 'date', 'format': 'dd-MM-yyyy'}"/> <i class="fa fa-hourglass-half" t-attf-style="color: {{color_apricot}};"></i></span>
                                         </div>
                                         <div class="d-flex justify-content-between">
                                             <span>المصدر:</span>
                                             <strong>
                                                 <t t-esc="o.pos_reference if 'pos_reference' in o and o.pos_reference else doc_name"/>
-                                                <i class="fa fa-tag" t-attf-style="color: {{color_pink}};"></i>
+                                                <i class="fa fa-tag" t-attf-style="color: {{color_apricot}};"></i>
                                             </strong>
                                         </div>
                                     </div>
@@ -120,16 +120,16 @@
                             </div>
                             <div class="col-4">
                                 <div t-attf-style="border: 1px solid {{color_border}}; border-radius: 12px; height: 100%; overflow: hidden;">
-                                    <div t-attf-style="background-color: {{color_light_pink}}; color: {{color_pink}}; text-align: center; padding: 8px; font-weight: bold; border-bottom: 1px solid {{color_border}};">
+                                    <div t-attf-style="background-color: {{color_light_apricot}}; color: {{color_apricot}}; text-align: center; padding: 8px; font-weight: bold; border-bottom: 1px solid {{color_border}};">
                                         <i class="fa fa-user" style="margin-left: 5px;"></i> فاتورة إلى
                                     </div>
                                     <div style="padding: 10px; line-height: 1.8;">
                                         <strong><t t-esc="customer_name"/></strong><br/><br/>
                                         <t t-if="('phone' in o.partner_id and o.partner_id.phone) or ('mobile' in o.partner_id and o.partner_id.mobile)">
-                                            <span style="font-family: monospace;"><t t-esc="o.partner_id.phone or o.partner_id.mobile"/></span> <i class="fa fa-phone" t-attf-style="color: {{color_pink}};"></i><br/>
+                                            <span style="font-family: monospace;"><t t-esc="o.partner_id.phone or o.partner_id.mobile"/></span> <i class="fa fa-phone" t-attf-style="color: {{color_apricot}};"></i><br/>
                                         </t>
                                         <t t-if="('city' in o.partner_id and o.partner_id.city) or ('country_id' in o.partner_id and o.partner_id.country_id)">
-                                            <t t-esc="o.partner_id.with_context(lang='ar_001').city"/> <t t-esc="o.partner_id.country_id.with_context(lang='ar_001').name"/> <i class="fa fa-map-marker" t-attf-style="color: {{color_pink}};"></i>
+                                            <t t-esc="o.partner_id.with_context(lang='ar_001').city"/> <t t-esc="o.partner_id.country_id.with_context(lang='ar_001').name"/> <i class="fa fa-map-marker" t-attf-style="color: {{color_apricot}};"></i>
                                         </t>
                                     </div>
                                 </div>
@@ -138,21 +138,21 @@
 
                         <t t-if="is_appointment or appointment_lines">
                             <div t-attf-style="border: 1px solid {{color_border}}; border-radius: 12px; overflow: hidden; margin-bottom: 20px;">
-                                <div t-attf-style="background-color: {{color_light_pink}}; color: {{color_pink}}; text-align: right; padding: 8px 15px; font-weight: bold; border-bottom: 1px solid {{color_border}};">
+                                <div t-attf-style="background-color: {{color_light_apricot}}; color: {{color_apricot}}; text-align: right; padding: 8px 15px; font-weight: bold; border-bottom: 1px solid {{color_border}};">
                                     <i class="fa fa-calendar-check-o" style="margin-left: 5px;"></i> تفاصيل الموعد
                                 </div>
                                 <div class="row text-center" style="padding: 10px; font-size: 13px;">
                                     <div class="col-3" style="border-left: 1px solid #eee;">
-                                        <span style="color: #777;">الموظفة <i class="fa fa-user-o" t-attf-style="color: {{color_pink}};"></i></span><br/>
+                                        <span style="color: #777;">الموظفة <i class="fa fa-user-o" t-attf-style="color: {{color_apricot}};"></i></span><br/>
                                         <strong><t t-esc="main_employee"/></strong>
                                     </div>
                                     <div class="col-3" style="border-left: 1px solid #eee;">
-                                        <span style="color: #777;">التاريخ <i class="fa fa-calendar" t-attf-style="color: {{color_pink}};"></i></span><br/>
+                                        <span style="color: #777;">التاريخ <i class="fa fa-calendar" t-attf-style="color: {{color_apricot}};"></i></span><br/>
                                         <strong><span t-esc="app_date_real" t-options="{'widget': 'datetime', 'format': 'dd-MM-yyyy', 'tz_name': 'Asia/Riyadh'}"/></strong>
                                     </div>
 
                                     <div class="col-3" style="border-left: 1px solid #eee;">
-                                        <span style="color: #777;">الوقت <i class="fa fa-clock-o" t-attf-style="color: {{color_pink}};"></i></span><br/>
+                                        <span style="color: #777;">الوقت <i class="fa fa-clock-o" t-attf-style="color: {{color_apricot}};"></i></span><br/>
                                         <!-- التعديل هنا: جلب كل المواعيد، ترتيبها، وعرض (من - إلى) -->
                                         <t t-set="all_slots" t-value="o.slot_ids if is_appointment and 'slot_ids' in o and o.slot_ids else (first_app.slot_ids if first_app and 'slot_ids' in first_app and first_app.slot_ids else False)"/>
                                         <t t-if="all_slots">
@@ -183,7 +183,7 @@
                                     </div>
 
                                     <div class="col-3">
-                                        <span style="color: #777;">الفرع <i class="fa fa-map-marker" t-attf-style="color: {{color_pink}};"></i></span><br/>
+                                        <span style="color: #777;">الفرع <i class="fa fa-map-marker" t-attf-style="color: {{color_apricot}};"></i></span><br/>
                                         <strong><t t-esc="branch_name"/></strong>
                                     </div>
                                 </div>
@@ -191,7 +191,7 @@
                         </t>
 
                         <table class="table table-borderless table-sm" style="width: 100%; font-size: 13px; margin-bottom: 20px; text-align: center;">
-                            <thead t-attf-style="background-color: {{color_pink}}; color: white;">
+                            <thead t-attf-style="background-color: {{color_apricot}}; color: white;">
                                 <tr>
                                     <th style="padding: 10px; width: 5%;">#</th>
                                     <th style="padding: 10px; text-align: right; width: 35%;">الوصف</th>
@@ -212,7 +212,7 @@
                                         <td style="padding-top: 15px; text-align: right;">
                                             <strong style="font-size: 14px;"><t t-esc="o.product_id.with_context(lang='ar_001').name"/></strong>
                                             <t t-if="'is_appointment_package' in o.product_id and o.product_id.is_appointment_package">
-                                                <span t-attf-style="color: {{color_pink}}; font-size: 11px; margin-right: 5px;">[باقة]</span>
+                                                <span t-attf-style="color: {{color_apricot}}; font-size: 11px; margin-right: 5px;">[باقة]</span>
                                                 <ul style="margin: 2px 0; padding-right: 15px; font-size: 11px; color: #666;">
                                                     <t t-foreach="o.product_id.appointment_package_line_ids" t-as="p_line">
                                                         <li><t t-esc="p_line.product_id.with_context(lang='ar_001').name"/></li>
@@ -220,7 +220,7 @@
                                                 </ul>
                                             </t>
                                             <t t-else="">
-                                                <span t-attf-style="color: {{color_pink}}; font-size: 11px; margin-right: 5px;">[خدمة]</span>
+                                                <span t-attf-style="color: {{color_apricot}}; font-size: 11px; margin-right: 5px;">[خدمة]</span>
                                             </t>
                                         </td>
 
@@ -242,7 +242,7 @@
                                                     <strong style="font-size: 14px;"><t t-esc="line.product_id.with_context(lang='ar_001').name"/></strong>
 
                                                     <t t-if="'is_appointment_package' in line.product_id and line.product_id.is_appointment_package">
-                                                        <span t-attf-style="color: {{color_pink}}; font-size: 11px; margin-right: 5px;">[باقة]</span>
+                                                        <span t-attf-style="color: {{color_apricot}}; font-size: 11px; margin-right: 5px;">[باقة]</span>
                                                         <ul style="margin: 2px 0; padding-right: 15px; font-size: 11px; color: #666;">
                                                             <t t-foreach="line.product_id.appointment_package_line_ids" t-as="p_line">
                                                                 <li><t t-esc="p_line.product_id.with_context(lang='ar_001').name"/></li>
@@ -250,16 +250,16 @@
                                                         </ul>
                                                     </t>
                                                     <t t-elif="'detailed_type' in line.product_id and line.product_id.detailed_type == 'service'">
-                                                        <span t-attf-style="color: {{color_pink}}; font-size: 11px; margin-right: 5px;">[خدمة]</span>
+                                                        <span t-attf-style="color: {{color_apricot}}; font-size: 11px; margin-right: 5px;">[خدمة]</span>
                                                     </t>
                                                     <t t-else="">
-                                                        <span t-attf-style="color: #6c757d; font-size: 11px; margin-right: 5px;">[منتج]</span>
+                                                        <span style="color: #6c757d; font-size: 11px; margin-right: 5px;">[منتج]</span>
                                                     </t>
 
                                                     <t t-if="'appointment_id' in line and line.appointment_id">
                                                         <br/>
                                                         <span style="font-size: 11px; color: #555;">
-                                                            <i class="fa fa-calendar-check-o" style="color: #df7b8e;"></i> موعد:
+                                                            <i class="fa fa-calendar-check-o" style="color: #F28C73;"></i> موعد:
                                                             <span t-esc="line.appointment_id.date" t-options="{'widget': 'date', 'format': 'yyyy-MM-dd'}"/> |
 
                                                             <!-- التعديل هنا: الفرز بداخل سطور الطلب لعرض (من - إلى) -->
@@ -291,7 +291,7 @@
                                                             </t>
 
                                                             <br/>
-                                                            <i class="fa fa-user-o" style="color: #df7b8e;"></i> مع: <t t-esc="line.appointment_id.employee_id.with_context(lang='ar_001').name"/>
+                                                            <i class="fa fa-user-o" style="color: #F28C73;"></i> مع: <t t-esc="line.appointment_id.employee_id.with_context(lang='ar_001').name"/>
                                                         </span>
                                                     </t>
 
@@ -314,7 +314,7 @@
                         <div class="row" style="margin-bottom: 25px; align-items: stretch;">
                             <div class="col-7">
                                 <div t-attf-style="border: 1px solid {{color_border}}; border-radius: 12px; padding: 15px; height: 100%; display: flex; flex-direction: column; justify-content: center;">
-                                    <div t-attf-style="color: {{color_pink}}; font-weight: bold; margin-bottom: 10px; font-size: 14px;">
+                                    <div t-attf-style="color: {{color_apricot}}; font-weight: bold; margin-bottom: 10px; font-size: 14px;">
                                         المبلغ الإجمالي بالحروف <i class="fa fa-file-text-o" style="float: left;"></i>
                                     </div>
                                     <div style="font-size: 14px; font-weight: bold; color: #555; line-height: 1.6;">
@@ -333,7 +333,7 @@
                                         <span style="color: #555;">الضريبة المضافة (15%)</span>
                                         <strong><t t-esc="tax_val" t-options='{"widget": "float", "precision": 2}'/> ر.س</strong>
                                     </div>
-                                    <div class="d-flex justify-content-between" t-attf-style="padding: 12px 15px; background-color: {{color_pink}}; color: white; font-size: 16px;">
+                                    <div class="d-flex justify-content-between" t-attf-style="padding: 12px 15px; background-color: {{color_apricot}}; color: white; font-size: 16px;">
                                         <strong>الإجمالي شامل الضريبة</strong>
                                         <strong><t t-esc="total_val" t-options='{"widget": "float", "precision": 2}'/> ر.س</strong>
                                     </div>
@@ -345,7 +345,7 @@
 
                             <div class="col-4">
                                 <div t-attf-style="border: 1px solid {{color_border}}; border-radius: 12px; padding: 10px; height: 100%;">
-                                    <div class="text-right" style="margin-bottom: 5px;"><i class="fa fa-credit-card" style="color: #df7b8e;"></i> <span style="color: #777;">طريقة الدفع</span></div>
+                                    <div class="text-right" style="margin-bottom: 5px;"><i class="fa fa-credit-card" style="color: #F28C73;"></i> <span style="color: #777;">طريقة الدفع</span></div>
                                     <strong style="font-size: 13px;">
                                         <t t-set="pay_method_name" t-value="''"/>
 
@@ -364,7 +364,7 @@
 
                                     <hr style="margin: 8px 0; border-top: 1px dashed #eee;"/>
 
-                                    <div class="text-right" style="margin-bottom: 5px;"><i class="fa fa-check-circle-o" style="color: #df7b8e;"></i> <span style="color: #777;">شروط الدفع</span></div>
+                                    <div class="text-right" style="margin-bottom: 5px;"><i class="fa fa-check-circle-o" style="color: #F28C73;"></i> <span style="color: #777;">شروط الدفع</span></div>
                                     <strong style="font-size: 13px;">
                                         <t t-if="not is_appointment and 'payment_term_id' in o and o.payment_term_id">
                                             <t t-esc="o.payment_term_id.with_context(lang='ar_001').name"/>
@@ -376,7 +376,7 @@
 
                             <div class="col-5">
                                 <div t-attf-style="border: 1px solid {{color_border}}; border-radius: 12px; padding: 10px; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: #fafafa;">
-                                    <span t-attf-style="color: {{color_pink}}; font-weight: bold; margin-bottom: 5px;">ملاحظات وشروط عامة</span>
+                                    <span t-attf-style="color: {{color_apricot}}; font-weight: bold; margin-bottom: 5px;">ملاحظات وشروط عامة</span>
                                     <span style="color: #555; line-height: 1.8;">
                                         <t t-if="not is_appointment and 'note' in o and o.note">
                                             <t t-esc="o.note"/>
@@ -391,7 +391,7 @@
 
                             <div class="col-3">
                                 <div style="height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center;">
-                                    <span t-attf-style="color: {{color_pink}}; font-size:11px; margin-bottom:5px; font-weight:bold;">الاستجابة السريع (ZATCA)</span>
+                                    <span t-attf-style="color: {{color_apricot}}; font-size:11px; margin-bottom:5px; font-weight:bold;">الاستجابة السريع (ZATCA)</span>
 
                                     <t t-set="final_inv" t-value="False"/>
 
@@ -439,14 +439,14 @@
                             </div>
                         </div>
 
-                        <div class="text-center" style="margin-top: 30px; padding-top: 15px; border-top: 2px solid #df7b8e; color: #555;">
+                        <div class="text-center" style="margin-top: 30px; padding-top: 15px; border-top: 2px solid #F28C73; color: #555;">
                             <div style="font-size: 18px; margin-bottom: 5px;">
-                                <i class="fa fa-instagram" t-attf-style="color: {{color_pink}}; margin: 0 10px;"></i>
-                                <i class="fa fa-snapchat-ghost" t-attf-style="color: {{color_pink}}; margin: 0 10px;"></i>
-                                <i class="fa fa-music" t-attf-style="color: {{color_pink}}; margin: 0 10px;"></i>
+                                <i class="fa fa-instagram" t-attf-style="color: {{color_apricot}}; margin: 0 10px;"></i>
+                                <i class="fa fa-snapchat-ghost" t-attf-style="color: {{color_apricot}}; margin: 0 10px;"></i>
+                                <i class="fa fa-music" t-attf-style="color: {{color_apricot}}; margin: 0 10px;"></i>
                             </div>
                             <strong style="font-size: 14px;"><t t-esc="seller_name"/></strong><br/>
-                            <a t-attf-href="http://{{ o.company_id.website or 'www.noofbeauty.sa' }}" t-attf-style="color: {{color_pink}}; text-decoration: none;">
+                            <a t-attf-href="http://{{ o.company_id.website or 'www.noofbeauty.sa' }}" t-attf-style="color: {{color_apricot}}; text-decoration: none;">
                                 <t t-esc="o.company_id.website or 'www.noofbeauty.sa'"/>
                             </a>
                         </div>

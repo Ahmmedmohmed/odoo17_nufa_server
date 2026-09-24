@@ -35,17 +35,17 @@
                 <!-- تثبيت اللغة العربية -->
                 <t t-set="o" t-value="o.with_context(lang='ar_001')" />
 
-                <t t-set="color_pink" t-value="'#df7b8e'"/>
-                <t t-set="color_light_pink" t-value="'#fdf5f6'"/>
+                <t t-set="color_apricot" t-value="'#F28C73'"/>
+                <t t-set="color_light_apricot" t-value="'#FFF4F1'"/>
                 <t t-set="color_border" t-value="'#e6e6e6'"/>
 
                 <div class="page" style="font-family: 'Cairo', 'Tajawal', 'Arial', sans-serif; direction: rtl; text-align: right; color: #333; font-size: 11px; width: 100%; max-width: 300px; margin: 0 auto; padding: 0;">
 
                     <!-- ترويسة الإيصال (تم تعديلها لتكون باسم العميل) -->
-                    <div style="text-align: center; margin-bottom: 12px; border-bottom: 2px solid #df7b8e; padding-bottom: 10px;">
-                        <h2 style="font-weight: 900; margin: 0 0 5px 0; font-size: 20px; color: #df7b8e;">صالونات نوف</h2>
+                    <div style="text-align: center; margin-bottom: 12px; border-bottom: 2px solid #F28C73; padding-bottom: 10px;">
+                        <h2 style="font-weight: 900; margin: 0 0 5px 0; font-size: 20px; color: #F28C73;">صالونات نوف</h2>
 
-                        <div style="display: inline-block; background-color: #fdf5f6; padding: 4px 12px; border-radius: 6px; border: 1px solid #df7b8e;">
+                        <div style="display: inline-block; background-color: #FFF4F1; padding: 4px 12px; border-radius: 6px; border: 1px solid #F28C73;">
                             <strong style="font-size: 12px; color: #333;">إيصال حجز (<t t-esc="o.partner_id.name"/>)</strong>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                     <!-- ========================================== -->
 
                     <div style="border: 1px solid #e6e6e6; border-radius: 8px; margin-bottom: 12px; overflow: hidden;">
-                        <div style="background-color: #fdf5f6; color: #df7b8e; text-align: center; padding: 6px; font-weight: bold; border-bottom: 1px solid #e6e6e6; font-size: 11px;">
+                        <div style="background-color: #FFF4F1; color: #F28C73; text-align: center; padding: 6px; font-weight: bold; border-bottom: 1px solid #e6e6e6; font-size: 11px;">
                             <i class="fa fa-file-text-o" style="margin-left: 5px;"></i> بيانات الإيصال
                         </div>
                         <div style="padding: 8px; font-size: 11px; line-height: 1.8;">
@@ -122,7 +122,7 @@
                             </div>
                             <div style="display: flex; justify-content: space-between;">
                                 <span style="color: #555;">حالة الحجز:</span>
-                                <strong style="color: #df7b8e;">
+                                <strong style="color: #F28C73;">
                                     <t t-if="o.state == '1'">مبدئي (بانتظار التأكيد)</t>
                                     <t t-elif="o.state == '2'">مؤكد</t>
                                     <t t-elif="o.state == '3'">مكتمل</t>
@@ -134,7 +134,7 @@
                     </div>
 
                     <div style="border: 1px solid #e6e6e6; border-radius: 8px; margin-bottom: 12px; overflow: hidden;">
-                        <div style="background-color: #fdf5f6; color: #df7b8e; text-align: center; padding: 6px; font-weight: bold; border-bottom: 1px solid #e6e6e6; font-size: 11px;">
+                        <div style="background-color: #FFF4F1; color: #F28C73; text-align: center; padding: 6px; font-weight: bold; border-bottom: 1px solid #e6e6e6; font-size: 11px;">
                             <i class="fa fa-user" style="margin-left: 5px;"></i> بيانات العميلة
                         </div>
                         <div style="padding: 8px; font-size: 11px; line-height: 1.8;">
@@ -149,13 +149,13 @@
                         </div>
                     </div>
 
-                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 12px; border: 1px solid #df7b8e; table-layout: fixed;">
-                        <tr style="background-color: #df7b8e; color: white; font-size: 10px; text-align: center; font-weight: bold;">
-                            <th style="padding: 4px; border: 1px solid #df7b8e; width: 22%;">الموظفة</th>
-                            <th style="padding: 4px; border: 1px solid #df7b8e; width: 28%;">الخدمة / المنتج</th>
-                            <th style="padding: 4px; border: 1px solid #df7b8e; width: 15%;">السعر</th>
-                            <th style="padding: 4px; border: 1px solid #df7b8e; width: 15%;">الضريبة</th>
-                            <th style="padding: 4px; border: 1px solid #df7b8e; width: 20%;">الإجمالي</th>
+                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 12px; border: 1px solid #F28C73; table-layout: fixed;">
+                        <tr style="background-color: #F28C73; color: white; font-size: 10px; text-align: center; font-weight: bold;">
+                            <th style="padding: 4px; border: 1px solid #F28C73; width: 22%;">الموظفة</th>
+                            <th style="padding: 4px; border: 1px solid #F28C73; width: 28%;">الخدمة / المنتج</th>
+                            <th style="padding: 4px; border: 1px solid #F28C73; width: 15%;">السعر</th>
+                            <th style="padding: 4px; border: 1px solid #F28C73; width: 15%;">الضريبة</th>
+                            <th style="padding: 4px; border: 1px solid #F28C73; width: 20%;">الإجمالي</th>
                         </tr>
                         <tr style="text-align: center; font-size: 10px; color: #333; background-color: #fff;">
 
@@ -167,7 +167,7 @@
                             <!-- اسم الخدمة والوقت الدقيق -->
                             <td style="padding: 4px; border: 1px solid #e6e6e6; vertical-align: middle;">
                                 <strong><t t-esc="o.product_id.name"/></strong><br/>
-                                <span style="font-size: 8px; color: #df7b8e;">
+                                <span style="font-size: 8px; color: #F28C73;">
                                     <t t-if="s_time_str"><t t-esc="s_time_str"/></t>
                                     <t t-else=""><span t-field="o.date" t-options='{"widget": "datetime", "format": "hh:mm a", "tz_name": "Asia/Riyadh"}'/></t>
                                 </span>
@@ -198,7 +198,7 @@
                     </table>
 
                     <div style="border: 1px solid #e6e6e6; border-radius: 8px; margin-bottom: 15px; padding: 8px; font-size: 11px;">
-                        <strong style="color: #df7b8e;"><i class="fa fa-edit"></i> ملاحظات:</strong>
+                        <strong style="color: #F28C73;"><i class="fa fa-edit"></i> ملاحظات:</strong>
                         <div style="border-bottom: 1px dashed #ccc; width: 100%; height: 20px; margin-top: 5px;">
                             <t t-if="o.notes"><t t-esc="o.notes"/></t>
                         </div>
@@ -218,10 +218,10 @@
                     </div>
 
                     <div style="text-align: center; border-top: 1px dashed #ccc; margin-top: 15px; padding-top: 10px; font-size: 12px; color: #555;">
-                        <div style="font-weight: bold; color: #df7b8e;">شكراً لزيارتكم!</div>
+                        <div style="font-weight: bold; color: #F28C73;">شكراً لزيارتكم!</div>
                         <div style="margin-top: 8px; font-size: 16px;">
-                            <i class="fa fa-instagram" style="color: #df7b8e; margin: 0 5px;"></i>
-                            <i class="fa fa-snapchat-ghost" style="color: #df7b8e; margin: 0 5px;"></i>
+                            <i class="fa fa-instagram" style="color: #F28C73; margin: 0 5px;"></i>
+                            <i class="fa fa-snapchat-ghost" style="color: #F28C73; margin: 0 5px;"></i>
                         </div>
                     </div>
 
