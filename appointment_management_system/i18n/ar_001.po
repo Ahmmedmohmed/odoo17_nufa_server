@@ -332,8 +332,8 @@ msgstr "تم الأنتهاء"
 
 #. module: appointment_management_system
 #: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_employee_slot__state__draft
-msgid "Draft"
-msgstr "مسودة"
+msgid "Available"
+msgstr "متاح"
 
 #. module: appointment_management_system
 #: model:ir.model,name:appointment_management_system.model_hr_employee

@@ -16,7 +16,7 @@ class AppointmentEmployeeSlot(models.Model):
     employee_id = fields.Many2one('hr.employee', string='Employee', required=True)
     date = fields.Date(string='Date', required=True)
     time = fields.Float(string='Time', required=True)
-    state = fields.Selection([('draft', 'Draft'), ('wait', 'Waiting'), ('done', 'Done'), ('cancel', 'Cancelled')],
+    state = fields.Selection([('draft', 'Available'), ('wait', 'Waiting'), ('done', 'Done'), ('cancel', 'Cancelled')],
                              default='draft')
 
     @api.model
