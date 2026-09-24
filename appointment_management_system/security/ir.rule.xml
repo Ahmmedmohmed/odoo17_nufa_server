@@ -1,5 +1,5 @@
 <odoo>
-    <data noupdate="1">
+    <data noupdate="0">
         <!-- قاعدة فصل الحجوزات حسب الفرع الفعلي (branch_id) وليس company_id التقني -->
         <record id="appointment_management_comp_rule" model="ir.rule">
             <field name="name">Appointment Management - Branch Separation</field>
