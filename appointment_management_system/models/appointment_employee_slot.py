@@ -84,7 +84,7 @@ class AppointmentEmployeeSlot(models.Model):
 
     @api.model
     def action_create_employee_slots(self):
-        """إنشاء السلوتات مع دعم خطة القسم، أو الاعتماد كلياً على جدول الموظف إذا لم توجد خطة"""
+        """إنشاء السلوتات مع دعم خطة القسم، والمسح الأوتوماتيكي للسلوتات الملغاة (بسبب البريك أو تغيير الشفت)"""
         today = fields.Date.today()
         department_ids = self.env['hr.department'].search(
             [('is_appointment_department', '=', True), ('is_times_confirmed', '=', True)])
@@ -103,10 +103,6 @@ class AppointmentEmployeeSlot(models.Model):
             time_plans = self.env['appointment.department.time.plan'].search(
                 [('department_id', '=', employee.department_id.id)])
 
-            existing_slots = self.search(
-                [('employee_id', '=', employee.id), ('date', '>=', today), ('date', '<=', today + timedelta(days=35))])
-            existing_slot_keys = set((slot.date, slot.time) for slot in existing_slots)
-
             employee_leaves = []
             if has_leave_module:
                 employee_leaves = self.env['hr.leave'].sudo().search([
@@ -115,7 +111,7 @@ class AppointmentEmployeeSlot(models.Model):
                     ('date_to', '>=', fields.Datetime.now())
                 ])
 
-            # 🚀 قلبنا اللوب: هنلف على الأيام الأول
+            # 🚀 نلف على الأيام (35 يوم للأمام)
             for day_offset in range(35):
                 current_date = today + timedelta(days=day_offset)
                 odoo_weekday = str(current_date.weekday())
@@ -127,11 +123,21 @@ class AppointmentEmployeeSlot(models.Model):
                 )
 
                 if not day_attendances:
-                    continue  # الموظف لا يعمل في هذا اليوم (إجازة أسبوعية)
+                    # ========================================================
+                    # 🚀 أتمتة المسح 1: لو اليوم ده إجازة أسبوعية، نمسح كل السلوتات الفاضية فيه
+                    # ========================================================
+                    invalid_slots = self.search([
+                        ('employee_id', '=', employee.id),
+                        ('date', '=', current_date),
+                        ('state', '=', 'draft')
+                    ])
+                    if invalid_slots:
+                        invalid_slots.unlink()  # مسح نهائي
+                    continue
 
                 valid_time_ranges = []
 
-                # 💡 التعديل الجوهري: تحديد مصدر الوقت (القسم أم الموظف)
+                # تحديد مصدر الوقت (القسم أم الموظف)
                 if time_plans:
                     day_plans = time_plans.filtered(lambda p: p.day == day_name_lower)
                     for plan in day_plans:
@@ -139,13 +145,15 @@ class AppointmentEmployeeSlot(models.Model):
                         plan_end = plan.end_hour * 60 + plan.end_minute
                         valid_time_ranges.append((plan_start, plan_end))
                 else:
-                    # لا توجد خطة للقسم -> نعتمد كلياً على فترات عمل الموظف (Work Schedule)
                     for att in day_attendances:
                         att_start_mins = int(round(att.hour_from * 60))
                         att_end_mins = int(round(att.hour_to * 60))
                         valid_time_ranges.append((att_start_mins, att_end_mins))
 
-                # إنشاء السلوتات بناءً على الفترات المستخرجة
+                # قائمة لتخزين الأوقات الصحيحة والمسموحة لهذا اليوم
+                expected_times_for_day = []
+
+                # استخراج الأوقات المتاحة
                 for range_start, range_end in valid_time_ranges:
                     current_slot_start = range_start
 
@@ -155,7 +163,7 @@ class AppointmentEmployeeSlot(models.Model):
                         time_float = slot_hour + (slot_minute / 60.0)
                         slot_end_mins = current_slot_start + 30
 
-                        # التأكد النهائي أن السلوت يقع داخل أوقات عمل الموظف الفعيلة ولا يتقاطع مع الراحة
+                        # التأكد النهائي أن السلوت يقع داخل أوقات عمل الموظف الفعيلة ولا يتقاطع مع البريك
                         is_inside_employee_hours = False
                         for att in day_attendances:
                             att_start_mins = int(round(att.hour_from * 60))
@@ -197,20 +205,36 @@ class AppointmentEmployeeSlot(models.Model):
                             current_slot_start += 30
                             continue
 
-                        # إنشاء السلوت إذا لم يكن موجوداً
-                        if (current_date, time_float) not in existing_slot_keys:
-                            self.create({
-                                'name': f'{slot_hour:02d}:{slot_minute:02d}',
-                                'employee_id': employee.id,
-                                'date': current_date,
-                                'time': time_float,
-                                'state': 'draft'
-                            })
-                            existing_slot_keys.add((current_date, time_float))
-
+                        # إذا اجتاز كل الفحوصات، نضيفه لقائمة الأوقات المعتمدة
+                        expected_times_for_day.append((time_float, f'{slot_hour:02d}:{slot_minute:02d}'))
                         current_slot_start += 30
 
+                # ========================================================
+                # 🚀 أتمتة المسح 2: مزامنة السلوتات الموجودة مع الأوقات المعتمدة
+                # ========================================================
+                day_existing_slots = self.search([('employee_id', '=', employee.id), ('date', '=', current_date)])
+                existing_time_floats = day_existing_slots.mapped('time')
+                expected_time_floats = [t[0] for t in expected_times_for_day]
+
+                # 1. مسح السلوتات الفارغة (draft) التي أصبحت تتعارض مع الشفت الجديد أو البريك
+                day_draft_slots = day_existing_slots.filtered(lambda s: s.state == 'draft')
+                for draft_slot in day_draft_slots:
+                    if draft_slot.time not in expected_time_floats:
+                        draft_slot.unlink()  # حذف السلوت الأوتوماتيكي من قاعدة البيانات
+
+                # 2. إنشاء السلوتات الجديدة التي لم تكن موجودة من قبل
+                for time_float, time_str in expected_times_for_day:
+                    if time_float not in existing_time_floats:
+                        self.create({
+                            'name': time_str,
+                            'employee_id': employee.id,
+                            'date': current_date,
+                            'time': time_float,
+                            'state': 'draft'
+                        })
+
         self.reassign_appointments_for_absent_employees()
+
     @api.model
     def reassign_appointments_for_absent_employees(self):
         if 'hr.leave' not in self.env:
