@@ -37,8 +37,24 @@ patch(PosStore.prototype, {
           [selectedService,this.appointmentDetails['isSelectedServicePack']? this.appointmentDetails['service_id']:false]
       );
       this.appointmentDetails['services'][selectedService].syncBranchs = true;
-      this.appointmentDetails['services'][selectedService].availableBranchs = availableBranchs;
-      console.log(availableBranchs);
+
+      // -- فلترة على فرع نقطة البيع (pos.config) الحالية فقط --
+      const currentConfigId = this.config ? String(this.config.id) : null;
+
+      let filteredBranches = {};
+      if (currentConfigId && availableBranchs[currentConfigId] !== undefined) {
+          filteredBranches[currentConfigId] = availableBranchs[currentConfigId];
+      } else {
+          filteredBranches = availableBranchs; // fallback احتياطي فقط لو مفيش تطابق
+      }
+
+      this.appointmentDetails['services'][selectedService].availableBranchs = filteredBranches;
+
+      // تحديد الفرع تلقائياً من أول ما تتضاف الخدمة
+      if (Object.keys(filteredBranches).length > 0) {
+          const onlyBranchId = Object.keys(filteredBranches)[0];
+          this.appointmentDetails['services'][selectedService].branch_id = onlyBranchId;
+      }
       // this.render();
     },
     // async getAvailableEmployees(selectedService){
