@@ -237,50 +237,54 @@ export class AppointmentSeviceDetails extends Component {
         this.render();
     }
 
-    // 1️⃣ فلترة وقفل الفروع على فرع الكاشير الحالي فقط
+    // 1️⃣ فلترة وقفل الفروع على فرع نقطة البيع (pos.config) الحالية فقط
     async getBranches(){
-  var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
-  this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncBranchs = false;
+      var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
+      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncBranchs = false;
 
-  const availableBranchs = await this.orm.call(
-      "product.product",
-      "action_get_appointment_branch",
-      [changes.service_id, this.pos.appointmentDetails['isSelectedServicePack']? this.pos.appointmentDetails['service_id']:false]
-  );
-  this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncBranchs = true;
+      const availableBranchs = await this.orm.call(
+          "product.product",
+          "action_get_appointment_branch",
+          [changes.service_id,this.pos.appointmentDetails['isSelectedServicePack']? this.pos.appointmentDetails['service_id']:false]
+      );
+      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncBranchs = true;
 
-  // -- معرف "نقطة البيع" الحالية اللي شغال عليها الكاشير دلوقتي --
-  const currentConfigId = this.pos.config ? this.pos.config.id : null;
+      // -- معرف "نقطة البيع" الحالية اللي شغال عليها الكاشير دلوقتي --
+      const currentConfigId = this.pos.config ? this.pos.config.id : null;
 
-  // 🔍 مهم: شوف الـ console وقارن الرقمين دول ببعض عشان نتأكد إنهم بيتطابقوا
-  console.log('DEBUG currentConfigId:', currentConfigId, '| availableBranchs:', availableBranchs);
+      // 🔍 سطر تأكيد واحد بس - امسحه بعد ما نتأكد إن الفلترة ظابطة
+      console.log('POS_DEBUG', {
+          'pos.config.id': currentConfigId,
+          'availableBranchs': JSON.parse(JSON.stringify(availableBranchs)),
+      });
 
-  let filteredBranches = {};
-  if (currentConfigId) {
-      for (let key in availableBranchs) {
-          if (String(key) === String(currentConfigId)) {
-              filteredBranches[key] = availableBranchs[key];
+      let filteredBranches = {};
+      if (currentConfigId) {
+          for (let key in availableBranchs) {
+              if (String(key) === String(currentConfigId)) {
+                  filteredBranches[key] = availableBranchs[key];
+              }
           }
       }
-  }
 
-  if (Object.keys(filteredBranches).length === 0) {
-      console.warn('⚠️ pos.config.id مش متطابق مع مفاتيح availableBranchs - شوف الـ console.log فوق');
-      filteredBranches = availableBranchs; // fallback مؤقت عشان الشغل ميقفش
-  }
+      if (Object.keys(filteredBranches).length === 0) {
+          console.warn('⚠️ pos.config.id مش متطابق مع مفاتيح availableBranchs - شوف POS_DEBUG فوق');
+          filteredBranches = availableBranchs; // fallback مؤقت عشان الشغل ميقفش
+      }
 
-  this.availableBranchs = filteredBranches;
-  this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availableBranchs = filteredBranches;
+      this.availableBranchs = filteredBranches;
+      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availableBranchs = filteredBranches;
 
-  if (Object.keys(filteredBranches).length > 0) {
-      const onlyBranchId = Object.keys(filteredBranches)[0];
-      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].branch_id = onlyBranchId;
-      this.changes.branch_id = onlyBranchId;
-      await this.getAvailableEmployees();
-  }
+      // التحديد التلقائي لفرع نقطة البيع الحالية واستدعاء الموظفين
+      if (Object.keys(filteredBranches).length > 0) {
+          const onlyBranchId = Object.keys(filteredBranches)[0];
+          this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].branch_id = onlyBranchId;
+          this.changes.branch_id = onlyBranchId;
+          await this.getAvailableEmployees();
+      }
 
-  this.render();
-}
+      this.render();
+    }
 
     // 2️⃣ البحث الذكي عن الموظف اللي عنده حجوزات "اليوم"
     async getAvailableEmployees(){
