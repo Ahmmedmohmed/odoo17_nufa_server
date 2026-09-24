@@ -63,6 +63,14 @@
                                 class="btn-danger"
                                 invisible="state in ('3', '4')"/>
 
+                        <!-- زر إعادة الجدولة: يظهر فقط لو الحجز مش في البداية ومش مكتمل أو ملغي -->
+                        <button name="action_reset_to_approved"
+                                type="object"
+                                string="Reset to Approved (Reschedule)"
+                                class="btn-warning"
+                                invisible="state in ('1', '2', '3', '4')"
+                                confirm="Are you sure you want to reset the appointment to (Approved)? The previous start time will be cleared for rescheduling."/>
+
                         <!-- زر استثناء المرتجع: يظهر فقط لو الحجز ملغي وفيه خصم -->
                         <button name="action_admin_refund_exception"
                                 string="Refund Exception (Refund Deduction)"
@@ -213,6 +221,11 @@
                                             <!-- 🚀 التعديل هنا: زر الإكمال هيظهر في حالة In Progress (start) فقط 🚀 -->
                                             <button class="btn btn-success btn-sm" name="action_appointment_complate" type="object" invisible="state != 'start'">
                                                 <strong>Complete</strong>
+                                            </button>
+
+                                             <!-- زر إعادة الجدولة في الكانبان -->
+                                            <button class="btn btn-warning btn-sm" name="action_reset_to_approved" type="object" invisible="state in ('1', '2', '3', '4')">
+                                                <strong>Reset to Approved</strong>
                                             </button>
                                         </div>
                                     </div>

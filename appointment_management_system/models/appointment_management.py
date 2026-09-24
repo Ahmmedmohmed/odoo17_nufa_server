@@ -540,3 +540,16 @@ class AppointmentManagement(models.Model):
 
         res_id = created_appointments[0].id if created_appointments else False
         return {'status': 'success', 'res_id': res_id, 'ref': first_ref, 'invoice_id': invoice_id}
+
+    def action_reset_to_approved(self):
+        """ زر لإعادة الجدولة: إرجاع الحجز إلى تم التأكيد (لم يبدأ) """
+        for record in self:
+            # يمنع الإرجاع فقط لو كان الحجز مكتمل أو ملغي
+            if record.state in ['3', '4']:
+                raise UserError(
+                    _("لا يمكن إرجاع الحجز لإعادة الجدولة إذا كان 'مكتملاً' أو 'ملغياً'.\nCannot reset the appointment for rescheduling if it is 'Completed' or 'Cancelled'."))
+
+            record.write({
+                'state': '2',
+                'service_start_time': False  # تصفير وقت البداية لإتاحة إعادة الجدولة
+            })
