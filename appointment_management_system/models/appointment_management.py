@@ -462,12 +462,15 @@ class AppointmentManagement(models.Model):
             journal_id = pm.journal_id.id if pm.journal_id else False
 
         sale_product_id = package_id if package_id else int(appointments_data[0]['product_id'])
+        # الفرع الفعلي للحجز - لازم الفاتورة والـ sale order ياخدوا نفس company_id بتاعه
+        # مش سياق المستخدم اللي بيعمل الحجز، عشان تفعيل فصل بيانات الفروع صح
+        appointment_branch_id = int(appointments_data[0].get('branch_id'))
         invoice_id = False
         sale_order = False
         try:
-            sale_order = self.env['sale.order'].sudo().create({
+            sale_order = self.env['sale.order'].sudo().with_company(appointment_branch_id).create({
                 'partner_id': partner_id,
-                'company_id': self.env.company.id,
+                'company_id': appointment_branch_id,
                 'order_line': [(0, 0, {
                     'product_id': sale_product_id,
                     'product_uom_qty': 1.0,
@@ -513,6 +516,10 @@ class AppointmentManagement(models.Model):
             appointment = self.create({
                 'partner_id': partner_id,
                 'branch_id': int(app_data.get('branch_id')),
+                # company_id لازم يتساوى مع branch_id (الفرع الفعلي)، مش سياق المستخدم
+                # اللي بيعمل الحجز، عشان فصل بيانات الفروع يشتغل صح وعشان يتفادى
+                # تعارض _check_company_auto مع employee_id / product_id بتوع الفرع
+                'company_id': int(app_data.get('branch_id')),
                 'product_id': int(app_data.get('product_id')),
                 'employee_id': int(app_data.get('employee_id')),
                 'date': utc_dt,
