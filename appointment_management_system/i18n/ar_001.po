@@ -1,19 +1,189 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* appointment_management_system
+#   * appointment_management_system
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0+e\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-28 01:32+0000\n"
-"PO-Revision-Date: 2025-12-28 01:32+0000\n"
+"POT-Creation-Date: 2026-09-27 14:47+0000\n"
+"PO-Revision-Date: 2026-09-27 14:47+0000\n"
 "Last-Translator: \n"
-"Language-Team: \n"
+"Language-Team: Arabic\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#. module: appointment_management_system
+#: model:ir.actions.report,print_report_name:appointment_management_system.action_report_appointment_receipt
+msgid "'Receipt - %s' % (object.appointment_ref)"
+msgstr "'إيصال - %s' % (object.appointment_ref)"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid ""
+"<br/>\n"
+"                                                            <i class=\"fa fa-user-o\" style=\"color: #F28C73;\"/> مع:"
+msgstr ""
+"<br/>\n"
+"                                                            <i class=\"fa fa-user-o\" style=\"color: #F28C73;\"/> مع:"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid ""
+"<br/>\n"
+"                                            نسعد بخدمتكم دائماً"
+msgstr ""
+"<br/>\n"
+"                                            نسعد بخدمتكم دائماً"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid ""
+"<br/>\n"
+"                                        الرقم الضريبي:"
+msgstr ""
+"<br/>\n"
+"                                        الرقم الضريبي:"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid ""
+"<br/>\n"
+"                                        المملكة العربية السعودية -"
+msgstr ""
+"<br/>\n"
+"                                        المملكة العربية السعودية -"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "<i class=\"fa fa-calendar-check-o\" style=\"color: #F28C73;\"/> موعد:"
+msgstr "<i class=\"fa fa-calendar-check-o\" style=\"color: #F28C73;\"/> موعد:"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid ""
+"<i class=\"fa fa-calendar-check-o\" style=\"margin-left: 5px;\"/> تفاصيل "
+"الموعد"
+msgstr ""
+"<i class=\"fa fa-calendar-check-o\" style=\"margin-left: 5px;\"/> تفاصيل "
+"الموعد"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid ""
+"<i class=\"fa fa-check-circle-o\" style=\"color: #F28C73;\"/> <span "
+"style=\"color: #777;\">شروط الدفع</span>"
+msgstr ""
+"<i class=\"fa fa-check-circle-o\" style=\"color: #F28C73;\"/> <span "
+"style=\"color: #777;\">شروط الدفع</span>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid ""
+"<i class=\"fa fa-clock-o\" style=\"color: #F28C73; margin-left: "
+"3px;\"/>التاريخ والوقت:"
+msgstr ""
+"<i class=\"fa fa-clock-o\" style=\"color: #F28C73; margin-left: "
+"3px;\"/>التاريخ والوقت:"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+msgid "<i class=\"fa fa-clock-o\" style=\"color: #F28C73; margin-left: 3px;\"/>الوقت:"
+msgstr "<i class=\"fa fa-clock-o\" style=\"color: #F28C73; margin-left: 3px;\"/>الوقت:"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+msgid "<i class=\"fa fa-comment-o\"/> الشروط والأحكام / ملاحظات:"
+msgstr "<i class=\"fa fa-comment-o\"/> الشروط والأحكام / ملاحظات:"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid ""
+"<i class=\"fa fa-credit-card\" style=\"color: #F28C73;\"/> <span "
+"style=\"color: #777;\">طريقة الدفع</span>"
+msgstr ""
+"<i class=\"fa fa-credit-card\" style=\"color: #F28C73;\"/> <span "
+"style=\"color: #777;\">طريقة الدفع</span>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+msgid "<i class=\"fa fa-credit-card\"/> شروط الدفع:"
+msgstr "<i class=\"fa fa-credit-card\"/> شروط الدفع:"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_receipt_template
+msgid "<i class=\"fa fa-file-text-o\" style=\"margin-left: 5px;\"/> بيانات الإيصال"
+msgstr "<i class=\"fa fa-file-text-o\" style=\"margin-left: 5px;\"/> بيانات الإيصال"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "<i class=\"fa fa-file-text-o\" style=\"margin-left: 5px;\"/> بيانات الفاتورة"
+msgstr "<i class=\"fa fa-file-text-o\" style=\"margin-left: 5px;\"/> بيانات الفاتورة"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+msgid "<i class=\"fa fa-file-text-o\" style=\"margin-left: 5px;\"/> تفاصيل الطلب"
+msgstr "<i class=\"fa fa-file-text-o\" style=\"margin-left: 5px;\"/> تفاصيل الطلب"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "<i class=\"fa fa-file-text-o\" style=\"margin-left: 5px;\"/> تفاصيل الفاتورة"
+msgstr "<i class=\"fa fa-file-text-o\" style=\"margin-left: 5px;\"/> تفاصيل الفاتورة"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid ""
+"<i class=\"fa fa-map-marker\" style=\"color: #F28C73; margin-left: "
+"3px;\"/>الفرع:"
+msgstr ""
+"<i class=\"fa fa-map-marker\" style=\"color: #F28C73; margin-left: "
+"3px;\"/>الفرع:"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "<i class=\"fa fa-store\" style=\"margin-left: 5px;\"/> بيانات الشركة"
+msgstr "<i class=\"fa fa-store\" style=\"margin-left: 5px;\"/> بيانات الشركة"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "<i class=\"fa fa-store\" style=\"margin-left: 5px;\"/> معلومات البائع"
+msgstr "<i class=\"fa fa-store\" style=\"margin-left: 5px;\"/> معلومات البائع"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "<i class=\"fa fa-user\" style=\"margin-left: 5px;\"/> العميل الفوتر إليه"
+msgstr "<i class=\"fa fa-user\" style=\"margin-left: 5px;\"/> العميل المفوتر إليه"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_receipt_template
+msgid "<i class=\"fa fa-user\" style=\"margin-left: 5px;\"/> بيانات العميلة"
+msgstr "<i class=\"fa fa-user\" style=\"margin-left: 5px;\"/> بيانات العميل"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+msgid "<i class=\"fa fa-user\" style=\"margin-left: 5px;\"/> عنوان الفوترة للعميل"
+msgstr "<i class=\"fa fa-user\" style=\"margin-left: 5px;\"/> عنوان الفوترة للعميل"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "<i class=\"fa fa-user\" style=\"margin-left: 5px;\"/> فاتورة إلى"
+msgstr "<i class=\"fa fa-user\" style=\"margin-left: 5px;\"/> فاتورة إلى"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid ""
+"<i class=\"fa fa-user-o\" style=\"color: #F28C73; margin-left: "
+"3px;\"/>الموظفة:"
+msgstr ""
+"<i class=\"fa fa-user-o\" style=\"color: #F28C73; margin-left: "
+"3px;\"/>الموظف:"
 
 #. module: appointment_management_system
 #: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_kanban
@@ -51,9 +221,273 @@ msgid "<span class=\"fa fa-users me-2\" title=\"Employee\"/>"
 msgstr "<span class=\"fa fa-users me-2\" title=\"الموظف\"/>"
 
 #. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid ""
+"<span style=\"color: #555; line-height: 1.6; font-size: 11px; margin-bottom: 5px;\">\n"
+"                                        للتحقق من صحة الفاتورة<br/>\n"
+"                                        يرجى مسح رمز QR<br/>\n"
+"                                        أو زيارة الموقع\n"
+"                                    </span>"
+msgstr ""
+"<span style=\"color: #555; line-height: 1.6; font-size: 11px; margin-bottom: 5px;\">\n"
+"                                        للتحقق من صحة الفاتورة<br/>\n"
+"                                        يرجى مسح رمز QR<br/>\n"
+"                                        أو زيارة الموقع\n"
+"                                    </span>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "<span style=\"color: #555;\">الإجمالي بعد الخصم</span>"
+msgstr "<span style=\"color: #555;\">الإجمالي بعد الخصم</span>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "<span style=\"color: #555;\">الإجمالي قبل الضريبة</span>"
+msgstr "<span style=\"color: #555;\">الإجمالي قبل الضريبة</span>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_receipt_template
+msgid "<span style=\"color: #555;\">الاسم:</span>"
+msgstr "<span style=\"color: #555;\">الاسم:</span>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_receipt_template
+msgid "<span style=\"color: #555;\">التاريخ:</span>"
+msgstr "<span style=\"color: #555;\">التاريخ:</span>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_receipt_template
+msgid "<span style=\"color: #555;\">الجوال:</span>"
+msgstr "<span style=\"color: #555;\">الجوال:</span>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "<span style=\"color: #555;\">الضرائب المضافة</span>"
+msgstr "<span style=\"color: #555;\">الضرائب المضافة</span>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "<span style=\"color: #555;\">الضريبة المضافة (15%)</span>"
+msgstr "<span style=\"color: #555;\">الضريبة المضافة (15%)</span>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_receipt_template
+msgid "<span style=\"color: #555;\">حالة الحجز:</span>"
+msgstr "<span style=\"color: #555;\">حالة الحجز:</span>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_receipt_template
+msgid "<span style=\"color: #555;\">رقم الإيصال:</span>"
+msgstr "<span style=\"color: #555;\">رقم الإيصال:</span>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_receipt_template
+msgid "<span style=\"color: #555;\">وقت الحجز:</span>"
+msgstr "<span style=\"color: #555;\">وقت الحجز:</span>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid ""
+"<span style=\"color: #6c757d; font-size: 11px; margin-right: "
+"5px;\">[منتج]</span>"
+msgstr ""
+"<span style=\"color: #6c757d; font-size: 11px; margin-right: "
+"5px;\">[منتج]</span>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+msgid "<span style=\"color: #777; font-size: 11px;\">الشركة الأم:</span>"
+msgstr "<span style=\"color: #777; font-size: 11px;\">الشركة الأم:</span>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid ""
+"<span style=\"color: #777; font-size: 11px;\">بيانات الفرع "
+"المصدر:</span><br/>"
+msgstr ""
+"<span style=\"color: #777; font-size: 11px;\">بيانات الفرع "
+"المصدر:</span><br/>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "<span style=\"font-size:9px;color:#999;\">لا يوجد QR</span>"
+msgstr "<span style=\"font-size:9px;color:#999;\">لا يوجد QR</span>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "<span>التاريخ:</span>"
+msgstr "<span>التاريخ:</span>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+msgid "<span>المبيعات:</span>"
+msgstr "<span>المبيعات:</span>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "<span>المرجع:</span>"
+msgstr "<span>المرجع:</span>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "<span>المصدر:</span>"
+msgstr "<span>المصدر:</span>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "<span>تاريخ الاستحقاق:</span>"
+msgstr "<span>تاريخ الاستحقاق:</span>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "<span>تاريخ الانتهاء:</span>"
+msgstr "<span>تاريخ الانتهاء:</span>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "<span>تاريخ الفاتورة:</span>"
+msgstr "<span>تاريخ الفاتورة:</span>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "<span>رقم الفاتورة:</span>"
+msgstr "<span>رقم الفاتورة:</span>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+msgid "<span>رقم المستند:</span>"
+msgstr "<span>رقم المستند:</span>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+msgid "<span>مرجع العميل:</span>"
+msgstr "<span>مرجع العميل:</span>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_receipt_template
+msgid "<strong style=\"color: #F28C73;\"><i class=\"fa fa-edit\"/> ملاحظات:</strong>"
+msgstr "<strong style=\"color: #F28C73;\"><i class=\"fa fa-edit\"/> ملاحظات:</strong>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_kanban
+msgid "<strong>Amount:</strong>"
+msgstr "<strong>المبلغ:</strong>"
+
+#. module: appointment_management_system
 #: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_kanban
-msgid "<strong>Complate</strong>"
-msgstr "<strong>الحجوزات المكتملة</strong>"
+msgid "<strong>Complete</strong>"
+msgstr "<strong>مكتمل</strong>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_kanban
+msgid "<strong>Customer:</strong>"
+msgstr "<strong>العميل:</strong>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_kanban
+msgid "<strong>Method:</strong>"
+msgstr "<strong>الطريقة:</strong>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_kanban
+msgid "<strong>Reset to Approved</strong>"
+msgstr "<strong>إعادة للتأكيد</strong>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_kanban
+msgid "<strong>Start Service</strong>"
+msgstr "<strong>بدء الخدمة</strong>"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "<strong>الإجمالي شامل الضريبة</strong>"
+msgstr "<strong>الإجمالي شامل الضريبة</strong>"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__account_holder_name
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_payout_method__account_holder_name
+msgid "Account Holder Name"
+msgstr "اسم صاحب الحساب"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__account_number
+msgid "Account Number / IBAN"
+msgstr "رقم الحساب / الآيبان"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__message_needaction
+msgid "Action Needed"
+msgstr "إجراء مطلوب"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_payout_method__active
+msgid "Active"
+msgstr "نشط"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__activity_ids
+msgid "Activities"
+msgstr "الأنشطة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "زخرفة استثناء النشاط"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__activity_state
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "أيقونة نوع النشاط"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_form
+msgid "Add internal notes here..."
+msgstr "أضف ملاحظات داخلية هنا..."
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__admin_notes
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_withdrawal_request__notes
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_form
+msgid "Admin Notes"
+msgstr "ملاحظات الإدارة"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_form
+msgid "Admin Response"
+msgstr "رد الإدارة"
+
+#. module: appointment_management_system
+#: model:ir.ui.menu,name:appointment_management_system.menu_appointment_management
+msgid "All Appointments"
+msgstr "كافة الحجوزات"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_withdrawal_request__amount
+msgid "Amount"
+msgstr "المبلغ"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,help:appointment_management_system.field_appointment_refund_request__refund_amount
+msgid "Amount to be refunded to customer"
+msgstr "المبلغ المراد استرجاعه للعميل"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__appointment_id
+msgid "Appointment"
+msgstr "الحجز"
 
 #. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_pos_category__is_appointment_category
@@ -102,6 +536,11 @@ msgid "Appointment Employees"
 msgstr "موظفي الحجوزات"
 
 #. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_form
+msgid "Appointment Information"
+msgstr "بيانات الحجز"
+
+#. module: appointment_management_system
 #: model_terms:ir.ui.view,arch_db:appointment_management_system.view_res_company_form_appointment_inherit
 msgid "Appointment Location"
 msgstr "مواقع الحجوزات"
@@ -124,12 +563,22 @@ msgstr "إعدادات باكدج الحجوزات"
 #. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_product_product__appointment_package_line_ids
 msgid "Appointment Package Lines"
-msgstr ""
+msgstr "بنود باكدج الحجوزات"
 
 #. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_service_price_plan__service_product_name
 msgid "Appointment Product Service Name"
 msgstr "أسم الخدمة"
+
+#. module: appointment_management_system
+#: model:ir.actions.report,name:appointment_management_system.action_report_appointment_receipt
+msgid "Appointment Receipt"
+msgstr "إيصال الحجز"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__appointment_ref
+msgid "Appointment Reference"
+msgstr "مرجع الحجز"
 
 #. module: appointment_management_system
 #: model:ir.actions.act_window,name:appointment_management_system.appointment_refund_policy_action
@@ -139,9 +588,9 @@ msgid "Appointment Refund Policy"
 msgstr "سياسة استرجاع الحجوزات"
 
 #. module: appointment_management_system
-#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__sequence
-msgid "Appointment Sequence"
-msgstr "تسلسل الحجز"
+#: model:ir.model,name:appointment_management_system.model_appointment_refund_request
+msgid "Appointment Refund Request"
+msgstr "طلب استرجاع الحجز"
 
 #. module: appointment_management_system
 #: model:ir.actions.act_window,name:appointment_management_system.appointment_service_action
@@ -171,6 +620,12 @@ msgid "Appointment Services Category"
 msgstr "فئات خدمات الحجوزات"
 
 #. module: appointment_management_system
+#: model:ir.actions.act_window,name:appointment_management_system.appointment_simple_settings_action
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.appointment_simple_settings_view
+msgid "Appointment Settings"
+msgstr "إعدادات الحجوزات"
+
+#. module: appointment_management_system
 #: model_terms:ir.ui.view,arch_db:appointment_management_system.view_hr_department_form_appointment_inherit
 msgid "Appointment Time Configuration"
 msgstr "اعدادات وقت الحجز"
@@ -182,21 +637,66 @@ msgstr "نوع الحجز"
 
 #. module: appointment_management_system
 #: model:ir.actions.act_window,name:appointment_management_system.appointment_management_action
-#: model:ir.ui.menu,name:appointment_management_system.menu_appointment_management
 #: model:ir.ui.menu,name:appointment_management_system.menu_appointment_root
 msgid "Appointments"
 msgstr "الحجوزات"
 
 #. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_graph
+msgid "Appointments Analysis"
+msgstr "تحليل الحجوزات"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_calendar
+msgid "Appointments Calendar"
+msgstr "تقويم الحجوزات"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_pivot
+msgid "Appointments Pivot"
+msgstr "الجدول المحوري للحجوزات"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_form
+msgid "Approve"
+msgstr "موافقة"
+
+#. module: appointment_management_system
 #: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_management__state__2
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_refund_request__state__approved
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_search
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_kanban
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_search
 msgid "Approved"
 msgstr "تم تأكيد الحجز"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_form
+msgid ""
+"Are you sure you want to reset the appointment to (Approved)? The previous "
+"start time will be cleared for rescheduling."
+msgstr "هل أنت متأكد من إرجاع الحجز لحالة (مؤكد)؟ سيتم تصفير وقت البدء السابق لإتاحة إعادة الجدولة."
 
 #. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_hr_department__plan_ids
 #: model:ir.model.fields,field_description:appointment_management_system.field_product_product__plan_ids
 msgid "Associated Plans"
-msgstr "الخطة "
+msgstr "الخطط المرتبطة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.appointment_simple_settings_view
+msgid "Automatic Cart Cancellation"
+msgstr "إلغاء السلة التلقائي"
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_employee_slot__state__draft
+msgid "Available"
+msgstr "متاح"
 
 #. module: appointment_management_system
 #: model_terms:ir.ui.view,arch_db:appointment_management_system.view_hr_department_form_appointment_inherit
@@ -206,11 +706,50 @@ msgid "Available In Appointment"
 msgstr "متاح في الحجوزات"
 
 #. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__wallet_payout_method__type__bank_account
+msgid "Bank Account"
+msgstr "حساب بنكي"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__bank_name
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_payout_method__bank_name
+msgid "Bank Name"
+msgstr "اسم البنك"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_search
+msgid "Bank Transfer"
+msgstr "تحويل بنكي"
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_refund_request__refund_method__bank_transfer
+msgid "Bank Transfer (Manual)"
+msgstr "تحويل بنكي (يدوي)"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_form
+msgid "Bank Transfer Details"
+msgstr "تفاصيل التحويل البنكي"
+
+#. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__branch_id
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_package_line__branch_id
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_service_price_plan__branch_id
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_search
 msgid "Branch"
 msgstr "الفرع"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.appointment_simple_settings_view
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_form
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_decline_wizard_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_form
+msgid "Cancellation Details"
+msgstr "تفاصيل الإلغاء"
 
 #. module: appointment_management_system
 #: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_employee_slot__state__cancel
@@ -219,9 +758,49 @@ msgid "Cancelled"
 msgstr "ملغي"
 
 #. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "Cancelled Appointment"
+msgstr "موعد ملغي"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__cancelled_at
+msgid "Cancelled At"
+msgstr "ألغي في"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "Cancelled Invoice"
+msgstr "فاتورة ملغاة"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_form
+msgid "Card Information"
+msgstr "بيانات البطاقة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__card_last_four
+msgid "Card Last 4 Digits"
+msgstr "آخر 4 أرقام من البطاقة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__card_type
+msgid "Card Type"
+msgstr "نوع البطاقة"
+
+#. module: appointment_management_system
+#: model:ir.ui.menu,name:appointment_management_system.menu_appointment_settings
+msgid "Cart Timeout"
+msgstr "انتهاء وقت السلة"
+
+#. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_pos_category__image
 msgid "Category Image"
-msgstr ""
+msgstr "صورة الفئة"
+
+#. module: appointment_management_system
+#: model:ir.model,name:appointment_management_system.model_commission_withdrawal_wizard
+msgid "Commission Withdrawal Wizard"
+msgstr "معالج سحب العمولات"
 
 #. module: appointment_management_system
 #: model:ir.model,name:appointment_management_system.model_res_company
@@ -234,9 +813,29 @@ msgid "Company"
 msgstr "الشركة"
 
 #. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_form
+msgid "Complete"
+msgstr "إكمال"
+
+#. module: appointment_management_system
 #: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_management__state__3
-msgid "Complated"
-msgstr "تم الإنتهاء"
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_refund_request__state__completed
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__wallet_withdrawal_request__state__completed
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_search
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_kanban
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_search
+msgid "Completed"
+msgstr "مكتمل"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__completed_at
+msgid "Completed At"
+msgstr "اكتمل في"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_withdrawal_request__completed_date
+msgid "Completed Date"
+msgstr "تاريخ الانتهاء"
 
 #. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_product_component__component_id
@@ -250,9 +849,14 @@ msgid "Components"
 msgstr "المكونات"
 
 #. module: appointment_management_system
+#: model:ir.model,name:appointment_management_system.model_res_config_settings
+msgid "Config Settings"
+msgstr "تهيئة الإعدادات "
+
+#. module: appointment_management_system
 #: model:ir.ui.menu,name:appointment_management_system.menu_appointment_configuration
 msgid "Configuration"
-msgstr "إعدادات"
+msgstr "الإعدادات"
 
 #. module: appointment_management_system
 #: model_terms:ir.ui.view,arch_db:appointment_management_system.view_hr_department_form_appointment_inherit
@@ -260,32 +864,73 @@ msgid "Confirm Appointment Times"
 msgstr "تأكيد أوقات الحجز"
 
 #. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_decline_wizard_form
+msgid "Confirm Decline"
+msgstr "تأكيد الرفض"
+
+#. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_department_time_plan__create_uid
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_employee_slot__create_uid
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__create_uid
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_package_line__create_uid
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_decline_wizard__create_uid
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_policy__create_uid
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__create_uid
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_service_price_plan__create_uid
+#: model:ir.model.fields,field_description:appointment_management_system.field_commission_withdrawal_wizard__create_uid
 #: model:ir.model.fields,field_description:appointment_management_system.field_product_component__create_uid
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_payout_method__create_uid
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_withdrawal_request__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "أنشئ بواسطة"
 
 #. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_department_time_plan__create_date
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_employee_slot__create_date
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__create_date
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_package_line__create_date
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_decline_wizard__create_date
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_policy__create_date
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__create_date
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_service_price_plan__create_date
+#: model:ir.model.fields,field_description:appointment_management_system.field_commission_withdrawal_wizard__create_date
 #: model:ir.model.fields,field_description:appointment_management_system.field_product_component__create_date
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_payout_method__create_date
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_withdrawal_request__create_date
 msgid "Created on"
-msgstr ""
+msgstr "أنشئ في"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_hr_employee_public__credit_limit_advance
+msgid "Credit Limit Advance"
+msgstr "الحد الائتماني للسلفة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_hr_employee_public__credit_limit_loan
+msgid "Credit Limit Loan"
+msgstr "الحد الائتماني للقرض"
 
 #. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_package_line__currency_id
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_service_price_plan__currency_id
 msgid "Currency"
 msgstr "العملة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__partner_id
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_search
+msgid "Customer"
+msgstr "العميل"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__reason
+msgid "Customer Reason"
+msgstr "سبب العميل"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_form
+msgid "Customer Request"
+msgstr "طلب العميل"
 
 #. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_employee_slot__date
@@ -299,9 +944,46 @@ msgid "Day"
 msgstr "اليوم"
 
 #. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_form
+msgid "Decline"
+msgstr "رفض"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__decline_reason
+msgid "Decline Reason"
+msgstr "سبب الرفض"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_decline_wizard_form
+msgid "Decline Refund Request"
+msgstr "رفض طلب الاسترجاع"
+
+#. module: appointment_management_system
+#: model:ir.model,name:appointment_management_system.model_appointment_refund_decline_wizard
+msgid "Decline Refund Request Wizard"
+msgstr "معالج رفض طلب الاسترجاع"
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_refund_request__state__declined
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_kanban
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_search
+msgid "Declined"
+msgstr "مرفوض"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__deduction_percentage
+msgid "Deduction %"
+msgstr "نسبة الخصم %"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__deduction_amount
+msgid "Deduction Amount"
+msgstr "مبلغ الخصم"
+
+#. module: appointment_management_system
 #: model:ir.actions.server,name:appointment_management_system.ir_cron_delete_old_slots_ir_actions_server
 msgid "Delete Slots"
-msgstr ""
+msgstr "حذف الفترات الزمنية"
 
 #. module: appointment_management_system
 #: model:ir.model,name:appointment_management_system.model_hr_department
@@ -319,11 +1001,16 @@ msgstr "الموقع الوجهة"
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_employee_slot__display_name
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__display_name
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_package_line__display_name
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_decline_wizard__display_name
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_policy__display_name
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__display_name
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_service_price_plan__display_name
+#: model:ir.model.fields,field_description:appointment_management_system.field_commission_withdrawal_wizard__display_name
 #: model:ir.model.fields,field_description:appointment_management_system.field_product_component__display_name
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_payout_method__display_name
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_withdrawal_request__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "اسم العرض"
 
 #. module: appointment_management_system
 #: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_employee_slot__state__done
@@ -331,17 +1018,32 @@ msgid "Done"
 msgstr "تم الأنتهاء"
 
 #. module: appointment_management_system
-#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_employee_slot__state__draft
-msgid "Available"
-msgstr "متاح"
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__service_duration
+msgid "Duration (Minutes)"
+msgstr "المدة (بالدقائق)"
 
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_refund_request__refund_method__wallet
+msgid "E-Wallet (Automatic)"
+msgstr "محفظة إلكترونية (تلقائي)"
 
 #. module: appointment_management_system
 #: model:ir.model,name:appointment_management_system.model_hr_employee
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_employee_slot__employee_id
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__employee_id
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_search
 msgid "Employee"
 msgstr "الموظف"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,help:appointment_management_system.field_hr_employee__resource_calendar_id
+msgid "Employee's working schedule."
+msgstr "جدول عمل الموظف."
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_hr_department_form_appointment_inherit
+msgid "Employees"
+msgstr "الموظفين"
 
 #. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_department_time_plan__end_hour
@@ -354,6 +1056,26 @@ msgid "End Minute"
 msgstr "دقيقة الإنتهاء"
 
 #. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_management__appointment_type__outside
+msgid "External Services"
+msgstr "خدمات خارجية"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__message_follower_ids
+msgid "Followers"
+msgstr "المتابعين"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعين (الشركاء)"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,help:appointment_management_system.field_appointment_refund_request__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "أيقونة الخط الرائعة مثل fa-tasks"
+
+#. module: appointment_management_system
 #: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_department_time_plan__day__friday
 msgid "Friday"
 msgstr "الجمعة"
@@ -362,6 +1084,22 @@ msgstr "الجمعة"
 #: model:ir.actions.server,name:appointment_management_system.ir_cron_generate_employee_slots_ir_actions_server
 msgid "Generate Appointment Employee Slots"
 msgstr "إنشاء مواعيد حجز للموظفين"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_search
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_search
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__has_message
+msgid "Has Message"
+msgstr "يحتوي على رسالة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__has_sale_order
+msgid "Has Sale Order"
+msgstr "له أمر بيع"
 
 #. module: appointment_management_system
 #: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_management__service_rate__2
@@ -374,20 +1112,81 @@ msgid "Hours Before Appointment"
 msgstr "الساعات قبل موعد الحجز"
 
 #. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_payout_method__iban
+msgid "IBAN"
+msgstr "الآيبان"
+
+#. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_department_time_plan__id
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_employee_slot__id
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__id
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_package_line__id
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_decline_wizard__id
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_policy__id
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__id
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_service_price_plan__id
+#: model:ir.model.fields,field_description:appointment_management_system.field_commission_withdrawal_wizard__id
 #: model:ir.model.fields,field_description:appointment_management_system.field_product_component__id
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_payout_method__id
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_withdrawal_request__id
 msgid "ID"
-msgstr ""
+msgstr "المُعرّف"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__activity_exception_icon
+msgid "Icon"
+msgstr "الأيقونة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,help:appointment_management_system.field_appointment_refund_request__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "أيقونة للإشارة إلى نشاط استثنائي."
+
+#. module: appointment_management_system
+#: model:ir.model.fields,help:appointment_management_system.field_appointment_refund_request__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا كان محددًا، فإن الرسائل الجديدة تتطلب انتباهك."
+
+#. module: appointment_management_system
+#: model:ir.model.fields,help:appointment_management_system.field_appointment_refund_request__message_has_error
+#: model:ir.model.fields,help:appointment_management_system.field_appointment_refund_request__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا تم تحديده، سيكون هناك خطأ في تسليم بعض الرسائل."
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_management__state__start
+msgid "In Progress"
+msgstr "قيد التنفيذ"
 
 #. module: appointment_management_system
 #: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_management__appointment_type__inside
-msgid "Inside"
-msgstr "داخلي"
+msgid "Internal Services"
+msgstr "خدمات داخلية"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,help:appointment_management_system.field_appointment_refund_request__admin_notes
+msgid "Internal notes from admin"
+msgstr "ملاحظات داخلية من الإدارة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_sale_order__invoice_status
+msgid "Invoice Status"
+msgstr "حالة الفاتورة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_hr_employee_public__is_appointment_employee
+msgid "Is Appointment Employee"
+msgstr "موظف حجوزات"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__message_is_follower
+msgid "Is Follower"
+msgstr "متابع"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__is_printed
+msgid "Is Printed"
+msgstr "تمت الطباعة"
 
 #. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_hr_department__is_times_confirmed
@@ -395,31 +1194,69 @@ msgid "Is Times Confirmed"
 msgstr "هل خطة العمل مأكده"
 
 #. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_payout_method__label
+msgid "Label (e.g., NBE - 4521)"
+msgstr "التسمية (مثل: البنك الأهلي - 4521)"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,help:appointment_management_system.field_appointment_refund_request__card_last_four
+msgid "Last 4 digits of the card used for payment"
+msgstr "آخر 4 أرقام للبطاقة المستخدمة في الدفع"
+
+#. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_department_time_plan__write_uid
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_employee_slot__write_uid
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__write_uid
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_package_line__write_uid
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_decline_wizard__write_uid
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_policy__write_uid
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__write_uid
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_service_price_plan__write_uid
+#: model:ir.model.fields,field_description:appointment_management_system.field_commission_withdrawal_wizard__write_uid
 #: model:ir.model.fields,field_description:appointment_management_system.field_product_component__write_uid
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_payout_method__write_uid
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_withdrawal_request__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "آخر تحديث بواسطة"
 
 #. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_department_time_plan__write_date
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_employee_slot__write_date
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__write_date
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_package_line__write_date
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_decline_wizard__write_date
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_policy__write_date
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__write_date
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_service_price_plan__write_date
+#: model:ir.model.fields,field_description:appointment_management_system.field_commission_withdrawal_wizard__write_date
 #: model:ir.model.fields,field_description:appointment_management_system.field_product_component__write_date
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_payout_method__write_date
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_withdrawal_request__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "آخر تحديث في"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_hr_employee_public__limited_discount
+msgid "Limited Discount"
+msgstr "خصم محدود"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_hr_employee_public__loan_and_advance_user
+msgid "Loan And Advance User"
+msgstr "مستخدم القروض والسلف"
 
 #. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_hr_employee__location_id
+#: model:ir.model.fields,field_description:appointment_management_system.field_hr_employee_public__location_id
 msgid "Location"
 msgstr "الموقع المصدري"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "Logo"
+msgstr "الشعار"
 
 #. module: appointment_management_system
 #: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_management__service_rate__0
@@ -427,9 +1264,39 @@ msgid "Low"
 msgstr "منخفض"
 
 #. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_form
+msgid "Mark Completed"
+msgstr "تحديد كمكتمل"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_form
+msgid "Mark Processing"
+msgstr "تحديد كقيد المعالجة"
+
+#. module: appointment_management_system
 #: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_management__service_rate__1
 msgid "Medium"
 msgstr "متوسط"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسالة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_payout_method__type
+msgid "Method Type"
+msgstr "نوع الطريقة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__wallet_payout_method__type__mobile_wallet
+msgid "Mobile Wallet"
+msgstr "محفظة الهاتف المحمول"
 
 #. module: appointment_management_system
 #: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_department_time_plan__day__monday
@@ -437,9 +1304,55 @@ msgid "Monday"
 msgstr "الإثنين"
 
 #. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "الموعد النهائي لنشاطي"
+
+#. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_employee_slot__name
 msgid "Name"
 msgstr "الأسم"
+
+#. module: appointment_management_system
+#: model:ir.actions.client,name:appointment_management_system.action_appointment_booking_wizard
+msgid "New Booking"
+msgstr "حجز جديد"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "حدث التقويم للنشاط التالي"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "الموعد النهائي للنشاط التالي"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__activity_summary
+msgid "Next Activity Summary"
+msgstr "ملخص النشاط التالي"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__activity_type_id
+msgid "Next Activity Type"
+msgstr "نوع النشاط التالي"
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_management__state__no_show
+msgid "No Show"
+msgstr "لم يحضر"
+
+#. module: appointment_management_system
+#: model_terms:ir.actions.act_window,help:appointment_management_system.appointment_refund_request_action
+msgid "No refund requests yet"
+msgstr "لا توجد طلبات استرجاع بعد"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_kanban
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_search
+msgid "Not Printed"
+msgstr "لم يطبع بعد"
 
 #. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__notes
@@ -448,14 +1361,44 @@ msgid "Notes"
 msgstr "الملاحظات"
 
 #. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__message_has_error_counter
+msgid "Number of errors"
+msgstr "عدد الأخطاء"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,help:appointment_management_system.field_appointment_refund_request__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "عدد الرسائل التي تتطلب إجراء"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,help:appointment_management_system.field_appointment_refund_request__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل التي بها خطأ في التسليم"
+
+#. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_res_company__picking_type_id
 msgid "Operation Type"
 msgstr "نوع العملية"
 
 #. module: appointment_management_system
-#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_management__appointment_type__outside
-msgid "Outside"
-msgstr "خارجي"
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__original_price
+msgid "Original Price"
+msgstr "السعر الأصلي"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__transaction_reference
+msgid "Original Transaction Reference"
+msgstr "مرجع المعاملة الأصلية"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__pos_reference
+msgid "POS Receipt Reference"
+msgstr "مرجع إيصال نقطة البيع"
 
 #. module: appointment_management_system
 #: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_management__state__1
@@ -473,9 +1416,46 @@ msgid "Partner Phone"
 msgstr "رقم العميل"
 
 #. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_management__state__pause
+msgid "Paused"
+msgstr "مؤقت"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_withdrawal_request__payout_method_id
+msgid "Payout Method"
+msgstr "طريقة الدفع للمحفظة"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_kanban
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_search
+msgid "Pending"
+msgstr "قيد الانتظار"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.appointment_simple_settings_view
+msgid "Pending Reservation Timeout (Minutes)"
+msgstr "مهلة الحجز المعلق (بالدقائق)"
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_refund_request__state__pending
+msgid "Pending Review"
+msgstr "في انتظار المراجعة"
+
+#. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_policy__percentage
 msgid "Percentage (%)"
 msgstr "النسبة المئوية"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_payout_method__phone_number
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_search
+msgid "Phone Number"
+msgstr "رقم الهاتف"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_decline_wizard_form
+msgid "Please provide a reason for declining this refund request..."
+msgstr "يرجى تقديم سبب لرفض طلب الاسترجاع هذا..."
 
 #. module: appointment_management_system
 #: model:ir.model,name:appointment_management_system.model_pos_category
@@ -495,6 +1475,32 @@ msgid "Price (Outside)"
 msgstr "السعر (خارجي)"
 
 #. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_kanban
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_tree
+msgid "Print"
+msgstr "طباعة"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_form
+msgid "Print Ticket"
+msgstr "طباعة الفاتورة"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_kanban
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_search
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_tree
+msgid "Printed"
+msgstr "تمت الطباعة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_refund_request__state__processing
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__wallet_withdrawal_request__state__processing
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_kanban
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_search
+msgid "Processing"
+msgstr "قيد المعالجة"
+
+#. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_product_component__product_id
 msgid "Product"
 msgstr "المنتج"
@@ -510,6 +1516,11 @@ msgid "Product Variant"
 msgstr "متغير المنتج "
 
 #. module: appointment_management_system
+#: model:ir.model,name:appointment_management_system.model_hr_employee_public
+msgid "Public Employee"
+msgstr "موظف في القطاع العام"
+
+#. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_product_component__quantity
 msgid "Quantity"
 msgstr "الكمية"
@@ -520,9 +1531,145 @@ msgid "Rating"
 msgstr "التقيم"
 
 #. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__rating_ids
+msgid "Ratings"
+msgstr "التقييمات"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_decline_wizard__decline_reason
+msgid "Reason for Declining"
+msgstr "سبب الرفض"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,help:appointment_management_system.field_appointment_refund_request__decline_reason
+msgid "Reason for declining the refund request"
+msgstr "السبب لرفض طلب الاسترجاع"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,help:appointment_management_system.field_appointment_refund_request__reason
+msgid "Reason provided by customer for refund request"
+msgstr "السبب المقدم من العميل لطلب الاسترجاع"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_withdrawal_request__name
+msgid "Reference"
+msgstr "المرجع"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__refund_amount
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__refund_amount
+msgid "Refund Amount"
+msgstr "مبلغ الاسترجاع"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_form
+msgid "Refund Exception (Refund Deduction)"
+msgstr "استثناء الاسترجاع (خصم الاسترجاع)"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__refund_method
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_form
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_search
+msgid "Refund Method"
+msgstr "طريقة الاسترجاع"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_decline_wizard__refund_request_id
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_form
+msgid "Refund Request"
+msgstr "طلب الاسترجاع"
+
+#. module: appointment_management_system
+#: model:ir.actions.act_window,name:appointment_management_system.appointment_refund_request_action
+#: model:ir.ui.menu,name:appointment_management_system.menu_appointment_refund_requests
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_tree
+msgid "Refund Requests"
+msgstr "طلبات الاسترجاع"
+
+#. module: appointment_management_system
+#: model_terms:ir.actions.act_window,help:appointment_management_system.appointment_refund_request_action
+msgid ""
+"Refund requests from customers will appear here.\n"
+"                    You can approve, decline, or mark them as completed."
+msgstr ""
+"طلبات الاسترجاع من العملاء ستظهر هنا.\n"
+"                    يمكنك الموافقة عليها، رفضها، أو تحديدها كمكتملة."
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__wallet_withdrawal_request__state__rejected
+msgid "Rejected"
+msgstr "مرفوض"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__sale_order_id
+msgid "Related Sale Order"
+msgstr "أمر البيع ذو الصلة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__sequence
+msgid "Request #"
+msgstr "رقم الطلب"
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__wallet_withdrawal_request__state__requested
+msgid "Requested (Pending)"
+msgstr "تم الطلب (قيد الانتظار)"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__requested_at
+msgid "Requested At"
+msgstr "تاريخ الطلب"
+
+#. module: appointment_management_system
 #: model:ir.actions.server,name:appointment_management_system.ir_cron_reset_draft_slots_ir_actions_server
 msgid "Reset Draft Slots"
-msgstr ""
+msgstr "تصفير فترات المسودة"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_form
+msgid "Reset to Approved (Reschedule)"
+msgstr "تراجع لإعادة الجدولة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__activity_user_id
+msgid "Responsible User"
+msgstr "المستخدم المسؤول"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__reviewed_at
+msgid "Reviewed At"
+msgstr "تمت المراجعة في"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__reviewed_by
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_search
+msgid "Reviewed By"
+msgstr "تمت المراجعة بواسطة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "خطأ في تسليم الرسائل القصيرة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__swift_code
+msgid "SWIFT/BIC Code"
+msgstr "رمز SWIFT/BIC"
+
+#. module: appointment_management_system
+#: model:ir.model,name:appointment_management_system.model_sale_order
+msgid "Sales Order"
+msgstr "أمر البيع"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_search
+msgid "Same Card"
+msgstr "نفس البطاقة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_refund_request__refund_method__same_card
+msgid "Same Card Used for Payment"
+msgstr "نفس البطاقة المستخدمة للدفع"
 
 #. module: appointment_management_system
 #: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_department_time_plan__day__saturday
@@ -530,9 +1677,29 @@ msgid "Saturday"
 msgstr "السبت"
 
 #. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.appointment_simple_settings_view
+msgid "Save"
+msgstr "حفظ"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_search
+msgid "Search Appointments"
+msgstr "البحث عن الحجوزات"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_search
+msgid "Search Refund Requests"
+msgstr "البحث في طلبات الاسترجاع"
+
+#. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__product_id
 msgid "Service"
 msgstr "الخدمة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__service_end_time
+msgid "Service End Time"
+msgstr "وقت انتهاء الخدمة"
 
 #. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_package_line__product_id
@@ -542,7 +1709,17 @@ msgstr "أسم الخدمة"
 #. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_package_line__product_pack_id
 msgid "Service Pack Name"
-msgstr ""
+msgstr "اسم باقة الخدمة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__service_start_time
+msgid "Service Start Time"
+msgstr "وقت بدء الخدمة"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "Simplified Tax Invoice"
+msgstr "فاتورة ضريبية مبسطة"
 
 #. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__slot_ids
@@ -562,6 +1739,12 @@ msgid "Slot Number (Outside)"
 msgstr "عدد الفترات (خارجي)"
 
 #. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_payout_method__employee_id
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_withdrawal_request__employee_id
+msgid "Specialist"
+msgstr "الأخصائية"
+
+#. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_department_time_plan__start_hour
 msgid "Start Hour"
 msgstr "ساعة البداية"
@@ -572,10 +1755,37 @@ msgid "Start Minute"
 msgstr "دقيقة البداية"
 
 #. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_form
+msgid "Start Service"
+msgstr "بدء الخدمة"
+
+#. module: appointment_management_system
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_employee_slot__state
 #: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__state
 msgid "State"
 msgstr "الحالة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__state
+#: model:ir.model.fields,field_description:appointment_management_system.field_sale_order__state
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_withdrawal_request__state
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_search
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_search
+msgid "Status"
+msgstr "الحالة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,help:appointment_management_system.field_appointment_refund_request__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"الحالة على أساس الأنشطة\n"
+"متأخر: تاريخ الاستحقاق مر بالفعل\n"
+"اليوم: تاريخ النشاط هو اليوم\n"
+"مخطط: الأنشطة المستقبلية."
 
 #. module: appointment_management_system
 #: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_department_time_plan__day__sunday
@@ -593,9 +1803,29 @@ msgid "Time"
 msgstr "الوقت"
 
 #. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_form
+msgid "Timestamps"
+msgstr "الطوابع الزمنية"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_tree
+msgid "Total Refund"
+msgstr "إجمالي الاسترجاع"
+
+#. module: appointment_management_system
 #: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_department_time_plan__day__tuesday
 msgid "Tuesday"
 msgstr "الثلاثاء"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_search
+msgid "Type"
+msgstr "النوع"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,help:appointment_management_system.field_appointment_refund_request__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "نوع النشاط الاستثنائي في السجل."
 
 #. module: appointment_management_system
 #: model_terms:ir.ui.view,arch_db:appointment_management_system.view_hr_department_form_appointment_inherit
@@ -620,1115 +1850,468 @@ msgid "Waiting"
 msgstr "في الإنتظار"
 
 #. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_refund_request_search
+msgid "Wallet"
+msgstr "محفظة"
+
+#. module: appointment_management_system
+#: model:ir.model,name:appointment_management_system.model_wallet_payout_method
+msgid "Wallet Payout Method"
+msgstr "طريقة الدفع للمحفظة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_wallet_payout_method__wallet_provider
+msgid "Wallet Provider (e.g., Vodafone Cash)"
+msgstr "مزود المحفظة (مثل: فودافون كاش)"
+
+#. module: appointment_management_system
+#: model:ir.model,name:appointment_management_system.model_wallet_withdrawal_request
+msgid "Wallet Withdrawal Request"
+msgstr "طلب سحب من المحفظة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_refund_request__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,help:appointment_management_system.field_appointment_refund_request__website_message_ids
+msgid "Website communication history"
+msgstr "تاريخ التواصل في الموقع"
+
+#. module: appointment_management_system
 #: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_department_time_plan__day__wednesday
 msgid "Wednesday"
 msgstr "الأربعاء"
 
 #. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_hr_employee__resource_calendar_id
+msgid "Working Hours"
+msgstr "ساعات العمل"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "ZATCA QR"
+msgstr "رمز QR للزكاة"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__zatca_qr_code
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "ZATCA QR Code"
+msgstr "رمز استجابة هيئة الزكاة (ZATCA)"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "[باقة]"
+msgstr "[باقة]"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "[خدمة]"
+msgstr "[خدمة]"
+
+#. module: appointment_management_system
 #: model:ir.model,name:appointment_management_system.model_appointment_package_line
 msgid "appointment.package.line"
+msgstr "بند.باقة.الحجز"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,help:appointment_management_system.field_appointment_refund_request__card_type
+msgid "e.g., Visa, Mastercard"
+msgstr "مثل، فيزا، ماستركارد"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "zatca.gov.sa"
+msgstr "zatca.gov.sa"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid ""
+"| <i class=\"fa fa-clock-o\" style=\"color: #F28C73; margin-left: "
+"3px;\"/>الوقت:"
 msgstr ""
+"| <i class=\"fa fa-clock-o\" style=\"color: #F28C73; margin-left: "
+"3px;\"/>الوقت:"
 
 #. module: appointment_management_system
-#: model:ir.model.fields,field_description:appointment_management_system.field_appointment_management__is_printed
-msgid "Is Printed"
-msgstr "تمت الطباعة"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+msgid "أمر بيع"
+msgstr "أمر بيع"
 
 #. module: appointment_management_system
-#: name:action_print_ticket
-msgid "Print Ticket"
-msgstr "طباعة الوصل"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+msgid "أمر بيع (ملغي)"
+msgstr "أمر بيع (ملغي)"
 
 #. module: appointment_management_system
-#: name:action_print_ticket
-msgid "Print"
-msgstr "طباعة"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "إجمالي المبلغ المسترد"
+msgstr "إجمالي المبلغ المسترد"
 
 #. module: appointment_management_system
-msgid "Not Printed"
-msgstr "لم يطبع بعد"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "إشعار دائن (مرتجع)"
+msgstr "إشعار دائن (مرتجع)"
 
 #. module: appointment_management_system
-msgid "Printed"
-msgstr "تمت الطباعة"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "إشعار دائن مشتريات (مرتجع)"
+msgstr "إشعار دائن مشتريات (مرتجع)"
 
 #. module: appointment_management_system
-#: model:ir.ui.menu,name:appointment_management_system.menu_appointment_root
-msgid "Appointments"
-msgstr "إدارة الحجوزات"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_receipt_template
+msgid "إيصال حجز ("
+msgstr "إيصال حجز ("
 
 #. module: appointment_management_system
-#: model:ir.ui.menu,name:appointment_management_system.menu_appointment_management
-msgid "All Appointments"
-msgstr "كافة الحجوزات"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "اسم المنتج / الخدمة"
+msgstr "اسم المنتج / الخدمة"
 
 #. module: appointment_management_system
-#: model:ir.ui.menu,name:appointment_management_system.menu_appointment_create_direct
-msgid "New Appointment"
-msgstr "حجز موعد جديد "
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_receipt_template
+msgid "الإجمالي"
+msgstr "الإجمالي"
 
 #. module: appointment_management_system
-#: model:ir.ui.menu,name:appointment_management_system.menu_appointment_refund_requests
-msgid "Refund Requests"
-msgstr "طلبات الاسترجاع"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "الإجمالي (شامل)"
+msgstr "الإجمالي (شامل)"
 
 #. module: appointment_management_system
-#: model:ir.ui.menu,name:appointment_management_system.menu_appointment_configuration
-msgid "Configuration"
-msgstr "الإعدادات"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "الإجمالي شامل الضريبة"
+msgstr "الإجمالي شامل الضريبة"
 
 #. module: appointment_management_system
-msgid "New Booking and Payment"
-msgstr "حجز موعد جديد والدفع"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "الإجمالي قبل الضريبة"
+msgstr "الإجمالي قبل الضريبة"
 
 #. module: appointment_management_system
-msgid "Choose details to complete your booking successfully"
-msgstr "قم باختيار التفاصيل لإتمام الحجز بنجاح"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "الاستجابة السريع (ZATCA)"
+msgstr "الاستجابة السريعة (ZATCA)"
 
 #. module: appointment_management_system
-msgid "1. Category"
-msgstr "1. التصنيف"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "الاستجابة السريعة<br/>(ZATCA QR)"
+msgstr "الاستجابة السريعة<br/>(ZATCA QR)"
 
 #. module: appointment_management_system
-msgid "2. Service/Package"
-msgstr "2. الخدمة/الباقة"
-
-#. module: appointment_management_system
-msgid "3. Details"
-msgstr "3. التفاصيل"
-
-#. module: appointment_management_system
-msgid "4. Payment"
-msgstr "4. الدفع"
-
-#. module: appointment_management_system
-msgid "Select Category"
-msgstr "اختر التصنيف"
-
-#. module: appointment_management_system
-msgid "Show All Services and Packages"
-msgstr "عرض كل الخدمات والباقات"
-
-#. module: appointment_management_system
-msgid "Select Service or Package"
-msgstr "اختر الخدمة أو الباقة"
-
-#. module: appointment_management_system
-msgid "Back to Categories"
-msgstr "رجوع للتصنيفات"
-
-#. module: appointment_management_system
-msgid "Package"
-msgstr "باقة (Package)"
-
-#. module: appointment_management_system
-msgid "Package Contents"
-msgstr "محتويات الباقة"
-
-#. module: appointment_management_system
-msgid "Cancel Package and Return"
-msgstr "إلغاء الباقة والرجوع"
-
-#. module: appointment_management_system
-msgid "You are now purchasing a package: ("
-msgstr "أنت تقوم الآن بشراء باقة: ("
-
-#. module: appointment_management_system
-msgid "The customer will pay the full package price now. Please select the <strong>first service</strong> to be executed today."
-msgstr "العميل سيدفع ثمن الباقة كاملاً الآن. يرجى اختيار <strong>الخدمة الأولى</strong> التي سيتم تنفيذها في موعد اليوم."
-
-#. module: appointment_management_system
-msgid "Select for today's session"
-msgstr "اخترني لجلسة اليوم"
-
-#. module: appointment_management_system
-msgid "Booking Service ("
-msgstr "حجز الخدمة ("
-
-#. module: appointment_management_system
-msgid " of "
-msgstr " من "
-
-#. module: appointment_management_system
-msgid ")"
-msgstr ")"
-
-#. module: appointment_management_system
-msgid "Service Booking Settings"
-msgstr "إعدادات حجز الخدمة"
-
-#. module: appointment_management_system
-msgid "Back"
-msgstr "رجوع"
-
-#. module: appointment_management_system
-msgid "Booking Type"
-msgstr "نوع الحجز"
-
-#. module: appointment_management_system
-msgid "Inside (Branch)"
-msgstr "داخلي (بالفرع)"
-
-#. module: appointment_management_system
-msgid "Outside (Home)"
-msgstr "خارجي (منزلي)"
-
-#. module: appointment_management_system
-msgid "Available Branch"
-msgstr "الفرع المتاح"
-
-#. module: appointment_management_system
-msgid "-- Select Branch --"
-msgstr "-- اختر الفرع --"
-
-#. module: appointment_management_system
-msgid "Available Specialist"
-msgstr "الأخصائية المتاحة"
-
-#. module: appointment_management_system
-msgid "-- Select Specialist --"
-msgstr "-- اختر الأخصائية --"
-
-#. module: appointment_management_system
-msgid "Available Dates for Specialist"
-msgstr "الأيام المتاحة للأخصائية"
-
-#. module: appointment_management_system
-msgid "-- Select Booking Date --"
-msgstr "-- اختر يوم الحجز --"
-
-#. module: appointment_management_system
-msgid "Sorry, no available dates for this specialist."
-msgstr "عفواً، لا توجد أيام متاحة لهذه الأخصائية."
-
-#. module: appointment_management_system
-msgid "Available Times (Slots)"
-msgstr "الأوقات المتاحة (Slots)"
-
-#. module: appointment_management_system
-msgid "-- Select Suitable Time --"
-msgstr "-- اختر الوقت المناسب --"
-
-#. module: appointment_management_system
-msgid "No appointments available on this day."
-msgstr "لا توجد مواعيد متاحة في هذا اليوم."
-
-#. module: appointment_management_system
-msgid "Next: Book Next Package Service"
-msgstr "التالي: حجز الخدمة القادمة بالباقة"
-
-#. module: appointment_management_system
-msgid "Next: Customer Details and Payment"
-msgstr "التالي: بيانات العميل والدفع"
-
-#. module: appointment_management_system
-msgid "Customer Details and Payment"
-msgstr "بيانات العميل والدفع"
-
-#. module: appointment_management_system
-msgid "Select Customer"
-msgstr "اختر العميل"
-
-#. module: appointment_management_system
-msgid "-- Select a customer from the list --"
-msgstr "-- اختر عميلاً من القائمة --"
-
-#. module: appointment_management_system
-msgid "No number"
-msgstr "بدون رقم"
-
-#. module: appointment_management_system
-msgid "Payment Method (POS)"
-msgstr "طريقة الدفع (POS Payment Methods)"
-
-#. module: appointment_management_system
-msgid "-- Select payment method for immediate payment --"
-msgstr "-- اختر طريقة الدفع للسداد الفوري --"
-
-#. module: appointment_management_system
-msgid "Additional Notes"
-msgstr "ملاحظات إضافية"
-
-#. module: appointment_management_system
-msgid "Confirm Booking and Issue Invoice"
-msgstr "تأكيد الحجز وإصدار الفاتورة"
-
-#. module: appointment_management_system
-msgid "Booking and Payment Confirmed Successfully!"
-msgstr "تم تأكيد الحجز والدفع بنجاح!"
-
-#. module: appointment_management_system
-msgid "Booking Number: "
-msgstr "رقم الحجز: "
-
-#. module: appointment_management_system
-msgid "New Booking"
-msgstr "حجز جديد"
-
-#. module: appointment_management_system
-msgid "Print Invoice"
-msgstr "طباعة الفاتورة"
-
-#. module: appointment_management_system
-msgid "Booking Summary"
-msgstr "ملخص الحجز"
-
-#. module: appointment_management_system
-msgid "Category"
-msgstr "التصنيف"
-
-#. module: appointment_management_system
-msgid "Package: "
-msgstr "باقة: "
-
-#. module: appointment_management_system
-msgid "Service"
-msgstr "الخدمة"
-
-#. module: appointment_management_system
-msgid "Branch"
-msgstr "الفرع"
-
-#. module: appointment_management_system
-msgid "Specialist"
-msgstr "الأخصائية"
-
-#. module: appointment_management_system
-msgid "Date & Time"
-msgstr "الموعد"
-
-#. module: appointment_management_system
-msgid "Booking now: "
-msgstr "جاري حجز: "
-
-#. module: appointment_management_system
-msgid "Customer"
-msgstr "العميل"
-
-#. module: appointment_management_system
-msgid "Total Amount"
-msgstr "المبلغ الإجمالي"
-
-#. module: appointment_management_system
-msgid "SAR"
-msgstr "ر.س"
-
-#. module: appointment_management_system
-msgid "New Booking and Payment"
-msgstr "حجز موعد جديد والدفع"
-
-#. module: appointment_management_system
-msgid "Choose details to complete your booking successfully"
-msgstr "قم باختيار التفاصيل لإتمام الحجز بنجاح"
-
-#. module: appointment_management_system
-msgid "1. Category"
-msgstr "1. التصنيف"
-
-#. module: appointment_management_system
-msgid "2. Service/Package"
-msgstr "2. الخدمة/الباقة"
-
-#. module: appointment_management_system
-msgid "3. Details"
-msgstr "3. التفاصيل"
-
-#. module: appointment_management_system
-msgid "4. Payment"
-msgstr "4. الدفع"
-
-#. module: appointment_management_system
-msgid "Select Category"
-msgstr "اختر التصنيف"
-
-#. module: appointment_management_system
-msgid "Show All Services and Packages"
-msgstr "عرض كل الخدمات والباقات"
-
-#. module: appointment_management_system
-msgid "Select Service or Package"
-msgstr "اختر الخدمة أو الباقة"
-
-#. module: appointment_management_system
-msgid "Back to Categories"
-msgstr "رجوع للتصنيفات"
-
-#. module: appointment_management_system
-msgid "Package"
-msgstr "باقة (Package)"
-
-#. module: appointment_management_system
-msgid "Package Contents"
-msgstr "محتويات الباقة"
-
-#. module: appointment_management_system
-msgid "Cancel Package and Return"
-msgstr "إلغاء الباقة والرجوع"
-
-#. module: appointment_management_system
-msgid "You are now purchasing a package: ("
-msgstr "أنت تقوم الآن بشراء باقة: ("
-
-#. module: appointment_management_system
-msgid "The customer will pay the full package price now. Please select the <strong>first service</strong> to be executed today."
-msgstr "العميل سيدفع ثمن الباقة كاملاً الآن. يرجى اختيار <strong>الخدمة الأولى</strong> التي سيتم تنفيذها في موعد اليوم."
-
-#. module: appointment_management_system
-msgid "Select for today's session"
-msgstr "اخترني لجلسة اليوم"
-
-#. module: appointment_management_system
-msgid "Booking Service ("
-msgstr "حجز الخدمة ("
-
-#. module: appointment_management_system
-msgid " of "
-msgstr " من "
-
-#. module: appointment_management_system
-msgid ")"
-msgstr ")"
-
-#. module: appointment_management_system
-msgid "Service Booking Settings"
-msgstr "إعدادات حجز الخدمة"
-
-#. module: appointment_management_system
-msgid "Back"
-msgstr "رجوع"
-
-#. module: appointment_management_system
-msgid "Booking Type"
-msgstr "نوع الحجز"
-
-#. module: appointment_management_system
-msgid "Inside (Branch)"
-msgstr "داخلي (بالفرع)"
-
-#. module: appointment_management_system
-msgid "Outside (Home)"
-msgstr "خارجي (منزلي)"
-
-#. module: appointment_management_system
-msgid "Available Branch"
-msgstr "الفرع المتاح"
-
-#. module: appointment_management_system
-msgid "-- Select Branch --"
-msgstr "-- اختر الفرع --"
-
-#. module: appointment_management_system
-msgid "Available Specialist"
-msgstr "الأخصائية المتاحة"
-
-#. module: appointment_management_system
-msgid "-- Select Specialist --"
-msgstr "-- اختر الأخصائية --"
-
-#. module: appointment_management_system
-msgid "Available Dates for Specialist"
-msgstr "الأيام المتاحة للأخصائية"
-
-#. module: appointment_management_system
-msgid "-- Select Booking Date --"
-msgstr "-- اختر يوم الحجز --"
-
-#. module: appointment_management_system
-msgid "Sorry, no available dates for this specialist."
-msgstr "عفواً، لا توجد أيام متاحة لهذه الأخصائية."
-
-#. module: appointment_management_system
-msgid "Available Times (Slots)"
-msgstr "الأوقات المتاحة (Slots)"
-
-#. module: appointment_management_system
-msgid "-- Select Suitable Time --"
-msgstr "-- اختر الوقت المناسب --"
-
-#. module: appointment_management_system
-msgid "No appointments available on this day."
-msgstr "لا توجد مواعيد متاحة في هذا اليوم."
-
-#. module: appointment_management_system
-msgid "Next: Book Next Package Service"
-msgstr "التالي: حجز الخدمة القادمة بالباقة"
-
-#. module: appointment_management_system
-msgid "Next: Customer Details and Payment"
-msgstr "التالي: بيانات العميل والدفع"
-
-#. module: appointment_management_system
-msgid "Customer Details and Payment"
-msgstr "بيانات العميل والدفع"
-
-#. module: appointment_management_system
-msgid "Select Customer"
-msgstr "اختر العميل"
-
-#. module: appointment_management_system
-msgid "-- Select a customer from the list --"
-msgstr "-- اختر عميلاً من القائمة --"
-
-#. module: appointment_management_system
-msgid "No number"
-msgstr "بدون رقم"
-
-#. module: appointment_management_system
-msgid "Payment Method (POS)"
-msgstr "طريقة الدفع (POS Payment Methods)"
-
-#. module: appointment_management_system
-msgid "-- Select payment method for immediate payment --"
-msgstr "-- اختر طريقة الدفع للسداد الفوري --"
-
-#. module: appointment_management_system
-msgid "Additional Notes"
-msgstr "ملاحظات إضافية"
-
-#. module: appointment_management_system
-msgid "Confirm Booking and Issue Invoice"
-msgstr "تأكيد الحجز وإصدار الفاتورة"
-
-#. module: appointment_management_system
-msgid "Booking and Payment Confirmed Successfully!"
-msgstr "تم تأكيد الحجز والدفع بنجاح!"
-
-#. module: appointment_management_system
-msgid "Booking Number: "
-msgstr "رقم الحجز: "
-
-#. module: appointment_management_system
-msgid "New Booking"
-msgstr "حجز جديد"
-
-#. module: appointment_management_system
-msgid "Print Invoice"
-msgstr "طباعة الفاتورة"
-
-#. module: appointment_management_system
-msgid "Booking Summary"
-msgstr "ملخص الحجز"
-
-#. module: appointment_management_system
-msgid "Category"
-msgstr "التصنيف"
-
-#. module: appointment_management_system
-msgid "Package: "
-msgstr "باقة: "
-
-#. module: appointment_management_system
-msgid "Service"
-msgstr "الخدمة"
-
-#. module: appointment_management_system
-msgid "Branch"
-msgstr "الفرع"
-
-#. module: appointment_management_system
-msgid "Specialist"
-msgstr "الأخصائية"
-
-#. module: appointment_management_system
-msgid "Date & Time"
-msgstr "الموعد"
-
-#. module: appointment_management_system
-msgid "Booking now: "
-msgstr "جاري حجز: "
-
-#. module: appointment_management_system
-msgid "Customer"
-msgstr "العميل"
-
-#. module: appointment_management_system
-msgid "Total Amount"
-msgstr "المبلغ الإجمالي"
-
-#. module: appointment_management_system
-msgid "SAR"
-msgstr "ر.س"
-#. module: appointment_management_system
-msgid "New Booking and Payment"
-msgstr "حجز موعد جديد والدفع"
-
-#. module: appointment_management_system
-msgid "Choose details to complete your booking successfully"
-msgstr "قم باختيار التفاصيل لإتمام الحجز بنجاح"
-
-#. module: appointment_management_system
-msgid "1. Category"
-msgstr "1- التصنيف"
-
-#. module: appointment_management_system
-msgid "2. Service/Package"
-msgstr "2- الخدمة/الباقة"
-
-#. module: appointment_management_system
-msgid "3. Details"
-msgstr "3- التفاصيل"
-
-#. module: appointment_management_system
-msgid "4. Payment"
-msgstr "4- الدفع والتأكيد"
-
-#. module: appointment_management_system
-msgid "Select Category"
-msgstr "اختر التصنيف"
-
-#. module: appointment_management_system
-msgid "Show All Services and Packages"
-msgstr "عرض كل الخدمات والباقات"
-
-#. module: appointment_management_system
-msgid "Select Service or Package"
-msgstr "اختر الخدمة أو الباقة"
-
-#. module: appointment_management_system
-msgid "Back to Categories"
-msgstr "الرجوع للتصنيفات"
-
-#. module: appointment_management_system
-msgid "Package"
-msgstr "باقة"
-
-#. module: appointment_management_system
-msgid "Package Contents"
-msgstr "محتويات الباقة"
-
-#. module: appointment_management_system
-msgid "Cancel Package and Return"
-msgstr "إلغاء الباقة والرجوع"
-
-#. module: appointment_management_system
-msgid "You are now purchasing a package: ("
-msgstr "أنت تقوم الآن بشراء باقة: ("
-
-#. module: appointment_management_system
-msgid "The customer will pay the full package price now. Please select the <strong>first service</strong> to be executed today."
-msgstr "العميل سيدفع ثمن الباقة كاملاً الآن. يرجى اختيار <strong>الخدمة الأولى</strong> التي سيتم تنفيذها اليوم."
-
-#. module: appointment_management_system
-msgid "Select for today's session"
-msgstr "اخترني لجلسة اليوم"
-
-#. module: appointment_management_system
-msgid "Booking Service ("
-msgstr "حجز الخدمة ("
-
-#. module: appointment_management_system
-msgid ") of "
-msgstr ") من "
-
-#. module: appointment_management_system
-msgid "Service Booking Settings"
-msgstr "إعدادات الحجز المتقدمة"
-
-#. module: appointment_management_system
-msgid "Back"
-msgstr "العودة"
-
-#. module: appointment_management_system
-msgid "Booking Type"
-msgstr "نوع الحجز"
-
-#. module: appointment_management_system
-msgid "Inside (Branch)"
-msgstr "داخلي (بالفرع)"
-
-#. module: appointment_management_system
-msgid "Outside (Home)"
-msgstr "خارجي (منزلي)"
-
-#. module: appointment_management_system
-msgid "Available Branch"
-msgstr "الفرع المتاح"
-
-#. module: appointment_management_system
-msgid "-- Select Branch --"
-msgstr "-- اختر الفرع --"
-
-#. module: appointment_management_system
-msgid "Available Specialist"
-msgstr "الأخصائية المتاحة"
-
-#. module: appointment_management_system
-msgid "-- Select Specialist --"
-msgstr "-- اختر الأخصائية --"
-
-#. module: appointment_management_system
-msgid "Available Dates for Specialist"
-msgstr "الأيام المتاحة للأخصائية"
-
-#. module: appointment_management_system
-msgid "-- Select Booking Date --"
-msgstr "-- اختر يوم الحجز --"
-
-#. module: appointment_management_system
-msgid "Sorry, no available dates for this specialist."
-msgstr "عفواً، لا توجد أيام متاحة لهذه الأخصائية."
-
-#. module: appointment_management_system
-msgid "Available Times (Slots)"
-msgstr "الأوقات المتاحة (Slots)"
-
-#. module: appointment_management_system
-msgid "-- Select Suitable Time --"
-msgstr "-- اختر الوقت المناسب --"
-
-#. module: appointment_management_system
-msgid "No appointments available on this day."
-msgstr "لا توجد مواعيد متاحة في هذا اليوم."
-
-#. module: appointment_management_system
-msgid "Next: Book Next Package Service"
-msgstr "التالي: حجز الخدمة القادمة بالباقة"
-
-#. module: appointment_management_system
-msgid "Next: Customer Details and Payment"
-msgstr "التالي: بيانات العميل والدفع"
-
-#. module: appointment_management_system
-msgid "Customer Details and Payment"
-msgstr "بيانات العميل والدفع"
-
-#. module: appointment_management_system
-msgid "Select Customer"
-msgstr "اختر العميل"
-
-#. module: appointment_management_system
-msgid "-- Select a customer from the list --"
-msgstr "-- اختر عميلاً من القائمة --"
-
-#. module: appointment_management_system
-msgid "No number"
-msgstr "بدون رقم"
-
-#. module: appointment_management_system
-msgid "Payment Method (POS)"
-msgstr "طريقة الدفع (POS)"
-
-#. module: appointment_management_system
-msgid "-- Select payment method for immediate payment --"
-msgstr "-- اختر طريقة الدفع للسداد الفوري --"
-
-#. module: appointment_management_system
-msgid "Additional Notes"
-msgstr "ملاحظات إضافية"
-
-#. module: appointment_management_system
-msgid "Confirm Booking and Issue Invoice"
-msgstr "تأكيد الحجز وإصدار الفاتورة"
-
-#. module: appointment_management_system
-msgid "Booking and Payment Confirmed Successfully!"
-msgstr "تم تأكيد الحجز والدفع بنجاح!"
-
-#. module: appointment_management_system
-msgid "Booking Number: "
-msgstr "رقم الحجز: "
-
-#. module: appointment_management_system
-msgid "New Booking"
-msgstr "حجز جديد"
-
-#. module: appointment_management_system
-msgid "Print Invoice"
-msgstr "طباعة الفاتورة"
-
-#. module: appointment_management_system
-msgid "Booking Summary"
-msgstr "ملخص الحجز"
-
-#. module: appointment_management_system
-msgid "Category"
-msgstr "التصنيف"
-
-#. module: appointment_management_system
-msgid "Package: "
-msgstr "باقة: "
-
-#. module: appointment_management_system
-msgid "Service"
-msgstr "الخدمة"
-
-#. module: appointment_management_system
-msgid "Branch"
-msgstr "الفرع"
-
-#. module: appointment_management_system
-msgid "Specialist"
-msgstr "الأخصائية"
-
-#. module: appointment_management_system
-msgid "Date & Time"
-msgstr "الموعد"
-
-#. module: appointment_management_system
-msgid "Booking now: "
-msgstr "جاري حجز: "
-
-#. module: appointment_management_system
-msgid "Customer"
-msgstr "العميل"
-
-#. module: appointment_management_system
-msgid "Total Amount"
-msgstr "المبلغ الإجمالي"
-
-#. module: appointment_management_system
-msgid "SAR"
-msgstr "ر.س"
-
-#. module: appointment_management_system
-msgid "Employee Commissions"
-msgstr "عمولات الموظفين"
-
-#. module: appointment_management_system
-msgid "Commission Withdrawal"
-msgstr "سحب العمولة"
-
-#. module: appointment_management_system
-msgid "Confirm Withdrawal"
-msgstr "تأكيد السحب"
-
-#. module: appointment_management_system
-msgid "Cancel"
-msgstr "إلغاء"
-
-#. module: appointment_management_system
-msgid "Withdraw Commission Balance"
-msgstr "سحب رصيد العمولات"
-
-#. module: appointment_management_system
-msgid "Commission Ledger"
-msgstr "سجل العمولات"
-
-#. module: appointment_management_system
-msgid "Withdraw Employee Balance"
-msgstr "سحب رصيد الموظف"
-
-#. module: appointment_management_system
-msgid "Date"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "التاريخ"
 msgstr "التاريخ"
 
 #. module: appointment_management_system
-msgid "Employee"
-msgstr "الموظف"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_receipt_template
+msgid "الخدمة / المنتج"
+msgstr "الخدمة / المنتج"
 
 #. module: appointment_management_system
-msgid "Reference (Origin)"
-msgstr "المرجع (العملية)"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "الخصم (%)"
+msgstr "الخصم (%)"
 
 #. module: appointment_management_system
-msgid "Amount"
-msgstr "القيمة"
+#: model:ir.model.fields,field_description:appointment_management_system.field_commission_withdrawal_wizard__available_amount
+msgid "الرصيد المتاح"
+msgstr "الرصيد المتاح"
 
 #. module: appointment_management_system
-msgid "Total Balance"
-msgstr "إجمالي الرصيد"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "الرقم الضريبي:"
+msgstr "الرقم الضريبي:"
 
 #. module: appointment_management_system
-msgid "Employee Commission Ledger"
-msgstr "سجل عمولات الموظفين"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_receipt_template
+msgid "السعر"
+msgstr "السعر"
 
 #. module: appointment_management_system
-msgid "Employee Commissions"
-msgstr "عمولات الموظفين"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "الضرائب"
+msgstr "الضرائب"
 
 #. module: appointment_management_system
-msgid "Start Service"
-msgstr "بدء الخدمة"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_receipt_template
+msgid "الضريبة"
+msgstr "الضريبة"
 
 #. module: appointment_management_system
-msgid "Service Start Time"
-msgstr "وقت بدء الخدمة"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "الضريبة (%)"
+msgstr "الضريبة (%)"
 
 #. module: appointment_management_system
-msgid "Service End Time"
-msgstr "وقت انتهاء الخدمة"
-
-#. module: appointment_management_system
-msgid "Duration (Minutes)"
-msgstr "المدة (بالدقائق)"
-
-#. module: appointment_management_system
-msgid "In Progress"
-msgstr "قيد التنفيذ"
-
-#. module: appointment_management_system
-msgid "Service Time Tracking"
-msgstr "تتبع وقت الخدمة"
-
-#. module: appointment_management_system
-msgid "New Booking and Payment"
-msgstr "حجز موعد جديد والدفع"
-
-#. module: appointment_management_system
-msgid "Choose details to complete your booking successfully"
-msgstr "اختر التفاصيل لإتمام حجزك بنجاح"
-
-#. module: appointment_management_system
-msgid "1. Category"
-msgstr "1. التصنيف"
-
-#. module: appointment_management_system
-msgid "2. Service/Package"
-msgstr "2. الخدمة/الباقة"
-
-#. module: appointment_management_system
-msgid "3. Details"
-msgstr "3. التفاصيل"
-
-#. module: appointment_management_system
-msgid "4. Payment"
-msgstr "4. الدفع"
-
-#. module: appointment_management_system
-msgid "Select Category"
-msgstr "اختر التصنيف"
-
-#. module: appointment_management_system
-msgid "Show All Services and Packages"
-msgstr "عرض كل الخدمات والباقات"
-
-#. module: appointment_management_system
-msgid "Select Service or Package"
-msgstr "اختر الخدمة أو الباقة"
-
-#. module: appointment_management_system
-msgid "Back to Categories"
-msgstr "الرجوع للتصنيفات"
-
-#. module: appointment_management_system
-msgid "Package"
-msgstr "باقة"
-
-#. module: appointment_management_system
-msgid "Package Contents"
-msgstr "محتويات الباقة"
-
-#. module: appointment_management_system
-msgid "Cancel Package and Return"
-msgstr "إلغاء الباقة والرجوع"
-
-#. module: appointment_management_system
-msgid "You are now purchasing a package:"
-msgstr "أنت تقوم الآن بشراء باقة:"
-
-#. module: appointment_management_system
-msgid "The customer will pay the full package price now. Please select the first service to be executed today."
-msgstr "سيدفع العميل ثمن الباقة كاملاً الآن. يرجى اختيار الخدمة الأولى التي سيتم تنفيذها اليوم."
-
-#. module: appointment_management_system
-msgid "Select for today's session"
-msgstr "اختر لجلسة اليوم"
-
-#. module: appointment_management_system
-msgid "Booking Service"
-msgstr "حجز خدمة"
-
-#. module: appointment_management_system
-msgid "of"
-msgstr "من"
-
-#. module: appointment_management_system
-msgid "Service Booking Settings"
-msgstr "إعدادات حجز الخدمة"
-
-#. module: appointment_management_system
-msgid "Back"
-msgstr "رجوع"
-
-#. module: appointment_management_system
-msgid "Booking Type"
-msgstr "نوع الحجز"
-
-#. module: appointment_management_system
-msgid "Inside (Branch)"
-msgstr "داخلي (بالفرع)"
-
-#. module: appointment_management_system
-msgid "Outside (Home)"
-msgstr "خارجي (منزلي)"
-
-#. module: appointment_management_system
-msgid "Available Branch"
-msgstr "الفرع المتاح"
-
-#. module: appointment_management_system
-msgid "-- Select Branch --"
-msgstr "-- اختر الفرع --"
-
-#. module: appointment_management_system
-msgid "Available Specialist"
-msgstr "الأخصائية المتاحة"
-
-#. module: appointment_management_system
-msgid "-- Select Specialist --"
-msgstr "-- اختر الأخصائية --"
-
-#. module: appointment_management_system
-msgid "Available Dates for Specialist"
-msgstr "الأيام المتاحة للأخصائية"
-
-#. module: appointment_management_system
-msgid "-- Select Booking Date --"
-msgstr "-- اختر يوم الحجز --"
-
-#. module: appointment_management_system
-msgid "Sorry, no available dates for this specialist."
-msgstr "عفواً، لا توجد أيام متاحة لهذه الأخصائية."
-
-#. module: appointment_management_system
-msgid "Available Times (Slots)"
-msgstr "الأوقات المتاحة"
-
-#. module: appointment_management_system
-msgid "-- Select Suitable Time --"
-msgstr "-- اختر الوقت المناسب --"
-
-#. module: appointment_management_system
-msgid "No appointments available on this day."
-msgstr "لا توجد مواعيد متاحة في هذا اليوم."
-
-#. module: appointment_management_system
-msgid "Next: Book Next Package Service"
-msgstr "التالي: حجز الخدمة القادمة بالباقة"
-
-#. module: appointment_management_system
-msgid "Next: Customer Details and Payment"
-msgstr "التالي: بيانات العميل والدفع"
-
-#. module: appointment_management_system
-msgid "Customer Details and Payment"
-msgstr "بيانات العميل والدفع"
-
-#. module: appointment_management_system
-msgid "Select Customer"
-msgstr "اختر العميل"
-
-#. module: appointment_management_system
-msgid "-- Select a customer from the list --"
-msgstr "-- اختر عميلاً من القائمة --"
-
-#. module: appointment_management_system
-msgid "No number"
-msgstr "بدون رقم"
-
-#. module: appointment_management_system
-msgid "Payment Method (POS)"
-msgstr "طريقة الدفع (نقاط البيع)"
-
-#. module: appointment_management_system
-msgid "-- Select payment method for immediate payment --"
-msgstr "-- اختر طريقة الدفع للسداد الفوري --"
-
-#. module: appointment_management_system
-msgid "Additional Notes"
-msgstr "ملاحظات إضافية"
-
-#. module: appointment_management_system
-msgid "Confirm Booking and Issue Invoice"
-msgstr "تأكيد الحجز وإصدار الفاتورة"
-
-#. module: appointment_management_system
-msgid "Booking and Payment Confirmed Successfully!"
-msgstr "تم تأكيد الحجز والدفع بنجاح!"
-
-#. module: appointment_management_system
-msgid "Booking Number:"
-msgstr "رقم الحجز:"
-
-#. module: appointment_management_system
-msgid "New Booking"
-msgstr "حجز جديد"
-
-#. module: appointment_management_system
-msgid "Print Invoice"
-msgstr "طباعة الفاتورة"
-
-#. module: appointment_management_system
-msgid "Booking Summary"
-msgstr "ملخص الحجز"
-
-#. module: appointment_management_system
-msgid "Category"
-msgstr "التصنيف"
-
-#. module: appointment_management_system
-msgid "Service"
-msgstr "الخدمة"
-
-#. module: appointment_management_system
-msgid "Branch"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "الفرع"
 msgstr "الفرع"
 
 #. module: appointment_management_system
-msgid "Specialist"
-msgstr "الأخصائية"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "الكمية"
+msgstr "الكمية"
 
 #. module: appointment_management_system
-msgid "Date & Time"
-msgstr "التاريخ والوقت"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "المبلغ (بدون ضريبة)"
+msgstr "المبلغ (بدون ضريبة)"
 
 #. module: appointment_management_system
-msgid "Package:"
-msgstr "باقة:"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid ""
+"المبلغ الإجمالي بالحروف <i class=\"fa fa-file-text-o\" style=\"float: "
+"left;\"/>"
+msgstr ""
+"المبلغ الإجمالي بالحروف <i class=\"fa fa-file-text-o\" style=\"float: "
+"left;\"/>"
 
 #. module: appointment_management_system
-msgid "Booking now:"
-msgstr "جاري حجز:"
+#: model:ir.model.fields,field_description:appointment_management_system.field_commission_withdrawal_wizard__employee_id
+msgid "الموظف"
+msgstr "الموظف"
 
 #. module: appointment_management_system
-msgid "Customer"
-msgstr "العميل"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_receipt_template
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "الموظفة"
+msgstr "الموظفة"
 
 #. module: appointment_management_system
-msgid "Total Amount"
-msgstr "المبلغ الإجمالي"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "الوصف"
+msgstr "الوصف"
 
 #. module: appointment_management_system
-msgid "SAR"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "الوقت"
+msgstr "الوقت"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.view_appointment_management_form
+msgid "تتبع وقت الخدمة"
+msgstr "تتبع وقت الخدمة"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "حجز ملغي"
+msgstr "حجز ملغي"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "خصم ("
+msgstr "خصم ("
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "ر.س"
 msgstr "ر.س"
-#. module: appointment_management_system
-#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_management__appointment_type__inside
-msgid "Internal Services"
-msgstr "خدمات داخلية"
 
 #. module: appointment_management_system
-#: model:ir.model.fields.selection,name:appointment_management_system.selection__appointment_management__appointment_type__outside
-msgid "External Services"
-msgstr "خدمات خارجية"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "رابط التحقق لهيئة الزكاة"
+msgstr "رابط التحقق لهيئة الزكاة"
 
 #. module: appointment_management_system
-msgid "Inside"
-msgstr "خدمات داخلية"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "سعر الوحدة"
+msgstr "سعر الوحدة"
 
 #. module: appointment_management_system
-msgid "Outside"
-msgstr "خدمات خارجية"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "شكراً لاختياركم"
+msgstr "شكراً لاختياركم"
 
 #. module: appointment_management_system
-msgid "Inside (Branch)"
-msgstr "خدمات داخلية"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid ""
+"شكراً لاختياركم صالون نوف لعلامات الجمال.<br/>\n"
+"                                            نسعد بخدمتكم دائماً"
+msgstr ""
+"شكراً لاختياركم صالون نوف لعلامات الجمال.<br/>\n"
+"                                            نسعد بخدمتكم دائماً"
 
 #. module: appointment_management_system
-msgid "Outside (Home)"
-msgstr "خدمات خارجية"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_receipt_template
+msgid "شكراً لزيارتكم!"
+msgstr "شكراً لزيارتكم!"
 
 #. module: appointment_management_system
-msgid "Are you sure you want to reset the appointment to (Approved)? The previous start time will be cleared for rescheduling."
-msgstr "هل أنت متأكد من إرجاع الحجز لحالة (مؤكد/لم يبدأ)؟ سيتم تصفير وقت البدء السابق لإتاحة إعادة الجدولة."
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_receipt_template
+msgid "صالونات نوف"
+msgstr "صالونات نوف"
 
 #. module: appointment_management_system
-msgid "Reset to Approved (Reschedule)"
-msgstr "تراجع لإعادة الجدولة"
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+msgid "عرض سعر"
+msgstr "عرض سعر"
 
 #. module: appointment_management_system
-msgid "Reset to Approved"
-msgstr "إعادة جدولة"
+#: model:ir.actions.report,name:appointment_management_system.action_report_appointment_pos_receipt
+msgid "فاتورة حجز موعد"
+msgstr "فاتورة حجز موعد"
 
 #. module: appointment_management_system
-msgid "Cannot reset the appointment for rescheduling if it is 'Completed' or 'Cancelled'."
-msgstr "لا يمكن إرجاع الحجز لإعادة الجدولة إذا كان 'مكتملاً' أو 'ملغياً'."
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "فاتورة ضريبية (ملغاة)"
+msgstr "فاتورة ضريبية (ملغاة)"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "فاتورة ضريبية مبسطة"
+msgstr "فاتورة ضريبية مبسطة"
+
+#. module: appointment_management_system
+#: model:ir.actions.report,name:appointment_management_system.action_report_sale_pos_receipt
+msgid "فاتورة مبيعات"
+msgstr "فاتورة مبيعات"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "فاتورة مبيعات (ملغاة)"
+msgstr "فاتورة مبيعات (ملغاة)"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "فاتورة مشتريات"
+msgstr "فاتورة مشتريات"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "فاتورة مشتريات (ملغاة)"
+msgstr "فاتورة مشتريات (ملغاة)"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "فرع:"
+msgstr "فرع:"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "فوري"
+msgstr "فوري"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "قيمة الضريبة"
+msgstr "قيمة الضريبة"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "لا يوجد QR"
+msgstr "لا يوجد QR"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.custom_report_saleorder_document_inherit
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "لم يتم إصدار<br/>الفاتورة النهائية"
+msgstr "لم يتم إصدار<br/>الفاتورة النهائية"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_receipt_template
+msgid "مؤكد"
+msgstr "مؤكد"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_receipt_template
+msgid "مبدئي (بانتظار التأكيد)"
+msgstr "مبدئي (بانتظار التأكيد)"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_commission_withdrawal_wizard__withdraw_amount
+msgid "مبلغ السحب"
+msgstr "مبلغ السحب"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "مسودة فاتورة"
+msgstr "مسودة فاتورة"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "مسودة فاتورة مشتريات"
+msgstr "مسودة فاتورة مشتريات"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_receipt_template
+msgid "مكتمل"
+msgstr "مكتمل"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+msgid "ملاحظات وشروط الفاتورة"
+msgstr "ملاحظات وشروط الفاتورة"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "ملاحظات وشروط عامة"
+msgstr "ملاحظات وشروط عامة"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_receipt_template
+msgid "ملغي"
+msgstr "ملغي"
+
+#. module: appointment_management_system
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_invoice_modern_template
+#: model_terms:ir.ui.view,arch_db:appointment_management_system.report_smart_invoice_template
+msgid "نقدي / شبكة إلكترونية"
+msgstr "نقدي / شبكة إلكترونية"
+
+#. module: appointment_management_system
+#: model:ir.model.fields,field_description:appointment_management_system.field_res_config_settings__slot_wait_time
+msgid "وقت الحجز المعلق داخل سلة المشتريات (بالدقائق)"
+msgstr "وقت الحجز المعلق داخل سلة المشتريات (بالدقائق)"
+
+# ==========================================================
+# مصطلحات الفلترة، البحث، ومرجع الحجز المضافة بناءً على الصورة
+# ==========================================================
+
+#. module: appointment_management_system
+msgid "Appointment Reference"
+msgstr "مرجع الحجز"
+
+#. module: appointment_management_system
+msgid "Search"
+msgstr "بحث"
+
+#. module: appointment_management_system
+msgid "Add a filter"
+msgstr "إضافة عامل تصفية"
+
+#. module: appointment_management_system
+msgid "Custom Filter"
+msgstr "تصفية مخصصة"
+
+#. module: appointment_management_system
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: appointment_management_system
+msgid "Add Custom Group"
+msgstr "إضافة مجموعة مخصصة"
