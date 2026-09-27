@@ -4092,3 +4092,70 @@ msgstr ""
 #: model:ks_dashboard_ninja.board,name:ks_dashboard_ninja.demo_account_dashboard
 msgid "Account Dashboard"
 msgstr "لوحة بيانات الحسابات"
+
+
+#. module: ks_account_dashboard
+#: model:ks_dashboard_ninja.board_template,name:ks_account_dashboard.ks_account
+msgid "Account"
+msgstr "الحسابات"
+
+#. module: ks_account_dashboard
+#: model:ks_dashboard_ninja.item,name:ks_account_dashboard.ks_account_item_1
+msgid "Open Purchase Invoice"
+msgstr "فواتير المشتريات المفتوحة"
+
+#. module: ks_account_dashboard
+#: model:ks_dashboard_ninja.item,name:ks_account_dashboard.ks_account_item_2
+msgid "Receivable Amount"
+msgstr "المبالغ المستحقة للقبض"
+
+#. module: ks_account_dashboard
+#: model:ks_dashboard_ninja.item,name:ks_account_dashboard.ks_account_item_3
+msgid "Payable Amount"
+msgstr "المبالغ المستحقة للدفع"
+
+#. module: ks_account_dashboard
+#: model:ks_dashboard_ninja.item,name:ks_account_dashboard.ks_account_item_4
+msgid "Open Sale Invoice"
+msgstr "فواتير المبيعات المفتوحة"
+
+#. module: ks_account_dashboard
+#: model:ks_dashboard_ninja.item,name:ks_account_dashboard.ks_account_item_5
+msgid "Bank Balance"
+msgstr "رصيد البنك"
+
+#. module: ks_account_dashboard
+#: model:ks_dashboard_ninja.item,name:ks_account_dashboard.ks_account_item_6
+msgid "Vendor Payable Report"
+msgstr "تقرير المبالغ المستحقة للموردين"
+
+#. module: ks_account_dashboard
+#: model:ks_dashboard_ninja.item,name:ks_account_dashboard.ks_account_item_7
+msgid "Head Expenses Report"
+msgstr "تقرير المصروفات الرئيسية"
+
+#. module: ks_account_dashboard
+#: model:ks_dashboard_ninja.item,name:ks_account_dashboard.ks_account_item_8
+msgid "Executive Sale Returns"
+msgstr "مرتجعات المبيعات التنفيذية"
+
+#. module: ks_account_dashboard
+#: model:ks_dashboard_ninja.item,name:ks_account_dashboard.ks_account_item_9
+msgid "Executive Purchase Returns"
+msgstr "مرتجعات المشتريات التنفيذية"
+
+#. module: ks_account_dashboard
+#: model:ks_dashboard_ninja.item,name:ks_account_dashboard.ks_account_item_10
+msgid "Profit/Loss Amount"
+msgstr "مبلغ الربح / الخسارة"
+
+#. module: ks_account_dashboard
+#: model:ks_dashboard_ninja.item,name:ks_account_dashboard.ks_account_item_11
+msgid "Top 10 Sale Revenue Customer"
+msgstr "أفضل 10 عملاء من حيث إيرادات المبيعات"
+
+#. module: ks_account_dashboard
+#: model:ks_dashboard_ninja.board,name:ks_account_dashboard.demo_account_dashboard
+#: model:ks_dashboard_ninja.board,ks_dashboard_menu_name:ks_account_dashboard.demo_account_dashboard
+msgid "Account Dashboard"
+msgstr "لوحة بيانات الحسابات"
