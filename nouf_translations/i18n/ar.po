@@ -4086,3 +4086,9 @@ msgid ""
 msgstr ""
 "عند النقر على الزر المنطقي، سيتم تنزيل كافة السجلات الموجودة في القائمة "
 "بأكملها"
+
+#. module: ks_dashboard_ninja
+#: model:ks_dashboard_ninja.board,ks_dashboard_menu_name:ks_dashboard_ninja.demo_account_dashboard
+#: model:ks_dashboard_ninja.board,name:ks_dashboard_ninja.demo_account_dashboard
+msgid "Account Dashboard"
+msgstr "لوحة بيانات الحسابات"
