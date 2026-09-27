@@ -4287,3 +4287,97 @@ msgstr "اللون الفرعي"
 #: model:ir.model.fields,field_description:app_color.field_app_color__sub_color_hex_values
 msgid "Sub Color Hex Codes"
 msgstr "أكواد Hex للألوان الفرعية"
+
+#. module: custom_banner
+#: model:ir.ui.menu,name:custom_banner.menu_banner_root
+msgid "Banner"
+msgstr "البانر"
+
+#. module: custom_banner
+#: model:ir.ui.menu,name:custom_banner.menu_banner_management
+msgid "Banner Management"
+msgstr "إدارة البانرات"
+
+#. module: custom_banner
+#: model:ir.model,name:custom_banner.model_custom_banner
+msgid "Banner Model"
+msgstr "نموذج البانر"
+
+#. module: custom_banner
+#: model:ir.actions.act_window,name:custom_banner.action_custom_banner
+msgid "Banners"
+msgstr "البانرات"
+
+#. module: custom_banner
+#: model:ir.model.fields,field_description:custom_banner.field_custom_banner__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: custom_banner
+#: model:ir.model.fields,field_description:custom_banner.field_custom_banner__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: custom_banner
+#: model:ir.model.fields,field_description:custom_banner.field_custom_banner__description
+msgid "Description"
+msgstr "الوصف"
+
+#. module: custom_banner
+#: model:ir.model.fields,field_description:custom_banner.field_custom_banner__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: custom_banner
+#: model:ir.model.fields,field_description:custom_banner.field_custom_banner__external_url
+msgid "External URL"
+msgstr "الرابط الخارجي"
+
+#. module: custom_banner
+#: model:ir.model.fields,field_description:custom_banner.field_custom_banner__id
+msgid "ID"
+msgstr "المُعرّف"
+
+#. module: custom_banner
+#: model:ir.model.fields,field_description:custom_banner.field_custom_banner__image
+msgid "Image"
+msgstr "الصورة"
+
+#. module: custom_banner
+#: model:ir.model.fields,field_description:custom_banner.field_custom_banner__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: custom_banner
+#: model:ir.model.fields,field_description:custom_banner.field_custom_banner__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: custom_banner
+#: model:ir.model.fields,field_description:custom_banner.field_custom_banner__name
+msgid "Name"
+msgstr "الاسم"
+
+# =========================================================
+# مصطلحات الفلترة والبحث المضافة بناءً على طلبات الملف
+# =========================================================
+
+#. module: custom_banner
+msgid "Search"
+msgstr "بحث"
+
+#. module: custom_banner
+msgid "Add a filter"
+msgstr "إضافة عامل تصفية"
+
+#. module: custom_banner
+msgid "Custom Filter"
+msgstr "تصفية مخصصة"
+
+#. module: custom_banner
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: custom_banner
+msgid "Add Custom Group"
+msgstr "إضافة مجموعة مخصصة"
