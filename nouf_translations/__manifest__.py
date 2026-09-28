@@ -13,7 +13,9 @@
         'stock',
         'appointment_management_system'
     ],
-    'data': [],
+    'data': [
+        'data/update_countries_data.xml',
+    ],
     'installable': True,
     'application': False,
     'auto_install': False,
