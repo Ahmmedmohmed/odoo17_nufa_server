@@ -63,7 +63,8 @@
                         </tr>
                     </thead>
                     <tbody style="border-bottom: 1px dashed #ccc;">
-                        <t t-foreach="props.data.orderlines" t-as="line" t-key="line.id">
+                        <!-- تم تصحيح الـ key هنا أيضاً للأمان -->
+                        <t t-foreach="props.data.orderlines" t-as="line" t-key="line_index">
 
                             <t t-set="is_negative" t-value="(line.price_with_tax !== undefined and line.price_with_tax &lt; 0) or ('' + line.price).includes('-')" />
 
@@ -91,7 +92,6 @@
 
                                                             <t t-set="start_time" t-value="slots_array[0]"/>
 
-                                                            <!-- الاعتماد المباشر على الحقول لإيجاد عدد السلوتات -->
                                                             <t t-set="app_type" t-value="line.appointment_type || 'inside'"/>
                                                             <t t-set="s_in" t-value="line.service_slot_inside || 1"/>
                                                             <t t-set="s_out" t-value="line.service_slot_outside || 1"/>
@@ -139,7 +139,6 @@
 
                                                                 <t t-set="sub_start_time" t-value="sub_arr[0]"/>
 
-                                                                <!-- الاعتماد المباشر على الحقول للباقات -->
                                                                 <t t-set="sub_app_type" t-value="sub_srv.appointment_type || 'inside'"/>
                                                                 <t t-set="sub_s_in" t-value="sub_srv.service_slot_inside || 1"/>
                                                                 <t t-set="sub_s_out" t-value="sub_srv.service_slot_outside || 1"/>
@@ -189,7 +188,7 @@
 
                 <t t-set="negative_lines_discount" t-value="0"/>
                 <t t-if="!is_credit_note">
-                    <t t-foreach="props.data.orderlines" t-as="neg_line" t-key="neg_line.id + '_neg'">
+                    <t t-foreach="props.data.orderlines" t-as="neg_line" t-key="neg_line_index">
                         <t t-set="is_neg" t-value="(neg_line.price_with_tax !== undefined and neg_line.price_with_tax &lt; 0) or ('' + neg_line.price).includes('-')" />
 
                         <t t-if="is_neg">
@@ -249,7 +248,8 @@
                         </t>
                     </t>
 
-                    <t t-foreach="props.data.tax_details" t-as="tax" t-key="tax.tax.id">
+                    <!-- تم تصحيح الـ key هنا أيضاً -->
+                    <t t-foreach="props.data.tax_details" t-as="tax" t-key="tax_index">
                         <div style="display: flex; justify-content: space-between; padding: 6px 10px; border-bottom: 1px solid #eee;">
                             <span style="color: #555;">الضريبة (<t t-esc="tax.tax.name"/>)</span>
                             <strong><t t-esc="props.formatCurrency(Math.abs(tax.amount || 0)).replace('SAR', 'ر.س').replace('SR', 'ر.س')"/></strong>
@@ -267,7 +267,8 @@
                         <t t-else="">طريقة الدفع</t>
                     </div>
 
-                    <t t-foreach="props.data.paymentlines" t-as="line" t-key="line.cid">
+                    <!-- التعديل الأهم لحل المشكلة هنا: استخدام line_index بدلاً من line.cid -->
+                    <t t-foreach="props.data.paymentlines" t-as="line" t-key="line_index">
                         <div style="display: flex; justify-content: space-between; padding: 3px 5px;">
                             <span><t t-esc="line.name"/></span>
                             <strong><t t-esc="props.formatCurrency(Math.abs(line.amount || 0)).replace('SAR', 'ر.س').replace('SR', 'ر.س')"/></strong>
@@ -314,7 +315,7 @@
                         <div style="color: #F28C73; font-weight: bold; font-size: 13px; margin-bottom: 8px; border-bottom: 1px dashed #eee; padding-bottom: 5px;">
                             <i class="fa fa-gift"></i> كوبونات هدايا (للزيارة القادمة)
                         </div>
-                        <t t-foreach="props.data.new_coupon_info" t-as="coupon_info" t-key="coupon_info.code">
+                        <t t-foreach="props.data.new_coupon_info" t-as="coupon_info" t-key="coupon_info_index">
                             <div style="border: 1px dashed #F28C73; border-radius: 6px; padding: 8px; margin-top: 8px; background-color: #FFF4F1;">
                                 <div style="font-weight: bold; font-size: 12px; color: #333;">
                                     <t t-esc="coupon_info['program_name']"/>
