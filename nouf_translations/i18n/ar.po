@@ -5173,3 +5173,1765 @@ msgstr "تجميع حسب"
 #. module: sales_commission_generic
 msgid "Add Custom Group"
 msgstr "إضافة مجموعة مخصصة"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_pwa_screenshots_view_form
+msgid "540x420"
+msgstr "540x420"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_website_content_view_form
+msgid ""
+"<span class=\"o_stat_value\">\n"
+"                                    Design\n"
+"                                </span>\n"
+"                                <span class=\"o_stat_text\">\n"
+"                                    Content\n"
+"                                </span>"
+msgstr ""
+"<span class=\"o_stat_value\">\n"
+"                                    التصميم\n"
+"                                </span>\n"
+"                                <span class=\"o_stat_text\">\n"
+"                                    المحتوى\n"
+"                                </span>"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_category_mega_menu_snippet
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_category_tabs_snippet
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_tp_mega_menu_category_snippet
+msgid ""
+"<span class=\"tp-config-link fw-bold tp-cursor-pointer\">Click Here!</span> "
+"to configure snippet."
+msgstr ""
+"<span class=\"tp-config-link fw-bold tp-cursor-pointer\">اضغط هنا!</span> "
+"لتهيئة القصاصة (Snippet)."
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_6
+msgid "<span style=\"font-weight: bolder;\">Starting at $30</span>"
+msgstr "<span style=\"font-weight: bolder;\">يبدأ من 30$</span>"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_6
+msgid "<span style=\"font-weight: bolder;\">Starting at $40</span>"
+msgstr "<span style=\"font-weight: bolder;\">يبدأ من 40$</span>"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_1
+msgid "About"
+msgstr "من نحن"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_2
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_4
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_6
+msgid "Accessories"
+msgstr "إكسسوارات"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_brand__active
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_label__active
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_tags__active
+msgid "Active"
+msgstr "نشط"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_product_brand_values_view_tree
+msgid "Add New Brand"
+msgstr "إضافة علامة تجارية جديدة"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_2
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_4
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_5
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_6
+msgid "Aenean"
+msgstr "Aenean"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+msgid ""
+"Aenean <span class=\"s_badge badge text-bg-primary\"><i class=\"fa fa-"
+"star\"/>Sale</span>"
+msgstr ""
+"Aenean <span class=\"s_badge badge text-bg-primary\"><i class=\"fa fa-"
+"star\"/>تخفيض</span>"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+msgid ""
+"Aenean <span class=\"s_badge badge text-bg-warning\"><i class=\"fa fa-"
+"star\"/>Sale</span>"
+msgstr ""
+"Aenean <span class=\"s_badge badge text-bg-warning\"><i class=\"fa fa-"
+"star\"/>تخفيض</span>"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__website_menu__dr_menu_visible_on__all
+msgid "All Devices"
+msgstr "كافة الأجهزة"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
+msgid ""
+"Allows users to install your website as an application on mobile and "
+"desktop."
+msgstr ""
+"يتيح للمستخدمين تثبيت موقعك الإلكتروني كتطبيق على الهواتف المحمولة وأجهزة "
+"سطح المكتب."
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
+msgid "App Shortcuts"
+msgstr "اختصارات التطبيق"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
+msgid ""
+"App shortcuts help users quickly start common or recommended tasks within "
+"your web app."
+msgstr ""
+"تساعد اختصارات التطبيق المستخدمين على بدء المهام الشائعة أو الموصى بها "
+"بسرعة داخل تطبيق الويب الخاص بك."
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
+msgid ""
+"Apply manual discounts on sales order lines or display discounts computed "
+"from pricelists (option to activate in the pricelist configuration)."
+msgstr ""
+"تطبيق خصومات يدوية على بنود أمر البيع أو عرض الخصومات المحسوبة من قوائم "
+"الأسعار (خيار التفعيل في إعدادات قائمة الأسعار)."
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_product_label_view_form
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_product_label_view_search
+msgid "Archived"
+msgstr "مؤرشف"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_1
+msgid "Article"
+msgstr "مقال"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__dr_website_content__content_type__attribute_popup
+msgid "Attribute Popup"
+msgstr "النافذة المنبثقة للخاصية"
+
+#. module: droggol_theme_common
+#: model:ir.model,name:droggol_theme_common.model_product_attribute_value
+msgid "Attribute Value"
+msgstr "قيمة الخاصية"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_product_brand_values_view_search
+msgid "Attributes"
+msgstr "الخصائص"
+
+#. module: droggol_theme_common
+#: model:ir.actions.server,name:droggol_theme_common.delete_search_report_cron_ir_actions_server
+msgid "Auto Delete Search Report"
+msgstr "حذف تقرير البحث تلقائياً"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__dr_search_report__clicked_type__autocomplete
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__product_attribute__dr_search_suggestion__auto
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_search_report_view_search
+msgid "Autocomplete"
+msgstr "إكمال تلقائي"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__product_attribute__dr_search_suggestion__auto_suggestion
+msgid "Autocomplete & Suggestion"
+msgstr "إكمال تلقائي واقتراحات"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_search_report__autocomplete_count
+msgid "Autocomplete Count"
+msgstr "عدد الإكمال التلقائي"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_label__background_color
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_public_category_label__background_color
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_website_menu_label__background_color
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
+msgid "Background Color"
+msgstr "لون الخلفية"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_label__background_color_rgb
+msgid "Background Color RGB"
+msgstr "لون الخلفية RGB"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__dr_product_label__style__2
+msgid "Badge"
+msgstr "شارة (Badge)"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_2
+msgid "Bags"
+msgstr "حقائب"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_6
+msgid "Bags &amp; Purses"
+msgstr "حقائب ومحافظ"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_1
+msgid "Basic"
+msgstr "أساسي"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_1
+msgid "Basic Grid"
+msgstr "شبكة أساسية"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_1
+msgid "Blog"
+msgstr "المدونة"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_6
+msgid "Boots"
+msgstr "أحذية برقبة (Boots)"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_product__dr_brand_value_id
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_template__dr_brand_value_id
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_product_brand_values_view_form
+msgid "Brand"
+msgstr "العلامة التجارية"
+
+#. module: droggol_theme_common
+#: model:ir.actions.act_window,name:droggol_theme_common.dr_product_brand_values_action
+#: model:ir.ui.menu,name:droggol_theme_common.menu_dr_product_brand_values
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_product_brand_values_view_search
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_product_brand_values_view_tree
+msgid "Brands"
+msgstr "العلامات التجارية"
+
+#. module: droggol_theme_common
+#: model:ir.model,name:droggol_theme_common.model_dr_cache_mixin
+msgid "Cache Mixin"
+msgstr "مزيج التخزين المؤقت (Cache Mixin)"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_1
+msgid "Career"
+msgstr "الوظائف"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_1
+msgid "Case Study"
+msgstr "دراسة حالة"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_category_synonyms__category_id
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__dr_search_report__clicked_type__category
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_search_report_view_search
+msgid "Category"
+msgstr "الفئة"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_search_report__category_count
+msgid "Category Count"
+msgstr "عدد الفئات"
+
+#. module: droggol_theme_common
+#: model:ir.model,name:droggol_theme_common.model_dr_product_public_category_label
+msgid "Category Label"
+msgstr "تسمية الفئة"
+
+#. module: droggol_theme_common
+#: model:ir.actions.act_window,name:droggol_theme_common.dr_category_label_action
+#: model:ir.ui.menu,name:droggol_theme_common.menu_dr_category_label
+msgid "Category Labels"
+msgstr "تسميات الفئات"
+
+#. module: droggol_theme_common
+#: model:ir.model,name:droggol_theme_common.model_dr_category_synonyms
+msgid "Category Search Synonyms"
+msgstr "مرادفات بحث الفئة"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__dr_product_label__style__3
+msgid "Circle"
+msgstr "دائرة"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_search_report__clicked_href
+msgid "Clicked Href"
+msgstr "الرابط المنقور عليه (Clicked Href)"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_search_report__clicked_string
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_search_report_view_search
+msgid "Clicked String"
+msgstr "النص المنقور عليه"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_search_report__clicked_type
+msgid "Clicked Type"
+msgstr "النوع المنقور عليه"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+msgid "Client Image #{number}"
+msgstr "صورة العميل #{number}"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_2
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_4
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_6
+msgid "Clothing"
+msgstr "الملابس"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_6
+msgid "Coats &amp; Jackets"
+msgstr "معاطف وجواكيت"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_1
+msgid "Company"
+msgstr "الشركة"
+
+#. module: droggol_theme_common
+#: model:ir.model,name:droggol_theme_common.model_res_config_settings
+msgid "Config Settings"
+msgstr "إعدادات التهيئة "
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
+msgid "Configure Screenshots"
+msgstr "تهيئة لقطات الشاشة"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
+msgid "Configure Shortcuts"
+msgstr "تهيئة الاختصارات"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_1
+msgid "Contact"
+msgstr "اتصل بنا"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_tabs__content
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_website_content__content
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_website_content_view_form
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_website_content_view_search
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_website_content_view_tree
+msgid "Content"
+msgstr "المحتوى"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_website_content_view_search
+msgid "Content Type"
+msgstr "نوع المحتوى"
+
+#. module: droggol_theme_common
+#: model:ir.actions.act_window,name:droggol_theme_common.dr_website_content_action
+#: model:ir.ui.menu,name:droggol_theme_common.menu_dr_website_content
+msgid "Contents"
+msgstr "المحتويات"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_search_report__country_id
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_search_report_view_search
+msgid "Country"
+msgstr "الدولة"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_1
+msgid "Cover"
+msgstr "غلاف"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_public_category__dr_category_cover_image
+msgid "Cover Image"
+msgstr "صورة الغلاف"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_category_synonyms__create_uid
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_brand__create_uid
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_label__create_uid
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_offer__create_uid
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_public_category_label__create_uid
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_tabs__create_uid
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_tags__create_uid
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_pwa_screenshots__create_uid
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_pwa_shortcuts__create_uid
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_search_report__create_uid
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_theme_config__create_uid
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_website_content__create_uid
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_website_menu_label__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_category_synonyms__create_date
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_brand__create_date
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_label__create_date
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_offer__create_date
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_public_category_label__create_date
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_tabs__create_date
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_tags__create_date
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_pwa_screenshots__create_date
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_pwa_shortcuts__create_date
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_search_report__create_date
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_theme_config__create_date
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_website_content__create_date
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_website_menu_label__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_2
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_4
+msgid "Dapibus"
+msgstr "Dapibus"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_search_report_view_search
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__product_attribute__dr_radio_image_style__default
+msgid "Default"
+msgstr "الافتراضي"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_brand__description
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_offer__description
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_pwa_shortcuts__description
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_website_content__description
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_attribute_value__dr_brand_description
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_pwa_shortcuts_view_form
+msgid "Description"
+msgstr "الوصف"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__dr_search_report__device_type__desktop
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_search_report_view_search
+msgid "Desktop"
+msgstr "سطح المكتب"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_search_report__device_type
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_search_report_view_search
+msgid "Device Type"
+msgstr "نوع الجهاز"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_offer__dialog_content
+msgid "Dialog Content"
+msgstr "محتوى مربع الحوار"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_website_sale_extra_field__dr_label
+msgid "Display Label"
+msgstr "تسمية العرض"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_category_synonyms__display_name
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_brand__display_name
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_label__display_name
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_offer__display_name
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_public_category_label__display_name
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_tabs__display_name
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_tags__display_name
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_pwa_screenshots__display_name
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_pwa_shortcuts__display_name
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_search_report__display_name
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_theme_config__display_name
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_website_content__display_name
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_website_menu_label__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_attribute__display_type
+msgid "Display Type"
+msgstr "نوع العرض"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,help:droggol_theme_common.field_dr_product_tags__dr_offer_ids
+#: model:ir.model.fields,help:droggol_theme_common.field_dr_product_tags__dr_tab_ids
+#: model:ir.model.fields,help:droggol_theme_common.field_product_product__dr_offer_ids
+#: model:ir.model.fields,help:droggol_theme_common.field_product_product__dr_tab_ids
+#: model:ir.model.fields,help:droggol_theme_common.field_product_template__dr_offer_ids
+#: model:ir.model.fields,help:droggol_theme_common.field_product_template__dr_tab_ids
+msgid "Display in product detail page on website."
+msgstr "العرض في صفحة تفاصيل المنتج على الموقع الإلكتروني."
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,help:droggol_theme_common.field_product_product__dr_document_ids
+#: model:ir.model.fields,help:droggol_theme_common.field_product_template__dr_document_ids
+msgid "Documents publicly downloadable from eCommerce product page."
+msgstr "مستندات قابلة للتنزيل للعامة من صفحة منتج التجارة الإلكترونية."
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_2
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_4
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_5
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_6
+msgid "Donec non"
+msgstr "Donec non"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_2
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_4
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_5
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_6
+msgid "Donec ultrices"
+msgstr "Donec ultrices"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_product__dr_document_ids
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_template__dr_document_ids
+msgid "Downloadable Documents"
+msgstr "مستندات قابلة للتنزيل"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_product__dr_brand_id
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_template__dr_brand_id
+msgid "Dr Brand"
+msgstr "علامة تجارية (Droggol)"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_product__dr_brand_attribute_ids
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_template__dr_brand_attribute_ids
+msgid "Dr Brand Attribute"
+msgstr "خاصية العلامة التجارية (Droggol)"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_res_config_settings__dr_has_custom_module
+msgid "Dr Has Custom Module"
+msgstr "يحتوي على موديول مخصص (Droggol)"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_website_menu__dr_is_special_menu
+msgid "Dr Is Special Menu"
+msgstr "هي قائمة خاصة (Droggol)"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_product__dr_offer_ids
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_template__dr_offer_ids
+msgid "Dr Offer"
+msgstr "عرض (Droggol)"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_product__dr_ptav_ids
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_template__dr_ptav_ids
+msgid "Dr Ptav"
+msgstr "قيمة خاصية قالب المنتج (Droggol)"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_product__dr_show_out_of_stock
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_template__dr_show_out_of_stock
+msgid "Dr Show Out Of Stock"
+msgstr "إظهار نافد من المخزون (Droggol)"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_product__dr_tab_ids
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_template__dr_tab_ids
+msgid "Dr Tab"
+msgstr "تبويب (Droggol)"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_6
+msgid "Dresses"
+msgstr "فساتين"
+
+#. module: droggol_theme_common
+#: model:ir.model,name:droggol_theme_common.model_dr_search_report
+msgid "Droggol Search Report"
+msgstr "تقرير بحث Droggol"
+
+#. module: droggol_theme_common
+#: model:ir.actions.act_window,name:droggol_theme_common.dr_theme_config_action
+#: model:ir.model,name:droggol_theme_common.model_dr_theme_config
+#: model:ir.ui.menu,name:droggol_theme_common.dr_theme_config_menu
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_theme_config_view_tree
+msgid "Droggol Theme Config"
+msgstr "إعدادات ثيم Droggol"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_public_category__ds_synonyms_ids
+msgid "Ds Synonyms"
+msgstr "مرادفات DS"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_2
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_4
+msgid "Duis"
+msgstr "Duis"
+
+#. module: droggol_theme_common
+#: model:ir.model,name:droggol_theme_common.model_website_sale_extra_field
+msgid "E-Commerce Extra Info Shown on product page"
+msgstr "المعلومات الإضافية للتجارة الإلكترونية المعروضة على صفحة المنتج"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_search_report_view_search
+msgid "Empty Term"
+msgstr "مصطلح فارغ"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
+msgid "Enable Offline Page"
+msgstr "تفعيل صفحة عدم الاتصال (Offline)"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
+msgid "Enable Progressive Web Apps"
+msgstr "تفعيل تطبيقات الويب التقدمية (PWA)"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_2
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_4
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_5
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_6
+msgid "Etiam"
+msgstr "Etiam"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_website_content__identifier
+msgid "Extra Label"
+msgstr "تسمية إضافية"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_website_sale_extra_field__field_id
+msgid "Field"
+msgstr "الحقل"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_6
+msgid "Flats"
+msgstr "أحذية مسطحة (Flats)"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_website_content_view_form
+msgid "FontAwesome"
+msgstr "FontAwesome"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_pwa_screenshots__form_factor
+msgid "Form Factor"
+msgstr "عامل الشكل (Form Factor)"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_category_synonyms__dr_search_formulate
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_public_category__dr_search_formulate
+msgid "Formulated Search"
+msgstr "بحث مصاغ"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_product__dr_free_qty
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_template__dr_free_qty
+msgid "Free To Use Quantity"
+msgstr "الكمية المتاحة للاستخدام"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
+msgid "Grant discounts on sales order lines"
+msgstr "منح خصومات على بنود أمر البيع"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_1
+msgid "Grid Rows"
+msgstr "صفوف الشبكة"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_product_brand_values_view_search
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_search_report_view_search
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_website_content_view_search
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_6
+msgid "Heels"
+msgstr "أحذية بكعب (Heels)"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_1
+msgid "Help center"
+msgstr "مركز المساعدة"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_website_menu__dr_highlight_menu
+msgid "Highlight Menu"
+msgstr "قائمة مميزة"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_website_menu__dr_highlight_menu_bg_color
+msgid "Hightlight Background Color"
+msgstr "لون خلفية القائمة المميزة"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_website_menu__dr_highlight_menu_text_color
+msgid "Hightlight Text Color"
+msgstr "لون نص القائمة المميزة"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_category_synonyms__id
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_brand__id
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_label__id
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_offer__id
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_public_category_label__id
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_tabs__id
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_tags__id
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_pwa_screenshots__id
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_pwa_shortcuts__id
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_search_report__id
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_theme_config__id
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_website_content__id
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_website_menu_label__id
+msgid "ID"
+msgstr "المُعرّف"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_offer__icon
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_tabs__icon
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_pwa_shortcuts__icon
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_website_content__icon
+msgid "Icon"
+msgstr "أيقونة"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
+msgid "Icon (192x192)"
+msgstr "أيقونة (192x192)"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
+msgid "Icon (512x512)"
+msgstr "أيقونة (512x512)"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_public_category__dr_category_icon
+msgid "Icon Image"
+msgstr "صورة الأيقونة"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_brand__image
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_pwa_screenshots__image
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_attribute_value__dr_image
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_template_attribute_value__dr_image
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__product_attribute__dr_radio_image_style__image
+msgid "Image"
+msgstr "الصورة"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__product_attribute__dr_radio_image_style__image_compact
+msgid "Image (Compact)"
+msgstr "صورة (مدمجة)"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__product_attribute__dr_radio_image_style__image_text
+msgid "Image + Text"
+msgstr "صورة + نص"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_attribute__dr_is_brand
+msgid "Is Brand?"
+msgstr "هل هي علامة تجارية؟"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_website_menu__dr_is_highlight_menu
+msgid "Is Highlight Menu?"
+msgstr "هل هي قائمة مميزة؟"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,help:droggol_theme_common.field_dr_website_content__identifier
+msgid "It is just displayed in backend dropdown and breadcrumb"
+msgstr "يتم عرضها فقط في القائمة المنسدلة للواجهة الخلفية ومسار التصفح"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_6
+msgid "Jeans"
+msgstr "جينز"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_6
+msgid "Jewelry"
+msgstr "مجوهرات"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_theme_config__key
+msgid "Key"
+msgstr "مفتاح"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_pwa_screenshots_view_form
+msgid "Know more"
+msgstr "اعرف المزيد"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_product__dr_label_id
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_public_category__dr_category_label_id
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_template__dr_label_id
+#: model:ir.model.fields,field_description:droggol_theme_common.field_website_menu__dr_menu_label_id
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_product_label_view_form
+msgid "Label"
+msgstr "التسمية"
+
+#. module: droggol_theme_common
+#: model:ir.actions.act_window,name:droggol_theme_common.dr_product_label_action
+#: model:ir.ui.menu,name:droggol_theme_common.menu_dr_product_label
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_category_label_view_tree
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_product_label_view_search
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_product_label_view_tree
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_website_menu_label_view_tree
+msgid "Labels"
+msgstr "التسميات"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_search_report__lang_id
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_search_report_view_search
+msgid "Language"
+msgstr "اللغة"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_category_synonyms__write_uid
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_brand__write_uid
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_label__write_uid
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_offer__write_uid
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_public_category_label__write_uid
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_tabs__write_uid
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_tags__write_uid
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_pwa_screenshots__write_uid
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_pwa_shortcuts__write_uid
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_search_report__write_uid
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_theme_config__write_uid
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_website_content__write_uid
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_website_menu_label__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_category_synonyms__write_date
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_brand__write_date
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_label__write_date
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_offer__write_date
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_public_category_label__write_date
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_tabs__write_date
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_tags__write_date
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_pwa_screenshots__write_date
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_pwa_shortcuts__write_date
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_search_report__write_date
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_theme_config__write_date
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_website_content__write_date
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_website_menu_label__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+msgid "Limited Collection"
+msgstr "تشكيلة محدودة"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_1
+msgid "Listing"
+msgstr "قائمة"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_1
+msgid "Masonry"
+msgstr "مربعات (Masonry)"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_5
+msgid "Mega Menu Image 0#{title}"
+msgstr "صورة القائمة الضخمة 0#{title}"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_6
+msgid "Mega Menu Image 01"
+msgstr "صورة القائمة الضخمة 01"
+
+#. module: droggol_theme_common
+#: model:ir.actions.act_window,name:droggol_theme_common.dr_website_menu_label_action
+#: model:ir.ui.menu,name:droggol_theme_common.menu_dr_website_menu_label
+msgid "Menu Labels"
+msgstr "تسميات القائمة"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_website_menu__dr_menu_visible_on
+msgid "Menu Visible On"
+msgstr "القائمة مرئية على"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__dr_search_report__device_type__mobile
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_search_report_view_search
+msgid "Mobile"
+msgstr "الجوال"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_2
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_4
+msgid "Morbi vel"
+msgstr "Morbi vel"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_category_synonyms__name
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_brand__name
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_label__name
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_public_category_label__name
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_tags__name
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_pwa_screenshots__name
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_pwa_shortcuts__name
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_website_content__name
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_website_menu_label__name
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_product_brand_values_view_form
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_product_brand_values_view_tree
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
+msgid "Name"
+msgstr "الاسم"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__dr_pwa_screenshots__form_factor__narrow
+msgid "Narrow"
+msgstr "ضيق"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_6
+msgid "New in"
+msgstr "وصل حديثاً"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+msgid "Newly Launched"
+msgstr "تم إطلاقه حديثاً"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_2
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_4
+msgid "Nulla vehicula"
+msgstr "Nulla vehicula"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_2
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_4
+msgid "Nullam"
+msgstr "Nullam"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+msgid ""
+"Nullam <span class=\"s_badge badge text-bg-warning\"><i class=\"fa fa-"
+"magic\"/>Popular</span>"
+msgstr ""
+"Nullam <span class=\"s_badge badge text-bg-warning\"><i class=\"fa fa-"
+"magic\"/>شائع</span>"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_2
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_4
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_5
+msgid "Nullam mattis"
+msgstr "Nullam mattis"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+msgid ""
+"Nullam mattis <span class=\"s_badge badge text-bg-success\"><i class=\"fa "
+"fa-magic\"/>Exclusive</span>"
+msgstr ""
+"Nullam mattis <span class=\"s_badge badge text-bg-success\"><i class=\"fa "
+"fa-magic\"/>حصري</span>"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_2
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_4
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_5
+msgid "Nullam sed"
+msgstr "Nullam sed"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_pricelist_item__dr_offer_finish_msg
+msgid "Offer Finish Message"
+msgstr "رسالة انتهاء العرض"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_pricelist_item__dr_offer_msg
+msgid "Offer Message"
+msgstr "رسالة العرض"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__dr_website_content__content_type__offer_popup
+msgid "Offer Popup"
+msgstr "نافذة منبثقة للعرض"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_website_content__dr_offer_products_ids
+msgid "Offer Products"
+msgstr "منتجات العرض"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_tags__dr_offer_ids
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_product__dr_product_offer_ids
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_template__dr_product_offer_ids
+msgid "Offers"
+msgstr "العروض"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__website_menu__dr_menu_visible_on__desktop
+msgid "Only Desktop"
+msgstr "أجهزة سطح المكتب فقط"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_1
+msgid "Opening"
+msgstr "الافتتاح"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_1
+msgid "Overview"
+msgstr "نظرة عامة"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_res_config_settings__dr_pwa_activated
+#: model:ir.model.fields,field_description:droggol_theme_common.field_website__dr_pwa_activated
+msgid "PWA Activated"
+msgstr "تم تفعيل PWA"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_res_config_settings__dr_pwa_background_color
+#: model:ir.model.fields,field_description:droggol_theme_common.field_website__dr_pwa_background_color
+msgid "PWA Background Color"
+msgstr "لون خلفية PWA"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_res_config_settings__dr_pwa_icon_192
+#: model:ir.model.fields,field_description:droggol_theme_common.field_website__dr_pwa_icon_192
+msgid "PWA Icon 192x192"
+msgstr "أيقونة PWA 192x192"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_res_config_settings__dr_pwa_icon_512
+#: model:ir.model.fields,field_description:droggol_theme_common.field_website__dr_pwa_icon_512
+msgid "PWA Icon 512x512"
+msgstr "أيقونة PWA 512x512"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_res_config_settings__dr_pwa_name
+#: model:ir.model.fields,field_description:droggol_theme_common.field_website__dr_pwa_name
+msgid "PWA Name"
+msgstr "اسم PWA"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_res_config_settings__dr_pwa_offline_page
+#: model:ir.model.fields,field_description:droggol_theme_common.field_website__dr_pwa_offline_page
+msgid "PWA Offline Page"
+msgstr "صفحة عدم الاتصال PWA"
+
+#. module: droggol_theme_common
+#: model:ir.actions.act_window,name:droggol_theme_common.dr_pwa_screenshots_action
+#: model:ir.model,name:droggol_theme_common.model_dr_pwa_screenshots
+msgid "PWA Screenshots"
+msgstr "لقطات شاشة PWA"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_res_config_settings__dr_pwa_short_name
+#: model:ir.model.fields,field_description:droggol_theme_common.field_website__dr_pwa_short_name
+msgid "PWA Short Name"
+msgstr "الاسم المختصر PWA"
+
+#. module: droggol_theme_common
+#: model:ir.actions.act_window,name:droggol_theme_common.dr_pwa_shortcuts_action
+#: model:ir.model,name:droggol_theme_common.model_dr_pwa_shortcuts
+msgid "PWA Shortcuts"
+msgstr "اختصارات PWA"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_res_config_settings__dr_pwa_start_url
+#: model:ir.model.fields,field_description:droggol_theme_common.field_website__dr_pwa_start_url
+msgid "PWA Start URL"
+msgstr "رابط بدء PWA"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_res_config_settings__dr_pwa_theme_color
+#: model:ir.model.fields,field_description:droggol_theme_common.field_website__dr_pwa_theme_color
+msgid "PWA Theme Color"
+msgstr "لون ثيم PWA"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_website__dr_pwa_version
+msgid "PWA Version"
+msgstr "إصدار PWA"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_1
+msgid "Parallax"
+msgstr "تأثير التمرير (Parallax)"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_attribute__dr_attribute_popup_id
+msgid "Popup"
+msgstr "نافذة منبثقة"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_1
+msgid "Portfolio"
+msgstr "معرض الأعمال"
+
+#. module: droggol_theme_common
+#: model:ir.model,name:droggol_theme_common.model_product_pricelist_item
+msgid "Pricelist Rule"
+msgstr "قاعدة قائمة الأسعار "
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_1
+msgid "Pricing"
+msgstr "الأسعار"
+
+#. module: droggol_theme_common
+#: model:ir.model,name:droggol_theme_common.model_product_template
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_offer__product_id
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_tabs__product_id
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__dr_search_report__clicked_type__product
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_search_report_view_search
+msgid "Product"
+msgstr "المنتج"
+
+#. module: droggol_theme_common
+#: model:ir.model,name:droggol_theme_common.model_product_attribute
+msgid "Product Attribute"
+msgstr "خاصية المنتج"
+
+#. module: droggol_theme_common
+#: model:ir.model,name:droggol_theme_common.model_dr_product_brand
+msgid "Product Brand"
+msgstr "العلامة التجارية للمنتج"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_label__product_count
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_tags__product_count
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_search_report__product_count
+msgid "Product Count"
+msgstr "عدد المنتجات"
+
+#. module: droggol_theme_common
+#: model:ir.model,name:droggol_theme_common.model_dr_product_label
+msgid "Product Label"
+msgstr "تسمية المنتج"
+
+#. module: droggol_theme_common
+#: model:ir.model,name:droggol_theme_common.model_dr_product_offer
+msgid "Product Offers"
+msgstr "عروض المنتجات"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__dr_website_content__content_type__tab
+msgid "Product Tab"
+msgstr "تبويب المنتج"
+
+#. module: droggol_theme_common
+#: model:ir.model,name:droggol_theme_common.model_dr_product_tabs
+msgid "Product Tabs"
+msgstr "تبويبات المنتج"
+
+#. module: droggol_theme_common
+#: model:ir.model,name:droggol_theme_common.model_dr_product_tags
+msgid "Product Tags"
+msgstr "علامات المنتج"
+
+#. module: droggol_theme_common
+#: model:ir.model,name:droggol_theme_common.model_product_template_attribute_line
+msgid "Product Template Attribute Line"
+msgstr "بند خاصية قالب المنتج"
+
+#. module: droggol_theme_common
+#: model:ir.model,name:droggol_theme_common.model_product_template_attribute_value
+msgid "Product Template Attribute Value"
+msgstr "قيمة خاصية قالب المنتج "
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_tags__product_ids
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_product_label_view_form
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_website_content_view_form
+msgid "Products"
+msgstr "المنتجات"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
+msgid "Progressive Web Apps (PWA)"
+msgstr "تطبيقات الويب التقدمية (PWA)"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_2
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_4
+msgid "Proin"
+msgstr "Proin"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+msgid ""
+"Proin <span class=\"s_badge badge text-bg-primary\"><i class=\"fa fa-"
+"star\"/>New</span>"
+msgstr ""
+"Proin <span class=\"s_badge badge text-bg-primary\"><i class=\"fa fa-"
+"star\"/>جديد</span>"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+msgid ""
+"Proin <span class=\"s_badge badge text-bg-primary\"><i class=\"fa fa-"
+"tag\"/>New</span>"
+msgstr ""
+"Proin <span class=\"s_badge badge text-bg-primary\"><i class=\"fa fa-"
+"tag\"/>جديد</span>"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_2
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_4
+msgid "Proin eu"
+msgstr "Proin eu"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_2
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_4
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_5
+msgid "Proin lobortis"
+msgstr "Proin lobortis"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_2
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_4
+msgid "Quisque"
+msgstr "Quisque"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__product_attribute__display_type__radio_circle
+msgid "Radio Circle"
+msgstr "دائرة اختيار (Radio Circle)"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__product_attribute__display_type__radio_image
+msgid "Radio Image"
+msgstr "صورة اختيار (Radio Image)"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__product_attribute__display_type__radio_square
+msgid "Radio Square"
+msgstr "مربع اختيار (Radio Square)"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,help:droggol_theme_common.field_dr_category_synonyms__website_id
+#: model:ir.model.fields,help:droggol_theme_common.field_dr_product_brand__website_id
+#: model:ir.model.fields,help:droggol_theme_common.field_dr_product_tags__website_id
+msgid "Restrict publishing to this website."
+msgstr "قصر النشر على هذا الموقع الإلكتروني."
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_1
+msgid "Rich"
+msgstr "غني"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_1
+msgid "Rich View"
+msgstr "عرض غني"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_website__dr_sale_special_offer
+msgid "Sale Special Offer"
+msgstr "عرض خاص للمبيعات"
+
+#. module: droggol_theme_common
+#: model:ir.model,name:droggol_theme_common.model_sale_order
+msgid "Sales Order"
+msgstr "أمر البيع"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_6
+msgid "Sandals"
+msgstr "صنادل"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_6
+msgid "Scarves &amp; Hats"
+msgstr "أوشحة وقبعات"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_pwa_screenshots_view_form
+msgid "Screenshot type must be JPG."
+msgstr "يجب أن يكون نوع لقطة الشاشة JPG."
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_res_config_settings__dr_pwa_screenshots
+#: model:ir.model.fields,field_description:droggol_theme_common.field_website__dr_pwa_screenshots
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_pwa_screenshots_view_form
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_pwa_screenshots_view_tree
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
+msgid "Screenshots"
+msgstr "لقطات الشاشة"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_1
+msgid "Search"
+msgstr "بحث"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_category_synonyms__ds_name
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_attribute_value__ds_name
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_public_category__ds_name
+msgid "Search DS Name"
+msgstr "بحث عن اسم DS"
+
+#. module: droggol_theme_common
+#: model:ir.actions.act_window,name:droggol_theme_common.dr_search_report_action
+#: model:ir.ui.menu,name:droggol_theme_common.dr_search_report_menu
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_search_report_view_form
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_search_report_view_graph
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_search_report_view_pivot
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_search_report_view_tree
+msgid "Search Report"
+msgstr "تقرير البحث"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_search_report__search_term
+msgid "Search Term"
+msgstr "مصطلح البحث"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_search_report__search_time
+msgid "Search Time"
+msgstr "وقت البحث"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_search_report_view_search
+msgid "Search Visitor"
+msgstr "بحث الزائر"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_attribute__dr_search_suggestion
+msgid "Search suggestion type"
+msgstr "نوع اقتراح البحث"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_2
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_4
+msgid "See all the products at once."
+msgstr "شاهد جميع المنتجات مرة واحدة."
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_brand__sequence
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_offer__sequence
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_tabs__sequence
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_pwa_screenshots__sequence
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_pwa_shortcuts__sequence
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_website_content__sequence
+msgid "Sequence"
+msgstr "التسلسل"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_2
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_4
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_6
+msgid "Shoes"
+msgstr "أحذية"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_6
+msgid "Shop Now"
+msgstr "تسوق الآن"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+msgid "Shop Offer Image 01"
+msgstr "صورة عرض المتجر 01"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_pwa_shortcuts__short_name
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
+msgid "Short Name"
+msgstr "الاسم المختصر"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_res_config_settings__dr_pwa_shortcuts
+#: model:ir.model.fields,field_description:droggol_theme_common.field_website__dr_pwa_shortcuts
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_pwa_shortcuts_view_form
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_pwa_shortcuts_view_tree
+msgid "Shortcuts"
+msgstr "الاختصارات"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_6
+msgid "Shorts"
+msgstr "سراويل قصيرة (Shorts)"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_attribute__dr_is_show_shop_search
+msgid "Show Searchbar in Shop Filter"
+msgstr "إظهار شريط البحث في تصفية المتجر"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
+msgid "Show offline page when there is no internet."
+msgstr "إظهار صفحة عدم الاتصال عند عدم توفر الإنترنت."
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
+msgid "Show what the app looks like and what it can do."
+msgstr "إظهار كيف يبدو التطبيق وماذا يمكنه أن يفعل."
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_1
+msgid "Showcase"
+msgstr "واجهة عرض"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_1
+msgid "Sidebar"
+msgstr "شريط جانبي"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_public_category__dr_category_sidebar_cover
+msgid "Sidebar Cover"
+msgstr "غلاف الشريط الجانبي"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_1
+msgid "Sidebar: Fluid"
+msgstr "شريط جانبي: مرن"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_pwa_screenshots__sizes
+msgid "Sizes"
+msgstr "الأحجام"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_6
+msgid "Skirts"
+msgstr "تنانير"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_6
+msgid "Slippers"
+msgstr "نعال (Slippers)"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_6
+msgid "Socks"
+msgstr "جوارب"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__website_menu__dr_highlight_menu__soft
+msgid "Soft"
+msgstr "ناعم (Soft)"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__website_menu__dr_highlight_menu__solid
+msgid "Solid"
+msgstr "صلب (Solid)"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__dr_product_label__style__4
+msgid "Square"
+msgstr "مربع"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
+msgid "Start URL"
+msgstr "رابط البدء"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_label__style
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_attribute__dr_radio_image_style
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_product_label_view_search
+msgid "Style"
+msgstr "الشكل"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__dr_search_report__clicked_type__suggestion
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_search_report_view_search
+msgid "Suggestion"
+msgstr "اقتراح"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_search_report__suggestion_count
+msgid "Suggestion Count"
+msgstr "عدد الاقتراحات"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_template_attribute_value__dr_thumb_image
+msgid "Swatch Image"
+msgstr "صورة العينة (Swatch)"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_website_content__dr_tab_products_ids
+msgid "Tab Products"
+msgstr "منتجات التبويب"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_tags__dr_tab_ids
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_product__dr_product_tab_ids
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_template__dr_product_tab_ids
+msgid "Tabs"
+msgstr "التبويبات"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_offer__tag_id
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_tabs__tag_id
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__dr_product_label__style__1
+msgid "Tag"
+msgstr "علامة"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_product__dr_tag_ids
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_template__dr_tag_ids
+msgid "Tags"
+msgstr "العلامات"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_1
+msgid "Terms"
+msgstr "الشروط"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_label__text_color
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_public_category_label__text_color
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_website_menu_label__text_color
+msgid "Text Color"
+msgstr "لون النص"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,help:droggol_theme_common.field_dr_pwa_shortcuts__url
+msgid "The URL opened when a user activates the app shortcut."
+msgstr "الرابط الذي يُفتح عند تنشيط المستخدم لاختصار التطبيق."
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,help:droggol_theme_common.field_product_attribute__display_type
+msgid "The display type used in the Product Configurator."
+msgstr "نوع العرض المستخدم في أداة تهيئة المنتج."
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,help:droggol_theme_common.field_dr_pwa_shortcuts__name
+msgid ""
+"The human-readable label for the app shortcut when displayed to the user."
+msgstr "التسمية المقروءة لاختصار التطبيق عند عرضها للمستخدم."
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,help:droggol_theme_common.field_dr_pwa_shortcuts__short_name
+msgid "The human-readable label used where space is limited."
+msgstr "التسمية المقروءة المستخدمة عند ضيق المساحة."
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,help:droggol_theme_common.field_dr_pwa_shortcuts__description
+msgid "The human-readable purpose for the app shortcut."
+msgstr "الغرض المقروء لاختصار التطبيق."
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_pwa_shortcuts_view_form
+msgid "The icon must be a 192x192 PNG."
+msgstr "يجب أن تكون الأيقونة بحجم 192x192 وبصيغة PNG."
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
+msgid "Theme Color"
+msgstr "لون الثيم"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
+msgid "Theme Customizations"
+msgstr "تخصيصات الثيم"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.product_public_category_form_view_inherit_droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.product_template_form_view_inherit_droggol_theme_common
+msgid "Theme Prime"
+msgstr "ثيم Prime"
+
+#. module: droggol_theme_common
+#: model:ir.ui.menu,name:droggol_theme_common.menu_theme_prime_config
+msgid "Theme Prime Configuration"
+msgstr "إعدادات ثيم Prime"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
+msgid ""
+"These icons are used in places like the home screen, app launcher, task "
+"switcher, splash screen, etc."
+msgstr ""
+"تُستخدم هذه الأيقونات في أماكن مثل الشاشة الرئيسية، ومشغل التطبيقات، ومبدل "
+"المهام، وشاشة البداية، وغيرها."
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_offer__name
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_tabs__name
+msgid "Title"
+msgstr "العنوان"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_website_content__content_type
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_search_report_view_search
+msgid "Type"
+msgstr "النوع"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_pwa_shortcuts__url
+msgid "URL"
+msgstr "الرابط"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,help:droggol_theme_common.field_dr_category_synonyms__dr_search_formulate
+#: model:ir.model.fields,help:droggol_theme_common.field_product_public_category__dr_search_formulate
+msgid ""
+"Use to search multi level categories         e.g. Men Shirt (Here men and "
+"shirt are diffrent category but will be displayed as one in smart search)"
+msgstr ""
+"يستخدم للبحث في الفئات متعددة المستويات، مثال: قميص رجالي (هنا رجالي وقميص "
+"فئتان مختلفتان ولكنهما سيظهران كفئة واحدة في البحث الذكي)"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
+msgid "Used in the app install prompt."
+msgstr "يُستخدم في مطالبة تثبيت التطبيق."
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
+msgid "Used on the splash screen when the application is first launched."
+msgstr "يُستخدم في شاشة البداية عند تشغيل التطبيق لأول مرة."
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
+msgid "Used on the user's home screen, launcher, or other places."
+msgstr "يُستخدم في شاشة المستخدم الرئيسية، ومشغل التطبيقات، أو في أماكن أخرى."
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
+msgid "Used on toolbar, and may be in the app's preview in task switchers."
+msgstr "يُستخدم في شريط الأدوات، وقد يظهر في معاينة التطبيق في مبدل المهام."
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_search_report__user_id
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_search_report_view_search
+msgid "User"
+msgstr "المستخدم"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_theme_config__value
+msgid "Value"
+msgstr "القيمة"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_2
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_4
+msgid "View all products"
+msgstr "عرض كافة المنتجات"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_2
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_3
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_4
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_5
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_6
+msgid "Vivamus"
+msgstr "Vivamus"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_2
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.s_mega_menu_prime_4
+msgid "Want to explore our products?"
+msgstr "هل ترغب في استكشاف منتجاتنا؟"
+
+#. module: droggol_theme_common
+#: model:ir.model,name:droggol_theme_common.model_website
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_category_synonyms__website_id
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_brand__website_id
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_product_tags__website_id
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_pwa_screenshots__website_id
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_pwa_shortcuts__website_id
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_search_report__website_id
+#: model:ir.model.fields,field_description:droggol_theme_common.field_dr_theme_config__website_id
+msgid "Website"
+msgstr "الموقع الإلكتروني"
+
+#. module: droggol_theme_common
+#: model:ir.model,name:droggol_theme_common.model_dr_website_content
+msgid "Website Content"
+msgstr "محتوى الموقع الإلكتروني"
+
+#. module: droggol_theme_common
+#: model:ir.model,name:droggol_theme_common.model_website_menu
+msgid "Website Menu"
+msgstr "قائمة الموقع الإلكتروني "
+
+#. module: droggol_theme_common
+#: model:ir.model,name:droggol_theme_common.model_dr_website_menu_label
+msgid "Website Menu Label"
+msgstr "تسمية قائمة الموقع الإلكتروني"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_template_attribute_line__dr_attribute_popup_id
+msgid "Website Popup"
+msgstr "نافذة منبثقة للموقع الإلكتروني"
+
+#. module: droggol_theme_common
+#: model:ir.model,name:droggol_theme_common.model_product_public_category
+msgid "Website Product Category"
+msgstr "فئة منتج الموقع الإلكتروني "
+
+#. module: droggol_theme_common
+#: model:ir.model.fields.selection,name:droggol_theme_common.selection__dr_pwa_screenshots__form_factor__wide
+msgid "Wide"
+msgstr "عريض"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_website_content_view_form
+msgid "You can find icon at"
+msgstr "يمكنك العثور على الأيقونة في"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
+msgid "Your application will start from this URL when it is launched."
+msgstr "سيبدأ تطبيقك من هذا الرابط عند تشغيله."
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.dr_pwa_screenshots_view_form
+msgid "about screenshots."
+msgstr "حول لقطات الشاشة."
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.product_attribute_view_form_inherit_droggol_theme_common
+msgid "eCommerce"
+msgstr "التجارة الإلكترونية"
+
+#. module: droggol_theme_common
+#: model_terms:ir.ui.view,arch_db:droggol_theme_common.product_attribute_view_form_inherit_droggol_theme_common
+msgid "eCommerce Filter Visibility"
+msgstr "ظهور فلاتر التجارة الإلكترونية"
+
+#. module: droggol_theme_common
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_product__dr_is_rfq
+#: model:ir.model.fields,field_description:droggol_theme_common.field_product_template__dr_is_rfq
+msgid "field_name"
+msgstr "اسم الحقل (field_name)"
