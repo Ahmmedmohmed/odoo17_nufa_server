@@ -195,10 +195,10 @@ class accessChangePasswordWizard(models.TransientModel):
 class EmailTemplate(models.Model):
     _inherit = 'mail.template'
 
-    def send_mail(self, res_id, force_send=False, raise_exception=False, email_values=None):
+    def send_mail(self, res_id, force_send=False, raise_exception=False, email_values=None, **kwargs):
         try:
             return super(EmailTemplate, self).send_mail(res_id, force_send=force_send, raise_exception=raise_exception,
-                                                        email_values=email_values)
+                                                        email_values=email_values, **kwargs)
         except UserError:
             # Ignore UserError caused by empty recipients list
             pass
