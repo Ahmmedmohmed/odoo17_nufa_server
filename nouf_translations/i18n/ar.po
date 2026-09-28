@@ -7029,3 +7029,823 @@ msgstr "تجميع حسب"
 #. module: product_data_feed_brand
 msgid "Add Custom Group"
 msgstr "إضافة مجموعة مخصصة"
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.sales_commission_id
+msgid "<strong>Account Invoice</strong>"
+msgstr "<strong>فاتورة الحساب</strong>"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_id
+msgid "<strong>Amount in Company Currency</strong>"
+msgstr "<strong>المبلغ بعملة الشركة</strong>"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_id
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.sales_commission_id
+msgid "<strong>Amount</strong>"
+msgstr "<strong>المبلغ</strong>"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_id
+msgid "<strong>Commission Date</strong>"
+msgstr "<strong>تاريخ العمولة</strong>"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_id
+msgid "<strong>Commission Invoice</strong>"
+msgstr "<strong>فاتورة العمولة</strong>"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_id
+msgid "<strong>Commission Product</strong>"
+msgstr "<strong>منتج العمولة</strong>"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.sales_commission_id
+msgid "<strong>Commission User</strong>"
+msgstr "<strong>مستخدم العمولة</strong>"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_id
+msgid "<strong>Company</strong>"
+msgstr "<strong>الشركة</strong>"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.sales_commission_id
+msgid "<strong>Description</strong>"
+msgstr "<strong>الوصف</strong>"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_id
+msgid "<strong>End Date</strong>"
+msgstr "<strong>تاريخ الانتهاء</strong>"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_id
+msgid "<strong>Is Commision Line Paid</strong>"
+msgstr "<strong>هل تم دفع بند العمولة</strong>"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_id
+msgid "<strong>Is Commission Paid</strong>"
+msgstr "<strong>هل تم دفع العمولة</strong>"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_id
+msgid "<strong>POS Sales Member</strong>"
+msgstr "<strong>عضو مبيعات نقاط البيع</strong>"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.sales_commission_id
+msgid "<strong>Product</strong>"
+msgstr "<strong>المنتج</strong>"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.sales_commission_id
+msgid "<strong>Sales Team</strong>"
+msgstr "<strong>فريق المبيعات</strong>"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_id
+msgid "<strong>Start Date</strong>"
+msgstr "<strong>تاريخ البدء</strong>"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_id
+msgid "<strong>Status</strong>"
+msgstr "<strong>الحالة</strong>"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_id
+msgid "<strong>Total Commision Amount</strong>"
+msgstr "<strong>إجمالي مبلغ العمولة</strong>"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_id
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.sales_commission_id
+msgid "<strong>User Type</strong>"
+msgstr "<strong>نوع المستخدم</strong>"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__access_warning
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__access_warning
+msgid "Access warning"
+msgstr "تحذير الوصول"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__invoice_id
+msgid "Account Invoice"
+msgstr "فاتورة الحساب"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__message_needaction
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__message_needaction
+msgid "Action Needed"
+msgstr "إجراء مطلوب"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__activity_ids
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__activity_ids
+msgid "Activities"
+msgstr "الأنشطة"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__activity_exception_decoration
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "زخرفة استثناء النشاط"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__activity_state
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__activity_state
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__activity_type_icon
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "أيقونة نوع النشاط"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.view_sale_config_settings_form_pos_inherit_commission
+msgid "Allow manual calculation"
+msgstr "السماح بالحساب اليدوي"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.view_sale_config_settings_form_pos_inherit_commission
+msgid "Allow manual pay commission"
+msgstr "السماح بدفع العمولة يدوياً"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__amount
+msgid "Amount"
+msgstr "المبلغ"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__amount_company_currency
+msgid "Amount in Company Currency"
+msgstr "المبلغ بعملة الشركة"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_config__apply_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_res_config_settings__apply_commission
+msgid "Apply Commission?"
+msgstr "هل تريد تطبيق العمولة؟"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__message_attachment_count
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_res_company__commission_based_on
+#: model:ir.model.fields,field_description:pos_sales_commission.field_res_config_settings__commission_based_on
+msgid "Calculation Based On"
+msgstr "الحساب بناءً على"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_form_view
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields.selection,name:pos_sales_commission.selection__pos_sales_commission__state__cancel
+#: model:ir.model.fields.selection,name:pos_sales_commission.selection__pos_sales_commission_line__state__cancel
+msgid "Cancelled"
+msgstr "ملغي"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__product_id
+msgid "Commision Product For Invoice"
+msgstr "منتج العمولة للفاتورة"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.product_pos_category_form_view_inherit_commission_pos
+msgid "Commission"
+msgstr "العمولة"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__date
+msgid "Commission Date"
+msgstr "تاريخ العمولة"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__invoice_id
+msgid "Commission Invoice"
+msgstr "فاتورة العمولة"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__sales_commission_line
+msgid "Commission Line"
+msgstr "بند العمولة"
+
+#. module: pos_sales_commission
+#: model:ir.actions.act_window,name:pos_sales_commission.pos_sales_commission_worksheet_action
+#: model:ir.ui.menu,name:pos_sales_commission.sales_commission_worksheet_menu
+#: model:ir.ui.menu,name:pos_sales_commission.sales_commission_worksheet_menu_invoice
+msgid "Commission Worksheets"
+msgstr "أوراق عمل العمولات"
+
+#. module: pos_sales_commission
+#: model:ir.ui.menu,name:pos_sales_commission.pos_sales_commission_menu_main
+#: model:ir.ui.menu,name:pos_sales_commission.pos_sales_commission_menu_main_invoice
+msgid "Commissions"
+msgstr "العمولات"
+
+#. module: pos_sales_commission
+#: model:ir.model,name:pos_sales_commission.model_res_company
+msgid "Companies"
+msgstr "الشركات"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__company_id
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__company_id
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_search_view
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_search_view
+msgid "Company"
+msgstr "الشركة"
+
+#. module: pos_sales_commission
+#: model:ir.model,name:pos_sales_commission.model_res_config_settings
+msgid "Config Settings"
+msgstr "إعدادات التهيئة"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_form_view
+msgid "Create Invoice"
+msgstr "إنشاء فاتورة"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__create_uid
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__create_date
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__currency_id
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__currency_id
+msgid "Currency"
+msgstr "العملة"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,help:pos_sales_commission.field_pos_sales_commission__access_url
+#: model:ir.model.fields,help:pos_sales_commission.field_pos_sales_commission_line__access_url
+msgid "Customer Portal URL"
+msgstr "رابط بوابة العميل"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_form_view
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_form_view
+msgid "Description..."
+msgstr "الوصف..."
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__display_name
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields.selection,name:pos_sales_commission.selection__pos_sales_commission__state__draft
+#: model:ir.model.fields.selection,name:pos_sales_commission.selection__pos_sales_commission_line__state__draft
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__end_date
+msgid "End Date"
+msgstr "تاريخ الانتهاء"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields.selection,name:pos_sales_commission.selection__pos_sales_commission_line__state__exception
+msgid "Exception"
+msgstr "استثناء"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__message_follower_ids
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__message_follower_ids
+msgid "Followers"
+msgstr "المتابعين"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__message_partner_ids
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعين (الشركاء)"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,help:pos_sales_commission.field_pos_sales_commission__activity_type_icon
+#: model:ir.model.fields,help:pos_sales_commission.field_pos_sales_commission_line__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "أيقونة Font awesome كمثال fa-tasks"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_search_view
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_search_view
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__has_message
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__has_message
+msgid "Has Message"
+msgstr "يحتوي على رسالة"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__id
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__id
+msgid "ID"
+msgstr "المُعرّف"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__activity_exception_icon
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__activity_exception_icon
+msgid "Icon"
+msgstr "أيقونة"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,help:pos_sales_commission.field_pos_sales_commission__activity_exception_icon
+#: model:ir.model.fields,help:pos_sales_commission.field_pos_sales_commission_line__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "أيقونة للإشارة إلى نشاط استثنائي."
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,help:pos_sales_commission.field_pos_sales_commission__message_needaction
+#: model:ir.model.fields,help:pos_sales_commission.field_pos_sales_commission_line__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا كان محددًا، فإن الرسائل الجديدة تتطلب انتباهك."
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,help:pos_sales_commission.field_pos_sales_commission__message_has_error
+#: model:ir.model.fields,help:pos_sales_commission.field_pos_sales_commission__message_has_sms_error
+#: model:ir.model.fields,help:pos_sales_commission.field_pos_sales_commission_line__message_has_error
+#: model:ir.model.fields,help:pos_sales_commission.field_pos_sales_commission_line__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا تم تحديده، فهناك خطأ في تسليم بعض الرسائل."
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__notes
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__notes
+msgid "Internal Notes"
+msgstr "ملاحظات داخلية"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields.selection,name:pos_sales_commission.selection__pos_sales_commission__state__invoice
+#: model:ir.model.fields.selection,name:pos_sales_commission.selection__pos_sales_commission_line__state__invoice
+msgid "Invoiced"
+msgstr "مفوتر"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_category__pos_is_apply
+#: model:ir.model.fields,field_description:pos_sales_commission.field_product_product__pos_is_apply
+#: model:ir.model.fields,field_description:pos_sales_commission.field_product_template__pos_is_apply
+msgid "Is Apply ?"
+msgstr "هل يتم تطبيقه؟"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__is_paid
+msgid "Is Commission Line Paid"
+msgstr "هل تم دفع بند العمولة"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__is_paid
+msgid "Is Commission Paid"
+msgstr "هل تم دفع العمولة"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_product_product__pos_is_commission_product
+#: model:ir.model.fields,field_description:pos_sales_commission.field_product_template__pos_is_commission_product
+msgid "Is Commission Product ?"
+msgstr "هل هو منتج عمولة؟"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__message_is_follower
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__message_is_follower
+msgid "Is Follower"
+msgstr "هل هو متابع"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__write_uid
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__write_date
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__message_has_error
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسالة"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__message_ids
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__my_activity_date_deadline
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "الموعد النهائي لنشاطي"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__name
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__activity_calendar_event_id
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "الحدث التالي في تقويم الأنشطة"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__activity_date_deadline
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "الموعد النهائي للنشاط التالي"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__activity_summary
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__activity_summary
+msgid "Next Activity Summary"
+msgstr "ملخص النشاط التالي"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__activity_type_id
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__activity_type_id
+msgid "Next Activity Type"
+msgstr "نوع النشاط التالي"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__message_needaction_counter
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__message_has_error_counter
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__message_has_error_counter
+msgid "Number of errors"
+msgstr "عدد الأخطاء"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,help:pos_sales_commission.field_pos_sales_commission__message_needaction_counter
+#: model:ir.model.fields,help:pos_sales_commission.field_pos_sales_commission_line__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "عدد الرسائل التي تتطلب إجراء"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,help:pos_sales_commission.field_pos_sales_commission__message_has_error_counter
+#: model:ir.model.fields,help:pos_sales_commission.field_pos_sales_commission_line__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل التي بها خطأ في التسليم"
+
+#. module: pos_sales_commission
+#: model:product.template,name:pos_sales_commission.pos_product_sales_commission_product_template
+msgid "POS Commission"
+msgstr "عمولة نقاط البيع"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_form_view
+msgid "POS Commission Form"
+msgstr "استمارة عمولة نقاط البيع"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_tree_view
+msgid "POS Commission List"
+msgstr "قائمة عمولة نقاط البيع"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_id
+msgid "POS Commission Worksheet Details"
+msgstr "تفاصيل ورقة عمل عمولة نقاط البيع"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_crm_team__pos_is_apply
+msgid "POS Is Apply ?"
+msgstr "هل تنطبق على نقاط البيع؟"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields.selection,name:pos_sales_commission.selection__pos_sales_commission_line__type__sales_manager
+msgid "POS Manager"
+msgstr "مدير نقاط البيع"
+
+#. module: pos_sales_commission
+#: model:ir.model,name:pos_sales_commission.model_pos_sales_commission
+#: model:ir.model,name:pos_sales_commission.model_pos_sales_commission_line
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__sales_commission_id
+msgid "POS Sales Commission"
+msgstr "عمولة مبيعات نقاط البيع"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_form_view
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_id
+msgid "POS Sales Commission Lines"
+msgstr "بنود عمولة مبيعات نقاط البيع"
+
+#. module: pos_sales_commission
+#: model:ir.actions.report,name:pos_sales_commission.pos_sales_commission_worksheet_report
+msgid "POS Sales Commission Worksheets"
+msgstr "أوراق عمل عمولات مبيعات نقاط البيع"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_crm_team__pos_sales_manager_commission
+msgid "POS Sales Manager Commission(%)"
+msgstr "نسبة عمولة مدير مبيعات نقاط البيع (%)"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__commission_user_id
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__commission_user_id
+msgid "POS Sales Member"
+msgstr "عضو مبيعات نقاط البيع"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_crm_team__pos_sales_person_commission
+msgid "POS Sales Person Commission(%)"
+msgstr "نسبة عمولة مندوب مبيعات نقاط البيع (%)"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__sales_team_id
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_search_view
+msgid "POS Sales Team"
+msgstr "فريق مبيعات نقاط البيع"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_search_view
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_search_view
+msgid "POS Sales User"
+msgstr "مستخدم مبيعات نقاط البيع"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields.selection,name:pos_sales_commission.selection__pos_sales_commission_line__type__sales_person
+msgid "POS User"
+msgstr "مستخدم نقاط البيع"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields.selection,name:pos_sales_commission.selection__pos_sales_commission__state__paid
+#: model:ir.model.fields.selection,name:pos_sales_commission.selection__pos_sales_commission_line__state__paid
+msgid "Paid"
+msgstr "تم الدفع"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.view_users_simple_form_inherti_team_pos
+msgid "Point of Sale"
+msgstr "نقطة البيع"
+
+#. module: pos_sales_commission
+#: model:ir.model,name:pos_sales_commission.model_pos_category
+msgid "Point of Sale Category"
+msgstr "فئة نقطة البيع"
+
+#. module: pos_sales_commission
+#: model:ir.model,name:pos_sales_commission.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr "تهيئة نقطة البيع "
+
+#. module: pos_sales_commission
+#: model:ir.model,name:pos_sales_commission.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "طلبات نقطة البيع "
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__access_url
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__access_url
+msgid "Portal Access URL"
+msgstr "رابط الوصول للبوابة"
+
+#. module: pos_sales_commission
+#: model:ir.model,name:pos_sales_commission.model_product_template
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__product_id
+#: model:ir.model.fields.selection,name:pos_sales_commission.selection__res_company__commission_based_on__product_template
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_search_view
+msgid "Product"
+msgstr "المنتج"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields.selection,name:pos_sales_commission.selection__res_company__commission_based_on__product_category
+msgid "Product Category"
+msgstr "فئة المنتج"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__rating_ids
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__rating_ids
+msgid "Ratings"
+msgstr "التقييمات"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_form_view
+msgid "Reset to Draft"
+msgstr "إعادة تعيين كمسودة"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__activity_user_id
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__activity_user_id
+msgid "Responsible User"
+msgstr "المستخدم المسؤول"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__message_has_sms_error
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "خطأ في تسليم الرسائل القصيرة"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.crm_team_view_form_inherit_commission_pos
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.view_sale_config_settings_form_pos_inherit_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.view_template_property_form_inherit_pos
+msgid "Sales Commission"
+msgstr "عمولة المبيعات"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.sales_commission_id
+msgid "Sales Commission Details"
+msgstr "تفاصيل عمولة المبيعات"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_form_view
+msgid "Sales Commission Form"
+msgstr "استمارة عمولة المبيعات"
+
+#. module: pos_sales_commission
+#: model:ir.actions.act_window,name:pos_sales_commission.pos_sales_commission_action
+msgid "Sales Commission Lines"
+msgstr "بنود عمولة المبيعات"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_tree_view
+msgid "Sales Commission List"
+msgstr "قائمة عمولة المبيعات"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_order__commission_manager_id
+msgid "Sales Commission for Manager"
+msgstr "عمولة المبيعات للمدير"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_order__commission_person_id
+msgid "Sales Commission for Member"
+msgstr "عمولة المبيعات للعضو"
+
+#. module: pos_sales_commission
+#: model:ir.ui.menu,name:pos_sales_commission.pos_sales_commission_menu
+#: model:ir.ui.menu,name:pos_sales_commission.pos_sales_commission_menu_invoice
+msgid "Sales Commissions Lines"
+msgstr "بنود عمولات المبيعات"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields.selection,name:pos_sales_commission.selection__res_company__when_to_pay__sales_confirm
+msgid "Sales Confirmation"
+msgstr "تأكيد المبيعات"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_category__pos_sales_manager_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_product_product__pos_sales_manager_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_product_template__pos_sales_manager_commission
+msgid "Sales Manager Commission(%)"
+msgstr "عمولة مدير المبيعات (%)"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_category__pos_sales_person_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_product_product__pos_sales_person_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_product_template__pos_sales_person_commission
+msgid "Sales Person Commission(%)"
+msgstr "عمولة مندوب المبيعات (%)"
+
+#. module: pos_sales_commission
+#: model:ir.model,name:pos_sales_commission.model_crm_team
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_order__team_id
+#: model:ir.model.fields,field_description:pos_sales_commission.field_res_users__team_id
+#: model:ir.model.fields.selection,name:pos_sales_commission.selection__res_company__commission_based_on__sales_team
+msgid "Sales Team"
+msgstr "فريق المبيعات"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__access_token
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__access_token
+msgid "Security Token"
+msgstr "رمز الأمان"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__source_currency
+msgid "Source Currency"
+msgstr "العملة المصدر"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__origin
+msgid "Source Document"
+msgstr "المستند المصدر"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__src_order_id
+msgid "Source POS Order"
+msgstr "طلب نقطة البيع المصدري"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__start_date
+msgid "Start Date"
+msgstr "تاريخ البدء"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__state
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__state
+msgid "Status"
+msgstr "الحالة"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,help:pos_sales_commission.field_pos_sales_commission__activity_state
+#: model:ir.model.fields,help:pos_sales_commission.field_pos_sales_commission_line__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"الحالة على أساس الأنشطة\n"
+"متأخر: تاريخ الاستحقاق مر بالفعل\n"
+"اليوم: تاريخ النشاط هو اليوم\n"
+"مخطط: الأنشطة المستقبلية."
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__amount
+msgid "Total Commision Amount (Company Currency)"
+msgstr "إجمالي مبلغ العمولة (بعملة الشركة)"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,help:pos_sales_commission.field_pos_sales_commission__activity_exception_decoration
+#: model:ir.model.fields,help:pos_sales_commission.field_pos_sales_commission_line__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "نوع النشاط الاستثنائي في السجل."
+
+#. module: pos_sales_commission
+#: model:ir.model,name:pos_sales_commission.model_res_users
+msgid "User"
+msgstr "المستخدم"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__type
+msgid "User Type"
+msgstr "نوع المستخدم"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission__website_message_ids
+#: model:ir.model.fields,field_description:pos_sales_commission.field_pos_sales_commission_line__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع الإلكتروني"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,help:pos_sales_commission.field_pos_sales_commission__website_message_ids
+#: model:ir.model.fields,help:pos_sales_commission.field_pos_sales_commission_line__website_message_ids
+msgid "Website communication history"
+msgstr "تاريخ التواصل في الموقع الإلكتروني"
+
+#. module: pos_sales_commission
+#: model:ir.model.fields,field_description:pos_sales_commission.field_res_company__when_to_pay
+#: model:ir.model.fields,field_description:pos_sales_commission.field_res_config_settings__when_to_pay
+msgid "When To Pay"
+msgstr "متى يتم الدفع"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_form_view
+msgid "amount"
+msgstr "المبلغ"
+
+#. module: pos_sales_commission
+#: model_terms:ir.ui.view,arch_db:pos_sales_commission.pos_sales_commission_worksheet_form_view
+msgid "amount_company_currency"
+msgstr "المبلغ_بعملة_الشركة"
+
+# =========================================================
+# مصطلحات الفلترة والبحث المضافة بناءً على طلبات الملف
+# =========================================================
+
+#. module: pos_sales_commission
+msgid "Search"
+msgstr "بحث"
+
+#. module: pos_sales_commission
+msgid "Add a filter"
+msgstr "إضافة عامل تصفية"
+
+#. module: pos_sales_commission
+msgid "Custom Filter"
+msgstr "تصفية مخصصة"
+
+#. module: pos_sales_commission
+msgid "Add Custom Group"
+msgstr "إضافة مجموعة مخصصة"
