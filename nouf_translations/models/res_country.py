@@ -1,6 +1,5 @@
 from odoo import models, api
 
-
 class ResCountry(models.Model):
     _inherit = 'res.country'
 
@@ -24,8 +23,8 @@ class ResCountry(models.Model):
         }
 
         for code, ar_name in translations.items():
-            # البحث عن الدولة باستخدام الكود الخاص بها
+            # البحث عن الدولة باستخدام الكود
             country = self.search([('code', '=', code)], limit=1)
             if country:
-                # تحديث الاسم باللغة العربية فقط دون المساس بالاسم الإنجليزي
-                country.with_context(lang='ar_001').name = ar_name
+                # الطريقة الصحيحة لتحديث الترجمات (JSONB) في أودو 17
+                country.update_field_translations('name', {'ar_001': ar_name})
