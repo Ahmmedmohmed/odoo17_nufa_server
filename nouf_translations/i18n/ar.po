@@ -6768,12 +6768,12 @@ msgstr "تخصيصات الثيم"
 #: model_terms:ir.ui.view,arch_db:droggol_theme_common.product_public_category_form_view_inherit_droggol_theme_common
 #: model_terms:ir.ui.view,arch_db:droggol_theme_common.product_template_form_view_inherit_droggol_theme_common
 msgid "Theme Prime"
-msgstr "ثيم Prime"
+msgstr "السمة الأساسية"
 
 #. module: droggol_theme_common
 #: model:ir.ui.menu,name:droggol_theme_common.menu_theme_prime_config
 msgid "Theme Prime Configuration"
-msgstr "إعدادات ثيم Prime"
+msgstr "إعدادات السمة الأساسية"
 
 #. module: droggol_theme_common
 #: model_terms:ir.ui.view,arch_db:droggol_theme_common.res_config_settings_view_form
@@ -6935,3 +6935,97 @@ msgstr "ظهور فلاتر التجارة الإلكترونية"
 #: model:ir.model.fields,field_description:droggol_theme_common.field_product_template__dr_is_rfq
 msgid "field_name"
 msgstr "اسم الحقل (field_name)"
+
+#. module: product_data_feed_brand
+#: model_terms:ir.ui.view,arch_db:product_data_feed_brand.product_template_form_view
+#: model_terms:ir.ui.view,arch_db:product_data_feed_brand.product_template_tree_view
+#: model_terms:ir.ui.view,arch_db:product_data_feed_brand.view_product_data_feed_brand_form
+msgid "Brand"
+msgstr "العلامة التجارية"
+
+#. module: product_data_feed_brand
+#: model:ir.model.fields,field_description:product_data_feed_brand.field_product_data_feed_brand__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: product_data_feed_brand
+#: model:ir.model.fields,field_description:product_data_feed_brand.field_product_data_feed_brand__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: product_data_feed_brand
+#: model:ir.model.fields,field_description:product_data_feed_brand.field_product_data_feed_brand__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: product_data_feed_brand
+#: model:ir.model.fields,field_description:product_data_feed_brand.field_product_product__feed_brand_is_visible
+#: model:ir.model.fields,field_description:product_data_feed_brand.field_product_template__feed_brand_is_visible
+msgid "Feed Brand Is Visible"
+msgstr "العلامة التجارية للتغذية مرئية"
+
+#. module: product_data_feed_brand
+#: model:ir.model.fields,field_description:product_data_feed_brand.field_product_data_feed_brand__id
+msgid "ID"
+msgstr "المُعرّف"
+
+#. module: product_data_feed_brand
+#: model:ir.model.fields,field_description:product_data_feed_brand.field_product_data_feed_brand__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: product_data_feed_brand
+#: model:ir.model.fields,field_description:product_data_feed_brand.field_product_data_feed_brand__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: product_data_feed_brand
+#: model:ir.model.fields,field_description:product_data_feed_brand.field_product_data_feed_brand__name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: product_data_feed_brand
+#: model:ir.model,name:product_data_feed_brand.model_product_template
+msgid "Product"
+msgstr "المنتج"
+
+#. module: product_data_feed_brand
+#: model:ir.model.fields,field_description:product_data_feed_brand.field_product_product__feed_brand_id
+#: model:ir.model.fields,field_description:product_data_feed_brand.field_product_template__feed_brand_id
+#: model_terms:ir.ui.view,arch_db:product_data_feed_brand.product_template_search_view
+msgid "Product Brand"
+msgstr "العلامة التجارية للمنتج"
+
+#. module: product_data_feed_brand
+#: model:ir.model.constraint,message:product_data_feed_brand.constraint_product_data_feed_brand_product_data_feed_brand_uniq
+msgid "Product Brand Name must be unique."
+msgstr "يجب أن يكون اسم العلامة التجارية للمنتج فريداً."
+
+#. module: product_data_feed_brand
+#: model:ir.model,name:product_data_feed_brand.model_product_data_feed_brand
+msgid "Product Brands for Feeds"
+msgstr "العلامات التجارية لمنتجات التغذية"
+
+# =========================================================
+# مصطلحات الفلترة والبحث
+# =========================================================
+
+#. module: product_data_feed_brand
+msgid "Search"
+msgstr "بحث"
+
+#. module: product_data_feed_brand
+msgid "Add a filter"
+msgstr "إضافة عامل تصفية"
+
+#. module: product_data_feed_brand
+msgid "Custom Filter"
+msgstr "تصفية مخصصة"
+
+#. module: product_data_feed_brand
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: product_data_feed_brand
+msgid "Add Custom Group"
+msgstr "إضافة مجموعة مخصصة"
