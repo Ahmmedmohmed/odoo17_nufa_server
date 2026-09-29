@@ -15416,3 +15416,10 @@ msgstr "أو"
 #: model_terms:ir.ui.view,arch_db:hr_custody.view_approve_hr_custody_form
 msgid "products"
 msgstr "المنتجات"
+
+
+#. module: hr_employees_operations_menu
+#: model:ir.ui.menu,name:hr_employees_operations_menu.menu_account_operations
+#: model:ir.ui.menu,name:hr_employees_operations_menu.menu_employees_operations
+msgid "Operations"
+msgstr "العمليات"
