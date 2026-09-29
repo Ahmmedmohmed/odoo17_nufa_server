@@ -7966,3 +7966,69 @@ msgstr "تجميع حسب"
 #. module: pos_stocks
 msgid "Add Custom Group"
 msgstr "إضافة مجموعة مخصصة"
+
+#. module: bi_pos_image_on_orderline
+#: model:ir.model.fields,field_description:bi_pos_image_on_orderline.field_pos_config__allow_image_on_orderline
+#: model:ir.model.fields,field_description:bi_pos_image_on_orderline.field_pos_order__image_not_show
+#: model:ir.model.fields,field_description:bi_pos_image_on_orderline.field_res_config_settings__pos_allow_image_on_orderline
+msgid "Allow Image on Orderline"
+msgstr "السماح بعرض الصورة في بند الطلب"
+
+#. module: bi_pos_image_on_orderline
+#: model:ir.model,name:bi_pos_image_on_orderline.model_res_config_settings
+msgid "Config Settings"
+msgstr "تهيئة الإعدادات "
+
+#. module: bi_pos_image_on_orderline
+#: model_terms:ir.ui.view,arch_db:bi_pos_image_on_orderline.res_config_view_form_pos_img_orderline
+msgid "Image Configuration for Orderline"
+msgstr "تهيئة الصورة لبند الطلب"
+
+#. module: bi_pos_image_on_orderline
+#: model:ir.model,name:bi_pos_image_on_orderline.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr "تهيئة نقطة البيع "
+
+#. module: bi_pos_image_on_orderline
+#: model:ir.model,name:bi_pos_image_on_orderline.model_pos_order_line
+msgid "Point of Sale Order Lines"
+msgstr "بنود طلب نقطة البيع "
+
+#. module: bi_pos_image_on_orderline
+#: model:ir.model,name:bi_pos_image_on_orderline.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "طلبات نقطة البيع "
+
+#. module: bi_pos_image_on_orderline
+#: model:ir.model.fields,field_description:bi_pos_image_on_orderline.field_pos_order_line__line_image
+msgid "Product Image"
+msgstr "صورة المنتج"
+
+#. module: bi_pos_image_on_orderline
+#: model_terms:ir.ui.view,arch_db:bi_pos_image_on_orderline.res_config_view_form_pos_img_orderline
+msgid "Show Image In Orderline"
+msgstr "إظهار الصورة في بند الطلب"
+
+# =========================================================
+# مصطلحات الفلترة والبحث المضافة
+# =========================================================
+
+#. module: bi_pos_image_on_orderline
+msgid "Search"
+msgstr "بحث"
+
+#. module: bi_pos_image_on_orderline
+msgid "Add a filter"
+msgstr "إضافة عامل تصفية"
+
+#. module: bi_pos_image_on_orderline
+msgid "Custom Filter"
+msgstr "تصفية مخصصة"
+
+#. module: bi_pos_image_on_orderline
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: bi_pos_image_on_orderline
+msgid "Add Custom Group"
+msgstr "إضافة مجموعة مخصصة"
