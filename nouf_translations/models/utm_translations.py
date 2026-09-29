@@ -1,12 +1,10 @@
 from odoo import models, api
 
-
 class UtmSource(models.Model):
     _inherit = 'utm.source'
 
     @api.model
     def _update_arabic_sources(self):
-        # قاموس يربط المصدر الإنجليزي بالترجمة العربية
         translations = {
             'Search engine': 'محرك بحث',
             'Lead Recall': 'استدعاء عميل محتمل',
@@ -20,10 +18,9 @@ class UtmSource(models.Model):
         }
 
         for en_name, ar_name in translations.items():
-            # البحث عن المصدر بالاسم الإنجليزي
-            source = self.search([('name', '=', en_name)], limit=1)
+            # إجبار البحث باللغة الإنجليزية لضمان العثور على السجل
+            source = self.with_context(lang='en_US').search([('name', '=', en_name)], limit=1)
             if source:
-                # تحديث حقل الاسم بالترجمة العربية (JSONB)
                 source.update_field_translations('name', {'ar_001': ar_name})
 
 
@@ -32,7 +29,6 @@ class UtmMedium(models.Model):
 
     @api.model
     def _update_arabic_mediums(self):
-        # قاموس يربط الوسط الإنجليزي بالترجمة العربية
         translations = {
             'Banner': 'بانر إعلاني',
             'Direct': 'مباشر',
@@ -47,8 +43,7 @@ class UtmMedium(models.Model):
         }
 
         for en_name, ar_name in translations.items():
-            # البحث عن الوسط بالاسم الإنجليزي
-            medium = self.search([('name', '=', en_name)], limit=1)
+            # إجبار البحث باللغة الإنجليزية لضمان العثور على السجل
+            medium = self.with_context(lang='en_US').search([('name', '=', en_name)], limit=1)
             if medium:
-                # تحديث حقل الاسم بالترجمة العربية (JSONB)
                 medium.update_field_translations('name', {'ar_001': ar_name})

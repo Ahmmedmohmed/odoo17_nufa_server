@@ -11,7 +11,8 @@
         'hr',
         'account',
         'stock',
-        'appointment_management_system'
+        'appointment_management_system',
+        'utm'
     ],
     'data': [
         'data/update_countries_data.xml',
