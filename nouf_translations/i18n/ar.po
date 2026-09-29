@@ -8032,3 +8032,5268 @@ msgstr "تجميع حسب"
 #. module: bi_pos_image_on_orderline
 msgid "Add Custom Group"
 msgstr "إضافة مجموعة مخصصة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout
+msgid "\" category."
+msgstr "\" الفئة."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_4
+msgid ""
+"\"Etiam semper molestie sapien a egestas. In consequat venenatis ex, sit "
+"amet ultrices ante pretium et. Suspendisse nec hendrerit nulla, vitae "
+"convallis risus. Morbi quis tincidunt magna. Sed nec libero.\""
+msgstr ""
+"\"منتج رائع بجودة عالية وخدمة ممتازة، تجربة تسوق لا تُنسى ننصح بها الجميع "
+"بثقة تامة.\""
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_5
+msgid ""
+"\"Fusce sagittis ac orci sed tristique. Suspendisse a lobortis augue. "
+"Maecenas scelerisque varius mattis. Sed auctor fermentum libero, sed "
+"ullamcorper elit laoreet venenatis. Cras ac ex enim. Suspendisse sodales "
+"volutpat.\""
+msgstr ""
+"\"جودة استثنائية وتصميم أنيق، فريق محترف وخدمة عملاء راقية تستحق كل الثقة "
+"والتقدير.\""
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_1
+msgid ""
+"\"Fusce sagittis ac orci sed tristique. Suspendisse a lobortis augue. "
+"Maecenas scelerisque varius mattis. Sed auctor fermentum libero, sed "
+"ullamcorper elit laoreet venenatis. Cras ac ex enim. Suspendisse sodales.\""
+msgstr ""
+"\"جودة استثنائية وتصميم أنيق، فريق محترف وخدمة عملاء راقية تستحق كل "
+"التقدير.\""
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_2
+msgid ""
+"\"Proin a nisi id turpis pharetra fermentum ac eu sem. Morbi ullamcorper mi "
+"quis porttitor interdum. Maecenas luctus varius interdum. Duis commodo "
+"tincidunt velit non bibendum. Phasellus placerat sodales nunc. Proin a nisi "
+"id turpis pharetra fermentum ac eu sem. Morbi ullamcorper mi quis porttitor "
+"interdum.\""
+msgstr ""
+"\"تجربة تسوق مميزة ومنتجات أصلية بأسعار منافسة، التوصيل سريع والدعم متواصل "
+"على مدار الساعة. تجربة تسوق مميزة ومنتجات أصلية بأسعار منافسة.\""
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_5
+msgid ""
+"\"Proin a nisi id turpis pharetra fermentum ac eu sem. Morbi ullamcorper mi "
+"quis porttitor interdum. Maecenas luctus varius interdum. Duis commodo "
+"tincidunt velit non bibendum. Phasellus placerat sodales nunc.\""
+msgstr ""
+"\"تجربة تسوق مميزة ومنتجات أصلية بأسعار منافسة، التوصيل سريع والدعم متواصل "
+"على مدار الساعة.\""
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_item_grid_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_item_grid_2
+msgid "#{rating_stats['total']} Reviews"
+msgstr "#{rating_stats['total']} تقييم"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.discount_percentage
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_item_price
+msgid "% OFF)"
+msgstr "% خصم)"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_product_quick_view
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_product_right_panel
+msgid "%s review"
+msgstr "%s تقييم"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_product_quick_view
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_product_right_panel
+msgid "%s reviews"
+msgstr "%s تقييمات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.cart_sidebar
+msgid "(Clear Cart)"
+msgstr "(تفريغ السلة)"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_6
+msgid "+ Explore Now"
+msgstr "+ استكشف الآن"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_7
+msgid "+ Shop Now"
+msgstr "+ تسوق الآن"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid ", .tp-editor-inner-snippet"
+msgstr ", .tp-editor-inner-snippet"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_2
+msgid "100% Genuine"
+msgstr "100% أصلي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_11
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+msgid "100% Genuine product"
+msgstr "منتج أصلي 100%"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_custom_text
+msgid "100% original guarantee"
+msgstr "ضمان الأصالة 100%"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_10
+msgid "100% secure payment"
+msgstr "دفع آمن 100%"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_4
+msgid "128 GB Harddisk"
+msgstr "قرص صلب 128 جيجابايت"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_10
+msgid "12k+ Customers"
+msgstr "+12 ألف عميل"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "2 Column Deals"
+msgstr "عروض بعمودين"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_10
+msgid "24 X 7 support"
+msgstr "دعم على مدار الساعة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+msgid "24/7 customer support"
+msgstr "دعم العملاء على مدار الساعة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_8
+msgid "24X7 Support"
+msgstr "دعم على مدار الساعة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+msgid ""
+"250 Executive Park Blvd, Suite 3400 <br/> San Francisco CA 94134 <br/>United"
+" States"
+msgstr ""
+"250 بوليفارد إكزكتيف بارك، جناح 3400 <br/> سان فرانسيسكو، كاليفورنيا 94134 "
+"<br/>الولايات المتحدة الأمريكية"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_8
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_shop_offer_2
+msgid "30 Days Return"
+msgstr "إرجاع خلال 30 يومًا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_9
+msgid "30 Days Support"
+msgstr "دعم لمدة 30 يومًا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_4
+msgid "365 x 7"
+msgstr "365 x 7"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_4
+msgid "64 MP Camara"
+msgstr "كاميرا 64 ميجابكسل"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_5
+msgid "<b>$19.00</b>"
+msgstr "<b>$19.00</b>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_5
+msgid "<b>$48.99</b>"
+msgstr "<b>$48.99</b>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_preheader_style_2
+msgid ""
+"<b>First purchase offer: Get 15% off.</b> Code applied at checkout. "
+"Exclusion apply*"
+msgstr ""
+"<b>عرض أول عملية شراء: احصل على خصم 15%.</b> يُطبَّق الكود تلقائيًا عند "
+"الدفع. تُستثنى بعض المنتجات*"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_2
+msgid "<em class=\"text-primary\">Designer</em>"
+msgstr "<em class=\"text-primary\">مصمم</em>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_heading_5
+msgid ""
+"<font class=\"text-gradient\" style=\"background-image: linear-"
+"gradient(135deg, rgb(255, 204, 51) 0%, rgb(226, 51, 255) 100%);\">New "
+"Arrivals</font>"
+msgstr ""
+"<font class=\"text-gradient\" style=\"background-image: linear-"
+"gradient(135deg, rgb(255, 204, 51) 0%, rgb(226, 51, 255) 100%);\">وصل "
+"حديثًا</font>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_9
+msgid "<font class=\"text-white\">+ Explore More</font>"
+msgstr "<font class=\"text-white\">+ استكشف المزيد</font>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_3
+msgid ""
+"<font style=\"font-size: 20px;\">In hac habitasse platea dictumst. Praesent "
+"cursus congue felis, nec pellentesque nulla ornare sed.</font>"
+msgstr ""
+"<font style=\"font-size: 20px;\">نص تجريبي قصير يوضح شكل التصميم النهائي "
+"للموقع بشكل عام.</font>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_3
+msgid "<font style=\"font-size: 36px;\">1200</font>"
+msgstr "<font style=\"font-size: 36px;\">1200</font>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_3
+msgid "<font style=\"font-size: 36px;\">1340</font>"
+msgstr "<font style=\"font-size: 36px;\">1340</font>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_5
+msgid "<font style=\"font-size: 36px;\">156</font>"
+msgstr "<font style=\"font-size: 36px;\">156</font>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_5
+msgid "<font style=\"font-size: 36px;\">200+</font>"
+msgstr "<font style=\"font-size: 36px;\">200+</font>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_3
+msgid "<font style=\"font-size: 36px;\">237</font>"
+msgstr "<font style=\"font-size: 36px;\">237</font>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_5
+msgid "<font style=\"font-size: 36px;\">365 x 7</font>"
+msgstr "<font style=\"font-size: 36px;\">365 x 7</font>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_3
+msgid "<font style=\"font-size: 36px;\">8000</font>"
+msgstr "<font style=\"font-size: 36px;\">8000</font>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_5
+msgid "<font style=\"font-size: 36px;\">97%</font>"
+msgstr "<font style=\"font-size: 36px;\">97%</font>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_4
+msgid "<font style=\"font-size: 48px;\">$12</font>"
+msgstr "<font style=\"font-size: 48px;\">$12</font>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_4
+msgid "<font style=\"font-size: 48px;\">$3</font>"
+msgstr "<font style=\"font-size: 48px;\">$3</font>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_4
+msgid "<font style=\"font-size: 48px;\">$8</font>"
+msgstr "<font style=\"font-size: 48px;\">$8</font>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_variant_selector_dialog
+msgid "<i class=\"dri dri-bolt me-1\"/> Buy Now"
+msgstr "<i class=\"dri dri-bolt me-1\"/> اشترِ الآن"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_variant_selector_dialog
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_product_quick_view
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_product_right_panel
+msgid "<i class=\"dri dri-cart me-1\"/> Add to Cart"
+msgstr "<i class=\"dri dri-cart me-1\"/> أضف إلى السلة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "<i class=\"dri dri-cart pe-1\"/> Set Product"
+msgstr "<i class=\"dri dri-cart pe-1\"/> تعيين المنتج"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_item_grid_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_item_grid_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_item_list_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_mobile_bottombar_component
+msgid "<i class=\"dri dri-cart\"/> Add to Cart"
+msgstr "<i class=\"dri dri-cart\"/> أضف إلى السلة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_compare
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_wishlist
+msgid "<i class=\"dri dri-cart\"/> Add to cart"
+msgstr "<i class=\"dri dri-cart\"/> أضف إلى السلة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_item_actions
+msgid "<i class=\"dri dri-wishlist\" role=\"img\" aria-label=\"Add to wishlist\"/>"
+msgstr "<i class=\"dri dri-wishlist\" role=\"img\" aria-label=\"أضف إلى المفضلة\"/>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_preheader_style_3
+msgid "<i class=\"fa fa-1x fa-fw fa-envelope fa-stack\"/> info@yourcompany.com"
+msgstr "<i class=\"fa fa-1x fa-fw fa-envelope fa-stack\"/> info@yourcompany.com"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_header_style_1
+msgid "<i class=\"fa fa-1x fa-fw fa-envelope\"/> info@yourcompany.example.com"
+msgstr "<i class=\"fa fa-1x fa-fw fa-envelope\"/> info@yourcompany.example.com"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_preheader_style_3
+msgid "<i class=\"fa fa-1x fa-fw fa-phone fa-stack\"/> 1 (650) 691-3277"
+msgstr "<i class=\"fa fa-1x fa-fw fa-phone fa-stack\"/> 1 (650) 691-3277"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_header_style_1
+msgid "<i class=\"fa fa-1x fa-fw fa-phone\"/> 1 (650) 691-3277"
+msgstr "<i class=\"fa fa-1x fa-fw fa-phone\"/> 1 (650) 691-3277"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_item_actions
+msgid "<i class=\"fa fa-angle-down\" role=\"img\" aria-label=\"More options\"/>"
+msgstr "<i class=\"fa fa-angle-down\" role=\"img\" aria-label=\"خيارات أخرى\"/>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_wishlist
+msgid ""
+"<i class=\"fa fa-bell\"/>\n"
+"                                                    We'll notify you once the product is back in stock."
+msgstr ""
+"<i class=\"fa fa-bell\"/>\n"
+"                                                    سنُعلمك فور توفر المنتج في المخزون مجددًا."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_7
+msgid "<i class=\"fa fa-check-circle-o\"/> 100% secure payment"
+msgstr "<i class=\"fa fa-check-circle-o\"/> دفع آمن 100%"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_7
+msgid "<i class=\"fa fa-check-circle-o\"/> 12k+ happy customers"
+msgstr "<i class=\"fa fa-check-circle-o\"/> أكثر من 12 ألف عميل سعيد"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_7
+msgid "<i class=\"fa fa-check-circle-o\"/> 24x7 customer support"
+msgstr "<i class=\"fa fa-check-circle-o\"/> دعم عملاء على مدار الساعة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_7
+msgid "<i class=\"fa fa-check-circle-o\"/> 30 days replacement"
+msgstr "<i class=\"fa fa-check-circle-o\"/> استبدال خلال 30 يومًا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_7
+msgid "<i class=\"fa fa-check-circle-o\"/> Cash on delivery"
+msgstr "<i class=\"fa fa-check-circle-o\"/> الدفع عند الاستلام"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_7
+msgid "<i class=\"fa fa-check-circle-o\"/> Easy returns"
+msgstr "<i class=\"fa fa-check-circle-o\"/> إرجاع سهل"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_7
+msgid "<i class=\"fa fa-check-circle-o\"/> Fast delivery"
+msgstr "<i class=\"fa fa-check-circle-o\"/> توصيل سريع"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_7
+msgid "<i class=\"fa fa-check-circle-o\"/> Quality products"
+msgstr "<i class=\"fa fa-check-circle-o\"/> منتجات عالية الجودة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "<i class=\"fa fa-cogs fa-fw\"/> Manage Documents"
+msgstr "<i class=\"fa fa-cogs fa-fw\"/> إدارة المستندات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_tabs
+msgid "<i class=\"fa fa-download\"/> Download"
+msgstr "<i class=\"fa fa-download\"/> تحميل"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_team_3
+msgid "<i class=\"fa fa-envelope me-1\"/> information@mail.com"
+msgstr "<i class=\"fa fa-envelope me-1\"/> information@mail.com"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_12
+msgid "<i class=\"fa fa-exchange me-2\"/> Free returns"
+msgstr "<i class=\"fa fa-exchange me-2\"/> إرجاع مجاني"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_mobile_bottombar_component
+msgid ""
+"<i class=\"fa fa-filter text-primary\"/> <span class=\"text-body\"> Filters "
+"</span>"
+msgstr ""
+"<i class=\"fa fa-filter text-primary\"/> <span class=\"text-body\"> التصفية "
+"</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "<i class=\"fa fa-fw fa-plus pe-1\"/> Add hotspot"
+msgstr "<i class=\"fa fa-fw fa-plus pe-1\"/> إضافة نقطة تفاعلية"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_product_quick_view
+msgid "<i class=\"fa fa-info-circle me-1\"/> Full Product Information"
+msgstr "<i class=\"fa fa-info-circle me-1\"/> معلومات كاملة عن المنتج"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_12
+msgid "<i class=\"fa fa-life-ring me-2\"/> Free support"
+msgstr "<i class=\"fa fa-life-ring me-2\"/> دعم مجاني"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_team_3
+msgid "<i class=\"fa fa-phone me-1\"/> +12 345 6789 101"
+msgstr "<i class=\"fa fa-phone me-1\"/> +12 345 6789 101"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout
+msgid "<i class=\"fa fa-refresh me-1\"/> Load more"
+msgstr "<i class=\"fa fa-refresh me-1\"/> تحميل المزيد"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "<i class=\"fa fa-shopping-cart fa-fw\"/> Manage Snippet"
+msgstr "<i class=\"fa fa-shopping-cart fa-fw\"/> إدارة العنصر"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_wishlist
+msgid ""
+"<i class=\"fa fa-times text-danger\"/>\n"
+"                                                            Invalid email"
+msgstr ""
+"<i class=\"fa fa-times text-danger\"/>\n"
+"                                                            بريد إلكتروني غير صالح"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_12
+msgid "<i class=\"fa fa-truck me-2\"/> Free Shipping for order over $200"
+msgstr "<i class=\"fa fa-truck me-2\"/> شحن مجاني للطلبات أكثر من 200$"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.cart_sidebar
+msgid ""
+"<i class=\"fa fa-truck\"/> You are eligible for <strong>free "
+"shipping!</strong>"
+msgstr ""
+"<i class=\"fa fa-truck\"/> أنت مؤهل للحصول على <strong>شحن مجاني!</strong>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_tp_documents_snippet
+msgid "<i class=\"fa fa-warning\"/> External Documents will not work"
+msgstr "<i class=\"fa fa-warning\"/> المستندات الخارجية لن تعمل"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_preheader_style_3
+msgid ""
+"<small class=\"d-flex align-items-center\">\n"
+"                                    <i class=\"fa fa-1x fa-fw fa-truck fa-stack me-1\"/>\n"
+"                                    Free Delivery\n"
+"                                </small>\n"
+"                                <small class=\"d-flex align-items-center\">\n"
+"                                    <i class=\"fa fa-1x fa-fw fa-support fa-stack me-1\"/>\n"
+"                                    24 x 7 Support\n"
+"                                </small>\n"
+"                                <small class=\"d-flex align-items-center\">\n"
+"                                    <i class=\"fa fa-1x fa-fw fa-refresh fa-stack me-1\"/>\n"
+"                                    30 Days Return\n"
+"                                </small>"
+msgstr ""
+"<small class=\"d-flex align-items-center\">\n"
+"                                    <i class=\"fa fa-1x fa-fw fa-truck fa-stack me-1\"/>\n"
+"                                    توصيل مجاني\n"
+"                                </small>\n"
+"                                <small class=\"d-flex align-items-center\">\n"
+"                                    <i class=\"fa fa-1x fa-fw fa-support fa-stack me-1\"/>\n"
+"                                    دعم على مدار الساعة\n"
+"                                </small>\n"
+"                                <small class=\"d-flex align-items-center\">\n"
+"                                    <i class=\"fa fa-1x fa-fw fa-refresh fa-stack me-1\"/>\n"
+"                                    إرجاع خلال 30 يومًا\n"
+"                                </small>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_subscribe_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_subscribe_4
+msgid ""
+"<small class=\"s_social_media_title text-muted d-none\"><b>Follow "
+"us</b></small>"
+msgstr ""
+"<small class=\"s_social_media_title text-muted "
+"d-none\"><b>تابعنا</b></small>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_wishlist
+msgid "<small class=\"text-danger\">Temporarily out of stock</small>"
+msgstr "<small class=\"text-danger\">غير متوفر مؤقتًا</small>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_wishlist
+msgid ""
+"<small>\n"
+"                                                        <i class=\"fa fa-envelope-o\"/>\n"
+"                                                        Get notified when back in stock\n"
+"                                                    </small>"
+msgstr ""
+"<small>\n"
+"                                                        <i class=\"fa fa-envelope-o\"/>\n"
+"                                                        أعلمني عند توفره مجددًا\n"
+"                                                    </small>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_wishlist
+msgid ""
+"<small>\n"
+"                                                    <i class=\"dri dri-compare\"/> Add to compare\n"
+"                                                </small>"
+msgstr ""
+"<small>\n"
+"                                                    <i class=\"dri dri-compare\"/> أضف للمقارنة\n"
+"                                                </small>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+msgid ""
+"<small> * Subscribe to our newsletter to receive early discount offers and "
+"new products info. </small>"
+msgstr ""
+"<small> * اشترك في نشرتنا البريدية لتصلك عروض الخصم المبكرة وأحدث المنتجات. "
+"</small>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.cart_sidebar
+msgid "<small>Proceed <i class=\"fa fa-angle-right ms-1\"/></small>"
+msgstr "<small>متابعة <i class=\"fa fa-angle-right ms-1\"/></small>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_heading_3
+msgid "<span class=\"badge text-bg-primary rounded-pill\">Discover</span>"
+msgstr "<span class=\"badge text-bg-primary rounded-pill\">اكتشف</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout
+msgid ""
+"<span class=\"d-inline-block text-bg-primary px-2 py-1\"><i class=\"fa fa-"
+"filter\"/> </span> <strong class=\"d-inline-block ps-1 pe-2\">Show "
+"Filters</strong>"
+msgstr ""
+"<span class=\"d-inline-block text-bg-primary px-2 py-1\"><i class=\"fa fa-"
+"filter\"/> </span> <strong class=\"d-inline-block ps-1 pe-2\">إظهار "
+"التصفية</strong>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout
+msgid "<span class=\"d-none d-lg-inline h6 me-1\">Sort By :</span>"
+msgstr "<span class=\"d-none d-lg-inline h6 me-1\">الترتيب حسب:</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product
+msgid "<span class=\"dri dri-compare me-2\"/>Compare"
+msgstr "<span class=\"dri dri-compare me-2\"/>مقارنة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_2
+msgid ""
+"<span class=\"fa fa-chevron-left tp-icon-center-2 dr-p-icon border-0 shadow rounded-circle\"/>\n"
+"                    <span class=\"visually-hidden\">Previous</span>"
+msgstr ""
+"<span class=\"fa fa-chevron-left tp-icon-center-2 dr-p-icon border-0 shadow rounded-circle\"/>\n"
+"                    <span class=\"visually-hidden\">السابق</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_4
+msgid ""
+"<span class=\"fa fa-chevron-left\"/>\n"
+"                    <span class=\"visually-hidden\">Previous</span>"
+msgstr ""
+"<span class=\"fa fa-chevron-left\"/>\n"
+"                    <span class=\"visually-hidden\">السابق</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_2
+msgid ""
+"<span class=\"fa fa-chevron-right tp-icon-center-2 dr-p-icon border-0 shadow rounded-circle\"/>\n"
+"                    <span class=\"visually-hidden\">Next</span>"
+msgstr ""
+"<span class=\"fa fa-chevron-right tp-icon-center-2 dr-p-icon border-0 shadow rounded-circle\"/>\n"
+"                    <span class=\"visually-hidden\">التالي</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_4
+msgid ""
+"<span class=\"fa fa-chevron-right\"/>\n"
+"                    <span class=\"visually-hidden\">Next</span>"
+msgstr ""
+"<span class=\"fa fa-chevron-right\"/>\n"
+"                    <span class=\"visually-hidden\">التالي</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_tabs
+msgid "<span class=\"fa fa-comments-o me-1\"/> Reviews &amp; Rating"
+msgstr "<span class=\"fa fa-comments-o me-1\"/> التقييمات والمراجعات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_team_2
+msgid "<span class=\"fa fa-envelope p-1\"/> information@mail.com"
+msgstr "<span class=\"fa fa-envelope p-1\"/> information@mail.com"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_tabs
+msgid "<span class=\"fa fa-file-pdf-o me-1\"/> Documents"
+msgstr "<span class=\"fa fa-file-pdf-o me-1\"/> المستندات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_tabs
+msgid "<span class=\"fa fa-file-text-o me-1\"/> Description"
+msgstr "<span class=\"fa fa-file-text-o me-1\"/> الوصف"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_team_2
+msgid "<span class=\"fa fa-phone p-1\"/> +12 345 6789 101"
+msgstr "<span class=\"fa fa-phone p-1\"/> +12 345 6789 101"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_tabs
+msgid "<span class=\"fa fa-sliders me-1\"/> Specifications"
+msgstr "<span class=\"fa fa-sliders me-1\"/> المواصفات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout
+msgid "<span class=\"h6 me-1\">Pricelist :</span>"
+msgstr "<span class=\"h6 me-1\">قائمة الأسعار:</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_header_mobile
+msgid "<span class=\"ms-2\">Shop By Categories</span>"
+msgstr "<span class=\"ms-2\">تسوق حسب الفئات</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.dynamic_filter_template_blog_post_prime_layout_1
+msgid "<span class=\"mx-1\">Posted by</span>"
+msgstr "<span class=\"mx-1\">بواسطة</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_header_mobile
+msgid "<span class=\"mx-1\">•</span> Register"
+msgstr "<span class=\"mx-1\">•</span> تسجيل"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "<span class=\"mx-2 o_wsale_ppr_by\">by</span>"
+msgstr "<span class=\"mx-2 o_wsale_ppr_by\">بواسطة</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.dynamic_filter_template_blog_post_prime_layout_1
+msgid "<span class=\"mx-2\">•</span>"
+msgstr "<span class=\"mx-2\">•</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_3
+msgid "<span class=\"p-1 fa fa-check text-o-color-1\"/> Cras justo odio"
+msgstr "<span class=\"p-1 fa fa-check text-o-color-1\"/> ميزة رائعة للمنتج"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_3
+msgid "<span class=\"p-1 fa fa-check text-o-color-1\"/> Dapibus ac facilisis"
+msgstr "<span class=\"p-1 fa fa-check text-o-color-1\"/> جودة تصنيع عالية"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_3
+msgid "<span class=\"p-1 fa fa-check text-o-color-1\"/> Vestibulum at eros"
+msgstr "<span class=\"p-1 fa fa-check text-o-color-1\"/> ضمان الجودة والأداء"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_4
+msgid "<span class=\"p-1 fa fa-check\"/> <strong>24 x Support</strong>"
+msgstr "<span class=\"p-1 fa fa-check\"/> <strong>دعم على مدار الساعة</strong>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_4
+msgid "<span class=\"p-1 fa fa-check\"/> <strong>50 GB</strong> Disk Space"
+msgstr ""
+"<span class=\"p-1 fa fa-check\"/> <strong>50 جيجابايت</strong> مساحة تخزين"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_4
+msgid "<span class=\"p-1 fa fa-check\"/> <strong>Email Support</strong>"
+msgstr ""
+"<span class=\"p-1 fa fa-check\"/> <strong>دعم عبر البريد الإلكتروني</strong>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_4
+msgid ""
+"<span class=\"p-1 fa fa-check\"/> <strong>Unlimited</strong> Email Addresses"
+msgstr ""
+"<span class=\"p-1 fa fa-check\"/> <strong>غير محدود</strong> من عناوين "
+"البريد الإلكتروني"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_4
+msgid "<span class=\"p-1 fa fa-check\"/> <strong>Unlimited</strong> SQL Database"
+msgstr ""
+"<span class=\"p-1 fa fa-check\"/> <strong>غير محدودة</strong> من قواعد "
+"بيانات SQL"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_1
+msgid "<span class=\"p-1 fa fa-check\"/> Cras justo odio"
+msgstr "<span class=\"p-1 fa fa-check\"/> ميزة رائعة للمنتج"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_1
+msgid "<span class=\"p-1 fa fa-check\"/> Dapibus ac facilisis"
+msgstr "<span class=\"p-1 fa fa-check\"/> جودة تصنيع عالية"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_1
+msgid "<span class=\"p-1 fa fa-check\"/> Vestibulum at eros"
+msgstr "<span class=\"p-1 fa fa-check\"/> ضمان الجودة والأداء"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_3
+msgid "<span class=\"p-1 fa fa-times text-o-color-1\"/> Cras justo odio"
+msgstr "<span class=\"p-1 fa fa-times text-o-color-1\"/> ميزة رائعة للمنتج"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_3
+msgid "<span class=\"p-1 fa fa-times text-o-color-1\"/> Dapibus ac facilisis"
+msgstr "<span class=\"p-1 fa fa-times text-o-color-1\"/> جودة تصنيع عالية"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_3
+msgid "<span class=\"p-1 fa fa-times text-o-color-1\"/> Vestibulum at eros"
+msgstr "<span class=\"p-1 fa fa-times text-o-color-1\"/> ضمان الجودة والأداء"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_4
+msgid "<span class=\"p-1 fa fa-times\"/> <strong>24 x Support</strong>"
+msgstr "<span class=\"p-1 fa fa-times\"/> <strong>دعم على مدار الساعة</strong>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_4
+msgid "<span class=\"p-1 fa fa-times\"/> <strong>Email Support</strong>"
+msgstr ""
+"<span class=\"p-1 fa fa-times\"/> <strong>دعم عبر البريد الإلكتروني</strong>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_1
+msgid "<span class=\"p-1 fa fa-times\"/> Cras justo odio"
+msgstr "<span class=\"p-1 fa fa-times\"/> ميزة رائعة للمنتج"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_1
+msgid "<span class=\"p-1 fa fa-times\"/> Dapibus ac facilisis"
+msgstr "<span class=\"p-1 fa fa-times\"/> جودة تصنيع عالية"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_1
+msgid "<span class=\"p-1 fa fa-times\"/> Vestibulum at eros"
+msgstr "<span class=\"p-1 fa fa-times\"/> ضمان الجودة والأداء"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_5
+msgid ""
+"<span class=\"s_badge badge text-bg-primary o_default_snippet_text py-1 m-0 px-2\" style=\"border-radius: 50rem;\" data-name=\"Badge\">\n"
+"                                <i class=\"fa fa-1x fa-fw fa-star-o o_not-animable m-0\"/> BEST\n"
+"                            </span>"
+msgstr ""
+"<span class=\"s_badge badge text-bg-primary o_default_snippet_text py-1 m-0 px-2\" style=\"border-radius: 50rem;\" data-name=\"Badge\">\n"
+"                                <i class=\"fa fa-1x fa-fw fa-star-o o_not-animable m-0\"/> الأفضل\n"
+"                            </span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_b2b_price_label
+msgid "<span class=\"text-muted\"> to see price</span>"
+msgstr "<span class=\"text-muted\"> لرؤية السعر</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.selected_attributes
+msgid ""
+"<span class=\"tp-attribute d-flex align-items-center cursor-pointer\" data-id=\"hide_out_of_stock\">\n"
+"                            <span>Hide out of stock</span>\n"
+"                            <i class=\"dri dri-cross-l ms-1 tp-attribute-remove\"/>\n"
+"                        </span>"
+msgstr ""
+"<span class=\"tp-attribute d-flex align-items-center cursor-pointer\" data-id=\"hide_out_of_stock\">\n"
+"                            <span>إخفاء المنتجات غير المتوفرة</span>\n"
+"                            <i class=\"dri dri-cross-l ms-1 tp-attribute-remove\"/>\n"
+"                        </span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_7
+msgid ""
+"<span class=\"tp-offer-label-md\">%</span>\n"
+"                                <span class=\"d-block text-uppercase tp-offer-label-sm\">off</span>"
+msgstr ""
+"<span class=\"tp-offer-label-md\">%</span>\n"
+"                                <span class=\"d-block text-uppercase tp-offer-label-sm\">خصم</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_tp_documents_snippet
+msgid ""
+"<span class=\"tp_add_documents fw-bold\" style=\"cursor: pointer;\"><i "
+"class=\"fa fa-plus-circle\"/> Add Documents</span>"
+msgstr ""
+"<span class=\"tp_add_documents fw-bold\" style=\"cursor: pointer;\"><i "
+"class=\"fa fa-plus-circle\"/> إضافة مستندات</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout_filters
+msgid "<span> &amp; above</span>"
+msgstr "<span> وأكثر</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.selected_attributes
+msgid ""
+"<span>&amp; above</span>\n"
+"                            <i class=\"dri dri-cross-l ms-1 tp-attribute-remove\"/>"
+msgstr ""
+"<span>وأكثر</span>\n"
+"                            <i class=\"dri dri-cross-l ms-1 tp-attribute-remove\"/>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_3
+msgid "<span>Apple Ltd.</span>"
+msgstr "<span>Apple Ltd.</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout_filters
+msgid "<span>Availability</span>"
+msgstr "<span>التوفر</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.all_brands
+msgid "<span>Brands</span>"
+msgstr "<span>الماركات</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout_filters
+msgid "<span>Categories</span>"
+msgstr "<span>الفئات</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.selected_attributes
+msgid ""
+"<span>Clear Filters</span>\n"
+"                            <i class=\"dri dri-cross-l ms-1 tp-attribute-remove\"/>"
+msgstr ""
+"<span>مسح عوامل التصفية</span>\n"
+"                            <i class=\"dri dri-cross-l ms-1 tp-attribute-remove\"/>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_5
+msgid "<span>Designer</span>"
+msgstr "<span>مصمم</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_5
+msgid "<span>Developer</span>"
+msgstr "<span>مطوّر</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_3
+msgid "<span>Droggol</span>"
+msgstr "<span>Droggol</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_4
+msgid "<span>Full battery in no time</span>"
+msgstr "<span>شحن كامل في وقت قياسي</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_3
+msgid "<span>Google Inc.</span>"
+msgstr "<span>Google Inc.</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_4
+msgid "<span>More content</span>"
+msgstr "<span>المزيد من المحتوى</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_4
+msgid "<span>Powerful Performance</span>"
+msgstr "<span>أداء قوي</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout_filters
+msgid "<span>Price</span>"
+msgstr "<span>السعر</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout_filters
+msgid "<span>Rating</span>"
+msgstr "<span>التقييم</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout_filters
+msgid "<span>Tags</span>"
+msgstr "<span>الوسوم</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_4
+msgid "<span>Tester</span>"
+msgstr "<span>مختبِر</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_4
+msgid "<span>With super Macro Lens</span>"
+msgstr "<span>بعدسة ماكرو فائقة</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_header_style_3
+msgid "<strong>CONTACT US</strong>"
+msgstr "<strong>تواصل معنا</strong>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_header_style_3
+msgid "<strong>SPECIAL OFFER</strong>"
+msgstr "<strong>عرض خاص</strong>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_product_quick_view
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_product_right_panel
+msgid "A short description that will also appear on documents."
+msgstr "وصف قصير سيظهر أيضًا في المستندات."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "ADD HOTSPOT"
+msgstr "إضافة نقطة تفاعلية"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_10
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_8
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_9
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_preheader_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_preheader_style_6
+msgid "About Us"
+msgstr "من نحن"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+msgid "About us"
+msgstr "من نحن"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_heading_1
+msgid "Access wide range of products"
+msgstr "تصفح مجموعة واسعة من المنتجات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+msgid "Accessorie"
+msgstr "إكسسوار"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_13
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+msgid "Accessories"
+msgstr "إكسسوارات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product
+msgid "Accessory Products"
+msgstr "منتجات الإكسسوارات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.component_account_info
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_mobile_bottombar_component
+msgid "Account"
+msgstr "الحساب"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+msgid "Account &amp; other info"
+msgstr "الحساب ومعلومات أخرى"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.component_account_info
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_mobile_bottombar_component
+msgid "Account Info"
+msgstr "معلومات الحساب"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_13
+msgid "Add finishing touch to your outfit"
+msgstr "أضف لمسة أخيرة لإطلالتك"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.cart_sidebar
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_variant_selector_dialog
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_product_quick_view
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_product_right_panel
+msgid "Add one"
+msgstr "زيادة واحدة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_wishlist
+msgid "Add product to my cart but keep it in my wishlist"
+msgstr "أضف المنتج إلى سلتي مع الاحتفاظ به في قائمة المفضلة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_item_actions
+msgid "Add to Compare"
+msgstr "أضف للمقارنة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_item_actions
+msgid "Add to Wishlist"
+msgstr "أضف إلى المفضلة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.optional_product_items
+msgid "Add to cart"
+msgstr "أضف إلى السلة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_6
+msgid "Address"
+msgstr "العنوان"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Adjust Height/Width"
+msgstr "ضبط الارتفاع/العرض"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Advance Snippet"
+msgstr "عنصر متقدم"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_1
+msgid "Advanced"
+msgstr "متقدم"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_5
+msgid "Advanced Pass"
+msgstr "الباقة المتقدمة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_3
+msgid ""
+"Aenean varius ligula vel augue condimentum scelerisque. In a urna at tortor "
+"tincidunt gravida sit amet vel eros. Integer et."
+msgstr "محتوى تجريبي يوضح شكل الفقرة النهائية على الموقع بشكل عام."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_4
+msgid ""
+"Aenean varius ligula vel augue condimentum scelerisque. In a urna at tortor "
+"tincidunt gravida sit."
+msgstr "محتوى تجريبي يوضح شكل الفقرة النهائية على الموقع."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_heading_options
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_tp_countdown_options
+msgid "Alignment"
+msgstr "المحاذاة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.all_brands
+msgid "All"
+msgstr "الكل"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_category_pills
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout_filters
+msgid "All Products"
+msgstr "كل المنتجات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_10
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_11
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+msgid "All oders over $100"
+msgstr "كل الطلبات أكثر من 100$"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout
+msgid "All products are loaded."
+msgstr "تم تحميل كل المنتجات."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+msgid "All services"
+msgstr "كل الخدمات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_8
+msgid ""
+"All the lorem ipsum generators on the Internet<br/> tend to repeat "
+"predefined chunks as necessary."
+msgstr ""
+"تميل جميع مولّدات النصوص التجريبية على الإنترنت<br/> إلى تكرار مقاطع محددة "
+"مسبقًا حسب الحاجة."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_9
+msgid "Amazing beauty products"
+msgstr "منتجات تجميل رائعة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_10
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+msgid "American Express"
+msgstr "American Express"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+msgid "Apple"
+msgstr "Apple"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.cart_sidebar
+msgid "Apply promo code"
+msgstr "تطبيق كود الخصم"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_coming_soon_1
+msgid "Are you ready?"
+msgstr "هل أنت مستعد؟"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_tp_countdown
+msgid "As promised, we will offer surprise coupon for our next sale."
+msgstr "كما وعدنا، سنقدم كوبون خصم مفاجئ في تخفيضاتنا القادمة."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+msgid "Athletic Apparel"
+msgstr "ملابس رياضية"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Attributes"
+msgstr "الخصائص"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_5
+msgid "Author Image 01"
+msgstr "صورة الكاتب 01"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_5
+msgid "Author Image 02"
+msgstr "صورة الكاتب 02"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_4
+msgid "Author Image 03"
+msgstr "صورة الكاتب 03"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_preheader_style_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_preheader_style_5
+msgid "Available 24/7 at <b>(001) 123-4567</b>"
+msgstr "متاحون على مدار الساعة على <b>(001) 123-4567</b>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.configure_optional_products
+msgid "Available Options"
+msgstr "الخيارات المتاحة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product
+msgid "Back to products"
+msgstr "العودة إلى المنتجات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Back to top button"
+msgstr "زر العودة للأعلى"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+msgid "Bags"
+msgstr "حقائب"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Banner"
+msgstr "بانر"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Banner - 1"
+msgstr "بانر - 1"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Banner - 10"
+msgstr "بانر - 10"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Banner - 11"
+msgstr "بانر - 11"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Banner - 12"
+msgstr "بانر - 12"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Banner - 13"
+msgstr "بانر - 13"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Banner - 14"
+msgstr "بانر - 14"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Banner - 15"
+msgstr "بانر - 15"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Banner - 2"
+msgstr "بانر - 2"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Banner - 3"
+msgstr "بانر - 3"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Banner - 4"
+msgstr "بانر - 4"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Banner - 5"
+msgstr "بانر - 5"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Banner - 6"
+msgstr "بانر - 6"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Banner - 7"
+msgstr "بانر - 7"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Banner - 8"
+msgstr "بانر - 8"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Banner - 9"
+msgstr "بانر - 9"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_7
+msgid "Banner Brand Image 01"
+msgstr "صورة بانر العلامة التجارية 01"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_7
+msgid "Banner Brand Image 02"
+msgstr "صورة بانر العلامة التجارية 02"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_7
+msgid "Banner Brand Image 03"
+msgstr "صورة بانر العلامة التجارية 03"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_11
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_12
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_13
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_15
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_7
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_8
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_9
+msgid "Banner Image 01"
+msgstr "صورة البانر 01"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_11
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_12
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_13
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_7
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_8
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_9
+msgid "Banner Image 02"
+msgstr "صورة البانر 02"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_13
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_7
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_8
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_9
+msgid "Banner Image 03"
+msgstr "صورة البانر 03"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_13
+msgid "Banner Image 04"
+msgstr "صورة البانر 04"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_4
+msgid "Basic"
+msgstr "أساسي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_5
+msgid "Basic Pass"
+msgstr "الباقة الأساسية"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_subscribe_3
+msgid "Be the first to find out all the latest news, products and trends."
+msgstr "كن أول من يعرف أحدث الأخبار والمنتجات والصيحات."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_3
+msgid "Beginner"
+msgstr "مبتدئ"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+msgid "Belts"
+msgstr "أحزمة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_5
+msgid "Best Products In Every Categories."
+msgstr "أفضل المنتجات في كل الفئات."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_shop_offer_5
+msgid "Best Quality"
+msgstr "أفضل جودة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+msgid "Blog"
+msgstr "المدونة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_6
+msgid "Bluetooth Headset"
+msgstr "سماعة بلوتوث"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_heading_options
+msgid "Bold"
+msgstr "عريض"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_14
+msgid "Brand New Shoes On Sale"
+msgstr "أحذية جديدة كليًا معروضة للبيع"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.all_brands
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+msgid "Brands"
+msgstr "الماركات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_4
+msgid "Business"
+msgstr "أعمال"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Button"
+msgstr "زر"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Button Text"
+msgstr "نص الزر"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_call_to_action_5
+msgid "CTA Image 01"
+msgstr "صورة الدعوة لاتخاذ إجراء 01"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Call To Action"
+msgstr "دعوة لاتخاذ إجراء"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Call To Action - 1"
+msgstr "دعوة لاتخاذ إجراء - 1"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Call To Action - 2"
+msgstr "دعوة لاتخاذ إجراء - 2"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Call To Action - 3"
+msgstr "دعوة لاتخاذ إجراء - 3"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Call To Action - 4"
+msgstr "دعوة لاتخاذ إجراء - 4"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Call To Action - 5"
+msgstr "دعوة لاتخاذ إجراء - 5"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_header_style_3
+msgid "Call Us"
+msgstr "اتصل بنا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+msgid "Camera"
+msgstr "كاميرا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+msgid "Careers"
+msgstr "الوظائف"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_10
+msgid "Cart"
+msgstr "السلة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_category_pills
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+msgid "Categories"
+msgstr "الفئات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Categories & Brands"
+msgstr "الفئات والماركات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Categories - Info"
+msgstr "الفئات - معلومات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Categories Listing"
+msgstr "قائمة الفئات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.page_sidebars
+msgid "Change Password"
+msgstr "تغيير كلمة المرور"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_4
+msgid "Children"
+msgstr "أطفال"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_4
+msgid "Clean code"
+msgstr "كود برمجي نظيف"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout
+msgid ""
+"Click<i>'New'</i> in the top-right corner to create your first product."
+msgstr "اضغط على <i>'جديد'</i> في الزاوية العلوية اليمنى لإنشاء أول منتج لك."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_clients_4
+msgid "Client Image #{client}"
+msgstr "صورة العميل #{client}"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_clients_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_clients_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_clients_3
+msgid "Client Image #{number}"
+msgstr "صورة العميل #{number}"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Clients"
+msgstr "العملاء"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Clients - 1"
+msgstr "العملاء - 1"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Clients - 2"
+msgstr "العملاء - 2"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Clients - 3"
+msgstr "العملاء - 3"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Clients - 4"
+msgstr "العملاء - 4"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+msgid "Clogs &amp; Mules"
+msgstr "الأحذية المفتوحة والكلوج"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.cart_sidebar
+#: model_terms:theme.ir.ui.view,arch:theme_prime.page_sidebars
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_variant_selector_dialog
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_header_mobile
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_product_quick_view
+msgid "Close"
+msgstr "إغلاق"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Collapse Category Recursive"
+msgstr "طي الفئات الفرعية بشكل متداخل"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_4
+msgid "Collections"
+msgstr "المجموعات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Color"
+msgstr "اللون"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Colors"
+msgstr "الألوان"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Coming Soon"
+msgstr "قريبًا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Coming Soon - 1"
+msgstr "قريبًا - 1"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Coming Soon - 2"
+msgstr "قريبًا - 2"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_coming_soon_2
+msgid "Coming Soon..."
+msgstr "قريبًا..."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+msgid "Community"
+msgstr "المجتمع"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_item_actions
+msgid "Compare"
+msgstr "مقارنة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_compare
+msgid "Comparison"
+msgstr "المقارنة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_7
+msgid "Complimentary Gift"
+msgstr "هدية مجانية"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_8
+msgid ""
+"Consectetur, from a Lorem Ipsum passage, and<br/> going through the cites of"
+" the word in classical."
+msgstr "نص تجريبي مقتبس من مقطع نصي شهير<br/> يُستخدم عادة كحشو للتصميم."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_compare
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_variant_selector_dialog
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_wishlist
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_10
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_8
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_9
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_preheader_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_preheader_style_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_product_quick_view
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_product_right_panel
+msgid "Contact Us"
+msgstr "تواصل معنا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.404
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+msgid "Contact us"
+msgstr "تواصل معنا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_call_to_action_2
+msgid "Contact us at"
+msgstr "تواصل معنا على"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+msgid "Contacts"
+msgstr "جهات الاتصال"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Content - Menus"
+msgstr "المحتوى - القوائم"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.dynamic_filter_template_blog_post_prime_layout_1
+msgid "Continue Reading"
+msgstr "متابعة القراءة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_10
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_8
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_9
+msgid "Copyright &amp;copy; MyCompany"
+msgstr "جميع الحقوق محفوظة &amp;copy; شركتي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Countdown"
+msgstr "العد التنازلي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Cover"
+msgstr "غلاف"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Cover - 1"
+msgstr "غلاف - 1"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Cover - 2"
+msgstr "غلاف - 2"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Cover - 3"
+msgstr "غلاف - 3"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Cover - 4"
+msgstr "غلاف - 4"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Cover - 5"
+msgstr "غلاف - 5"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_1
+msgid "Cover Brand Image 01"
+msgstr "صورة غلاف العلامة التجارية 01"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_d_single_product_cover_snippet
+msgid "Cover Image 01"
+msgstr "صورة الغلاف 01"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_1
+msgid "Cover Image 02"
+msgstr "صورة الغلاف 02"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_2
+msgid "Cras in feugiat eros"
+msgstr "جودة عالية تدوم طويلًا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_7
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_8
+msgid "Creative ideas"
+msgstr "أفكار إبداعية"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+msgid "Customer Care"
+msgstr "رعاية العملاء"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_8
+msgid "Customer Satisfaction"
+msgstr "رضا العملاء"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_11
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+msgid "Customer Support"
+msgstr "دعم العملاء"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_5
+msgid "Customers"
+msgstr "العملاء"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_1
+msgid "Dapibus ac facilisis."
+msgstr "جودة تصنيع عالية."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_tp_countdown_options
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Dark"
+msgstr "داكن"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Default Sort"
+msgstr "الترتيب الافتراضي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+msgid "Delivery data"
+msgstr "بيانات التوصيل"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+msgid "Delivery info"
+msgstr "معلومات التوصيل"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_13
+msgid "Denim Jeans"
+msgstr "جينز دينيم"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product
+msgid "Details <i class=\"fa fa-angle-right\"/>"
+msgstr "التفاصيل <i class=\"fa fa-angle-right\"/>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_2
+msgid "Diffrent content looks good so not repeating the content here."
+msgstr "محتوى مختلف يبدو جيدًا، لذا لن نكرره هنا."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_5
+msgid ""
+"Diffrent content looks good so not repeating the content here. Diffrent "
+"content looks good so not repeating the content here."
+msgstr ""
+"محتوى مختلف يبدو جيدًا، لذا لن نكرره هنا. محتوى مختلف يبدو جيدًا، لذا لن "
+"نكرره هنا."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_10
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+msgid "Discover"
+msgstr "اكتشف"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_3
+msgid "Discover More"
+msgstr "اكتشف المزيد"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_13
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_5
+msgid "Discover Now"
+msgstr "اكتشف الآن"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Documents"
+msgstr "المستندات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_subscribe_4
+msgid "Don't miss out. Stay Informed! Monthly Tips, Tracks, and Discounts."
+msgstr "لا تفوّت الفرصة. ابقَ على اطلاع! نصائح وعروض وخصومات شهرية."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_4
+msgid "Donec Int"
+msgstr "دونيك إنت"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_heading_options
+msgid "Dot Position"
+msgstr "موضع النقطة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+msgid "Download our apps"
+msgstr "حمّل تطبيقاتنا"
+
+#. module: theme_prime
+#: model:ir.model.fields,field_description:theme_prime.field_product_product__dr_has_discount
+#: model:ir.model.fields,field_description:theme_prime.field_product_template__dr_has_discount
+msgid "Dr Has Discount"
+msgstr "يوجد خصم متاح"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout
+msgid "Drag building blocks here to customize the header for \""
+msgstr "اسحب عناصر البناء هنا لتخصيص الترويسة لـ \""
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout
+msgid "Drag offer blocks here to customize"
+msgstr "اسحب عناصر العرض هنا للتخصيص"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_tp_countdown_options
+msgid "Due Date"
+msgstr "تاريخ الاستحقاق"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Dynamic"
+msgstr "ديناميكي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Dynamic Snippet"
+msgstr "عنصر ديناميكي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_heading_2
+msgid "EXPLORE GREAT RANGE OF PRODUCTS"
+msgstr "استكشف مجموعة رائعة من المنتجات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_11
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+msgid "Easy Returns"
+msgstr "إرجاع سهل"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.page_sidebars
+msgid "Edit Profile"
+msgstr "تعديل الملف الشخصي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Elements"
+msgstr "العناصر"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_6
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Enable Lazy Loading"
+msgstr "تفعيل التحميل الكسول"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Enable hotspot"
+msgstr "تفعيل النقطة التفاعلية"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_10
+msgid "Enter your email below to know latest collection and product launch."
+msgstr "أدخل بريدك الإلكتروني أدناه لمعرفة أحدث المجموعات وإطلاق المنتجات."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_7
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_8
+msgid "Excellent features"
+msgstr "ميزات ممتازة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_2
+msgid "Expert"
+msgstr "خبير"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_4
+msgid "Extensive documentation"
+msgstr "توثيق شامل"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_preheader_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_preheader_style_6
+msgid "FAQ"
+msgstr "الأسئلة الشائعة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.filter_attribute_range
+msgid "FILTER"
+msgstr "تصفية"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_9
+msgid "FREE RETURNS"
+msgstr "إرجاع مجاني"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_9
+msgid "FREE SHIPPING"
+msgstr "شحن مجاني"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_9
+msgid "FREE SUPPORT"
+msgstr "دعم مجاني"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_gallery_4
+msgid "Fashion card"
+msgstr "بطاقة أزياء"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_8
+msgid "Fast Service"
+msgstr "خدمة سريعة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_10
+msgid "Fast Shipping"
+msgstr "شحن سريع"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+msgid "Fast and free delivery"
+msgstr "توصيل سريع ومجاني"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_5
+msgid "Featured"
+msgstr "مميز"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_d_2_column_snippet
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_heading_3
+msgid "Featured Products"
+msgstr "منتجات مميزة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_10
+msgid ""
+"Find a location nearest<br/>\n"
+"                                        you."
+msgstr ""
+"اعثر على أقرب موقع<br/>\n"
+"                                        إليك."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_13
+msgid "Find your perfect outfit"
+msgstr "اعثر على إطلالتك المثالية"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.404
+msgid "Find your product"
+msgstr "ابحث عن منتجك"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_7
+msgid "Flat 50% Off"
+msgstr "خصم ثابت 50%"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_2
+msgid "Flexible Styled Collection By Prime"
+msgstr "مجموعة عصرية مرنة من برايم"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_subscribe_3
+msgid "Follow Us"
+msgstr "تابعنا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_8
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_9
+msgid "Follow Us On"
+msgstr "تابعنا على"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_5
+msgid "Follow Us On:"
+msgstr "تابعنا على:"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_team_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+msgid "Follow us"
+msgstr "تابعنا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+msgid "Footwear"
+msgstr "أحذية"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_d_single_category_snippet
+msgid "For Women"
+msgstr "للنساء"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+msgid "Forums"
+msgstr "المنتديات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_10
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_11
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_8
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_shop_offer_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+msgid "Free Delivery"
+msgstr "توصيل مجاني"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_10
+msgid "Free Returns"
+msgstr "إرجاع مجاني"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_preheader_style_4
+msgid "Free Returns. Standard Shipping. Orders $99."
+msgstr "إرجاع مجاني. شحن عادي. للطلبات 99$."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_3
+msgid "Free Shipping"
+msgstr "شحن مجاني"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_3
+msgid "Free Support"
+msgstr "دعم مجاني"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+msgid "Free delivery for all orders"
+msgstr "توصيل مجاني لجميع الطلبات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_custom_text
+msgid "Free delivery on all orders"
+msgstr "توصيل مجاني على جميع الطلبات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_preheader_style_6
+msgid "Free shipping for all order of $150"
+msgstr "شحن مجاني للطلبات بقيمة 150$"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_5
+msgid "Fresh Arrival"
+msgstr "وصل حديثًا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_1
+msgid "Fresh Collection"
+msgstr "مجموعة جديدة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_3
+msgid "Fresh Collection By Prime"
+msgstr "مجموعة جديدة من برايم"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_11
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+msgid "Friendly 24/7 customer support"
+msgstr "دعم عملاء ودود على مدار الساعة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.filter_attribute_range
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_2
+msgid "From"
+msgstr "من"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_13
+msgid "From world's top designer"
+msgstr "من أفضل مصممي العالم"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_7
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_8
+msgid "Fully responsive"
+msgstr "متجاوب بالكامل"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_2
+msgid "GET FLAT 20% OFF"
+msgstr "احصل على خصم ثابت 20%"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Gallery"
+msgstr "معرض الصور"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Gallery -"
+msgstr "معرض الصور -"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Gallery - 2"
+msgstr "معرض الصور - 2"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Gallery - 3"
+msgstr "معرض الصور - 3"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Gallery - 4"
+msgstr "معرض الصور - 4"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Gallery - 5"
+msgstr "معرض الصور - 5"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_gallery_1
+msgid "Gallery Image #{img}"
+msgstr "صورة المعرض #{img}"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_gallery_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_gallery_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_gallery_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_gallery_5
+msgid "Gallery Image #{number}"
+msgstr "صورة المعرض #{number}"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_8
+msgid "Genuine Product"
+msgstr "منتج أصلي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_12
+msgid "Get 10% Off"
+msgstr "احصل على خصم 10%"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_12
+msgid "Get 15% Off"
+msgstr "احصل على خصم 15%"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_shop_offer_2
+msgid "Get 30-day money-back guarantee"
+msgstr "احصل على ضمان استرداد الأموال خلال 30 يومًا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_12
+msgid "Get Best Burger"
+msgstr "احصل على أفضل برجر"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_12
+msgid "Get Big Pizzas"
+msgstr "احصل على بيتزا كبيرة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_11
+msgid "Get discount on shoes on order above $150."
+msgstr "احصل على خصم على الأحذية للطلبات فوق 150$."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_call_to_action_3
+msgid "Get in touch"
+msgstr "تواصل معنا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.404
+msgid "Get in touch with us"
+msgstr "تواصل معنا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_shop_offer_3
+msgid "Get it Now"
+msgstr "احصل عليه الآن"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_snippet_options_background_options
+msgid "Gradient Animation"
+msgstr "حركة متدرجة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout
+msgid "Grid View"
+msgstr "عرض شبكي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.page_sidebars
+msgid "Guest"
+msgstr "زائر"
+
+#. module: theme_prime
+#: model:ir.model,name:theme_prime.model_ir_http
+msgid "HTTP Routing"
+msgstr "توجيه HTTP"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_10
+msgid "HUGE SALE!"
+msgstr "تخفيضات ضخمة!"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+msgid "Handset"
+msgstr "هاتف محمول"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_5
+msgid "Happy Clients"
+msgstr "عملاء سعداء"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_10
+msgid "Happy Customers"
+msgstr "عملاء سعداء"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_tp_countdown
+msgid "Happy Shopping!"
+msgstr "تسوقًا سعيدًا!"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+msgid "Hats"
+msgstr "قبعات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Heading"
+msgstr "عنوان"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Heading - 1"
+msgstr "عنوان - 1"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Heading - 2"
+msgstr "عنوان - 2"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Heading - 3"
+msgstr "عنوان - 3"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Heading - 4"
+msgstr "عنوان - 4"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Heading - 5"
+msgstr "عنوان - 5"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Heading - 6"
+msgstr "عنوان - 6"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Height"
+msgstr "الارتفاع"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_10
+msgid "Help Center"
+msgstr "مركز المساعدة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.404
+msgid "Here are some helpful links instead"
+msgstr "إليك بعض الروابط المفيدة بدلاً من ذلك"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout_filters
+msgid "Hide out of stock"
+msgstr "إخفاء غير المتوفر"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_2
+msgid "High Quality Fabric Collection"
+msgstr "مجموعة أقمشة عالية الجودة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_3
+msgid "High Quality Products"
+msgstr "منتجات عالية الجودة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_call_to_action_3
+msgid "Hire Us!"
+msgstr "وظّفنا!"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.all_brands
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_8
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_9
+msgid "Home"
+msgstr "الرئيسية"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.404
+msgid "Homepage"
+msgstr "الصفحة الرئيسية"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_13
+msgid "Hot Collection"
+msgstr "مجموعة رائجة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+msgid "Huawei"
+msgstr "Huawei"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_14
+msgid "Hurry up to reserve your spot now"
+msgstr "أسرع واحجز مكانك الآن"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_10
+msgid "Hurry up!"
+msgstr "أسرع!"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_14
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_image_product_listing_cards
+msgid "Hurry up! Limited time offer"
+msgstr "أسرع! عرض لفترة محدودة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Icon Block"
+msgstr "كتلة أيقونات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Icon Block - 1"
+msgstr "كتلة أيقونات - 1"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Icon Block - 10"
+msgstr "كتلة أيقونات - 10"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Icon Block - 11"
+msgstr "كتلة أيقونات - 11"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Icon Block - 12"
+msgstr "كتلة أيقونات - 12"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Icon Block - 2"
+msgstr "كتلة أيقونات - 2"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Icon Block - 3"
+msgstr "كتلة أيقونات - 3"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Icon Block - 4"
+msgstr "كتلة أيقونات - 4"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Icon Block - 5"
+msgstr "كتلة أيقونات - 5"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Icon Block - 6"
+msgstr "كتلة أيقونات - 6"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Icon Block - 7"
+msgstr "كتلة أيقونات - 7"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Icon Block - 8"
+msgstr "كتلة أيقونات - 8"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Icon Block - 9"
+msgstr "كتلة أيقونات - 9"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Icon Pack"
+msgstr "مجموعة أيقونات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_10
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_9
+msgid "In 2-3 Days"
+msgstr "خلال 2-3 أيام"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_4
+msgid ""
+"In hac habitasse platea dictumst. Praesent cursus congue felis, nec "
+"pellentesque nulla ornare sed."
+msgstr "نص وصفي تجريبي يوضح شكل الفقرات في التصميم النهائي للصفحة."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_3
+msgid ""
+"In hac habitasse platea dictumst. Praesent cursus congue felis, nec "
+"pellentesque nulla ornare sed. Aliquam eget aliquam urna."
+msgstr ""
+"نص وصفي تجريبي يوضح شكل الفقرات في التصميم النهائي للصفحة. مع بعض التفاصيل "
+"الإضافية لتعبئة المساحة."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_8
+msgid ""
+"In hac habitasse platea dictumst. Praesent cursus congue felis, nec "
+"pellentesque nulla ornare sed. In hac habitasse platea dictumst. "
+"pellentesque nulla sed."
+msgstr ""
+"نص وصفي تجريبي يوضح شكل الفقرات في التصميم النهائي للصفحة. نص وصفي تجريبي "
+"يوضح شكل الفقرات في التصميم."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_7
+msgid ""
+"In hac habitasse platea dictumst. Praesent cursus congue felis, nec "
+"pellentesque nulla ornare sed. Orci varius natoque penatibus et magnis dis "
+"parturient montes, nascetur mus."
+msgstr ""
+"نص وصفي تجريبي يوضح شكل الفقرات في التصميم النهائي للصفحة. تفاصيل إضافية "
+"توضح كيفية امتداد النص عبر عدة أسطر."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_1
+msgid ""
+"In hac habitasse platea dictumst. Praesent cursus congue felis, nec "
+"pellentesque nulla ornare."
+msgstr "نص وصفي تجريبي يوضح شكل الفقرات في التصميم النهائي."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_2
+msgid ""
+"In hac habitasse platea dictumst. Praesent cursus congue felis, nec "
+"pellentesque nulla."
+msgstr "نص وصفي تجريبي يوضح شكل الفقرات في التصميم."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Info Block"
+msgstr "كتلة معلومات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Info Block - 1"
+msgstr "كتلة معلومات - 1"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Info Block - 2"
+msgstr "كتلة معلومات - 2"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Info Block - 3"
+msgstr "كتلة معلومات - 3"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Info Block - 4"
+msgstr "كتلة معلومات - 4"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Info Block - 5"
+msgstr "كتلة معلومات - 5"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Info Block - 6"
+msgstr "كتلة معلومات - 6"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Info Block - 7"
+msgstr "كتلة معلومات - 7"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Info Block - 8"
+msgstr "كتلة معلومات - 8"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_8
+msgid "Info Block Image 01"
+msgstr "صورة كتلة المعلومات 01"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_5
+msgid "Info Block Image 02"
+msgstr "صورة كتلة المعلومات 02"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_4
+msgid "Info Block Image 03"
+msgstr "صورة كتلة المعلومات 03"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_10
+msgid "Information"
+msgstr "المعلومات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_9
+msgid "International style"
+msgstr "أسلوب عالمي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_10
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+msgid "JCB"
+msgstr "JCB"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_2
+msgid "JUST NEWLY ARRIVED!"
+msgstr "وصل حديثًا للتو!"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+msgid "Jeans"
+msgstr "جينز"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+msgid "Jewelry"
+msgstr "مجوهرات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_5
+msgid "John Doe"
+msgstr "أحمد محمد"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_subscribe_4
+msgid "Join Our Mailing List"
+msgstr "انضم إلى قائمتنا البريدية"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_subscribe_3
+msgid "Join Our Newsletter Now"
+msgstr "اشترك في نشرتنا البريدية الآن"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_gallery_4
+msgid "Just adding some random string  heresit."
+msgstr "مجرد إضافة نص عشوائي هنا لملء الفراغ."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_5
+msgid "Just some random content to break this paragraph into two line."
+msgstr "مجرد محتوى عشوائي لتقسيم هذه الفقرة إلى سطرين."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_2
+msgid "Just some random string to reach eighty charater limit to break."
+msgstr "مجرد نص عشوائي للوصول إلى حد الثمانين حرفًا لتقسيم السطر."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_5
+msgid ""
+"Just some random string to reach eighty charater limit to break. Just some "
+"random string to reach eighty charater limit to break."
+msgstr ""
+"مجرد نص عشوائي للوصول إلى حد الثمانين حرفًا لتقسيم السطر. مجرد نص عشوائي "
+"للوصول إلى حد الثمانين حرفًا لتقسيم السطر."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_preheader_style_5
+msgid "Kids"
+msgstr "أطفال"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+msgid "Kidswear"
+msgstr "ملابس أطفال"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+msgid "Laptop"
+msgstr "حاسوب محمول"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_7
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_8
+msgid "Learn More"
+msgstr "اعرف المزيد"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_14
+msgid "Learn more"
+msgstr "اعرف المزيد"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Left"
+msgstr "يسار"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Left Panel"
+msgstr "اللوحة اليسرى"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_heading_options
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_tp_countdown_options
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Light"
+msgstr "فاتح"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_shop_offer_4
+msgid "Limited Collection"
+msgstr "مجموعة محدودة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_heading_options
+msgid "Line Position"
+msgstr "موضع الخط"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Link"
+msgstr "رابط"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout
+msgid "List View"
+msgstr "عرض القائمة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout
+msgid "Load more"
+msgstr "تحميل المزيد"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+msgid "Locate store"
+msgstr "حدد موقع المتجر"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.component_account_info
+#: model_terms:theme.ir.ui.view,arch:theme_prime.page_sidebars
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_header_mobile
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_b2b_price_label
+msgid "Login"
+msgstr "تسجيل الدخول"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+msgid "Logitech"
+msgstr "Logitech"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_8
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_9
+msgid "Logo of MyCompany"
+msgstr "شعار شركتي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.page_sidebars
+msgid "Logout"
+msgstr "تسجيل الخروج"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_heading_options
+msgid "Long"
+msgstr "طويل"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_d_image_products_block
+msgid ""
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod "
+"tempor incididunt ut labore et."
+msgstr "نص تجريبي شائع الاستخدام لتوضيح شكل النص في التصميمات المختلفة."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_10
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+msgid "Maestro"
+msgstr "Maestro"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.page_sidebars
+msgid "Manage Payment Methods"
+msgstr "إدارة طرق الدفع"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_8
+msgid ""
+"Many desktop publishing packages and web<br/> page editors now use lorem "
+"ipsum as their."
+msgstr ""
+"تستخدم العديد من برامج النشر المكتبي ومحررات<br/> صفحات الويب هذا النص "
+"التجريبي حاليًا."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_4
+msgid "Maximus Note 8i"
+msgstr "Maximus Note 8i"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_preheader_style_5
+msgid "Men"
+msgstr "رجال"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_3
+msgid "Mens"
+msgstr "رجالي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Menus"
+msgstr "القوائم"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Menus - Content"
+msgstr "القوائم - المحتوى"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Menus - Image - Logos"
+msgstr "القوائم - صور - شعارات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Menus - Images"
+msgstr "القوائم - صور"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+msgid "Microsoft"
+msgstr "Microsoft"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Modal"
+msgstr "نافذة منبثقة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_4
+msgid "Modern design"
+msgstr "تصميم عصري"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+msgid "Money back guarantee"
+msgstr "ضمان استرداد الأموال"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+msgid "Monitor"
+msgstr "شاشة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_2
+msgid "Morbi tincidunt ultrices"
+msgstr "جودة تدوم طويلًا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_3
+msgid "Morbi tincidunt ultrices fermentum. Suspendisse egestas ipsum eu."
+msgstr "جودة تدوم طويلًا مع أداء موثوق. تصميم أنيق يناسب الجميع."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_1
+msgid "Morbi tincidunt ultrices."
+msgstr "جودة تدوم طويلًا."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+msgid "Motorola"
+msgstr "Motorola"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+msgid "Mouse"
+msgstr "فأرة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+msgid "Mouses Pad"
+msgstr "وسادة الفأرة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.page_sidebars
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_10
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_header_style_4
+msgid "My Account"
+msgstr "حسابي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.component_account_info
+#: model_terms:theme.ir.ui.view,arch:theme_prime.page_sidebars
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_header_mobile
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_header_style_4
+msgid "My Cart"
+msgstr "سلتي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.page_sidebars
+msgid "My Orders"
+msgstr "طلباتي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.page_sidebars
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_wishlist
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_header_mobile
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_header_style_4
+msgid "My Wishlist"
+msgstr "مفضلتي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+msgid "My account"
+msgstr "حسابي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_8
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_9
+msgid "MyCompany"
+msgstr "شركتي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_7
+msgid "NEW"
+msgstr "جديد"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_heading_2
+msgid "NEW PRODUCTS EVERY DAY"
+msgstr "منتجات جديدة كل يوم"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_4
+msgid ""
+"Nam blandit arcu vel mi mollis faucibus. Nam justo velit, maximus viverra "
+"volutpat eu, hendrerit et velit."
+msgstr "جودة استثنائية وتصميم أنيق يلبي كل احتياجاتك اليومية."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_3
+msgid ""
+"Nam blandit arcu vel mi mollis faucibus. Nam justo velit, maximus viverra "
+"volutpat eu, hendrerit et velit. Pellentesque tincidunt."
+msgstr ""
+"جودة استثنائية وتصميم أنيق يلبي كل احتياجاتك اليومية. مع خامات متينة تدوم "
+"طويلًا."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_call_to_action_5
+msgid "Need to do calculations?"
+msgstr "هل تحتاج إلى إجراء حسابات؟"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_2
+msgid "New Arrival"
+msgstr "وصل حديثًا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_5
+msgid "New Arrivals"
+msgstr "وصل حديثًا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_6
+msgid "New Collection"
+msgstr "مجموعة جديدة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_image_product_listing_cards
+msgid "New Hoodie Collection"
+msgstr "مجموعة هوديز جديدة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_5
+msgid "New Ideas"
+msgstr "أفكار جديدة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_6
+msgid "New York, United States"
+msgstr "نيويورك، الولايات المتحدة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_shop_offer_4
+msgid "Newly Launched"
+msgstr "أُطلق حديثًا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+msgid "News"
+msgstr "الأخبار"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_4
+msgid "Next"
+msgstr "التالي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_10
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_11
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_9
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+msgid "No Questions Asked"
+msgstr "دون أي أسئلة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_tabs
+msgid "No Specifications"
+msgstr "لا توجد مواصفات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout
+msgid "No product defined in category"
+msgstr "لا يوجد منتج محدد في هذه الفئة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.similar_products_sidebar
+msgid "No similar products found!"
+msgstr "لم يتم العثور على منتجات مشابهة!"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+msgid "Nokia"
+msgstr "Nokia"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_tp_countdown_options
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "None"
+msgstr "بدون"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_heading_options
+msgid "Normal"
+msgstr "عادي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_subscribe_3
+msgid "OR"
+msgstr "أو"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_label
+msgid "OUT OF STOCK"
+msgstr "غير متوفر"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "On Click"
+msgstr "عند النقر"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_8
+msgid "On order above $100"
+msgstr "للطلبات أكثر من 100$"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_8
+msgid "On order above $60"
+msgstr "للطلبات أكثر من 60$"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_8
+msgid "On order above $80"
+msgstr "للطلبات أكثر من 80$"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_6
+msgid "On the Ear"
+msgstr "على الأذن"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_mobile_bottombar_component
+msgid "Open menu"
+msgstr "فتح القائمة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_shop_offer_5
+msgid ""
+"Orci varius natoque penatibus et magnis dis parturient montes, nascetur "
+"ridiculus mus."
+msgstr "تصميم أنيق وجودة تضمن رضاك التام."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_3
+msgid ""
+"Orci varius natoque penatibus et magnis dis parturient montes, nascetur "
+"ridiculus mus. Aenean pretium ac enim eget dignissim."
+msgstr ""
+"تصميم أنيق وجودة تضمن رضاك التام. مع خدمة عملاء متميزة على مدار الساعة."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_7
+msgid ""
+"Orci varius natoque penatibus et magnis dis parturient montes, nascetur "
+"ridiculus mus. Orci varius natoque penatibus et magnis dis parturient "
+"montes, nascetur ridiculus mus."
+msgstr "تصميم أنيق وجودة تضمن رضاك التام. تصميم أنيق وجودة تضمن رضاك التام."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_8
+msgid ""
+"Orci varius natoque penatibus et magnis dis parturient montes, nascetur "
+"ridiculus mus. Orci varius natoque penatibus et magnis. nascetur ridiculus "
+"mus."
+msgstr "تصميم أنيق وجودة تضمن رضاك. مع تفاصيل دقيقة تلبي كل التوقعات."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_call_to_action_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_call_to_action_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_3
+msgid "Order Now"
+msgstr "اطلب الآن"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_11
+msgid "Order above $250 and get free gift voucher."
+msgstr "اطلب بقيمة أكثر من 250$ واحصل على قسيمة هدية مجانية."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_call_to_action_1
+msgid "Order now and get <span class=\"text-o-color-1\">15% OFF</span>"
+msgstr "اطلب الآن واحصل على <span class=\"text-o-color-1\">خصم 15%</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+msgid "Order tracking"
+msgstr "تتبع الطلب"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_heading_4
+msgid "Our Creative <font class=\"text-o-color-1\">Team</font>"
+msgstr "فريقنا <font class=\"text-o-color-1\">الإبداعي</font>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+msgid "Our Policy"
+msgstr "سياستنا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+msgid "Our Stores"
+msgstr "متاجرنا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+msgid ""
+"Our products are designed for small to medium size companies willing to "
+"optimize their performance."
+msgstr "صُممت منتجاتنا للشركات الصغيرة والمتوسطة الراغبة في تحسين أدائها."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_10
+msgid "Our store"
+msgstr "متجرنا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Override all components border radius to 0"
+msgstr "إلغاء انحناء حواف جميع العناصر وجعلها 0"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+msgid "Payment"
+msgstr "الدفع"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_4
+msgid "Per Month"
+msgstr "شهريًا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_9
+msgid "Personal Care"
+msgstr "العناية الشخصية"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+msgid "Phablet"
+msgstr "فابلت"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_6
+msgid "Phone Number"
+msgstr "رقم الهاتف"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+msgid "Play Station"
+msgstr "PlayStation"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout
+msgid "Please check the spelling or try searching something else"
+msgstr "يرجى التحقق من الإملاء أو تجربة البحث عن شيء آخر"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+msgid "Polo T-shirts"
+msgstr "تيشيرتات بولو"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Popover"
+msgstr "نافذة منبثقة صغيرة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.dynamic_filter_template_blog_post_prime_layout_4
+msgid "Posted by"
+msgstr "بواسطة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_4
+msgid ""
+"Powered by a 10 nm octa-core Qualcomm Snapdragon 712 AIE processor, this "
+"phone can seamlessly execute any task. You can game more and multitask "
+"without experiencing any lag. Experience a boost in performance and "
+"efficiency with this phone."
+msgstr ""
+"مزوّد بمعالج Qualcomm Snapdragon 712 AIE ثماني النواة بتقنية 10 نانومتر، "
+"يمكن لهذا الهاتف تنفيذ أي مهمة بسلاسة. يمكنك اللعب وتعدد المهام دون أي "
+"تأخير. استمتع بأداء وكفاءة أعلى مع هذا الهاتف."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_team_2
+msgid "Praesent ornare mi quis"
+msgstr "أداء متميز يلبي احتياجاتك"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Preheader"
+msgstr "الترويسة العلوية"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_4
+msgid "Premium"
+msgstr "مميز"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_7
+msgid "Premium Collection"
+msgstr "مجموعة مميزة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product
+msgid "Prev"
+msgstr "السابق"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Preview"
+msgstr "معاينة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_4
+msgid "Previous"
+msgstr "السابق"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Price Filter"
+msgstr "تصفية السعر"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_mobile_bottombar_component
+msgid "Price:"
+msgstr "السعر:"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Pricing"
+msgstr "الأسعار"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Pricing - 1"
+msgstr "الأسعار - 1"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Pricing - 2"
+msgstr "الأسعار - 2"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Pricing - 3"
+msgstr "الأسعار - 3"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Pricing - 4"
+msgstr "الأسعار - 4"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Pricing - 5"
+msgstr "الأسعار - 5"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_2
+msgid "Pricing Image 01"
+msgstr "صورة الأسعار 01"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_2
+msgid "Pricing Image 02"
+msgstr "صورة الأسعار 02"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_2
+msgid "Pricing Image 03"
+msgstr "صورة الأسعار 03"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_1
+msgid "Pricing Image 04"
+msgstr "صورة الأسعار 04"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+msgid "Pricing and Plans"
+msgstr "الأسعار والباقات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Primary"
+msgstr "أساسي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Prime Footer Style - 1"
+msgstr "أسلوب تذييل برايم - 1"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Prime Footer Style - 10"
+msgstr "أسلوب تذييل برايم - 10"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Prime Footer Style - 2"
+msgstr "أسلوب تذييل برايم - 2"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Prime Footer Style - 3"
+msgstr "أسلوب تذييل برايم - 3"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Prime Footer Style - 4"
+msgstr "أسلوب تذييل برايم - 4"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Prime Footer Style - 5"
+msgstr "أسلوب تذييل برايم - 5"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Prime Footer Style - 6"
+msgstr "أسلوب تذييل برايم - 6"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Prime Footer Style - 7"
+msgstr "أسلوب تذييل برايم - 7"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Prime Footer Style - 8"
+msgstr "أسلوب تذييل برايم - 8"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Prime Footer Style - 9"
+msgstr "أسلوب تذييل برايم - 9"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Prime Header Style - 1"
+msgstr "أسلوب ترويسة برايم - 1"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Prime Header Style - 2"
+msgstr "أسلوب ترويسة برايم - 2"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Prime Header Style - 3"
+msgstr "أسلوب ترويسة برايم - 3"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Prime Header Style - 4"
+msgstr "أسلوب ترويسة برايم - 4"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Prime Header Style - 5"
+msgstr "أسلوب ترويسة برايم - 5"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Prime Header Style - 6"
+msgstr "أسلوب ترويسة برايم - 6"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Prime Header Style - 7"
+msgstr "أسلوب ترويسة برايم - 7"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Prime Header Style - 8"
+msgstr "أسلوب ترويسة برايم - 8"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Prime Preheader Style - 1"
+msgstr "أسلوب الترويسة العلوية برايم - 1"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Prime Preheader Style - 2"
+msgstr "أسلوب الترويسة العلوية برايم - 2"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Prime Preheader Style - 3"
+msgstr "أسلوب الترويسة العلوية برايم - 3"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Prime Preheader Style - 4"
+msgstr "أسلوب الترويسة العلوية برايم - 4"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Prime Preheader Style - 5"
+msgstr "أسلوب الترويسة العلوية برايم - 5"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Prime Preheader Style - 6"
+msgstr "أسلوب الترويسة العلوية برايم - 6"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_9
+msgid "Printed T-Shirts"
+msgstr "تيشيرتات مطبوعة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_10
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_8
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_9
+msgid "Privacy Policy"
+msgstr "سياسة الخصوصية"
+
+#. module: theme_prime
+#: model:ir.model,name:theme_prime.model_product_template
+msgid "Product"
+msgstr "المنتج"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_10
+msgid "Product Compare"
+msgstr "مقارنة المنتجات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_variant_selector_dialog
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_product_quick_view
+msgid "Product Name"
+msgstr "اسم المنتج"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Product Tags Filter"
+msgstr "تصفية وسوم المنتج"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.all_brands
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_7
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+msgid "Products"
+msgstr "المنتجات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Products Page"
+msgstr "صفحة المنتجات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Products on page"
+msgstr "منتجات في الصفحة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_3
+msgid "Professional"
+msgstr "احترافي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_1
+msgid "Proin est justo, euismod sit."
+msgstr "جودة موثوقة تدوم طويلًا."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_3
+msgid ""
+"Proin purus dui, feugiat id ipsum eu, varius ornare ex. Mauris elit dolor, "
+"consectetur ac accumsan eu, commodo et odio eget."
+msgstr "جودة موثوقة وتصميم أنيق يجمع بين الفخامة والعملية في آن واحد."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_4
+msgid ""
+"Proin purus dui, feugiat id ipsum eu, varius ornare ex. Mauris elit dolor, "
+"consectetur ac accumsan eu."
+msgstr "جودة موثوقة وتصميم أنيق يجمع بين الفخامة والعملية."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_5
+msgid "Purchase"
+msgstr "الشراء"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_call_to_action_2
+msgid "Purchase Now"
+msgstr "اشترِ الآن"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_shop_offer_2
+msgid "Quality Product"
+msgstr "منتج عالي الجودة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_11
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+msgid "Quality Products"
+msgstr "منتجات عالية الجودة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_5
+msgid "Quality products by <strong>Prime team</strong>"
+msgstr "منتجات عالية الجودة من <strong>فريق برايم</strong>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_heading_1
+msgid "Quality products from our shop."
+msgstr "منتجات عالية الجودة من متجرنا."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+msgid "Quick Links"
+msgstr "روابط سريعة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_item_actions
+msgid "Quick View"
+msgstr "عرض سريع"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_10
+msgid "Quick links"
+msgstr "روابط سريعة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_2
+msgid "READ MORE"
+msgstr "اقرأ المزيد"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.pwa_offline_page
+msgid "RELOAD"
+msgstr "إعادة التحميل"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout
+msgid "RESET"
+msgstr "إعادة ضبط"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_shop_offer_2
+msgid "Receive 100% genuine products"
+msgstr "احصل على منتجات أصلية 100%"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+msgid "Refunds &amp; replacements"
+msgstr "الاسترجاع والاستبدال"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.page_sidebars
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_b2b_price_label
+msgid "Register"
+msgstr "تسجيل"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.cart_sidebar
+msgid "Remove from Cart"
+msgstr "إزالة من السلة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.optional_product_items
+msgid "Remove from cart"
+msgstr "إزالة من السلة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_compare
+msgid "Remove from comparison"
+msgstr "إزالة من المقارنة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_wishlist
+msgid "Remove from wishlist"
+msgstr "إزالة من المفضلة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.cart_sidebar
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_variant_selector_dialog
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_product_quick_view
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_product_right_panel
+msgid "Remove one"
+msgstr "إنقاص واحدة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.404
+msgid "Return to homepage"
+msgstr "العودة إلى الصفحة الرئيسية"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_custom_text
+msgid "Return within 30days"
+msgstr "إرجاع خلال 30 يومًا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.d_rating_widget_stars_static
+msgid "Reviews)"
+msgstr "تقييم)"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_coming_soon_1
+msgid "STAY TUNED"
+msgstr "ترقبوا المزيد"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_10
+msgid "Safe Payment"
+msgstr "دفع آمن"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+msgid "Samsung"
+msgstr "Samsung"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+msgid "Sandals"
+msgstr "صنادل"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.option_back_to_top
+msgid "Scroll back to top"
+msgstr "العودة للأعلى"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.404
+#: model_terms:theme.ir.ui.view,arch:theme_prime.component_account_info
+msgid "Search"
+msgstr "بحث"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.all_brands
+msgid "Search brands..."
+msgstr "ابحث عن الماركات..."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_5
+msgid "Search for products, brands and more ..."
+msgstr "ابحث عن المنتجات والماركات والمزيد..."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.filter_attribute
+msgid "Search..."
+msgstr "بحث..."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+msgid "Secure online payment"
+msgstr "دفع إلكتروني آمن"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_category_pills
+msgid "See All <i class=\"fa fa-angle-right ms-1\"/>"
+msgstr "عرض الكل <i class=\"fa fa-angle-right ms-1\"/>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_10
+msgid "See Our Stores"
+msgstr "شاهد متاجرنا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_product_quick_view
+msgid "Share :"
+msgstr "مشاركة:"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+msgid "Shipping Info"
+msgstr "معلومات الشحن"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_9
+msgid "Shirts, Jeans &amp; Waistcoats"
+msgstr "قمصان وجينز وسترات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout
+msgid "Shop"
+msgstr "المتجر"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.cart_sidebar
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_10
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_12
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_13
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_call_to_action_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_d_image_products_block
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_d_single_category_snippet
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_7
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_shop_offer_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_shop_offer_4
+msgid "Shop Now"
+msgstr "تسوق الآن"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Shop Offer"
+msgstr "عرض المتجر"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Shop Offer - 1"
+msgstr "عرض المتجر - 1"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Shop Offer - 2"
+msgstr "عرض المتجر - 2"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Shop Offer - 3"
+msgstr "عرض المتجر - 3"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Shop Offer - 4"
+msgstr "عرض المتجر - 4"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Shop Offer - 5"
+msgstr "عرض المتجر - 5"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_shop_offer_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_shop_offer_4
+msgid "Shop Offer Image 01"
+msgstr "صورة عرض المتجر 01"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+msgid "Shop departments"
+msgstr "أقسام المتجر"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_14
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_image_product_listing_cards
+msgid "Shop now"
+msgstr "تسوق الآن"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_item_actions
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_item_grid_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_item_grid_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_item_list_1
+msgid "Shopping cart"
+msgstr "سلة التسوق"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_heading_options
+msgid "Short"
+msgstr "قصير"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Show variant image"
+msgstr "إظهار صورة الخيار"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Show/hide logo"
+msgstr "إظهار/إخفاء الشعار"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Show/hide sign in button"
+msgstr "إظهار/إخفاء زر تسجيل الدخول"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_subscribe_3
+msgid ""
+"Sign up for all the news about our latest arrivals and get an exclusive "
+"early access shopping."
+msgstr "اشترك ليصلك كل جديد عن أحدث المنتجات واحصل على تسوق حصري مبكر."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product
+msgid "Similar Products"
+msgstr "منتجات مشابهة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+msgid "Smartphone"
+msgstr "هاتف ذكي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+msgid "Sneakers &amp; Athletic"
+msgstr "أحذية رياضية وسنيكرز"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+msgid "Sony"
+msgstr "Sony"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout
+msgid "Sort By"
+msgstr "الترتيب حسب"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Sort by"
+msgstr "الترتيب حسب"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+msgid "Speakers"
+msgstr "سماعات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_1
+msgid "Special Collection"
+msgstr "مجموعة خاصة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_4
+msgid "Spring Collections"
+msgstr "مجموعات الربيع"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Square UI"
+msgstr "واجهة مربعة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_1
+msgid "Starting at $120.00"
+msgstr "يبدأ من 120.00$"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_6
+msgid "Starting at $150."
+msgstr "يبدأ من 150$."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_6
+msgid "Starting at $200."
+msgstr "يبدأ من 200$."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_d_single_category_snippet
+msgid "Starting at $24"
+msgstr "يبدأ من 24$"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_1
+msgid "Starting at $35.00"
+msgstr "يبدأ من 35.00$"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_6
+msgid "Starting at $99."
+msgstr "يبدأ من 99$."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "States - 1"
+msgstr "الحالات - 1"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "States - 2"
+msgstr "الحالات - 2"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "States - 3"
+msgstr "الحالات - 3"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "States - 4"
+msgstr "الحالات - 4"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "States - 5"
+msgstr "الحالات - 5"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Static"
+msgstr "ثابت"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Stats"
+msgstr "إحصائيات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+msgid "Stay informed"
+msgstr "ابقَ على اطلاع"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+msgid "Store Information"
+msgstr "معلومات المتجر"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_tp_countdown_options
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Style"
+msgstr "النمط"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_tp_countdown_options
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Style - 1"
+msgstr "النمط - 1"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_tp_countdown_options
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Style - 2"
+msgstr "النمط - 2"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_tp_countdown_options
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Style - 3"
+msgstr "النمط - 3"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_tp_countdown_options
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Style - 4"
+msgstr "النمط - 4"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_coming_soon_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_coming_soon_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_subscribe_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_subscribe_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_subscribe_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_10
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+msgid "Subscribe"
+msgstr "اشترك"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Subscribe - 1"
+msgstr "اشترك - 1"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Subscribe - 2"
+msgstr "اشترك - 2"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Subscribe - 3"
+msgstr "اشترك - 3"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Subscribe - 4"
+msgstr "اشترك - 4"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_subscribe_4
+msgid "Subscribe Image 01"
+msgstr "صورة الاشتراك 01"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_coming_soon_2
+msgid ""
+"Subscribe and stay in touch with the latest news, deals and promotions."
+msgstr "اشترك وابقَ على تواصل مع أحدث الأخبار والعروض والتخفيضات."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_coming_soon_1
+msgid "Subscribe to get a notification as soon as we launch!"
+msgstr "اشترك لتصلك إشعار فور الإطلاق!"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_subscribe_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+msgid "Subscribe to our weekly newsletter"
+msgstr "اشترك في نشرتنا الأسبوعية"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Subtitle"
+msgstr "العنوان الفرعي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.cart_sidebar
+msgid "Subtotal"
+msgstr "المجموع الفرعي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.cart_lines_subtotal
+msgid "Subtotal:"
+msgstr "المجموع الفرعي:"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.suggested_products_list
+msgid "Suggested Products"
+msgstr "منتجات مقترحة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_preheader_style_1
+msgid ""
+"Summer Special <span class=\"mx-2\">|</span> Get 50% Off <span "
+"class=\"mx-2\">|</span> Code #GET50"
+msgstr ""
+"عرض الصيف الخاص <span class=\"mx-2\">|</span> احصل على خصم 50% <span "
+"class=\"mx-2\">|</span> الكود #GET50"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+msgid "Sunglasses &amp; Eyewear"
+msgstr "نظارات شمسية وبصرية"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_d_2_column_snippet
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_d_image_products_block
+msgid "Super Deal"
+msgstr "عرض رائع"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_4
+msgid "Super Fast CPU"
+msgstr "معالج فائق السرعة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_1
+msgid "Suspendisse egestas ipsum eu."
+msgstr "أداء موثوق دائمًا."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_1
+msgid ""
+"Suspendisse est nunc, laoreet eget odio id, finibus convallis ipsum. "
+"Praesent eu nisi egestas, gravida dolor eget, suscipit lectus. Class aptent "
+"taciti sociosqu ad litora torquent per conubia nostra, per inceptos "
+"himenaeos. Nulla tincidunt eu."
+msgstr ""
+"جودة استثنائية وتصميم متطور يلبي جميع احتياجاتك اليومية بكل سهولة ويسر."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_2
+msgid ""
+"Suspendisse est nunc, laoreet eget odio id, finibus convallis ipsum. "
+"Praesent eu nisi egestas."
+msgstr "جودة استثنائية وتصميم متطور يلبي احتياجاتك."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_4
+msgid ""
+"Suspendisse potenti. Cras a dui et nisl egestas ornare eu quis odio. Sed "
+"bibendum in ante vel accumsan."
+msgstr "أداء قوي وموثوقية عالية في كل استخدام."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_3
+msgid ""
+"Suspendisse potenti. Cras a dui et nisl egestas ornare eu quis odio. Sed "
+"bibendum in ante vel accumsan. Praesent scelerisque."
+msgstr "أداء قوي وموثوقية عالية في كل استخدام. مع تصميم أنيق يناسب الجميع."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_2
+msgid ""
+"Suspendisse potenti. Cras a dui et nisl egestas ornare eu quis odio. Sed "
+"bibendum in ante."
+msgstr "أداء قوي وموثوقية عالية في كل استخدام يوميًا."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_7
+msgid ""
+"Suspendisse potenti. Cras a dui et nisl egestas ornare eu quis odio. Sed "
+"bibendum in ante. Orci varius natoque penatibus et magnis dis parturient "
+"montes, nascetur ridiculus mus."
+msgstr ""
+"أداء قوي وموثوقية عالية في كل استخدام يوميًا. مع جودة تصنيع تدوم طويلًا."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_8
+msgid ""
+"Suspendisse potenti. Cras a dui et nisl egestas ornare eu quis odio. Sed "
+"bibendum in ante. Suspendisse potenti. Cras a dui et nisl. Sed bibendum in "
+"ante."
+msgstr "أداء قوي وموثوقية عالية. أداء قوي وجودة تصنيع ممتازة تدوم طويلًا."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+msgid "Swimwear"
+msgstr "ملابس سباحة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+msgid "T-Shirts"
+msgstr "تيشيرتات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+msgid "T-shirts"
+msgstr "تيشيرتات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+msgid "Tablet"
+msgstr "جهاز لوحي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_extra_fields
+msgid "Tags :"
+msgstr "الوسوم:"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.cart_sidebar
+msgid "Taxes"
+msgstr "الضرائب"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+msgid "Taxes &amp; fees"
+msgstr "الضرائب والرسوم"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Team"
+msgstr "الفريق"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Team - 1"
+msgstr "الفريق - 1"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Team - 2"
+msgstr "الفريق - 2"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Team - 3"
+msgstr "الفريق - 3"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Team - 4"
+msgstr "الفريق - 4"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Team - 5"
+msgstr "الفريق - 5"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_team_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_team_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_team_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_team_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_team_5
+msgid "Team Image #{team}"
+msgstr "صورة الفريق #{team}"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_preheader_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_preheader_style_6
+msgid "Terms"
+msgstr "الشروط"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_custom_text
+msgid "Terms and Conditions :"
+msgstr "الشروط والأحكام:"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_10
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_8
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_9
+msgid "Terms of Use"
+msgstr "شروط الاستخدام"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Testimonial"
+msgstr "رأي عميل"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Testimonial - 1"
+msgstr "رأي عميل - 1"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Testimonial - 2"
+msgstr "رأي عميل - 2"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Testimonial - 3"
+msgstr "رأي عميل - 3"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Testimonial - 4"
+msgstr "رأي عميل - 4"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "Testimonial - 5"
+msgstr "رأي عميل - 5"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_coming_soon_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_coming_soon_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_subscribe_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_subscribe_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_subscribe_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_subscribe_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_10
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+msgid "Thanks"
+msgstr "شكرًا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_tp_countdown
+msgid ""
+"The following message will become visible <strong>only</strong> once the "
+"countdown ends."
+msgstr "ستظهر الرسالة التالية <strong>فقط</strong> بعد انتهاء العد التنازلي."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_tp_countdown_options
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Theme"
+msgstr "القالب"
+
+#. module: theme_prime
+#: model:ir.model,name:theme_prime.model_theme_utils
+msgid "Theme Utils"
+msgstr "أدوات القالب"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_heading_options
+msgid "Thickness"
+msgstr "السُمك"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_variant_selector_dialog
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_product_quick_view
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_product_right_panel
+msgid "This combination does not exist."
+msgstr "هذا التوليف غير موجود."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_2
+msgid "This is the last paragraph, and i am out of idea what to write."
+msgstr "هذه آخر فقرة، ولم تعد لدي أفكار لأكتبها."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_5
+msgid ""
+"This is the last paragraph, and i am out of idea what to write. This is the "
+"last paragraph, and i am out of idea what to write."
+msgstr ""
+"هذه آخر فقرة، ولم تعد لدي أفكار لأكتبها. هذه آخر فقرة، ولم تعد لدي أفكار "
+"لأكتبها."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_variant_selector_dialog
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_product_quick_view
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_product_right_panel
+msgid "This product has no valid combination."
+msgstr "لا يوجد توليف صالح لهذا المنتج."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_variant_selector_dialog
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_product_quick_view
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_product_right_panel
+msgid "This product is no longer available."
+msgstr "هذا المنتج لم يعد متوفرًا."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_item_grid_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_item_grid_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_item_list_1
+msgid "This product is unpublished."
+msgstr "هذا المنتج غير منشور."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Title"
+msgstr "العنوان"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.filter_attribute_range
+msgid "To"
+msgstr "إلى"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_2
+msgid "To break the lines we are writing some random string here."
+msgstr "لتقسيم الأسطر، نكتب هنا بعض النصوص العشوائية."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_stats_5
+msgid ""
+"To break the lines we are writing some random string here. To break the "
+"lines we are writing some random string here."
+msgstr ""
+"لتقسيم الأسطر، نكتب هنا بعض النصوص العشوائية. لتقسيم الأسطر، نكتب هنا بعض "
+"النصوص العشوائية."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_header_mobile
+msgid "Toggle navigation"
+msgstr "تبديل شريط التنقل"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Top"
+msgstr "الأعلى"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippet_options
+msgid "Top Bar"
+msgstr "الشريط العلوي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_2
+msgid "Trending Collection"
+msgstr "مجموعة رائجة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_d_image_products_block
+msgid "Trending Products"
+msgstr "منتجات رائجة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_5
+msgid "Trendy Collection"
+msgstr "مجموعة عصرية"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Type"
+msgstr "النوع"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_label
+msgid "UNITS LEFT"
+msgstr "الوحدات المتبقية"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_tabs
+msgid "Uncategorized"
+msgstr "غير مصنف"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_item_grid_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_item_grid_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_item_list_1
+msgid "Unpublished"
+msgstr "غير منشور"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_11
+msgid "Up To 10% Off"
+msgstr "خصم يصل إلى 10%"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_11
+msgid "Up To 20% Off"
+msgstr "خصم يصل إلى 20%"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_8
+msgid "Up To 25% Off"
+msgstr "خصم يصل إلى 25%"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_8
+msgid "Up To 40% Off"
+msgstr "خصم يصل إلى 40%"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_8
+msgid "Up To 50% Off"
+msgstr "خصم يصل إلى 50%"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_7
+msgid "Up To 60% Off"
+msgstr "خصم يصل إلى 60%"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_10
+msgid "Up to 20% off on all products."
+msgstr "خصم يصل إلى 20% على جميع المنتجات."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_13
+msgid "Up to 70% off on selected item"
+msgstr "خصم يصل إلى 70% على منتجات مختارة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_shop_offer_1
+msgid "Up to <span class=\"text-o-color-1\">20%</span> off"
+msgstr "خصم يصل إلى <span class=\"text-o-color-1\">20%</span>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+msgid "Useful Links"
+msgstr "روابط مفيدة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_5
+msgid ""
+"Ut ac pellentesque tortor. Sed fringilla nibh vel urna porttitor feugiat sit"
+" amet ac ex. Duis ut mattis est, eget venenatis leo. Sed et facilisis leo. "
+"Class aptent taciti sociosqu."
+msgstr "جودة موثوقة وتصميم عملي يناسب جميع احتياجاتك اليومية بكل سهولة."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_1
+msgid "Ut efficitur sem sed."
+msgstr "أداء ثابت وموثوق."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_6
+msgid ""
+"Vestibulum id laoreet sapien. Aliquam porttitor neque ut urna efficitur, "
+"eget tincidunt diam convallis. Vestibulum molestie nunc consectetur cursus "
+"tincidunt. Aenean interdum justo a tellus condimentum gravida."
+msgstr ""
+"تصميم أنيق يجمع الفخامة والعملية معًا، مع تفاصيل دقيقة تناسب كل الأذواق."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_4
+msgid ""
+"Vestibulum id laoreet sapien. Aliquam porttitor neque ut urna efficitur, eget tincidunt diam convallis.<br/>\n"
+"                            interdum justo a tellus condimentum gretur cursus tincidunt. Aenean interdum justo a tellus condimentum gravida.<br/>\n"
+"                            cursus id laoreet sapien. Aliquam porttitor neque ut urna efficitur, eget tincidunt diam convallis.<br/>\n"
+"                            tellus justo a tellus condimentum gretur cursus tincidunt. Aenean interdum justo a tellus condimentum gravida."
+msgstr ""
+"تصميم أنيق يجمع الفخامة والعملية معًا، مع تفاصيل دقيقة تناسب كل الأذواق.<br/>\n"
+"                            جودة تصنيع عالية تدوم طويلًا مع أداء موثوق في كل استخدام.<br/>\n"
+"                            خامات متينة واختيار دقيق للألوان يناسب جميع الأذواق.<br/>\n"
+"                            تصميم عملي يلبي احتياجاتك اليومية بكل سهولة ويسر."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout
+msgid "View"
+msgstr "عرض"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_4
+msgid "View More"
+msgstr "عرض المزيد"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_item_actions
+msgid "View Similar Products"
+msgstr "عرض منتجات مشابهة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_header_style_4
+msgid "View Wishlist"
+msgstr "عرض المفضلة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_10
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+msgid "Visa"
+msgstr "Visa"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_testimonial_5
+msgid "Vivamus Tem"
+msgstr "فيفاموس تيم"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_5
+msgid ""
+"Vivamus at tempor arcu. Vestibulum fermentum facilisis dui, vitae iaculis "
+"purus accumsan quis. Quisque sit amet dignissim justo. Nullam ac sodales "
+"lorem, id volutpat arcu. Sed justo neque."
+msgstr "أداء قوي وتصميم أنيق يلبي كل التوقعات بجودة استثنائية تدوم طويلًا."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_coming_soon_1
+msgid "WE ARE LAUNCHING SOON!"
+msgstr "نحن نطلق قريبًا!"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+msgid "Watch"
+msgstr "ساعة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+msgid "We Accept"
+msgstr "نقبل"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+msgid "We accept"
+msgstr "نقبل"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_heading_3
+msgid "We add new products every day. Explore our great range of products."
+msgstr "نضيف منتجات جديدة كل يوم. استكشف مجموعتنا الرائعة من المنتجات."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+msgid ""
+"We are a team of passionate people whose goal is to improve everyone's life "
+"through disruptive products. We build great products to solve your business "
+"problems."
+msgstr ""
+"نحن فريق من الأشخاص المتحمسين الذين يهدفون إلى تحسين حياة الجميع من خلال "
+"منتجات مبتكرة. نصنع منتجات رائعة لحل مشكلات أعمالك."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+msgid ""
+"We are a team of passionate people whose goal is to improve everyone's life "
+"through disruptive products. We build great products to solve your business "
+"problems. Our products are designed for small to medium size companies "
+"willing to optimize their performance."
+msgstr ""
+"نحن فريق من الأشخاص المتحمسين الذين يهدفون إلى تحسين حياة الجميع من خلال "
+"منتجات مبتكرة. نصنع منتجات رائعة لحل مشكلات أعمالك. صُممت منتجاتنا للشركات "
+"الصغيرة والمتوسطة الراغبة في تحسين أدائها."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_coming_soon_2
+msgid ""
+"We are glad to see you, but please be patient. This page is under "
+"construction."
+msgstr "يسعدنا رؤيتك، ولكن يرجى التحلي بالصبر. هذه الصفحة قيد الإنشاء."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_info_block_7
+msgid ""
+"We are the creative team of theme prime. No one actually read this so let me"
+" write any thing here until it paragraph breaks into to multiple lines. "
+"Thanks for reading this."
+msgstr ""
+"نحن الفريق الإبداعي لقالب برايم. لا أحد يقرأ هذا فعليًا، لذا سأكتب أي شيء "
+"هنا حتى تنقسم الفقرة إلى عدة أسطر. شكرًا لقراءة هذا النص."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_call_to_action_3
+msgid ""
+"We are the creative team of theme prime. No one actually read this so let me"
+" write any thing here until the content is long enough to break this lines "
+"in to multiple lines so this block looks nice and cool. We are creative team"
+" but paragraph in not so long so writing again."
+msgstr ""
+"نحن الفريق الإبداعي لقالب برايم. لا أحد يقرأ هذا فعليًا، لذا سأكتب أي شيء "
+"هنا حتى يصبح المحتوى طويلًا بما يكفي لتقسيم هذه الأسطر إلى عدة أسطر بحيث "
+"تبدو هذه الكتلة جميلة وأنيقة. نحن فريق إبداعي لكن الفقرة ليست طويلة بما "
+"يكفي، لذا سأكتب مجددًا."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_call_to_action_5
+msgid ""
+"We are the creative team of theme prime. No one actually read this so let me"
+" write any thing here until the content is long enough to break this lines "
+"in to multiple lines."
+msgstr ""
+"نحن الفريق الإبداعي لقالب برايم. لا أحد يقرأ هذا فعليًا، لذا سأكتب أي شيء "
+"هنا حتى يصبح المحتوى طويلًا بما يكفي لتقسيم هذه الأسطر إلى عدة أسطر."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_call_to_action_2
+msgid ""
+"We are the creative team of theme prime. No one actually read this so let me"
+" write any thing here until the content is long enough."
+msgstr ""
+"نحن الفريق الإبداعي لقالب برايم. لا أحد يقرأ هذا فعليًا، لذا سأكتب أي شيء "
+"هنا حتى يصبح المحتوى طويلًا بما فيه الكفاية."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_call_to_action_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_heading_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_heading_5
+msgid ""
+"We are the creative team of theme prime. No one actually read this so let me"
+" write any thing here."
+msgstr ""
+"نحن الفريق الإبداعي لقالب برايم. لا أحد يقرأ هذا فعليًا، لذا سأكتب أي شيء "
+"هنا."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.404
+msgid "We can't seem to find the page you are looking for"
+msgstr "يبدو أننا لا نستطيع إيجاد الصفحة التي تبحث عنها"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout
+msgid "We couldn't find any matches!"
+msgstr "لم نتمكن من العثور على أي تطابق!"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout
+msgid "We couldn't find any product!"
+msgstr "لم نتمكن من العثور على أي منتج!"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_5
+msgid "We have everything that you need for your next adventure."
+msgstr "لدينا كل ما تحتاجه لمغامرتك القادمة."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_call_to_action_4
+msgid "We offer best in class service for your needs"
+msgstr "نقدم أفضل خدمة في فئتها لتلبية احتياجاتك"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+msgid "We process SSL сertificate"
+msgstr "نستخدم شهادة SSL لحماية بياناتك"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+msgid "We return money within 30 days"
+msgstr "نُرجع الأموال خلال 30 يومًا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_header_mobile
+msgid "Welcome !"
+msgstr "مرحبًا!"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_heading_options
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_options
+msgid "Width"
+msgstr "العرض"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_shop_offer_1
+msgid "Winter Collection"
+msgstr "مجموعة الشتاء"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_9
+msgid "Winter Wear Fest"
+msgstr "مهرجان ملابس الشتاء"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_cover_4
+msgid "Wireless Charging"
+msgstr "شحن لاسلكي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.component_account_info
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_10
+msgid "Wishlist"
+msgstr "المفضلة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_shop_offer_2
+msgid "Within 48 hours get free delivery"
+msgstr "احصل على توصيل مجاني خلال 48 ساعة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_preheader_style_5
+msgid "Women"
+msgstr "نساء"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_13
+msgid "Women Tops"
+msgstr "بلوزات نسائية"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_3
+msgid "Womens"
+msgstr "نسائي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+msgid "Xbox"
+msgstr "Xbox"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.pwa_offline_page
+msgid "You do not have internet connection !"
+msgstr "لا يوجد لديك اتصال بالإنترنت!"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout
+msgid "You searched for"
+msgstr "لقد بحثت عن"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.cart_sidebar
+msgid "You're"
+msgstr "أنت"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_banner_14
+msgid "Your Add Text Here"
+msgstr "أضف نصك هنا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.cart_sidebar
+msgid "Your Cart"
+msgstr "سلتك"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+msgid "Your Orders"
+msgstr "طلباتك"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+msgid "Your account"
+msgstr "حسابك"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.cart_sidebar
+msgid "Your cart is empty!"
+msgstr "سلتك فارغة!"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_heading_6
+msgid "Your title here"
+msgstr "عنوانك هنا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.cart_sidebar
+msgid "away from <strong>free shipping!</strong>"
+msgstr "متبقٍ للحصول على <strong>شحن مجاني!</strong>"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "banner, hero"
+msgstr "بانر، غلاف رئيسي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "call to action, cta"
+msgstr "دعوة لاتخاذ إجراء"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "clients, logo, reference"
+msgstr "عملاء، شعار، مرجع"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "coming soon, countdown, timer"
+msgstr "قريبًا، عد تنازلي، مؤقت"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "countdown, timer"
+msgstr "عد تنازلي، مؤقت"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "covers"
+msgstr "أغلفة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "covers, carousel"
+msgstr "أغلفة، عرض متحرك"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "documents, attachments"
+msgstr "مستندات، مرفقات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_svg_cart
+msgid "empty_cart"
+msgstr "empty_cart"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "gallery, album, portfolio"
+msgstr "معرض، ألبوم، أعمال"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "heading, title"
+msgstr "عنوان، ترويسة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "icon, features"
+msgstr "أيقونة، ميزات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_call_to_action_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_icon_block_6
+msgid "info@droggol.com"
+msgstr "info@droggol.com"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_10
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_7
+msgid "info@yourcompany.com"
+msgstr "info@yourcompany.com"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "information, content"
+msgstr "معلومات، محتوى"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.cart_sidebar
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_compare
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_wishlist
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout
+msgid "items"
+msgstr "عناصر"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.shop_layout
+msgid "items found."
+msgstr "عنصرًا تم العثور عليه."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "newsletter, subscribe, mail, email, marketing, mass mailing"
+msgstr "نشرة بريدية، اشتراك، بريد، تسويق، بريد جماعي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "offer"
+msgstr "عرض"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_tabs
+msgid "or"
+msgstr "أو"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_call_to_action_2
+msgid "or give us a call"
+msgstr "أو اتصل بنا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.tp_svg_404
+msgid "page not found"
+msgstr "الصفحة غير موجودة"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_pricing_5
+msgid "per month"
+msgstr "شهريًا"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "pricing, comparison, table"
+msgstr "أسعار، مقارنة، جدول"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "products, dynamic"
+msgstr "منتجات، ديناميكي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "stats, counter, number"
+msgstr "إحصائيات، عداد، رقم"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "team, avatar, profile, organisation, structure"
+msgstr "فريق، صورة رمزية، ملف شخصي، هيكل تنظيمي"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.snippets
+msgid "testimonials, quotes"
+msgstr "آراء العملاء، اقتباسات"
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_coming_soon_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_coming_soon_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_subscribe_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_subscribe_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_subscribe_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.s_subscribe_4
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_1
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_10
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_2
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_3
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_5
+#: model_terms:theme.ir.ui.view,arch:theme_prime.template_footer_style_6
+msgid "your email..."
+msgstr "بريدك الإلكتروني..."
+
+#. module: theme_prime
+#: model_terms:theme.ir.ui.view,arch:theme_prime.product_wishlist
+msgid "youremail@gmail.com"
+msgstr "youremail@gmail.com"
