@@ -7849,3 +7849,120 @@ msgstr "تصفية مخصصة"
 #. module: pos_sales_commission
 msgid "Add Custom Group"
 msgstr "إضافة مجموعة مخصصة"
+
+#. module: pos_stocks
+#: model:ir.model.fields,field_description:pos_stocks.field_pos_config__wk_continous_sale
+#: model:ir.model.fields,field_description:pos_stocks.field_res_config_settings__pos_wk_continous_sale
+#: model_terms:ir.ui.view,arch_db:pos_stocks.res_config_settings_view_form_pos_stocks
+msgid "Allow Order When Out-of-Stock"
+msgstr "السماح بالطلب عند نفاد المخزون"
+
+#. module: pos_stocks
+#: model:ir.model.fields.selection,name:pos_stocks.selection__pos_config__wk_stock_type__available_qty
+msgid "Available Quantity(On hand)"
+msgstr "الكمية المتاحة (في المتناول)"
+
+#. module: pos_stocks
+#: model:ir.model,name:pos_stocks.model_res_config_settings
+msgid "Config Settings"
+msgstr "تهيئة الإعدادات "
+
+#. module: pos_stocks
+#: model:ir.model.fields,field_description:pos_stocks.field_pos_config__wk_error_msg
+#: model:ir.model.fields,field_description:pos_stocks.field_res_config_settings__pos_wk_error_msg
+#: model_terms:ir.ui.view,arch_db:pos_stocks.res_config_settings_view_form_pos_stocks
+msgid "Custom message"
+msgstr "رسالة مخصصة"
+
+#. module: pos_stocks
+#: model_terms:ir.ui.view,arch_db:pos_stocks.res_config_settings_view_form_pos_stocks
+msgid "Deny order when product stock is equal to"
+msgstr "رفض الطلب عندما يكون مخزون المنتج مساوياً لـ"
+
+#. module: pos_stocks
+#: model:ir.model.fields,field_description:pos_stocks.field_pos_config__wk_deny_val
+#: model:ir.model.fields,field_description:pos_stocks.field_res_config_settings__pos_wk_deny_val
+msgid "Deny order when product stock is lower than "
+msgstr "رفض الطلب عندما يكون مخزون المنتج أقل من "
+
+#. module: pos_stocks
+#: model_terms:ir.ui.view,arch_db:pos_stocks.res_config_settings_view_form_pos_stocks
+msgid "Display product's stock info in POS"
+msgstr "عرض معلومات مخزون المنتج في نقطة البيع"
+
+#. module: pos_stocks
+#: model:ir.model.fields,field_description:pos_stocks.field_pos_config__wk_display_stock
+#: model:ir.model.fields,field_description:pos_stocks.field_res_config_settings__pos_wk_display_stock
+msgid "Display stock in POS"
+msgstr "عرض المخزون في نقطة البيع"
+
+#. module: pos_stocks
+#: model:ir.model.fields.selection,name:pos_stocks.selection__pos_config__wk_stock_type__forecasted_qty
+msgid "Forecasted Quantity"
+msgstr "الكمية المتوقعة"
+
+#. module: pos_stocks
+#: model:ir.model.fields,field_description:pos_stocks.field_pos_config__wk_hide_out_of_stock
+#: model:ir.model.fields,field_description:pos_stocks.field_res_config_settings__pos_wk_hide_out_of_stock
+msgid "Hide Out of Stock products"
+msgstr "إخفاء المنتجات التي نفد مخزونها"
+
+#. module: pos_stocks
+#: model_terms:ir.ui.view,arch_db:pos_stocks.res_config_settings_view_form_pos_stocks
+msgid "Hide out of stock products"
+msgstr "إخفاء المنتجات التي نفد مخزونها"
+
+#. module: pos_stocks
+#: model:ir.model,name:pos_stocks.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr "تهيئة نقطة البيع "
+
+#. module: pos_stocks
+#: model:ir.model,name:pos_stocks.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "طلبات نقطة البيع "
+
+#. module: pos_stocks
+#: model:ir.model,name:pos_stocks.model_pos_session
+msgid "Point of Sale Session"
+msgstr "جلسة نقطة البيع"
+
+#. module: pos_stocks
+#: model:ir.model.fields.selection,name:pos_stocks.selection__pos_config__wk_stock_type__virtual_qty
+msgid "Quantity on Hand - Outgoing Qty"
+msgstr "الكمية في المتناول - الكمية الصادرة"
+
+#. module: pos_stocks
+#: model:ir.model.fields,field_description:pos_stocks.field_pos_config__wk_stock_type
+#: model:ir.model.fields,field_description:pos_stocks.field_res_config_settings__pos_wk_stock_type
+msgid "Stock Type"
+msgstr "نوع المخزون"
+
+#. module: pos_stocks
+#: model_terms:ir.ui.view,arch_db:pos_stocks.res_config_settings_view_form_pos_stocks
+msgid "Stock type"
+msgstr "نوع المخزون"
+
+# =========================================================
+# مصطلحات الفلترة والبحث المضافة
+# =========================================================
+
+#. module: pos_stocks
+msgid "Search"
+msgstr "بحث"
+
+#. module: pos_stocks
+msgid "Add a filter"
+msgstr "إضافة عامل تصفية"
+
+#. module: pos_stocks
+msgid "Custom Filter"
+msgstr "تصفية مخصصة"
+
+#. module: pos_stocks
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: pos_stocks
+msgid "Add Custom Group"
+msgstr "إضافة مجموعة مخصصة"
