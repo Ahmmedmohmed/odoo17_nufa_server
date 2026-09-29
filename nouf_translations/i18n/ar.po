@@ -13520,24 +13520,6 @@ msgstr "عرض جميع الطلبات السابقة بالإضافة إلى ا
 msgid "provides the following functions and controls:"
 msgstr "يوفر الوظائف وعناصر التحكم التالية:"
 
-# Translation of Odoo Server.
-# This file contains the translation of the following modules:
-#   * stock_no_negative
-#
-msgid ""
-msgstr ""
-"Project-Id-Version: Odoo Server 17.0+e\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-21 14:44+0000\n"
-"PO-Revision-Date: 2023-11-21 14:44+0000\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: ar\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
-
 #. module: stock_no_negative
 #. odoo-python
 #: code:addons/stock_no_negative/models/stock_quant.py:0
