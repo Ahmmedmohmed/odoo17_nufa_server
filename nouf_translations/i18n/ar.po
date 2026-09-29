@@ -13379,13 +13379,143 @@ msgstr "تجميع حسب"
 msgid "Add Custom Group"
 msgstr "إضافة مجموعة مخصصة"
 
+#. module: l10n_mt_pos
+#: model_terms:ir.ui.view,arch_db:l10n_mt_pos.report_compliance_letter_template
+msgid "40 Chaussée de Namur, 1367 Grand-Rosière, Belgium"
+msgstr "40 Chaussée de Namur, 1367 Grand-Rosière, بلجيكا"
 
-# =========================================================
-# ترجمة تقارير الامتثال لنقاط البيع
-# =========================================================
+#. module: l10n_mt_pos
+#: model_terms:ir.ui.view,arch_db:l10n_mt_pos.report_compliance_letter_template
+msgid "Advertise your current promotions, hours of operation, and upcoming events on your printed receipts"
+msgstr "الإعلان عن عروضك الترويجية الحالية، ساعات العمل، والأحداث القادمة على الإيصالات المطبوعة"
 
+#. module: l10n_mt_pos
+#: model_terms:ir.ui.view,arch_db:l10n_mt_pos.view_generate_compliance_letter
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: l10n_mt_pos
+#: model_terms:ir.ui.view,arch_db:l10n_mt_pos.report_compliance_letter_template
+msgid "Cash, checks, and credit card payment methods are available. New types of payments can also be added"
+msgstr "تتوفر طرق الدفع النقدية، الشيكات، والبطاقات الائتمانية. كما يمكن إضافة أنواع جديدة من المدفوعات"
+
+#. module: l10n_mt_pos
+#: model:ir.model.fields,field_description:l10n_mt_pos.field_compliance_letter_wizard__company_id
+#: model_terms:ir.ui.view,arch_db:l10n_mt_pos.view_generate_compliance_letter
+msgid "Company"
+msgstr "الشركة"
+
+#. module: l10n_mt_pos
+#: model:ir.actions.report,name:l10n_mt_pos.report_compliance_letter
+#: model:ir.actions.act_window,name:l10n_mt_pos.action_generate_compliance_letter
+#: model:ir.ui.menu,name:l10n_mt_pos.menu_compliance_letter
+#: model_terms:ir.ui.view,arch_db:l10n_mt_pos.view_generate_compliance_letter
 msgid "Compliance Letter"
 msgstr "خطاب الامتثال"
-# =========================================================
+
+#. module: l10n_mt_pos
+#: model:ir.model,name:l10n_mt_pos.model_compliance_letter_wizard
+msgid "Compliance Letter for EXO Number"
+msgstr "خطاب الامتثال لرقم EXO"
+
+#. module: l10n_mt_pos
+#: model:ir.actions.report,print_report_name:l10n_mt_pos.report_compliance_letter
+msgid "'Compliance Letter'"
+msgstr "'خطاب الامتثال'"
+
+#. module: l10n_mt_pos
+#. odoo-python
+#: code:addons/l10n_mt_pos/wizards/compliance_letter.py:0
+#, python-format
+msgid "Compliance letters can only be created for companies registered in Malta. Please ensure the company's country is set to Malta."
+msgstr "لا يمكن إنشاء خطابات الامتثال إلا للشركات المسجلة في مالطا. يرجى التأكد من تعيين دولة الشركة إلى مالطا."
+
+#. module: l10n_mt_pos
+#: model_terms:ir.ui.view,arch_db:l10n_mt_pos.report_compliance_letter_template
+msgid "Dear Sir/Madam,"
+msgstr "عزيزي السيد/السيدة،"
+
+#. module: l10n_mt_pos
+#: model_terms:ir.ui.view,arch_db:l10n_mt_pos.report_compliance_letter_template
+msgid "Generate and print invoices for your business customers"
+msgstr "إنشاء وطباعة الفواتير لعملائك التجاريين"
+
+#. module: l10n_mt_pos
+#: model_terms:ir.ui.view,arch_db:l10n_mt_pos.report_compliance_letter_template
+msgid "Keep track of daily sales and totals for every payment type"
+msgstr "تتبع المبيعات اليومية والإجماليات لكل نوع دفع"
+
+#. module: l10n_mt_pos
+#: model:ir.ui.menu,name:l10n_mt_pos.pos_mt_statements_menu
 msgid "Malta EXO"
 msgstr "مالطا EXO"
+
+#. module: l10n_mt_pos
+#: model_terms:ir.ui.view,arch_db:l10n_mt_pos.report_compliance_letter_template
+msgid "Monitor cash register adjustments and easily verify cash contents at the end of the day"
+msgstr "مراقبة تسويات درج النقدية والتحقق بسهولة من محتويات النقدية في نهاية اليوم"
+
+#. module: l10n_mt_pos
+#: model_terms:ir.ui.view,arch_db:l10n_mt_pos.report_compliance_letter_template
+msgid "Odoo Point Of Sale application, version"
+msgstr "تطبيق أودو لنقاط البيع، إصدار"
+
+#. module: l10n_mt_pos
+#: model_terms:ir.ui.view,arch_db:l10n_mt_pos.report_compliance_letter_template
+msgid "Odoo SA, BE0477472701"
+msgstr "أودو ش.م، BE0477472701"
+
+#. module: l10n_mt_pos
+#: model_terms:ir.ui.view,arch_db:l10n_mt_pos.report_compliance_letter_template
+msgid "Odoo S.A., (Belgium) is a registered company with the Trade and Companies Register of Nivelles with VAT number BE0477472701, having its registered office at Chaussée de Namur, 40, 1367 Grand-Rosière, Belgium (\"Odoo\"). Odoo provides Enterprise Resource Planning (ERP) cloud and on-premise applications to customers worldwide, incorporating a browser-based Point-of-Sale (POS) application."
+msgstr "أودو ش.م، (بلجيكا) هي شركة مسجلة في السجل التجاري والشركات في نيفيل برقم ضريبي BE0477472701، ومقرها المسجل في Chaussée de Namur, 40, 1367 Grand-Rosière, Belgium (\"Odoo\"). توفر أودو تطبيقات تخطيط موارد المؤسسات (ERP) السحابية والمحلية للعملاء في جميع أنحاء العالم، بما في ذلك تطبيق نقاط البيع (POS) المستند إلى المتصفح."
+
+#. module: l10n_mt_pos
+#: model_terms:ir.ui.view,arch_db:l10n_mt_pos.report_compliance_letter_template
+msgid "Odoo hereby declares that the POS application in the version"
+msgstr "تقر أودو بموجب هذا أن تطبيق نقاط البيع بالإصدار"
+
+#. module: l10n_mt_pos
+#: model_terms:ir.ui.view,arch_db:l10n_mt_pos.report_compliance_letter_template
+msgid "Payments are directly integrated into Odoo Accounting, making bookkeeping simple and reliable"
+msgstr "يتم دمج المدفوعات مباشرة في حسابات أودو، مما يجعل مسك الدفاتر بسيطاً وموثوقاً"
+
+#. module: l10n_mt_pos
+#: model_terms:ir.ui.view,arch_db:l10n_mt_pos.report_compliance_letter_template
+msgid "Point-of-sale transactions cannot be tampered with through the application"
+msgstr "لا يمكن التلاعب بمعاملات نقاط البيع من خلال التطبيق"
+
+#. module: l10n_mt_pos
+#: model_terms:ir.ui.view,arch_db:l10n_mt_pos.view_generate_compliance_letter
+msgid "Print"
+msgstr "طباعة"
+
+#. module: l10n_mt_pos
+#: model_terms:ir.ui.view,arch_db:l10n_mt_pos.report_compliance_letter_template
+msgid "Quickly find products by their name or barcode with the built-in search"
+msgstr "العثور بسرعة على المنتجات بأسمائها أو الباركود باستخدام البحث المدمج"
+
+#. module: l10n_mt_pos
+#: model_terms:ir.ui.view,arch_db:l10n_mt_pos.report_compliance_letter_template
+msgid "Register customers' VAT numbers and apply them to invoices"
+msgstr "تسجيل الأرقام الضريبية للعملاء وتطبيقها على الفواتير"
+
+#. module: l10n_mt_pos
+#: model_terms:ir.ui.view,arch_db:l10n_mt_pos.report_compliance_letter_template
+msgid "Set customer prices or offer percentage-based discounts on either a single product or the entire order"
+msgstr "تحديد أسعار العملاء أو تقديم خصومات بناءً على نسبة مئوية إما على منتج واحد أو على الطلب بأكمله"
+
+#. module: l10n_mt_pos
+#: model_terms:ir.ui.view,arch_db:l10n_mt_pos.report_compliance_letter_template
+msgid "Signed this day: "
+msgstr "وُقّع في هذا اليوم: "
+
+#. module: l10n_mt_pos
+#: model_terms:ir.ui.view,arch_db:l10n_mt_pos.report_compliance_letter_template
+msgid "View all past orders as well as search by customer, product, cashier, or date"
+msgstr "عرض جميع الطلبات السابقة بالإضافة إلى البحث حسب العميل، المنتج، أمين الصندوق، أو التاريخ"
+
+#. module: l10n_mt_pos
+#: model_terms:ir.ui.view,arch_db:l10n_mt_pos.report_compliance_letter_template
+msgid "provides the following functions and controls:"
+msgstr "يوفر الوظائف وعناصر التحكم التالية:"
