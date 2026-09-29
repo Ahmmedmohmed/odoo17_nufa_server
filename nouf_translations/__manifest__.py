@@ -15,6 +15,7 @@
     ],
     'data': [
         'data/update_countries_data.xml',
+        'data/update_utm_data.xml',
     ],
     'installable': True,
     'application': False,
