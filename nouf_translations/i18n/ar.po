@@ -13297,3 +13297,84 @@ msgstr "بريدك الإلكتروني..."
 #: model_terms:theme.ir.ui.view,arch:theme_prime.product_wishlist
 msgid "youremail@gmail.com"
 msgstr "youremail@gmail.com"
+
+#. module: pos_partner_birthdate
+#: model:ir.model.fields,field_description:pos_partner_birthdate.field_res_partner__age
+#: model:ir.model.fields,field_description:pos_partner_birthdate.field_res_users__age
+msgid "Age"
+msgstr "العمر"
+
+#. module: pos_partner_birthdate
+#: model:ir.model.fields,field_description:pos_partner_birthdate.field_res_partner__birth_date
+#: model:ir.model.fields,field_description:pos_partner_birthdate.field_res_users__birth_date
+msgid "Birth Date"
+msgstr "تاريخ الميلاد"
+
+#. module: partner_cr_number
+#: model:ir.model.fields,field_description:partner_cr_number.field_res_partner__cr_number
+#: model:ir.model.fields,field_description:partner_cr_number.field_res_users__cr_number
+msgid "CR Number"
+msgstr "رقم السجل التجاري"
+
+#. module: pos_partner_birthdate
+#: model:ir.model,name:pos_partner_birthdate.model_res_partner
+msgid "Contact"
+msgstr "جهة الاتصال"
+
+#. module: pos_partner_birthdate
+#: model:ir.model.fields,field_description:pos_partner_birthdate.field_res_partner__married_date
+#: model:ir.model.fields,field_description:pos_partner_birthdate.field_res_users__married_date
+msgid "Married Date"
+msgstr "تاريخ الزواج"
+
+#. module: pos_partner_birthdate
+#: model:ir.model.fields,field_description:pos_partner_birthdate.field_res_partner__first_name
+#: model:ir.model.fields,field_description:pos_partner_birthdate.field_res_users__first_name
+msgid "Partner First Name"
+msgstr "الاسم الأول للشريك"
+
+#. module: pos_partner_birthdate
+#: model:ir.model.fields,field_description:pos_partner_birthdate.field_res_partner__last_name
+#: model:ir.model.fields,field_description:pos_partner_birthdate.field_res_users__last_name
+msgid "Partner Last Name"
+msgstr "الاسم الأخير للشريك"
+
+#. module: pos_partner_birthdate
+#: model_terms:ir.ui.view,arch_db:pos_partner_birthdate.view_res_partner_form_additional_fields
+msgid "Personal Information"
+msgstr "المعلومات الشخصية"
+
+#. module: pos_partner_birthdate
+#: model:ir.model.fields,field_description:pos_partner_birthdate.field_res_partner__phone
+#: model:ir.model.fields,field_description:pos_partner_birthdate.field_res_users__phone
+msgid "Phone"
+msgstr "رقم الهاتف"
+
+#. module: pos_partner_birthdate
+#: model:ir.model,name:pos_partner_birthdate.model_pos_session
+msgid "Point of Sale Session"
+msgstr "جلسة نقطة البيع"
+
+# =========================================================
+# مصطلحات الفلترة والبحث المضافة
+# =========================================================
+
+#. module: pos_partner_birthdate
+msgid "Search"
+msgstr "بحث"
+
+#. module: pos_partner_birthdate
+msgid "Add a filter"
+msgstr "إضافة عامل تصفية"
+
+#. module: pos_partner_birthdate
+msgid "Custom Filter"
+msgstr "تصفية مخصصة"
+
+#. module: pos_partner_birthdate
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: pos_partner_birthdate
+msgid "Add Custom Group"
+msgstr "إضافة مجموعة مخصصة"
