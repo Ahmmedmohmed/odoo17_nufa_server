@@ -21251,5 +21251,5 @@ msgstr "⇒ عناصر اليومية"
 #: code:addons/account_reports/static/src/components/multicurrency_revaluation_report/account_report.xml:0
 #, python-format
 msgid "⇒ Reset to Odoo’s Rate"
-msgstr "⇒ إعادة التعيين لأسعار أودو
+msgstr "⇒ إعادة التعيين لأسعار أودو"
 
