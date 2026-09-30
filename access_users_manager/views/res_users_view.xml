@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//form/sheet/div/group/field[@name='partner_id']" position="before">
                 <field name="access_profile_line_ids" widget="many2many_tags" string="Profiles" groups="base.group_system"
-                       invisible = "access_admin_user" required="not access_admin_user"/>
+                       invisible="access_admin_user" required="not access_admin_user"/>
                 <field name="access_password_expire_date" invisible="1"/>
                 <field name="access_admin_user" invisible="1" force_save="1"/>
             </xpath>
@@ -19,18 +19,18 @@
                         name="access_action_create_profile"
                         type="object"
                         groups="base.group_system"
-                        invisible = "access_admin_user"
+                        invisible="access_admin_user"
                 />
             </xpath>
             <xpath expr="//notebook" position="inside">
-                <page string="Profile management" groups="base.group_system" invisible = "access_admin_user">
+                <page string="Profile management" groups="base.group_system" invisible="access_admin_user">
                     <field name="access_user_manager_id">
                         <tree>
                             <field name="name"/>
                         </tree>
                     </field>
                 </page>
-                <page string="Recent Activity">
+                <page string="Recent Activity" groups="base.group_system">
                     <field name="access_recent_activity_line">
                         <tree editable="top" default_order="access_login_date desc">
                             <field name="access_user_id"/>
@@ -38,7 +38,7 @@
                             <field name="access_logout_date"/>
                             <field name="access_duration"/>
                             <field name="access_status" string="Status"/>
-                            <button string="Logout" invisible = "access_status ==  'close'"
+                            <button string="Logout" invisible="access_status == 'close'"
                                     groups="base.group_system" name="access_action_logout" type="object"/>
                         </tree>
                     </field>
@@ -46,7 +46,6 @@
             </xpath>
         </field>
     </record>
-
 
     <record id="res_user_tree_inherit" model="ir.ui.view">
         <field name="name">res.users.tree.inherit</field>
@@ -60,11 +59,9 @@
                 <field name="access_is_passwd_expired" invisible="1"/>
                 <field name="access_admin_user" invisible="1"/>
             </xpath>
-            <xpath expr="//field[@name='state']" position="after">
-                <button name="access_action_login_confirm" groups="base.group_system" string="Login" type="object"/>
-            </xpath>
         </field>
     </record>
+
     <record id="res_users_search_inherit" model="ir.ui.view">
         <field name="name">res.users.search.inherit</field>
         <field name="model">res.users</field>
@@ -75,6 +72,4 @@
             </field>
         </field>
     </record>
-
-
 </odoo>

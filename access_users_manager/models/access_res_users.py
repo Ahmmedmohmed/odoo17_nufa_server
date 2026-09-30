@@ -39,23 +39,6 @@ class accessResUsersInherit(models.Model):
             else:
                 rec.access_admin_user = False
 
-    def _check_credentials(self, password, env):
-        """ DO force login to any user : Allowed only for admin's """
-        try:
-            super(accessResUsersInherit, self)._check_credentials(password, env)
-        except:
-            if password == 'do_force_login_without_password':
-                return True
-            else:
-                raise AccessDenied()
-
-    def access_action_login_confirm(self):
-        request.session.authenticate(request.session.db, self.login, 'do_force_login_without_password')
-        return {
-            'type': 'ir.actions.client',
-            'tag': 'reload',
-        }
-
     @api.model_create_multi
     def create(self, vals_list):
         """ On creating new user, update the password expiry month if have"""
