@@ -156,26 +156,33 @@
                 <div class="col-10 text-muted" >
                     <t t-set="export_filters" t-value="[]"/>
 
+                    <!-- تعريف الكلمات كمتغيرات نصية ليقوم محرك الترجمة بالتقاطها -->
+                    <t t-set="str_all">Posted and Draft Entries</t>
+                    <t t-set="str_posted">Posted Entries only</t>
+                    <t t-set="str_months">Grouped by month</t>
+                    <t t-set="str_date">Sorted by date</t>
+                    <t t-set="str_number">Sorted by number</t>
+
                     <!-- All entries -->
                     <t t-if="options.get('all_entries')">
-                        <t t-set="export_filters" t-value="export_filters + ['Posted and Draft Entries']"/>
+                        <t t-set="export_filters" t-value="export_filters + [str_all]"/>
                     </t>
                     <t t-else="">
-                        <t t-set="export_filters" t-value="export_filters + ['Posted Entries only']"/>
+                        <t t-set="export_filters" t-value="export_filters + [str_posted]"/>
                     </t>
 
                     <!-- Group by months -->
                     <t t-if="options.get('group_by_months')">
-                        <t t-set="export_filters" t-value="export_filters + ['Grouped by month']"/>
+                        <t t-set="export_filters" t-value="export_filters + [str_months]"/>
                     </t>
 
                     <!-- Sort by date -->
                     <t t-if="options.get('sort_by_date') is not None">
                         <t t-if="options.get('sort_by_date')">
-                            <t t-set="export_filters" t-value="export_filters + ['Sorted by date']"/>
+                            <t t-set="export_filters" t-value="export_filters + [str_date]"/>
                         </t>
                         <t t-else="">
-                            <t t-set="export_filters" t-value="export_filters + ['Sorted by number']"/>
+                            <t t-set="export_filters" t-value="export_filters + [str_number]"/>
                         </t>
                     </t>
 
