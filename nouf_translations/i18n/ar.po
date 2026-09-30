@@ -15548,3 +15548,11 @@ msgstr "سبب الاسترداد"
 #: model:ir.ui.menu,name:account_invoice_refund_reason.refund_reasons_menu
 msgid "Refund Reasons"
 msgstr "أسباب الاسترداد"
+
+#. module: account
+#: model:ir.model.fields,field_description:account.field_account_bank_statement_line__is_storno
+#: model:ir.model.fields,field_description:account.field_account_move__is_storno
+#: model:ir.model.fields,field_description:account.field_account_payment__is_storno
+msgid "Is Storno"
+msgstr "له قيد العكسي"
+
