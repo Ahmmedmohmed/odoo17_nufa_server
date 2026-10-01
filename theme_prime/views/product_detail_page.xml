@@ -90,7 +90,7 @@
         </xpath>
         <xpath expr="//a[@id='add_to_cart']" position="replace">
             <a role="button" id="add_to_cart" data-animation-selector=".product_detail_img" class="btn btn-primary btn-lg js_check_product a-submit flex-grow-1" href="#">
-                <i class="dri dri-cart me-1"/> Add to Cart
+                <i class="dri dri-cart"/><span class="ms-1">Add to Cart</span>
             </a>
             <a t-if="is_view_active('website_sale.product_buy_now')" role="button" class="btn btn-primary-soft btn-lg o_we_buy_now ms-2" href="#">
                 <i class="dri dri-bolt me-1"/> Buy Now
