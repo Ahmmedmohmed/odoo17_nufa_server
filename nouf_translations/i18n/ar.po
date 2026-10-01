@@ -21764,3 +21764,75 @@ msgstr "متابعة الدفع"
 msgid "Proceed"
 msgstr "متابعة"
 
+#. module: theme_prime
+msgid "Add to Cart"
+msgstr "إضافة إلى السلة"
+
+#. module: theme_prime
+msgid "Add to cart"
+msgstr "إضافة إلى السلة"
+
+#. module: theme_prime
+msgid "RESET"
+msgstr "إعادة ضبط"
+
+#. module: theme_prime
+msgid "Load more"
+msgstr "عرض المزيد"
+
+#. module: theme_prime
+msgid "Subtotal:"
+msgstr "المجموع الفرعي:"
+
+#. module: theme_prime
+msgid "Subtotal"
+msgstr "المجموع الفرعي"
+
+#. module: theme_prime
+msgid "Apply Promo Code"
+msgstr "تطبيق كود الخصم"
+
+#. module: theme_prime
+msgid "Proceed to Checkout"
+msgstr "متابعة الدفع"
+
+#. module: theme_prime
+msgid "All Products"
+msgstr "كل المنتجات"
+
+#. module: theme_prime
+msgid "Filters"
+msgstr "الفلاتر"
+
+#. module: theme_prime
+msgid "Show Filters"
+msgstr "إظهار الفلاتر"
+
+#. module: theme_prime
+msgid "Sort By :"
+msgstr "الترتيب حسب:"
+
+#. module: theme_prime
+msgid "Sort By"
+msgstr "الترتيب حسب"
+
+#. module: theme_prime
+msgid "items found."
+msgstr "منتجات."
+
+#. module: theme_prime
+msgid "Clear Filters"
+msgstr "مسح الفلاتر"
+
+#. module: theme_prime
+msgid "Price"
+msgstr "السعر"
+
+#. module: theme_prime
+msgid "Availability"
+msgstr "التوافر"
+
+#. module: theme_prime
+msgid "Hide out of stock"
+msgstr "إخفاء المنتجات غير المتوفرة"
+
