@@ -26,17 +26,20 @@ class Product(models.Model):
         """
         🚀 التعديل: جلب الفروع من خطط أسعار الخدمة نفسها لضمان ظهور كل الفروع،
         سواء كانت الخدمة منفردة أو داخل باقة.
+        (تمت إضافة sudo لتجاوز خطأ صلاحيات الفروع في واجهة نقطة البيع)
         """
         res_dict = {}
 
-        # 1. جلب الفروع من خطط أسعار الخدمة (الطبيعي والمنطقي)
-        branch_ids = self.plan_ids.mapped('branch_id')
+        # 1. جلب الفروع من خطط أسعار الخدمة باستخدام sudo()
+        # استخدام sudo() يمنع أودو من فحص صلاحيات المستخدم الحالي عند قراءة بيانات الفرع
+        branch_ids = self.sudo().plan_ids.mapped('branch_id')
         for branch in branch_ids:
             res_dict[branch.id] = branch.display_name
 
         # 2. كبديل احتياطي (لو الخدمة ملهاش خطة أسعار)، نقرأ من إعدادات سطر الباقة
         if not res_dict and package_id:
-            package_obj = self.env['product.product'].browse(int(package_id))
+            # إضافة sudo() هنا أيضاً لضمان قراءة الباقات بأمان
+            package_obj = self.env['product.product'].sudo().browse(int(package_id))
             for record in package_obj.appointment_package_line_ids.filtered(lambda r: r.product_id.id == self.id):
                 if record.branch_id:
                     res_dict[record.branch_id.id] = record.branch_id.display_name
