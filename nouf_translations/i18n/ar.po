@@ -21253,3 +21253,514 @@ msgstr "⇒ عناصر اليومية"
 msgid "⇒ Reset to Odoo’s Rate"
 msgstr "⇒ إعادة التعيين لأسعار أودو"
 
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.navbar
+msgid "#{_navbar_name if _navbar_name else 'Main'}"
+msgstr "#{_navbar_name if _navbar_name else 'الرئيسية'}"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.snippet_options
+msgid "#{display_label} #{depth}"
+msgstr "#{display_label} #{depth}"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.snippet_options
+msgid "#{heading_label} #{depth}"
+msgstr "#{heading_label} #{depth}"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.snippet_options
+msgid "&amp;lt;head&amp;gt; and &amp;lt;/body&amp;gt;"
+msgstr "&amp;lt;head&amp;gt; و &amp;lt;/body&amp;gt;"
+
+#. module: website_sale
+#: model_terms:ir.ui.view,arch_db:website_sale.products_item
+msgid "&amp;nbsp;"
+msgstr "&amp;nbsp;"
+
+#. module: website_sale
+#: model_terms:ir.ui.view,arch_db:website_sale.checkout_layout
+msgid "&amp;nbsp;item(s)&amp;nbsp;-&amp;nbsp;"
+msgstr "&amp;nbsp;عنصر(عناصر)&amp;nbsp;-&amp;nbsp;"
+
+#. module: website
+#: model:website,contact_us_button_url:website.default_website
+#: model_terms:ir.ui.view,arch_db:website.layout
+#: model_terms:ir.ui.view,arch_db:website.snippets
+msgid "/contactus"
+msgstr "/contactus"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.contactus
+#: model_terms:ir.ui.view,arch_db:website.contactus_thanks_ir_ui_view
+msgid "<i class=\"fa fa-1x fa-fw fa-envelope me-2\"/><span>info@yourcompany.example.com</span>"
+msgstr "<i class=\"fa fa-1x fa-fw fa-envelope me-2\"/><span>info@yourcompany.example.com</span>"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.template_footer_call_to_action
+msgid "<i class=\"fa fa-1x fa-fw fa-map-marker me-2\"/>250 Executive Park Blvd, Suite 3400 • San Francisco CA 94134 • United States"
+msgstr "<i class=\"fa fa-1x fa-fw fa-map-marker me-2\"/>250 Executive Park Blvd, Suite 3400 • سان فرانسيسكو، كاليفورنيا 94134 • الولايات المتحدة"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.header_text_element
+msgid "<i class=\"fa fa-1x fa-fw fa-phone me-1\"/>\n                        <span class=\"o_force_ltr\"><small>+1 555-555-5556</small></span>"
+msgstr "<i class=\"fa fa-1x fa-fw fa-phone me-1\"/>\n                        <span class=\"o_force_ltr\"><small>+1 555-555-5556</small></span>"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.header_text_element
+msgid "<i class=\"fa fa-1x fa-fw fa-phone me-1\"/>͏"
+msgstr "<i class=\"fa fa-1x fa-fw fa-phone me-1\"/>͏"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.contactus
+#: model_terms:ir.ui.view,arch_db:website.contactus_thanks_ir_ui_view
+msgid "<i class=\"fa fa-map-marker fa-fw me-2\"/><span class=\"o_force_ltr\">3575 Fake Buena Vista Avenue</span>"
+msgstr "<i class=\"fa fa-map-marker fa-fw me-2\"/><span class=\"o_force_ltr\">3575 Fake Buena Vista Avenue</span>"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.contactus
+#: model_terms:ir.ui.view,arch_db:website.contactus_thanks_ir_ui_view
+msgid "<i class=\"fa fa-phone fa-fw me-2\"/><span class=\"o_force_ltr\">+1 555-555-5556</span>"
+msgstr "<i class=\"fa fa-phone fa-fw me-2\"/><span class=\"o_force_ltr\">+1 555-555-5556</span>"
+
+#. module: website_sale
+#: model_terms:ir.ui.view,arch_db:website_sale.products_attributes
+msgid "<option value=\"\" selected=\"true\">-</option>"
+msgstr "<option value=\"\" selected=\"true\">-</option>"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.language_selector_inline
+msgid "<span class=\"list-inline-item\">|</span>"
+msgstr "<span class=\"list-inline-item\">|</span>"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.s_rating_options
+msgid "<span class=\"mx-2\">/</span>"
+msgstr "<span class=\"mx-2\">/</span>"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.header_text_element
+msgid "<span class=\"o_force_ltr\">+1 555-555-5556</span>"
+msgstr "<span class=\"o_force_ltr\">+1 555-555-5556</span>"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.s_comparisons
+msgid "<span class=\"s_comparisons_currency\">$</span>\n                                <span class=\"s_comparisons_price\"><b>125</b></span>\n                                <span class=\"s_comparisons_decimal\">.00</span>"
+msgstr "<span class=\"s_comparisons_currency\">$</span>\n                                <span class=\"s_comparisons_price\"><b>125</b></span>\n                                <span class=\"s_comparisons_decimal\">.00</span>"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.s_comparisons
+msgid "<span class=\"s_comparisons_currency\">$</span>\n                                <span class=\"s_comparisons_price\"><b>35</b></span>\n                                <span class=\"s_comparisons_decimal\">.00</span>"
+msgstr "<span class=\"s_comparisons_currency\">$</span>\n                                <span class=\"s_comparisons_price\"><b>35</b></span>\n                                <span class=\"s_comparisons_decimal\">.00</span>"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.s_comparisons
+msgid "<span class=\"s_comparisons_currency\">$</span>\n                                <span class=\"s_comparisons_price\"><b>65</b></span>\n                                <span class=\"s_comparisons_decimal\">.00</span>"
+msgstr "<span class=\"s_comparisons_currency\">$</span>\n                                <span class=\"s_comparisons_price\"><b>65</b></span>\n                                <span class=\"s_comparisons_decimal\">.00</span>"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.s_numbers
+msgid "<span class=\"s_number display-4\">12</span>"
+msgstr "<span class=\"s_number display-4\">12</span>"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.s_numbers
+msgid "<span class=\"s_number display-4\">37</span>"
+msgstr "<span class=\"s_number display-4\">37</span>"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.s_numbers
+msgid "<span class=\"s_number display-4\">45</span>"
+msgstr "<span class=\"s_number display-4\">45</span>"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.s_numbers
+msgid "<span class=\"s_number display-4\">8</span>"
+msgstr "<span class=\"s_number display-4\">8</span>"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.header_text_element
+msgid "<small>\n                            <i class=\"fa fa-1x fa-fw fa-envelope me-1\"/>\n                            info@yourcompany.example.com\n                        </small>"
+msgstr "<small>\n                            <i class=\"fa fa-1x fa-fw fa-envelope me-1\"/>\n                            info@yourcompany.example.com\n                        </small>"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.header_text_element
+msgid "<small><i class=\"fa fa-1x fa-fw fa-envelope me-1\"/> info@yourcompany.example.com</small>"
+msgstr "<small><i class=\"fa fa-1x fa-fw fa-envelope me-1\"/> info@yourcompany.example.com</small>"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.website_controller_pages_form_view
+msgid "<span invisible=\"name_slugified\" class=\"bg-300\">...</span>\n                            <span invisible=\"page_type == 'listing'\">\n                                /my-little-record-23\n                            </span>"
+msgstr "<span invisible=\"name_slugified\" class=\"bg-300\">...</span>\n                            <span invisible=\"page_type == 'listing'\">\n                                /my-little-record-23\n                            </span>"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.s_timeline
+msgid "<span><b>2015</b></span>"
+msgstr "<span><b>2015</b></span>"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.s_timeline
+msgid "<span><b>2018</b></span>"
+msgstr "<span><b>2018</b></span>"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.s_timeline
+msgid "<span><b>2019</b></span>"
+msgstr "<span><b>2019</b></span>"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.view_sales_order_filter_ecommerce_abondand
+msgid "Arch Blob"
+msgstr "كائن البنية (Arch Blob)"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.view_sales_order_filter_ecommerce_abondand
+msgid "Arch Fs"
+msgstr "ملف البنية (Arch Fs)"
+
+#. module: website
+#. odoo-javascript
+#: code:addons/website/static/src/xml/website.editor.xml:0
+#, python-format
+msgid "BSgzTvR5L1GB9jriT451iTN4huVPxHmltG6T6eo"
+msgstr "BSgzTvR5L1GB9jriT451iTN4huVPxHmltG6T6eo"
+
+#. module: website
+#. odoo-javascript
+#: code:addons/website/static/src/components/wysiwyg_adapter/wysiwyg_adapter.js:0
+#: model_terms:ir.ui.view,arch_db:website.snippets
+#, python-format
+msgid "Blockquote"
+msgstr "اقتباس (Blockquote)"
+
+#. module: website
+#. odoo-javascript
+#: code:addons/website/static/src/components/dialog/seo.xml:0
+#, python-format
+msgid "C"
+msgstr "C"
+
+#. module: website
+#. odoo-javascript
+#: code:addons/website/static/src/components/dialog/seo.xml:0
+#: model_terms:ir.ui.view,arch_db:website.s_countdown_options
+#, python-format
+msgid "D"
+msgstr "D"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.s_countdown_options
+msgid "D - H - M"
+msgstr "يوم - ساعة - دقيقة"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.s_countdown_options
+msgid "D - H - M - S"
+msgstr "يوم - ساعة - دقيقة - ثانية"
+
+#. module: website_sale
+#: model_terms:ir.ui.view,arch_db:website_sale.res_config_settings_view_form
+msgid "DHL"
+msgstr "دي إتش إل (DHL)"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.snippet_options
+msgid "Dolly Zoom"
+msgstr "تقريب الكاميرا (Dolly Zoom)"
+
+#. module: website_sale
+#: model_terms:ir.ui.view,arch_db:website_sale.res_config_settings_view_form
+msgid "Easypost"
+msgstr "Easypost"
+
+#. modules: website, website_sale
+#: model:ir.model.fields,field_description:website_sale.field_product_image__embed_code
+#: model_terms:ir.ui.view,arch_db:website.snippets
+msgid "Embed Code"
+msgstr "تضمين كود"
+
+#. module: website_sale
+#: model_terms:ir.ui.view,arch_db:website_sale.res_config_settings_view_form
+msgid "FedEx"
+msgstr "فيديكس (FedEx)"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.res_config_settings_view_form
+msgid "G-XXXXXXXXXX"
+msgstr "G-XXXXXXXXXX"
+
+#. module: website
+#. odoo-javascript
+#: code:addons/website/static/src/snippets/s_social_media/options.js:0
+#: model_terms:ir.ui.view,arch_db:website.header_social_links
+#: model_terms:ir.ui.view,arch_db:website.s_mega_menu_odoo_menu
+#: model_terms:ir.ui.view,arch_db:website.s_social_media
+#, python-format
+msgid "GitHub"
+msgstr "GitHub"
+
+#. module: website
+#. odoo-javascript
+#: code:addons/website/static/src/components/dialog/seo.xml:0
+#, python-format
+msgid "H1"
+msgstr "H1"
+
+#. module: website
+#. odoo-javascript
+#: code:addons/website/static/src/components/dialog/seo.xml:0
+#, python-format
+msgid "H2"
+msgstr "H2"
+
+#. module: website
+#. odoo-javascript
+#: code:addons/website/static/src/snippets/s_instagram_page/000.js:0
+#: code:addons/website/static/src/snippets/s_social_media/options.js:0
+#: model_terms:ir.ui.view,arch_db:website.header_social_links
+#: model_terms:ir.ui.view,arch_db:website.s_mega_menu_odoo_menu
+#: model_terms:ir.ui.view,arch_db:website.s_social_media
+#: model_terms:ir.ui.view,arch_db:website.template_footer_headline
+#: model_terms:ir.ui.view,arch_db:website.template_footer_links
+#, python-format
+msgid "Instagram"
+msgstr "Instagram"
+
+#. module: website
+#. odoo-javascript
+#: code:addons/website/static/src/snippets/s_social_media/options.js:0
+#: model_terms:ir.ui.view,arch_db:website.footer_custom
+#: model_terms:ir.ui.view,arch_db:website.header_social_links
+#: model_terms:ir.ui.view,arch_db:website.s_mega_menu_odoo_menu
+#: model_terms:ir.ui.view,arch_db:website.s_share
+#: model_terms:ir.ui.view,arch_db:website.s_social_media
+#: model_terms:ir.ui.view,arch_db:website.template_footer_centered
+#, python-format
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.template_footer_links
+msgid "Linkedin"
+msgstr "Linkedin"
+
+#. module: website_sale
+#: model_terms:ir.ui.view,arch_db:website_sale.res_config_settings_view_form
+msgid "Mondial Relay"
+msgstr "Mondial Relay"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.s_share
+msgid "Pinterest"
+msgstr "Pinterest"
+
+#. module: website
+#: model:res.groups,name:website.website_page_controller_expose
+msgid "Public access to arbitrary exposed model"
+msgstr "وصول عام لنموذج مكشوف تعسفياً"
+
+#. module: website
+#: model:ir.model,name:website.model_ir_qweb
+msgid "Qweb"
+msgstr "Qweb"
+
+#. module: website_sale
+#: model_terms:ir.ui.view,arch_db:website_sale.res_config_settings_view_form
+msgid "Shiprocket"
+msgstr "Shiprocket"
+
+#. module: website
+#. odoo-javascript
+#: code:addons/website/static/src/js/backend/view_hierarchy/view_hierarchy.xml:0
+#, python-format
+msgid "Show Arch Diff"
+msgstr "إظهار اختلافات البنية (Arch Diff)"
+
+#. module: website
+#. odoo-javascript
+#: code:addons/website/static/src/components/dialog/seo.xml:0
+#, python-format
+msgid "T"
+msgstr "T"
+
+#. module: website
+#. odoo-javascript
+#: code:addons/website/static/src/snippets/s_social_media/options.js:0
+#: model_terms:ir.ui.view,arch_db:website.s_mega_menu_odoo_menu
+#: model_terms:ir.ui.view,arch_db:website.s_social_media
+#, python-format
+msgid "TikTok"
+msgstr "TikTok"
+
+#. module: website_sale
+#: model_terms:ir.ui.view,arch_db:website_sale.res_config_settings_view_form
+msgid "UPS"
+msgstr "يو بي إس (UPS)"
+
+#. module: website_sale
+#: model_terms:ir.ui.view,arch_db:website_sale.res_config_settings_view_form
+msgid "USPS"
+msgstr "خدمة البريد الأمريكية (USPS)"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.s_share
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.snippet_options
+msgid "X"
+msgstr "X"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.snippet_options
+msgid "Y"
+msgstr "Y"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.cookie_policy
+msgid ""
+"__gads (Google)<br/>\n"
+"                                            __gac (Google)"
+msgstr ""
+"__gads (Google)<br/>\n"
+"                                            __gac (Google)"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.cookie_policy
+msgid ""
+"_ga (Google)<br/>\n"
+"                                            _gat (Google)<br/>\n"
+"                                            _gid (Google)<br/>\n"
+"                                            _gac_* (Google)"
+msgstr ""
+"_ga (Google)<br/>\n"
+"                                            _gat (Google)<br/>\n"
+"                                            _gid (Google)<br/>\n"
+"                                            _gac_* (Google)"
+
+#. module: website_sale
+#: model_terms:ir.ui.view,arch_db:website_sale.res_config_settings_view_form
+msgid "bpost"
+msgstr "bpost"
+
+#. module: website
+#. odoo-javascript
+#: code:addons/website/static/src/xml/website.editor.xml:0
+#, python-format
+msgid "fonts.google.com"
+msgstr "fonts.google.com"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.template_footer_contact
+#: model_terms:ir.ui.view,arch_db:website.template_footer_descriptive
+msgid "hello@mycompany.com"
+msgstr "hello@mycompany.com"
+
+#. module: website
+#. odoo-javascript
+#: code:addons/website/static/src/xml/website.editor.xml:0
+#, python-format
+msgid "https://fonts.google.com/specimen/Roboto"
+msgstr "https://fonts.google.com/specimen/Roboto"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.res_config_settings_view_form
+msgid "https://www.odoo.com"
+msgstr "https://www.odoo.com"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.s_mega_menu_odoo_menu
+msgid "iPhone"
+msgstr "iPhone"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.template_footer_links
+msgid "info@yourcompany.com"
+msgstr "info@yourcompany.com"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.footer_custom
+#: model_terms:ir.ui.view,arch_db:website.template_footer_call_to_action
+#: model_terms:ir.ui.view,arch_db:website.template_footer_centered
+#: model_terms:ir.ui.view,arch_db:website.template_footer_headline
+msgid "info@yourcompany.example.com"
+msgstr "info@yourcompany.example.com"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.s_instagram_page_options
+msgid "odoo.official"
+msgstr "odoo.official"
+
+#. module: website
+#: model_terms:ir.ui.view,arch_db:website.snippets
+msgid "video, youtube, vimeo, dailymotion, youku"
+msgstr "فيديو، youtube، vimeo، dailymotion، youku"
+
+#. module: website_sale
+#: model_terms:ir.ui.view,arch_db:website_sale.checkout_layout
+msgid "x"
+msgstr "x"
+
+#. module: website
+#. odoo-javascript
+#: code:addons/website/static/src/snippets/s_embed_code/000.js:0
+#, python-format
+msgid ""
+"Your Embed Code snippet doesn't have anything to display. Click on Edit to "
+"modify it."
+msgstr ""
+"لا تحتوي قصاصة تضمين الكود (Embed Code) الخاصة بك على أي شيء لعرضه. اضغط على تحرير لتعديلها."
+
+#. module: website_sale
+msgid "Add to Cart"
+msgstr "إضافة إلى السلة"
+
+#. module: website_sale
+msgid "Add to cart"
+msgstr "إضافة إلى السلة"
+
+#. module: website_sale
+msgid "RESET"
+msgstr "إعادة ضبط"
+
+#. module: website_sale
+msgid "Reset"
+msgstr "إعادة ضبط"
+
+#. module: website_sale
+msgid "LOAD MORE"
+msgstr "عرض المزيد"
+
+#. module: website_sale
+msgid "Load more"
+msgstr "عرض المزيد"
+
+#. module: website_sale
+msgid "Load More"
+msgstr "عرض المزيد"
+
+#. module: website_sale
+msgid "Subtotal"
+msgstr "المجموع الفرعي"
+
+#. module: website_sale
+msgid "Apply Promo Code"
+msgstr "تطبيق كود الخصم"
+
+#. module: website_sale
+msgid "APPLY PROMO CODE"
+msgstr "تطبيق كود الخصم"
+
+#. module: website_sale
+msgid "Proceed to Checkout"
+msgstr "متابعة الدفع"
+
+#. module: website_sale
+msgid "PROCEED TO CHECKOUT"
+msgstr "متابعة الدفع"
+
+#. module: website_sale
+msgid "Proceed"
+msgstr "متابعة"
+
