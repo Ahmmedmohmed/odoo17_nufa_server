@@ -9,5 +9,8 @@ access_appointment_department_time_plan,appointment_department_time_plan,model_a
 access_appointment_employee_slot,appointment_employee_slot,model_appointment_employee_slot,,1,1,1,1
 access_wallet_payout_method,wallet_payout_method,model_wallet_payout_method,base.group_user,1,1,1,1
 access_wallet_withdrawal_request,wallet_withdrawal_request,model_wallet_withdrawal_request,base.group_user,1,1,1,1
+access_commission_withdrawal_wizard,commission.withdrawal.wizard,model_commission_withdrawal_wizard,,1,1,1,1
+access_wallet_payout_method,wallet.payout.method,model_wallet_payout_method,,1,1,1,1
+access_wallet_withdrawal_request,wallet.withdrawal.request,model_wallet_withdrawal_request,,1,1,1,1
 
 
