@@ -1,0 +1,23 @@
+#. module: appointment_management_system
+msgid "Service Commissions"
+msgstr "عمولات الخدمات"
+
+#. module: appointment_management_system
+msgid "Service"
+msgstr "الخدمة"
+
+#. module: appointment_management_system
+msgid "Commission %"
+msgstr "النسبة %"
+
+#. module: pos_sales_commission
+msgid "Service Commissions"
+msgstr "عمولات الخدمات"
+
+#. module: pos_sales_commission
+msgid "Service"
+msgstr "الخدمة"
+
+#. module: pos_sales_commission
+msgid "Commission (%)"
+msgstr "النسبة (%)"

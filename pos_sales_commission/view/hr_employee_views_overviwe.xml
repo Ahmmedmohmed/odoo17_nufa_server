@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_employee_form_inherit_commissions" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit.commissions</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <!-- اسم التابة بالإنجليزية للترجمة -->
+                <page string="Service Commissions">
+                    <field name="service_commission_ids">
+                        <tree editable="bottom">
+                            <field name="product_id" string="Service"/>
+                            <!-- وضحنا في العنوان إن الرقم ده عبارة عن نسبة % -->
+                           <field name="commission_percentage" string="Commission" widget="percentage"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

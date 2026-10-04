@@ -15,6 +15,12 @@ class PosSalesCommission(models.Model):
 #     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _inherit = ['mail.thread', 'mail.activity.mixin', 'portal.mixin'] #odoo11
 
+    # اجعل commission_user_id غير إجباري ليدعم الموظفين بدون يوزر
+    commission_user_id = fields.Many2one('res.users', string='POS Sales Member', required=False)
+
+    # 🚀 إضافة حقل الموظف (مقدم الخدمة)
+    commission_employee_id = fields.Many2one('hr.employee', string='Service Provider (Contractor)')
+
     # @api.multi #odoo13
     @api.depends('sales_commission_line', 'sales_commission_line.state')
     def _get_amount_total(self):
@@ -73,7 +79,7 @@ class PosSalesCommission(models.Model):
     commission_user_id = fields.Many2one(
         'res.users',
         string='POS Sales Member',
-        required=True,
+        # required=True,
         # readonly=True, states={'draft': [('readonly', False)]},
     )
     sales_commission_line = fields.One2many(
@@ -84,7 +90,7 @@ class PosSalesCommission(models.Model):
     )
     notes = fields.Text(string="Internal Notes")
     company_id = fields.Many2one(
-        'res.company', 
+        'res.company',
         default=lambda self: self.env.user.company_id, 
         string='Company', 
         readonly=True
@@ -273,6 +279,21 @@ class PosSalesCommissionLine(models.Model):
     _rec_name = 'sales_commission_id'
 #     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _inherit = ['mail.thread', 'mail.activity.mixin', 'portal.mixin'] #odoo11
+    commission_user_id = fields.Many2one('res.users', string='POS Sales Member',
+                                         related='sales_commission_id.commission_user_id', store=True)
+
+    # 🚀 إضافة حقل الموظف في تفاصيل العمولة
+    commission_employee_id = fields.Many2one('hr.employee', string='Service Provider',
+                                             related='sales_commission_id.commission_employee_id', store=True)
+
+    # 🚀 تحديث أنواع العمولات لتشمل مقدم الخدمة
+    type = fields.Selection(
+        [('sales_person', 'POS User (Cashier)'),
+         ('sales_manager', 'POS Manager'),
+         ('service_provider', 'Service Provider (Contractor)')],  # النوع الجديد
+        copy=False,
+        string="User Type",
+    )
     
     @api.model
     def create(self, vals):
@@ -338,7 +359,7 @@ class PosSalesCommissionLine(models.Model):
         store=True
     )
     company_id = fields.Many2one(
-        'res.company', 
+        'res.company',
         default=lambda self: self.env.user.company_id, 
         string='Company', 
         readonly=True

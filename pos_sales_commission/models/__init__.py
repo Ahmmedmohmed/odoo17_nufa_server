@@ -10,4 +10,8 @@ from . import res_users
 from . import pos_config
 from . import res_company
 
+from  . import  employee_commission
+from  . import  sales_order_commission
+from  . import  hr_employee
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -159,6 +159,8 @@ Menus
               'view/pos_view.xml',
               'view/res_users_view.xml',
               'view/pos_config_view.xml',
+               'view/hr_employee_views.xml',
+               'view/hr_employee_views_overviwe.xml',
               ],
     'installable' : True,
     'images': ['static/description/image.jpg'],
