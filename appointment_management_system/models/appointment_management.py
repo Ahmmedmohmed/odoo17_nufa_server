@@ -7,6 +7,7 @@ import logging
 import qrcode
 from io import BytesIO
 from odoo.exceptions import UserError
+from odoo.tools.safe_eval import safe_eval
 import random
 
 _logger = logging.getLogger(__name__)
@@ -57,6 +58,7 @@ class AppointmentManagement(models.Model):
     refund_amount = fields.Float('Refund Amount', readonly=True)
     deduction_amount = fields.Float('Deduction Amount', readonly=True)
     pos_reference = fields.Char(string='POS Receipt Reference')
+    is_commission_calculated = fields.Boolean(string='Commission Calculated', default=False, copy=False)
     sale_order_id = fields.Many2one('sale.order', string='Sale Order', readonly=True)
     has_sale_order = fields.Boolean(string='Has Sale Order', default=False)
     is_printed = fields.Boolean(string='Is Printed', default=False, readonly=True)
@@ -118,6 +120,144 @@ class AppointmentManagement(models.Model):
                 'state': 'confirmed',
                 'move_ids_without_package': lines,
             })
+
+    # ═══════════════════════════════════════════════════════════════
+    #  العمولات (Commissions)
+    # ═══════════════════════════════════════════════════════════════
+    def _get_service_cost(self):
+        """تكلفة المنتجات المستخدمة في الخدمة (سعر التكلفة × الكمية لكل مكوّن)"""
+        self.ensure_one()
+        return sum(
+            (c.component_id.standard_price or 0.0) * (c.quantity or 0.0)
+            for c in self.product_id.product_component_ids
+        )
+
+    def _compute_commission_amount(self):
+        """يرجّع قيمة العمولة حسب وضع الحساب في إعدادات الفرع (الشركة):
+          - service : سعر الخدمة × نسبة الموظف على الخدمة
+          - formula : المعادلة المكتوبة في الإعدادات (price, cost, percentage)
+        """
+        self.ensure_one()
+        price = self.price_unit or self.product_id.lst_price
+        if not price or price <= 0:
+            return 0.0
+
+        rule = self.env['employee.service.commission'].search([
+            ('employee_id', '=', self.employee_id.id),
+            ('product_id', '=', self.product_id.id),
+        ], limit=1)
+        percentage = rule.commission_percentage if rule else 0.0
+
+        # الإعدادات بتتقرأ من الفرع الفعلي للحجز (وكل فرع = شركة)
+        company = self.branch_id or self.company_id
+        mode = company.commission_calc_mode or 'service'
+
+        if mode == 'service':
+            if percentage <= 0:
+                return 0.0
+            # لو بتستخدم widget="percentage" على الحقل احذف / 100
+            return price * percentage / 100.0
+
+        # mode == 'formula'
+        formula = (company.commission_formula or '').strip()
+        if not formula:
+            return 0.0
+        try:
+            amount = float(safe_eval(formula, {
+                'price': price,
+                'cost': self._get_service_cost(),
+                'percentage': percentage,
+            }))
+        except Exception as e:
+            _logger.error("Commission formula error (%s) on %s: %s",
+                          formula, self.appointment_ref, e)
+            return 0.0
+        return max(amount, 0.0)
+
+    def _generate_employee_commission(self):
+        """ دالة مركزية تحسب العمولة أوتوماتيكياً للموظف (بشكل صامت وبدون إيقاف النظام) """
+        from dateutil.relativedelta import relativedelta
+
+        for appt in self:
+            # 1. لو العمولة اتحسبت قبل كده، نتجاهل بهدوء
+            if appt.is_commission_calculated:
+                continue
+
+            # 2. البحث عن مصدر الأموال (أمر بيع أم فاتورة كاشير؟)
+            sale_order = getattr(appt, 'sale_order_id', False)
+            pos_lines = self.env['pos.order.line'].sudo().search([('appointment_id', '=', appt.id)])
+            pos_order = pos_lines[0].order_id if pos_lines else False
+
+            # لو مفيش مصدر مالي، نتخطى حساب العمولة ونسمح باكتمال الحجز
+            if not sale_order and not pos_order:
+                continue
+
+            emp_id = appt.employee_id.id
+            prod_id = appt.product_id.id
+
+            if not emp_id or not prod_id:
+                continue
+
+            # 3. حساب العمولة حسب وضع الحساب في الإعدادات (نسبة الخدمة أو المعادلة)
+            commission_amount = appt._compute_commission_amount()
+
+            if commission_amount > 0:
+                # البحث عن محفظة للموظف
+                commission = self.env['pos.sales.commission'].search([
+                    ('commission_employee_id', '=', emp_id),
+                    ('start_date', '<=', appt.date),
+                    ('end_date', '>=', appt.date),
+                    ('state', '=', 'draft'),
+                    ('company_id', '=', appt.company_id.id),
+                ], limit=1)
+
+                # إنشاء محفظة إذا لم توجد
+                if not commission:
+                    today = fields.Date.today()
+                    first_day = today.replace(day=1)
+                    last_day = datetime(today.year, today.month, 1) + relativedelta(
+                        months=1, days=-1, hours=23, minutes=59, seconds=59)
+
+                    commission = self.env['pos.sales.commission'].create({
+                        'start_date': first_day,
+                        'end_date': last_day,
+                        'commission_employee_id': emp_id,
+                        'company_id': appt.company_id.id,
+                        'currency_id': appt.company_id.currency_id.id,
+                    })
+
+                commission_product = self.env['product.product'].search(
+                    [('pos_is_commission_product', '=', 1)], limit=1)
+                if not commission_product:
+                    continue  # لو مفيش منتج عمولة، هنتخطى بهدوء
+
+                # المرجع اللي هيظهر في سطر العمولة (اسم فاتورة الـ POS أو أمر البيع)
+                origin_name = sale_order.name if sale_order else pos_order.name
+
+                # فريق المبيعات واليوزر لتجنب خطأ الحقول الإجبارية
+                user_id = appt.employee_id.user_id.id or self.env.uid
+                sales_team = appt.employee_id.user_id.team_id.id or self.env.user.team_id.id or self.env[
+                    'crm.team'].search([], limit=1).id
+
+                # إنشاء سطر العمولة الفعلي
+                self.env['pos.sales.commission.line'].create({
+                    'commission_employee_id': emp_id,
+                    'commission_user_id': user_id,
+                    'sales_team_id': sales_team,
+                    'amount': commission_amount,
+                    'origin': origin_name,
+                    'type': 'sales_person',
+                    'product_id': commission_product.id,
+                    'date': fields.Datetime.now(),
+                    'src_sale_order_id': sale_order.id if sale_order else False,
+                    'src_order_id': pos_order.id if pos_order else False,
+                    'sales_commission_id': commission.id,
+                    'company_id': appt.company_id.id,
+                    'currency_id': appt.company_id.currency_id.id,
+                })
+
+            # تحديث الحقل لمنع التكرار نهائياً بعد الحساب الناجح
+            appt.sudo().write({'is_commission_calculated': True})
 
     @api.depends('service_start_time', 'service_end_time')
     def _compute_service_duration(self):
@@ -321,6 +461,10 @@ class AppointmentManagement(models.Model):
                                 sale_order.with_context(disable_cancel_warning=True).action_cancel()
                             except Exception as e:
                                 pass
+
+            # 3. حساب العمولة عند اكتمال الحجز
+            if record.state == '3':
+                record.sudo()._generate_employee_commission()
 
         return res
 
