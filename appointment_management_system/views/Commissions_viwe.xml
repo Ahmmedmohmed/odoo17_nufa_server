@@ -1,9 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- ==========================================
-         1. شاشات طرق الدفع (Payout Methods)
-         ========================================== -->
+    <!-- ===================================================================
+         الجزء الأول: السجل المالي للعمولات (الكود الأصلي)
+         =================================================================== -->
+
+    <!-- 1. Commission Withdrawal Wizard Form -->
+    <record id="view_commission_withdrawal_wizard" model="ir.ui.view">
+        <field name="name">commission.withdrawal.wizard.form</field>
+        <field name="model">commission.withdrawal.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Commission Withdrawal">
+                <sheet>
+                    <group>
+                        <field name="employee_id"/>
+                        <field name="available_amount" widget="monetary"/>
+                        <field name="withdraw_amount" widget="monetary"/>
+                    </group>
+                    <footer>
+                        <button name="action_confirm_withdrawal" type="object" string="Confirm Withdrawal" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- 2. Action to open the wizard -->
+    <record id="action_commission_withdrawal_wizard" model="ir.actions.act_window">
+        <field name="name">Withdraw Commission Balance</field>
+        <field name="res_model">commission.withdrawal.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- 3. Structured and protected Commission Tree View (كشف الحساب) -->
+    <record id="view_appointment_commission_tree" model="ir.ui.view">
+        <field name="name">appointment.commission.line.tree</field>
+        <field name="model">pos.sales.commission.line</field>
+        <field name="arch" type="xml">
+            <tree string="Commission Ledger" create="0" edit="0" delete="0">
+                <header>
+                    <button name="%(action_commission_withdrawal_wizard)d" type="action" string="Withdraw Employee Balance (Manual)" class="btn-success" display="always"/>
+                </header>
+                <field name="date" string="Date"/>
+                <field name="commission_employee_id" string="Employee"/>
+                <field name="origin" string="Reference (Origin)"/>
+                <field name="amount" string="Amount" sum="Total Balance"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- 4. Menu Action for Commission Ledger -->
+    <record id="action_appointment_employee_commissions" model="ir.actions.act_window">
+        <field name="name">Employee Commission Ledger</field>
+        <field name="res_model">pos.sales.commission.line</field>
+        <field name="view_mode">tree,pivot</field>
+        <field name="view_id" ref="view_appointment_commission_tree"/>
+        <field name="domain">[('commission_employee_id', '!=', False)]</field>
+        <field name="context">{'group_by': 'commission_employee_id'}</field>
+    </record>
+
+    <!-- ===================================================================
+         الجزء الثاني: شاشات طرق الدفع (Payout Methods)
+         =================================================================== -->
     <record id="view_wallet_payout_method_tree" model="ir.ui.view">
         <field name="name">wallet.payout.method.tree</field>
         <field name="model">wallet.payout.method</field>
@@ -23,7 +83,7 @@
         <field name="arch" type="xml">
             <form string="Payout Method">
                 <sheet>
-                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" invisible="active"/>
                     <group>
                         <group>
                             <field name="employee_id"/>
@@ -31,12 +91,12 @@
                             <field name="label"/>
                             <field name="active" invisible="1"/>
                         </group>
-                        <group attrs="{'invisible': [('type', '!=', 'bank_account')]}">
+                        <group invisible="type != 'bank_account'">
                             <field name="bank_name"/>
                             <field name="account_holder_name"/>
                             <field name="iban"/>
                         </group>
-                        <group attrs="{'invisible': [('type', '!=', 'mobile_wallet')]}">
+                        <group invisible="type != 'mobile_wallet'">
                             <field name="wallet_provider"/>
                             <field name="phone_number"/>
                         </group>
@@ -46,15 +106,16 @@
         </field>
     </record>
 
+    <!-- الأكشن الخاص بطرق الدفع -->
     <record id="action_wallet_payout_methods" model="ir.actions.act_window">
         <field name="name">Payout Methods</field>
         <field name="res_model">wallet.payout.method</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- ==========================================
-         2. شاشات طلبات السحب (Withdrawal Requests)
-         ========================================== -->
+    <!-- ===================================================================
+         الجزء الثالث: شاشات طلبات السحب (Withdrawal Requests)
+         =================================================================== -->
     <record id="view_wallet_withdrawal_request_tree" model="ir.ui.view">
         <field name="name">wallet.withdrawal.request.tree</field>
         <field name="model">wallet.withdrawal.request</field>
@@ -76,9 +137,8 @@
         <field name="arch" type="xml">
             <form string="Withdrawal Request">
                 <header>
-                    <!-- أزرار الموافقة والرفض تظهر فقط لو الطلب معلق -->
-                    <button name="action_approve" type="object" string="Approve &amp; Deduct" class="btn-success" attrs="{'invisible': [('state', '!=', 'requested')]}"/>
-                    <button name="action_reject" type="object" string="Reject" class="btn-danger" attrs="{'invisible': [('state', '!=', 'requested')]}"/>
+                    <button name="action_approve" type="object" string="Approve &amp; Deduct" class="btn-success" invisible="state != 'requested'"/>
+                    <button name="action_reject" type="object" string="Reject" class="btn-danger" invisible="state != 'requested'"/>
                     <field name="state" widget="statusbar" statusbar_visible="requested,processing,completed"/>
                 </header>
                 <sheet>
@@ -95,7 +155,7 @@
                         </group>
                         <group>
                             <field name="create_date" readonly="1"/>
-                            <field name="completed_date" attrs="{'invisible': [('state', '!=', 'completed')]}"/>
+                            <field name="completed_date" invisible="state != 'completed'"/>
                         </group>
                     </group>
                     <notebook>
@@ -108,31 +168,38 @@
         </field>
     </record>
 
+    <!-- الأكشن الخاص بطلبات السحب (هذا هو السطر الذي كان مفقوداً وتسبب في الخطأ) -->
     <record id="action_wallet_withdrawal_requests" model="ir.actions.act_window">
         <field name="name">Withdrawal Requests</field>
         <field name="res_model">wallet.withdrawal.request</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- ==========================================
-         3. القوائم (Menus)
-         ========================================== -->
-    <!-- قائمة رئيسية للمحفظة تحت قائمة الحجوزات -->
-    <menuitem id="menu_wallet_root"
-              name="Wallet &amp; Payouts"
+    <!-- ===================================================================
+         الجزء الرابع: تنظيم القوائم (Menus)
+         يجب أن تكون دائماً في أسفل الملف بعد الأكشنز!
+         =================================================================== -->
+    <menuitem id="menu_wallet_and_commissions_root"
+              name="Commissions"
               parent="menu_appointment_root"
-              sequence="95"/>
+              sequence="90"/>
+
+    <menuitem id="menu_appointment_employee_commissions"
+              name="Commission Ledger"
+              parent="menu_wallet_and_commissions_root"
+              action="action_appointment_employee_commissions"
+              sequence="10"/>
 
     <menuitem id="menu_withdrawal_requests"
               name="Withdrawal Requests"
-              parent="menu_wallet_root"
+              parent="menu_wallet_and_commissions_root"
               action="action_wallet_withdrawal_requests"
-              sequence="10"/>
+              sequence="20"/>
 
     <menuitem id="menu_payout_methods"
               name="Payout Methods"
-              parent="menu_wallet_root"
+              parent="menu_wallet_and_commissions_root"
               action="action_wallet_payout_methods"
-              sequence="20"/>
+              sequence="30"/>
 
 </odoo>
