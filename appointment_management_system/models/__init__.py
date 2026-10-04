@@ -24,3 +24,5 @@ from . import fortestemploy
 from . import  res_config_settings
 
 from . import  commission_withdrawal_wizard
+
+from  . import Commission_settings

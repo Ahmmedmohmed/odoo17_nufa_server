@@ -24,6 +24,7 @@
         # Views Files
         'views/appointment_management.xml',
         'views/appointment_refund_policy.xml',
+
         'views/Commissions_viwe.xml',
         'views/pos_category.xml',
         'views/product.xml',
@@ -36,6 +37,7 @@
         'views/appointment_refund_request.xml',
         'views/res_config_settings_views.xml',
           'views/booking_client_action.xml',
+        'views/Commission_settings_views.xml',
         # Menu File
         'views/menus.xml',
 

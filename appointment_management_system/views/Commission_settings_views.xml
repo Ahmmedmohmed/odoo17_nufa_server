@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- يضيف قسم العمولات على شاشة الإعدادات الموجودة بدون ما نستبدل ملفك -->
+    <record id="appointment_simple_settings_view_commission" model="ir.ui.view">
+        <field name="name">appointment.simple.settings.form.commission</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="appointment_management_system.appointment_simple_settings_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="Commissions Configuration">
+                    <field name="commission_calc_mode" widget="radio"/>
+                    <field name="commission_formula"
+                           class="w-100"
+                           invisible="commission_calc_mode != 'formula'"
+                           required="commission_calc_mode == 'formula'"
+                           placeholder="(price - cost) * (percentage / 100.0)"/>
+                </group>
+                <div class="alert alert-info" role="alert"
+                     invisible="commission_calc_mode != 'formula'">
+                    <strong>Variables:</strong>
+                    <code>price</code> (سعر الخدمة) ،
+                    <code>cost</code> (تكلفة المنتجات المستخدمة) ،
+                    <code>percentage</code> (نسبة الموظف على الخدمة من تاب Service Commissions).<br/>
+                    <strong>Examples:</strong><br/>
+                    <code>(price - cost) * (percentage / 100.0)</code> &#8212; النسبة على الصافي<br/>
+                    <code>price * 0.10 + 50</code> &#8212; 10% + 50 ثابتة<br/>
+                    <code>max(0, price - cost) * 0.2</code> &#8212; 20% من الصافي ولا تقل عن صفر
+                </div>
+                <div class="alert alert-secondary" role="alert"
+                     invisible="commission_calc_mode != 'service'">
+                    العمولة = سعر الخدمة × النسبة المسجلة للموظف على الخدمة (تاب Service Commissions في كارت الموظف).
+                    لو مفيش نسبة للموظف على الخدمة = مفيش عمولة.
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
