@@ -132,13 +132,37 @@ class AppointmentManagement(models.Model):
             for c in self.product_id.product_component_ids
         )
 
+    def _get_plan_price(self):
+        """السعر من Service Price Plan (حسب الخدمة + الفرع + قسم الموظف + داخل/خارج)."""
+        self.ensure_one()
+        branch = self.branch_id or self.company_id
+        base = [
+            ('service_id', '=', self.product_id.id),
+            ('branch_id', '=', branch.id),
+        ]
+        Plan = self.env['appointment.service.price.plan'].sudo()
+        dept = self.employee_id.department_id
+        plan = Plan.search(base + [('department_id', '=', dept.id)], limit=1) if dept else Plan
+        if not plan:
+            plan = Plan.search(base, limit=1)
+        if not plan:
+            return 0.0
+        if self.appointment_type == 'outside':
+            return plan.service_price_outside or 0.0
+        return plan.service_price_inside or 0.0
+
+    def _get_effective_price(self):
+        """السعر المعتمد للعمولة والتقارير: Price Plan ← سعر الحجز ← سعر المنتج."""
+        self.ensure_one()
+        return self._get_plan_price() or self.price_unit or self.product_id.lst_price
+
     def _compute_commission_amount(self):
         """يرجّع قيمة العمولة حسب وضع الحساب في إعدادات الفرع (الشركة):
           - service : سعر الخدمة × نسبة الموظف على الخدمة
           - formula : المعادلة المكتوبة في الإعدادات (price, cost, percentage)
         """
         self.ensure_one()
-        price = self.price_unit or self.product_id.lst_price
+        price = self._get_effective_price()
         if not price or price <= 0:
             return 0.0
 

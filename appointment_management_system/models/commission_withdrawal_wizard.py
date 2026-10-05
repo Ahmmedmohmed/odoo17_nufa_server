@@ -142,7 +142,6 @@ class WalletWithdrawalRequest(models.Model):
             # تأمين: التأكد من توفر الرصيد قبل الموافقة
             lines = self.env['pos.sales.commission.line'].search([
                 ('commission_employee_id', '=', req.employee_id.id),
-                ('type', '=', 'service_provider'),
                 ('state', 'not in', ['cancel', 'exception'])
             ])
             available_balance = sum(lines.mapped('amount'))
@@ -166,7 +165,7 @@ class WalletWithdrawalRequest(models.Model):
                 'sales_team_id': sales_team,
                 'amount': -req.amount,  # المبلغ بالسالب
                 'origin': f'سحب رصيد عبر التطبيق - {req.name}',
-                'type': 'service_provider',  # تم ربطها بنوع مقدم الخدمة
+                'type': 'sales_person',  # نفس نوع سطور العمولة المسجلة من الحجوزات
                 'product_id': commission_product.id if commission_product else False,
                 'date': fields.Datetime.now(),
                 'sales_commission_id': commission.id if commission else False,

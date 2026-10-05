@@ -75,7 +75,7 @@ class AppointmentEmployeeReportWizard(models.TransientModel):
         for appt in appointments:
             appt = appt.with_company(appt.company_id)
             row = data[appt.employee_id.id]
-            price = appt.price_unit or appt.product_id.lst_price
+            price = appt._get_effective_price()
             row['services_count'] += 1
             if appt.appointment_type == 'outside':
                 row['outside_revenue'] += price
