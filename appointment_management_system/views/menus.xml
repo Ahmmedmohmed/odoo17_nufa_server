@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <!-- الأكشن الخاص بفتح شاشة إعدادات التطبيق -->
-        <record id="action_appointment_config_settings" model="ir.actions.act_window">
-            <field name="name">Settings</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">res.config.settings</field>
-            <field name="view_mode">form</field>
-            <field name="target">inline</field>
-            <!-- يجب أن يكون مساوي لاسم الموديول الخاص بك -->
-            <field name="context">{'module' : 'appointment_management_system', 'bin_size': False}</field>
-        </record>
-
         <menuitem id="menu_appointment_root" name="Appointments" web_icon="appointment_management_system,static/description/icon.png" sequence="10">
 
             <menuitem id="menu_appointment_management" name="All Appointments" action="appointment_management_action" sequence="1"/>
@@ -21,9 +10,6 @@
             <menuitem id="menu_appointment_refund_requests" name="Refund Requests" action="appointment_refund_request_action" sequence="3"/>
 
             <menuitem id="menu_appointment_configuration" name="Configuration" sequence="10">
-                <!-- 🚀 إضافة قائمة الإعدادات هنا في البداية 🚀 -->
-                <menuitem id="menu_appointment_settings" name="Settings" action="action_appointment_config_settings" sequence="0"/>
-
                 <menuitem id="menu_appointment_service_category" name="Appointment Services Category" action="appointment_product_category_action" sequence="1"/>
                 <menuitem id="menu_appointment_service" name="Appointment Services" action="appointment_service_action" sequence="2"/>
                 <menuitem id="menu_appointment_department" name="Appointment Department" action="appointment_department_action" sequence="3"/>

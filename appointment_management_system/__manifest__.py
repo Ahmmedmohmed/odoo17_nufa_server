@@ -15,40 +15,35 @@
         'data/ir_sequence.xml',
         'data/ir_cron.xml',
 
-
         # Security Files
         'security/ir.model.access.csv',
         'security/ir.rule.xml',
 
-
-        # Views Files
+        # Views اللي بتعرّف الـ actions (لازم قبل menus.xml)
         'views/appointment_management.xml',
         'views/appointment_refund_policy.xml',
-        'views/employee_report.xml',
-
-        'views/Commissions_viwe.xml',
         'views/pos_category.xml',
         'views/product.xml',
         'views/hr_employee.xml',
         'views/hr_department.xml',
         'views/appointment_employee_slot.xml',
         'views/res_company.xml',
-        # 'views/appointment_report.xml',
         'views/report_receipt_template.xml',
         'views/appointment_refund_request.xml',
-        'views/res_config_settings_views.xml',
-          'views/booking_client_action.xml',
-        'views/Commission_settings_views.xml',
-        # Menu File
+        'views/booking_client_action.xml',
+
+        # القائمة الرئيسية الأول، عشان أي ملف بعدها يضيف submenus يلاقيها
         'views/menus.xml',
 
-        # قمنا برفع هذا الملف للأعلى لأنه يحتوي على كود إنشاء مقاس الورقة A4
-        'Invoices/report_pos_receipt.xml',
+        # ملفات بتضيف قوائم تحت menu_appointment_root / menu_appointment_configuration
+        'views/Commissions_viwe.xml',
+        'views/employee_report.xml',
+        'views/res_config_settings_views.xml',
+        'views/Commission_settings_views.xml',  # لازم بعد res_config_settings_views.xml (بيورّث منه)
 
-        # الآن يمكن لهذه الملفات استخدام مقاس الورقة بأمان
+        'Invoices/report_pos_receipt.xml',
         'Invoices/report_invoice_template.xml',
         'Invoices/saleorder_report.xml',
-
     ],
 
 'assets': {
