@@ -1,67 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- شاشة اختيار الفترة -->
+    <!-- شاشة اختيار الفترة (المُعربة) -->
     <record id="appointment_employee_report_wizard_form" model="ir.ui.view">
         <field name="name">appointment.employee.report.wizard.form</field>
         <field name="model">appointment.employee.report.wizard</field>
         <field name="arch" type="xml">
-            <form string="Employee Report">
+            <form string="تقرير أداء الموظفين">
                 <group>
                     <group>
-                        <field name="date_from"/>
-                        <field name="date_to"/>
+                        <field name="date_from" string="من تاريخ"/>
+                        <field name="date_to" string="إلى تاريخ"/>
                     </group>
                     <group>
                         <field name="branch_ids" widget="many2many_tags"
-                               options="{'no_create': True}"/>
+                               options="{'no_create': True}" string="الفروع"/>
                         <field name="employee_ids" widget="many2many_tags"
-                               options="{'no_create': True}"/>
-                        <field name="show_empty"/>
+                               options="{'no_create': True}" string="الموظفين"/>
+                        <field name="show_empty" string="إظهار الموظفين بدون نشاط"/>
                     </group>
                 </group>
                 <footer>
-                    <button name="action_generate" type="object" string="Generate Report"
+                    <button name="action_generate" type="object" string="توليد التقرير"
                             class="btn-primary" data-hotkey="q"/>
-                    <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="x"/>
+                    <button string="إلغاء" class="btn-secondary" special="cancel" data-hotkey="x"/>
                 </footer>
             </form>
         </field>
     </record>
 
     <record id="appointment_employee_report_wizard_action" model="ir.actions.act_window">
-        <field name="name">Employee Report</field>
+        <field name="name">تقرير أداء الموظفين</field>
         <field name="res_model">appointment.employee.report.wizard</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
 
-    <!-- جدول التقرير -->
+    <!-- جدول التقرير (المُعرب) -->
     <record id="appointment_employee_report_line_tree" model="ir.ui.view">
         <field name="name">appointment.employee.report.line.tree</field>
         <field name="model">appointment.employee.report.line</field>
         <field name="arch" type="xml">
-            <tree string="Employee Report" create="0" edit="0" delete="0">
-                <field name="employee_id"/>
-                <field name="services_count" sum="Total"/>
-                <field name="products_sales" sum="Total"/>
-                <field name="inside_revenue" sum="Total"/>
-                <field name="outside_revenue" sum="Total"/>
-                <field name="total_revenue" sum="Total" optional="hide"/>
-                <field name="services_cost" sum="Total"/>
-                <field name="products_cost" sum="Total"/>
-                <field name="total_expenses" sum="Total"/>
-                <field name="commission_calc" sum="Total"/>
-                <field name="commission_posted" sum="Total" optional="hide"/>
-                <field name="net_profit" sum="Total"/>
+            <tree string="تقرير الموظفين" create="0" edit="0" delete="0">
+                <field name="employee_id" string="الموظف"/>
+                <field name="services_count" sum="الإجمالي" string="عدد الخدمات"/>
+                <field name="products_sales" sum="الإجمالي" string="مبيعات المنتجات"/>
+                <field name="inside_revenue" sum="الإجمالي" string="إيراد الصالون"/>
+                <field name="outside_revenue" sum="الإجمالي" string="إيراد خارجي"/>
+                <field name="total_revenue" sum="الإجمالي" optional="hide" string="إجمالي الإيراد"/>
+                <field name="services_cost" sum="الإجمالي" string="تكلفة الخدمات"/>
+                <field name="products_cost" sum="الإجمالي" string="تكلفة المنتجات"/>
+                <field name="total_expenses" sum="الإجمالي" string="المصروفات"/>
+                <field name="commission_calc" sum="الإجمالي" string="العمولة المستحقة"/>
+                <field name="commission_posted" sum="الإجمالي" optional="hide" string="العمولة بالمحفظة"/>
+                <field name="net_profit" sum="الإجمالي" string="الصافي"/>
             </tree>
         </field>
     </record>
 
     <!-- القوائم -->
-    <menuitem id="menu_appointment_reports" name="Reports"
+    <menuitem id="menu_appointment_reports" name="التقارير"
               parent="menu_appointment_root" sequence="8"/>
-    <menuitem id="menu_appointment_employee_report" name="Employee Report"
+    <menuitem id="menu_appointment_employee_report" name="تقرير أداء الموظفين"
               parent="menu_appointment_reports"
               action="appointment_employee_report_wizard_action" sequence="1"/>
 
