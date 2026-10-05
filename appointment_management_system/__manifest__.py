@@ -24,6 +24,7 @@
         # Views Files
         'views/appointment_management.xml',
         'views/appointment_refund_policy.xml',
+        'views/employee_report.xml',
 
         'views/Commissions_viwe.xml',
         'views/pos_category.xml',
