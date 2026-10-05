@@ -25,8 +25,6 @@ class ResCompany(models.Model):
 
     @api.constrains('commission_calc_mode', 'commission_formula')
     def _check_commission_formula(self):
-        """Test-evaluate the formula on save so a typo can't silently
-        zero out every commission later."""
         for company in self:
             if company.commission_calc_mode != 'formula':
                 continue
@@ -48,5 +46,26 @@ class ResConfigSettings(models.TransientModel):
 
     commission_calc_mode = fields.Selection(
         related='company_id.commission_calc_mode', readonly=False)
+
     commission_formula = fields.Char(
         related='company_id.commission_formula', readonly=False)
+
+    # 🚀 الحقل الجديد للقوالب الجاهزة 🚀
+    formula_template = fields.Selection([
+        ('net', 'العمولة على الصافي (السعر - التكلفة)'),
+        ('gross', 'العمولة على الإجمالي (السعر بالكامل)'),
+        ('net_fixed', 'العمولة على الصافي + 50 ريال ثابتة'),
+        ('custom', 'كتابة معادلة مخصصة (Custom)'),
+    ], string="قوالب جاهزة (Templates)", default='custom')
+
+    # 🚀 الدالة التي تكتب المعادلة تلقائياً عند تغيير القالب 🚀
+    @api.onchange('formula_template')
+    def _onchange_formula_template(self):
+        if self.formula_template == 'net':
+            self.commission_formula = "(price - cost) * (percentage / 100.0)"
+        elif self.formula_template == 'gross':
+            self.commission_formula = "price * (percentage / 100.0)"
+        elif self.formula_template == 'net_fixed':
+            self.commission_formula = "(price - cost) * (percentage / 100.0) + 50.0"
+        elif self.formula_template == 'custom':
+            pass  # يترك الحقل للمستخدم ليكتب ما يريد

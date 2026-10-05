@@ -1,37 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- يضيف قسم العمولات على شاشة الإعدادات الموجودة بدون ما نستبدل ملفك -->
-    <record id="appointment_simple_settings_view_commission" model="ir.ui.view">
-        <field name="name">appointment.simple.settings.form.commission</field>
+    <!-- شاشة مستقلة لإعدادات العمولات -->
+    <record id="appointment_commission_settings_view" model="ir.ui.view">
+        <field name="name">appointment.commission.settings.form</field>
         <field name="model">res.config.settings</field>
-        <field name="inherit_id" ref="appointment_management_system.appointment_simple_settings_view"/>
+        <field name="priority" eval="110"/>
         <field name="arch" type="xml">
-            <xpath expr="//sheet" position="inside">
-                <group string="Commissions Configuration">
-                    <field name="commission_calc_mode" widget="radio"/>
-                    <field name="commission_formula"
-                           class="w-100"
-                           invisible="commission_calc_mode != 'formula'"
-                           required="commission_calc_mode == 'formula'"
-                           placeholder="(price - cost) * (percentage / 100.0)"/>
-                </group>
-                <div class="alert alert-info" role="alert"
-                     invisible="commission_calc_mode != 'formula'">
-                    <strong>Variables:</strong>
-                    <code>price</code> (سعر الخدمة) ،
-                    <code>cost</code> (تكلفة المنتجات المستخدمة) ،
-                    <code>percentage</code> (نسبة الموظف على الخدمة من تاب Service Commissions).<br/>
-                    <strong>Examples:</strong><br/>
-                    <code>(price - cost) * (percentage / 100.0)</code> &#8212; النسبة على الصافي<br/>
-                    <code>price * 0.10 + 50</code> &#8212; 10% + 50 ثابتة<br/>
-                    <code>max(0, price - cost) * 0.2</code> &#8212; 20% من الصافي ولا تقل عن صفر
-                </div>
-                <div class="alert alert-secondary" role="alert"
-                     invisible="commission_calc_mode != 'service'">
-                    العمولة = سعر الخدمة × النسبة المسجلة للموظف على الخدمة (تاب Service Commissions في كارت الموظف).
-                    لو مفيش نسبة للموظف على الخدمة = مفيش عمولة.
-                </div>
-            </xpath>
+            <form string="Commission Settings" class="oe_form_configuration">
+                <header>
+                    <button string="حفظ" type="object" name="execute" class="oe_highlight" data-hotkey="q"/>
+                    <button string="إلغاء" type="object" name="cancel" special="cancel" data-hotkey="x"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="إعدادات العمولات (Commissions Configuration)">
+                            <field name="commission_calc_mode" widget="radio" string="طريقة الحساب"/>
+
+                            <!-- 🚀 قائمة القوالب الجاهزة 🚀 -->
+                            <field name="formula_template"
+                                   widget="selection"
+                                   invisible="commission_calc_mode != 'formula'"/>
+
+                            <field name="commission_formula"
+                                   class="w-100 fs-5 text-primary fw-bold"
+                                   invisible="commission_calc_mode != 'formula'"
+                                   required="commission_calc_mode == 'formula'"
+                                   placeholder="(price - cost) * (percentage / 100.0)"
+                                   string="المعادلة"/>
+                        </group>
+                    </group>
+
+                    <div class="alert alert-info mt-3" role="alert" invisible="commission_calc_mode != 'formula'">
+                        <h4 class="alert-heading">المتغيرات المتاحة للاستخدام:</h4>
+                        <p class="mb-2">يمكنك بناء معادلتك الخاصة باستخدام هذه الكلمات (البلوكات):</p>
+                        <ul class="list-unstyled ms-3">
+                            <li class="mb-2"><span class="badge text-bg-primary fs-6 me-2" style="min-width: 100px;">price</span> = سعر الخدمة المدفوع</li>
+                            <li class="mb-2"><span class="badge text-bg-danger fs-6 me-2" style="min-width: 100px;">cost</span> = تكلفة المنتجات والأدوات المستخدمة</li>
+                            <li class="mb-2"><span class="badge text-bg-success fs-6 me-2" style="min-width: 100px;">percentage</span> = نسبة الموظف على هذه الخدمة</li>
+                        </ul>
+                        <hr/>
+                        <p class="mb-0"><strong>ملاحظة:</strong> يتم قسمة النسبة دائماً على 100 في المعادلات (مثال: <code>percentage / 100.0</code>).</p>
+                    </div>
+
+                    <div class="alert alert-secondary mt-3" role="alert" invisible="commission_calc_mode != 'service'">
+                        <strong>طريقة حساب نسبة كل خدمة:</strong><br/>
+                        العمولة = سعر الخدمة × النسبة المسجلة للموظف على الخدمة (تاب Service Commissions في كارت الموظف).<br/>
+                        لو مفيش نسبة للموظف على الخدمة = مفيش عمولة.
+                    </div>
+                </sheet>
+            </form>
         </field>
     </record>
+
+    <!-- الأكشن الخاص بالشاشة -->
+    <record id="appointment_commission_settings_action" model="ir.actions.act_window">
+        <field name="name">Commission Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="appointment_commission_settings_view"/>
+        <field name="target">inline</field>
+    </record>
+
+    <!-- قائمة منفصلة لإعدادات العمولات تحت قسم الـ Configuration -->
+    <menuitem id="menu_appointment_commission_settings"
+              name="Commission Settings"
+              parent="menu_appointment_configuration"
+              action="appointment_commission_settings_action"
+              sequence="110"/>
 </odoo>
