@@ -12,4 +12,3 @@ access_wallet_withdrawal_request,wallet.withdrawal.request,model_wallet_withdraw
 access_commission_withdrawal_wizard,commission.withdrawal.wizard,model_commission_withdrawal_wizard,base.group_user,1,1,1,1
 access_appointment_employee_report_wizard,appointment.employee.report.wizard,model_appointment_employee_report_wizard,base.group_user,1,1,1,1
 access_appointment_employee_report_line,appointment.employee.report.line,model_appointment_employee_report_line,base.group_user,1,1,1,1
-access_employee_service_commission,employee.service.commission,model_employee_service_commission,base.group_user,1,1,1,1
