@@ -79,14 +79,12 @@ class PosOrder(models.Model):
         totalCount = self.search_count(real_domain)
         return {'ordersInfo': list(orders_info.items())[::-1], 'totalCount': totalCount}
 
-
-
-    def _export_appointment_for_ui(self,order):
+    def _export_appointment_for_ui(self, order):
         timezone = pytz.timezone(self._context.get('tz') or self.env.user.tz or 'UTC')
-        # order_id = super(PosOrder, self)._process_order(order, draft, existing_order)
 
         lines = []
-        lines = order.lines.filtered(lambda line: line.appointment_id).export_appointment_for_ui()
+        # 🚀 إضافة sudo() هنا لتجاوز حماية الـ Record Rules عند قراءة بيانات الحجز 🚀
+        lines = order.sudo().lines.filtered(lambda line: line.appointment_id).export_appointment_for_ui()
         lines = list(filter(lambda line: line != None, lines))
 
         return {
@@ -116,8 +114,7 @@ class PosOrder(models.Model):
             'tip_amount': order.tip_amount,
             'state': order.state,
             'last_order_preparation_change': order.last_order_preparation_change,
-            }
-
+        }
     def export_appointment_for_ui(self):
 
         return self.mapped(self._export_appointment_for_ui) if self else []
