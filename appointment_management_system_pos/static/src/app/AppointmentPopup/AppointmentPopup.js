@@ -37,6 +37,9 @@ export class AppointmentPopup extends AbstractAwaitablePopup {
         this.ui = useState(useService("ui"));
         this.popup = useService("popup");
 
+        // 🚀 رقم الطلب الحالي لـ addProduct: أي طلب أقدم منه يتجاهل نتيجته (يمنع التضارب لو الكاشير ضغط خدمتين ورا بعض)
+        this._addToken = 0;
+
         this.appointment_categories = [];
         for (var i = 0; i < this.pos.appointment_categories.length; i++) {
           var cat = this.pos.db.category_by_id[this.pos.appointment_categories[i].id];
@@ -75,9 +78,10 @@ export class AppointmentPopup extends AbstractAwaitablePopup {
         this.pos.isSelectedServicePack = false;
     }
     get appointmentDetailsSelectedService() {
-      if (this.pos.appointmentDetails) {
-        return this.pos.appointmentDetails['selectedService'];
-
+      const d = this.pos.appointmentDetails;
+      // الخدمة المختارة لازم تكون موجودة فعلاً جوه services
+      if (d && d.services && d.services[d['selectedService']]) {
+        return d['selectedService'];
       }
         return false;
     }
@@ -97,6 +101,7 @@ export class AppointmentPopup extends AbstractAwaitablePopup {
         return '';
     }
     switchCategory(categId) {
+        this._addToken++;   // نلغي أي إضافة خدمة لسه شغالة
         this.pos.SelectedCategoryId = categId;
         this.pos.SelectedService = null;
         if (this.pos.appointmentDetails) {
@@ -157,50 +162,41 @@ export class AppointmentPopup extends AbstractAwaitablePopup {
 
 
     selectedServicePack(ev){
-      this.pos.appointmentDetails['selectedService'] =ev.target.id;
+      const id = parseInt(ev.target.id);
+      const d = this.pos.appointmentDetails;
+      // نغيّر الخدمة المختارة بس لو موجودة فعلاً
+      if (d && d.services && d.services[id]) {
+        d['selectedService'] = id;
+      }
       this.render();
     }
 
 
     async addProduct(product){
+      if (!product) {
+        return;
+      }
+      // 🚀 كل ضغطة جديدة تلغي نتيجة أي ضغطة سابقة لسه مستنية السيرفر
+      const token = ++this._addToken;
+      const isStale = () => token !== this._addToken;
+
       this.pos.appointmentDetails = {};
       this.pos.SelectedService = product;
       this.pos.SelectedServices = [];
       this.pos.isSelectedServicePack = product && product.appointment_package_line_ids.length>0;
       this.pos.appointmentDetails['services'] = {}
       this.pos.appointmentDetails['service_id'] = product.id
-      if (product ) {
-        if (this.pos.isSelectedServicePack) {
-          this.pos.appointmentDetails['isSelectedServicePack'] =true;
-          this.pos.appointmentDetails['ServicePackFullName'] =product.display_name;
-          for (var i = 0; i < product.appointment_package_line_ids.length; i++) {
-            var product_id = this.pos.appointment_package_by_id[product.appointment_package_line_ids[i]]['product_id'][0];
-            var prod = this.pos.db.get_product_by_id(product_id);
-            this.pos.SelectedServices.push(prod);
-            var obj = {
-              'service_id':product_id,
-              'branch_id': '',
-              'employee_id': '',
-              'date': '',
-              'price': 0,
-              'appointment_type': 'inside',
-              'slot_ids': '',
-              'appointment_id': false,
-              'availableBranchs':[],
-              'availableAppointments':[],
-              'availableAppointmentsSorded':[],
-              'availabledDates':[],
-              'availableEmployees':[],
-            }
-            this.pos.appointmentDetails['services'][product_id] = obj
-            await this.pos.getBranches(product_id);
-          }
-          this.pos.appointmentDetails['selectedService'] =this.pos.appointment_package_by_id[product.appointment_package_line_ids[0]]['product_id'][0];
 
-        }else {
-          this.pos.SelectedServices.push(product);
+      if (this.pos.isSelectedServicePack) {
+        this.pos.appointmentDetails['isSelectedServicePack'] =true;
+        this.pos.appointmentDetails['ServicePackFullName'] =product.display_name;
+        for (var i = 0; i < product.appointment_package_line_ids.length; i++) {
+          if (isStale()) { return; }
+          var product_id = this.pos.appointment_package_by_id[product.appointment_package_line_ids[i]]['product_id'][0];
+          var prod = this.pos.db.get_product_by_id(product_id);
+          this.pos.SelectedServices.push(prod);
           var obj = {
-            'service_id':product.id,
+            'service_id':product_id,
             'branch_id': '',
             'employee_id': '',
             'date': '',
@@ -214,13 +210,39 @@ export class AppointmentPopup extends AbstractAwaitablePopup {
             'availabledDates':[],
             'availableEmployees':[],
           }
-          this.pos.appointmentDetails['services'][product.id] = obj
-          await this.pos.getBranches(product.id);
-          this.pos.appointmentDetails['selectedService'] = product.id;
-          this.pos.appointmentDetails['isSelectedServicePack'] =false;
+          this.pos.appointmentDetails['services'][product_id] = obj
+          await this.pos.getBranches(product_id);
+        }
+        if (isStale()) { return; }
+        const firstId = this.pos.appointment_package_by_id[product.appointment_package_line_ids[0]]['product_id'][0];
+        if (this.pos.appointmentDetails.services && this.pos.appointmentDetails.services[firstId]) {
+          this.pos.appointmentDetails['selectedService'] = firstId;
         }
 
-
+      } else {
+        this.pos.SelectedServices.push(product);
+        var obj = {
+          'service_id':product.id,
+          'branch_id': '',
+          'employee_id': '',
+          'date': '',
+          'price': 0,
+          'appointment_type': 'inside',
+          'slot_ids': '',
+          'appointment_id': false,
+          'availableBranchs':[],
+          'availableAppointments':[],
+          'availableAppointmentsSorded':[],
+          'availabledDates':[],
+          'availableEmployees':[],
+        }
+        this.pos.appointmentDetails['services'][product.id] = obj
+        await this.pos.getBranches(product.id);
+        if (isStale()) { return; }
+        if (this.pos.appointmentDetails.services && this.pos.appointmentDetails.services[product.id]) {
+          this.pos.appointmentDetails['selectedService'] = product.id;
+        }
+        this.pos.appointmentDetails['isSelectedServicePack'] =false;
       }
 
       this.render();
@@ -228,9 +250,12 @@ export class AppointmentPopup extends AbstractAwaitablePopup {
     }
 
     removeProduct(product) {
+      this._addToken++;   // نلغي أي إضافة خدمة لسه شغالة
       this.pos.SelectedService = null;
-      this.pos.appointmentDetails['selectedService'] = null;
-      this.pos.appointmentDetails['services'] = null;
+      if (this.pos.appointmentDetails) {
+        this.pos.appointmentDetails['selectedService'] = null;
+        this.pos.appointmentDetails['services'] = null;
+      }
       this.render();
     }
 
@@ -293,6 +318,7 @@ export class AppointmentPopup extends AbstractAwaitablePopup {
       return this.pos.appointmentDetails;
 		}
     cancel() {
+        this._addToken++;   // نلغي أي إضافة خدمة لسه شغالة
         super.cancel();
         this.pos.SelectedService = null;
         if (this.pos.appointmentDetails) {

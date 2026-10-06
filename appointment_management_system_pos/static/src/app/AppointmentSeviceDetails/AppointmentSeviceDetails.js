@@ -46,6 +46,37 @@ function getLang() {
 function t(key) {
     return TRANSLATIONS[getLang()][key] || TRANSLATIONS['en'][key] || key;
 }
+
+// تاريخ اليوم بصيغة YYYY-MM-DD
+function todayString() {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    return `${yyyy}-${mm}-${dd}`;
+}
+
+// هل التاريخ المطلوب موجود جوه نتيجة السيرفر (list / object / string)؟
+function datesInclude(dates, dateStr) {
+    if (Array.isArray(dates)) {
+        return dates.includes(dateStr);
+    } else if (dates && typeof dates === 'object') {
+        return Object.keys(dates).includes(dateStr) || Object.values(dates).includes(dateStr);
+    } else if (typeof dates === 'string') {
+        return dates === dateStr;
+    }
+    return false;
+}
+
+// أول تاريخ متاح من نتيجة السيرفر
+function firstDateOf(dates) {
+    if (Array.isArray(dates) && dates.length > 0) {
+        return dates[0];
+    } else if (dates && typeof dates === 'object' && Object.keys(dates).length > 0) {
+        return Object.values(dates)[0];
+    }
+    return null;
+}
 // ──────────────────────────────────────────────────────────────────────────────
 
 export class AppointmentSeviceDetails extends Component {
@@ -102,33 +133,51 @@ export class AppointmentSeviceDetails extends Component {
         this.popup = useService("popup");
     }
 
+    // ─── الخدمة المختارة حالياً (آمنة: ترجع null لو مش موجودة) ──────────────────
+    get currentService() {
+        const d = this.pos.appointmentDetails;
+        if (!d || !d.services) {
+            return null;
+        }
+        const id = d['selectedService'];
+        if (id === null || id === undefined || id === '') {
+            return null;
+        }
+        return d.services[id] || null;
+    }
+
+    // الشرط اللي بيظهر بيانات الخدمة: لازم الخدمة تكون موجودة فعلاً جوه services
     get appointmentDetailsSelectedService() {
-      if (this.pos.appointmentDetails) {
-        return this.pos.appointmentDetails['selectedService'];
-      }
+        if (this.currentService) {
+            return this.pos.appointmentDetails['selectedService'];
+        }
         return false;
     }
 
     get appointmentDetailsSelectedServicePack() {
-      if (this.pos.appointmentDetails) {
-        return this.pos.appointmentDetails['selectedService'] && this.pos.appointmentDetails['isSelectedServicePack'];
+      const d = this.pos.appointmentDetails;
+      if (d && d.services) {
+        return d['selectedService'] && d['isSelectedServicePack'];
       }
         return false;
     }
 
     onClick(ev) {
-      if (ev.target.id != '') {
-        this.pos.appointmentDetails['selectedService'] = parseInt(ev.target.id);
-        this.availableBranchs = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availableBranchs
-        this.changes.branch_id = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].branch_id.toString()
-        this.changes.employee_id = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].employee_id.toString()
+      const d = this.pos.appointmentDetails;
+      const id = parseInt(ev.target.id);
+      if (d && d.services && d.services[id]) {
+        d['selectedService'] = id;
+        const svc = d.services[id];
+        this.availableBranchs = svc.availableBranchs;
+        this.changes.branch_id = String(svc.branch_id ?? '');
+        this.changes.employee_id = String(svc.employee_id ?? '');
       }
       this.render();
     }
 
     highlight(id) {
         var highlightClass = '';
-        var SelectedServiceId = this.pos.appointmentDetails['selectedService'];
+        var SelectedServiceId = this.pos.appointmentDetails?.['selectedService'];
         if (SelectedServiceId == id) {
           highlightClass = 'green_border';
         }
@@ -136,164 +185,160 @@ export class AppointmentSeviceDetails extends Component {
     }
 
     _disabledBranch() {
-      var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
-      if (changes.syncBranchs != true ) {
-        return false;
-      }
-      return true;
+      const s = this.currentService;
+      return !!s && s.syncBranchs === true;
     }
 
     _disabledEmployee() {
-      var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
-      if (changes.syncEmployees != true ) {
-        return false;
-      }
-      return true;
+      const s = this.currentService;
+      return !!s && s.syncEmployees === true;
     }
 
     _disabledDate() {
-      var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
-      if (changes.syncDates != true ) {
-        return false;
-      }
-      return true;
+      const s = this.currentService;
+      return !!s && s.syncDates === true;
     }
 
     _disabledAvailableAppointments() {
-      var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
-      if (changes.syncAppointments != true ) {
-        return false;
-      }
-      return true;
+      const s = this.currentService;
+      return !!s && s.syncAppointments === true;
     }
 
     onTypeChange(ev) {
-        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].appointment_type= ev.target.value;
-        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].branch_id = '';
-        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].employee_id = '';
-        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].date = '';
-        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].slot_ids = '';
-        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncBranchs = false;
-        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncEmployees = false;
-        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncDates = false;
-        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncAppointments = false;
+        const s = this.currentService;
+        if (!s) { return; }
+        s.appointment_type = ev.target.value;
+        s.branch_id = '';
+        s.employee_id = '';
+        s.date = '';
+        s.slot_ids = '';
+        s.syncBranchs = false;
+        s.syncEmployees = false;
+        s.syncDates = false;
+        s.syncAppointments = false;
         this.getBranches();
         this.render();
     }
 
     onBranchChange(ev) {
+        const s = this.currentService;
+        if (!s) { return; }
         const branch_id = ev.target.value;
-        var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
-        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].branch_id = branch_id;
+        s.branch_id = branch_id;
         this.changes.branch_id = branch_id;
-        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].employee_id = '';
-        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].date = '';
-        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].slot_ids = '';
-        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncPrices = false;
-        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncEmployees = false;
-        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncDates = false;
-        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncAppointments = false;
+        s.employee_id = '';
+        s.date = '';
+        s.slot_ids = '';
+        s.syncPrices = false;
+        s.syncEmployees = false;
+        s.syncDates = false;
+        s.syncAppointments = false;
         if (branch_id != '') {
-          this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].branch_name = changes['availableBranchs'][parseInt(branch_id)];
-          this.getAvailableEmployees();
+          s.branch_name = s['availableBranchs'][parseInt(branch_id)];
+          this.getAvailableEmployees(s);
         }
         this.render();
     }
 
     onEmployeeChange(ev) {
+        const s = this.currentService;
+        if (!s) { return; }
         const employee_id = ev.target.value;
-        var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
-        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].employee_id = employee_id;
+        s.employee_id = employee_id;
         this.changes.employee_id = employee_id;
-        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].date = '';
-        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].slot_ids = '';
-        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncDates = false;
-        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncAppointments = false;
+        s.date = '';
+        s.slot_ids = '';
+        s.syncDates = false;
+        s.syncAppointments = false;
         if(employee_id != ''){
-          this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].employee_name = changes['availableEmployees'][parseInt(employee_id)];
+          s.employee_name = s['availableEmployees'][parseInt(employee_id)];
           // لو الموظف اتغير يدوياً، نستدعي التواريخ الخاصة بيه
-          this.getAvailableDates();
+          this.getAvailableDates(s);
         }
         this.render();
     }
 
     onDateChange(ev) {
-        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].date= ev.target.value;
-        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].slot_ids = '';
-        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncAppointments = false;
-        if(this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].date != ''){
-          this.getAvailableAppointments();
+        const s = this.currentService;
+        if (!s) { return; }
+        s.date = ev.target.value;
+        s.slot_ids = '';
+        s.syncAppointments = false;
+        if(s.date != ''){
+          this.getAvailableAppointments(s);
         }
         this.render();
     }
 
     onAppointmentChange(ev) {
-        var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
-        this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].slot_ids= ev.target.value;
+        const s = this.currentService;
+        if (!s) { return; }
+        s.slot_ids = ev.target.value;
         if(ev.target.value != ''){
-          this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].slot_ids= changes['availableAppointments'][ev.target.value].ids;
-          this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].slot_name= changes['availableAppointments'][ev.target.value].name;
+          s.slot_ids = s['availableAppointments'][ev.target.value].ids;
+          s.slot_name = s['availableAppointments'][ev.target.value].name;
         }
         this.render();
     }
 
+    _packServiceId() {
+        const d = this.pos.appointmentDetails;
+        return d && d['isSelectedServicePack'] ? d['service_id'] : false;
+    }
+
     // 1️⃣ فلترة وقفل الفروع على فرع نقطة البيع (pos.config) الحالية فقط
- async getBranches(){
-  var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
-  this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncBranchs = false;
+    async getBranches(service = this.currentService){
+      const s = service;
+      if (!s) { return; }
+      s.syncBranchs = false;
 
-  const availableBranchs = await this.orm.call(
-      "product.product",
-      "action_get_appointment_branch",
-      [changes.service_id, this.pos.appointmentDetails['isSelectedServicePack']? this.pos.appointmentDetails['service_id']:false]
-  );
-  this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncBranchs = true;
+      const availableBranchs = await this.orm.call(
+          "product.product",
+          "action_get_appointment_branch",
+          [s.service_id, this._packServiceId()]
+      );
+      s.syncBranchs = true;
 
-  // فرع نقطة البيع الحالية (اللي شغال عليها الكاشير)
-  const currentConfigId = this.pos.config ? String(this.pos.config.id) : null;
+      // فرع نقطة البيع الحالية (اللي شغال عليها الكاشير)
+      const currentConfigId = this.pos.config ? String(this.pos.config.id) : null;
 
-  let filteredBranches = {};
-  if (currentConfigId && availableBranchs[currentConfigId] !== undefined) {
-      filteredBranches[currentConfigId] = availableBranchs[currentConfigId];
-  } else {
-      filteredBranches = availableBranchs; // fallback احتياطي فقط لو مفيش تطابق
-  }
+      let filteredBranches = {};
+      if (currentConfigId && availableBranchs[currentConfigId] !== undefined) {
+          filteredBranches[currentConfigId] = availableBranchs[currentConfigId];
+      } else {
+          filteredBranches = availableBranchs; // fallback احتياطي فقط لو مفيش تطابق
+      }
 
-  this.availableBranchs = filteredBranches;
-  this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availableBranchs = filteredBranches;
+      this.availableBranchs = filteredBranches;
+      s.availableBranchs = filteredBranches;
 
-  if (Object.keys(filteredBranches).length > 0) {
-      const onlyBranchId = Object.keys(filteredBranches)[0];
-      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].branch_id = onlyBranchId;
-      this.changes.branch_id = onlyBranchId;
-      await this.getAvailableEmployees();
-  }
+      if (Object.keys(filteredBranches).length > 0) {
+          const onlyBranchId = Object.keys(filteredBranches)[0];
+          s.branch_id = onlyBranchId;
+          this.changes.branch_id = onlyBranchId;
+          await this.getAvailableEmployees(s);
+      }
 
-  this.render();
-}
+      this.render();
+    }
 
     // 2️⃣ البحث الذكي عن الموظف اللي عنده حجوزات "اليوم"
-    async getAvailableEmployees(){
-      var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
-      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncEmployees = false;
+    async getAvailableEmployees(service = this.currentService){
+      const s = service;
+      if (!s) { return; }
+      s.syncEmployees = false;
       const availableEmployees = await this.orm.call(
           "product.product",
           "action_get_appointment_employee",
-          [changes.service_id,changes.branch_id,this.pos.appointmentDetails['isSelectedServicePack']? this.pos.appointmentDetails['service_id']:false]
+          [s.service_id, s.branch_id, this._packServiceId()]
       );
-      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncEmployees = true;
-      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availableEmployees = availableEmployees;
+      s.syncEmployees = true;
+      s.availableEmployees = availableEmployees;
 
       // -- بدء عملية البحث الذكي --
       if (availableEmployees && Object.keys(availableEmployees).length > 0) {
           const empIds = Object.keys(availableEmployees);
-
-          // تجهيز تاريخ اليوم للمقارنة
-          const today = new Date();
-          const yyyy = today.getFullYear();
-          const mm = String(today.getMonth() + 1).padStart(2, '0');
-          const dd = String(today.getDate()).padStart(2, '0');
-          const todayStr = `${yyyy}-${mm}-${dd}`;
+          const todayStr = todayString();
 
           let targetEmpId = null;
           let targetDate = null;
@@ -307,23 +352,14 @@ export class AppointmentSeviceDetails extends Component {
               const dates = await this.orm.call(
                   "product.product",
                   "action_get_appointment_date",
-                  [changes.service_id, empId, this.pos.appointmentDetails['isSelectedServicePack']? this.pos.appointmentDetails['service_id']:false]
+                  [s.service_id, empId, this._packServiceId()]
               );
 
               if (empId === firstEmpId) {
                   firstEmpDates = dates; // نحتفظ ببيانات أول موظف احتياطياً
               }
 
-              let isTodayAvail = false;
-              if (Array.isArray(dates)) {
-                  isTodayAvail = dates.includes(todayStr);
-              } else if (dates && typeof dates === 'object') {
-                  isTodayAvail = Object.keys(dates).includes(todayStr) || Object.values(dates).includes(todayStr);
-              } else if (typeof dates === 'string') {
-                  isTodayAvail = dates === todayStr;
-              }
-
-              if (isTodayAvail) {
+              if (datesInclude(dates, todayStr)) {
                   targetEmpId = empId;
                   targetDate = todayStr;
                   targetEmpDates = dates;
@@ -335,24 +371,19 @@ export class AppointmentSeviceDetails extends Component {
           if (!targetEmpId) {
               targetEmpId = firstEmpId;
               targetEmpDates = firstEmpDates;
-
-              if (Array.isArray(firstEmpDates) && firstEmpDates.length > 0) {
-                  targetDate = firstEmpDates[0];
-              } else if (firstEmpDates && typeof firstEmpDates === 'object' && Object.keys(firstEmpDates).length > 0) {
-                  targetDate = Object.values(firstEmpDates)[0];
-              }
+              targetDate = firstDateOf(firstEmpDates);
           }
 
           // -- تعبئة البيانات وتفعيل الاختيارات في الشاشة --
-          this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].employee_id = targetEmpId;
+          s.employee_id = targetEmpId;
           this.changes.employee_id = targetEmpId;
 
-          this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncDates = true;
-          this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availabledDates = targetEmpDates;
+          s.syncDates = true;
+          s.availabledDates = targetEmpDates;
 
           if (targetDate) {
-              this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].date = targetDate;
-              await this.getAvailableAppointments();
+              s.date = targetDate;
+              await this.getAvailableAppointments(s);
           }
       }
 
@@ -360,64 +391,47 @@ export class AppointmentSeviceDetails extends Component {
     }
 
     // 3️⃣ تعمل كبديل احتياطي لو قام الكاشير بتغيير الموظف يدوياً من القائمة
-    async getAvailableDates(){
-      var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
-      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncDates = false;
+    async getAvailableDates(service = this.currentService){
+      const s = service;
+      if (!s) { return; }
+      s.syncDates = false;
 
       const availabledDates = await this.orm.call(
           "product.product",
           "action_get_appointment_date",
-          [changes.service_id,changes.employee_id,this.pos.appointmentDetails['isSelectedServicePack']? this.pos.appointmentDetails['service_id']:false]
+          [s.service_id, s.employee_id, this._packServiceId()]
       );
 
-      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncDates = true;
-      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availabledDates = availabledDates;
+      s.syncDates = true;
+      s.availabledDates = availabledDates;
 
-      const today = new Date();
-      const yyyy = today.getFullYear();
-      const mm = String(today.getMonth() + 1).padStart(2, '0');
-      const dd = String(today.getDate()).padStart(2, '0');
-      const todayStr = `${yyyy}-${mm}-${dd}`;
+      const todayStr = todayString();
 
-      let isTodayAvailable = false;
-      if (Array.isArray(availabledDates)) {
-          isTodayAvailable = availabledDates.includes(todayStr);
-      } else if (availabledDates && typeof availabledDates === 'object') {
-          isTodayAvailable = Object.keys(availabledDates).includes(todayStr) || Object.values(availabledDates).includes(todayStr);
-      } else if (typeof availabledDates === 'string') {
-          isTodayAvailable = availabledDates === todayStr;
-      }
-
-      if (isTodayAvailable) {
-          this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].date = todayStr;
-          await this.getAvailableAppointments();
+      if (datesInclude(availabledDates, todayStr)) {
+          s.date = todayStr;
+          await this.getAvailableAppointments(s);
       } else if (availabledDates) {
-          let firstDate = null;
-          if (Array.isArray(availabledDates) && availabledDates.length > 0) {
-              firstDate = availabledDates[0];
-          } else if (typeof availabledDates === 'object' && Object.keys(availabledDates).length > 0) {
-              firstDate = Object.values(availabledDates)[0];
-          }
-
+          const firstDate = firstDateOf(availabledDates);
           if (firstDate) {
-              this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].date = firstDate;
-              await this.getAvailableAppointments();
+              s.date = firstDate;
+              await this.getAvailableAppointments(s);
           }
       }
 
       this.render();
     }
 
-    async getAvailableAppointments(){
-      var changes = this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']];
-      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncAppointments = false;
+    async getAvailableAppointments(service = this.currentService){
+      const s = service;
+      if (!s) { return; }
+      s.syncAppointments = false;
       const availableAppointments = await this.orm.call(
           "product.product",
           "action_get_appointment_employee_slot",
-          [changes.service_id,changes.employee_id,changes.date,changes.appointment_type,changes.branch_id,this.pos.appointmentDetails['isSelectedServicePack']? this.pos.appointmentDetails['service_id']:false]
+          [s.service_id, s.employee_id, s.date, s.appointment_type, s.branch_id, this._packServiceId()]
       );
-      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].syncAppointments = true;
-      this.pos.appointmentDetails['services'][this.pos.appointmentDetails['selectedService']].availableAppointments = availableAppointments;
+      s.syncAppointments = true;
+      s.availableAppointments = availableAppointments;
       this.render();
     }
 }

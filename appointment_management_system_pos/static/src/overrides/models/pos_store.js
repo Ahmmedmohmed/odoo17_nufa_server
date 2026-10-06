@@ -29,12 +29,16 @@ patch(PosStore.prototype, {
     },
 
     async getBranches(selectedService){
+      // 🚀 لو الخدمة اتشالت/اتبدلت قبل ما الطلب يبدأ، نوقف بهدوء
+      if (!this.appointmentDetails?.services?.[selectedService]) return;
       this.appointmentDetails['services'][selectedService].syncBranchs = false;
       const availableBranchs = await this.orm.call(
           "product.product",
           "action_get_appointment_branch",
           [selectedService,this.appointmentDetails['isSelectedServicePack']? this.appointmentDetails['service_id']:false]
       );
+      // 🚀 الكاشير ممكن يكون غيّر الخدمة أثناء انتظار السيرفر → نوقف بدل ما نكتب على بيانات خدمة تانية
+      if (!this.appointmentDetails?.services?.[selectedService]) return;
       this.appointmentDetails['services'][selectedService].syncBranchs = true;
 
       // -- فلترة على فرع نقطة البيع (pos.config) الحالية فقط --
@@ -60,6 +64,7 @@ patch(PosStore.prototype, {
 
     // البحث الذكي عن الموظف اللي عنده حجوزات "اليوم" - كل طلبات التواريخ بتتنفذ بالتوازي مش واحد ورا التاني
     async autoSelectEmployeeAndDate(selectedService) {
+      if (!this.appointmentDetails?.services?.[selectedService]) return;
       const changes = this.appointmentDetails['services'][selectedService];
       changes.syncEmployees = false;
 
