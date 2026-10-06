@@ -124,10 +124,22 @@ class Product(models.Model):
         return days_list
 
     def action_get_appointment_employee_slot(self, employee_id, date, type, branch, package_id=False):
+        from datetime import datetime
+
+        # 1. تأمين التاريخ: التحقق من عدم كونه فارغاً لتفادي خطأ ValueError
+        if not date:
+            return []
+
+        try:
+            # تحويل التاريخ بأمان
+            target_date = datetime.strptime(str(date), '%Y-%m-%d').date()
+        except ValueError:
+            # إرجاع قائمة فارغة بدلاً من ظهور خطأ في الكاشير إذا كانت الصيغة خاطئة
+            return []
+
         package_id = self.env['product.product'].browse(int(package_id))
         slots = 99
         dict = {}
-        date = datetime.strptime(date, '%Y-%m-%d').date()
         employee_id = self.env['hr.employee'].browse(int(employee_id))
 
         if package_id:
@@ -153,8 +165,8 @@ class Product(models.Model):
             if service_plan_id and type == 'outside':
                 slots = service_plan_id.service_slot_outside
 
-        return self.get_all_available_slot_groups_records(employee_id.id, date, slots)
-
+        # تم تغيير date هنا إلى target_date المؤمن
+        return self.get_all_available_slot_groups_records(employee_id.id, target_date, slots)
     def action_get_appointment_service_price(self, branch_id, employee_id, appointment_type, package_id=False):
         import logging
         _logger = logging.getLogger(__name__)
