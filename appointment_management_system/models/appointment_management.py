@@ -360,6 +360,7 @@ class AppointmentManagement(models.Model):
             return False
 
         try:
+            import random
             dummy_uid = f"{random.randrange(10000, 99999)}-{random.randrange(100, 999)}-{random.randrange(1000, 9999)}"
 
             refund_order = self.env['pos.order'].sudo().create({
@@ -368,10 +369,23 @@ class AppointmentManagement(models.Model):
                 'pos_reference': f'Refund {dummy_uid}',
                 'lines': refund_lines,
                 'amount_total': refund_total,
-                'amount_paid': refund_total,
+                'amount_paid': 0.0, # سيتم تسجيلها في سطر الدفع أسفله
                 'amount_tax': refund_tax,
                 'amount_return': 0.0,
             })
+
+            # 🚀 إضافة سطر الدفع لإغلاق الفاتورة وتأكيد المرتجع في الكاشير
+            payment_method = session.payment_method_ids[0] if session.payment_method_ids else False
+            if payment_method:
+                refund_order.add_payment({
+                    'payment_method_id': payment_method.id,
+                    'amount': refund_total,
+                })
+                refund_order.action_pos_order_paid() # تحويل الفاتورة لـ Paid / Done
+
+            # 🚀 الأهم: إرجاع True لكي يعرف النظام أن المرتجع تم بنجاح ولا يقوم بإنشاء Refund Request
+            return True
+
         except Exception as e:
             _logger.error(f"فشل إنشاء المرتجع الأوتوماتيكي لـ {order.name}: {str(e)}")
             return False
