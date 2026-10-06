@@ -470,8 +470,17 @@ class AppointmentManagement(models.Model):
                             'reserved_until': False
                         })
 
-                    linked_orders = self.env['pos.order'].sudo().search(
-                        [('appointment_id', '=', record.id), ('state', '!=', 'cancel')])
+                    # appointment_id موجود على سطور الكاشير (pos.order.line) مش على pos.order نفسه
+                    appt_pos_lines = self.env['pos.order.line'].sudo().search(
+                        [('appointment_id', '=', record.id)])
+                    # لو الكاشير استرجع الحجز من الـ POS (فيه سطر بالسالب) يبقى المرتجع اتعمل خلاص،
+                    # وما ينفعش نعمل مرتجع تاني أو نلغي الأوردر اللي لسه بيتعالج (ازدواج)
+                    already_refunded_in_pos = any(l.qty < 0 for l in appt_pos_lines)
+                    linked_orders = self.env['pos.order'].sudo()
+                    if not already_refunded_in_pos:
+                        linked_orders = appt_pos_lines.filtered(
+                            lambda l: l.qty > 0
+                        ).mapped('order_id').filtered(lambda o: o.state != 'cancel')
                     for order in linked_orders:
                         if order.state == 'draft':
                             order.action_pos_order_cancel()
