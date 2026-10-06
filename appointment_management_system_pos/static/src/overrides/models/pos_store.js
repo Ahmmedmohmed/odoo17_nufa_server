@@ -140,6 +140,11 @@ patch(PosStore.prototype, {
     },
 
     async autoSelectAppointmentSlot(selectedService) {
+      // 🚀 إضافة فحص أمان هنا لضمان عدم حدوث الخطأ (Cannot set properties of undefined)
+      if (!this.appointmentDetails || !this.appointmentDetails['services'] || !this.appointmentDetails['services'][selectedService]) {
+          return;
+      }
+
       const changes = this.appointmentDetails['services'][selectedService];
       changes.syncAppointments = false;
       const availableAppointments = await this.orm.call(
@@ -147,8 +152,18 @@ patch(PosStore.prototype, {
           "action_get_appointment_employee_slot",
           [changes.service_id, changes.employee_id, changes.date, changes.appointment_type, changes.branch_id, this.appointmentDetails['isSelectedServicePack']? this.appointmentDetails['service_id']:false]
       );
-      changes.syncAppointments = true;
-      changes.availableAppointments = availableAppointments;
+
+      // 🚀 فحص إضافي للتأكد من أن الكاشير لم يغلق الشاشة أو يفرغ البيانات
+      if (this.appointmentDetails && this.appointmentDetails['services'] && this.appointmentDetails['services'][selectedService]) {
+          this.appointmentDetails['services'][selectedService].syncAppointments = true;
+          this.appointmentDetails['services'][selectedService].availableAppointments = availableAppointments;
+
+          // تحديد أول وقت متاح أوتوماتيكياً إن وجد
+          if (availableAppointments && availableAppointments.length > 0) {
+              this.appointmentDetails['services'][selectedService].slot_ids = availableAppointments[0].ids;
+              this.appointmentDetails['services'][selectedService].slot_name = availableAppointments[0].name;
+          }
+      }
     },
 
     // async getAvailableEmployees(selectedService){
@@ -190,5 +205,4 @@ patch(PosStore.prototype, {
     //   console.log(availableAppointments);
     //   this.render();
     // }
-
 });
