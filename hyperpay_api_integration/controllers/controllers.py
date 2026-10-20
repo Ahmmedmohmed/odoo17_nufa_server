@@ -1,38 +1,83 @@
 # -*- coding: utf-8 -*-
-from odoo import http
-from odoo.http import request
-import requests
 import json
 import logging
+import re
 import uuid
+
 import jwt
-from werkzeug.wrappers import Response
+import requests
+from markupsafe import escape
+
+from odoo import http
+from odoo.http import request
 
 _logger = logging.getLogger(__name__)
 
 # =================================================================
-# --- TEST CREDENTIALS (بيانات التست - كتعليق للرجوع إليها مستقبلاً) ---
-# HYPERPAY_BASE_URL = "https://eu-test.oppwa.com"
-# ACCESS_TOKEN = "OGFjN2E0Yzg5MTRhYTY5ZTAxOTE0YWFlYThlNDAwMGV8Snp3c1p0WWd3ajdkbnlYbg=="
-# ENTITY_ID_VISA = "8ac7a4c8914aa69e01914aaf64770012"
-# ENTITY_ID_MADA = "8ac7a4c8914aa69e01914aaff3430016"
-# ENTITY_ID_APPLEPAY = "8ac7a4c79acb07ad019ad42a476d0590"
+# لا توجد أي بيانات حساسة في الكود بعد الآن:
+#   * بيانات HyperPay (Access Token / Entity IDs) -> من الـ payment.provider
+#     الخاص بشركة الأوردر (Invoicing > Configuration > Payment Providers).
+#   * بيانات واتساب (Meta) و JWT -> من System Parameters:
+#       hyperpay_api_integration.meta_token
+#       hyperpay_api_integration.meta_phone_number_id
+#       hyperpay_api_integration.jwt_secret        (+ jwt_algorithm، الافتراضي HS256)
 # =================================================================
 
-# --- LIVE CREDENTIALS (بيانات اللايف بناءً على الإيميل) ---
-HYPERPAY_BASE_URL = "https://eu-prod.oppwa.com"
-ACCESS_TOKEN = "OGFjOWE0ZGE5ZDk2NTY0YzAxOWRhNTIzYWRiODExODB8OUw3Yj9VK0BRRG82TVF5ek0lRmQ="
+HP_URL_PROD = "https://eu-prod.oppwa.com"
+HP_URL_TEST = "https://eu-test.oppwa.com"
+PARAM = 'hyperpay_api_integration.'
+HTTP_TIMEOUT = 60
 
-# حسب الإيميل: Entity ID (Visa, MasterCard, MADA) متوحدين في نفس الكود
-ENTITY_ID_VISA = "8ac9a4ce9d965529019da52d8b8c32f2"
-ENTITY_ID_MADA = "8ac9a4ce9d965529019da52d8b8c32f2"
 
-# 🚀 تم تحديث الـ Entity ID الخاص بـ Apple Pay للحساب الحقيقي (LIVE)
-ENTITY_ID_APPLEPAY = "8ac9a4ce9d965529019da52d8b8c32f2"
+class HyperPayConfigError(Exception):
+    """Provider missing / credentials not configured for the order's company."""
 
-META_TOKEN = "EAFuId4IjxeEBQSFeQD7RJdJFRUFuv6BT6XWDvbCgTORukY4OZCuDmquZChtRlC6N2EFmBQKvzG84fHsbqvaa657a85gfAHoLkKqvzQrEBDHMZC8PMZC5ISPQ9bdoDFkOmENXbLzecsYZBkaAkXezEPFFlQrNJiB8877i9Jfoe6ZAE5zZAnVZAIHkbYNcy3z6wdVOhwZDZD"
-PHONE_NUMBER_ID = "926541170542819"
-META_URL = f"https://graph.facebook.com/v24.0/{PHONE_NUMBER_ID}/messages"
+
+# ----------------------------------------------------------------
+# Helpers
+# ----------------------------------------------------------------
+def _hp_get_provider(company):
+    """HyperPay provider of THIS company (never another company's one)."""
+    return request.env['payment.provider'].sudo().search([
+        ('code', '=', 'hyperpay'),
+        ('company_id', '=', company.id),
+        ('state', '!=', 'disabled'),
+    ], limit=1)
+
+
+def _hp_config(provider, method='VISA', resource_path=''):
+    """Return (base_url, access_token, entity_id) taken from the provider."""
+    if not provider:
+        raise HyperPayConfigError("No enabled HyperPay provider for this company")
+
+    method = (method or 'VISA').upper()
+    path = (resource_path or '').lower()
+    if method in ('APPLEPAY', 'APPLE_PAY') or 'applepay' in path:
+        entity_id = provider.hyperpay_entity_id_applepay
+    elif method == 'MADA' or 'mada' in path:
+        entity_id = provider.hyperpay_entity_id_mada
+    else:
+        entity_id = None
+    entity_id = entity_id or provider.hyperpay_entity_id_visa  # fallback
+
+    token = provider.hyperpay_access_token
+    if not token or not entity_id:
+        raise HyperPayConfigError(
+            "HyperPay credentials are not configured for company '%s'" % provider.company_id.name)
+
+    base_url = HP_URL_TEST if provider.state == 'test' else HP_URL_PROD
+    return base_url, token, entity_id
+
+
+def _hp_site_url(order=None):
+    """Public URL of the website the order belongs to (multi-website safe).
+    Falls back to web.base.url. Set the 'Domain' on each website."""
+    url = ''
+    if order and 'website_id' in order._fields and order.website_id:
+        url = order.website_id._get_http_domain()
+    if not url:
+        url = request.env['ir.config_parameter'].sudo().get_param('web.base.url') or ''
+    return url.rstrip('/')
 
 
 def _partner_from_token():
@@ -40,8 +85,17 @@ def _partner_from_token():
     if not auth_header:
         return None, "Missing Authorization token"
     token = auth_header.split(" ")[-1]
+    icp = request.env['ir.config_parameter'].sudo()
+    secret = icp.get_param(PARAM + 'jwt_secret')
     try:
-        payload = jwt.decode(token, options={"verify_signature": False})
+        if secret:
+            algorithm = icp.get_param(PARAM + 'jwt_algorithm') or 'HS256'
+            payload = jwt.decode(token, secret, algorithms=[algorithm])
+        else:
+            _logger.warning(
+                "HyperPay: JWT signature is NOT verified. Set the system parameter "
+                "'%sjwt_secret' to enable verification.", PARAM)
+            payload = jwt.decode(token, options={"verify_signature": False})
         partner_id = payload.get("partner_id")
         partner = request.env['res.partner'].sudo().browse(partner_id)
         if not partner.exists():
@@ -53,6 +107,118 @@ def _partner_from_token():
 
 class HyperPayAPIController(http.Controller):
 
+    # ------------------------------------------------------------
+    # Shared logic
+    # ------------------------------------------------------------
+    @staticmethod
+    def _hp_partner_owns_order(partner, order):
+        return order.partner_id.commercial_partner_id == partner.commercial_partner_id
+
+    @staticmethod
+    def _hp_web_can_pay(order):
+        """The visitor must be the owner of this cart / order."""
+        if order.id in (request.session.get('sale_order_id'),
+                        request.session.get('sale_last_order_id')):
+            return True
+        user = request.env.user
+        return (not user._is_public()
+                and order.partner_id.commercial_partner_id == user.partner_id.commercial_partner_id)
+
+    def _hp_check_payment(self, tx, resource_path):
+        """Ask HyperPay for the payment status. Returns (success, code, description)."""
+        method = tx.hyperpay_payment_method or tx.payment_method_code or 'VISA'
+        base_url, token, entity_id = _hp_config(tx.provider_id, method, resource_path)
+
+        verify_url = f"{base_url}{resource_path}?entityId={entity_id}"
+        _logger.info("HYPERPAY verify: GET %s (provider company: %s)", verify_url, tx.provider_id.company_id.name)
+        response = requests.get(verify_url, headers={'Authorization': f'Bearer {token}'}, timeout=HTTP_TIMEOUT)
+        res_json = response.json()
+        _logger.info("HYPERPAY verify response: %s", res_json)
+
+        result = res_json.get('result', {})
+        result_code = result.get('code', '')
+        description = result.get('description', '')
+        success = result_code.startswith(('000.000.', '000.100.'))
+
+        if success:
+            # الدفع لازم يطابق مبلغ وعملة المعاملة
+            try:
+                paid_amount = float(res_json.get('amount', tx.amount))
+            except (TypeError, ValueError):
+                paid_amount = tx.amount
+            paid_currency = res_json.get('currency') or tx.currency_id.name
+            if abs(paid_amount - tx.amount) > 0.005 or paid_currency != tx.currency_id.name:
+                _logger.error(
+                    "HYPERPAY amount/currency mismatch on TX %s: paid %s %s, expected %s %s. MANUAL REVIEW NEEDED.",
+                    tx.reference, paid_amount, paid_currency, tx.amount, tx.currency_id.name)
+                return False, 'AMOUNT_MISMATCH', 'Paid amount/currency does not match the order'
+        return success, result_code, description
+
+    def _hp_finalize_order(self, tx, notify=True):
+        """Confirm order, invoice, register payment. Every step is idempotent
+        (safe if the customer refreshes the return page)."""
+        order = tx.sale_order_ids[0]
+        order_company = order.company_id
+        order_sudo = order.sudo().with_company(order_company)
+
+        if order_sudo.state in ('draft', 'sent'):
+            order_sudo.action_confirm()
+
+        if order_sudo.invoice_status != 'invoiced':
+            order_sudo.with_context(default_company_id=order_company.id)._create_invoices()
+
+        invoice = order_sudo.invoice_ids.filtered(lambda i: i.state != 'cancel')[:1]
+        if invoice and invoice.state == 'draft':
+            invoice.with_company(order_company).action_post()
+
+        if invoice and invoice.state == 'posted' and invoice.payment_state not in ('paid', 'in_payment'):
+            provider = tx.provider_id.sudo()
+            journal = provider.journal_id if 'journal_id' in provider._fields else False
+            if not journal:
+                journal = request.env['account.journal'].sudo().search([
+                    ('type', '=', 'bank'), ('company_id', '=', order_company.id)
+                ], limit=1)
+            if journal:
+                payment = request.env['account.payment'].sudo().with_company(order_company).create({
+                    'payment_type': 'inbound',
+                    'partner_type': 'customer',
+                    'partner_id': order_sudo.partner_id.id,
+                    'amount': invoice.amount_total,
+                    'currency_id': invoice.currency_id.id,
+                    'journal_id': journal.id,
+                    'ref': tx.reference,
+                })
+                payment.action_post()
+                (invoice + payment.move_id).line_ids.filtered(
+                    lambda l: l.account_id.account_type == 'asset_receivable' and not l.reconciled
+                ).reconcile()
+            else:
+                _logger.warning(
+                    "HyperPay: no bank journal for company %s, payment NOT registered for invoice %s",
+                    order_company.name, invoice.name)
+
+        # الموديول ده اختياري (مش في depends)
+        if 'appointment.management' in request.env:
+            Appointment = request.env['appointment.management'].sudo()
+            domain = [('partner_id', '=', order_sudo.partner_id.id), ('state', '=', '1')]
+            if 'company_id' in Appointment._fields:
+                domain.append(('company_id', '=', order_company.id))
+            appointment = Appointment.search(domain, limit=1)
+            if appointment:
+                appointment.write({'state': '2'})
+
+        if notify:
+            self._send_payment_whatsapp_message(
+                name=order_sudo.partner_id.name,
+                phone=order_sudo.partner_id.mobile or order_sudo.partner_id.phone,
+                order_id=order.id,
+                amount=str(invoice.amount_total if invoice else order_sudo.amount_total)
+            )
+        return invoice
+
+    # ------------------------------------------------------------
+    # Mobile API
+    # ------------------------------------------------------------
     @http.route(['/api/hyperpay/init', '/api/hyperpay/init/'], type='http', auth='public',
                 methods=['GET', 'POST', 'OPTIONS'], csrf=False)
     def init_payment(self, **kw):
@@ -100,8 +266,17 @@ class HyperPayAPIController(http.Controller):
                 return request.make_response(json.dumps({'status': 'error', 'message': msg}), headers=headers,
                                              status=404)
 
+            # 🔒 العميل لازم يكون صاحب الأوردر
+            if not self._hp_partner_owns_order(partner, order):
+                msg = 'غير مصرح لك بالدفع لهذا الطلب' if is_ar else 'You are not allowed to pay for this order'
+                return request.make_response(json.dumps({'status': 'error', 'message': msg}), headers=headers,
+                                             status=403)
+
+            # 🏢 provider + credentials الخاصين بشركة الأوردر (قبل ما نعدل أي حاجة في الأوردر)
+            provider = _hp_get_provider(order.company_id)
+            base_url, access_token, entity_id = _hp_config(provider, method_req)
+
             # 🔥 [تطبيق الولاء وترجمة رسائل الخطأ من أساس أودو]
-            import re
             try:
                 order.sudo()._update_programs_and_rewards()
 
@@ -139,7 +314,7 @@ class HyperPayAPIController(http.Controller):
                 order.sudo()._update_programs_and_rewards()
 
             except Exception as e:
-                # 🚀 التعديل هنا: التراجع عن المعاملة لتجنب كسر قاعدة البيانات
+                # 🚀 التراجع عن المعاملة لتجنب كسر قاعدة البيانات
                 request.env.cr.rollback()
 
                 error_msg = str(e)
@@ -150,16 +325,8 @@ class HyperPayAPIController(http.Controller):
                 else:
                     error_msg = f"خطأ في تطبيق الخصم: {error_msg}" if is_ar else error_msg
 
-                return request.make_response(json.dumps({'status': 'error', 'message': error_msg}), headers=headers,
-                                             status=400)
-
-            # ... [باقي الكود الخاص بالـ HyperPay كما هو بدون تغيير] ...
-            if method_req == 'MADA':
-                entity_id = ENTITY_ID_MADA
-            elif method_req in ('APPLEPAY', 'APPLE_PAY'):
-                entity_id = ENTITY_ID_APPLEPAY
-            else:
-                entity_id = ENTITY_ID_VISA
+                return request.make_response(json.dumps({'status': 'error', 'message': error_msg}),
+                                             headers=headers, status=400)
 
             merchant_txn_id = f"TXN-{uuid.uuid4().hex[:12].upper()}"
             full_name = partner.name or 'Customer'
@@ -170,7 +337,7 @@ class HyperPayAPIController(http.Controller):
             payload = {
                 'entityId': entity_id,
                 'amount': f"{order.amount_total:.2f}",
-                'currency': 'SAR',
+                'currency': order.currency_id.name,  # عملة الأوردر (مش SAR ثابتة)
                 'paymentType': 'DB',
                 'merchantTransactionId': merchant_txn_id,
                 'customer.email': partner.email or '',
@@ -184,9 +351,9 @@ class HyperPayAPIController(http.Controller):
                 'integrity': 'true',
             }
 
-            hp_headers = {'Authorization': f'Bearer {ACCESS_TOKEN}'}
-            import requests
-            response = requests.post(f"{HYPERPAY_BASE_URL}/v1/checkouts", data=payload, headers=hp_headers)
+            hp_headers = {'Authorization': f'Bearer {access_token}'}
+            response = requests.post(f"{base_url}/v1/checkouts", data=payload, headers=hp_headers,
+                                     timeout=HTTP_TIMEOUT)
             res_json = response.json()
 
             if response.status_code != 200 or not res_json.get('id'):
@@ -194,7 +361,6 @@ class HyperPayAPIController(http.Controller):
                 return request.make_response(json.dumps({'status': 'error', 'message': msg, 'details': res_json}),
                                              headers=headers, status=400)
 
-            provider = request.env['payment.provider'].sudo().search([('code', '=', 'hyperpay')], limit=1)
             method_code = 'mastercard' if method_req.lower() == 'master' else method_req.lower()
             payment_method_rec = request.env['payment.method'].sudo().search([('code', '=', method_code)], limit=1)
             if not payment_method_rec:
@@ -222,8 +388,12 @@ class HyperPayAPIController(http.Controller):
                 'brands': brands_list
             }), headers=headers, status=200)
 
+        except HyperPayConfigError as e:
+            _logger.error("❌ HyperPay config error in Init Payment: %s", e)
+            return request.make_response(json.dumps({'status': 'error', 'message': str(e)}),
+                                         headers=headers, status=500)
         except Exception as e:
-            # 🚀 التعديل هنا: التراجع عن المعاملة لتجنب كسر قاعدة البيانات
+            # 🚀 التراجع عن المعاملة لتجنب كسر قاعدة البيانات
             request.env.cr.rollback()
 
             _logger.exception("❌ CRITICAL EXCEPTION in Init Payment: %s", e)
@@ -239,7 +409,6 @@ class HyperPayAPIController(http.Controller):
                    ('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')]
 
         _logger.info("🚀 === [HYPERPAY VERIFY] INCOMING REQUEST ===")
-        _logger.info("🌐 EXACT URL HIT: %s", request.httprequest.url)
         _logger.info("🛠 HTTP METHOD: %s", method)
 
         if method == 'OPTIONS':
@@ -274,88 +443,19 @@ class HyperPayAPIController(http.Controller):
                 return request.make_response(json.dumps({'status': 'error', 'message': 'Transaction not found'}),
                                              headers=headers, status=404)
 
-            # --- تحديد الـ Entity ID بناءً على الطريقة أو المسار ---
-            method_code = (tx.payment_method_code or 'VISA').upper()
-            _logger.info("DEBUG: Method Code is %s | Path is %s", method_code, resource_path)
-
-            if 'applepay' in resource_path.lower() or method_code == 'APPLEPAY':
-                entity_id = ENTITY_ID_APPLEPAY
-            elif 'mada' in resource_path.lower() or method_code == 'MADA':
-                entity_id = ENTITY_ID_MADA
-            else:
-                entity_id = ENTITY_ID_VISA
-
-            # 4. استعلام التحقق من HyperPay API
-            verify_url = f"{HYPERPAY_BASE_URL}{resource_path}?entityId={entity_id}"
-            hp_headers = {'Authorization': f'Bearer {ACCESS_TOKEN}'}
-
-            _logger.info("🔗 Sending VERIFY request to HyperPay: %s", verify_url)
-
-            response = requests.get(verify_url, headers=hp_headers)
-            res_json = response.json()
-
-            _logger.info("📥 HYPERPAY VERIFY RESPONSE: %s", res_json)
-
-            # 5. تحليل النتيجة
-            result_code = res_json.get('result', {}).get('code', '')
-            description = res_json.get('result', {}).get('description', '')
-
-            success = result_code.startswith(('000.000.', '000.100.')) or result_code in ['000.000.000', '000.100.110']
+            # 3. استعلام HyperPay (بـ credentials الـ provider الخاص بالمعاملة)
+            success, result_code, description = self._hp_check_payment(tx, resource_path)
 
             if success:
                 _logger.info("✅ Payment Successful. Proceeding with Odoo validation for TX: %s", tx.reference)
-                if tx.state != 'done':
+                first_time = tx.state != 'done'
+                if first_time:
                     tx._set_done()
 
+                invoice = self._hp_finalize_order(tx, notify=first_time)
                 order = tx.sale_order_ids[0]
-                order_company = order.company_id
-                order_sudo = order.sudo().with_company(order_company)
 
-                if order_sudo.state in ['draft', 'sent']:
-                    order_sudo.action_confirm()
-
-                if order_sudo.invoice_status != 'invoiced':
-                    order_sudo.with_context(default_company_id=order_company.id)._create_invoices()
-
-                invoice = order_sudo.invoice_ids.filtered(lambda i: i.state != 'cancel')[:1]
-                if invoice and invoice.state == 'draft':
-                    invoice.with_company(order_company).action_post()
-
-                if invoice and invoice.state == 'posted':
-                    journal = request.env['account.journal'].sudo().search([
-                        ('type', '=', 'bank'), ('company_id', '=', order_company.id)
-                    ], limit=1)
-                    if journal:
-                        payment = request.env['account.payment'].sudo().with_company(order_company).create({
-                            'payment_type': 'inbound',
-                            'partner_type': 'customer',
-                            'partner_id': order_sudo.partner_id.id,
-                            'amount': invoice.amount_total,
-                            'journal_id': journal.id,
-                            'ref': tx.reference,
-                        })
-                        payment.action_post()
-                        (invoice + payment.move_id).line_ids.filtered(
-                            lambda l: l.account_id.account_type == 'asset_receivable' and not l.reconciled
-                        ).reconcile()
-
-                appointment = request.env['appointment.management'].sudo().search([
-                    ('partner_id', '=', order_sudo.partner_id.id),
-                    ('state', '=', '1')
-                ], limit=1)
-                if appointment:
-                    appointment.write({'state': '2'})
-
-                self._send_payment_whatsapp_message(
-                    name=order_sudo.partner_id.name,
-                    phone=order_sudo.partner_id.mobile or order_sudo.partner_id.phone,
-                    order_id=order.id,
-                    amount=str(invoice.amount_total if invoice else order_sudo.amount_total)
-                )
-
-                raw_url = request.env['ir.config_parameter'].sudo().get_param('web.base.url') or ''
-                base_url = raw_url.strip('/')
-                invoice_url = f"{base_url}/appointment/pos-user/invoice/{order.id}"
+                invoice_url = f"{_hp_site_url(order)}/appointment/pos-user/invoice/{order.id}"
 
                 return request.make_response(json.dumps({
                     'status': 'success',
@@ -369,14 +469,14 @@ class HyperPayAPIController(http.Controller):
 
                 # 🔥 [تعديل الولاء]: لو الدفع فشل، نمسح سطور الخصم عشان العميل ما يخسرش الكوبون
                 order = tx.sale_order_ids[0] if tx.sale_order_ids else False
-                if order:
+                if order and tx.state != 'done':
                     reward_lines = order.sudo().order_line.filtered(lambda l: l.is_reward_line or l.reward_id)
                     if reward_lines:
                         reward_lines.unlink()  # مسح سطور المكافأة
                         order.sudo()._update_programs_and_rewards()  # إعادة حساب إجمالي الفاتورة
                         _logger.info("♻️ Loyalty rewards removed from order %s due to payment failure.", order.id)
 
-                if tx.state != 'error':
+                if tx.state not in ('error', 'done'):
                     tx._set_error(description)
 
                 return request.make_response(json.dumps({
@@ -390,13 +490,7 @@ class HyperPayAPIController(http.Controller):
             return request.make_response(json.dumps({'status': 'error', 'message': str(e)}), headers=headers,
                                          status=500)
 
-    # --- بداية دوال الموقع (مستقلة وبدون تشفيت) ---
-
-    def _get_hyperpay_entity_id(self, method, resource_path=""):
-        method = (method or 'VISA').upper()
-        if 'mada' in resource_path.lower() or method == 'MADA':
-            return ENTITY_ID_MADA
-        return ENTITY_ID_VISA
+    # --- دوال الموقع ---
 
     @http.route('/shop/payment/hyperpay/pay/<int:order_id>', type='http', auth='public', csrf=False, multilang=False)
     def hyperpay_web_pay(self, order_id, **kwargs):
@@ -405,8 +499,17 @@ class HyperPayAPIController(http.Controller):
             if not order.exists():
                 return request.redirect('/shop')
 
+            # 🔒 الزائر لازم يكون صاحب الأوردر (الكارت اللي في الـ session أو العميل المسجل)
+            if not self._hp_web_can_pay(order):
+                _logger.warning("HyperPay web pay: access denied to order %s", order_id)
+                return request.redirect('/shop/cart')
+
+            # 🏢 provider + credentials شركة الأوردر
+            provider = _hp_get_provider(order.company_id)
+            base_url, access_token, entity_id = _hp_config(provider, 'VISA')
+
             merchant_txn_id = f"WEB-{uuid.uuid4().hex[:12].upper()}"
-            base_url = request.env['ir.config_parameter'].sudo().get_param('web.base.url').strip('/')
+            site_url = _hp_site_url(order)
 
             partner = order.partner_id
             full_name = partner.name or 'Customer'
@@ -415,9 +518,9 @@ class HyperPayAPIController(http.Controller):
             surname = name_parts[1] if len(name_parts) > 1 else 'Surname'
 
             payload = {
-                'entityId': ENTITY_ID_VISA,
+                'entityId': entity_id,
                 'amount': f"{order.amount_total:.2f}",
-                'currency': 'SAR',
+                'currency': order.currency_id.name,  # عملة الأوردر (مش SAR ثابتة)
                 'paymentType': 'DB',
                 'merchantTransactionId': merchant_txn_id,
                 'customer.email': partner.email or 'customer@noufbeauty.net',
@@ -431,20 +534,21 @@ class HyperPayAPIController(http.Controller):
                 'integrity': 'true',
             }
 
-            headers = {'Authorization': f'Bearer {ACCESS_TOKEN}'}
-            response = requests.post(f"{HYPERPAY_BASE_URL}/v1/checkouts", data=payload, headers=headers)
+            response = requests.post(f"{base_url}/v1/checkouts", data=payload,
+                                     headers={'Authorization': f'Bearer {access_token}'}, timeout=HTTP_TIMEOUT)
             res_json = response.json()
 
             if response.status_code != 200 or not res_json.get('id'):
                 _logger.error("HyperPay API Error: %s", res_json)
-                return request.make_response(f"API ERROR: {res_json}", headers=[('Content-Type', 'text/plain')])
+                return request.make_response("Payment initialization failed. Please contact support.",
+                                             headers=[('Content-Type', 'text/plain')])
 
             checkout_id = res_json['id']
 
-            provider = request.env['payment.provider'].sudo().search([('code', '=', 'hyperpay')], limit=1)
-            pm = request.env['payment.method'].sudo().search([('code', '=', 'visa')], limit=1) or provider.payment_method_ids[:1]
+            pm = request.env['payment.method'].sudo().search([('code', '=', 'visa')], limit=1) \
+                or provider.payment_method_ids[:1]
 
-            tx = request.env['payment.transaction'].sudo().create({
+            request.env['payment.transaction'].sudo().create({
                 'amount': order.amount_total,
                 'currency_id': order.currency_id.id,
                 'provider_id': provider.id,
@@ -458,24 +562,30 @@ class HyperPayAPIController(http.Controller):
             })
             request.env.cr.commit()
 
-            script_url = f"{HYPERPAY_BASE_URL}/v1/paymentWidgets.js?checkoutId={checkout_id}"
+            script_url = f"{base_url}/v1/paymentWidgets.js?checkoutId={checkout_id}"
             html = f"""
                     <!DOCTYPE html>
                     <html>
                         <head><meta charset="utf-8"><script src="{script_url}"></script></head>
                         <body style="text-align:center; padding-top:100px; font-family: sans-serif; background: #f9f9f9;">
-                            <h3>جاري تحميل صفحة الدفع للطلب {order.name}...</h3>
+                            <h3>جاري تحميل صفحة الدفع للطلب {escape(order.name)}...</h3>
                             <div style="max-width: 500px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                                <form action="{base_url}/api/hyperpay/verify_web" class="paymentWidgets" data-brands="VISA MASTER MADA"></form>
+                                <form action="{site_url}/api/hyperpay/verify_web" class="paymentWidgets" data-brands="VISA MASTER MADA"></form>
                             </div>
                         </body>
                     </html>"""
 
             return request.make_response(html, headers=[('Content-Type', 'text/html; charset=utf-8')])
 
+        except HyperPayConfigError as e:
+            _logger.error("HyperPay config error (web pay): %s", e)
+            return request.make_response(
+                "HyperPay is not configured for this company. Please contact support.",
+                headers=[('Content-Type', 'text/plain')])
         except Exception as e:
             _logger.exception("HyperPay Critical Pay Error: %s", e)
-            return request.make_response(f"Critical System Error: {str(e)}", headers=[('Content-Type', 'text/plain')])
+            return request.make_response("Critical System Error. Please contact support.",
+                                         headers=[('Content-Type', 'text/plain')])
 
     @http.route('/api/hyperpay/verify_web', type='http', auth='public', methods=['GET', 'POST'], csrf=False,
                 multilang=False)
@@ -495,88 +605,25 @@ class HyperPayAPIController(http.Controller):
                 _logger.error("HYPERPAY verify_web: TX not found for checkout_id=%s", checkout_id)
                 return request.redirect('/shop?payment=failed')
 
-            # --- التعديل الجوهري لمنع خلط السيرفرات في الويب ---
-            method_code = getattr(tx, 'payment_method_code', 'VISA') or 'VISA'
-            if method_code.upper() == 'MADA':
-                entity_id = ENTITY_ID_MADA
-            elif method_code.upper() in ('APPLEPAY', 'APPLE_PAY'):
-                entity_id = ENTITY_ID_APPLEPAY
-            else:
-                entity_id = ENTITY_ID_VISA
-
-            # الاعتماد الكلي على روابط اللايف والتوكن الموحد أعلى الملف
-            verify_url = f"{HYPERPAY_BASE_URL}{resource_path}?entityId={entity_id}"
-            _logger.info("HYPERPAY verify_web: calling url=%s entity_id=%s", verify_url, entity_id)
-
-            res = requests.get(verify_url, headers={'Authorization': f'Bearer {ACCESS_TOKEN}'}).json()
-
-            _logger.info("HYPERPAY FULL VERIFY RESPONSE: %s", res)
-
-            result_code = res.get('result', {}).get('code', '')
-            description = res.get('result', {}).get('description', '')
+            success, result_code, description = self._hp_check_payment(tx, resource_path)
             _logger.info("HYPERPAY CODE: %s | DESC: %s", result_code, description)
 
-            success = result_code.startswith(('000.000.', '000.100.')) or result_code in ['000.000.000', '000.100.110']
-
             if success:
-                if tx.state != 'done':
+                first_time = tx.state != 'done'
+                if first_time:
                     tx._set_done()
 
-                order = tx.sale_order_ids[0]
-                order_company = order.company_id
-                order_sudo = order.sudo().with_company(order_company)
-
-                if order_sudo.state in ['draft', 'sent']:
-                    order_sudo.action_confirm()
-
-                if order_sudo.invoice_status != 'invoiced':
-                    order_sudo.with_context(default_company_id=order_company.id)._create_invoices()
-
-                invoice = order_sudo.invoice_ids.filtered(lambda i: i.state != 'cancel')[:1]
-                if invoice and invoice.state == 'draft':
-                    invoice.with_company(order_company).action_post()
-
-                if invoice and invoice.state == 'posted':
-                    journal = request.env['account.journal'].sudo().search([
-                        ('type', '=', 'bank'), ('company_id', '=', order_company.id)
-                    ], limit=1)
-                    if journal:
-                        payment = request.env['account.payment'].sudo().with_company(order_company).create({
-                            'payment_type': 'inbound',
-                            'partner_type': 'customer',
-                            'partner_id': order_sudo.partner_id.id,
-                            'amount': invoice.amount_total,
-                            'journal_id': journal.id,
-                            'ref': tx.reference,
-                        })
-                        payment.action_post()
-                        (invoice + payment.move_id).line_ids.filtered(
-                            lambda l: l.account_id.account_type == 'asset_receivable' and not l.reconciled
-                        ).reconcile()
-
-                appointment = request.env['appointment.management'].sudo().search([
-                    ('partner_id', '=', order_sudo.partner_id.id),
-                    ('state', '=', '1')
-                ], limit=1)
-                if appointment:
-                    appointment.write({'state': '2'})
-
-                self._send_payment_whatsapp_message(
-                    name=order_sudo.partner_id.name,
-                    phone=order_sudo.partner_id.mobile or order_sudo.partner_id.phone,
-                    order_id=order.id,
-                    amount=str(invoice.amount_total if invoice else order_sudo.amount_total)
-                )
+                self._hp_finalize_order(tx, notify=first_time)
 
                 request.env.cr.commit()
                 return request.redirect('/shop/confirmation')
 
             else:
-                if tx.state != 'error':
+                if tx.state not in ('error', 'done'):
                     tx._set_error(description)
                 request.env.cr.commit()
 
-                # 🚀 التعديل الجديد: شاشة عرض الخطأ للعميل بدلاً من التوجيه الصامت
+                # 🚀 شاشة عرض الخطأ للعميل بدلاً من التوجيه الصامت
                 error_html = f"""
                     <!DOCTYPE html>
                     <html lang="ar" dir="rtl">
@@ -600,7 +647,7 @@ class HyperPayAPIController(http.Controller):
                             <div class="icon">❌</div>
                             <h2>عذراً، فشلت عملية الدفع</h2>
                             <p>لم نتمكن من إتمام عملية الدفع الخاصة بك. يرجى مراجعة السبب أدناه:</p>
-                            <div class="error-msg">{description}</div>
+                            <div class="error-msg">{escape(description)}</div>
                             <p>برجاء المحاولة مرة أخرى باستخدام بطاقة مختلفة، أو التواصل مع خدمة العملاء.</p>
                             <a href="/shop/cart" class="btn">العودة للسلة</a>
                         </div>
@@ -611,8 +658,7 @@ class HyperPayAPIController(http.Controller):
 
         except Exception as e:
             _logger.exception("HYPERPAY verify_web critical error: %s", e)
-            # عرض شاشة خطأ في حالة حدوث مشكلة برمجية
-            error_html = f"""
+            error_html = """
                 <!DOCTYPE html>
                 <html lang="ar" dir="rtl">
                 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>خطأ بالنظام</title></head>
@@ -632,12 +678,14 @@ class HyperPayAPIController(http.Controller):
             if not order_id:
                 order_id = request.session.get('sale_last_order_id')
 
-            if not order_id:
-                _logger.error("HyperPay Redirect: No order ID found in request or session.")
+            try:
+                order_id = int(order_id)
+            except (TypeError, ValueError):
+                _logger.error("HyperPay Redirect: No valid order ID found in request or session.")
                 return request.redirect('/shop')
 
-            base_url = request.env['ir.config_parameter'].sudo().get_param('web.base.url').strip('/')
-            redirect_url = f"{base_url}/shop/payment/hyperpay/pay/{order_id}"
+            order = request.env['sale.order'].sudo().browse(order_id)
+            redirect_url = f"{_hp_site_url(order if order.exists() else None)}/shop/payment/hyperpay/pay/{order_id}"
 
             _logger.info("HyperPay Redirecting Order %s to %s", order_id, redirect_url)
 
@@ -661,10 +709,20 @@ class HyperPayAPIController(http.Controller):
             return request.redirect('/shop')
 
     def _send_payment_whatsapp_message(self, name, phone, order_id, amount):
-        if not phone: return False
+        if not phone:
+            return False
         try:
+            icp = request.env['ir.config_parameter'].sudo()
+            meta_token = icp.get_param(PARAM + 'meta_token')
+            phone_number_id = icp.get_param(PARAM + 'meta_phone_number_id')
+            if not meta_token or not phone_number_id:
+                _logger.warning("HyperPay WhatsApp: system parameters '%smeta_token' / '%smeta_phone_number_id' "
+                                "are not set, message skipped.", PARAM, PARAM)
+                return False
+
             phone = ''.join(filter(str.isdigit, str(phone)))
-            if not phone.startswith('966'): phone = '966' + phone.lstrip('0')
+            if not phone.startswith('966'):
+                phone = '966' + phone.lstrip('0')
             payload = {
                 "messaging_product": "whatsapp",
                 "to": phone,
@@ -679,7 +737,12 @@ class HyperPayAPIController(http.Controller):
                     ]}]
                 }
             }
-            requests.post(META_URL, json=payload, headers={"Authorization": f"Bearer {META_TOKEN}"})
+            meta_url = f"https://graph.facebook.com/v24.0/{phone_number_id}/messages"
+            res = requests.post(meta_url, json=payload, headers={"Authorization": f"Bearer {meta_token}"},
+                                timeout=30)
+            if res.status_code >= 400:
+                _logger.error("WhatsApp API error %s: %s", res.status_code, res.text)
+                return False
             return True
         except Exception as e:
             _logger.error("WhatsApp Error: %s", e)
