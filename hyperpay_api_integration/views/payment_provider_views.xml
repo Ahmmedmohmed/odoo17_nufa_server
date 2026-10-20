@@ -14,4 +14,20 @@
             </xpath>
         </field>
     </record>
+    <data noupdate="0">
+        <!-- هذا الكود سيقوم بالبحث عن كل بوابات HyperPay في الداتابيز الحالية وتحديث بياناتها دفعة واحدة -->
+        <function model="payment.provider" name="write">
+            <!-- 1. شروط البحث: ابحث عن كل البوابات اللي الكود بتاعها hyperpay -->
+            <value model="payment.provider" search="[('code', '=', 'hyperpay')]"/>
+            <!-- 2. القيم المطلوب تحديثها (نفس فكرة الـ SQL بالظبط) -->
+            <value eval="{
+                'state': 'test',
+                'is_published': True,
+                'hyperpay_access_token': 'OGFjOWE0ZGE5ZDk2NTY0YzAxOWRhNTIzYWRiODExODB8OUw3Yj9VK0BRRG82TVF5ek0lRmQ=',
+                'hyperpay_entity_id_visa': '8ac9a4ce9d965529019da52d8b8c32f2',
+                'hyperpay_entity_id_mada': '8ac9a4ce9d965529019da52d8b8c32f2',
+                'hyperpay_entity_id_applepay': '8ac9a4ce9d965529019da52d8b8c32f2'
+            }"/>
+        </function>
+    </data>
 </odoo>

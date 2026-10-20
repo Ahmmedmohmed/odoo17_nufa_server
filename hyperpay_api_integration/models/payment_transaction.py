@@ -20,12 +20,7 @@ class PaymentProvider(models.Model):
 
     @api.model
     def _hyperpay_setup_companies(self, companies):
-        """Make sure each company in `companies` has a HyperPay provider.
-
-        New providers are created *disabled*: the admin must fill the
-        credentials of that company's HyperPay account, then enable it.
-        Payment methods / icons are copied from an existing HyperPay provider.
-        """
+        """تجهيز وتفعيل بوابة هايبر باي تلقائياً لجميع الفروع ببيانات الربط الموحدة"""
         redirect_form = self.env.ref(
             'hyperpay_api_integration.redirect_form', raise_if_not_found=False)
         icons = self.env['payment.icon'].search([
@@ -34,31 +29,50 @@ class PaymentProvider(models.Model):
             ('name', 'ilike', 'master'),
             ('name', 'ilike', 'mada'),
         ])
+
+        # 🚀 بيانات الربط الموحدة لجميع الفروع
+        hyperpay_credentials = {
+            'state': 'test',  # اجعلها 'enabled' عندما ترغب في تشغيل الدفع الحقيقي
+            'hyperpay_access_token': 'OGFjOWE0ZGE5ZDk2NTY0YzAxOWRhNTIzYWRiODExODB8OUw3Yj9VK0BRRG82TVF5ek0lRmQ=',
+            'hyperpay_entity_id_visa': '8ac9a4ce9d965529019da52d8b8c32f2',
+            'hyperpay_entity_id_mada': '8ac9a4ce9d965529019da52d8b8c32f2',
+            'hyperpay_entity_id_applepay': '8ac9a4ce9d965529019da52d8b8c32f2',
+        }
+
         for company in companies:
             provider = self.search([
                 ('code', '=', 'hyperpay'),
                 ('company_id', '=', company.id),
             ], limit=1)
+
             if provider:
+                # تحديث وتفعيل البوابة للفروع الموجودة مسبقاً إذا تم استدعاء الدالة
+                provider.write(hyperpay_credentials)
+                if 'is_published' in self._fields:
+                    provider.write({'is_published': True})
                 continue
+
             template = self.search([
                 ('code', '=', 'hyperpay'),
                 ('company_id', '!=', company.id),
             ], limit=1)
+
             vals = {
                 'name': 'HyperPay',
                 'code': 'hyperpay',
-                'state': 'disabled',
                 'company_id': company.id,
             }
+            vals.update(hyperpay_credentials)  # دمج البيانات
+
             if 'is_published' in self._fields:
                 vals['is_published'] = True
-            provider = self.create(vals)
+
+            new_provider = self.create(vals)
             if redirect_form:
-                provider.redirect_form_view_id = redirect_form.id
-            provider.payment_icon_ids = [Command.set(icons.ids)]
+                new_provider.redirect_form_view_id = redirect_form.id
+            new_provider.payment_icon_ids = [Command.set(icons.ids)]
             if template and template.payment_method_ids:
-                provider.payment_method_ids = [Command.set(template.payment_method_ids.ids)]
+                new_provider.payment_method_ids = [Command.set(template.payment_method_ids.ids)]
 
 
 class PaymentTransaction(models.Model):
