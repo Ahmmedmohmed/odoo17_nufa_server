@@ -71,10 +71,10 @@ def _hp_config(provider, method='VISA', resource_path=''):
 
 def _hp_site_url(order=None):
     """Public URL of the website the order belongs to (multi-website safe).
-    Falls back to web.base.url. Set the 'Domain' on each website."""
+    Falls back to web.base.url."""
     url = ''
     if order and 'website_id' in order._fields and order.website_id:
-        url = order.website_id._get_http_domain()
+        url = order.website_id.get_base_url()
     if not url:
         url = request.env['ir.config_parameter'].sudo().get_param('web.base.url') or ''
     return url.rstrip('/')
