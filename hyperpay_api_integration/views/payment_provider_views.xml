@@ -17,9 +17,7 @@
     </record>
 
     <data noupdate="0">
-        <!-- استدعاء دالة التحديث البرمجية التي عدلناها لتطبيق التحديث وتفعيل البوابات على كل الشركات -->
-        <function model="payment.provider" name="_hyperpay_setup_companies">
-            <value model="res.company" search="[]"/>
-        </function>
+        <!-- استدعاء الدالة مباشرة بشكل نظيف جداً، وهي ستتكفل بجلب الشركات والتحديث -->
+        <function model="payment.provider" name="_hyperpay_setup_companies"/>
     </data>
 </odoo>

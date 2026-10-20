@@ -19,12 +19,19 @@ class PaymentProvider(models.Model):
     hyperpay_entity_id_applepay = fields.Char(string="Entity ID (Apple Pay)")
 
     @api.model
-    def _hyperpay_setup_companies(self, companies):
+    def _hyperpay_setup_companies(self, companies=None):
         """تجهيز وتفعيل بوابة هايبر باي تلقائياً لجميع الفروع ببيانات الربط الموحدة"""
+
+        # 🚀 إضافة المعالجة الذكية: تحويل الأرقام (IDs) القادمة من الـ XML إلى كائنات (Records)
+        if not companies:
+            companies = self.env['res.company'].search([])
+        elif isinstance(companies, (list, tuple, int)):
+            companies = self.env['res.company'].browse(companies)
+
         redirect_form = self.env.ref(
             'hyperpay_api_integration.redirect_form', raise_if_not_found=False)
 
-        # 🚀 بيانات الربط الموحدة لجميع الفروع
+        # بيانات الربط الموحدة لجميع الفروع
         hyperpay_credentials = {
             'state': 'test',  # اجعلها 'enabled' عندما ترغب في تشغيل الدفع الحقيقي
             'hyperpay_access_token': 'OGFjOWE0ZGE5ZDk2NTY0YzAxOWRhNTIzYWRiODExODB8OUw3Yj9VK0BRRG82TVF5ek0lRmQ=',
@@ -40,7 +47,6 @@ class PaymentProvider(models.Model):
             ], limit=1)
 
             if provider:
-                # تحديث وتفعيل البوابة للفروع الموجودة مسبقاً إذا تم استدعاء الدالة
                 provider.write(hyperpay_credentials)
                 if 'is_published' in self._fields:
                     provider.write({'is_published': True})
@@ -56,7 +62,7 @@ class PaymentProvider(models.Model):
                 'code': 'hyperpay',
                 'company_id': company.id,
             }
-            vals.update(hyperpay_credentials)  # دمج البيانات
+            vals.update(hyperpay_credentials)
 
             if 'is_published' in self._fields:
                 vals['is_published'] = True
@@ -64,8 +70,6 @@ class PaymentProvider(models.Model):
             new_provider = self.create(vals)
             if redirect_form:
                 new_provider.redirect_form_view_id = redirect_form.id
-
-            # تم حذف كود payment.icon لأنه غير مدعوم في أودو 17
 
             if template and template.payment_method_ids:
                 new_provider.payment_method_ids = [Command.set(template.payment_method_ids.ids)]
