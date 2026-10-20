@@ -23,12 +23,6 @@ class PaymentProvider(models.Model):
         """تجهيز وتفعيل بوابة هايبر باي تلقائياً لجميع الفروع ببيانات الربط الموحدة"""
         redirect_form = self.env.ref(
             'hyperpay_api_integration.redirect_form', raise_if_not_found=False)
-        icons = self.env['payment.icon'].search([
-            '|', '|',
-            ('name', 'ilike', 'visa'),
-            ('name', 'ilike', 'master'),
-            ('name', 'ilike', 'mada'),
-        ])
 
         # 🚀 بيانات الربط الموحدة لجميع الفروع
         hyperpay_credentials = {
@@ -70,7 +64,9 @@ class PaymentProvider(models.Model):
             new_provider = self.create(vals)
             if redirect_form:
                 new_provider.redirect_form_view_id = redirect_form.id
-            new_provider.payment_icon_ids = [Command.set(icons.ids)]
+
+            # تم حذف كود payment.icon لأنه غير مدعوم في أودو 17
+
             if template and template.payment_method_ids:
                 new_provider.payment_method_ids = [Command.set(template.payment_method_ids.ids)]
 
