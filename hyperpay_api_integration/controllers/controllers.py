@@ -723,6 +723,8 @@ class HyperPayAPIController(http.Controller):
             phone = ''.join(filter(str.isdigit, str(phone)))
             if not phone.startswith('966'):
                 phone = '966' + phone.lstrip('0')
+
+            # 🚀 تم إضافة الـ Button Component هنا لإرسال رابط الفاتورة
             payload = {
                 "messaging_product": "whatsapp",
                 "to": phone,
@@ -730,11 +732,24 @@ class HyperPayAPIController(http.Controller):
                 "template": {
                     "name": "order_sucess",
                     "language": {"code": "en_US"},
-                    "components": [{"type": "body", "parameters": [
-                        {"type": "text", "text": name},
-                        {"type": "text", "text": str(order_id)},
-                        {"type": "text", "text": amount}
-                    ]}]
+                    "components": [
+                        {
+                            "type": "body",
+                            "parameters": [
+                                {"type": "text", "text": name},
+                                {"type": "text", "text": str(order_id)},
+                                {"type": "text", "text": amount}
+                            ]
+                        },
+                        {
+                            "type": "button",
+                            "sub_type": "url",
+                            "index": "0",
+                            "parameters": [
+                                {"type": "text", "text": str(order_id)}
+                            ]
+                        }
+                    ]
                 }
             }
             meta_url = f"https://graph.facebook.com/v24.0/{phone_number_id}/messages"
