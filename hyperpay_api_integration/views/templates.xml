@@ -1,24 +1,31 @@
 <odoo>
     <data>
-<!--
-        <template id="listing">
-          <ul>
-            <li t-foreach="objects" t-as="object">
-              <a t-attf-href="#{ root }/objects/#{ object.id }">
-                <t t-esc="object.display_name"/>
-              </a>
-            </li>
-          </ul>
-        </template>
-        <template id="object">
-          <h1><t t-esc="object.display_name"/></h1>
-          <dl>
-            <t t-foreach="object._fields" t-as="field">
-              <dt><t t-esc="field"/></dt>
-              <dd><t t-esc="object[field]"/></dd>
+        <template id="hyperpay_web_checkout_template" name="HyperPay Checkout">
+            <t t-call="website.layout">
+                <div id="wrap" class="oe_structure">
+                    <div class="container mt-5 mb-5 text-center">
+                        <div class="card shadow-sm p-4">
+                            <h3>إتمام عملية الدفع</h3>
+                            <p class="text-muted">طلب رقم: <t t-esc="order.name"/></p>
+
+                            <script t-attf-src="https://eu-test.oppwa.com/v1/paymentWidgets.js?checkoutId=#{checkout_id}"></script>
+
+                            <script type="text/javascript">
+                                var wpwlOptions = {
+                                    style: "card",
+                                    locale: "ar",
+                                    paymentTarget: "_top",
+                                }
+                            </script>
+
+                            <form t-attf-action="/api/hyperpay/verify_web"
+                                  class="paymentWidgets"
+                                  data-brands="VISA MASTER MADA APPLEPAY"
+                                  id="hyperpay_payment_form"></form>
+                        </div>
+                    </div>
+                </div>
             </t>
-          </dl>
         </template>
--->
     </data>
 </odoo>
