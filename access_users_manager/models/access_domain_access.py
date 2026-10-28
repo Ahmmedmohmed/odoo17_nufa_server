@@ -120,12 +120,17 @@ class IrRule(models.Model):
             if rule.custom:
                 profile = rule.access_domain_access_id.access_user_manager_id
                 env_user = self.env.user
-                company_ids = [int(x) for x in request.httprequest.cookies.get('cids').split(',')]
+                try:
+                    cids = request.httprequest.cookies.get('cids')
+                except Exception:
+                    cids = None
+                company_ids = [int(x) for x in cids.split(',')] if cids else (
+                    self.env.context.get('allowed_company_ids') or self.env.companies.ids)
                 if company_ids:
                     for company_id in company_ids:
                         if profile.active and env_user.id in profile.access_user_ids.ids and company_id in profile.access_company_ids.ids:
                             custom_global_domain = True
-            if not rule.groups and custom_global_domain:
+            if not rule.groups and (not rule.custom or custom_global_domain):
                 global_domains.append(dom)
             elif rule.groups & user_groups and not rule.custom:
                 group_domains.append(dom)
