@@ -856,7 +856,24 @@ class PosOrderApiController(http.Controller):
             })
 
             if appointment.slot_ids:
-                appointment.slot_ids.write({"state": "draft"})
+                slot_fields = appointment.slot_ids._fields
+                extra_cols = [col for col in ('reserved_by', 'reserved_until') if col in slot_fields]
+                if extra_cols:
+                    slot_ids = tuple(appointment.slot_ids.ids)
+                    set_sql = ", ".join(["state='draft'"] + [f"{col}=NULL" for col in extra_cols])
+                    if len(slot_ids) == 1:
+                        sudo_env.cr.execute(
+                            f"UPDATE appointment_employee_slot SET {set_sql} WHERE id = %s",
+                            (slot_ids[0],)
+                        )
+                    else:
+                        sudo_env.cr.execute(
+                            f"UPDATE appointment_employee_slot SET {set_sql} WHERE id IN %s",
+                            (slot_ids,)
+                        )
+                    appointment.slot_ids.invalidate_recordset(['state', *extra_cols])
+                else:
+                    appointment.slot_ids.write({"state": "draft"})
 
             # =================================================================
             # 🚀 3. إنشاء الكريدت نوت المباشر وضبط مبلغه أوتوماتيكياً (ORM Way)
@@ -1163,6 +1180,150 @@ class PosOrderApiController(http.Controller):
         except Exception as e:
             _logger.exception("IMAGE >> Error serving image: %s", str(e))
             return request.not_found()
+    _APPOINTMENT_STATE_DISPLAY = {
+        '0': 'Draft',
+        '1': 'Partial Approved',
+        '2': 'Approved',
+        'start': 'In Progress',
+        'pause': 'Paused',
+        '3': 'Completed',
+        '4': 'Cancelled',
+        'no_show': 'No Show',
+    }
+
+    def _build_service_payload(self, prod, price_unit, currency_name, base_url, lang):
+        """Build standardized service/package payload matching history and packages APIs."""
+        if not prod:
+            return {
+                "product_variant": None,
+                "product_id": None,
+                "name": "",
+                "qty": 1.0,
+                "is_scheduled": True,
+                "price_unit": price_unit,
+                "total_price": price_unit,
+                "tax_amount": 0.0,
+                "description": False,
+                "detailed_type": False,
+                "category": None,
+                "currency": currency_name,
+                "uom": None,
+                "main_image_url": None,
+                "gallery_urls": [],
+                "is_package": False,
+                "package_items": [],
+            }
+
+        tmpl = prod.product_tmpl_id
+
+        # رابط الصورة الرئيسية (bin_size عشان الفحص ميحمّلش الصورة كاملة)
+        main_image_url = None
+        if tmpl.sudo().with_context(bin_size=True).image_1920:
+            main_image_url = f"{base_url}/api/public/image/product.template/{tmpl.id}/image_1920"
+        elif prod.sudo().with_context(bin_size=True).image_1920:
+            main_image_url = f"{base_url}/api/public/image/product.product/{prod.id}/image_1920"
+
+        gallery_urls = []
+        if hasattr(tmpl, "img_ids"):
+            for img in tmpl.img_ids.sudo():
+                if img.with_context(bin_size=True).img:
+                    gallery_urls.append(f"{base_url}/api/public/image/product.template.img/{img.id}/img")
+
+        tax_amount = 0.0
+        if prod.taxes_id:
+            tax_amount = sum(tax.amount * price_unit / 100 for tax in prod.taxes_id)
+        total_price = price_unit + tax_amount
+
+        category_name = None
+        if hasattr(prod, 'pos_categ_ids') and prod.pos_categ_ids:
+            category_name = prod.pos_categ_ids[0].with_context(lang=lang).name
+        elif prod.categ_id:
+            category_name = prod.categ_id.with_context(lang=lang).name
+
+        uom_name = prod.uom_id.with_context(lang=lang).name if prod.uom_id else None
+
+        return {
+            "product_variant": prod.product_variant_id.id if prod.product_variant_id else prod.id,
+            "product_id": prod.id,
+            "name": prod.name,
+            "qty": 1.0,
+            "is_scheduled": True,
+            "price_unit": price_unit,
+            "total_price": total_price,
+            "tax_amount": tax_amount,
+            "description": prod.description_sale or False,
+            "detailed_type": prod.detailed_type,
+            "category": category_name,
+            "currency": currency_name,
+            "uom": uom_name,
+            "main_image_url": main_image_url,
+            "gallery_urls": gallery_urls,
+            "is_package": False,
+            "package_items": [],
+        }
+
+    def _detect_appointment_package(self, appointment):
+        """Resolve package product from appointment.package_id or linked sale order/invoice."""
+        pkg = getattr(appointment, 'package_id', False)
+        if pkg:
+            return pkg
+        so = appointment.sale_order_id
+        if not so:
+            return appointment.env['product.product']
+        invoices = so.invoice_ids.filtered(
+            lambda m: m.move_type == 'out_invoice' and m.state != 'cancel')
+        products = so.order_line.product_id | invoices.invoice_line_ids.product_id
+        pkgs = products.filtered('is_appointment_package')
+        # نقبل بس الباقة اللي الخدمة دي جواها (عشان خدمة عادية ما تتنسبش لباقة غلط)
+        return pkgs.filtered(
+            lambda p: appointment.product_id in p.appointment_package_line_ids.product_id)[:1]
+
+    def _get_package_price_line(self, appointment, package):
+        """Fetch sale order or invoice line containing the package price."""
+        so = appointment.sale_order_id
+        if not so:
+            return False
+        line = so.order_line.filtered(lambda l: l.product_id == package)[:1]
+        if not line:
+            line = so.invoice_ids.filtered(
+                lambda m: m.move_type == 'out_invoice' and m.state != 'cancel'
+            ).invoice_line_ids.filtered(lambda l: l.product_id == package)[:1]
+        return line
+
+    def _build_package_data(self, price_appt, package, currency_name, base_url, lang, booking_group_id):
+        """Build package payload with resolved sale/invoice price and tax breakdown."""
+        price_line = self._get_package_price_line(price_appt, package)
+        if price_line:
+            pkg_price = price_line.price_subtotal
+            pkg_total = price_line.price_total
+        else:
+            pkg_price = package.lst_price
+            pkg_total = None
+
+        package_data = self._build_service_payload(package, pkg_price, currency_name, base_url, lang)
+        if pkg_total is not None:
+            package_data["total_price"] = pkg_total
+            package_data["tax_amount"] = pkg_total - pkg_price
+        package_data.update({
+            "package_id": package.id,
+            "price": pkg_price,
+            "is_package": True,
+            "booking_group_id": booking_group_id,
+        })
+        return package_data
+
+    def _build_slots_info(self, appointment):
+        """Serialize appointment slot records."""
+        return [
+            {
+                "slot_id": slot.id,
+                "name": slot.name,
+                "time": slot.time,
+                "state": slot.state,
+            }
+            for slot in appointment.slot_ids
+        ]
+
     #history of appointment
     @http.route("/api/appointment/history", type="http", auth="public", methods=["GET"], csrf=False)
     def get_appointment_history(self, **kwargs):
@@ -1178,9 +1339,10 @@ class PosOrderApiController(http.Controller):
             lang = lang_map.get(raw_lang, raw_lang)
 
             # --- تمرير اللغة في الـ Context ---
+            # ⭐️ إضافة start / pause / no_show عشان الحجز ميختفيش من الـ history أول ما يبدأ ⭐️
             appointments = request.env["appointment.management"].sudo().with_context(lang=lang).search([
                 ("partner_id", "=", partner.id),
-                ("state", "in", ["2", "3", "4"])
+                ("state", "in", ["2", "start", "pause", "3", "4", "no_show"])
             ], order="date desc")
 
             base_url = request.env["ir.config_parameter"].sudo().get_param("web.base.url")
@@ -1189,70 +1351,48 @@ class PosOrderApiController(http.Controller):
             for appointment in appointments:
                 # إجبار الـ Context على المنتج
                 product = appointment.product_id.with_context(lang=lang) if appointment.product_id else None
-                product_tmpl = product.product_tmpl_id if product else None
-
-                # ✅ بناء رابط الصورة الرئيسية
-                main_image_url = None
-                if product_tmpl and product_tmpl.sudo().image_1920:
-                    main_image_url = f"{base_url}/api/public/image/product.template/{product_tmpl.id}/image_1920"
-                elif product and product.sudo().image_1920:
-                    main_image_url = f"{base_url}/api/public/image/product.product/{product.id}/image_1920"
-
-                # ✅ إضافة معرض الصور
-                gallery_urls = []
-                if product_tmpl and hasattr(product_tmpl, "img_ids"):
-                    for img in product_tmpl.img_ids.sudo():
-                        if img.img:
-                            gallery_urls.append(f"{base_url}/api/public/image/product.template.img/{img.id}/img")
-
-                slots_info = []
-                for slot in appointment.slot_ids:
-                    slots_info.append({
-                        "slot_id": slot.id,
-                        "name": slot.name,
-                        "time": slot.time,
-                        "state": slot.state
-                    })
-
-                state_display_map = {
-                    '0': 'Draft',
-                    '1': 'Partial Approved',
-                    '2': 'Approved',
-                    '3': 'Completed',
-                    '4': 'Cancelled'
-                }
-
-                # 🧮 حساب الضريبة والإجمالي (السعر الأساسي + الضريبة)
                 price_unit = appointment.price_unit or 0.0
-                tax_amount = 0.0
-                if product and product.taxes_id:
-                    tax_amount = sum(tax.amount * price_unit / 100 for tax in product.taxes_id)
-                total_price = price_unit + tax_amount
+                currency_name = appointment.company_id.currency_id.name
+                slots_info = self._build_slots_info(appointment)
 
-                # 🌐 استخراج الفئة المترجمة: الاعتماد على فئات نقطة البيع (POS Categories) أولاً
-                category_name = None
-                if product:
-                    if hasattr(product, 'pos_categ_ids') and product.pos_categ_ids:
-                        # أخذ أول فئة نقطة بيع مترجمة
-                        category_name = product.pos_categ_ids[0].with_context(lang=lang).name
-                    elif product.categ_id:
-                        # بديل احتياطي: الفئة الأساسية
-                        category_name = product.categ_id.with_context(lang=lang).name
-
-                # 🌐 وحدة القياس المترجمة
-                uom_name = product.uom_id.with_context(lang=lang).name if product and product.uom_id else None
-
-                # ⭐️ التعديل الجديد: استخراج الخدمات الفرعية إذا كانت الخدمة "باقة" ⭐️
+                # ⭐️ الباقة: السعر على الباقة نفسها، والخدمات اللي جواها من غير سعر ⭐️
                 package_items = []
-                if product and hasattr(product,
-                                       'appointment_package_line_ids') and product.appointment_package_line_ids:
-                    for pkg_line in product.appointment_package_line_ids:
-                        sub_product = pkg_line.product_id.with_context(lang=lang) if pkg_line.product_id else None
-                        if sub_product:
-                            package_items.append({
-                                "service_id": sub_product.id,
-                                "service_name": sub_product.name,
-                            })
+                package_data = None
+                package = self._detect_appointment_package(appointment)
+                if package:
+                    package = package.with_context(lang=lang)
+                    is_outside = appointment.appointment_type == 'outside'
+                    pkg_lines = package.appointment_package_line_ids
+                    # نفضّل سطور فرع الحجز، ولو مفيش نرجع لكل السطور
+                    branch_lines = pkg_lines.filtered(lambda l: l.branch_id == appointment.branch_id)
+
+                    seen_services = set()
+                    for pkg_line in (branch_lines or pkg_lines):
+                        sub_product = pkg_line.product_id.with_context(lang=lang)
+                        if not sub_product or sub_product.id in seen_services:
+                            continue
+                        seen_services.add(sub_product.id)
+
+                        item = self._build_service_payload(sub_product, 0.0, currency_name, base_url, lang)
+                        item["service_id"] = sub_product.id
+                        item["service_name"] = sub_product.name
+                        item["slots"] = (pkg_line.service_slot_outside if is_outside
+                                         else pkg_line.service_slot_inside)
+                        item["is_current"] = sub_product.id == appointment.product_id.id
+                        package_items.append(item)
+
+                    booking_group_id = f"{appointment.sale_order_id.id or 0}-{package.id}"
+                    package_data = self._build_package_data(
+                        appointment, package, currency_name, base_url, lang, booking_group_id
+                    )
+                    package_data["items"] = package_items
+
+                # الخدمة الأساسية للحجز: لو جوه باقة سعرها صفر (السعر على الباقة)
+                service_data = self._build_service_payload(
+                    product, 0.0 if package_items else price_unit, currency_name, base_url, lang
+                )
+                service_data["is_package"] = bool(package_items)
+                service_data["package_items"] = package_items
 
                 appointment_data = {
                     "appointment_id": appointment.id,
@@ -1261,33 +1401,15 @@ class PosOrderApiController(http.Controller):
                     "employee_name": appointment.employee_id.name,
                     "date": str(appointment.date),
                     "state": appointment.state,
-                    "state_display": state_display_map.get(appointment.state, appointment.state),
+                    "state_display": self._APPOINTMENT_STATE_DISPLAY.get(appointment.state, appointment.state),
+                    "appointment_type": appointment.appointment_type,
                     "price_unit": price_unit,
                     "notes": appointment.notes,
                     "branch_id": appointment.branch_id.id if appointment.branch_id else None,
                     "branch_name": appointment.branch_id.name if appointment.branch_id else "",
-                    "service_data": {
-                        "product_variant": product.product_variant_id.id if product and product.product_variant_id else (
-                            product.id if product else None),
-                        "product_id": product.id if product else None,
-                        "name": product.name if product else "",
-                        "qty": 1.0,
-                        "is_scheduled": True,
-                        "price_unit": price_unit,
-                        "total_price": total_price,
-                        "tax_amount": tax_amount,
-                        "description": product.description_sale or False if product else False,
-                        "detailed_type": product.detailed_type if product else False,
-                        "category": category_name,
-                        "currency": appointment.company_id.currency_id.name,
-                        "uom": uom_name,
-                        "main_image_url": main_image_url,
-                        "gallery_urls": gallery_urls,
-
-                        # ⭐️ إضافة بيانات الباقة للـ JSON اللي رايح للموبايل ⭐️
-                        "is_package": bool(package_items),  # هترجع true لو الحجز ده عبارة عن باقة
-                        "package_items": package_items,  # لستة بأسماء الخدمات اللي جوه الباقة
-                    },
+                    "service_data": service_data,
+                    # null لو الحجز مش تابع لباقة
+                    "package": package_data,
                     "slot_ids": appointment.slot_ids.mapped("id"),
                     "slots_info": slots_info,
                 }
@@ -1306,6 +1428,156 @@ class PosOrderApiController(http.Controller):
 
         except Exception as e:
             _logger.exception("Error fetching appointment history")
+            return _json_err(str(e), 500)
+
+    @http.route("/api/appointment/packages", type="http", auth="public", methods=["GET"], csrf=False)
+    def get_appointment_packages(self, **kwargs):
+        """باقاتي: الحجوزات مجمّعة تحت الباقة اللي اتحجزت منها.
+        ?booking_group_id=<id> بيرجّع باقة واحدة (كائن) بدل القائمة."""
+        partner, err = _partner_from_token()
+        if err:
+            return err
+
+        try:
+            # --- استخراج اللغة من الـ Headers للترجمة ---
+            header_lang = request.httprequest.headers.get('lang')
+            raw_lang = (header_lang or kwargs.get('lang') or 'en').lower()
+            lang_map = {'ar': 'ar_001', 'en': 'en_US'}
+            lang = lang_map.get(raw_lang, raw_lang)
+
+            base_url = request.env["ir.config_parameter"].sudo().get_param("web.base.url")
+
+            def _appointment_payload(appointment):
+                product = appointment.product_id.with_context(lang=lang) if appointment.product_id else None
+                currency_name = appointment.company_id.currency_id.name
+                appointment_data = {
+                    "appointment_id": appointment.id,
+                    "sequence": appointment.appointment_ref,
+                    "employee_id": appointment.employee_id.id,
+                    "employee_name": appointment.employee_id.name,
+                    "date": str(appointment.date),
+                    "state": appointment.state,
+                    "state_display": self._APPOINTMENT_STATE_DISPLAY.get(appointment.state, appointment.state),
+                    "appointment_type": appointment.appointment_type,
+                    "price_unit": appointment.price_unit or 0.0,
+                    "notes": appointment.notes,
+                    "branch_id": appointment.branch_id.id if appointment.branch_id else None,
+                    "branch_name": appointment.branch_id.name if appointment.branch_id else "",
+                    "service_data": self._build_service_payload(product, 0.0, currency_name, base_url, lang),
+                    "slot_ids": appointment.slot_ids.mapped("id"),
+                    "slots_info": self._build_slots_info(appointment),
+                }
+
+                if appointment.state == '4':
+                    appointment_data.update({
+                        "cancelled_at": str(appointment.cancelled_at) if appointment.cancelled_at else None,
+                        "refund_amount": appointment.refund_amount or 0.0,
+                        "deduction_amount": appointment.deduction_amount or 0.0,
+                        "deduction_percentage": appointment.deduction_percentage or 0.0,
+                    })
+
+                return appointment_data
+
+            # 1) نجيب حجوزات العميل ونجمّعها حسب الباقة
+            Appointment = request.env["appointment.management"].sudo().with_context(lang=lang)
+            domain = [("partner_id", "=", partner.id)]
+            if 'package_id' in Appointment._fields:
+                domain += ['|', ("sale_order_id", "!=", False), ("package_id", "!=", False)]
+            else:
+                domain += [("sale_order_id", "!=", False)]
+            appointments = Appointment.search(domain, order="date asc, id asc")
+
+            groups = {}
+            for appointment in appointments:
+                package = self._detect_appointment_package(appointment)
+                if not package:
+                    continue
+                key = f"{appointment.sale_order_id.id or 0}-{package.id}"
+                group = groups.setdefault(key, {"package": package, "appointments": []})
+                group["appointments"].append(appointment)
+
+            wanted = kwargs.get('booking_group_id')
+            if wanted:
+                groups = {k: v for k, v in groups.items() if k == wanted}
+                if not groups:
+                    return _json_err("Package booking not found", 404)
+
+            # 2) نبني كائن الباقة: بياناتها + الحالة + الملخص + الخدمات + الحجوزات
+            result = []
+            for key, group in groups.items():
+                package = group["package"].with_context(lang=lang)
+                appts = group["appointments"]
+                first = appts[0]
+                currency_name = first.company_id.currency_id.name
+
+                active_appts = [a for a in appts if a.state != '4']
+                booked_by_product = {}
+                for a in active_appts:
+                    booked_by_product.setdefault(a.product_id.id, a)
+
+                pkg_lines = package.appointment_package_line_ids
+                branch_lines = pkg_lines.filtered(lambda l: l.branch_id == first.branch_id)
+                items = []
+                seen_services = set()
+                for pkg_line in (branch_lines or pkg_lines):
+                    sub_product = pkg_line.product_id.with_context(lang=lang)
+                    if not sub_product or sub_product.id in seen_services:
+                        continue
+                    seen_services.add(sub_product.id)
+
+                    booked_appt = booked_by_product.get(sub_product.id)
+                    ref_appt = booked_appt or first
+                    is_outside = ref_appt.appointment_type == 'outside'
+
+                    item = self._build_service_payload(sub_product, 0.0, currency_name, base_url, lang)
+                    item["service_id"] = sub_product.id
+                    item["service_name"] = sub_product.name
+                    item["slots"] = (pkg_line.service_slot_outside if is_outside
+                                     else pkg_line.service_slot_inside)
+                    item["booked"] = bool(booked_appt)
+                    item["appointment_id"] = booked_appt.id if booked_appt else None
+                    item["state"] = booked_appt.state if booked_appt else None
+                    items.append(item)
+
+                price_appt = next((a for a in appts if a.sale_order_id), first)
+                package_data = self._build_package_data(
+                    price_appt, package, currency_name, base_url, lang, key
+                )
+
+                booked_count = sum(1 for i in items if i["booked"])
+                summary = {
+                    "total_services": len(items),
+                    "booked": booked_count,
+                    "completed": sum(1 for a in appts if a.state == '3'),
+                    "cancelled": sum(1 for a in appts if a.state == '4'),
+                    "upcoming": sum(1 for a in appts if a.state in ('2', 'start', 'pause')),
+                }
+                if not active_appts:
+                    status = 'cancelled'
+                elif booked_count >= len(items) and all(a.state == '3' for a in active_appts):
+                    status = 'completed'
+                else:
+                    status = 'active'
+
+                last_date = max(a.date for a in appts)
+                result.append((last_date, {
+                    "booking_group_id": key,
+                    "package": package_data,
+                    "status": status,
+                    "summary": summary,
+                    "items": items,
+                    "appointments": [_appointment_payload(a) for a in appts],
+                }))
+
+            result.sort(key=lambda r: r[0], reverse=True)
+            data = [r[1] for r in result]
+
+            if wanted:
+                return _json_ok("Appointment package fetched successfully", data[0])
+            return _json_ok("Appointment packages fetched successfully", data)
+
+        except Exception as e:
+            _logger.exception("Error fetching appointment packages")
             return _json_err(str(e), 500)
     @http.route("/api/appointment/employees_for_service", type="http", auth="public", methods=["GET"], csrf=False)
     def get_employees_for_service(self, **kwargs):

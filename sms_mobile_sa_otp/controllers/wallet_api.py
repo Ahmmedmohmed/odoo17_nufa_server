@@ -475,9 +475,16 @@ class WalletApiController(http.Controller):
 
             if loyalty_code:
                 try:
-                    status = sale_order._try_apply_code(loyalty_code)
-                    if isinstance(status, dict) and (status.get('error') or status.get('not_found')):
-                        return _json_err(status.get('error', 'الكود غير صالح' if is_ar else 'Invalid code'), status=400)
+                    already_applied_codes = (
+                        sale_order.applied_coupon_ids.mapped('code')
+                        + sale_order.code_enabled_rule_ids.mapped('code')
+                    )
+                    if loyalty_code not in already_applied_codes:
+                        status = sale_order._try_apply_code(loyalty_code)
+                        if isinstance(status, dict) and (status.get('error') or status.get('not_found')):
+                            err_text = str(status.get('error') or '')
+                            if 'already applied' not in err_text.lower():
+                                return _json_err(status.get('error', 'الكود غير صالح' if is_ar else 'Invalid code'), status=400)
 
                     sale_order._update_programs_and_rewards()
                     claimable = sale_order._get_claimable_rewards()
@@ -485,7 +492,12 @@ class WalletApiController(http.Controller):
                         valid_codes = [c for c in [coupon.code] + coupon.program_id.rule_ids.mapped('code') if c]
                         if loyalty_code in valid_codes:
                             for reward in rewards:
-                                sale_order._apply_program_reward(reward, coupon)
+                                already_has_reward_line = sale_order.order_line.filtered(
+                                    lambda l: l.reward_id.id == reward.id
+                                )
+                                if not already_has_reward_line:
+                                    sale_order._apply_program_reward(reward, coupon)
+                    sale_order._update_programs_and_rewards()
                 except Exception as e:
                     msg = f"خطأ في الكوبون: {str(e)}" if is_ar else f"Coupon error: {str(e)}"
                     return _json_err(msg, status=400)
@@ -493,16 +505,17 @@ class WalletApiController(http.Controller):
             if reward_id:
                 reward = sudo_env['loyalty.reward'].browse(int(reward_id))
                 if reward.exists():
-                    if reward.reward_type == 'product' and reward.gift_product_id:
+                    gift_product = getattr(reward, 'gift_product_id', False) or getattr(reward, 'reward_product_id', False)
+                    gift_qty = getattr(reward, 'gift_qty', 0) or getattr(reward, 'reward_product_qty', 1.0) or 1.0
+                    if reward.reward_type == 'product' and gift_product:
                         existing_line = sale_order.order_line.filtered(
-                            lambda l: l.product_id.id == reward.gift_product_id.id and not getattr(l, 'is_reward_line',
-                                                                                                   False)
+                            lambda l: l.product_id.id == gift_product.id and not getattr(l, 'is_reward_line', False)
                         )
                         if not existing_line:
                             sudo_env['sale.order.line'].create({
                                 'order_id': sale_order.id,
-                                'product_id': reward.gift_product_id.id,
-                                'product_uom_qty': getattr(reward, 'gift_qty', 1.0),
+                                'product_id': gift_product.id,
+                                'product_uom_qty': gift_qty,
                             })
 
                     sale_order._update_programs_and_rewards()
@@ -521,6 +534,7 @@ class WalletApiController(http.Controller):
                         ], limit=1)
                         if card:
                             sale_order._apply_program_reward(reward, card)
+                    sale_order._update_programs_and_rewards()
 
             # -------------------------------------------------------------------
             # 🚀 2. إنشاء نقطة حفظ (Savepoint) في الداتا بيز
@@ -643,8 +657,9 @@ class WalletApiController(http.Controller):
 
             currency = partner_sudo.currency_id or sudo_env.company.currency_id
 
-            # 🔥 الضربة القاضية: إجبار أودو إنه يعتمد كل الحسابات (Flush) كـ Admin قبل ما نرد على الموبايل
+            # 🔥 الضربة القاضية: إجبار أودو إنه يعتمد كل الحسابات (Flush) وتحديث الكاش قبل الرد على الموبايل
             sudo_env.flush_all()
+            partner_sudo.invalidate_recordset(['wallet_balance'])
 
             msg = "تم دفع الطلب بنجاح باستخدام المحفظة" if is_ar else "Order paid successfully with wallet"
             return _json_ok(

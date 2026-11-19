@@ -262,8 +262,8 @@ def _t(key, **kwargs):
 
 def _generate_otp_code():
     """Generate OTP code - static for testing or random for production."""
-    if STATIC_OTP_CODE:
-        return STATIC_OTP_CODE
+    # if STATIC_OTP_CODE:
+    #     return STATIC_OTP_CODE
     return str(random.randint(1000, 9999))
 
 

@@ -20,6 +20,19 @@ from odoo.http import request
 
 _logger = logging.getLogger(__name__)
 
+def _compute_coupon_discount_amount(reward, loyalty_card, subtotal_before_discount):
+    """Compute bounded coupon discount based on reward discount_mode and max cap."""
+    if reward.discount_mode == 'per_point':
+        raw_discount = min(loyalty_card.points * reward.discount, subtotal_before_discount)
+    elif reward.discount_mode == 'per_order':
+        raw_discount = min(reward.discount, subtotal_before_discount)
+    else:
+        raw_discount = (subtotal_before_discount * reward.discount) / 100
+    if getattr(reward, 'discount_max_amount', 0.0) > 0.0 and raw_discount > reward.discount_max_amount:
+        raw_discount = reward.discount_max_amount
+    return float_round(min(raw_discount, subtotal_before_discount), precision_digits=2)
+
+
 def _partner_from_token():
     auth_header = request.httprequest.headers.get("Authorization") or ""
     if not auth_header.startswith("Bearer "):
@@ -1409,8 +1422,8 @@ class CartApiController(http.Controller):
                 existing_coupon_line.unlink()
 
             subtotal_before_discount = sum(line.price_subtotal for line in sale_order.order_line)
-            # Use Odoo's float_round for proper decimal precision
-            discount_amount = float_round((subtotal_before_discount * discount_percentage) / 100, precision_digits=2)
+            # حساب قيمة الخصم حسب نوع المكافأة (نسبة مئوية / مبلغ ثابت / لكل نقطة مثل الجيفت كارت)
+            discount_amount = _compute_coupon_discount_amount(reward, loyalty_card, subtotal_before_discount)
 
             # Get default tax from discount product or from company settings
             discount_taxes = discount_product.taxes_id
@@ -1532,8 +1545,8 @@ class CartApiController(http.Controller):
                 existing_coupon_line.unlink()
 
             subtotal_before_discount = sum(line.price_subtotal for line in sale_order.order_line)
-            # Use Odoo's float_round for proper decimal precision
-            discount_amount = float_round((subtotal_before_discount * discount_percentage) / 100, precision_digits=2)
+            # حساب قيمة الخصم حسب نوع المكافأة (نسبة مئوية / مبلغ ثابت / لكل نقطة مثل الجيفت كارت)
+            discount_amount = _compute_coupon_discount_amount(reward, loyalty_card, subtotal_before_discount)
 
             # Get default tax from discount product or from company settings
             discount_taxes = discount_product.taxes_id

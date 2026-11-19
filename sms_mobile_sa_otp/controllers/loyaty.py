@@ -55,6 +55,25 @@ def _partner_from_token():
         return None, _json_err(str(e), 400)
 
 
+def _partner_or_device():
+    """Authenticate via JWT Bearer token or X-Device-ID guest header."""
+    auth_header = request.httprequest.headers.get("Authorization") or ""
+    if auth_header.startswith("Bearer "):
+        partner, error = _partner_from_token()
+        if not error:
+            return partner, None, False, None
+
+    device_id = request.httprequest.headers.get("X-Device-ID")
+    if device_id:
+        Partner = request.env["res.partner"].sudo()
+        guest_partner = Partner.search([("email", "=", "guest@guest.local")], limit=1)
+        if not guest_partner:
+            guest_partner = Partner.create({"name": "Guest Customer", "email": "guest@guest.local"})
+        return guest_partner, device_id, True, None
+
+    return None, None, False, _json_err("Authorization Bearer token is required", status=401)
+
+
 # ==========================================
 # 🛍️ Loyalty, Promo Codes & Gift Cards APIs
 # ==========================================
@@ -76,9 +95,13 @@ class MobileLoyaltyAPI(http.Controller):
                 ('partner_id', '=', partner.id)
             ])
 
-            total_points = sum(loyalty_cards.mapped('points'))
+            # فصل نقاط الولاء عن رصيد المحفظة حتى لا يختلط الرصيد المالي بالنقاط
+            points_only_cards = loyalty_cards.filtered(lambda c: c.program_id.program_type == 'loyalty')
+            total_points = sum((points_only_cards or loyalty_cards).mapped('points'))
 
-            if total_points >= 1000:
+            if hasattr(partner, 'loyalty_tier_id') and partner.loyalty_tier_id:
+                tier = partner.loyalty_tier_id.name
+            elif total_points >= 1000:
                 tier = 'ذهبي' if is_ar else 'Gold'
             elif total_points >= 500:
                 tier = 'فضي' if is_ar else 'Silver'
@@ -115,43 +138,77 @@ class MobileLoyaltyAPI(http.Controller):
             body = json.loads(request.httprequest.data.decode("utf-8"))
             order_id, code = body.get('order_id'), body.get('code')
 
+            if not order_id or not code:
+                return Response(json.dumps({"status": 400, "error": "Missing order_id or code"}), status=400, content_type="application/json")
+
             order = request.env['sale.order'].sudo().browse(int(order_id))
-            if not order.exists() or order.partner_id.id != partner.id:
-                return _json_err("Access Denied", status=403)
+            if not order.exists():
+                return Response(json.dumps({"status": 404, "error": "Order not found"}), status=404, content_type="application/json")
+
+            if not is_guest:
+                if not order.partner_id:
+                    order.sudo().write({'partner_id': partner.id})
+                elif order.partner_id.id != partner.id:
+                    return Response(json.dumps({
+                        "status": 403,
+                        "error": f"Access Denied: Order belongs to partner ({order.partner_id.id}), but your token is for partner ({partner.id})"
+                    }), status=403, content_type="application/json")
 
             # 1. تحديث البرامج
             order.sudo()._update_programs_and_rewards()
 
-            # 2. الحل السحري: هننادي الدالة من الكلاس الأصلي (sale_loyalty)
-            # عشان نهرب من الـ TypeError اللي بيعمله موديول الشحن
+            # 2. محاولة تطبيق الكود
             from odoo.addons.sale_loyalty.models.sale_order import SaleOrder as SaleLoyaltyBase
 
             try:
-                # محاولة التطبيق العادية
                 status = order.sudo()._try_apply_code(code)
             except TypeError:
-                # لو ضربت TypeError، هننادي دالة الأب مباشرة بالـ ID بتاع الأوردر
                 _logger.warning("Applying fallback for _try_apply_code due to TypeError")
                 status = SaleLoyaltyBase._try_apply_code(order.sudo(), code)
 
             # 3. فحص النتيجة
-            if isinstance(status, dict) and (status.get('error') or status.get('not_found')):
-                return _json_err(status.get('error') or status.get('not_found'), status=400)
+            if isinstance(status, dict):
+                if status.get('error'):
+                    return Response(json.dumps({"status": 400, "error": status['error']}), status=400, content_type="application/json")
+                if status.get('not_found'):
+                    return Response(json.dumps({"status": 400, "error": "Invalid or inapplicable code"}), status=400, content_type="application/json")
 
-            # 4. تحديث نهائي وحساب الخصم
+            # 4. تحديث بعد ربط الكود وتفعيل المكافأة
             order.sudo()._update_programs_and_rewards()
-            reward_lines = order.order_line.filtered(lambda l: l.is_reward_line)
-            discount = abs(sum(reward_lines.mapped('price_subtotal')))
+            claimable_rewards = order.sudo()._get_claimable_rewards()
 
-            return _json_ok(data={
-                'total': order.amount_total,
-                'discount': round(discount, 2),
-                'status': 'applied'
-            })
+            apply_error = None
+            for coupon, rewards in claimable_rewards.items():
+                valid_codes = [c for c in [coupon.code] + coupon.program_id.rule_ids.mapped('code') if c]
+                if code in valid_codes:
+                    for reward in rewards:
+                        res = order.sudo()._apply_program_reward(reward, coupon)
+                        if isinstance(res, dict) and res.get('error'):
+                            apply_error = res['error']
+
+            order.sudo()._update_programs_and_rewards()
+            reward_lines = order.order_line.filtered(lambda l: l.is_reward_line or l.reward_id)
+            if not reward_lines and apply_error:
+                return Response(json.dumps({"status": 400, "error": apply_error}), status=400, content_type="application/json")
+
+            discount_amount = abs(sum(reward_lines.mapped('price_total')))
+
+            return Response(json.dumps({
+                "status": 200,
+                "message": "Code applied successfully",
+                "data": {
+                    'order_id': order.id,
+                    'total_amount': order.amount_total,
+                    'discount_amount': round(discount_amount, 2),
+                    'has_reward': bool(reward_lines),
+                    'applied_programs': list(set(reward_lines.mapped('reward_id.program_id.name'))),
+                    'currency': order.currency_id.name
+                }
+            }), status=200, content_type="application/json")
 
         except Exception as e:
             _logger.exception("Final attempt failed: %s", e)
-            return _json_err(str(e), status=500)
+            return Response(json.dumps({"status": 500, "error": f"Technical Error: {str(e)}"}), status=500, content_type="application/json")
 
     # -------------------------------------------------------------------------
     # 3. جلب المكافآت المتاحة للعميل (Available Rewards for Cart)
@@ -223,18 +280,38 @@ class MobileLoyaltyAPI(http.Controller):
             if not order.exists() or not reward.exists():
                 return _json_err("الطلب أو المكافأة غير موجودة" if is_ar else "Order or Reward not found", status=404)
 
-            res = order._apply_program_reward(reward, coupon=False)
+            if order.partner_id.id != partner.id and order.partner_id.commercial_partner_id.id != partner.commercial_partner_id.id:
+                return _json_err("غير مصرح لك بالوصول لهذا الطلب" if is_ar else "Access denied", status=403)
+
+            order._update_programs_and_rewards()
+            claimable = order._get_claimable_rewards()
+            target_coupon = next((c for c, rws in claimable.items() if reward in rws), None)
+
+            if target_coupon is None and reward.program_id.program_type in ('loyalty', 'ewallet'):
+                card = request.env['loyalty.card'].sudo().search([
+                    ('partner_id', 'in', [partner.id, partner.commercial_partner_id.id]),
+                    ('program_id', '=', reward.program_id.id),
+                ], limit=1)
+                if card:
+                    target_coupon = card
+
+            if target_coupon is None:
+                return _json_err("المكافأة غير متاحة لهذا الطلب" if is_ar else "Reward is not claimable for this order", status=400)
+
+            res = order._apply_program_reward(reward, coupon=target_coupon)
 
             if res and 'error' in res:
-                return _json_err(res['error'])
+                return _json_err(res['error'], status=400)
+
+            order._update_programs_and_rewards()
 
             msg = "تم استبدال النقاط بنجاح" if is_ar else "Points redeemed successfully"
-            discount_amount = sum(line.price_subtotal for line in order.order_line if line.is_reward_line)
+            discount_amount = sum(line.price_total for line in order.order_line if line.is_reward_line or line.reward_id)
 
             return _json_ok(msg, {
                 "order_id": order.id,
                 "new_amount_total": order.amount_total,
-                "discount_amount": abs(discount_amount)
+                "discount_amount": round(abs(discount_amount), 2)
             })
 
         except Exception as e:
