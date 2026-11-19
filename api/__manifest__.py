@@ -9,6 +9,7 @@
         # 'security/ir.model.access.csv',
         'views/product.xml',
         'views/pos_combo.xml',
+        'views/res_company_views.xml',
 
     ],
     'license': 'LGPL-3',

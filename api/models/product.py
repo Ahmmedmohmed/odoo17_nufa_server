@@ -1,5 +1,4 @@
 from odoo import api, fields, models
-from odoo.addons.test_convert.tests.test_env import field
 
 
 class ProductTemplate(models.Model):
@@ -49,18 +48,3 @@ class SaleOrderLine(models.Model):
                     line.price_unit = product_tmpl.price_after_discount
                 else:
                     line.price_unit = line.product_id.list_price
-
-class ProductProduct(models.Model):
-    _inherit = 'product.product'
-
-    avg_rating = fields.Float(
-        string='Average Rating'
-    )
-    top = fields.Boolean(
-        string='Top'
-    )
-
-    price_after_discount = fields.Float(string='Price after discount')
-
-    ar_name = fields.Char(string='Arabic Name')
-    ar_description = fields.Text(string='Arabic Description')

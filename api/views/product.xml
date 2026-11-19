@@ -1,70 +1,102 @@
 <odoo>
     <data>
 
+        <!-- 1. Product Template -->
         <record id="product_template_form_view_inherit" model="ir.ui.view">
             <field name="name">product_template_form_view_inherit</field>
             <field name="model">product.template</field>
             <field name="inherit_id" ref="product.product_template_only_form_view"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='name']" position="after">
-                    <label for="ar_name"/>
-                    <field name="ar_name"/>
-                    <label for="ar_description"/>
-                    <field name="ar_description"/>
 
-                    <label for="avg_rating"/>
-                    <field name="avg_rating"/>
-
-                    <label for="top"/>
-                    <field name="top"/>
+                <!-- 1. نقل الحقول للصفحة العامة -->
+                <xpath expr="//page[@name='general_information']/group" position="after">
+                    <group>
+                        <group string="البيانات العربية للتطبيق">
+                            <field name="ar_name" string="الاسم بالعربي"/>
+                            <field name="ar_description" string="الوصف بالعربي"/>
+                        </group>
+                        <group string="بيانات التقييم">
+                            <field name="avg_rating" string="متوسط التقييم"/>
+                            <field name="manual_rating" string="تقييم يدوي (وهمي)"/>
+                            <field name="top" string="خدمة مميزة (Top)"/>
+                        </group>
+                    </group>
                 </xpath>
 
+                <!-- 2. زرار خدمة حجوزات -->
                 <xpath expr="//div[@name='options']" position="inside">
                     <span class="d-inline-flex">
                         <field name="is_appointment_service"/>
-                        <label for="is_appointment_service"/>
+                        <label for="is_appointment_service" string="خدمة حجوزات (تطبيق)"/>
                     </span>
                 </xpath>
 
-                <xpath expr="//field[@name='list_price']" position="after">
-                    <label for="price_after_discount"/>
-
-                    <field name="price_after_discount"/>
+                <!-- ========================================================== -->
+                <!-- 🚨 التعديل الجذري هنا: استهداف صندوق السعر كله بدل الحقل 🚨 -->
+                <!-- ========================================================== -->
+                <xpath expr="//div[@name='pricing']" position="after">
+                    <field name="price_after_discount" string="السعر بعد الخصم"/>
                 </xpath>
+
+                <!-- 3. إخفاء (يمكن تقييده كنفقة) - معطل لأن hr_expense غير مضمون تثبيته -->
+                <!-- <xpath expr="//field[@name='can_be_expensed']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//label[@for='can_be_expensed']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath> -->
+
+                <!-- 4. إخفاء وحدة قياس الشراء -->
+                <xpath expr="//field[@name='uom_po_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <!-- 5. إخفاء الوزن بميزان -->
+                <xpath expr="//field[@name='to_weight']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <!-- 6. إخفاء حقول الموقع الإلكتروني - معطلة لأن website_sale غير مضمون في depends -->
+                <!-- <xpath expr="//field[@name='website_sequence']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='website_ribbon_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath> -->
 
             </field>
         </record>
 
 
+        <!-- 2. Product Normal (Variant) -->
         <record id="product_product_form_view_inherit" model="ir.ui.view">
             <field name="name">product_product_form_view_inherit</field>
             <field name="model">product.product</field>
             <field name="inherit_id" ref="product.product_normal_form_view"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='name']" position="after">
-                    <label for="ar_name"/>
-                    <field name="ar_name"/>
-                    <label for="ar_description"/>
-                    <field name="ar_description"/>
 
-                    <label for="avg_rating"/>
-                    <field name="avg_rating"/>
-
-                    <label for="top"/>
-                    <field name="top"/>
+                <!-- نفس التعديلات للمتغيرات عشان الشاشتين يبقوا متطابقين -->
+                <xpath expr="//page[@name='general_information']/group" position="after">
+                    <group>
+                        <group string="البيانات العربية للتطبيق">
+                            <field name="ar_name" string="الاسم بالعربي"/>
+                            <field name="ar_description" string="الوصف بالعربي"/>
+                        </group>
+                        <group string="بيانات التقييم">
+                            <field name="avg_rating" string="متوسط التقييم"/>
+                            <field name="manual_rating" string="تقييم يدوي (وهمي)"/>
+                            <field name="top" string="خدمة مميزة (Top)"/>
+                        </group>
+                    </group>
                 </xpath>
 
-
-
-                <xpath expr="//field[@name='list_price']" position="after">
-                    <label for="price_after_discount"/>
-
-                    <field name="price_after_discount"/>
+                <!-- 🚨 نفس التعديل الجذري هنا كمان 🚨 -->
+                <xpath expr="//div[@name='pricing']" position="after">
+                    <field name="price_after_discount" string="السعر بعد الخصم"/>
                 </xpath>
 
             </field>
         </record>
-
 
     </data>
 </odoo>

@@ -7,9 +7,7 @@
             <field name="arch" type="xml">
 
                 <xpath expr="//field[@name='name']" position="after">
-                    <label for="ar_name"/>
                     <field name="ar_name"/>
-                    <label for="ar_desc"/>
                     <field name="ar_desc"/>
                 </xpath>
 
