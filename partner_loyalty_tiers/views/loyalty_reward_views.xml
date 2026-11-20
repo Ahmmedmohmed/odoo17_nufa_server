@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_loyalty_reward_form_inherit_tier" model="ir.ui.view">
+        <field name="name">loyalty.reward.form.inherit.tier</field>
+        <field name="model">loyalty.reward</field>
+        <field name="inherit_id" ref="loyalty.loyalty_reward_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='description']" position="after">
+                <field name="allowed_tier_ids" widget="many2many_tags"
+                       placeholder="مثال: ذهبي، فضي (اتركه فارغاً للجميع)"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

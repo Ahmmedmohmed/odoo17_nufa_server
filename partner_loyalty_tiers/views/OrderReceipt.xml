@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="OrderReceiptInherit" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('before-footer')]" position="before">
+            <t t-if="props.data.generated_coupons and props.data.generated_coupons.length > 0">
+                <div class="pos-receipt-center-align" style="margin-top: 20px; padding: 10px; border: 2px dashed #000;">
+                    <div style="font-weight: bold; font-size: 1.2em;">هدية لزيارتك القادمة!</div>
+                    <t t-foreach="props.data.generated_coupons" t-as="coupon" t-key="coupon.id">
+                        <div style="margin-top: 10px;">
+                            <span>كود الخصم: </span>
+                            <span t-esc="coupon.code" style="font-size: 1.5em; font-weight: bold; display: block;"/>
+                        </div>
+                        <div t-if="coupon.expiration_date" style="font-size: 0.8em;">
+                            صالح حتى: <t t-esc="coupon.expiration_date"/>
+                        </div>
+                    </t>
+                    <div style="font-size: 0.9em; margin-top: 5px;">استخدم هذا الكود في طلبيتك القادمة للحصول على الخصم</div>
+                </div>
+            </t>
+        </xpath>
+    </t>
+</templates>

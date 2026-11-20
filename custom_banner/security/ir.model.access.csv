@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_custom_banner,custom.banner,model_custom_banner,base.group_user,1,1,1,1
+access_custom_banner_admin,custom.banner,model_custom_banner,base.group_user,1,1,1,1
+access_custom_banner_public,custom.banner,model_custom_banner,base.group_public,1,0,0,0

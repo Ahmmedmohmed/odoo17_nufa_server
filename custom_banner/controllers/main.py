@@ -1,5 +1,6 @@
 import json
 import requests
+import re
 from odoo import http
 from odoo.http import request, Response
 
@@ -7,9 +8,9 @@ class BannerController(http.Controller):
 
     # --- META API CONFIGURATION ---
     # Get these from https://developers.facebook.com/
-    META_TOKEN = "EAFuId4IjxeEBQSFVsU7gH2exgl7ukZBebdDnAUZBnVwh60EKSLwufJAKv1Y17C2pbue5i9NOkRUGRb9QCiyzQl5FEnBPUgP7XcfmkKpl6T6CS32RNpZBIEYpDGgdlZABoYeYqCm535uBkdqjm8BlIPjeolppIJpZCfZCdiuDqbXQvbTWAAebXOcDQM1TXqaSYP0CPoFoLXyk6QEl5fMQ8CkkBy9fAw6w619VE5f147oDq3ZAWrQntpSDY29884LpGTUYX1ZCr4kcp8CaRzoKU6GWAwsG"
-    PHONE_NUMBER_ID = "907241232476654"
-    META_URL = f"https://graph.facebook.com/v18.0/{PHONE_NUMBER_ID}/messages"
+    META_TOKEN = "EAFuId4IjxeEBQSFeQD7RJdJFRUFuv6BT6XWDvbCgTORukY4OZCuDmquZChtRlC6N2EFmBQKvzG84fHsbqvaa657a85gfAHoLkKqvzQrEBDHMZC8PMZC5ISPQ9bdoDFkOmENXbLzecsYZBkaAkXezEPFFlQrNJiB8877i9Jfoe6ZAE5zZAnVZAIHkbYNcy3z6wdVOhwZDZD"
+    PHONE_NUMBER_ID = "926541170542819"
+    META_URL = f"https://graph.facebook.com/v24.0/{PHONE_NUMBER_ID}/messages"
 
     def _json(self, data, status=200):
         return Response(
@@ -44,57 +45,82 @@ class BannerController(http.Controller):
     # ---------------------------------------------------------
     # NEW WHATSAPP API (Server-to-Server)
     # ---------------------------------------------------------
-    @http.route('/api/send_appointment_whatsapp', type='http', auth='public', methods=['POST'], csrf=False)
+    @http.route('/api/send_appointment_whatsapp', type='http', auth='none', methods=['POST'], csrf=False)
     def api_send_whatsapp_direct(self, **kwargs):
-        try:
-            body = json.loads(request.httprequest.data)
-            appointment_id = body.get('appointment_id')
-            
-            appt = request.env['appointment.management'].sudo().browse(int(appointment_id))
-            if not appt.exists():
-                return self._json({'error': 'Appointment not found'}, status=404)
+        data = dict(kwargs)
+        if not all(data.get(k) for k in ('name', 'phone', 'order_id', 'amount')) and request.httprequest.data:
+            try:
+                json_body = json.loads(request.httprequest.data.decode('utf-8'))
+                if isinstance(json_body, dict):
+                    data.update({k: v for k, v in json_body.items() if v is not None})
+            except Exception:
+                pass
 
-            # 1. Generate or Get your PDF URL
-            # Meta requires a publicly accessible link (HTTPS). 
-            # In production, use Odoo's internal URL or an S3 link.
-            pdf_url = "http://localhost:8017/custom_banner/static/file-sample_150kB.pdf"
-            
+        name = data.get('name')
+        phone = data.get('phone')
+        order_id = data.get('order_id')
+        amount = data.get('amount')
+
+        # Check if all fields are present
+        if not all([name, phone, order_id, amount]):
+            return self._json({'status': 'error', 'message': 'Missing required fields: name, phone, order_id, amount'}, status=400)
+
+        base_url = request.httprequest.host_url  # Returns 'https://yourdomain.com/'
+        invoice_url = f"{base_url.rstrip('/')}/appointment/pos-user/invoice/{order_id}"
+        try:
+            headers = {
+                "Authorization": f"Bearer {self.META_TOKEN}",
+                "Content-Type": "application/json"
+            }
+
+            # Payload updated to use 'order_sucess' with your parameters
             payload = {
                 "messaging_product": "whatsapp",
-                "to": "917405072262", 
+                "to": str(phone),
                 "type": "template",
                 "template": {
-                    "name": "appointment_confirmation_pdf", # Must match Meta name
-                    "language": {"code": "en_US"},
+                    "name": "order_sucess",
+                    "language": {
+                        "code": "en_US"
+                    },
                     "components": [
-                        {
-                            "type": "header",
-                            "parameters": [
-                                {
-                                    "type": "document",
-                                    "document": {
-                                        "link": pdf_url,
-                                        "filename": f"Appointment_pdf.pdf"
-                                    }
-                                }
-                            ]
-                        },
                         {
                             "type": "body",
                             "parameters": [
-                                {"type": "text", "text": "kabir"},
-                                {"type": "text", "text": "kabir"},
-                                # {"type": "text", "text": appt.partner_id.name},
-                                # {"type": "text", "text": appt.name}
+                                { "type": "text", "text": str(name) },     # {{1}}
+                                { "type": "text", "text": str(order_id) }, # {{2}}
+                                { "type": "text", "text": str(amount) }    # {{3}}
+                            ]
+                        },
+                        {
+                            "type": "button",
+                            "sub_type": "url",
+                            "index": "0", # The index of the button in your template (starts at 0)
+                            "parameters": [
+                                {
+                                    "type": "text",
+                                    "text": str(order_id) # The dynamic part of the URL
+                                }
                             ]
                         }
-                    ]
+                    ],
                 }
             }
 
-            headers = {"Authorization": f"Bearer {self.META_TOKEN}", "Content-Type": "application/json"}
-            response = requests.post(self.META_URL, json=payload, headers=headers)
-            return self._json(response.json(), status=response.status_code)
+            response = requests.post(self.META_URL, json=payload, headers=headers, timeout=30)
+            result = response.json()
+            if response.status_code == 200:
+                messages = result.get('messages') or [{}]
+                return self._json({
+                    'status': 'success',
+                    'wa_id': messages[0].get('id'),
+                    'invoice_url': invoice_url
+                })
+            else:
+                return self._json({
+                    'status': 'error',
+                    'meta_response': result
+                }, status=response.status_code)
 
         except Exception as e:
             return self._json({'error': str(e)}, status=500)

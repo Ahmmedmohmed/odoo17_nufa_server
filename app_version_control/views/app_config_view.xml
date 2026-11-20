@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_mobile_app_config_tree" model="ir.ui.view">
+        <field name="name">mobile.app.config.tree</field>
+        <field name="model">mobile.app.config</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="maintenance_mode == True">
+                <field name="platform"/>
+                <field name="min_supported_version"/>
+                <field name="maintenance_mode"/>
+                <field name="updated_at"/>
+                <field name="updated_by"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_mobile_app_config_form" model="ir.ui.view">
+        <field name="name">mobile.app.config.form</field>
+        <field name="model">mobile.app.config</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group string="Platform Settings">
+                            <field name="platform"/>
+                            <field name="maintenance_mode"/>
+                            <field name="maintenance_message" invisible="not maintenance_mode"/>
+                        </group>
+                        <group string="Version Control">
+                            <field name="exact_blocked_version"/>
+                            <field name="min_supported_version"/>
+                        </group>
+                    </group>
+                    <group string="Audit Metadata">
+                        <field name="change_reason"/>
+                        <field name="updated_by"/>
+                        <field name="updated_at"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_mobile_app_config" model="ir.actions.act_window">
+        <field name="name">App Config</field>
+        <field name="res_model">mobile.app.config</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_mobile_app_root" name="Mobile App" sequence="10"/>
+    <menuitem id="menu_mobile_app_config" name="Update Controls"
+              parent="menu_mobile_app_root" action="action_mobile_app_config" sequence="1"/>
+</odoo>

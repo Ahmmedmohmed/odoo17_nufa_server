@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- شاشة الفورم -->
+    <record id="view_loyalty_tier_form" model="ir.ui.view">
+        <field name="name">loyalty.tier.form</field>
+        <field name="model">loyalty.tier</field>
+        <field name="arch" type="xml">
+            <form string="مستوى الولاء">
+                <sheet>
+                    <widget name="web_ribbon" title="مؤرشف" bg_color="bg-danger" invisible="active"/>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="min_purchase"/>
+                        </group>
+                        <group>
+                            <field name="point_value"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- شاشة القائمة (Tree) -->
+    <record id="view_loyalty_tier_tree" model="ir.ui.view">
+        <field name="name">loyalty.tier.tree</field>
+        <field name="model">loyalty.tier</field>
+        <field name="arch" type="xml">
+            <tree string="مستويات الولاء">
+                <field name="name"/>
+                <field name="min_purchase"/>
+                <field name="point_value"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- الأكشن والقائمة (Menu) -->
+    <record id="action_loyalty_tier" model="ir.actions.act_window">
+        <field name="name">مستويات الولاء للعملاء</field>
+        <field name="res_model">loyalty.tier</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- هتلاقيها جوه المبيعات -> التهيئة -->
+    <menuitem id="menu_loyalty_tier_config"
+              name="مستويات الولاء"
+              parent="sale.menu_sale_config"
+              action="action_loyalty_tier"
+              sequence="100"/>
+</odoo>

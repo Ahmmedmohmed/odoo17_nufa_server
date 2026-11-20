@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_partner_form_location_inherit" model="ir.ui.view">
+            <field name="name">res.partner.form.location.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Partner Locations" name="partner_locations">
+                        <field name="location_ids" context="{'default_partner_id': active_id}">
+                            <tree string="Locations">
+                                <field name="label"/>
+                                <field name="address"/>
+                                <field name="street"/>
+                            </tree>
+                            <form string="Location Details">
+                                <sheet>
+                                    <group>
+                                        <group>
+                                            <field name="label" placeholder="e.g. Work, Home" required="1"/>
+                                            <field name="building_name"/>
+                                            <field name="apartment_number"/>
+                                            <field name="floor"/>
+                                        </group>
+                                        <group>
+                                            <field name="street"/>
+                                            <field name="address"/>
+                                            <field name="latitude"/>
+                                            <field name="longitude"/>
+                                        </group>
+                                    </group>
+                                    <separator string="Additional Information"/>
+                                    <field name="additional_info" placeholder="Delivery instructions..."/>
+                                </sheet>
+                            </form>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_loyalty_rule_form_inherit_tier" model="ir.ui.view">
+        <field name="name">loyalty.rule.form.inherit.tier</field>
+        <field name="model">loyalty.rule</field>
+        <field name="inherit_id" ref="loyalty.loyalty_rule_view_form"/>
+        <field name="arch" type="xml">
+            <!-- هنضيف الحقل بتاعنا تحت وصف القاعدة -->
+            <xpath expr="//field[@name='reward_point_mode']" position="after">
+                <field name="allowed_tier_ids" widget="many2many_tags"
+                       placeholder="مثال: ذهبي، فضي (اتركه فارغاً للجميع)"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
